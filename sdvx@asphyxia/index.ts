@@ -28,21 +28,22 @@ import {
 export function register() {
 
   R.Contributor("LatoWolf#1170");
+  R.Contributor("ovv (this fork)");
   R.GameCode('KFC');
 
+  R.Config('sdvx_eg_root_dir', { type: 'string', needRestart: true, default: '', name: 'Exceed Gear Data Directory', desc: 'The root directory of your SDVX Exceed Gear game files (for asset copying)'});
+  R.Config('unlock_all_valk_items', { type: 'boolean', default: false, name:'Unlock All Valkyrie Items', desc: 'Unlock Nemsys, BGM, Submonitor BG and Stamp Items (Valk crews not included; check \'unlock all navigators\' option)'});
+  R.Config('enable_valk_songs' ,{ type: 'boolean', default: false, name:'Enable Valkyrie Model Songs', desc:'Unlock the valkyrie model songs on non-valkyrie mode.'});
+  R.Config('arena_szn',{ type: 'string', options: Object.keys(ARENA), default: 'Set 1 (04/25/22)', name: 'Arena Station Item Set', desc: 'Choose which season set of items in the arena station you want to show up in arena station'});
   R.Config('unlock_all_songs', { type: 'boolean', default: false, name:'Unlock All Songs'});
   R.Config('unlock_all_navigators', { type: 'boolean', default: false, name:'Unlock All Navigators'} );
   R.Config('unlock_all_appeal_cards', { type: 'boolean', default: false, name:'Unlock All Appeal Cards'});
-  R.Config('unlock_all_valk_items', { type: 'boolean', default: false, name:'Unlock All Valkyrie Items', desc: 'Unlock Nemsys, BGM, Submonitor BG and Stamp Items (Valk crews not included; check \'unlock all navigators\' option)'});
-  R.Config('use_information' ,{ type: 'boolean', default: true, name:'Use Information', desc:'Enable the information section after entry.'});
-  R.Config('enable_valk_songs' ,{ type: 'boolean', default: false, name:'Enable Valkyrie Model Songs', desc:'Unlock the valkyrie model songs on non-valkyrie mode.'});
-  R.Config('use_asphyxia_gameover',{ type: 'boolean', default: true, name:'Use Asphyxia Gameover', desc:'Enable the Asphyxia gameover message after ending the game.'})
-  R.Config('sdvx_eg_root_dir', { type: 'string', needRestart: true, default: '', name: 'Exceed Gear Data Directory', desc: 'The root directory of your SDVX Exceed Gear game files (for asset copying)'});
   R.Config('use_blasterpass',{ type: 'boolean', default: true, name:'Use Blaster Pass', desc:'Enable Blaster Pass for VW and EG'});
-  R.Config('new_year_special',{ type: 'boolean', default: false, name:'Use New Year Special', desc:'Enable New Year Special BGM for login (needs checking)'});
-  R.Config('april_fools',{ type: 'boolean', default: false, name:'April Fools', desc:'Enable April Fools Event (needs checking)'});
-  R.Config('arena_szn',{ type: 'string', options: Object.keys(ARENA), default: 'Set 1 (04/25/22)', name: 'Arena Station Item Set', desc: 'Choose which season set of items in the arena station you want to show up in arena station'});
-  R.Config('debug_log_toggle', { type: 'boolean', default: true, name:'Toggle Logging'});
+  R.Config('new_year_special',{ type: 'boolean', default: false, name:'Use New Year Special', desc:'Enable New Year Special BGM for login (doesn\'t work right now)'});
+  R.Config('april_fools',{ type: 'boolean', default: false, name:'April Fools', desc:'Enable April Fools Event (doesn\'t work properly right now)'});
+  R.Config('use_information' ,{ type: 'boolean', default: true, name:'Use Information', desc:'Enable the information section after entry.'});
+  R.Config('use_asphyxia_gameover',{ type: 'boolean', default: true, name:'Use Asphyxia Gameover', desc:'Enable the Asphyxia gameover message after ending the game.'})
+  R.Config('debug_log_toggle', { type: 'boolean', default: true, name:'Toggle Logging (incomplete)'});
   
   R.WebUIEvent('generateLatestMusicDBFile', generateLatestMusicDBFile);
   R.WebUIEvent('copyResourcesFromGame', copyResourcesFromGame);
