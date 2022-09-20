@@ -3,6 +3,12 @@ function zeroPad(num, places) {
     return Array(+(zero > 0 && zero)).join("0") + num;
 }
 
+function getImageFileFormat(assetType, id) {
+    if(assetType == 0) {
+        return (id >= 103) ? '.png' : '.jpg'
+    }
+}
+
 ;
 (function($) {
     $.preload = function() {
@@ -30,7 +36,7 @@ $('#nemsys_select').change(function() {
 });
 
 $('[name="subbg"]').change(function() {
-    $('#sub_pre').fadeOut(200, () => { $('#sub_pre').attr("src", "static/asset/submonitor_bg/subbg_" + zeroPad($('[name="subbg"]').val(), 4) + ".jpg"); });
+    $('#sub_pre').fadeOut(200, () => { $('#sub_pre').attr("src", "static/asset/submonitor_bg/subbg_" + zeroPad($('[name="subbg"]').val(), 4) + getImageFileFormat(0, parseInt(zeroPad($('[name="subbg"]').val(), 4)) )); });
     $('#sub_pre').fadeIn(200);
 });
 
@@ -163,7 +169,8 @@ $(document).ready(function() {
                     text: json["subbg"][i].name,
                 }));
                 var image = new Image();
-                image.src = "static/asset/submonitor_bg/subbg_" + zeroPad(json["subbg"][i].value, 4) + ".jpg";
+                image.src = "static/asset/submonitor_bg/subbg_" + zeroPad(json["subbg"][i].value, 4) + getImageFileFormat(0, parseInt(zeroPad(json["subbg"][i].value, 4)));
+                
                 // console.log(image);
                 //console.log(profile_data["subbg"])
             }
@@ -241,7 +248,7 @@ $(document).ready(function() {
         $('#nemsys_pre').attr("src", "static/asset/nemsys/nemsys_aprilfool.png");
     }
 
-    $('#sub_pre').attr("src", "static/asset/submonitor_bg/subbg_" + zeroPad(profile_data["subbg"], 4) + ".jpg");
+    $('#sub_pre').attr("src", "static/asset/submonitor_bg/subbg_" + zeroPad(profile_data["subbg"], 4) + getImageFileFormat(0, parseInt(zeroPad(profile_data["subbg"], 4))));
     $('#custom_0').attr("src", "static/asset/audio/custom_" + zeroPad(profile_data["bgm"], 2) + "/0.mp3");
     $('#custom_1').attr("src", "static/asset/audio/custom_" + zeroPad(profile_data["bgm"], 2) + "/1.mp3");
     $('#custom_0').prop("volume", 0.5);

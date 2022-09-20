@@ -44,7 +44,7 @@ export const copyResourcesFromGame = async (data: {}) => {
   for await (const nemsys of nemsysFiles) {
     let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "\\data\\graphics\\game_nemsys\\" + nemsys.name)
     if(!IO.Exists('webui\\asset\\nemsys\\' + nemsys.name.substring(0, (nemsys.name.length - 4)) + ".png") && !IO.Exists('webui\\asset\\nemsys\\' + nemsys.name.substring(0, (nemsys.name.length - 4)) + ".jpg")) {
-      IO.WriteFile('webui\\test_asset\\nemsys\\' + nemsys.name, fileToWrite)
+      IO.WriteFile('webui\\asset\\nemsys\\' + nemsys.name, fileToWrite)
       newNemsysData.push(nemsys.name)
     } else {
       console.log(nemsys.name + " exists")
@@ -63,7 +63,7 @@ export const copyResourcesFromGame = async (data: {}) => {
   for await (const apCard of apCardFiles) {
     let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "\\data\\graphics\\ap_card\\" + apCard.name)
     if(!IO.Exists('webui\\asset\\ap_card\\' + apCard.name.substring(0, (apCard.name.length - 4)) + ".png") && !IO.Exists('webui\\asset\\ap_card\\' + apCard.name.substring(0, (apCard.name.length - 4)) + ".jpg")) {
-      IO.WriteFile('webui\\test_asset\\ap_card\\' + apCard.name, fileToWrite)
+      IO.WriteFile('webui\\asset\\ap_card\\' + apCard.name, fileToWrite)
       newAPCardData.push(apCard.name)
     } else {
       console.log(apCard.name + " exists")
@@ -76,7 +76,7 @@ export const copyResourcesFromGame = async (data: {}) => {
   for await (const subbg of subBGFiles) {
     let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "\\data\\graphics\\submonitor_bg\\" + subbg.name)
     if(!IO.Exists('webui\\asset\\submonitor_bg\\' + subbg.name.substring(0, (subbg.name.length - 4)) + ".png") && !IO.Exists('webui\\asset\\submonitor_bg\\' + subbg.name.substring(0, (subbg.name.length - 4))  + ".jpg")) {
-      IO.WriteFile('webui\\test_asset\\submonitor_bg\\' + subbg.name, fileToWrite)
+      IO.WriteFile('webui\\asset\\submonitor_bg\\' + subbg.name, fileToWrite)
       newSubBGData.push(subbg.name)
     } else {
       console.log(subbg.name + " exists")
@@ -89,7 +89,7 @@ export const copyResourcesFromGame = async (data: {}) => {
     }
   })
 
-  await IO.WriteFile('webui\\test_asset\\data.json', JSON.stringify(resourceJsonData))
+  await IO.WriteFile('webui\\asset\\json\\data.json', JSON.stringify(resourceJsonData))
   await IO.WriteFile('webui\\asset\\logs\\copyResourcesFromGame.json', JSON.stringify({
     nemsys: newNemsysData,
     apCard: newAPCardData,
