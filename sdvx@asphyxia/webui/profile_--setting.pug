@@ -1,6 +1,18 @@
 //DATA//
   profile: DB.FindOne(refid, { collection: 'profile' })
 
+  items_crew: DB.Find(refid, {$or:[{collection:"item",type:11,id:117}, {collection:"item",type:11,id:119}, {collection:"item",type:11,id:120}, {collection:"item",type:11,id:121}, {collection:"item",type:11,id:124}, {collection:"item",type:11,id:129}]})
+
+  items_stamp: DB.Find(refid, { collection:"item",type:17 })
+
+  items_subbg: DB.Find(refid, { collection:"item",type:18 })
+
+  items_bgm: DB.Find(refid, { collection:"item",type:19 })
+
+  items_nemsys: DB.Find(refid, { collection:"item",type:20 })
+
+  unlock_all: U.GetConfig('unlock_all_valk_items')
+
 -
   const padded = _.padStart(profile.id.toString(), 8);
   const sdvxid = `${padded.slice(0, 4)}-${padded.slice(4)}`;
@@ -160,4 +172,10 @@ div
                 .tild.is-child
                   a(href="static/asset/nemsys/custom_nemsys.xml" download="custom_nemsys.xml") custom_nemsys.xml download
 div(hidden id='data-pass') !{JSON.stringify(profile)}
+div(hidden id='data-pass-crew') !{JSON.stringify(items_crew)}
+div(hidden id='data-pass-stamp') !{JSON.stringify(items_stamp)}
+div(hidden id='data-pass-subbg') !{JSON.stringify(items_subbg)}
+div(hidden id='data-pass-bgm') !{JSON.stringify(items_bgm)}
+div(hidden id='data-pass-nemsys') !{JSON.stringify(items_nemsys)}
+div(hidden id='data-pass-unlock-all') !{unlock_all}
 script(src="static/asset/js/preview.js") 

@@ -1,0 +1,26 @@
+-
+link(rel="stylesheet" href="static/asset/css/datatables.css")
+div
+  .card
+    .card-header
+      p.card-header-title
+        span.icon
+          i.mdi.mdi-account-edit
+        | Songs List
+    .card-content
+      table.table(id="songslist" style="width:100%")
+        thead
+          tr    
+            th ID
+            th Song Name
+            th Release Date
+            th Novice
+            th Advanced
+            th Exhaust
+            th Maximum
+            th Other
+        tbody
+
+//div(hidden id='data-pass') !{JSON.stringify(profile)}
+script(src="static/asset/js/songslist.js") 
+script(src="static/asset/js/datatables.js")

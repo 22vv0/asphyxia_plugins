@@ -2,6 +2,7 @@ import { Skill } from '../models/skill';
 import { SDVX_AUTOMATION_SONGS } from '../data/vvw';
 import { Item } from '../models/item';
 import { Param } from '../models/param';
+import { Arena } from '../models/arena';
 import { MusicRecord } from '../models/music_record';
 import { CourseRecord } from '../models/course_record';
 import { Profile } from '../models/profile';
@@ -33,7 +34,7 @@ function unlockAppealCards(items: Partial<Item>[]) {
 export const loadScore: EPR = async (info, data, send) => {
   console.log("Now loading score");
   const version = Math.abs(getVersion(info));
-  console.log("Got version:" + version);
+  console.log("Got version: " + version);
   let refid = $(data).str('refid', $(data).attr().dataid);
   if (version === 2) refid = $(data).str('dataid', '0');
   //console.log('loading score');
@@ -365,6 +366,7 @@ export const saveCourse: EPR = async (info, data, send) => {
 };
 
 export const save: EPR = async (info, data, send) => {
+  console.log($(data))
   const refid = $(data).str('refid', $(data).attr().refid);
   if (!refid) return send.deny();
 
@@ -404,6 +406,9 @@ export const save: EPR = async (info, data, send) => {
 
   // Save Profile
   if (version === 6) {
+    console.log(JSON.stringify($(data)))
+    console.log("packet: " + $(data).number('earned_gamecoin_packet'))
+    console.log("block: " + $(data).number('earned_gamecoin_block'))
     await DB.Update<Profile>(
       refid,
       { collection: 'profile' },
@@ -433,6 +438,15 @@ export const save: EPR = async (info, data, send) => {
           blocks: $(data).number('earned_gamecoin_block'),
           blasterEnergy: $(data).number('earned_blaster_energy'),
           extrackEnergy: $(data).number('earned_extrack_energy'),
+          playCount: 1,
+          dayCount: 1,
+          todayCount: 1,
+          playChain: 1,
+          maxPlayChain: 1,
+          weekCount: 1,
+          weekPlayCount: 1,
+          weekChain: 1,
+          maxWeekChain: 1
         },
       }
     );
@@ -466,6 +480,15 @@ export const save: EPR = async (info, data, send) => {
           packets: $(data).number('earned_gamecoin_packet'),
           blocks: $(data).number('earned_gamecoin_block'),
           blasterEnergy: $(data).number('earned_blaster_energy'),
+          playCount: 1,
+          dayCount: 1,
+          todayCount: 1,
+          playChain: 1,
+          maxPlayChain: 1,
+          weekCount: 1,
+          weekPlayCount: 1,
+          weekChain: 1,
+          maxWeekChain: 1
         },
       }
     );
@@ -545,6 +568,35 @@ export const save: EPR = async (info, data, send) => {
     }
   );
 
+  // Save Arena Data
+  const arena_data = $(data).elements('arena');
+  for (const are of arena_data) {
+    const earnedUR = are.number('earned_ultimate_rate');
+    const earnedSP = are.number('earned_shop_point');
+    const earnedRP = are.number('earned_rank_point');
+    const earnedLE = are.number('earned_live_energy');
+    const rankPlay = are.str('rank_play') == 'true' ? 1 : 0;
+    const ultimatePlay = are.str('ultimate_play') == 'true' ? 1 : 0;
+    await DB.Upsert<Arena>(
+      refid,
+      { 
+        collection: 'arena'
+      },
+      { 
+        $inc: { 
+          ultimateRate: _.isNil(earnedUR) ? 0 : earnedUR,
+          shopPoint: _.isNil(earnedSP) ? 0 : earnedSP,
+          rankPoint: _.isNil(earnedRP) ? 0 : earnedRP,
+          liveEnergy: _.isNil(earnedLE) ? 0 : earnedLE,
+          rankCount: rankPlay,
+          ultimateCount: ultimatePlay
+        } 
+      }
+    );
+
+    console.log(earnedSP)
+  }
+
   return send.success();
 };
 
@@ -554,8 +606,8 @@ export const load: EPR = async (info, data, send) => {
   if (!refid) return send.deny();
 
   const version = Math.abs(getVersion(info));
-  console.log("Got version" + version);
-  console.log("DataID" + refid);
+  console.log("Got version: " + version);
+  console.log("DataID: " + refid);
   if (version == 0) return send.deny();
 
   const profile = await DB.FindOne<Profile>(refid, {
@@ -575,6 +627,7 @@ export const load: EPR = async (info, data, send) => {
   const courses = await DB.Find<CourseRecord>(refid, { collection: 'course', version });
   const items = await DB.Find<Item>(refid, { collection: 'item' });
   const params = await DB.Find<Param>(refid, { collection: 'param' });
+  const arena = await DB.FindOne<Arena>(refid, { collection: 'arena' });
   let time = new Date();
   let tempHour = time.getHours();
   let tempDate = time.getDate();
@@ -614,7 +667,7 @@ export const load: EPR = async (info, data, send) => {
 
   const customize = [];
   customize.push(bgm, subbg, nemsys, stampA, stampB, stampC, stampD);
-
+  console.log("ARENA POINTS: " + arena['shopPoint'])
 
   var tempCustom = params.findIndex((e) => (e.type == 2 && e.id == 2))
 
@@ -650,6 +703,7 @@ export const load: EPR = async (info, data, send) => {
     blasterpass,
     automation: version == 5 ? SDVX_AUTOMATION_SONGS : [],
     code: IDToCode(profile.id),
+    arena,
     ...profile,
   });
 };
@@ -702,7 +756,9 @@ export const create: EPR = async (info, data, send) => {
     sortType: 0,
     expPoint: 0,
     mUserCnt: 0,
-    boothFrame: [0, 0, 0, 0, 0]
+    boothFrame: [0, 0, 0, 0, 0],
+
+    playCount: 0
   };
 
   await DB.Upsert(refid, { collection: 'profile' }, profile);
@@ -710,6 +766,7 @@ export const create: EPR = async (info, data, send) => {
 };
 
 export const buy: EPR = async (info, data, send) => {
+  console.log("buying")
   const refid = $(data).str('refid');
   if (!refid) return send.deny();
 
@@ -776,4 +833,25 @@ export const print: EPR = async (info, data, send) => {
       param: K.ITEM('s32', 10),
     }))
   }), { status: "0" };
+}
+
+export const saveValgene: EPR = async (info, data, send) => {
+  console.log("Saving Valkyrie Generator Item")
+  const refid = $(data).str('refid');
+  const items = $(data).elements('item.info');
+
+  for (const i of items) {
+    const type = i.number('type');
+    const id = i.number('id');
+    const param = i.number('param');
+
+    if (_.isNil(type) || _.isNil(id) || _.isNil(param)) continue;
+
+    await DB.Upsert<Item>(
+      refid,
+      { collection: 'item', type, id },
+      { $set: { param } }
+    );
+  }
+  return send.object({ result: K.ITEM('u8', 0) });
 }

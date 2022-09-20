@@ -86,15 +86,24 @@ game
         id(__type="s32") #{id}
         param(__type="s32" __count="1") #{akaname}
 
-  play_count(__type="u32") 1001
-  day_count(__type="u32") 301
-  today_count(__type="u32") 21
-  play_chain(__type="u32") 31
-  max_play_chain(__type="u32") 31
-  week_count(__type="u32") 9
-  week_play_count(__type="u32") 101
-  week_chain(__type="u32") 31
-  max_week_chain(__type="u32") 31
+  if playCount
+    play_count(__type="u32") #{playCount}
+  if dayCount
+    day_count(__type="u32") #{dayCount}
+  if todayCount
+    today_count(__type="u32") #{todayCount}
+  if playChain
+    play_chain(__type="u32") #{playChain}
+  if maxPlayChain
+    max_play_chain(__type="u32") #{maxPlayChain}
+  if weekCount
+    week_count(__type="u32") #{weekCount}
+  if weekPlayCount
+    week_play_count(__type="u32") #{weekPlayCount}
+  if weekChain
+    week_chain(__type="u32") #{weekChain}
+  if maxWeekChain
+    max_week_chain(__type="u32") #{maxWeekChain}
 
   if mixes
     each mix in mixes
@@ -109,3 +118,12 @@ game
         jacket_id(__type="s32") #{mix.jacket}
         tag_bit(__type="s32") #{mix.tag}
         like_flg(__type="u8") 0
+
+  if arena
+    arena
+      ultimate_rate(__type="s32") #{arena.ultimateRate}
+      shop_point(__type="s32") #{arena.shopPoint}
+      rank_point(__type="s32") #{arena.rankPoint}
+      live_energy(__type="s32") #{arena.liveEnergy}
+      rank_play_cnt(__type="s32") #{arena.rankCount}
+      ultimate_play_cnt(__type="s32") #{arena.ultimateCount}

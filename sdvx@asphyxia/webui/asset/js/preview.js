@@ -38,8 +38,8 @@ $('[name="bgm"]').change(function() {
     $('#custom_0').attr("src", "static/asset/audio/custom_" + zeroPad($('[name="bgm"]').val(), 2) + "/0.mp3");
     $('#custom_1').attr("src", "static/asset/audio/custom_" + zeroPad($('[name="bgm"]').val(), 2) + "/1.mp3");
     if ($('[name="bgm"]').val() == 99) {
-        $('#custom_0').attr("src", "static/asset/audio/special_00/0.m4a");
-        $('#custom_1').attr("src", "static/asset/audio/custom_00/1.m4a");
+        $('#custom_0').attr("src", "static/asset/audio/special_00/0.mp3");
+        $('#custom_1').attr("src", "static/asset/audio/custom_00/1.mp3");
     }
     $('#custom_0').prop("volume", 0.5);
     $('#custom_1').prop("volume", 0.2);
@@ -124,6 +124,13 @@ var play_bgm = false;
 var play_sel = false;
 $(document).ready(function() {
     profile_data = JSON.parse(document.getElementById("data-pass").innerText);
+    items_crew = JSON.parse(document.getElementById("data-pass-crew").innerText);
+    items_stamp = JSON.parse(document.getElementById("data-pass-stamp").innerText);
+    items_subbg = JSON.parse(document.getElementById("data-pass-subbg").innerText);
+    items_bgm = JSON.parse(document.getElementById("data-pass-bgm").innerText);
+    items_nemsys = JSON.parse(document.getElementById("data-pass-nemsys").innerText);
+    unlock_all = (document.getElementById("data-pass-unlock-all").innerText === 'true');
+    console.log(unlock_all);
 
     $.getJSON("static/asset/json/data.json", function(json) {
         database = json;
@@ -132,47 +139,54 @@ $(document).ready(function() {
         //console.log(profile_data);
 
         for (var i in json["nemsys"]) {
-            $('#nemsys_select').append($('<option>', {
-                value: json["nemsys"][i].value,
-                text: json["nemsys"][i].name,
-            }));
-            var image = new Image();
-            if (json["nemsys"][i].value != 30) {
-                image.src = "static/asset/nemsys/nemsys_" + zeroPad(json["nemsys"][i].value, 4) + ".png";
-            } else {
-                image.src = "static/asset/nemsys/nemsys_aprilfool.png";
+            if(unlock_all || (json["nemsys"][i].value === 0 || items_nemsys.find(x => x.id === json["nemsys"][i].value))) {
+                $('#nemsys_select').append($('<option>', {
+                    value: json["nemsys"][i].value,
+                    text: json["nemsys"][i].name,
+                }));
+                var image = new Image();
+                if (json["nemsys"][i].value != 30) {
+                    image.src = "static/asset/nemsys/nemsys_" + zeroPad(json["nemsys"][i].value, 4) + ".png";
+                } else {
+                    image.src = "static/asset/nemsys/nemsys_aprilfool.png";
+                }
+                //console.log(profile_data["nemsys"])
             }
-            //console.log(profile_data["nemsys"])
+                
         }
         $('#nemsys_select').val(profile_data["nemsys"]);
 
         for (var i in json["subbg"]) {
-            $('[name="subbg"]').append($('<option>', {
-                value: json["subbg"][i].value,
-                text: json["subbg"][i].name,
-            }));
-            var image = new Image();
-            image.src = "static/asset/submonitor_bg/subbg_" + zeroPad(json["subbg"][i].value, 4) + ".jpg";
-            // console.log(image);
-            //console.log(profile_data["subbg"])
+            if(unlock_all || (json["subbg"][i].value === 0 || items_subbg.find(x => x.id === json["subbg"][i].value))) {
+                $('[name="subbg"]').append($('<option>', {
+                    value: json["subbg"][i].value,
+                    text: json["subbg"][i].name,
+                }));
+                var image = new Image();
+                image.src = "static/asset/submonitor_bg/subbg_" + zeroPad(json["subbg"][i].value, 4) + ".jpg";
+                // console.log(image);
+                //console.log(profile_data["subbg"])
+            }
         }
         $('[name="subbg"]').val(profile_data["subbg"]);
 
         for (var i in json["bgm"]) {
-            $('[name="bgm"]').append($('<option>', {
-                value: json["bgm"][i].value,
-                text: json["bgm"][i].name,
-            }));
-            var audio = new Audio();
-            var audio1 = new Audio();
-            if (json["bgm"][i].value == 99) {
-                audio.src = "static/asset/audio/special_00/0.mp3"
-            } else {
-                audio.src = "static/asset/audio/custom_" + zeroPad(json["bgm"][i].value, 2) + "/0.mp3"
-                audio1.src = "static/asset/audio/custom_" + zeroPad(json["bgm"][i].value, 2) + "/1.mp3"
-            }
+            if(unlock_all || (json["bgm"][i].value === 0 || items_bgm.find(x => parseInt(x.id) === parseInt(json["bgm"][i].value)))) {
+                $('[name="bgm"]').append($('<option>', {
+                    value: json["bgm"][i].value,
+                    text: json["bgm"][i].name,
+                }));
+                var audio = new Audio();
+                var audio1 = new Audio();
+                if (json["bgm"][i].value == 99) {
+                    audio.src = "static/asset/audio/special_00/0.mp3"
+                } else {
+                    audio.src = "static/asset/audio/custom_" + zeroPad(json["bgm"][i].value, 2) + "/0.mp3"
+                    audio1.src = "static/asset/audio/custom_" + zeroPad(json["bgm"][i].value, 2) + "/1.mp3"
+                }
 
-            //console.log(profile_data["bgm"])
+                //console.log(profile_data["bgm"])
+            }
         }
         $('[name="bgm"]').val(profile_data["bgm"]);
 
@@ -186,35 +200,37 @@ $(document).ready(function() {
         $('[name="akaname"]').val(profile_data["akaname"]);
 
         for (var i in json["stamp"]) {
-            $('[name="stampA"]').append($('<option>', {
-                value: json["stamp"][i].value,
-                text: json["stamp"][i].name,
-            }));
-            $('[name="stampA"]').val(profile_data["stampA"]);
+            if(unlock_all || (json["stamp"][i].value === 0 || items_stamp.find(x => x.id === json["stamp"][i].value))) {
+                $('[name="stampA"]').append($('<option>', {
+                    value: json["stamp"][i].value,
+                    text: json["stamp"][i].name,
+                }));
+                $('[name="stampA"]').val(profile_data["stampA"]);
 
-            $('[name="stampB"]').append($('<option>', {
-                value: json["stamp"][i].value,
-                text: json["stamp"][i].name,
-            }));
-            $('[name="stampB"]').val(profile_data["stampB"]);
+                $('[name="stampB"]').append($('<option>', {
+                    value: json["stamp"][i].value,
+                    text: json["stamp"][i].name,
+                }));
+                $('[name="stampB"]').val(profile_data["stampB"]);
 
-            $('[name="stampC"]').append($('<option>', {
-                value: json["stamp"][i].value,
-                text: json["stamp"][i].name,
-            }));
-            $('[name="stampC"]').val(profile_data["stampC"]);
+                $('[name="stampC"]').append($('<option>', {
+                    value: json["stamp"][i].value,
+                    text: json["stamp"][i].name,
+                }));
+                $('[name="stampC"]').val(profile_data["stampC"]);
 
-            $('[name="stampD"]').append($('<option>', {
-                value: json["stamp"][i].value,
-                text: json["stamp"][i].name,
-            }));
-            $('[name="stampD"]').val(profile_data["stampD"]);
-            var group = Math.trunc((json["stamp"][i].value - 1) / 4 + 1);
-            var item = json["stamp"][i].value % 4;
-            if (item == 0) item = 4;
-            var image = new Image();
+                $('[name="stampD"]').append($('<option>', {
+                    value: json["stamp"][i].value,
+                    text: json["stamp"][i].name,
+                }));
+                $('[name="stampD"]').val(profile_data["stampD"]);
+                var group = Math.trunc((json["stamp"][i].value - 1) / 4 + 1);
+                var item = json["stamp"][i].value % 4;
+                if (item == 0) item = 4;
+                var image = new Image();
 
-            image.src = "static/asset/chat_stamp/stamp_" + zeroPad(group, 4) + "/stamp_" + zeroPad(group, 4) + "_" + zeroPad(item, 2) + ".png";
+                image.src = "static/asset/chat_stamp/stamp_" + zeroPad(group, 4) + "/stamp_" + zeroPad(group, 4) + "_" + zeroPad(item, 2) + ".png";
+            }
         }
     });
 

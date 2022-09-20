@@ -16,6 +16,15 @@ function getSongName(musicid) {
         //console.log(result);
 }
 
+function getReleaseDate(musicid) {
+    //console.log(music_db["mdb"]["music"])
+    //console.log(musicid+" "+type);
+    var result = music_db["mdb"]["music"].filter(object => object["@id"] == musicid);
+    return result[0]["info"]["distribution_date"]["#text"]
+        //console.log(result);
+}
+
+
 function getDifficulty(musicid, type) {
     var result = music_db["mdb"]["music"].filter(object => object["@id"] == musicid);
     if (result.length == 0) {
@@ -41,6 +50,8 @@ function getDifficulty(musicid, type) {
                         return "HVN";
                     case "5":
                         return "VVD";
+                    case "6":
+                        return "XCD"
                 }
             }
         case 4:
@@ -109,8 +120,10 @@ function difficultySort(d) {
             return 6;
         case "VVD":
             return 7;
-        case "MXM":
+        case "XCD":
             return 8;
+        case "MXM":
+            return 9;
     }
     return 0;
 };
@@ -223,6 +236,7 @@ $(document).ready(function() {
             temp_data.mid = profile_data[i].mid;
             temp_data.songname = getSongName(profile_data[i].mid);
             temp_data.diff = getDifficulty(profile_data[i].mid, profile_data[i].type);
+            temp_data.releasedate = getReleaseDate(profile_data[i].mid);
             temp_data.score = profile_data[i].score;
             temp_data.exscore = ((profile_data[i].exscore) ? profile_data[i].exscore : 0);
             temp_data.grade = getGrade(profile_data[i].grade);
@@ -246,6 +260,7 @@ $(document).ready(function() {
                 { data: 'mid' },
                 { data: 'songname' },
                 { data: 'diff', "type": "diff" },
+                { data: 'releasedate'},
                 { data: 'score', },
                 { data: 'exscore' },
                 { data: 'grade', "type": "grade" },

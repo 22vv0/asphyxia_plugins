@@ -103,6 +103,8 @@ function getDifficulty(musicid, type) {
                         return "HVN";
                     case "5":
                         return "VVD";
+                    case "6":
+                        return "XCD";
                 }
             }
         case 4:

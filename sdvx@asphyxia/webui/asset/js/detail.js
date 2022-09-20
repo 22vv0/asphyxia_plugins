@@ -201,7 +201,7 @@ function calculateVolforce() {
     return toFixed(VF, 3);
 }
 
-var diffName = ["NOV", "ADV", "EXH", "INF\nGRV\nHVN\nVVD", "MXM"];
+var diffName = ["NOV", "ADV", "EXH", "INF\nGRV\nHVN\nVVD\nXCD", "MXM"];
 
 function preSetTableMark(type) {
     $('#statistic-table').empty();

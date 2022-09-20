@@ -43,4 +43,6 @@ export interface Profile {
   stampD: number;
 
   boothFrame: number[];
+
+  playCount: number;
 }

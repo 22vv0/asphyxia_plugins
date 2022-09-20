@@ -1,0 +1,22 @@
+//DATA//
+  sdvx_dir: U.GetConfig('sdvx_eg_root_dir')
+-
+div
+  .card
+    .card-header
+      p.card-header-title
+        span.icon
+          i.mdi.mdi-account-edit
+        | Update WebUI Resources (pull from game files)
+    .card-content
+      .field
+        button.button.is-primary(type="update" id="updateResources") 
+          span.icon
+            i.mdi.mdi-check
+          span Update
+      .field
+        textarea(style="width: 100%; height: 100%; background: #4a4a4a; color: #ffffff; border-radius: 6px; padding: 5px; font-size: 15px" rows="50" id="logtextarea" name="logtextarea")
+
+script(src="https://requirejs.org/docs/release/2.3.5/minified/require.js")
+script(type="text/javascript" src="static/asset/js/updateResources.js")
+div(hidden id='sdvx-dir') !{sdvx_dir}
