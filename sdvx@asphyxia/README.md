@@ -1,9 +1,10 @@
-# SOUND VOLTEX
-
 Message from repo fork:
+- Please always remember to update datecode before using [WebUI Resource Update](http://localhost:8083/plugin/sdvx@asphyxia/WebUI%20resource%20update) feature (or this plugin in general).
 - This is very work-in-progress. Please **BACK UP YOUR DATA** to prevent unwanted data loss (just in case)
 
 ----------------------------
+# SOUND VOLTEX
+
 Plugin Version: **v6.0.0**
 
 Supported Versions:
