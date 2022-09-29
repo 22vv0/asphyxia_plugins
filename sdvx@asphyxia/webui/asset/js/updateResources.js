@@ -29,21 +29,37 @@ $(document).ready(async function() {
             await emit("copyResourcesFromGame").then(
                 function(response){
                     $.getJSON( "static/asset/logs/copyResourcesFromGame.json", function( data ) {
-                        document.getElementById("logtextarea").textContent += 'New nemsys: \n'
-                        $.each(data['nemsys'], function(key, val) {
-                            document.getElementById("logtextarea").textContent += val + '\n'
-                        })
-                        document.getElementById("logtextarea").textContent += '\n\n'
-                        document.getElementById("logtextarea").textContent += 'New appeal cards: \n'
-                        $.each(data['apCard'], function(key, val) {
-                            document.getElementById("logtextarea").textContent += val + '\n'
-                        })
-                        document.getElementById("logtextarea").textContent += '\n\n'
-                        document.getElementById("logtextarea").textContent += 'New submonitor backgrounds: \n'
-                        $.each(data['subbg'], function(key, val) {
-                            document.getElementById("logtextarea").textContent += val + '\n'
-                        })
-                        document.getElementById("logtextarea").textContent += '\n\n'
+                        if(data['nemsys']) {
+                            document.getElementById("logtextarea").textContent += 'New nemsys: \n'
+                            $.each(data['nemsys'], function(key, val) {
+                                document.getElementById("logtextarea").textContent += "- " + val + '\n'
+                            })
+                            document.getElementById("logtextarea").textContent += '\n\n'
+                        }
+
+                        if(data['apCard']) {
+                            document.getElementById("logtextarea").textContent += 'New appeal cards: \n'
+                            $.each(data['apCard'], function(key, val) {
+                                document.getElementById("logtextarea").textContent += "- " +  val + '\n'
+                            })
+                            document.getElementById("logtextarea").textContent += '\n\n'
+                        }
+
+                        if(data['subbg']) {                        
+                            document.getElementById("logtextarea").textContent += 'New submonitor backgrounds: \n'
+                            $.each(data['subbg'], function(key, val) {
+                                document.getElementById("logtextarea").textContent += "- " +  val + '\n'
+                            })
+                            document.getElementById("logtextarea").textContent += '\n\n'
+                        }
+
+                        if(data['bgm']) {
+                            document.getElementById("logtextarea").textContent += 'New bgm: \n'
+                            $.each(data['bgm'], function(key, val) {
+                                document.getElementById("logtextarea").textContent += "- " +  val + '\n'
+                            })
+                            document.getElementById("logtextarea").textContent += '\n\n'
+                        }
                     })
                 },
                 function(error){

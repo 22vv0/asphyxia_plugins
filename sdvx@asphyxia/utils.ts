@@ -37,6 +37,7 @@ export const copyResourcesFromGame = async (data: {}) => {
   let newNemsysData = []
   let newAPCardData = []
   let newSubBGData = []
+  let newBGMData = []
 
   // Copying new nemsys files from gamedata
   console.log("Copying new nemsys files from gamedata")
@@ -70,6 +71,13 @@ export const copyResourcesFromGame = async (data: {}) => {
     }
   }
 
+  // Appeal card data registration to data.json not properly implemented yet, I don't quite understand how their IDs work
+  // newAPCardData.forEach(fileName => {
+  //   if(parseInt(fileName.substring(6, 10))) {
+  //     resourceJsonData.apCard.push({"value": parseInt(fileName.substring(6, 10)), "name": fileName + " (please rename)"})
+  //   }
+  // })
+
   // Copying new subbg files from gamedata
   console.log("Copying new subbg files from gamedata")
   let subBGFiles = await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "\\data\\graphics\\submonitor_bg")
@@ -89,11 +97,37 @@ export const copyResourcesFromGame = async (data: {}) => {
     }
   })
 
+  // Copying new bgm files from gamedata
+  console.log("Copying new bgm files from gamedata")
+  let bgmFiles = await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "\\data\\sound\\custom")
+  for await (const bgm of bgmFiles) {
+    if (bgm.name.substring(bgm.name.length-4, bgm.name.length) == '.s3p') {
+      let folderName = bgm.name.match(/(custom|special)_([0-9]*)/g)[0]
+      if(folderName != '') {
+        let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "\\data\\sound\\custom\\" + bgm.name)
+        if(!IO.Exists('webui\\asset\\audio\\' + folderName)) {
+          IO.WriteFile('webui\\asset\\audio\\' + folderName + '\\' + bgm.name, fileToWrite)
+          newBGMData.push(bgm.name)
+        } else {
+          console.log(bgm.name + " exists")
+        }
+      }
+    }
+  }
+
+  newBGMData.forEach(fileName => {
+    let bgmId = fileName.match(/(?<=(custom|special)_)([0-9]*)/g)[0]
+    if(parseInt(bgmId)) {
+      resourceJsonData.bgm.push({"value": parseInt(bgmId), "name": fileName + " (please rename)"})
+    }
+  })
+
   await IO.WriteFile('webui\\asset\\json\\data.json', JSON.stringify(resourceJsonData))
   await IO.WriteFile('webui\\asset\\logs\\copyResourcesFromGame.json', JSON.stringify({
     nemsys: newNemsysData,
     apCard: newAPCardData,
-    subbg: newSubBGData
+    subbg: newSubBGData,
+    bgm: newBGMData
   }))
 }
 
