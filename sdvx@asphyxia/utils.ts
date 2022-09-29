@@ -82,12 +82,14 @@ export const copyResourcesFromGame = async (data: {}) => {
   console.log("Copying new subbg files from gamedata")
   let subBGFiles = await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "\\data\\graphics\\submonitor_bg")
   for await (const subbg of subBGFiles) {
-    let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "\\data\\graphics\\submonitor_bg\\" + subbg.name)
-    if(!IO.Exists('webui\\asset\\submonitor_bg\\' + subbg.name.substring(0, (subbg.name.length - 4)) + ".png") && !IO.Exists('webui\\asset\\submonitor_bg\\' + subbg.name.substring(0, (subbg.name.length - 4))  + ".jpg")) {
-      IO.WriteFile('webui\\asset\\submonitor_bg\\' + subbg.name, fileToWrite)
-      newSubBGData.push(subbg.name)
-    } else {
-      console.log(subbg.name + " exists")
+    if (subbg.name.substring(subbg.name.length-4, subbg.name.length).match(/(\.png|\.jpg)/g)) {
+      let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "\\data\\graphics\\submonitor_bg\\" + subbg.name)
+      if(!IO.Exists('webui\\asset\\submonitor_bg\\' + subbg.name.substring(0, (subbg.name.length - 4)) + ".png") && !IO.Exists('webui\\asset\\submonitor_bg\\' + subbg.name.substring(0, (subbg.name.length - 4))  + ".jpg")) {
+        IO.WriteFile('webui\\asset\\submonitor_bg\\' + subbg.name, fileToWrite)
+        newSubBGData.push(subbg.name)
+      } else {
+        console.log(subbg.name + " exists")
+      }
     }
   }
 
