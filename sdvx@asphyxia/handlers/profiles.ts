@@ -3,6 +3,7 @@ import { SDVX_AUTOMATION_SONGS } from '../data/vvw';
 import { Item } from '../models/item';
 import { Param } from '../models/param';
 import { Arena } from '../models/arena';
+import { XRecord } from '../models/xrecord';
 import { MusicRecord } from '../models/music_record';
 import { CourseRecord } from '../models/course_record';
 import { Profile } from '../models/profile';
@@ -593,8 +594,22 @@ export const save: EPR = async (info, data, send) => {
         } 
       }
     );
+  }
 
-    console.log(earnedSP)
+  // Add X-Record points
+  if(U.GetConfig('x_record')) {
+    await DB.Upsert<XRecord>(
+      refid,
+      {
+        collection: 'x-record'
+      },
+      {
+        $inc: {
+          lm: 1,
+          vm: 10
+        }
+      }
+    );
   }
 
   return send.success();
@@ -628,6 +643,7 @@ export const load: EPR = async (info, data, send) => {
   const items = await DB.Find<Item>(refid, { collection: 'item' });
   const params = await DB.Find<Param>(refid, { collection: 'param' });
   const arena = await DB.FindOne<Arena>(refid, { collection: 'arena' });
+  const xrecord = await DB.FindOne<XRecord>(refid, { collection: 'x-record' });
   let time = new Date();
   let tempHour = time.getHours();
   let tempDate = time.getDate();
@@ -667,7 +683,6 @@ export const load: EPR = async (info, data, send) => {
 
   const customize = [];
   customize.push(bgm, subbg, nemsys, stampA, stampB, stampC, stampD);
-  console.log("ARENA POINTS: " + arena['shopPoint'])
 
   var tempCustom = params.findIndex((e) => (e.type == 2 && e.id == 2))
 
@@ -692,6 +707,45 @@ export const load: EPR = async (info, data, send) => {
     const tempGene: Item = { collection: 'item', type: 7, id: i, param: 10 };
     tempItem.push(tempGene);
   }
+
+  // Check X-record data and unlock songs based on points
+  if(U.GetConfig('x_record')) {
+    // '1736', // discordia_penorerihumer - 150
+    // '1737', // chewingood_toriena - 0
+    // '1738', // verflucht_tirfing - 50
+    // '1847', // 2 beasts unchained - 200
+    // '1848', // fegrix - 0
+    // '1849', // piano kyousoukyoku -100
+
+    let unlockedXRecordSongs = [1737, 1848]
+    if(xrecord != null) {
+      if(xrecord.lm >= 50) {
+        unlockedXRecordSongs.push(1738)
+      }
+
+      if(xrecord.lm >= 100) {
+        unlockedXRecordSongs.push(1849)
+      }
+
+      if(xrecord.lm >= 150) {
+        unlockedXRecordSongs.push(1736)
+      }
+
+      if(xrecord.lm >= 200) {
+        unlockedXRecordSongs.push(1847)
+      }
+    }
+
+    unlockedXRecordSongs.forEach(song => {
+      console.log("Unlocking xrecord song: " + song)
+      tempItem.push({
+          id: song,
+          type: 0,
+          param: 23,
+      });
+    }) 
+  }
+
   return send.pugFile('templates/load.pug', {
     courses,
     items: tempItem,

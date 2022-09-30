@@ -94,7 +94,7 @@ export const common: EPR = async (info, data, send) => {
             }
           }
         } else {
-          let RESTRICT_SONGS = XRECORDSONGS.concat(KONASTESONGS, BEMANI2021EVENTSONGS, BPLSTAMPRALLYSONGS, SDVX10THSTAMPSONGS, REFLECBEATSTAMPSONGS);
+          let RESTRICT_SONGS = KONASTESONGS.concat(BEMANI2021EVENTSONGS, BPLSTAMPRALLYSONGS, SDVX10THSTAMPSONGS, REFLECBEATSTAMPSONGS);
           let mdb = JSON.parse(value);
           
           let limitedNo = 2;
