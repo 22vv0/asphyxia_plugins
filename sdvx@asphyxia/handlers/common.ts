@@ -112,7 +112,9 @@ export const common: EPR = async (info, data, send) => {
                     if(MISSINGSONGS6.includes(i.toString())) {
                       limitedNo += 1;
                     }
-                    else if(!U.GetConfig('enable_valk_songs') && (VALKYRIEEXCLUSIVESONGS.includes(i.toString()) && (info.model.split(":")[2] != 'G' || info.model.split(":")[2] != 'H'))){
+                    else if(VALKYRIEEXCLUSIVESONGS.includes(i.toString()) && (!U.GetConfig('enable_valk_songs') && info.model.split(":")[2].match(/^(G|H)$/g) == null)){
+                      console.log(U.GetConfig('enable_valk_songs'))
+                      if(info.model.split(":")[2].match(/^(G|H)$/g) == null) console.log("null")
                       limitedNo -= 1;
                     }
                     for(let j = 0; j < 5; j++) {

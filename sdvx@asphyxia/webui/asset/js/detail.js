@@ -826,18 +826,18 @@ $(document).ready(function() {
                         $('<span class="icon">').append(
                             $('<i class="mdi mdi-pulse">')
                         )
-                    ).append("Other Data")
+                    ).append("Arena")
                 )
             ).append(
                 $('<div class="card-content">').append(
                     $('<div class="tile is-ancestor">').append(
-                        $('<div class="tile is-parent is-5">').append(
+                        $('<div class="tile is-parent">').append(
                             $('<article class="tile is-child box">').append(
                                 $('<p class="title">').append(
-                                    "X-Record Data"
+                                    "Arena Power"
                                 ).append(
                                     $('<div class="content">').append(
-                                        lm + " LM | " + vm + " VM"
+                                        arenaPower
                                     )
                                 ).css('font-family', "testfont") 
                             )
@@ -853,18 +853,30 @@ $(document).ready(function() {
                         $('<span class="icon">').append(
                             $('<i class="mdi mdi-pulse">')
                         )
-                    ).append("Arena")
+                    ).append("X-record")
                 )
             ).append(
                 $('<div class="card-content">').append(
                     $('<div class="tile is-ancestor">').append(
-                        $('<div class="tile is-parent is-5">').append(
+                        $('<div class="tile is-parent">').append(
                             $('<article class="tile is-child box">').append(
                                 $('<p class="title">').append(
-                                    "Arena Power"
+                                    "LM"
                                 ).append(
                                     $('<div class="content">').append(
-                                        arenaPower
+                                        lm
+                                    )
+                                ).css('font-family', "testfont") 
+                            )
+                        )
+                    ).append(
+                        $('<div class="tile is-parent">').append(
+                            $('<article class="tile is-child box">').append(
+                                $('<p class="title">').append(
+                                    "VM"
+                                ).append(
+                                    $('<div class="content">').append(
+                                        vm
                                     )
                                 ).css('font-family', "testfont") 
                             )
@@ -872,7 +884,6 @@ $(document).ready(function() {
                     ).css('vertical-align', 'middle')
                 )
             )
-
         )
 
         .append(

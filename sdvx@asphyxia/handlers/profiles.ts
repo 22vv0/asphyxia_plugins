@@ -709,7 +709,8 @@ export const load: EPR = async (info, data, send) => {
   }
 
   // Check X-record data and unlock songs based on points
-  if(U.GetConfig('x_record')) {
+  console.log(JSON.stringify(info.model.split(":")[2].match(/^(G|H)$/g)))
+  if(U.GetConfig('x_record') && (info.model.split(":")[2].match(/^(G|H)$/g) != null || U.GetConfig('enable_valk_songs'))) {
     // '1736', // discordia_penorerihumer - 150
     // '1737', // chewingood_toriena - 0
     // '1738', // verflucht_tirfing - 50
