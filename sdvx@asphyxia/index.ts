@@ -44,8 +44,7 @@ export function register() {
   R.Config('april_fools',{ type: 'boolean', default: false, name:'April Fools', desc:'Enable April Fools Event (doesn\'t work properly right now)'});
   R.Config('use_information' ,{ type: 'boolean', default: true, name:'Use Information', desc:'Enable the information section after entry.'});
   R.Config('use_asphyxia_gameover',{ type: 'boolean', default: true, name:'Use Asphyxia Gameover', desc:'Enable the Asphyxia gameover message after ending the game.'})
-  R.Config('debug_log_toggle', { type: 'boolean', default: true, name:'Toggle Logging (incomplete)'});
-  
+
   R.WebUIEvent('generateLatestMusicDBFile', generateLatestMusicDBFile);
   R.WebUIEvent('copyResourcesFromGame', copyResourcesFromGame);
   R.WebUIEvent('updateProfile', updateProfile);

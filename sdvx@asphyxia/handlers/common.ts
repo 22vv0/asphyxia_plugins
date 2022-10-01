@@ -7,12 +7,6 @@ import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, XRECORDSONGS,
 import { COURSE2 } from '../data/inf';
 import {getVersion, getRandomIntInclusive} from '../utils';
 
-function writeLog(log){
-  if(U.GetConfig('debug_log_toggle')) {
-    console.log(log);
-  }
-}
-
 export const common: EPR = async (info, data, send) => {
   try {
     IO.ReadFile('webui\\asset\\json\\music_db.json').then(
@@ -23,17 +17,17 @@ export const common: EPR = async (info, data, send) => {
         let date = new Date();
         let currentYMDDate = parseInt([date.getFullYear(), ((date.getMonth() + 1) > 9 ? '' : '0') + (date.getMonth() + 1), (date.getDate() > 9 ? '' : '0') + date.getDate()].join(''));
         let currentDate = date.toLocaleDateString()
-        writeLog("Calling common function");
+        console.log("Calling common function");
         
         const version = parseInt(info.model.split(":")[4]);
 
         if (version <= 2013052900) {
-            writeLog('Game: Booth')
+            console.log('Game: Booth')
             return send.pugFile('templates/booth/common.pug');
         }
         
         if (version <= 2014112000) {
-            writeLog('Game: Infinite Infection')
+            console.log('Game: Infinite Infection')
             courses = COURSE2;
             return send.pugFile('templates/infiniteinfection/common.pug',{
                 courses,
@@ -42,7 +36,7 @@ export const common: EPR = async (info, data, send) => {
 
         switch (info.method) {
           case 'sv4_common': {
-            writeLog('Game: Heavenly Haven')
+            console.log('Game: Heavenly Haven')
             events = EVENT4;
             courses = COURSES4;
             //extend = EXTENDS4;
@@ -50,7 +44,7 @@ export const common: EPR = async (info, data, send) => {
             break;
           }
           case 'sv5_common': {
-            writeLog('Game: Vivid Wave')
+            console.log('Game: Vivid Wave')
             events = EVENT5;
             courses = COURSES5;
             //extend = EXTENDS5;
@@ -58,7 +52,7 @@ export const common: EPR = async (info, data, send) => {
             break;
           }
           case 'sv6_common': {
-            writeLog('Game: Exceed Gear')
+            console.log('Game: Exceed Gear')
             //events = EVENT6;
             EVENT6.forEach(val => events.push(val));
             courses = COURSES6;
@@ -83,7 +77,7 @@ export const common: EPR = async (info, data, send) => {
         if(gameVersion === 4) songNum = 1368;
 
         if(U.GetConfig('unlock_all_songs')) {
-          writeLog("Unlocking songs");
+          console.log("Unlocking songs");
           for (let i = 1; i < songNum; ++i) {
             for (let j = 0; j < 5; ++j) {
               songs.push({
@@ -106,15 +100,13 @@ export const common: EPR = async (info, data, send) => {
                 if(!RESTRICT_SONGS.includes(i.toString())) {
                   if(songData.info.version['#text'] === '6' && currentYMDDate >= parseInt(songData.info.distribution_date['#text'])) {
                     if(parseInt(songData.info.distribution_date['#text']) >= parseInt(version.toString().substring(0,8))) {
-                      writeLog("Found new song for version " + version + ": " + songData.info.title_name + "(" + songData.info.distribution_date['#text'] + ")");
+                      console.log("Found new song for version " + version + ": " + songData.info.title_name + "(" + songData.info.distribution_date['#text'] + ")");
                     }
                     limitedNo = 2;
                     if(MISSINGSONGS6.includes(i.toString())) {
                       limitedNo += 1;
                     }
                     else if(VALKYRIEEXCLUSIVESONGS.includes(i.toString()) && (!U.GetConfig('enable_valk_songs') && info.model.split(":")[2].match(/^(G|H)$/g) == null)){
-                      console.log(U.GetConfig('enable_valk_songs'))
-                      if(info.model.split(":")[2].match(/^(G|H)$/g) == null) console.log("null")
                       limitedNo -= 1;
                     }
                     for(let j = 0; j < 5; j++) {
@@ -132,7 +124,7 @@ export const common: EPR = async (info, data, send) => {
                     });
                   }
                 } else {
-                  writeLog("Restricted song: " + songData.info.title_name)
+                  console.log("Restricted song: " + songData.info.title_name)
                 }
               }
             }
@@ -140,7 +132,7 @@ export const common: EPR = async (info, data, send) => {
         }
 
         if(U.GetConfig('use_information')){
-          writeLog("Sending server information");
+          console.log("Sending server information");
           let time = new Date();
           let tempDate = time.getDate();
           const currentTime = parseInt((time.getTime()/100000) as unknown as string)*100;
@@ -269,7 +261,7 @@ export const common: EPR = async (info, data, send) => {
           
         }
 
-        writeLog("Sending common objects");
+        console.log("Sending common objects");
 
         let arena_catalog_items = []
         let catalog = []
@@ -321,7 +313,7 @@ export const common: EPR = async (info, data, send) => {
         })
 
         if(U.GetConfig('april_fools') || currentDate.substring(0,3) === '4/1') {
-          writeLog('Using April Fools Event')
+          console.log('Using April Fools Event')
           events.push('APRIL_GRACE');
           events.push('EVENTDATE_APRILFOOL');
           for (const afsong in APRILFOOLSSONGS) {
@@ -336,11 +328,10 @@ export const common: EPR = async (info, data, send) => {
         }
 
         if(U.GetConfig('new_year_special')){
-          writeLog('Using New Year Special BGM')
+          console.log('Using New Year Special BGM')
           events.push('NEW_YEAR_2022');
         }
 
-        console.log(courses[0].id)
         send.object(
           {
             valgene: {
@@ -410,11 +401,11 @@ export const common: EPR = async (info, data, send) => {
         );
       },
       function(error) {
-        writeLog('read error: ' + error)
+        console.log('read error: ' + error)
       }
     );
   } catch (error) {
-    writeLog(error)
+    console.log(error)
   }     
 };
 
@@ -424,32 +415,32 @@ export const log: EPR = async (info, data, send) => {
 }
 
 export const unhandledt: EPR = async (info, data, send) => {
-    writeLog("Unhandled: " + info.method + " | " + info.model + " | " + info.module)
-    writeLog("Info:")
+    console.log("Unhandled: " + info.method + " | " + info.model + " | " + info.module)
+    console.log("Info:")
     for (let key in info) {
       type ObjectKey = keyof typeof info;
       const myVar = key as ObjectKey;
       if (typeof info[key] === 'object') {
-        writeLog(key + ' - ' + JSON.stringify(info[key]));
-      } else writeLog(key + ' - ' + info[key]);
+        console.log(key + ' - ' + JSON.stringify(info[key]));
+      } else console.log(key + ' - ' + info[key]);
     }
-    writeLog("")
-    writeLog("Data:")
+    console.log("")
+    console.log("Data:")
     for (let key in data) {
       type ObjectKey = keyof typeof data;
       const myVar = key as ObjectKey;
       if (typeof data[key] === 'object') {
-        writeLog(key + ' - ' + JSON.stringify(data[key]));
-      } else writeLog(key + ' - ' + data[key]);
+        console.log(key + ' - ' + JSON.stringify(data[key]));
+      } else console.log(key + ' - ' + data[key]);
     }
-    writeLog("")
-    writeLog("Send:")
+    console.log("")
+    console.log("Send:")
     for (let key in send) {
       type ObjectKey = keyof typeof send;
       const myVar = key as ObjectKey;
       if (typeof send[key] === 'object') {
-        writeLog(key + ' - ' + JSON.stringify(send[key]));
-      } else writeLog(key + ' - ' + send[key]);
+        console.log(key + ' - ' + JSON.stringify(send[key]));
+      } else console.log(key + ' - ' + send[key]);
     }
-    writeLog('')
+    console.log('')
 }
