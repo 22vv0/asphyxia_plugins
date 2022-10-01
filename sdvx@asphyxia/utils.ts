@@ -33,7 +33,7 @@ export function getRandomIntInclusive(min, max) {
 }
 
 export const copyResourcesFromGame = async (data: {}) => {
-  let resourceJsonData = JSON.parse(U.DecodeString(await IO.ReadFile('webui\\asset\\json\\data.json'), 'utf8'))
+  let resourceJsonData = JSON.parse(U.DecodeString(await IO.ReadFile('webui/asset/json/data.json'), 'utf8'))
   let newNemsysData = []
   let newAPCardData = []
   let newSubBGData = []
@@ -41,11 +41,11 @@ export const copyResourcesFromGame = async (data: {}) => {
 
   // Copying new nemsys files from gamedata
   console.log("Copying new nemsys files from gamedata")
-  let nemsysFiles = await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "\\data\\graphics\\game_nemsys")
+  let nemsysFiles = await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/game_nemsys")
   for await (const nemsys of nemsysFiles) {
-    let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "\\data\\graphics\\game_nemsys\\" + nemsys.name)
-    if(!IO.Exists('webui\\asset\\nemsys\\' + nemsys.name.substring(0, (nemsys.name.length - 4)) + ".png") && !IO.Exists('webui\\asset\\nemsys\\' + nemsys.name.substring(0, (nemsys.name.length - 4)) + ".jpg")) {
-      IO.WriteFile('webui\\asset\\nemsys\\' + nemsys.name, fileToWrite)
+    let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/game_nemsys/" + nemsys.name)
+    if(!IO.Exists('webui/asset/nemsys/' + nemsys.name.substring(0, (nemsys.name.length - 4)) + ".png") && !IO.Exists('webui/asset/nemsys/' + nemsys.name.substring(0, (nemsys.name.length - 4)) + ".jpg")) {
+      IO.WriteFile('webui/asset/nemsys/' + nemsys.name, fileToWrite)
       newNemsysData.push(nemsys.name)
     } else {
       console.log(nemsys.name + " exists")
@@ -60,11 +60,11 @@ export const copyResourcesFromGame = async (data: {}) => {
 
   // Copying new appeal card files from gamedata
   console.log("Copying new appeal card files from gamedata")
-  let apCardFiles = await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "\\data\\graphics\\ap_card")
+  let apCardFiles = await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/ap_card")
   for await (const apCard of apCardFiles) {
-    let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "\\data\\graphics\\ap_card\\" + apCard.name)
-    if(!IO.Exists('webui\\asset\\ap_card\\' + apCard.name.substring(0, (apCard.name.length - 4)) + ".png") && !IO.Exists('webui\\asset\\ap_card\\' + apCard.name.substring(0, (apCard.name.length - 4)) + ".jpg")) {
-      IO.WriteFile('webui\\asset\\ap_card\\' + apCard.name, fileToWrite)
+    let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/ap_card/" + apCard.name)
+    if(!IO.Exists('webui/asset/ap_card/' + apCard.name.substring(0, (apCard.name.length - 4)) + ".png") && !IO.Exists('webui/asset/ap_card/' + apCard.name.substring(0, (apCard.name.length - 4)) + ".jpg")) {
+      IO.WriteFile('webui/asset/ap_card/' + apCard.name, fileToWrite)
       newAPCardData.push(apCard.name)
     } else {
       console.log(apCard.name + " exists")
@@ -80,12 +80,12 @@ export const copyResourcesFromGame = async (data: {}) => {
 
   // Copying new subbg files from gamedata
   console.log("Copying new subbg files from gamedata")
-  let subBGFiles = await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "\\data\\graphics\\submonitor_bg")
+  let subBGFiles = await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/submonitor_bg")
   for await (const subbg of subBGFiles) {
     if (subbg.name.substring(subbg.name.length-4, subbg.name.length).match(/(\.png|\.jpg)/g)) {
-      let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "\\data\\graphics\\submonitor_bg\\" + subbg.name)
-      if(!IO.Exists('webui\\asset\\submonitor_bg\\' + subbg.name.substring(0, (subbg.name.length - 4)) + ".png") && !IO.Exists('webui\\asset\\submonitor_bg\\' + subbg.name.substring(0, (subbg.name.length - 4))  + ".jpg")) {
-        IO.WriteFile('webui\\asset\\submonitor_bg\\' + subbg.name, fileToWrite)
+      let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/submonitor_bg/" + subbg.name)
+      if(!IO.Exists('webui/asset/submonitor_bg/' + subbg.name.substring(0, (subbg.name.length - 4)) + ".png") && !IO.Exists('webui/asset/submonitor_bg/' + subbg.name.substring(0, (subbg.name.length - 4))  + ".jpg")) {
+        IO.WriteFile('webui/asset/submonitor_bg/' + subbg.name, fileToWrite)
         newSubBGData.push(subbg.name)
       } else {
         console.log(subbg.name + " exists")
@@ -101,14 +101,14 @@ export const copyResourcesFromGame = async (data: {}) => {
 
   // Copying new bgm files from gamedata
   console.log("Copying new bgm files from gamedata")
-  let bgmFiles = await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "\\data\\sound\\custom")
+  let bgmFiles = await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "/data/sound/custom")
   for await (const bgm of bgmFiles) {
     if (bgm.name.substring(bgm.name.length-4, bgm.name.length) == '.s3p') {
       let folderName = bgm.name.match(/(custom|special)_([0-9]*)/g)[0]
       if(folderName != '') {
-        let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "\\data\\sound\\custom\\" + bgm.name)
-        if(!IO.Exists('webui\\asset\\audio\\' + folderName)) {
-          IO.WriteFile('webui\\asset\\audio\\' + folderName + '\\' + bgm.name, fileToWrite)
+        let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/sound/custom/" + bgm.name)
+        if(!IO.Exists('webui/asset/audio/' + folderName)) {
+          IO.WriteFile('webui/asset/audio/' + folderName + '/' + bgm.name, fileToWrite)
           newBGMData.push(bgm.name)
         } else {
           console.log(bgm.name + " exists")
@@ -124,8 +124,8 @@ export const copyResourcesFromGame = async (data: {}) => {
     }
   })
 
-  await IO.WriteFile('webui\\asset\\json\\data.json', JSON.stringify(resourceJsonData))
-  await IO.WriteFile('webui\\asset\\logs\\copyResourcesFromGame.json', JSON.stringify({
+  await IO.WriteFile('webui/asset/json/data.json', JSON.stringify(resourceJsonData))
+  await IO.WriteFile('webui/asset/logs/copyResourcesFromGame.json', JSON.stringify({
     nemsys: newNemsysData,
     apCard: newAPCardData,
     subbg: newSubBGData,
@@ -135,7 +135,7 @@ export const copyResourcesFromGame = async (data: {}) => {
 
 export const generateLatestMusicDBFile = async (data: {}) => {
   var version = '';
-  IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "\\prop\\ea3-config.xml").then(
+  IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/prop/ea3-config.xml").then(
     function(value){
       let configJson = U.parseXML(U.DecodeString(value, "shift_jis"), false)
       version = configJson['ea3']['soft']['ext']['@content'];
@@ -148,7 +148,7 @@ export const generateLatestMusicDBFile = async (data: {}) => {
   var mdbJson;
   var mdbJsonFix = [];
   var mdbJsonFixFinal;
-  var mdb = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "\\data\\others\\music_db.xml").then(
+  var mdb = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/others/music_db.xml").then(
     function(value){
       mdbJson = U.parseXML(U.DecodeString(value, "shift_jis"), false)
       try {
@@ -217,9 +217,9 @@ export const generateLatestMusicDBFile = async (data: {}) => {
             'music': mdbJsonFix
           }
         };
-        IO.WriteFile('webui\\asset\\json\\music_db.json', JSON.stringify(mdbJsonFixFinal));
-        if(!IO.Exists('webui\\asset\\json\\music_db_' + version + '.json')){
-          IO.WriteFile('webui\\asset\\json\\music_db_' + version + '.json', JSON.stringify(mdbJsonFixFinal));
+        IO.WriteFile('webui/asset/json/music_db.json', JSON.stringify(mdbJsonFixFinal));
+        if(!IO.Exists('webui/asset/json/music_db_' + version + '.json')){
+          IO.WriteFile('webui/asset/json/music_db_' + version + '.json', JSON.stringify(mdbJsonFixFinal));
         }
       } catch(err) {
         console.log(err)
