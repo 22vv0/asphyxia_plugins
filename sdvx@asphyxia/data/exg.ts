@@ -47,11 +47,13 @@ export const MISSINGSONGS6 = [
 ]
 
 export const XRECORDSONGS = [
+  // 1st edition
   '1736', // discordia_penorerihumer
   '1737', // chewingood_toriena
   '1738', // verflucht_tirfing
-  '1847', // 2 beasts unchained
+  // 2nd edition
   '1848', // fegrix
+  '1847', // 2 beasts unchained
   '1849', // piano kyousoukyoku
 ]
 
@@ -80,7 +82,8 @@ export const APRILFOOLSSONGS = [
 ]
 
 export const VALKYRIEEXCLUSIVESONGS = [
-  '1672', '1744', '1855', '1742'
+  '1672', '1744', '1855', '1742',
+  '1736', '1737', '1738', '1848', '1847', '1849' // X-record
 ]
 
 export const ARENA = {

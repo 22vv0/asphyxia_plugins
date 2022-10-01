@@ -35,6 +35,7 @@ export function register() {
   R.Config('unlock_all_valk_items', { type: 'boolean', default: false, name:'Unlock All Valkyrie Items', desc: 'Unlock Nemsys, BGM, Submonitor BG and Stamp Items (Valk crews not included; check \'unlock all navigators\' option)'});
   R.Config('enable_valk_songs' ,{ type: 'boolean', default: false, name:'Enable Valkyrie Model Songs', desc:'Unlock the valkyrie model songs on non-valkyrie mode.'});
   R.Config('arena_szn',{ type: 'string', options: Object.keys(ARENA), default: 'Set 1 (04/25/22)', name: 'Arena Station Item Set', desc: 'Choose which season set of items in the arena station you want to show up in arena station'});
+  R.Config('x_record', {type: 'boolean', default: false, name: 'X-Record', desc: 'Activates X-record. 10 VM and 1 LM points per play.'})
   R.Config('unlock_all_songs', { type: 'boolean', default: false, name:'Unlock All Songs'});
   R.Config('unlock_all_navigators', { type: 'boolean', default: false, name:'Unlock All Navigators'} );
   R.Config('unlock_all_appeal_cards', { type: 'boolean', default: false, name:'Unlock All Appeal Cards'});
@@ -43,8 +44,7 @@ export function register() {
   R.Config('april_fools',{ type: 'boolean', default: false, name:'April Fools', desc:'Enable April Fools Event (doesn\'t work properly right now)'});
   R.Config('use_information' ,{ type: 'boolean', default: true, name:'Use Information', desc:'Enable the information section after entry.'});
   R.Config('use_asphyxia_gameover',{ type: 'boolean', default: true, name:'Use Asphyxia Gameover', desc:'Enable the Asphyxia gameover message after ending the game.'})
-  R.Config('debug_log_toggle', { type: 'boolean', default: true, name:'Toggle Logging (incomplete)'});
-  
+
   R.WebUIEvent('generateLatestMusicDBFile', generateLatestMusicDBFile);
   R.WebUIEvent('copyResourcesFromGame', copyResourcesFromGame);
   R.WebUIEvent('updateProfile', updateProfile);

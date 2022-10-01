@@ -660,6 +660,8 @@ $(document).ready(function() {
     profile_data = JSON.parse(document.getElementById("data-pass").innerText);
     score_db = JSON.parse(document.getElementById("score-pass").innerText);
     skill_data = JSON.parse(document.getElementById("skill-pass").innerText);
+    xrecord_data = JSON.parse(document.getElementById("xrecord-pass").innerText);
+    arena_data = JSON.parse(document.getElementById("arena-pass").innerText);
 
     skill_data.sort(function(a, b) {
             return b.version - a.version;
@@ -702,6 +704,16 @@ $(document).ready(function() {
                     text: versionText[versionInfo[i]],
                 })
             )
+        }
+
+        var lm = vm = 0;
+        if(xrecord_data != null) {
+            lm = xrecord_data['lm'];
+            vm = xrecord_data['vm'];
+        }
+        var arenaPower = 0;
+        if(arena_data != null) {
+            arenaPower = arena_data['shopPoint']
         }
 
         $('#test').append(
@@ -808,6 +820,73 @@ $(document).ready(function() {
                 )
             )
         ).append(
+            $('<div class="card  is-inlineblocked">').append(
+                $('<div class="card-header">').append(
+                    $('<p class="card-header-title">').append(
+                        $('<span class="icon">').append(
+                            $('<i class="mdi mdi-pulse">')
+                        )
+                    ).append("Arena")
+                )
+            ).append(
+                $('<div class="card-content">').append(
+                    $('<div class="tile is-ancestor">').append(
+                        $('<div class="tile is-parent">').append(
+                            $('<article class="tile is-child box">').append(
+                                $('<p class="title">').append(
+                                    "Arena Power"
+                                ).append(
+                                    $('<div class="content">').append(
+                                        arenaPower
+                                    )
+                                ).css('font-family', "testfont") 
+                            )
+                        )
+                    ).css('vertical-align', 'middle')
+                )
+            )
+
+        ).append(
+            $('<div class="card  is-inlineblocked">').append(
+                $('<div class="card-header">').append(
+                    $('<p class="card-header-title">').append(
+                        $('<span class="icon">').append(
+                            $('<i class="mdi mdi-pulse">')
+                        )
+                    ).append("X-record")
+                )
+            ).append(
+                $('<div class="card-content">').append(
+                    $('<div class="tile is-ancestor">').append(
+                        $('<div class="tile is-parent">').append(
+                            $('<article class="tile is-child box">').append(
+                                $('<p class="title">').append(
+                                    "LM"
+                                ).append(
+                                    $('<div class="content">').append(
+                                        lm
+                                    )
+                                ).css('font-family', "testfont") 
+                            )
+                        )
+                    ).append(
+                        $('<div class="tile is-parent">').append(
+                            $('<article class="tile is-child box">').append(
+                                $('<p class="title">').append(
+                                    "VM"
+                                ).append(
+                                    $('<div class="content">').append(
+                                        vm
+                                    )
+                                ).css('font-family', "testfont") 
+                            )
+                        )
+                    ).css('vertical-align', 'middle')
+                )
+            )
+        )
+
+        .append(
             $('<div class="card">').append(
                 $('<div class="card-header">').append(
                     $('<p class="card-header-title">').append(
