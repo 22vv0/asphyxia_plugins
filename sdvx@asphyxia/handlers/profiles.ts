@@ -598,6 +598,19 @@ export const save: EPR = async (info, data, send) => {
 
   // Add X-Record points
   if(U.GetConfig('x_record')) {
+    let addLM = 1
+    let addVM = 10
+    let xrData = await DB.FindOne(refid, {collection: 'x-record'})
+    if (xrData != null) {
+      if(xrData['lm'] + 1 > 200) {
+        addLM = 0
+        console.log('LM Capped')
+      }
+      if(xrData['vm'] + 10 > 200) {
+        addVM = 10 - ((xrData['vm'] + 10) - 200)
+        console.log('VM Capped')
+      }
+    }
     await DB.Upsert<XRecord>(
       refid,
       {
@@ -605,8 +618,8 @@ export const save: EPR = async (info, data, send) => {
       },
       {
         $inc: {
-          lm: 1,
-          vm: 10
+          lm: addLM,
+          vm: addVM
         }
       }
     );

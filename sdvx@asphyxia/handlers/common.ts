@@ -9,7 +9,7 @@ import {getVersion, getRandomIntInclusive} from '../utils';
 
 export const common: EPR = async (info, data, send) => {
   try {
-    let music_db = await IO.ReadFile('webui\\asset\\json\\music_db.json')
+    let music_db = await IO.ReadFile('webui/asset/json/music_db.json')
     let events = [];
     let courses = [];
     let extend = [];
