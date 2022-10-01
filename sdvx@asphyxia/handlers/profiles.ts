@@ -667,7 +667,6 @@ export const load: EPR = async (info, data, send) => {
 
   const customize = [];
   customize.push(bgm, subbg, nemsys, stampA, stampB, stampC, stampD);
-  console.log("ARENA POINTS: " + arena['shopPoint'])
 
   var tempCustom = params.findIndex((e) => (e.type == 2 && e.id == 2))
 
