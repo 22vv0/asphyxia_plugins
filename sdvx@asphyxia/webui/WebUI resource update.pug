@@ -1,7 +1,22 @@
-//DATA//
-  sdvx_dir: U.GetConfig('sdvx_eg_root_dir')
--
 div
+  .card
+    button.collapse() Notes
+    .card-info.collapsible-card
+      p.card-header-info
+        h5() Notes:
+        ul
+          li() For use with Exceed Gear arcade data.
+          li() Use this if you have arcade data that can be used. It wouldn't work otherwise.
+          li() Make sure you have your 'Exceed Gear Data Directory' in the plugin settings properly configured. 
+          li() Update your datacode in the ea3-config.xml file.
+      br
+      p.card-header-bgm-guide
+        h5() BGM asset guide
+        p() This feature pulls BGM files from the data, however they are in unplayable s3p format. For BGM preview to work, we need to extract the audio files from the s3p, and convert it to mp3.
+        p() For Windows, there is a bgm_convert.bat script in the SDVX plugin root directory but it requires 2 things:
+        ul
+          li() <a href="https://github.com/mon/s3p_extract/releases/latest">s3p_extract</a> - download the .exe file from the latest release and put in the same directory as the bat script
+          li() <a href="https://www.gyan.dev/ffmpeg/builds/">ffmpeg</a> - download and extract ffmpeg.exe and put it in the same directory as the bat script (or put ffmpeg.exe in PATH environment variable)
   .card
     .card-header
       p.card-header-title
@@ -15,8 +30,36 @@ div
             i.mdi.mdi-check
           span Update
       .field
-        textarea(style="width: 100%; height: 100%; background: #4a4a4a; color: #ffffff; border-radius: 6px; padding: 5px; font-size: 15px" rows="50" id="logtextarea" name="logtextarea")
+        textarea.log-field(rows="50" id="logtextarea" name="logtextarea" disabled)
 
 script(src="https://requirejs.org/docs/release/2.3.5/minified/require.js")
 script(type="text/javascript" src="static/asset/js/updateResources.js")
-div(hidden id='sdvx-dir') !{sdvx_dir}
+style(type='text/css').
+  .collapse {
+    background-color: #4a4a4a;
+    color: white;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 20px;
+  }
+
+  .collapse:hover {
+    background-color: #777;
+  }
+
+  .collapsible-card {
+    padding:15px;
+  }
+
+  .log-field {
+    width: 100%;
+    height: 100%;
+    background: #4a4a4a;
+    color: #ffffff;
+    border-radius: 6px;
+    padding: 5px;
+    font-size: 15px;
+  }

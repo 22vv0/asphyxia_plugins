@@ -1,8 +1,6 @@
 Message from repo fork:
-- I highly recommend using the stable version of the plugin.
-- This version is only properly usable in proper arcade data, meaning no mods.
-- This is very work-in-progress. Please **BACK UP YOUR DATA** to prevent unwanted data loss (just in case)
-- Please always remember to update datecode before using [WebUI Resource Update](/plugin/sdvx@asphyxia/WebUI%20resource%20update) feature (or this plugin in general).
+- I highly recommend using the official stable version of the plugin.
+- This is very work-in-progress, so expect things to break. Please **BACK UP YOUR DATA** to prevent unwanted data loss (just in case)
 - I won't update the text below lol
 
 ----------------------------

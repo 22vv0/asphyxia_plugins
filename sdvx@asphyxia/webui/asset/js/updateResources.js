@@ -2,7 +2,12 @@
 // data\graphics\ap_card -- appeal card
 // data\graphics\submonitor_bg -- subbg
 $(document).ready(async function() {
-    let sdvxDir = document.getElementById("sdvx-dir").innerText
+    $('.collapse').click(function(){
+        console.log($('.collapsible-card').css('display'))
+        if($('.collapsible-card').css('display') == 'none') {
+            $('.collapsible-card').css('display', 'block')
+        } else $('.collapsible-card').css('display', 'none')
+    })
     $( "#updateResources" ).click(async function() {
         answer = confirm("Clicking OK would mean that you have already updated the datacode in your ea3-config.xml file. Would you like to proceed?");
         if (answer == true) {
@@ -10,7 +15,16 @@ $(document).ready(async function() {
             document.getElementById("logtextarea").textContent = 'Running....\n'
             await emit("copyResourcesFromGame").then(
                 function(response){
+                    document.getElementById("logtextarea").textContent += 'Done.\n\n\n'
                     $.getJSON( "static/asset/logs/copyResourcesFromGame.json", function( data ) {
+                        if(data['errors'].length > 0) {
+                            document.getElementById("logtextarea").textContent += 'Errors: \n'
+                            $.each(data['errors'], function(key, val) {
+                                document.getElementById("logtextarea").textContent += "- " + val + '\n'
+                            })
+                            document.getElementById("logtextarea").textContent += '\n\n'
+                        }
+
                         if(data['nemsys'].length > 0) {
                             document.getElementById("logtextarea").textContent += 'New nemsys: \n'
                             $.each(data['nemsys'], function(key, val) {
@@ -38,6 +52,14 @@ $(document).ready(async function() {
                         if(data['bgm'].length > 0) {
                             document.getElementById("logtextarea").textContent += 'New bgm: \n'
                             $.each(data['bgm'], function(key, val) {
+                                document.getElementById("logtextarea").textContent += "- " +  val + '\n'
+                            })
+                            document.getElementById("logtextarea").textContent += '\n\n'
+                        }
+
+                        if(data['chatStamp'].length > 0) {
+                            document.getElementById("logtextarea").textContent += 'New chat stamps: \n'
+                            $.each(data['chatStamp'], function(key, val) {
                                 document.getElementById("logtextarea").textContent += "- " +  val + '\n'
                             })
                             document.getElementById("logtextarea").textContent += '\n\n'
