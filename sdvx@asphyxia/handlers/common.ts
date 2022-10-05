@@ -98,11 +98,8 @@ export const common: EPR = async (info, data, send) => {
           var songData = mdb.mdb.music[foundSongIndex];
           if(gameVersion === 6 || gameVersion === -6) {
             if(!RESTRICT_SONGS.includes(i.toString())) {
-              if(songData.info.version['#text'] === '6' && currentYMDDate >= parseInt(songData.info.distribution_date['#text'])) {
-                if(parseInt(songData.info.distribution_date['#text']) >= parseInt(version.toString().substring(0,8))) {
-                  console.log("Found new song for version " + version + ": " + songData.info.title_name + "(" + songData.info.distribution_date['#text'] + ")");
-                }
-                limitedNo = 2;
+              limitedNo = 2;
+              if(songData.info.version['#text'] === '6') { // if song is released during exceed gear
                 if(MISSINGSONGS6.includes(i.toString())) {
                   limitedNo += 1;
                 }
@@ -116,7 +113,7 @@ export const common: EPR = async (info, data, send) => {
                     limited: K.ITEM('u8', limitedNo),
                   });
                 }
-              } else if (songData.info.inf_ver['#text'] === '6') {
+              } else if (songData.info.inf_ver['#text'] === '6') { // if song from previous sdvx iteration but with new XCD track; wouldn't work without updated webui asset
                 songs.push({
                   music_id: K.ITEM('s32', i),
                   music_type: K.ITEM('u8', 3),
