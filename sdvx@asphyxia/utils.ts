@@ -37,6 +37,7 @@ export const copyResourcesFromGame = async (data: {}) => {
   let mdbJsonFixFinal;
   let newJsonSongs = [];
   let newVersionSongs = [];
+  let newXCDSongs = [];
   let newNemsysData = []
   let newAPCardData = []
   let newSubBGData = []
@@ -60,17 +61,23 @@ export const copyResourcesFromGame = async (data: {}) => {
       if(Object.keys(prevAssetMdb).length > 0) {
         if(prevAssetMdb['mdb']['music'].find(item => parseInt(item['@id']) == parseInt(musicValue.info.label['@content'])) == undefined) {
           console.log("New song added to json: " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
-          newJsonSongs.push('[' + musicValue.info.distribution_date['@content'] + '] ' + musicValue.info.title_name['@content'])
+          newJsonSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
         }
       } else {
         console.log("New song added to json: " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
-        newJsonSongs.push('[' + musicValue.info.distribution_date['@content'] + '] ' + musicValue.info.title_name['@content'])
+        newJsonSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
+      }
+
+      if(musicValue.info.inf_ver['@content'] == '6') {
+      	console.log("New XCD difficulty song: " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
+      	newXCDSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
       }
 
       if(parseInt(musicValue.info.distribution_date['@content'][0]) >= parseInt(version.substring(0,8))) {
         console.log("Found new song for version " + version + ": " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")");
-        newVersionSongs.push('[' + musicValue.info.distribution_date['@content'] + '] ' + musicValue.info.title_name['@content'])
+        newVersionSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
       }
+
       mdbJsonFix.push({
         '@id': musicValue['@attr'].id,
         'info': {
@@ -164,7 +171,7 @@ export const copyResourcesFromGame = async (data: {}) => {
 
   // Copying new appeal card files from gamedata (disabled for now)
   // console.log("Copying new appeal card files from gamedata")
-  // if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/game_nemsys")) {
+  // if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/ap_card")) {
   //   let apCardFiles = await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/ap_card")
   //   for await (const apCard of apCardFiles) {
   //     let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/ap_card/" + apCard.name)
@@ -285,8 +292,9 @@ export const copyResourcesFromGame = async (data: {}) => {
     subbg: newSubBGData,
     bgm: newBGMData,
     chatStamp: newChatStampData,
-    versionSongs: newVersionSongs,
-    jsonSongs: newJsonSongs,
+    versionSongs: newVersionSongs.sort((a, b) => a[0] - b[0]),
+    jsonSongs: newJsonSongs.sort((a, b) => a[0] - b[0]),
+    xcdSongs: newXCDSongs.sort((a, b) => a[0] - b[0]),
     errors: runErrors
   }))
 }

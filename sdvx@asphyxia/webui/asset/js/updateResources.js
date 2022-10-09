@@ -8,6 +8,7 @@ $(document).ready(async function() {
             $('.collapsible-card').css('display', 'block')
         } else $('.collapsible-card').css('display', 'none')
     })
+    
     $( "#updateResources" ).click(async function() {
         answer = confirm("Clicking OK would mean that you have already updated the datacode in your ea3-config.xml file. Would you like to proceed?");
         if (answer == true) {
@@ -68,15 +69,24 @@ $(document).ready(async function() {
                         if(data['versionSongs'].length > 0) {
                             document.getElementById("logtextarea").textContent += 'New songs in latest data: \n'
                             $.each(data['versionSongs'], function(key, val) {
-                                document.getElementById("logtextarea").textContent += "- " +  val + '\n'
+                                document.getElementById("logtextarea").textContent += "- " +  val[1] + '\n'
                             })
                             document.getElementById("logtextarea").textContent += '\n\n'
                         }
 
+
                         if(data['jsonSongs'].length > 0) {
                             document.getElementById("logtextarea").textContent += 'New songs added to mdb asset: \n'
                             $.each(data['jsonSongs'], function(key, val) {
-                                document.getElementById("logtextarea").textContent += "- " +  val + '\n'
+                                document.getElementById("logtextarea").textContent += "- " +  val[1] + '\n'
+                            })
+                            document.getElementById("logtextarea").textContent += '\n\n'
+                        }
+
+                        if(data['xcdSongs'].length > 0) {
+                            document.getElementById("logtextarea").textContent += 'XCD songs: \n'
+                            $.each(data['xcdSongs'], function(key, val) {
+                                document.getElementById("logtextarea").textContent += "- " +  val[1] + '\n'
                             })
                             document.getElementById("logtextarea").textContent += '\n\n'
                         }
