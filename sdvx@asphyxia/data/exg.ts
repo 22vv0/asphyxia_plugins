@@ -100,7 +100,7 @@ export const VALKYRIEEXCLUSIVESONGS = [
 export const ARENA = {
   'Set 1 (04/25/22)': {
     details: {
-      season: 1,
+      // season: 1,
       time_start: BigInt(Date.parse('25 Apr 2022 00:00:00 GMT')),
       time_end: BigInt(Date.parse('31 Dec 2022 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('25 Apr 2022 00:00:00 GMT')),
@@ -201,7 +201,7 @@ export const ARENA = {
   },
   'Set 2 (06/30/22)': {
     details: {
-      season: 2,
+      // season: 2,
       time_start: BigInt(Date.parse('30 Jun 2022 00:00:00 GMT')),
       time_end: BigInt(Date.parse('31 Dec 2022 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('30 Jun 2022 00:00:00 GMT')),

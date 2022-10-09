@@ -336,7 +336,7 @@ export const common: EPR = async (info, data, send) => {
           catalog: valgene_items
         },
         arena: {
-          season: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].details.season),
+          // season: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].details.season),
           time_start: K.ITEM('u64', ARENA[U.GetConfig('arena_szn')].details.time_start),
           time_end: K.ITEM('u64', ARENA[U.GetConfig('arena_szn')].details.time_end),
           shop_start: K.ITEM('u64', ARENA[U.GetConfig('arena_szn')].details.shop_start),

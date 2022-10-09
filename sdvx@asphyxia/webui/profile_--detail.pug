@@ -3,7 +3,7 @@
   score_data: DB.Find(refid, { collection: 'music' })
   skill_data: DB.Find(refid,{collection: 'skill'})
   xrecord_data: DB.FindOne(refid,{collection: 'x-record'})
-  arena_data: DB.FindOne(refid,{collection: 'arena'})
+  arena_data: DB.Find(refid,{collection: 'arena'})
 
 -
   const padded = _.padStart(profile.id.toString(), 8);
