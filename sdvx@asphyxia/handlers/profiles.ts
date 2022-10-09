@@ -9,6 +9,7 @@ import { CourseRecord } from '../models/course_record';
 import { Profile } from '../models/profile';
 import { getVersion, IDToCode } from '../utils';
 import { Mix } from '../models/mix';
+import { ARENA } from '../data/exg';
 
 async function getAutomationMixes(params: Param[]) {
   const mixids = params
@@ -581,7 +582,8 @@ export const save: EPR = async (info, data, send) => {
     await DB.Upsert<Arena>(
       refid,
       { 
-        collection: 'arena'
+        collection: 'arena',
+        season: Object.keys(ARENA).findIndex(data => data == U.GetConfig('arena_szn')) + 1
       },
       { 
         $inc: { 
@@ -655,8 +657,9 @@ export const load: EPR = async (info, data, send) => {
   const courses = await DB.Find<CourseRecord>(refid, { collection: 'course', version });
   const items = await DB.Find<Item>(refid, { collection: 'item' });
   const params = await DB.Find<Param>(refid, { collection: 'param' });
-  const arena = await DB.FindOne<Arena>(refid, { collection: 'arena' });
+  const arena = await DB.FindOne<Arena>(refid, { collection: 'arena', season: Object.keys(ARENA).findIndex(data => data == U.GetConfig('arena_szn')) + 1 });
   const xrecord = await DB.FindOne<XRecord>(refid, { collection: 'x-record' });
+  console.log(JSON.stringify(arena))
   let time = new Date();
   let tempHour = time.getHours();
   let tempDate = time.getDate();
@@ -722,7 +725,6 @@ export const load: EPR = async (info, data, send) => {
   }
 
   // Check X-record data and unlock songs based on points
-  console.log(JSON.stringify(info.model.split(":")[2].match(/^(G|H)$/g)))
   if(U.GetConfig('x_record') && (info.model.split(":")[2].match(/^(G|H)$/g) != null || U.GetConfig('enable_valk_songs'))) {
     // '1736', // discordia_penorerihumer - 150
     // '1737', // chewingood_toriena - 0

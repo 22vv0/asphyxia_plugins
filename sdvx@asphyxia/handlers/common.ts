@@ -264,30 +264,30 @@ export const common: EPR = async (info, data, send) => {
     let catalog = []
     let campaign = []
 
-    if(U.GetConfig('arena_szn') == 'debug') {
-      for(let xxx = 0; xxx<=20; xxx++){
-        arena_catalog_items.push({
-          catalog_id: K.ITEM('s32', 1),
-          catalog_type: K.ITEM('s32', 1),
-          price: K.ITEM('s32', 1000),
-          item_type: K.ITEM('s32', U.GetConfig('arena_debug_item_type')),
-          item_id: K.ITEM('s32', xxx),
-          param: K.ITEM('s32', 1),
-        })
-      }
+    // if(U.GetConfig('arena_szn') == 'debug') {
+    //   for(let xxx = 1; xxx<=150; xxx++){
+    //     arena_catalog_items.push({
+    //       catalog_id: K.ITEM('s32', 1),
+    //       catalog_type: K.ITEM('s32', 1),
+    //       price: K.ITEM('s32', 1000),
+    //       item_type: K.ITEM('s32', 11),
+    //       item_id: K.ITEM('s32', xxx),
+    //       param: K.ITEM('s32', 1),
+    //     })
+    //   }
+    // }
+    // else{
+    for (let catalog_item in ARENA[U.GetConfig('arena_szn')].arena_items) {
+      arena_catalog_items.push({
+        catalog_id: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].arena_items[catalog_item].catalog_id),
+        catalog_type: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].arena_items[catalog_item].catalog_type),
+        price: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].arena_items[catalog_item].price),
+        item_type: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].arena_items[catalog_item].item_type),
+        item_id: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].arena_items[catalog_item].item_id),
+        param: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].arena_items[catalog_item].param),
+      })
     }
-    else{
-      for (let catalog_item in ARENA[U.GetConfig('arena_szn')].arena_items) {
-        arena_catalog_items.push({
-          catalog_id: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].arena_items[catalog_item].catalog_id),
-          catalog_type: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].arena_items[catalog_item].catalog_type),
-          price: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].arena_items[catalog_item].price),
-          item_type: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].arena_items[catalog_item].item_type),
-          item_id: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].arena_items[catalog_item].item_id),
-          param: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].arena_items[catalog_item].param),
-        })
-      }
-    }
+    // }
 
     let valgene_info = []
     let valgene_items = []
@@ -406,7 +406,6 @@ export const common: EPR = async (info, data, send) => {
     console.log(error)
   }     
 };
-
 
 export const log: EPR = async (info, data, send) => {
   send.success();

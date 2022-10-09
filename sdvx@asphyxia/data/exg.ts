@@ -86,10 +86,21 @@ export const VALKYRIEEXCLUSIVESONGS = [
   '1736', '1737', '1738', '1848', '1847', '1849' // X-record
 ]
 
+// arena station crew with name cheatsheet
+// 29 nearnoah xmas
+// 82 kanade halloween
+// 95 rasis v
+// 101 right v
+// 103 nearnoah v
+// 104 nana v
+// 106 natsuhi
+// 107 cocona
+
+// ARENA data
 export const ARENA = {
   'Set 1 (04/25/22)': {
     details: {
-      season: 0,
+      season: 1,
       time_start: BigInt(Date.parse('25 Apr 2022 00:00:00 GMT')),
       time_end: BigInt(Date.parse('31 Dec 2022 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('25 Apr 2022 00:00:00 GMT')),
@@ -101,7 +112,7 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 3000,
+        price: 15000,
         item_type: 11,
         item_id: 101,
         param: 1,
@@ -109,7 +120,7 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 3000,
+        price: 15000,
         item_type: 11,
         item_id: 95,
         param: 1,
@@ -117,7 +128,7 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 1000,
+        price: 8000,
         item_type: 0,
         item_id: 1855,
         param: 23,
@@ -125,7 +136,7 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 1000,
+        price: 8000,
         item_type: 0,
         item_id: 381,
         param: 8,
@@ -133,7 +144,7 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 1000,
+        price: 8000,
         item_type: 0,
         item_id: 633,
         param: 8,
@@ -141,7 +152,7 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 1000,
+        price: 4000,
         item_type: 0,
         item_id: 332,
         param: 8,
@@ -149,7 +160,7 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 1000,
+        price: 4000,
         item_type: 0,
         item_id: 711,
         param: 8,
@@ -157,7 +168,7 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 1000,
+        price: 4000,
         item_type: 0,
         item_id: 871,
         param: 8,
@@ -165,7 +176,7 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 1000,
+        price: 2000,
         item_type: 0,
         item_id: 872,
         param: 8,
@@ -173,7 +184,7 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 1000,
+        price: 2000,
         item_type: 0,
         item_id: 64,
         param: 8,
@@ -181,7 +192,7 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 1000,
+        price: 2000,
         item_type: 0,
         item_id: 88,
         param: 8,
@@ -190,7 +201,7 @@ export const ARENA = {
   },
   'Set 2 (06/30/22)': {
     details: {
-      season: 0,
+      season: 2,
       time_start: BigInt(Date.parse('30 Jun 2022 00:00:00 GMT')),
       time_end: BigInt(Date.parse('31 Dec 2022 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('30 Jun 2022 00:00:00 GMT')),
@@ -199,18 +210,18 @@ export const ARENA = {
       is_shop: 1
     },
     arena_items: [
-      // {
-      //   catalog_id: 1,
-      //   catalog_type: 1,
-      //   price: 3000,
-      //   item_type: 11,
-      //   item_id: 95,
-      //   param: 1,
-      // },
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 1000,
+        price: 15000,
+        item_type: 11,
+        item_id: 103,
+        param: 1,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
         item_type: 0,
         item_id: 1742,
         param: 23,
@@ -218,7 +229,7 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 1000,
+        price: 8000,
         item_type: 0,
         item_id: 632,
         param: 8,
@@ -226,7 +237,7 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 1000,
+        price: 4000,
         item_type: 0,
         item_id: 37,
         param: 8,
@@ -234,7 +245,7 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 1000,
+        price: 4000,
         item_type: 0,
         item_id: 239,
         param: 8,
@@ -242,7 +253,7 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 1000,
+        price: 2000,
         item_type: 0,
         item_id: 111,
         param: 8,
@@ -250,42 +261,42 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 1000,
+        price: 2000,
         item_type: 0,
         item_id: 132,
         param: 8,
       }
     ],
   },
-  'debug': {
-    details: {
-      season: 0,
-      time_start: BigInt(Date.parse('30 Jun 2022 00:00:00 GMT')),
-      time_end: BigInt(Date.parse('31 Dec 2022 23:59:59 GMT')),
-      shop_start: BigInt(Date.parse('30 Jun 2022 00:00:00 GMT')),
-      shop_end: BigInt(Date.parse('31 Dec 2022 23:59:59 GMT')),
-      is_open: 1,
-      is_shop: 1
-    },
-    arena_items: [
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 1000,
-        item_type: 1,
-        item_id: 10,
-        param: 1,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 1000,
-        item_type: parseInt(U.GetConfig('arena_debug_item_type')),
-        item_id: 10,
-        param: 1,
-      }
-    ]
-  }
+  // 'debug': {
+  //   details: {
+  //     season: 0,
+  //     time_start: BigInt(Date.parse('30 Jun 2022 00:00:00 GMT')),
+  //     time_end: BigInt(Date.parse('31 Dec 2022 23:59:59 GMT')),
+  //     shop_start: BigInt(Date.parse('30 Jun 2022 00:00:00 GMT')),
+  //     shop_end: BigInt(Date.parse('31 Dec 2022 23:59:59 GMT')),
+  //     is_open: 1,
+  //     is_shop: 1
+  //   },
+  //   arena_items: [
+  //     {
+  //       catalog_id: 1,
+  //       catalog_type: 1,
+  //       price: 1000,
+  //       item_type: 1,
+  //       item_id: 10,
+  //       param: 1,
+  //     },
+  //     {
+  //       catalog_id: 1,
+  //       catalog_type: 1,
+  //       price: 1000,
+  //       item_type: parseInt(U.GetConfig('arena_debug_item_type')),
+  //       item_id: 10,
+  //       param: 1,
+  //     }
+  //   ]
+  // }
 }
 
 export const VALGENE = {
@@ -4077,39 +4088,38 @@ export const SDVX_AUTOMATION_SONGS_2 = [
 	99004
 ]
 
-
 export const EXTENDS6 = [
-   {
+  {
     id: 91,
-     type: 17,
-     params: [
-       0,
-       0,
-       0,
-       0,
-       0,
-       SDVX_AUTOMATION_SONGS.join(','),
-       '',
-       '',
-       '',
-       '',
-     ],
-   },
+    type: 17,
+    params: [
+      0,
+      0,
+      0,
+      0,
+      0,
+      SDVX_AUTOMATION_SONGS.join(','),
+      '',
+      '',
+      '',
+      '',
+    ],
+  },
 	{
     id: 92,
-     type: 17,
-     params: [
-       0,
-       0,
-       0,
-       0,
-       0,
-       SDVX_AUTOMATION_SONGS_2.join(','),
-       '',
-       '',
-       '',
-       '',
-     ],
-   },    
+    type: 17,
+    params: [
+      0,
+      0,
+      0,
+      0,
+      0,
+      SDVX_AUTOMATION_SONGS_2.join(','),
+      '',
+      '',
+      '',
+      '',
+    ],
+  },    
 ];
 
