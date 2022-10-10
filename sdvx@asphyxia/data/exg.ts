@@ -39,6 +39,13 @@ export const EVENT6 = [
   'DISP_PASELI_BANNER'
 ];
 
+export const INFORMATION6 = {
+  '2022021400': ['[img:ver06/info_psd.ifs:hexa_diver_220215]'],
+  '2022030800': ['[img:ver06/info_psd.ifs:hexa_diver_220310]'],
+  '2022042500': ['[img:ver06/info_psd.ifs:hexa_diver_220215]', '[img:ver06/info_psd.ifs:hexa_diver_220310]'],
+  '2022071200': ['[img:ver06/info_psd.ifs:hexa_diver_220714]']
+}
+
 export const MISSINGSONGS6 = [
   '1471', '1477', '1634', '1635', '1636', '1637', '1649', '1650', '1653', '1654',
   '1655', '1657', '1658', '1739', '1740', '1741', '1744', '1753', '1754', '1755', 
@@ -4079,37 +4086,37 @@ export const SDVX_AUTOMATION_SONGS_2 = [
 
 
 export const EXTENDS6 = [
-   {
+  {
     id: 91,
-     type: 17,
-     params: [
-       0,
-       0,
-       0,
-       0,
-       0,
-       SDVX_AUTOMATION_SONGS.join(','),
-       '',
-       '',
-       '',
-       '',
-     ],
-   },
+    type: 17,
+    params: [
+      0,
+      0,
+      0,
+      0,
+      0,
+      SDVX_AUTOMATION_SONGS.join(','),
+      '',
+      '',
+      '',
+      '',
+    ],
+  },
 	{
     id: 92,
-     type: 17,
-     params: [
-       0,
-       0,
-       0,
-       0,
-       0,
-       SDVX_AUTOMATION_SONGS_2.join(','),
-       '',
-       '',
-       '',
-       '',
-     ],
-   },    
+    type: 17,
+    params: [
+      0,
+      0,
+      0,
+      0,
+      0,
+      SDVX_AUTOMATION_SONGS_2.join(','),
+      '',
+      '',
+      '',
+      '',
+    ],
+  },    
 ];
 

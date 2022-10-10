@@ -2,7 +2,8 @@ import { EVENT4, COURSES4, EXTENDS4 } from '../data/hvn';
 import { EVENT5, COURSES5, EXTENDS5 } from '../data/vvw';
 import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, XRECORDSONGS, 
           KONASTESONGS, BEMANI2021EVENTSONGS, BPLSTAMPRALLYSONGS, SDVX10THSTAMPSONGS,
-          REFLECBEATSTAMPSONGS, VALKYRIEEXCLUSIVESONGS, MISSINGSONGS6, ARENA, VALGENE 
+          REFLECBEATSTAMPSONGS, VALKYRIEEXCLUSIVESONGS, MISSINGSONGS6, ARENA, VALGENE,
+          INFORMATION6 
 } from '../data/exg';
 import { COURSE2 } from '../data/inf';
 import {getVersion, getRandomIntInclusive} from '../utils';
@@ -153,6 +154,27 @@ export const common: EPR = async (info, data, send) => {
           '[br:10][c:00FFFF][sz:50]メリー。。。クリスマス、です。。。'+
           '\n \n \n \n[sz:32][c:560000,FC0000]DO NOT STREAM OR DISTRIBUTE THIS GAME IN PUBLIC',
           //'[img:test]',
+          '',
+          '',
+          '',
+        ],
+      });
+    } else if(INFORMATION6[version.toString()] != undefined) {
+      console.log("Sending server information");
+      let time = new Date();
+      let tempDate = time.getDate();
+      const currentTime = parseInt((time.getTime()/100000) as unknown as string)*100;
+      extend.push({
+        id: 1,
+        type: 1,
+        params: [
+          1,
+          currentTime,
+          1,
+          1,
+          31,
+          '[f:0]SERVER INFORMATION',
+          INFORMATION6[version.toString()][Math.floor(Math.random() * (INFORMATION6[version.toString()].length - 1))],
           '',
           '',
           '',
