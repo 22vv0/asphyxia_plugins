@@ -711,10 +711,11 @@ $(document).ready(function() {
             lm = xrecord_data['lm'];
             vm = xrecord_data['vm'];
         }
-        var arenaPower = 0;
-        if(arena_data != null) {
-            arenaPower = arena_data['shopPoint']
-        }
+        var arenaPower = [];
+        arena_data.forEach(arena_sszn_data => {
+            arenaPower.push([arena_sszn_data.season, arena_sszn_data.shopPoint])
+        })
+        arenaPower.sort((a, b) => a[0] - b[0])
 
         $('#test').append(
             $('<div class="card is-inlineblocked">').append(
@@ -836,9 +837,7 @@ $(document).ready(function() {
                                 $('<p class="title">').append(
                                     "Arena Power"
                                 ).append(
-                                    $('<div class="content">').append(
-                                        arenaPower
-                                    )
+                                    $('<div class="content" id=arena-power-data>')
                                 ).css('font-family', "testfont") 
                             )
                         )
@@ -950,6 +949,22 @@ $(document).ready(function() {
                 )
             )
         )
+
+        arenaPower.forEach(ap => {
+            console.log('yes' + ap)
+            $('#arena-power-data').append(
+                $('<article class="tile is-child box">').append(
+                    $('<p class="title">').append(
+                        "Season " + ap[0]
+                    ).append(
+                        $('<div class="content">').append(
+                            ap[1]
+                        )
+                    )
+                )
+            )
+        })
+        
 
         setUpStatistics();
         setCMpD();
