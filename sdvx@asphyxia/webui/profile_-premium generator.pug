@@ -21,12 +21,15 @@ div
     .card-header
       p.card-header-title
         span.icon
-          i.mdi.mdi-account-edit
+          i.mdi.mdi-star
         | Premium Generator
     .card-content
-      input.input(type="text" name="refid", value=refid readonly)
-      button(id="pregene-roll") Roll
-      div.count()
+      div(style="padding: 15px; text-align: center;")
+        div(style="padding: 5px")
+          h3.count()
+        input.input(type="text" name="refid", value=refid readonly)
+        button.button(id="pregene-roll" style="font-size: 20px") Roll
+      br()
       div.item_banners()
 
 div(hidden id='data-pass-crew') !{JSON.stringify(prem_items_crew)}
