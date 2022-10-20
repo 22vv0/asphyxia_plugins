@@ -1,24 +1,18 @@
 function countPreGeneItems(preGeneItems, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys) {
-    let totalItemsGot = 0
-    totalItemsGot += items_crew.filter(crew => preGeneItems['crew'].includes(crew['id'])).length
-    totalItemsGot += items_stamp.filter(stamp => preGeneItems['stamp'].includes(stamp['id'])).length
-    totalItemsGot += items_subbg.filter(subbg => preGeneItems['subbg'].includes(subbg['id'])).length
-    return totalItemsGot
+    return items_crew.filter(crew => preGeneItems['crew'].includes(crew['id'])).length + 
+            items_stamp.filter(stamp => preGeneItems['stamp'].includes(stamp['id'])).length + 
+            items_subbg.filter(subbg => preGeneItems['subbg'].includes(subbg['id'])).length
 }
 
 function loadImages(itemList, itemType, userItems) {
-    let preGeneImageFetchURL = 'https://eacache.s.konaminet.jp/game/sdvx/common/images/pregene_item/'
     itemList.forEach(item => {
         let itemBrightness = userItems.find(userItem => userItem.id == item) != undefined ? 1 : 0.5
-        let imageUrl = 'static/asset/pregene_item/item_' + itemType + '_' + item + '.png'
+        let imageUrl = 'static/asset/valgene_item/item_' + itemType + '_' + item + '.png'
         $.get(imageUrl, function(data, textStatus) {
             if (textStatus == "success") {
                 $('.' + itemType + '-items').append('<img style="width: 350px; padding: 10px; filter: brightness(' + itemBrightness + ')" src=' + imageUrl + '>')
             }
-        }).fail(function(){
-            imageUrl = preGeneImageFetchURL + itemType + '/item_' + itemType + '_' + item + '.png'
-            $('.' + itemType + '-items').append('<img style="width: 350px; padding: 10px; filter: brightness(' + itemBrightness + ')" src=' + imageUrl + '>')
-        });
+        })
     })
 }
 
@@ -59,6 +53,6 @@ $(document).ready(function() {
 
 
     $('#pregene-roll').on('click', function() {
-        console.log('clique')
+        console.log('not yet implemented')
     })
 })
