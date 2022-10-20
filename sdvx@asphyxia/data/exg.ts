@@ -89,7 +89,7 @@ export const APRILFOOLSSONGS = [
 ]
 
 export const VALKYRIEEXCLUSIVESONGS = [
-  '1672', '1744', '1855', '1742',
+  '1672', '1744', '1855', '1742', '1743',
   '1736', '1737', '1738', '1848', '1847', '1849' // X-record
 ]
 
@@ -294,14 +294,14 @@ export const ARENA = {
         item_id: 104, // nana v
         param: 1,
       },
-      // {
-      //   catalog_id: 1,
-      //   catalog_type: 1,
-      //   price: 8000,
-      //   item_type: 0,
-      //   item_id: 1742, (REPLACE TO REVVENG ID)
-      //   param: 23,
-      // },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 1743, // revvable engine
+        param: 23,
+      },
       {
         catalog_id: 1,
         catalog_type: 1,
