@@ -12,9 +12,9 @@ export const EVENT6 = [
   'TENKAICHI_MODE',
   'QC_MODE',
   'KAC_MODE',
-  'APPEAL_CARD_GEN_PRICE\t100',
-  'APPEAL_CARD_GEN_NEW_PRICE\t200',
-  'APPEAL_CARD_UNLOCK\t0,20170914,0,20171014,0,20171116,0,20180201,0,20180607,0,20181206,0,20200326,0,20200611,4,10140732,6,10150431',
+  // 'APPEAL_CARD_GEN_PRICE\t100',
+  // 'APPEAL_CARD_GEN_NEW_PRICE\t200',
+  // 'APPEAL_CARD_UNLOCK\t0,20170914,0,20171014,0,20171116,0,20180201,0,20180607,0,20181206,0,20200326,0,20200611,4,10140732,6,10150431',
   'FAVORITE_APPEALCARD_MAX\t200',
   'FAVORITE_MUSIC_MAX\t200',
   //'EVENTDATE_APRILFOOL',
@@ -43,7 +43,10 @@ export const INFORMATION6 = {
   '2022021400': ['[img:ver06/info_psd.ifs:hexa_diver_220215]'],
   '2022030800': ['[img:ver06/info_psd.ifs:hexa_diver_220310]'],
   '2022042500': ['[img:ver06/info_psd.ifs:hexa_diver_220215]', '[img:ver06/info_psd.ifs:hexa_diver_220310]'],
-  '2022071200': ['[img:ver06/info_psd.ifs:hexa_diver_220714]']
+  '2022071200': ['[img:ver06/info_psd.ifs:hexa_diver_220714]'],
+  '2022081600': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]'],
+  '2022083000': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
+  '2022101800': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
 }
 
 export const MISSINGSONGS6 = [
@@ -89,7 +92,7 @@ export const APRILFOOLSSONGS = [
 ]
 
 export const VALKYRIEEXCLUSIVESONGS = [
-  '1672', '1744', '1855', '1742',
+  '1672', '1744', '1855', '1742', '1743'
   '1736', '1737', '1738', '1848', '1847', '1849' // X-record
 ]
 
@@ -102,6 +105,8 @@ export const VALKYRIEEXCLUSIVESONGS = [
 // 104 nana v
 // 106 natsuhi
 // 107 cocona
+// 122 hime?
+// 123 hina?
 
 // ARENA data
 export const ARENA = {
@@ -275,6 +280,115 @@ export const ARENA = {
       }
     ],
   },
+  'Set 4 (10/20/22)': {
+    details: {
+      // season: 4,
+      time_start: BigInt(Date.parse('20 Oct 2022 00:00:00 GMT')),
+      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_start: BigInt(Date.parse('20 Oct 2022 00:00:00 GMT')),
+      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      is_open: 1,
+      is_shop: 1
+    },
+    arena_items: [
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 15000,
+        item_type: 11,
+        item_id: 122,
+        param: 1,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 15000,
+        item_type: 11,
+        item_id: 123,
+        param: 1,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 1902,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 1855,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 381,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 633,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 332,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 711,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 871,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 872,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 64,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 88,
+        param: 8,
+      },
+    ],
+  }
   // 'debug': {
   //   details: {
   //     season: 0,
@@ -342,6 +456,11 @@ export const VALGENE = {
       valgene_name: "ヴァルキリージェネレーター　第7弾",
       valgene_name_english: "Valkyrie Generator Vol. 7",
       valgene_id: 7
+    },
+    {
+      valgene_name: "ヴァルキリージェネレーター　第9弾",
+      valgene_name_english: "Valkyrie Generator Vol. 9",
+      valgene_id: 9
     }
   ],
   rarity: {
@@ -356,23 +475,23 @@ export const VALGENE = {
       volume: 1,
       items: [
         {
-          type: 11,
+          type: 11, // nemsys crew
           item_ids: [117]
         },
         {
-          type: 17,
+          type: 17, // chat stamp
           item_ids: [1, 2, 3, 4, 5]
         },
         {
-          type: 18,
+          type: 18, // submonitor bg
           item_ids: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
         },
         {
-          type: 19,
+          type: 19, // bgm
           item_ids: [1, 2, 3, 4, 5, 6, 7, 8]
         },
         {
-          type: 20,
+          type: 20, // nemsys
           item_ids: [1, 2, 3, 4]
         }
       ]
@@ -523,7 +642,31 @@ export const VALGENE = {
         }
       ]
     },
-
+    {
+      volume: 9,
+      items: [
+        {
+          type: 11, // nemsys crew
+          item_ids: [133]
+        },
+        {
+          type: 17, // chat stamp
+          item_ids: [79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109]
+        },
+        {
+          type: 18,  // submonitor bg
+          item_ids: [186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199]
+        },
+        {
+          type: 19, // bgm
+          item_ids: [43, 44, 45, 46, 47]
+        },
+        {
+          type: 20, // nemsys
+          item_ids: [32]
+        }
+      ]
+    },
   ]
 }
 
