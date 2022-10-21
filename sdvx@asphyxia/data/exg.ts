@@ -43,7 +43,8 @@ export const INFORMATION6 = {
   '2022021400': ['[img:ver06/info_psd.ifs:hexa_diver_220215]'],
   '2022030800': ['[img:ver06/info_psd.ifs:hexa_diver_220310]'],
   '2022042500': ['[img:ver06/info_psd.ifs:hexa_diver_220215]', '[img:ver06/info_psd.ifs:hexa_diver_220310]'],
-  '2022071200': ['[img:ver06/info_psd.ifs:hexa_diver_220714]']
+  '2022071200': ['[img:ver06/info_psd.ifs:hexa_diver_220714]'],
+  '2022081600': ['[img:ver06/info_psd.ifs:hexa_diver_220818]']
 }
 
 export const MISSINGSONGS6 = [
@@ -342,6 +343,11 @@ export const VALGENE = {
       valgene_name: "ヴァルキリージェネレーター　第7弾",
       valgene_name_english: "Valkyrie Generator Vol. 7",
       valgene_id: 7
+    },
+    {
+      valgene_name: "ヴァルキリージェネレーター　第8弾",
+      valgene_name_english: "Valkyrie Generator Vol. 8",
+      valgene_id: 8
     }
   ],
   rarity: {
@@ -523,7 +529,31 @@ export const VALGENE = {
         }
       ]
     },
-
+    {
+      volume: 8,
+      items: [
+        {
+          type: 11,
+          item_ids: [130]
+        },
+        {
+          type: 17,
+          item_ids: [38, 39, 40, 41, 42]
+        },
+        {
+          type: 18,
+          item_ids: [152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165]
+        },
+        {
+          type: 19,
+          item_ids: [38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68]
+        },
+        {
+          type: 20,
+          item_ids: [31]
+        }
+      ]
+    }
   ]
 }
 
