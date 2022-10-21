@@ -90,7 +90,7 @@ export const APRILFOOLSSONGS = [
 ]
 
 export const VALKYRIEEXCLUSIVESONGS = [
-  '1672', '1744', '1855', '1742',
+  '1672', '1744', '1855', '1742', '1743',
   '1736', '1737', '1738', '1848', '1847', '1849' // X-record
 ]
 
@@ -110,9 +110,9 @@ export const ARENA = {
     details: {
       // season: 1,
       time_start: BigInt(Date.parse('25 Apr 2022 00:00:00 GMT')),
-      time_end: BigInt(Date.parse('31 Dec 2022 23:59:59 GMT')),
+      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('25 Apr 2022 00:00:00 GMT')),
-      shop_end: BigInt(Date.parse('31 Dec 2022 23:59:59 GMT')),
+      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
       is_open: 1,
       is_shop: 1
     },
@@ -211,9 +211,9 @@ export const ARENA = {
     details: {
       // season: 2,
       time_start: BigInt(Date.parse('30 Jun 2022 00:00:00 GMT')),
-      time_end: BigInt(Date.parse('31 Dec 2022 23:59:59 GMT')),
+      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('30 Jun 2022 00:00:00 GMT')),
-      shop_end: BigInt(Date.parse('31 Dec 2022 23:59:59 GMT')),
+      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
       is_open: 1,
       is_shop: 1
     },
@@ -272,6 +272,75 @@ export const ARENA = {
         price: 2000,
         item_type: 0,
         item_id: 132,
+        param: 8,
+      }
+    ],
+  },
+  'Set 3 (09/01/22)': {
+    details: {
+      // season: 3,
+      time_start: BigInt(Date.parse('01 Sep 2022 00:00:00 GMT')),
+      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_start: BigInt(Date.parse('01 Sep 2022 00:00:00 GMT')),
+      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      is_open: 1,
+      is_shop: 1
+    },
+    arena_items: [
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 15000,
+        item_type: 11,
+        item_id: 104, // nana v
+        param: 1,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 1743, // revvable engine
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 342,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 131,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 612,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 8,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 323,
         param: 8,
       }
     ],
