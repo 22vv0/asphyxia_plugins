@@ -43,6 +43,7 @@ export const copyResourcesFromGame = async (data: {}) => {
   let newSubBGData = []
   let newBGMData = []
   let newChatStampData = []
+  let newValgeneItemFiles = []
   let runErrors = []
   let resourceJsonData = JSON.parse(U.DecodeString(await IO.ReadFile('webui/asset/json/data.json'), 'utf8'))
 
@@ -285,6 +286,26 @@ export const copyResourcesFromGame = async (data: {}) => {
     runErrors.push('[chat_stamp] Error reading chat stamp directory. Check your "Exceed Gear Data Directory" config.')
   }
 
+  // Copying new valgene_item files from gamedata
+  console.log("Copying new valgene_item files from gamedata")
+  if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/valgene_item")) {
+    let valgeneItemFiles = await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/valgene_item")
+    for await (const valgeneItem of valgeneItemFiles) {
+      if (valgeneItem.name.substring(valgeneItem.name.length-4, valgeneItem.name.length).match(/(\.png|\.jpg)/g)) {
+        let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/valgene_item/" + valgeneItem.name)
+        if(!IO.Exists('webui/asset/valgene_item/' + valgeneItem.name.substring(0, (valgeneItem.name.length - 4)) + ".png") && !IO.Exists('webui/asset/valgene_item/' + valgeneItem.name.substring(0, (valgeneItem.name.length - 4))  + ".jpg")) {
+          IO.WriteFile('webui/asset/valgene_item/' + valgeneItem.name, fileToWrite)
+          newValgeneItemFiles.push(valgeneItem.name)
+        } else {
+          console.log(valgeneItem.name + " exists")
+        }
+      }
+    }
+  } else {
+    console.log('Error reading valgene_item directory. Check your "Exceed Gear Data Directory" config.')
+    runErrors.push('[valgene_item] Error reading valgene_item directory. Check your "Exceed Gear Data Directory" config.')
+  }
+
   await IO.WriteFile('webui/asset/json/data.json', JSON.stringify(resourceJsonData))
   await IO.WriteFile('webui/asset/logs/copyResourcesFromGame.json', JSON.stringify({
     nemsys: newNemsysData,
@@ -292,6 +313,7 @@ export const copyResourcesFromGame = async (data: {}) => {
     subbg: newSubBGData,
     bgm: newBGMData,
     chatStamp: newChatStampData,
+    valgeneItemFiles: newValgeneItemFiles,
     versionSongs: newVersionSongs.sort((a, b) => a[0] - b[0]),
     jsonSongs: newJsonSongs.sort((a, b) => a[0] - b[0]),
     xcdSongs: newXCDSongs.sort((a, b) => a[0] - b[0]),
