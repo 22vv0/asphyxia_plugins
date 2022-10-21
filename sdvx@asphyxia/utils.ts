@@ -43,8 +43,11 @@ export const copyResourcesFromGame = async (data: {}) => {
   let newSubBGData = []
   let newBGMData = []
   let newChatStampData = []
+  let newValgeneItemFiles = []
+  let newAkanames = []
   let runErrors = []
   let resourceJsonData = JSON.parse(U.DecodeString(await IO.ReadFile('webui/asset/json/data.json'), 'utf8'))
+  let apCardJsonData = JSON.parse(U.DecodeString(await IO.ReadFile('webui/asset/json/appeal.json'), 'utf8'))
 
   // Get new music data from music_db.xml
   console.log('Getting new music_db info')
@@ -169,31 +172,6 @@ export const copyResourcesFromGame = async (data: {}) => {
     runErrors.push('[nemsys] Error reading nemsys directory. Check your "Exceed Gear Data Directory" config.')
   }
 
-  // Copying new appeal card files from gamedata (disabled for now)
-  // console.log("Copying new appeal card files from gamedata")
-  // if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/ap_card")) {
-  //   let apCardFiles = await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/ap_card")
-  //   for await (const apCard of apCardFiles) {
-  //     let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/ap_card/" + apCard.name)
-  //     if(!IO.Exists('webui/asset/ap_card/' + apCard.name.substring(0, (apCard.name.length - 4)) + ".png") && !IO.Exists('webui/asset/ap_card/' + apCard.name.substring(0, (apCard.name.length - 4)) + ".jpg")) {
-  //       IO.WriteFile('webui/asset/ap_card/' + apCard.name, fileToWrite)
-  //       newAPCardData.push(apCard.name)
-  //     } else {
-  //       console.log(apCard.name + " exists")
-  //     }
-  //   }
-
-  //   // Appeal card data registration to data.json not properly implemented yet, I don't quite understand how their IDs work yet
-  //   newAPCardData.forEach(fileName => {
-  //     if(parseInt(fileName.substring(6, 10))) {
-  //       resourceJsonData.apCard.push({"value": parseInt(fileName.substring(6, 10)), "name": fileName + " (please rename)"})
-  //     }
-  //   })
-  // } else {
-  //   console.log('Error reading appeal card directory. Check your "Exceed Gear Data Directory" config.')
-  //   runErrors.push('[appeal_card] Error reading appeal card directory. Check your "Exceed Gear Data Directory" config.')    
-  // }
-
   // Copying new subbg files from gamedata
   console.log("Copying new subbg files from gamedata")
   if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/submonitor_bg")) {
@@ -250,48 +228,93 @@ export const copyResourcesFromGame = async (data: {}) => {
     runErrors.push('[BGM] Error reading BGM directory. Check your "Exceed Gear Data Directory" config.')
   }
 
-  // Copying new chat_stamp files from gamedata
-  console.log("Copying new chat stamp files from gamedata")
-  if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/chat_stamp")) {
-    let chat_stamps_folders = await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/chat_stamp")
-    for(const chat_stamp_folder of chat_stamps_folders) {
-      let folderName = chat_stamp_folder.name.match(/stamp_([0-9]*)/g)[0]
-      if(folderName != '') {
-        if(!IO.Exists('webui/asset/chat_stamp/' + folderName)) {
-        	let chat_stamps = await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/chat_stamp/" + folderName)
-        	for(const chat_stamp_ind in chat_stamps) {
-        		let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/chat_stamp/" + folderName + '/' + chat_stamps[chat_stamp_ind].name)
-            IO.WriteFile('webui/asset/chat_stamp/' + folderName + '/' + chat_stamps[chat_stamp_ind].name, fileToWrite)
-            newChatStampData.push(chat_stamps[chat_stamp_ind].name)
-          }
+  // Copying new valgene_item files from gamedata
+  console.log("Copying new valgene_item files from gamedata")
+  if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/valgene_item")) {
+    let valgeneItemFiles = await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/valgene_item")
+    for await (const valgeneItem of valgeneItemFiles) {
+      if (valgeneItem.name.substring(valgeneItem.name.length-4, valgeneItem.name.length).match(/(\.png|\.jpg)/g)) {
+        let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/valgene_item/" + valgeneItem.name)
+        if(!IO.Exists('webui/asset/valgene_item/' + valgeneItem.name.substring(0, (valgeneItem.name.length - 4)) + ".png") && !IO.Exists('webui/asset/valgene_item/' + valgeneItem.name.substring(0, (valgeneItem.name.length - 4))  + ".jpg")) {
+          IO.WriteFile('webui/asset/valgene_item/' + valgeneItem.name, fileToWrite)
+          newValgeneItemFiles.push(valgeneItem.name)
         } else {
-          console.log(folderName + " exists")
+          console.log(valgeneItem.name + " exists")
         }
       }
     }
-
-    let stampIDCtr = 3;
-    newChatStampData.forEach(fileName => {
-      let stampId = fileName.match(/(?<=(stamp)_)([0-9]*)/g)[0]
-      if(parseInt(stampId)) {
-      	let realStampID = (parseInt(stampId) * 4) - stampIDCtr;
-        resourceJsonData.stamp.push({"value": realStampID, "name": fileName + " (please rename)"})
-      }
-      if(stampIDCtr == 0) stampIDCtr = 3;
-      else stampIDCtr--;
-    })
   } else {
-    console.log('Error reading chat stamp directory. Check your "Exceed Gear Data Directory" config.')
-    runErrors.push('[chat_stamp] Error reading chat stamp directory. Check your "Exceed Gear Data Directory" config.')
+    console.log('Error reading valgene_item directory. Check your "Exceed Gear Data Directory" config.')
+    runErrors.push('[valgene_item] Error reading valgene_item directory. Check your "Exceed Gear Data Directory" config.')
+  }
+
+  // Copying new akanames from gamedata
+  console.log("Copying new akanames from gamedata")
+  if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/others/akaname_parts.xml")) {
+    let akanameData = U.parseXML(U.DecodeString(await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/others/akaname_parts.xml"), "shift_jis"), false)
+    for(const akaname of akanameData.akaname_parts.part) {
+      if(resourceJsonData.akaname.find(aka => aka.value === akaname['@attr'].id) == undefined) {
+        resourceJsonData.akaname.push({"value": akaname['@attr'].id, "name": akaname.word['@content'] != undefined ? akaname.word['@content'] : '' })
+        newAkanames.push(akaname['@attr'].id + ": " + akaname.word['@content'])
+      } 
+    }
+    resourceJsonData.akaname.sort(function(a, b){return parseInt(a.value) - parseInt(b.value)})
+  } else {
+    console.log('Error reading akaname xml file. Check your "Exceed Gear Data Directory" config.')
+    runErrors.push('[akaname] Error reading akaname xml file. Check your "Exceed Gear Data Directory" config.')
+  }
+
+  // Copying new appeal card data from gamedata
+  console.log("Copying new appeal card data from gamedata")
+  if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/others/appeal_card.xml")) {
+    let apCardData = U.parseXML(U.DecodeString(await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/others/appeal_card.xml"), "shift_jis"), false)
+    for(const apCard of apCardData.appeal_card_data.card) {
+      if(apCardJsonData.appeal_card_data.card.find(ap => ap['@id'] === apCard['@attr'].id) == undefined) {
+        apCardJsonData.appeal_card_data.card.push({"@id": apCard['@attr'].id, "info": {"texture": apCard.info['texture']['@content'], "title": apCard.info['title']['@content']}})
+        newAPCardData.push(apCard['@attr'].id + ": " + apCard.info['texture']['@content'] + "(" + apCard.info['title']['@content'] + ")")
+      }
+      if(!IO.Exists('webui/asset/ap_card/' + apCard.info['texture']['@content'] + '.png') && !IO.Exists('webui/asset/ap_card/' + apCard.info['texture']['@content'] + '.jpg')) {
+        let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/ap_card/" + apCard.info['texture']['@content'] + ".png")
+        IO.WriteFile('webui/asset/ap_card/' + apCard.info['texture']['@content'] + '.png', fileToWrite)
+      }
+    }
+    apCardJsonData.appeal_card_data.card.sort(function(a, b){return parseInt(a['@id']) - parseInt(b['@id'])})
+  } else {
+    console.log('Error reading appeal card xml file. Check your "Exceed Gear Data Directory" config.')
+    runErrors.push('[appeal card] Error reading appeal card xml file. Check your "Exceed Gear Data Directory" config.')
+  }
+
+  // Copying new chat stamps from gamedata
+  console.log("Copying new chat stamps from gamedata")
+  if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/others/chat_stamp.xml")) {
+    let chatStampData = U.parseXML(U.DecodeString(await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/others/chat_stamp.xml"), "shift_jis"), false)
+    // console.log(JSON.stringify(chatStampData.chat_stamp_data))
+    for(const chatStamp of chatStampData.chat_stamp_data.info) {
+      if(resourceJsonData.stamp.find(stamp => stamp['value'] === chatStamp.id['@content'][0]) == undefined) {
+        resourceJsonData.stamp.push({"value": chatStamp.id['@content'][0], "name": chatStamp.filename['@content']})
+        newChatStampData.push(chatStamp.id['@content'][0] + ": " + chatStamp.filename['@content'])
+      }
+      if(!IO.Exists('webui/asset/chat_stamp/' + chatStamp.filename['@content'] + '.png') && !IO.Exists('webui/asset/chat_stamp/' + chatStamp.filename['@content'] + '.png')) {
+        let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/chat_stamp/" + chatStamp.filename['@content'] + ".png")
+        IO.WriteFile('webui/asset/chat_stamp/' + chatStamp.filename['@content'] + '.png', fileToWrite)
+      }
+    }
+    resourceJsonData.stamp.sort(function(a, b){return a.value - b.value})
+  } else {
+    console.log('Error reading chat stamp xml file. Check your "Exceed Gear Data Directory" config.')
+    runErrors.push('[chat stamp] Error reading chat stamp xml file. Check your "Exceed Gear Data Directory" config.')
   }
 
   await IO.WriteFile('webui/asset/json/data.json', JSON.stringify(resourceJsonData))
+  await IO.WriteFile('webui/asset/json/appeal.json', JSON.stringify(apCardJsonData))
   await IO.WriteFile('webui/asset/logs/copyResourcesFromGame.json', JSON.stringify({
+    akaname: newAkanames,
     nemsys: newNemsysData,
     apCard: newAPCardData,
     subbg: newSubBGData,
     bgm: newBGMData,
     chatStamp: newChatStampData,
+    valgeneItemFiles: newValgeneItemFiles,
     versionSongs: newVersionSongs.sort((a, b) => a[0] - b[0]),
     jsonSongs: newJsonSongs.sort((a, b) => a[0] - b[0]),
     xcdSongs: newXCDSongs.sort((a, b) => a[0] - b[0]),

@@ -90,6 +90,23 @@ $(document).ready(async function() {
                             })
                             document.getElementById("logtextarea").textContent += '\n\n'
                         }
+
+                        if(data['valgeneItemFiles'].length > 0) {
+                            document.getElementById("logtextarea").textContent += 'New valgene_item files: \n'
+                            $.each(data['valgeneItemFiles'], function(key, val) {
+                                document.getElementById("logtextarea").textContent += "- " +  val + '\n'
+                            })
+                            document.getElementById("logtextarea").textContent += '\n\n'
+                        }
+
+                        // console.log(JSON.stringify(data))
+                        if(data['akaname'].length > 0) {
+                            document.getElementById("logtextarea").textContent += 'New akanames: \n'
+                            $.each(data['akaname'], function(key, val) {
+                                document.getElementById("logtextarea").textContent += "- " +  val + '\n'
+                            })
+                            document.getElementById("logtextarea").textContent += '\n\n'
+                        }
                     })
                 },
                 function(error){
