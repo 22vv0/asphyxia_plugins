@@ -31,7 +31,7 @@ export function register() {
   R.GameCode('KFC');
 
   R.Config('sdvx_eg_root_dir', { type: 'string', needRestart: true, default: '', name: 'Exceed Gear Data Directory', desc: 'The root directory of your SDVX Exceed Gear game files (for asset copying)'});
-  R.Config('unlock_all_valk_items', { type: 'boolean', default: false, name:'Unlock All Valkyrie Items', desc: 'Unlock Nemsys, BGM, Submonitor BG and Stamp Items (Valk crews not included; check \'unlock all navigators\' option)'});
+  R.Config('unlock_all_valk_items', { type: 'boolean', default: false, name:'Unlock All Valkyrie and Premium Items', desc: 'Unlock Nemsys, BGM, Submonitor BG and Stamp Items (Valk crews not included; check \'unlock all navigators\' option)'});
   R.Config('enable_valk_songs' ,{ type: 'boolean', default: false, name:'Enable Valkyrie Model Songs', desc:'Unlock the valkyrie model songs on non-valkyrie mode.'});
   R.Config('arena_szn',{ type: 'string', options: Object.keys(ARENA), default: 'Set 1 (04/25/22)', name: 'Arena Station Item Set', desc: 'Choose which season set of items in the arena station you want to show up in arena station'});
   R.Config('x_record', {type: 'boolean', default: false, name: 'X-Record', desc: 'Activates X-record. 10 VM and 1 LM points per play.'})
