@@ -163,8 +163,11 @@ export const copyResourcesFromGame = async (data: {}) => {
     }
 
     newNemsysData.forEach(fileName => {
-      if(parseInt(fileName.substring(7, 11))) {
-        resourceJsonData.nemsys.push({"value": parseInt(fileName.substring(7, 11)), "name": fileName + " (please rename)"})
+      if(fileName.match(/([0-9]+)/g) != undefined) {
+        let nemsysId = parseInt(fileName.match(/([0-9]+)/g)[0])
+        if(nemsysId && resourceJsonData.nemsys.find(nem => nem.value == nemsysId) == undefined) {
+          resourceJsonData.nemsys.push({"value": nemsysId, "name": fileName + " (please rename)"})
+        }
       }
     })
   } else {
@@ -177,7 +180,7 @@ export const copyResourcesFromGame = async (data: {}) => {
   if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/submonitor_bg")) {
     let subBGFiles = await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/submonitor_bg")
     for await (const subbg of subBGFiles) {
-      if (subbg.name.substring(subbg.name.length-4, subbg.name.length).match(/(\.png|\.jpg)/g)) {
+      if (subbg.name.match(/(\.png|\.jpg)/g)) {
         let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/submonitor_bg/" + subbg.name)
         if(!IO.Exists('webui/asset/submonitor_bg/' + subbg.name.substring(0, (subbg.name.length - 4)) + ".png") && !IO.Exists('webui/asset/submonitor_bg/' + subbg.name.substring(0, (subbg.name.length - 4))  + ".jpg")) {
           IO.WriteFile('webui/asset/submonitor_bg/' + subbg.name, fileToWrite)
@@ -189,8 +192,13 @@ export const copyResourcesFromGame = async (data: {}) => {
     }
 
     newSubBGData.forEach(fileName => {
-      if(parseInt(fileName.substring(6, 10))) {
-        resourceJsonData.subbg.push({"value": parseInt(fileName.substring(6, 10)), "name": fileName + " (please rename)"})
+      let subbgId = parseInt(fileName.match(/([0-9]+)/g)[0])
+      if(subbgId) {
+        let foundSubbg = resourceJsonData.subbg.find(subbg => subbg.value === subbgId)
+        if(foundSubbg == undefined) {
+          if(fileName.match(/(subbg_[0-9]+_[0-9]+)/g)) fileName = fileName.match(/(subbg_[0-9]+)/g)
+          resourceJsonData.subbg.push({"value": subbgId, "name": fileName + " (please rename)"})
+        }
       }
     })
   } else {
@@ -203,7 +211,7 @@ export const copyResourcesFromGame = async (data: {}) => {
   if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/sound/custom")) {
     let bgmFiles = await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "/data/sound/custom")
     for await (const bgm of bgmFiles) {
-      if (bgm.name.substring(bgm.name.length-4, bgm.name.length) == '.s3p') {
+      if (bgm.name.match(/(\.s3p)/g)) {
         let folderName = bgm.name.match(/(custom|special)_([0-9]*)/g)[0]
         if(folderName != '') {
           let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/sound/custom/" + bgm.name)
@@ -218,9 +226,9 @@ export const copyResourcesFromGame = async (data: {}) => {
     }
 
     newBGMData.forEach(fileName => {
-      let bgmId = fileName.match(/(?<=(custom|special)_)([0-9]*)/g)[0]
-      if(parseInt(bgmId)) {
-        resourceJsonData.bgm.push({"value": parseInt(bgmId), "name": fileName + " (please rename)"})
+      let bgmId = parseInt(fileName.match(/(?<=(custom|special)_)([0-9]*)/g)[0])
+      if(bgmId && resourceJsonData.bgm.find(bgm => bgm.value == bgmId) == undefined) {
+        resourceJsonData.bgm.push({"value": bgmId, "name": fileName + " (please rename)"})
       }
     })
   } else {

@@ -9,6 +9,11 @@ function getImageFileFormat(assetType, id) {
     }
 }
 
+function checkPregeneSubbg(subbg) {
+    pregeneSlideshows = [166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185]
+    return pregeneSlideshows.includes(parseInt(subbg))
+}
+
 ;
 (function($) {
     $.preload = function() {
@@ -36,7 +41,7 @@ $('#nemsys_select').change(function() {
 });
 
 $('[name="subbg"]').change(function() {
-    $('#sub_pre').fadeOut(200, () => { $('#sub_pre').attr("src", "static/asset/submonitor_bg/subbg_" + zeroPad($('[name="subbg"]').val(), 4) + getImageFileFormat(0, parseInt(zeroPad($('[name="subbg"]').val(), 4)) )); });
+    $('#sub_pre').fadeOut(200, () => { $('#sub_pre').attr("src", checkPregeneSubbg($('[name="subbg"]').val()) ? "static/asset/submonitor_bg/subbg_" + zeroPad($('[name="subbg"]').val(), 4) + "_0" + (Math.floor(Math.random() * 3) + 1) + getImageFileFormat(0, parseInt(zeroPad($('[name="subbg"]').val(), 4))) : "static/asset/submonitor_bg/subbg_" + zeroPad($('[name="subbg"]').val(), 4) + getImageFileFormat(0, parseInt(zeroPad($('[name="subbg"]').val(), 4)) )); });
     $('#sub_pre').fadeIn(200);
 });
 
@@ -136,8 +141,7 @@ $(document).ready(function() {
     items_bgm = JSON.parse(document.getElementById("data-pass-bgm").innerText);
     items_nemsys = JSON.parse(document.getElementById("data-pass-nemsys").innerText);
     unlock_all = (document.getElementById("data-pass-unlock-all").innerText === 'true');
-    console.log(unlock_all);
-
+    
     $.getJSON("static/asset/json/data.json", function(json) {
         database = json;
 
@@ -163,13 +167,16 @@ $(document).ready(function() {
         $('#nemsys_select').val(profile_data["nemsys"]);
 
         for (var i in json["subbg"]) {
+            
             if(unlock_all || (json["subbg"][i].value === 0 || items_subbg.find(x => x.id === json["subbg"][i].value))) {
                 $('[name="subbg"]').append($('<option>', {
                     value: json["subbg"][i].value,
                     text: json["subbg"][i].name,
                 }));
                 var image = new Image();
-                image.src = "static/asset/submonitor_bg/subbg_" + zeroPad(json["subbg"][i].value, 4) + getImageFileFormat(0, parseInt(zeroPad(json["subbg"][i].value, 4)));
+                if (checkPregeneSubbg(json["subbg"][i].value)) {
+                    image.src = "static/asset/submonitor_bg/subbg_" + zeroPad(json["subbg"][i].value, 4) + "_0" + (Math.floor(Math.random() * 3) + 1) + getImageFileFormat(0, parseInt(zeroPad(json["subbg"][i].value, 4)));
+                } else image.src = "static/asset/submonitor_bg/subbg_" + zeroPad(json["subbg"][i].value, 4) + getImageFileFormat(0, parseInt(zeroPad(json["subbg"][i].value, 4)));
                 
                 // console.log(image);
                 //console.log(profile_data["subbg"])
