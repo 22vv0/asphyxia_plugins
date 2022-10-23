@@ -5,6 +5,8 @@ import {
   updateMix,
   importMix,
   deleteMix,
+  copyResourcesFromGame,
+  preGeneRoll
 } from './handlers/webui';
 import {
   load,
@@ -17,10 +19,6 @@ import {
   print,
   saveValgene,
 } from './handlers/profiles';
-import {
-  copyResourcesFromGame,
-  preGeneRoll
-} from './utils'
 import {
   ARENA
 } from './data/exg';
