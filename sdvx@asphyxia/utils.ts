@@ -373,12 +373,23 @@ export const preGeneRoll = async (data: {
       if(unobtainedItems.length > 0) {
         let randomItemIndex = Math.floor(Math.random() * unobtainedItems.length);
         console.log("Rolled item id: " + unobtainedItems[randomItemIndex] + " | item type: " + itemId[Object.keys(preGeneSet.items)[rollWhat]])
-        DB.Insert(data.refid, {
-          "collection": "item", 
-          "type": itemId[Object.keys(preGeneSet.items)[rollWhat]], 
-          "id": unobtainedItems[randomItemIndex], 
-          "param": 1 
-        })
+        if(itemId[Object.keys(preGeneSet.items)[rollWhat]] == 17) {
+          for(let stampID = (unobtainedItems[randomItemIndex] * 4) - 3; stampID <= (unobtainedItems[randomItemIndex] * 4); stampID++) {
+            DB.Insert(data.refid, {
+              "collection": "item", 
+              "type": itemId[Object.keys(preGeneSet.items)[rollWhat]], 
+              "id": stampID, 
+              "param": 1 
+            })
+          }
+        } else {
+          DB.Insert(data.refid, {
+            "collection": "item", 
+            "type": itemId[Object.keys(preGeneSet.items)[rollWhat]], 
+            "id": unobtainedItems[randomItemIndex], 
+            "param": 1 
+          })
+        }
         let finalItemType = (Object.keys(preGeneSet.items)[rollWhat] === 'subbg') ? 'bg' : Object.keys(preGeneSet.items)[rollWhat]
         await IO.WriteFile('webui/asset/logs/preGeneRollResult.json', JSON.stringify({'id': unobtainedItems[randomItemIndex], 'type': finalItemType}))
         finishedRolling = true

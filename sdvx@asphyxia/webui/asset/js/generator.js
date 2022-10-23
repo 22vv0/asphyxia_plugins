@@ -5,7 +5,7 @@ function countGeneItems(geneItems, items_crew, items_stamp, items_subbg, items_b
         total += geneItems.items['crew'].length
     }
     if('stamp' in geneItems.items) {
-        obtained += items_stamp.filter(stamp => geneItems.items.stamp.includes(stamp['id'])).length
+        obtained += items_stamp.filter(stamp => geneItems.items.stamp.includes(stamp['id'] / 4)).length
         total += geneItems.items['stamp'].length
     }
     if('subbg' in geneItems.items) {
@@ -26,7 +26,7 @@ function countGeneItems(geneItems, items_crew, items_stamp, items_subbg, items_b
 
 function loadImages(itemList, itemType, userItems) {
     itemList.forEach(item => {
-        let itemBrightness = userItems.find(userItem => userItem.id == item) != undefined ? 1 : 0.25
+        let itemBrightness = userItems.find(userItem => userItem.id == ((itemType !== 'stamp') ? item : (item * 4))) != undefined ? 1 : 0.25
         let imageUrl = 'static/asset/valgene_item/item_' + itemType + '_' + item + '.png'
         $.get(imageUrl, function(data, textStatus) {
             if (textStatus == "success") {
