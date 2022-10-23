@@ -108,7 +108,14 @@ $(document).ready(function() {
         return 0;
     }
 
-    
+    $('#roll-result').on('click', function(){location.reload()})
+
+    $('html').keypress(function(e){
+        if([13, 27, 32].includes(e.keyCode) && $('.modal.is-active').length > 0) {
+            location.reload()
+        }
+    })
+
     $('.input').hide()
     $('.button').addClass('is-link')
     let refid = document.getElementsByName("refid")[0].value
@@ -126,8 +133,6 @@ $(document).ready(function() {
         $('.item_banners').empty()
         loadItems(parseInt($('#set_select').val()), gene_edition, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys)
     })
-
-    $('#roll-result').on('click', function(){location.reload()})
 
     $('#pregene-roll').on('click', async function() {
         $('#pregene-roll').attr('disabled', 'disabled')
