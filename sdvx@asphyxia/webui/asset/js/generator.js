@@ -57,31 +57,31 @@ async function loadItems(itemSet, gene_edition, items_crew, items_stamp, items_s
     if('crew' in geneItems.items) {
         $('.item_banners').append('<div style="padding: 5px"><h3>Nemsys Crew</h3></div>')
         $('.item_banners').append('<div class=crew-items style="text-align: center; background-color: #3a3a3a; padding: 20px; border-radius: 6px;"></div><br>')
-        loadImages(geneItems.items['crew'], 'crew', items_crew)
+        loadImages(geneItems.items['crew'].sort(function(a, b){return parseInt(a.id) - parseInt(b.id)}), 'crew', items_crew)
     }
 
     if('stamp' in geneItems.items) {
         $('.item_banners').append('<div style="padding: 5px"><h3>Appeal Stamp</h3></div>')
         $('.item_banners').append('<div class=stamp-items style="text-align: center; background-color: #3a3a3a; padding: 20px; border-radius: 6px;"></div><br>')
-        loadImages(geneItems.items['stamp'], 'stamp', items_stamp)
+        loadImages(geneItems.items['stamp'].sort(function(a, b){return parseInt(a.id) - parseInt(b.id)}), 'stamp', items_stamp)
     }
 
     if('subbg' in geneItems.items) {
         $('.item_banners').append('<div style="padding: 5px"><h3>Submonitor BG</h3></div>')
         $('.item_banners').append('<div class=bg-items style="text-align: center; background-color: #3a3a3a; padding: 20px; border-radius: 6px;"></div><br>')
-        loadImages(geneItems.items['subbg'], 'bg', items_subbg)
+        loadImages(geneItems.items['subbg'].sort(function(a, b){return parseInt(a.id) - parseInt(b.id)}), 'bg', items_subbg)
     }
 
     if('bgm' in geneItems.items) {
         $('.item_banners').append('<div style="padding: 5px"><h3>BGM</h3></div>')
         $('.item_banners').append('<div class=bgm-items style="text-align: center; background-color: #3a3a3a; padding: 20px; border-radius: 6px;"></div><br>')
-        loadImages(geneItems.items['bgm'], 'bgm', items_bgm)
+        loadImages(geneItems.items['bgm'].sort(function(a, b){return parseInt(a.id) - parseInt(b.id)}), 'bgm', items_bgm)
     }
 
     if('nemsys' in geneItems.items) {
         $('.item_banners').append('<div style="padding: 5px"><h3>Nemsys</h3></div>')
         $('.item_banners').append('<div class=nemsys-items style="text-align: center; background-color: #3a3a3a; padding: 20px; border-radius: 6px;"></div><br>')
-        loadImages(geneItems.items['nemsys'], 'nemsys', items_nemsys)
+        loadImages(geneItems.items['nemsys'].sort(function(a, b){return parseInt(a.id) - parseInt(b.id)}), 'nemsys', items_nemsys)
     }
 }
 
