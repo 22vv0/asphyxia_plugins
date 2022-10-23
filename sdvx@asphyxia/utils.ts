@@ -1,4 +1,5 @@
 import {Counter} from './models/counter';
+import {PREGENE} from './data/exg';
 
 export function IDToCode(id: number) {
   const padded = _.padStart(id.toString(), 8);
@@ -328,4 +329,62 @@ export const copyResourcesFromGame = async (data: {}) => {
     xcdSongs: newXCDSongs.sort((a, b) => a[0] - b[0]),
     errors: runErrors
   }))
+}
+
+export const preGeneRoll = async (data: {
+  set: number,
+  refid: string,
+  items: []
+}) => {
+  // prem_items_crew: DB.Find(refid, {collection:"item",type:11})
+  // prem_items_stamp: DB.Find(refid, { collection:"item",type:17 })
+  // prem_items_subbg: DB.Find(refid, { collection:"item",type:18 })
+  // prem_items_bgm: DB.Find(refid, { collection:"item",type:19 })
+  // prem_items_nemsys: DB.Find(refid, { collection:"item",type:20 })
+
+  let itemId = {
+    'crew': 11,
+    'stamp': 17,
+    'subbg': 18,
+    'bgm': 19,
+    'nemsys': 20
+  }
+  let preGeneSet = PREGENE.find(itemSet => itemSet.id === data.set)
+  let finishedRolling = false
+  if(preGeneSet != undefined) {
+    while(!finishedRolling) {
+      let rollWhat = 0
+      let probability = Math.random();
+      console.log("Rolling Premium Generator")
+      for(const probIndex in preGeneSet.probability) {
+        if(probability <= preGeneSet.probability[probIndex]) {
+          rollWhat = parseInt(probIndex);
+          break;
+        }
+        if(parseInt(probIndex) === preGeneSet.probability.length - 1) rollWhat = parseInt(probIndex);
+      }
+
+      let unobtainedItems = preGeneSet.items[Object.keys(preGeneSet.items)[rollWhat]].map((x) => x)
+      data.items.forEach(item => {
+        if(item['type'] == itemId[Object.keys(preGeneSet.items)[rollWhat]] && preGeneSet.items[Object.keys(preGeneSet.items)[rollWhat]].includes(item['id'])) {
+          unobtainedItems.splice(unobtainedItems.indexOf(item['id']), 1)
+        }
+      })
+      if(unobtainedItems.length > 0) {
+        let randomItemIndex = Math.floor(Math.random() * unobtainedItems.length);
+        console.log("Rolled item id: " + unobtainedItems[randomItemIndex] + " | item type: " + itemId[Object.keys(preGeneSet.items)[rollWhat]])
+        DB.Insert(data.refid, {
+          "collection": "item", 
+          "type": itemId[Object.keys(preGeneSet.items)[rollWhat]], 
+          "id": unobtainedItems[randomItemIndex], 
+          "param": 1 
+        })
+        let finalItemType = (Object.keys(preGeneSet.items)[rollWhat] === 'subbg') ? 'bg' : Object.keys(preGeneSet.items)[rollWhat]
+        await IO.WriteFile('webui/asset/logs/preGeneRollResult.json', JSON.stringify({'id': unobtainedItems[randomItemIndex], 'type': finalItemType}))
+        finishedRolling = true
+      } else {
+        console.log("No more " + Object.keys(preGeneSet.items)[rollWhat] + " items to get, will re-roll.")
+      }
+    }
+  } else console.log('pregeneset none')
 }

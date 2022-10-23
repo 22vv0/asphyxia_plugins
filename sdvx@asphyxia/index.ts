@@ -18,7 +18,8 @@ import {
   saveValgene,
 } from './handlers/profiles';
 import {
-  copyResourcesFromGame
+  copyResourcesFromGame,
+  preGeneRoll
 } from './utils'
 import {
   ARENA
@@ -45,6 +46,7 @@ export function register() {
   R.Config('use_asphyxia_gameover',{ type: 'boolean', default: true, name:'Use Asphyxia Gameover', desc:'Enable the Asphyxia gameover message after ending the game.'})
 
   R.WebUIEvent('copyResourcesFromGame', copyResourcesFromGame);
+  R.WebUIEvent('preGeneRoll', preGeneRoll);
   R.WebUIEvent('updateProfile', updateProfile);
   R.WebUIEvent('updateMix', updateMix);
   R.WebUIEvent('importMix', importMix);
