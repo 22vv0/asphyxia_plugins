@@ -773,6 +773,18 @@ export const VALGENE = {
   ]
 }
 
+export const PREGENE = [
+  {
+    id: 1,
+    items: {
+      'crew': [131],
+      'stamp': [69, 70, 71, 72, 73, 74, 75, 76, 77, 78],
+      'subbg': [166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185]
+    },
+    probability: [0.01, 0.39, 0.6]
+  }
+]
+  
 export const COURSES6 = [
   {
     id: 1,
