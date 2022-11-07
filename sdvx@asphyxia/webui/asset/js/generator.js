@@ -53,6 +53,9 @@ async function loadItems(itemSet, gene_edition, items_crew, items_stamp, items_s
     if(itemCounts[0] >= itemCounts[1]) $('#pregene-roll').attr('disabled', 'disabled')
 
     $('.count').text('Unlocked items: ' + itemCounts[0] + "/" + itemCounts[1])
+    if(itemSet === 1) {
+        $('.setinfo').append('<p style="padding:5px">These items are only usable in Japan. Change region to Japan in the ea3-config.xml file.</p>')
+    }
 
     if('crew' in geneItems.items) {
         $('.item_banners').append('<div style="padding: 5px"><h3>Nemsys Crew</h3></div>')

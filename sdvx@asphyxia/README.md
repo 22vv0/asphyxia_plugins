@@ -1,5 +1,6 @@
 Message from repo fork:
 - I highly recommend using the official stable version of the plugin.
+- If possible, update the "Exceed Gear Data Directory" option and run the [WebUI Resource Update](/plugin/sdvx@asphyxia/WebUI%20resource%20update)
 - This is very work-in-progress, so expect things to break. Please **BACK UP YOUR DATA** to prevent unwanted data loss (just in case)
 - I won't update the text below lol
 
