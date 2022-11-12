@@ -778,7 +778,6 @@ export const load: EPR = async (info, data, send) => {
     }) 
   }
   
-  testuihauisbdf(tempItem)
   return send.pugFile('templates/load.pug', {
     courses,
     items: tempItem,
