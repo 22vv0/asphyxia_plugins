@@ -33,6 +33,27 @@ function unlockAppealCards(items: Partial<Item>[]) {
   return items;
 }
 
+function removeStampItems(items: Partial<Item>[]) {
+  let itemsToRemove = []
+  for (let index in items) {
+    if (items[index].type === 17 && items[index].id % 4 != 0) {
+      itemsToRemove.push(index)
+    }
+  }
+
+  for (let itemIndex in itemsToRemove.reverse()) {
+    items.splice(itemsToRemove[itemIndex], 1)
+  }
+
+  for (let x=0; x<items.length; x++) {
+    if (items[x].type === 17) {
+      items[x].id /= 4
+    }
+  }
+
+  return items
+}
+
 export const loadScore: EPR = async (info, data, send) => {
   console.log("Now loading score");
   const version = Math.abs(getVersion(info));
@@ -368,7 +389,6 @@ export const saveCourse: EPR = async (info, data, send) => {
 };
 
 export const save: EPR = async (info, data, send) => {
-  console.log($(data))
   const refid = $(data).str('refid', $(data).attr().refid);
   if (!refid) return send.deny();
 
@@ -408,9 +428,6 @@ export const save: EPR = async (info, data, send) => {
 
   // Save Profile
   if (version === 6) {
-    console.log(JSON.stringify($(data)))
-    console.log("packet: " + $(data).number('earned_gamecoin_packet'))
-    console.log("block: " + $(data).number('earned_gamecoin_block'))
     await DB.Update<Profile>(
       refid,
       { collection: 'profile' },
@@ -606,11 +623,11 @@ export const save: EPR = async (info, data, send) => {
     if (xrData != null) {
       if(xrData['lm'] + 1 > 200) {
         addLM = 0
-        console.log('LM Capped')
+        console.log('LM Points Capped')
       }
       if(xrData['vm'] + 10 > 200) {
         addVM = 10 - ((xrData['vm'] + 10) - 200)
-        console.log('VM Capped')
+        console.log('VM Points Capped')
       }
     }
     await DB.Upsert<XRecord>(
@@ -654,12 +671,11 @@ export const load: EPR = async (info, data, send) => {
     version,
   })) || { base: 0, name: 0, level: 0 };
 
-  const courses = await DB.Find<CourseRecord>(refid, { collection: 'course', version });
   const items = await DB.Find<Item>(refid, { collection: 'item' });
+  const courses = await DB.Find<CourseRecord>(refid, { collection: 'course', version });
   const params = await DB.Find<Param>(refid, { collection: 'param' });
   const arena = await DB.FindOne<Arena>(refid, { collection: 'arena', season: Object.keys(ARENA).findIndex(data => data == U.GetConfig('arena_szn')) + 1 });
   const xrecord = await DB.FindOne<XRecord>(refid, { collection: 'x-record' });
-  console.log(JSON.stringify(arena))
   let time = new Date();
   let tempHour = time.getHours();
   let tempDate = time.getDate();
@@ -717,7 +733,7 @@ export const load: EPR = async (info, data, send) => {
 
   var tempItem = U.GetConfig('unlock_all_navigators') ? unlockNavigators(items) : items;
   tempItem = U.GetConfig('unlock_all_appeal_cards') ? unlockAppealCards(items) : items;
-
+  tempItem = removeStampItems(tempItem)
   // Make generator power always 100%,
   for (let i = 0; i < 50; i++) {
     const tempGene: Item = { collection: 'item', type: 7, id: i, param: 10 };
@@ -761,7 +777,8 @@ export const load: EPR = async (info, data, send) => {
       });
     }) 
   }
-
+  
+  testuihauisbdf(tempItem)
   return send.pugFile('templates/load.pug', {
     courses,
     items: tempItem,
@@ -909,12 +926,25 @@ export const saveValgene: EPR = async (info, data, send) => {
   console.log("Saving Valkyrie Generator Item")
   const refid = $(data).str('refid');
   const items = $(data).elements('item.info');
-
+  let itemsToAdd = []
   for (const i of items) {
     const type = i.number('type');
     const id = i.number('id');
     const param = i.number('param');
+    if(type === 17) {
+      for (let stampId = ((id * 4) - 3); stampId <= (id * 4); stampId++) {
+        itemsToAdd.push({'type': type, 'id': stampId, 'param': param})
+      }
+    } else {
+      itemsToAdd.push({'type': type, 'id': id, 'param': param})
+    }
+  }
 
+  for(let itemToAdd in itemsToAdd) {
+    let id = itemsToAdd[itemToAdd].id
+    let type = itemsToAdd[itemToAdd].type
+    let param = itemsToAdd[itemToAdd].param
+    console.log("Saving (" + type + " | " + id + " | " + param + ")")
     if (_.isNil(type) || _.isNil(id) || _.isNil(param)) continue;
 
     await DB.Upsert<Item>(
@@ -923,5 +953,6 @@ export const saveValgene: EPR = async (info, data, send) => {
       { $set: { param } }
     );
   }
+
   return send.object({ result: K.ITEM('u8', 0) });
 }
