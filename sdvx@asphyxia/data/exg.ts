@@ -461,6 +461,83 @@ export const ARENA = {
         param: 8,
       },
     ],
+  },
+  'Set 5 (12/22/22)': {
+    details: {
+      // season: 4,
+      time_start: BigInt(Date.parse('22 Dec 2022 00:00:00 GMT')),
+      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_start: BigInt(Date.parse('22 Dec 2022 00:00:00 GMT')),
+      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      is_open: 1,
+      is_shop: 1
+    },
+    arena_items: [
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 15000,
+        item_type: 11,
+        item_id: 112,
+        param: 1,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 1745,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 1742,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 632,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 37,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 239,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 111,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 132,
+        param: 8,
+      }
+    ]
   }
   // 'debug': {
   //   details: {
@@ -775,11 +852,20 @@ export const VALGENE = {
 
 export const PREGENE = [
   {
-    id: 1,
+    id: 0,
     items: {
       'crew': [131],
       'stamp': [69, 70, 71, 72, 73, 74, 75, 76, 77, 78],
       'subbg': [166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185]
+    },
+    probability: [0.01, 0.39, 0.6]
+  },
+  {
+    id: 1,
+    items: {
+      'crew': [134],
+      'stamp': [110, 111, 112, 113, 114, 115, 116, 117, 118, 119],
+      'subbg': [200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223]
     },
     probability: [0.01, 0.39, 0.6]
   }

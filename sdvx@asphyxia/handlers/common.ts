@@ -98,7 +98,7 @@ export const common: EPR = async (info, data, send) => {
         if(foundSongIndex != -1) {
           var songData = mdb.mdb.music[foundSongIndex];
           if(gameVersion === 6 || gameVersion === -6) {
-            if(!RESTRICT_SONGS.includes(i.toString())) {
+            if(!RESTRICT_SONGS.includes(i.toString()) && parseInt(songData['info']['distribution_date']['#text']) <= currentYMDDate) {
               limitedNo = 2;
               if(songData.info.version['#text'] === '6') { // if song is released during exceed gear
                 if(MISSINGSONGS6.includes(i.toString())) {
