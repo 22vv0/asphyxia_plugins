@@ -47,6 +47,7 @@ export const INFORMATION6 = {
   '2022081600': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]'],
   '2022083000': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
   '2022101800': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
+  '2022122001': ['[img:info/konosuba_221006.png]', '[img:info/bemaniautumn_221101.png]', '[img:info/paseli_festival_221220.png]', '[img:info/pregene_kureha_221222.png]', '[img:info/voltefactory_221201.png]']
 }
 
 export const MISSINGSONGS6 = [
@@ -60,36 +61,119 @@ export const MISSINGSONGS6 = [
   '1903', '1904', '1911', '1916', '1917'
 ]
 
-export const XRECORDSONGS = [
-  // 1st edition
-  '1736', // discordia_penorerihumer
-  '1737', // chewingood_toriena
-  '1738', // verflucht_tirfing
-  // 2nd edition
-  '1848', // fegrix
-  '1847', // 2 beasts unchained
-  '1849', // piano kyousoukyoku
-]
+export const EVENT_SONGS6 = {
+  // X-Record songs
+  'xrecord_1': [
+    // 1st edition
+    '1736', // discordia_penorerihumer
+    '1737', // chewingood_toriena
+    '1738', // verflucht_tirfing
+  ],
+  'xrecord_2': [
+    // 2nd edition
+    '1848', // fegrix
+    '1847', // 2 beasts unchained
+    '1849', // piano kyousoukyoku
+  ],
+  // Konaste songs
+  'konasute_1': [
+    '1762'
+  ],
+  'konasute_2': [
+    '1763'
+  ],
+  'konasute_3': [
+    '1764'
+  ],
+  'konasute_4': [
+    '1765'
+  ],
+  'konasute_5': [
+    '1811'
+  ],
+  // BPL2021 songs
+  'bpl2021': [
+    '1808', '1809'
+  ],
+  // BSB2021 songs
+  'bsb2021': [
+    '1802', '1803', '1804', '1805', '1806', '1807'
+  ],
+  // SDVX 10th anniversary stamp event songs
+  'sdvx10thstamp': [
+    '1838', '1839', '1840', '1841', '1842', '1843', '1844'
+  ],
+  // REFLECT BEAT stamp event songs
+  'reflecstamp': [
+    '1850', '1851', '1852', '1853', '1854'
+  ],
+  // BEMANI ichika 2022 event songs
+  'gmz2022': [
+    '1906', '1907', '1908', '1909', '1910'
+  ],
+  // BPL2022 songs
+  "bpl2022_1": [
+    '1952', '1943'
+  ],
+  "bpl2022_2": [
+    '1948', '1951'
+  ],
+  "bpl2022_3": [
+    '1956', '1949'
+  ],
+  "bpl2022_4": [
+    '1946', '1958'
+  ]
+}
 
-export const KONASTESONGS = [
-  '1762', '1763', '1764', '1765', '1811'
-]
-
-export const BEMANI2021EVENTSONGS = [
-  '1802', '1803', '1804', '1805', '1806', '1807'
-]
-
-export const BPLSTAMPRALLYSONGS = [
-  '1808', '1809'
-]
-
-export const SDVX10THSTAMPSONGS = [
-  '1838', '1839', '1840', '1841', '1842', '1843', '1844'
-]
-
-export const REFLECBEATSTAMPSONGS = [
-  '1850', '1851', '1852', '1853', '1854'
-]
+export const RESTRICTED_SONGS6 = {
+  // X-Record songs
+  'xrecord_1': [
+    // 1st edition
+    '1736', // discordia_penorerihumer
+    '1737', // chewingood_toriena
+    '1738', // verflucht_tirfing
+  ],
+  'xrecord_2': [
+    // 2nd edition
+    '1848', // fegrix
+    '1847', // 2 beasts unchained
+    '1849', // piano kyousoukyoku
+  ],
+  // BPL2021 songs
+  // 'bpl2021': [
+  //   '1808', '1809'
+  // ],
+  // BSB2021 songs
+  'bsb2021': [
+    '1802', '1803', '1804', '1805', '1806', '1807'
+  ],
+  // SDVX 10th anniversary stamp event songs
+  'sdvx10thstamp': [
+    '1838', '1839', '1840', '1841', '1842', '1843', '1844'
+  ],
+  // REFLECT BEAT stamp event songs
+  'reflecstamp': [
+    '1850', '1851', '1852', '1853', '1854'
+  ],
+  // BEMANI ichika 2022 event songs
+  'gmz2022': [
+    '1906', '1907', '1908', '1909', '1910'
+  ],
+  // BPL2022 songs
+  "bpl2022_1": [
+    '1952', '1943'
+  ],
+  "bpl2022_2": [
+    '1948', '1951'
+  ],
+  "bpl2022_3": [
+    '1956', '1949'
+  ],
+  "bpl2022_4": [
+    '1946', '1958'
+  ]
+}
 
 export const APRILFOOLSSONGS = [
   '840', '1219', '1751'

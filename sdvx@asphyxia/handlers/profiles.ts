@@ -3,13 +3,12 @@ import { SDVX_AUTOMATION_SONGS } from '../data/vvw';
 import { Item } from '../models/item';
 import { Param } from '../models/param';
 import { Arena } from '../models/arena';
-import { XRecord } from '../models/xrecord';
 import { MusicRecord } from '../models/music_record';
 import { CourseRecord } from '../models/course_record';
 import { Profile } from '../models/profile';
 import { getVersion, IDToCode } from '../utils';
 import { Mix } from '../models/mix';
-import { ARENA } from '../data/exg';
+import { ARENA, EVENT_SONGS6, RESTRICTED_SONGS6 } from '../data/exg';
 
 async function getAutomationMixes(params: Param[]) {
   const mixids = params
@@ -615,35 +614,6 @@ export const save: EPR = async (info, data, send) => {
     );
   }
 
-  // Add X-Record points
-  if(U.GetConfig('x_record')) {
-    let addLM = 1
-    let addVM = 10
-    let xrData = await DB.FindOne(refid, {collection: 'x-record'})
-    if (xrData != null) {
-      if(xrData['lm'] + 1 > 200) {
-        addLM = 0
-        console.log('LM Points Capped')
-      }
-      if(xrData['vm'] + 10 > 200) {
-        addVM = 10 - ((xrData['vm'] + 10) - 200)
-        console.log('VM Points Capped')
-      }
-    }
-    await DB.Upsert<XRecord>(
-      refid,
-      {
-        collection: 'x-record'
-      },
-      {
-        $inc: {
-          lm: addLM,
-          vm: addVM
-        }
-      }
-    );
-  }
-
   return send.success();
 };
 
@@ -675,7 +645,6 @@ export const load: EPR = async (info, data, send) => {
   const courses = await DB.Find<CourseRecord>(refid, { collection: 'course', version });
   const params = await DB.Find<Param>(refid, { collection: 'param' });
   const arena = await DB.FindOne<Arena>(refid, { collection: 'arena', season: Object.keys(ARENA).findIndex(data => data == U.GetConfig('arena_szn')) + 1 });
-  const xrecord = await DB.FindOne<XRecord>(refid, { collection: 'x-record' });
   let time = new Date();
   let tempHour = time.getHours();
   let tempDate = time.getDate();
@@ -734,53 +703,71 @@ export const load: EPR = async (info, data, send) => {
   var tempItem = U.GetConfig('unlock_all_navigators') ? unlockNavigators(items) : items;
   tempItem = U.GetConfig('unlock_all_appeal_cards') ? unlockAppealCards(items) : items;
   tempItem = removeStampItems(tempItem)
+
+  let eventData = JSON.parse(await IO.ReadFile('webui/asset/json/events.json'))
+  let eventConfig = JSON.parse(await IO.ReadFile('webui/asset/config/events.json'))
+  let presents = []
+  for(const eventIter in eventData['events']) {
+    if(!eventData['events'][eventIter]['in_game_event']) {
+      if(typeof eventConfig[eventData['events'][eventIter]['id']]['toggle'] === "boolean") {
+        if(eventConfig[eventData['events'][eventIter]['id']]['toggle']) {
+          for(const itemIter in EVENT_SONGS6[eventData['events'][eventIter]['id']]) {
+            let itemId = parseInt(EVENT_SONGS6[eventData['events'][eventIter]['id']][itemIter])
+            if(await DB.Count(refid, {collection:'item', id: itemId}) === 0) {
+              await DB.Upsert(
+                refid, 
+                {collection: 'item', type: 0, id: itemId}, 
+                {$set: { param: 23 }}
+              )
+
+              presents.push({
+                id: itemId,
+                type: 0,
+                param: 23
+              })
+
+              tempItem.push({ collection: 'item', type: 0, id: itemId, param: 23 })
+            }
+          }
+        }
+      } else{
+        // eventConfig[eventData['events'][eventIter]['id']]['toggle']
+        for(const toggleKeys in Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])) {
+          if(eventConfig[eventData['events'][eventIter]['id']]['toggle'][Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])[toggleKeys]]) {
+            for(const itemIter in EVENT_SONGS6[Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])[toggleKeys]]) {
+              let itemId = parseInt(EVENT_SONGS6[Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])[toggleKeys]][itemIter])
+              if(await DB.Count(refid, {collection:'item', id: itemId}) === 0) {
+                await DB.Upsert(
+                  refid, 
+                  {collection: 'item', type: 0, id: itemId}, 
+                  {$set: { param: 23 }}
+                )
+
+                presents.push({
+                  id: itemId,
+                  type: 0,
+                  param: 23
+                })
+
+                tempItem.push({ collection: 'item', type: 0, id: itemId, param: 23 })
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
   // Make generator power always 100%,
   for (let i = 0; i < 50; i++) {
     const tempGene: Item = { collection: 'item', type: 7, id: i, param: 10 };
     tempItem.push(tempGene);
   }
 
-  // Check X-record data and unlock songs based on points
-  if(U.GetConfig('x_record') && (info.model.split(":")[2].match(/^(G|H)$/g) != null || U.GetConfig('enable_valk_songs'))) {
-    // '1736', // discordia_penorerihumer - 150
-    // '1737', // chewingood_toriena - 0
-    // '1738', // verflucht_tirfing - 50
-    // '1847', // 2 beasts unchained - 200
-    // '1848', // fegrix - 0
-    // '1849', // piano kyousoukyoku -100
-
-    let unlockedXRecordSongs = [1737, 1848]
-    if(xrecord != null) {
-      if(xrecord.lm >= 50) {
-        unlockedXRecordSongs.push(1738)
-      }
-
-      if(xrecord.lm >= 100) {
-        unlockedXRecordSongs.push(1849)
-      }
-
-      if(xrecord.lm >= 150) {
-        unlockedXRecordSongs.push(1736)
-      }
-
-      if(xrecord.lm >= 200) {
-        unlockedXRecordSongs.push(1847)
-      }
-    }
-
-    unlockedXRecordSongs.forEach(song => {
-      console.log("Unlocking xrecord song: " + song)
-      tempItem.push({
-          id: song,
-          type: 0,
-          param: 23,
-      });
-    }) 
-  }
-  
   return send.pugFile('templates/load.pug', {
     courses,
     items: tempItem,
+    present: presents,
     params,
     skill,
     currentTime,

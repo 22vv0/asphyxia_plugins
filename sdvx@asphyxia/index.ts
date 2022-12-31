@@ -6,7 +6,8 @@ import {
   importMix,
   deleteMix,
   copyResourcesFromGame,
-  preGeneRoll
+  preGeneRoll,
+  manageEvents
 } from './handlers/webui';
 import {
   load,
@@ -45,6 +46,7 @@ export function register() {
 
   R.WebUIEvent('copyResourcesFromGame', copyResourcesFromGame);
   R.WebUIEvent('preGeneRoll', preGeneRoll);
+  R.WebUIEvent('manageEvents', manageEvents);
   R.WebUIEvent('updateProfile', updateProfile);
   R.WebUIEvent('updateMix', updateMix);
   R.WebUIEvent('importMix', importMix);

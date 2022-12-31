@@ -72,6 +72,13 @@ game
         id(__type="u32") #{song}
         param(__type="u32") 1
 
+  present
+    each item in present
+      info
+        type(__type="u8") #{item.type}
+        id(__type="u32") #{item.id}
+        param(__type="u32") #{item.param}
+
   param
     each param in params
       info

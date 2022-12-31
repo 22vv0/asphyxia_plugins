@@ -1,9 +1,7 @@
 import { EVENT4, COURSES4, EXTENDS4 } from '../data/hvn';
 import { EVENT5, COURSES5, EXTENDS5 } from '../data/vvw';
-import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, XRECORDSONGS, 
-          KONASTESONGS, BEMANI2021EVENTSONGS, BPLSTAMPRALLYSONGS, SDVX10THSTAMPSONGS,
-          REFLECBEATSTAMPSONGS, VALKYRIEEXCLUSIVESONGS, MISSINGSONGS6, ARENA, VALGENE,
-          INFORMATION6 
+import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIEEXCLUSIVESONGS,
+          MISSINGSONGS6, ARENA, VALGENE, INFORMATION6, RESTRICTED_SONGS6, EVENT_SONGS6
 } from '../data/exg';
 import { COURSE2 } from '../data/inf';
 import {getVersion, getRandomIntInclusive} from '../utils';
@@ -89,7 +87,15 @@ export const common: EPR = async (info, data, send) => {
         }
       }
     } else {
-      let RESTRICT_SONGS = KONASTESONGS.concat(BEMANI2021EVENTSONGS, BPLSTAMPRALLYSONGS, SDVX10THSTAMPSONGS, REFLECBEATSTAMPSONGS);
+      let RESTRICT_SONGS = [] //KONASTESONGS.concat(BEMANI2021EVENTSONGS, BPLSTAMPRALLYSONGS, SDVX10THSTAMPSONGS, REFLECBEATSTAMPSONGS);
+      let EVENT_SONGS = []
+      for(const keyIter in Object.keys(RESTRICTED_SONGS6)) {
+        RESTRICT_SONGS = RESTRICT_SONGS.concat(RESTRICTED_SONGS6[Object.keys(RESTRICTED_SONGS6)[keyIter]])
+      }
+      for(const keyIter in Object.keys(EVENT_SONGS6)) {
+        EVENT_SONGS = EVENT_SONGS.concat(EVENT_SONGS6[Object.keys(EVENT_SONGS6)[keyIter]])
+      }
+      
       let mdb = JSON.parse(music_db);
       
       let limitedNo = 2;
@@ -98,7 +104,7 @@ export const common: EPR = async (info, data, send) => {
         if(foundSongIndex != -1) {
           var songData = mdb.mdb.music[foundSongIndex];
           if(gameVersion === 6 || gameVersion === -6) {
-            if(!RESTRICT_SONGS.includes(i.toString()) && parseInt(songData['info']['distribution_date']['#text']) <= currentYMDDate) {
+            if((!RESTRICT_SONGS.includes(i.toString()) || EVENT_SONGS.includes(i.toString())) && parseInt(songData['info']['distribution_date']['#text']) <= currentYMDDate) {
               limitedNo = 2;
               if(songData.info.version['#text'] === '6') { // if song is released during exceed gear
                 if(MISSINGSONGS6.includes(i.toString())) {

@@ -523,3 +523,9 @@ export const preGeneRoll = async (data: {
     }
   } else console.log('pregeneset none')
 }
+
+export const manageEvents = async (data: {
+  eventConfig: {}
+}) => {
+  IO.WriteFile('webui/asset/config/events.json', JSON.stringify(data.eventConfig, null, 4));
+}
