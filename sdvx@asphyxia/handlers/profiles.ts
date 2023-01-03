@@ -942,3 +942,9 @@ export const saveValgene: EPR = async (info, data, send) => {
 
   return send.object({ result: K.ITEM('u8', 0) });
 }
+
+export const saveE: EPR = async (info, data, send) => {
+  console.log("save_e")
+
+  return send.object({ result: K.ITEM('u8', 0) });
+}
