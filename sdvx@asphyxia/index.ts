@@ -6,7 +6,8 @@ import {
   importMix,
   deleteMix,
   copyResourcesFromGame,
-  preGeneRoll
+  preGeneRoll,
+  manageEvents
 } from './handlers/webui';
 import {
   load,
@@ -18,6 +19,7 @@ import {
   buy,
   print,
   saveValgene,
+  saveE
 } from './handlers/profiles';
 import {
   ARENA
@@ -29,22 +31,22 @@ export function register() {
   R.Contributor("ovv (this fork)");
   R.GameCode('KFC');
 
-  R.Config('sdvx_eg_root_dir', { type: 'string', needRestart: true, default: '', name: 'Exceed Gear Data Directory', desc: 'The root directory of your SDVX Exceed Gear game files (for asset copying)'});
-  R.Config('unlock_all_valk_items', { type: 'boolean', default: false, name:'Unlock All Valkyrie and Premium Items', desc: 'Unlock Nemsys, BGM, Submonitor BG and Stamp Items (Valk crews not included; check \'unlock all navigators\' option)'});
-  R.Config('enable_valk_songs' ,{ type: 'boolean', default: false, name:'Enable Valkyrie Model Songs', desc:'Unlock the valkyrie model songs on non-valkyrie mode.'});
   R.Config('arena_szn',{ type: 'string', options: Object.keys(ARENA), default: 'Set 1 (04/25/22)', name: 'Arena Station Item Set', desc: 'Choose which season set of items in the arena station you want to show up in arena station'});
-  R.Config('x_record', {type: 'boolean', default: false, name: 'X-Record', desc: 'Activates X-record. 10 VM and 1 LM points per play.'})
+  R.Config('enable_valk_songs' ,{ type: 'boolean', default: false, name:'Enable Valkyrie Model Songs', desc:'Enable the valkyrie model songs on non-valkyrie mode.'});
+  // R.Config('new_year_special',{ type: 'boolean', default: false, name:'Use New Year Special', desc:'Enable New Year Special BGM for login (doesn\'t work right now)'});
+  // R.Config('april_fools',{ type: 'boolean', default: false, name:'April Fools', desc:'Enable April Fools Event (doesn\'t work properly right now)'});
+  R.Config('use_blasterpass',{ type: 'boolean', default: true, name:'Use Blaster Pass', desc:'Enable Blaster Pass for VW and EG'});
+  R.Config('unlock_all_valk_items', { type: 'boolean', default: false, name:'Unlock All Valkyrie and Premium Items', desc: 'Unlock Nemsys, BGM, Submonitor BG and Stamp Items (Valk crews not included; check \'unlock all navigators\' option)'});
   R.Config('unlock_all_songs', { type: 'boolean', default: false, name:'Unlock All Songs'});
   R.Config('unlock_all_navigators', { type: 'boolean', default: false, name:'Unlock All Navigators'} );
   R.Config('unlock_all_appeal_cards', { type: 'boolean', default: false, name:'Unlock All Appeal Cards'});
-  R.Config('use_blasterpass',{ type: 'boolean', default: true, name:'Use Blaster Pass', desc:'Enable Blaster Pass for VW and EG'});
-  R.Config('new_year_special',{ type: 'boolean', default: false, name:'Use New Year Special', desc:'Enable New Year Special BGM for login (doesn\'t work right now)'});
-  R.Config('april_fools',{ type: 'boolean', default: false, name:'April Fools', desc:'Enable April Fools Event (doesn\'t work properly right now)'});
+  R.Config('sdvx_eg_root_dir', { type: 'string', needRestart: true, default: '', name: 'Exceed Gear Data Directory', desc: 'The root directory of your SDVX Exceed Gear game files (for asset copying)'});
   R.Config('use_information' ,{ type: 'boolean', default: true, name:'Use Information', desc:'Enable the information section after entry.'});
   R.Config('use_asphyxia_gameover',{ type: 'boolean', default: true, name:'Use Asphyxia Gameover', desc:'Enable the Asphyxia gameover message after ending the game.'})
 
   R.WebUIEvent('copyResourcesFromGame', copyResourcesFromGame);
   R.WebUIEvent('preGeneRoll', preGeneRoll);
+  R.WebUIEvent('manageEvents', manageEvents);
   R.WebUIEvent('updateProfile', updateProfile);
   R.WebUIEvent('updateMix', updateMix);
   R.WebUIEvent('importMix', importMix);
@@ -88,7 +90,7 @@ export function register() {
   MultiRoute('shop', (_, __, send) => send.object({
     nxt_time: K.ITEM('u32', 1000 * 5 * 60)
   }));
-  MultiRoute('save_e', true);
+  MultiRoute('save_e', saveE);
   MultiRoute('save_mega',true);
   MultiRoute('play_e', true);
   MultiRoute('play_s', true);

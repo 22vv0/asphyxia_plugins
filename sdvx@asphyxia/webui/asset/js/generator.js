@@ -53,8 +53,10 @@ async function loadItems(itemSet, gene_edition, items_crew, items_stamp, items_s
     if(itemCounts[0] >= itemCounts[1]) $('#pregene-roll').attr('disabled', 'disabled')
 
     $('.count').text('Unlocked items: ' + itemCounts[0] + "/" + itemCounts[1])
-    if(itemSet === 1) {
-        $('.setinfo').append('<p style="padding:5px">These items are only usable in Japan. Change region to Japan in the ea3-config.xml file.</p>')
+    if(itemSet === 0) {
+        $('.setinfo').append('<p class="jpn-excl" style="padding:5px">These items are only usable in Japan. Change region to Japan in the ea3-config.xml file.</p>')
+    } else {
+        $('.jpn-excl').remove()
     }
 
     if('crew' in geneItems.items) {
@@ -101,7 +103,7 @@ async function loadValgeneData(gene_edition) {
             $('#set_select').append('<option value=' + valGeneData.pregene[pregeneDataIndex].id + '>' + valGeneData.pregene[pregeneDataIndex].name + '</option>')
         }
     }
-    
+    $('#set_select').val($("#set_select option").length - 1)
 }
 
 $(document).ready(function() {
@@ -130,7 +132,7 @@ $(document).ready(function() {
     let gene_edition = document.getElementById("generator-edition").innerText;
     loadValgeneData(gene_edition)
     loadItems(1, gene_edition, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys)
-
+    
     $('#set_select').change(function() {
         $('.count').text('')
         $('.item_banners').empty()

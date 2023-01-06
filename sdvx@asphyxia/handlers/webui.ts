@@ -263,9 +263,9 @@ export const copyResourcesFromGame = async (data: {}) => {
         'music': mdbJsonFix
       }
     };
-    IO.WriteFile('webui/asset/json/music_db.json', JSON.stringify(mdbJsonFixFinal));
+    IO.WriteFile('webui/asset/json/music_db.json', JSON.stringify(mdbJsonFixFinal, null, 4));
     if(!IO.Exists('webui/asset/json/music_db_' + version + '.json')){
-      IO.WriteFile('webui/asset/json/music_db_' + version + '.json', JSON.stringify(mdbJsonFixFinal));
+      IO.WriteFile('webui/asset/json/music_db_' + version + '.json', JSON.stringify(mdbJsonFixFinal, null, 4));
     }
 
   } else {
@@ -438,8 +438,8 @@ export const copyResourcesFromGame = async (data: {}) => {
     runErrors.push('[chat stamp] Error reading chat stamp xml file. Check your "Exceed Gear Data Directory" config.')
   }
 
-  await IO.WriteFile('webui/asset/json/data.json', JSON.stringify(resourceJsonData))
-  await IO.WriteFile('webui/asset/json/appeal.json', JSON.stringify(apCardJsonData))
+  await IO.WriteFile('webui/asset/json/data.json', JSON.stringify(resourceJsonData, null, 4))
+  await IO.WriteFile('webui/asset/json/appeal.json', JSON.stringify(apCardJsonData, null, 4))
   await IO.WriteFile('webui/asset/logs/copyResourcesFromGame.json', JSON.stringify({
     akaname: newAkanames,
     nemsys: newNemsysData,
@@ -452,7 +452,7 @@ export const copyResourcesFromGame = async (data: {}) => {
     jsonSongs: newJsonSongs.sort((a, b) => a[0] - b[0]),
     xcdSongs: newXCDSongs.sort((a, b) => a[0] - b[0]),
     errors: runErrors
-  }))
+  }, null, 4))
 }
 
 export const preGeneRoll = async (data: {
@@ -522,4 +522,10 @@ export const preGeneRoll = async (data: {
       }
     }
   } else console.log('pregeneset none')
+}
+
+export const manageEvents = async (data: {
+  eventConfig: {}
+}) => {
+  IO.WriteFile('webui/asset/config/events.json', JSON.stringify(data.eventConfig, null, 4));
 }
