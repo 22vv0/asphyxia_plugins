@@ -673,7 +673,7 @@ export const load: EPR = async (info, data, send) => {
       ...profile
     });
   }
-  // const bgm = profile.bgm ? profile.bgm : 0;
+  const bgm = profile.bgm ? profile.bgm : 0;
   const subbg = profile.subbg ? profile.subbg : 0;
   const nemsys = profile.nemsys ? profile.nemsys : 0;
   const stampA = profile.stampA ? profile.stampA : 0;
