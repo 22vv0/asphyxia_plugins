@@ -673,7 +673,7 @@ export const load: EPR = async (info, data, send) => {
       ...profile
     });
   }
-  const bgm = profile.bgm ? profile.bgm : 0;
+  // const bgm = profile.bgm ? profile.bgm : 0;
   const subbg = profile.subbg ? profile.subbg : 0;
   const nemsys = profile.nemsys ? profile.nemsys : 0;
   const stampA = profile.stampA ? profile.stampA : 0;
@@ -704,38 +704,16 @@ export const load: EPR = async (info, data, send) => {
   tempItem = U.GetConfig('unlock_all_appeal_cards') ? unlockAppealCards(items) : items;
   tempItem = removeStampItems(tempItem)
 
-  let eventData = JSON.parse(await IO.ReadFile('webui/asset/json/events.json'))
-  let eventConfig = JSON.parse(await IO.ReadFile('webui/asset/config/events.json'))
   let presents = []
-  for(const eventIter in eventData['events']) {
-    if(!eventData['events'][eventIter]['in_game_event']) {
-      if(typeof eventConfig[eventData['events'][eventIter]['id']]['toggle'] === "boolean") {
-        if(eventConfig[eventData['events'][eventIter]['id']]['toggle']) {
-          for(const itemIter in EVENT_SONGS6[eventData['events'][eventIter]['id']]) {
-            let itemId = parseInt(EVENT_SONGS6[eventData['events'][eventIter]['id']][itemIter])
-            if(await DB.Count(refid, {collection:'item', id: itemId}) === 0) {
-              await DB.Upsert(
-                refid, 
-                {collection: 'item', type: 0, id: itemId}, 
-                {$set: { param: 23 }}
-              )
-
-              presents.push({
-                id: itemId,
-                type: 0,
-                param: 23
-              })
-
-              tempItem.push({ collection: 'item', type: 0, id: itemId, param: 23 })
-            }
-          }
-        }
-      } else{
-        // eventConfig[eventData['events'][eventIter]['id']]['toggle']
-        for(const toggleKeys in Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])) {
-          if(eventConfig[eventData['events'][eventIter]['id']]['toggle'][Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])[toggleKeys]]) {
-            for(const itemIter in EVENT_SONGS6[Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])[toggleKeys]]) {
-              let itemId = parseInt(EVENT_SONGS6[Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])[toggleKeys]][itemIter])
+  if(IO.Exists('webui/asset/config/events.json')) {
+    let eventData = JSON.parse(await IO.ReadFile('webui/asset/json/events.json'))
+    let eventConfig = JSON.parse(await IO.ReadFile('webui/asset/config/events.json'))
+    for(const eventIter in eventData['events']) {
+      if(!eventData['events'][eventIter]['in_game_event']) {
+        if(typeof eventConfig[eventData['events'][eventIter]['id']]['toggle'] === "boolean") {
+          if(eventConfig[eventData['events'][eventIter]['id']]['toggle']) {
+            for(const itemIter in EVENT_SONGS6[eventData['events'][eventIter]['id']]) {
+              let itemId = parseInt(EVENT_SONGS6[eventData['events'][eventIter]['id']][itemIter])
               if(await DB.Count(refid, {collection:'item', id: itemId}) === 0) {
                 await DB.Upsert(
                   refid, 
@@ -750,6 +728,30 @@ export const load: EPR = async (info, data, send) => {
                 })
 
                 tempItem.push({ collection: 'item', type: 0, id: itemId, param: 23 })
+              }
+            }
+          }
+        } else{
+          // eventConfig[eventData['events'][eventIter]['id']]['toggle']
+          for(const toggleKeys in Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])) {
+            if(eventConfig[eventData['events'][eventIter]['id']]['toggle'][Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])[toggleKeys]]) {
+              for(const itemIter in EVENT_SONGS6[Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])[toggleKeys]]) {
+                let itemId = parseInt(EVENT_SONGS6[Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])[toggleKeys]][itemIter])
+                if(await DB.Count(refid, {collection:'item', id: itemId}) === 0) {
+                  await DB.Upsert(
+                    refid, 
+                    {collection: 'item', type: 0, id: itemId}, 
+                    {$set: { param: 23 }}
+                  )
+
+                  presents.push({
+                    id: itemId,
+                    type: 0,
+                    param: 23
+                  })
+
+                  tempItem.push({ collection: 'item', type: 0, id: itemId, param: 23 })
+                }
               }
             }
           }

@@ -440,32 +440,10 @@ export const log: EPR = async (info, data, send) => {
 }
 
 export const unhandledt: EPR = async (info, data, send) => {
+    console.log("")
     console.log("Unhandled: " + info.method + " | " + info.model + " | " + info.module)
-    console.log("Info:")
-    for (let key in info) {
-      type ObjectKey = keyof typeof info;
-      const myVar = key as ObjectKey;
-      if (typeof info[key] === 'object') {
-        console.log(key + ' - ' + JSON.stringify(info[key]));
-      } else console.log(key + ' - ' + info[key]);
-    }
+    console.log(JSON.stringify(info))
+    console.log(JSON.stringify(data))
     console.log("")
-    console.log("Data:")
-    for (let key in data) {
-      type ObjectKey = keyof typeof data;
-      const myVar = key as ObjectKey;
-      if (typeof data[key] === 'object') {
-        console.log(key + ' - ' + JSON.stringify(data[key]));
-      } else console.log(key + ' - ' + data[key]);
-    }
-    console.log("")
-    console.log("Send:")
-    for (let key in send) {
-      type ObjectKey = keyof typeof send;
-      const myVar = key as ObjectKey;
-      if (typeof send[key] === 'object') {
-        console.log(key + ' - ' + JSON.stringify(send[key]));
-      } else console.log(key + ' - ' + send[key]);
-    }
-    console.log('')
+    return send.success()
 }
