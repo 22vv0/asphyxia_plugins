@@ -337,7 +337,7 @@ export const common: EPR = async (info, data, send) => {
       })
     })
 
-    if(U.GetConfig('april_fools') || currentDate.substring(0,3) === '4/1') {
+    if(currentDate.substring(0,3) === '4/1') {
       console.log('Using April Fools Event')
       events.push('APRIL_GRACE');
       events.push('EVENTDATE_APRILFOOL');
@@ -350,11 +350,6 @@ export const common: EPR = async (info, data, send) => {
           });
         }
       }
-    }
-
-    if(U.GetConfig('new_year_special')){
-      console.log('Using New Year Special BGM')
-      events.push('NEW_YEAR_2022');
     }
 
     send.object(
@@ -424,12 +419,6 @@ export const common: EPR = async (info, data, send) => {
       },
       { encoding: 'utf8' }
     );
-    // function(value) {
-        
-    // },
-    // function(error) {
-    //   console.log('read error: ' + error)
-    // }
   } catch (error) {
     console.log(error)
   }     

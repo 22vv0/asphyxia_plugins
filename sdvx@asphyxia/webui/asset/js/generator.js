@@ -41,9 +41,9 @@ async function getGeneratorEditionItems(gene_edition, itemSet) {
         return data
     })
     if(gene_edition === 'valkyrie') {
-        return valGeneData.valgene.find(valgene => valgene.id === itemSet)
+        return valGeneData.valgene[itemSet - 1]
     } else { 
-        return valGeneData.pregene.find(pregene => pregene.id === itemSet)
+        return valGeneData.pregene[itemSet - 1]
     }
 }
 
@@ -51,9 +51,10 @@ async function loadItems(itemSet, gene_edition, items_crew, items_stamp, items_s
     let geneItems = await getGeneratorEditionItems(gene_edition, itemSet)
     let itemCounts = countGeneItems(geneItems, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys)
     if(itemCounts[0] >= itemCounts[1]) $('#pregene-roll').attr('disabled', 'disabled')
+    else $('#pregene-roll').removeAttr('disabled')
 
     $('.count').text('Unlocked items: ' + itemCounts[0] + "/" + itemCounts[1])
-    if(itemSet === 0) {
+    if(itemSet === 1) {
         $('.setinfo').append('<p class="jpn-excl" style="padding:5px">These items are only usable in Japan. Change region to Japan in the ea3-config.xml file.</p>')
     } else {
         $('.jpn-excl').remove()
@@ -103,10 +104,10 @@ async function loadValgeneData(gene_edition) {
             $('#set_select').append('<option value=' + valGeneData.pregene[pregeneDataIndex].id + '>' + valGeneData.pregene[pregeneDataIndex].name + '</option>')
         }
     }
-    $('#set_select').val($("#set_select option").length - 1)
+    $('#set_select').val($("#set_select option").length)
 }
 
-$(document).ready(function() {
+$(document).ready(async function() {
     if(document.getElementById("data-pass-unlock-all").innerText === 'true') {
         $('.card-content').text("The \"Unlock All Valkyrie and Premium Items\" option is enabled. You wouldn't need this.")
         $('#pregene-roll').attr('disabled')
@@ -130,8 +131,8 @@ $(document).ready(function() {
     let items_bgm = JSON.parse(document.getElementById("data-pass-bgm").innerText);
     let items_nemsys = JSON.parse(document.getElementById("data-pass-nemsys").innerText);
     let gene_edition = document.getElementById("generator-edition").innerText;
-    loadValgeneData(gene_edition)
-    loadItems(1, gene_edition, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys)
+    await loadValgeneData(gene_edition)
+    loadItems($('#set_select').val(), gene_edition, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys)
     
     $('#set_select').change(function() {
         $('.count').text('')
@@ -143,7 +144,6 @@ $(document).ready(function() {
         $('#pregene-roll').attr('disabled', 'disabled')
         if(gene_edition === 'premium' && window.location.search.match(/(premium)/g) != undefined) {
             let geneItems = await getGeneratorEditionItems(gene_edition, parseInt($('#set_select').val()))
-            console.log(geneItems)
             if(countGeneItems(geneItems, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys)[0] >= countGeneItems(geneItems, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys)[1]) {
                 alert("All items have been unlocked already.")
             } else {

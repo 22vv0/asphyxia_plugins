@@ -490,8 +490,11 @@ export const preGeneRoll = async (data: {
 
       let unobtainedItems = preGeneSet.items[Object.keys(preGeneSet.items)[rollWhat]].map((x) => x)
       data.items.forEach(item => {
-        if(item['type'] == itemId[Object.keys(preGeneSet.items)[rollWhat]] && preGeneSet.items[Object.keys(preGeneSet.items)[rollWhat]].includes(item['id'])) {
-          unobtainedItems.splice(unobtainedItems.indexOf(item['id']), 1)
+        let checkId = 0;
+        checkId = item['id']
+        if(item['type'] == 17) checkId = (item['id'] / 4)
+        if(item['type'] == itemId[Object.keys(preGeneSet.items)[rollWhat]] && preGeneSet.items[Object.keys(preGeneSet.items)[rollWhat]].includes(checkId)) {
+          unobtainedItems.splice(unobtainedItems.indexOf(checkId), 1)
         }
       })
       if(unobtainedItems.length > 0) {
@@ -499,20 +502,20 @@ export const preGeneRoll = async (data: {
         console.log("Rolled item id: " + unobtainedItems[randomItemIndex] + " | item type: " + itemId[Object.keys(preGeneSet.items)[rollWhat]])
         if(itemId[Object.keys(preGeneSet.items)[rollWhat]] == 17) {
           for(let stampID = (unobtainedItems[randomItemIndex] * 4) - 3; stampID <= (unobtainedItems[randomItemIndex] * 4); stampID++) {
-            DB.Insert(data.refid, {
+            DB.Upsert(data.refid, {
               "collection": "item", 
               "type": itemId[Object.keys(preGeneSet.items)[rollWhat]], 
-              "id": stampID, 
-              "param": 1 
-            })
+              "id": stampID },
+              {$set: {"param": 1}}
+            )
           }
         } else {
-          DB.Insert(data.refid, {
+          DB.Upsert(data.refid, {
             "collection": "item", 
             "type": itemId[Object.keys(preGeneSet.items)[rollWhat]], 
-            "id": unobtainedItems[randomItemIndex], 
-            "param": 1 
-          })
+            "id": unobtainedItems[randomItemIndex] },
+            {$set: {"param": 1}}   
+          )
         }
         let finalItemType = (Object.keys(preGeneSet.items)[rollWhat] === 'subbg') ? 'bg' : Object.keys(preGeneSet.items)[rollWhat]
         await IO.WriteFile('webui/asset/logs/preGeneRollResult.json', JSON.stringify({'id': unobtainedItems[randomItemIndex], 'type': finalItemType}))

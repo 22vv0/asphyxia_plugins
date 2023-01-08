@@ -10,7 +10,12 @@ function getImageFileFormat(assetType, id) {
 }
 
 function checkPregeneSubbg(subbg) {
-    pregeneSlideshows = [166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185]
+    pregeneSlideshows = [
+        // pregene aqua
+        166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185,
+        // pregene 1
+        214, 215, 216, 217, 218, 219, 220, 221, 222, 223
+    ]
     return pregeneSlideshows.includes(parseInt(subbg))
 }
 

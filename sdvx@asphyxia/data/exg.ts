@@ -46,8 +46,7 @@ export const INFORMATION6 = {
   '2022071200': ['[img:ver06/info_psd.ifs:hexa_diver_220714]'],
   '2022081600': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]'],
   '2022083000': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
-  '2022101800': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
-  '2022122001': ['[img:info/konosuba_221006.png]', '[img:info/bemaniautumn_221101.png]', '[img:info/paseli_festival_221220.png]', '[img:info/pregene_kureha_221222.png]', '[img:info/voltefactory_221201.png]']
+  '2022101800': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]']
 }
 
 export const MISSINGSONGS6 = [
@@ -896,7 +895,7 @@ export const VALGENE = {
         },
         {
           type: 17,
-          item_ids: [38, 39, 40, 41, 42]
+          item_ids: [38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68]
         },
         {
           type: 18,
@@ -904,7 +903,7 @@ export const VALGENE = {
         },
         {
           type: 19,
-          item_ids: [38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68]
+          item_ids: [38, 39, 40, 41, 42]
         },
         {
           type: 20,
