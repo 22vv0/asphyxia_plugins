@@ -46,7 +46,8 @@ export const INFORMATION6 = {
   '2022071200': ['[img:ver06/info_psd.ifs:hexa_diver_220714]'],
   '2022081600': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]'],
   '2022083000': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
-  '2022101800': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]']
+  '2022101800': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
+  '2022122001': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]']
 }
 
 export const MISSINGSONGS6 = [
