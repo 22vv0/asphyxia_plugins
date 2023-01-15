@@ -170,22 +170,24 @@ export const common: EPR = async (info, data, send) => {
       let time = new Date();
       let tempDate = time.getDate();
       const currentTime = parseInt((time.getTime()/100000) as unknown as string)*100;
-      extend.push({
-        id: 1,
-        type: 1,
-        params: [
-          1,
-          currentTime,
-          1,
-          1,
-          31,
-          '[f:0]SERVER INFORMATION',
-          INFORMATION6[version.toString()][Math.floor(Math.random() * (INFORMATION6[version.toString()].length - 1))],
-          '',
-          '',
-          '',
-        ],
-      });
+      for(const keyIter in INFORMATION6[version.toString()]) {
+        extend.push({
+          id: parseInt(keyIter) + 1,
+          type: 1,
+          params: [
+            1,
+            currentTime,
+            0,
+            0,
+            31,
+            '[f:0]SERVER INFORMATION',
+            INFORMATION6[version.toString()][keyIter],
+            '',
+            '',
+            '',
+          ],
+        });
+      }
     }
 
     if(U.GetConfig('use_asphyxia_gameover')){
