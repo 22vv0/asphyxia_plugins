@@ -61,148 +61,274 @@ export const MISSINGSONGS6 = [
   '1903', '1904', '1911', '1916', '1917'
 ]
 
+export const STAMP_EVENTS6 = {
+  'sdvx10thstamp': {
+    'type': 'select',
+    'info': {
+      'id': 1,
+      'stmpSlHd': '[sz:22][c:FFA6AA]SOUND VOLTEX 10th Anniversary',
+      'stmpSlFt': '[sz:23]期間 2022/01/18~2022/03/21',
+      'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/18~3/21',
+      'stmpBg': 'bg_stamp_anniversary_10th',
+      'data': [
+        {
+          'stmpid': 1,
+          'bnr': 'sheet_track_1',
+          'stps': 5,
+          'stprwrd': [
+            ['5', 'track', '1838', '23']
+          ]
+        },
+        {
+          'stmpid': 2,
+          'bnr': 'sheet_track_2',
+          'stps': 5,
+          'stprwrd': [
+            ['5', 'track', '1839', '23']
+          ]
+        },
+        {
+          'stmpid': 3,
+          'bnr': 'sheet_track_3',
+          'stps': 5,
+          'stprwrd': [
+            ['5', 'track', '1840', '23']
+          ]
+        },
+        {
+          'stmpid': 4,
+          'bnr': 'sheet_track_4',
+          'stps': 5,
+          'stprwrd': [
+            ['5', 'track', '1841', '23']
+          ]
+        },
+        {
+          'stmpid': 5,
+          'bnr': 'sheet_track_5',
+          'stps': 5,
+          'stprwrd': [
+            ['5', 'track', '1842', '23']
+          ]
+        },
+        {
+          'stmpid': 6,
+          'bnr': 'sheet_track_6',
+          'stps': 5,
+          'stprwrd': [
+            ['5', 'track', '1843', '23']
+          ]
+        },
+        {
+          'stmpid': 7,
+          'bnr': 'sheet_track_7',
+          'stps': 5,
+          'stprwrd': [
+            ['5', 'track', '1844', '23']
+          ]
+        }
+      ]
+    }
+  },
+  'reflecstamp': {
+    'type': 'main',
+    'info': {
+      'id': 0,
+      'stmpSlHd': '',
+      'stmpSlFt': '',
+      'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 3/30 ~ 5/8',
+      'stmpBg': '',
+      'data': [
+        {
+          'stmpid': 8,
+          'bnr': '',
+          'stps': 15,
+          'stprwrd': [
+            ['1', 'track', '1853', '23'],
+            ['3', 'track', '1851', '23'],
+            ['6', 'track', '1852', '23'],
+            ['10', 'track', '1850', '23'],
+            ['15', 'track', '1854', '23'],
+          ]
+        }
+      ]
+    }
+  },
+  'pcbevent': {
+    'type': 'main',
+    'info': {
+      'id': 0,
+      'stmpSlHd': '',
+      'stmpSlFt': '',
+      'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 12/8 ~ 1/15',
+      'stmpBg': '',
+      'data': [
+        {
+          'stmpid': 9,
+          'bnr': '',
+          'stps': 5,
+          'stprwrd': [
+            ['1', 'pcb', '500', ''],
+            ['2', 'pcb', '500', ''],
+            ['3', 'pcb', '1000', ''],
+            ['4', 'pcb', '1000', ''],
+            ['5', 'pcb', '2000', ''],
+          ]
+        }
+      ]
+    }
+  },
+  '2023stamp': {
+    'type': 'main',
+    'info': {
+      'id': 0,
+      'stmpSlHd': '',
+      'stmpSlFt': '',
+      'stmpHd': '[sz:22]SPECIAL STAMP BONUS',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/1 ~ 1/9',
+      'stmpBg': '',
+      'data': [
+        {
+          'stmpid': 10,
+          'bnr': '',
+          'stps': 1,
+          'stprwrd': [
+            ['1', 'appeal', '5522', '']
+          ]
+        }
+      ]
+    }
+  },
+  'himehina': {
+    'type': 'select',
+    'info': {
+      'id': 2,
+      'stmpSlHd': '[sz:22][c:FFA6AA]HIMEHINAコラボ開催中!',
+      'stmpSlFt': '[sz:23]期間 2022/04/07~2022/05/08',
+      'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 4/7 ~ 5/8',
+      'stmpBg': 'bg_stamp_himehina',
+      'data': [
+        {
+          'stmpid': 11,
+          'bnr': 'sheet_crew_1',
+          'stps': 15,
+          'stprwrd': [
+            ['1', 'pcb', '100', ''],
+            ['2', 'pcb', '100', ''],
+            ['3', 'pcb', '100', ''],
+            ['4', 'pcb', '100', ''],
+            ['5', 'pcb', '1000', ''],
+            ['6', 'pcb', '200', ''],
+            ['7', 'pcb', '200', ''],
+            ['8', 'pcb', '200', ''],
+            ['9', 'pcb', '200', ''],
+            ['10', 'pcb', '2000', ''],
+            ['11', 'pcb', '500', ''],
+            ['12', 'pcb', '500', ''],
+            ['13', 'pcb', '500', ''],
+            ['14', 'pcb', '500', ''],
+            ['15', 'crew', '122', 'ネメシスクルー田中ヒメ']
+          ]
+        },
+        {
+          'stmpid': 12,
+          'bnr': 'sheet_crew_2',
+          'stps': 15,
+          'stprwrd': [
+            ['1', 'pcb', '100', ''],
+            ['2', 'pcb', '100', ''],
+            ['3', 'pcb', '100', ''],
+            ['4', 'pcb', '100', ''],
+            ['5', 'pcb', '1000', ''],
+            ['6', 'pcb', '200', ''],
+            ['7', 'pcb', '200', ''],
+            ['8', 'pcb', '200', ''],
+            ['9', 'pcb', '200', ''],
+            ['10', 'pcb', '2000', ''],
+            ['11', 'pcb', '500', ''],
+            ['12', 'pcb', '500', ''],
+            ['13', 'pcb', '500', ''],
+            ['14', 'pcb', '500', ''],
+            ['15', 'crew', '123', 'ネメシスクルー鈴木ヒナ']
+          ]
+        }
+      ]
+    }
+  }
+}
+
 export const EVENT_SONGS6 = {
   // X-Record songs
-  'xrecord_1': [
-    // 1st edition
-    '1736', // discordia_penorerihumer
-    '1737', // chewingood_toriena
-    '1738', // verflucht_tirfing
-  ],
-  'xrecord_2': [
-    // 2nd edition
-    '1848', // fegrix
-    '1847', // 2 beasts unchained
-    '1849', // piano kyousoukyoku
-  ],
+  'xrecord_1': ['1736', '1737', '1738'],
+  'xrecord_2': ['1848', '1847', '1849'],
   // Konaste songs
-  'konasute_1': [
-    '1762'
-  ],
-  'konasute_2': [
-    '1763'
-  ],
-  'konasute_3': [
-    '1764'
-  ],
-  'konasute_4': [
-    '1765'
-  ],
-  'konasute_5': [
-    '1811'
-  ],
+  'konasute_1': ['1762'],
+  'konasute_2': ['1763'],
+  'konasute_3': ['1764'],
+  'konasute_4': ['1765'],
+  'konasute_5': ['1811'],
   // BPL2021 songs
-  'bpl2021': [
-    '1808', '1809'
-  ],
+  'bpl2021': ['1808', '1809'],
   // BSB2021 songs
-  'bsb2021': [
-    '1802', '1803', '1804', '1805', '1806', '1807'
-  ],
+  'bsb2021': ['1802', '1803', '1804', '1805', '1806', '1807'],
   // SDVX 10th anniversary stamp event songs
-  'sdvx10thstamp': [
-    '1838', '1839', '1840', '1841', '1842', '1843', '1844'
-  ],
+  'sdvx10thstamp': ['1838', '1839', '1840', '1841', '1842', '1843', '1844'],
   // REFLECT BEAT stamp event songs
-  'reflecstamp': [
-    '1850', '1851', '1852', '1853', '1854'
-  ],
+  'reflecstamp': ['1850', '1851', '1852', '1853', '1854'],
   // BEMANI ichika 2022 event songs
-  'gmz2022': [
-    '1906', '1907', '1908', '1909', '1910'
-  ],
+  'gmz2022': ['1906', '1907', '1908', '1909', '1910'],
   // BPL2022 songs
-  "bpl2022_1": [
-    '1952', '1943'
-  ],
-  "bpl2022_2": [
-    '1948', '1951'
-  ],
-  "bpl2022_3": [
-    '1956', '1949'
-  ],
-  "bpl2022_4": [
-    '1946', '1958'
-  ],
-  "bpl2022_5": [
-    '1957', '1955'
-  ]
+  "bpl2022_1": ['1952', '1943'],
+  "bpl2022_2": ['1948', '1951'],
+  "bpl2022_3": ['1956', '1949'],
+  "bpl2022_4": ['1946', '1958'],
+  "bpl2022_5": ['1957', '1955'],
+  "bpl2022_6": ['1947', '1953']
 }
 
 export const RESTRICTED_SONGS6 = {
   // X-Record songs
-  'xrecord_1': [
-    // 1st edition
-    '1736', // discordia_penorerihumer
-    '1737', // chewingood_toriena
-    '1738', // verflucht_tirfing
-  ],
-  'xrecord_2': [
-    // 2nd edition
-    '1848', // fegrix
-    '1847', // 2 beasts unchained
-    '1849', // piano kyousoukyoku
-  ],
+  'xrecord_1': ['1736', '1737', '1738'],
+  'xrecord_2': ['1848', '1847', '1849'],
+  // Konaste songs
+  'konasute_1': ['1762'],
+  'konasute_2': ['1763'],
+  'konasute_3': ['1764'],
+  'konasute_4': ['1765'],
+  'konasute_5': ['1811'],
   // BPL2021 songs
-  // 'bpl2021': [
-  //   '1808', '1809'
-  // ],
+  'bpl2021': ['1808', '1809'],
   // BSB2021 songs
-  'bsb2021': [
-    '1802', '1803', '1804', '1805', '1806', '1807'
-  ],
+  'bsb2021': ['1802', '1803', '1804', '1805', '1806', '1807'],
   // SDVX 10th anniversary stamp event songs
-  'sdvx10thstamp': [
-    '1838', '1839', '1840', '1841', '1842', '1843', '1844'
-  ],
+  'sdvx10thstamp': ['1838', '1839', '1840', '1841', '1842', '1843', '1844'],
   // REFLECT BEAT stamp event songs
-  'reflecstamp': [
-    '1850', '1851', '1852', '1853', '1854'
-  ],
+  'reflecstamp': ['1850', '1851', '1852', '1853', '1854'],
   // BEMANI ichika 2022 event songs
-  'gmz2022': [
-    '1906', '1907', '1908', '1909', '1910'
-  ],
+  'gmz2022': ['1906', '1907', '1908', '1909', '1910'],
   // BPL2022 songs
-  "bpl2022_1": [
-    '1952', '1943'
-  ],
-  "bpl2022_2": [
-    '1948', '1951'
-  ],
-  "bpl2022_3": [
-    '1956', '1949'
-  ],
-  "bpl2022_4": [
-    '1946', '1958'
-  ],
-  "bpl2022_5": [
-    '1957', '1955'
-  ]
+  "bpl2022_1": ['1952', '1943'],
+  "bpl2022_2": ['1948', '1951'],
+  "bpl2022_3": ['1956', '1949'],
+  "bpl2022_4": ['1946', '1958'],
+  "bpl2022_5": ['1957', '1955'],
+  "bpl2022_6": ['1947', '1953']
 }
 
 export const APRILFOOLSSONGS = [
   '840', '1219', '1751'
 ]
 
-export const VALKYRIEEXCLUSIVESONGS = [
-  '1672', '1744', '1855', '1742', '1743',
+export const VALKYRIE_SONGS = [
+  '1744', '1672', // Valk exclusives 
+  '1855', '1742', '1743', '1745',  // Arena station songs
   '1736', '1737', '1738', '1848', '1847', '1849' // X-record
 ]
 
-// arena station crew with name cheatsheet
-// 29 nearnoah xmas
-// 82 kanade halloween
-// 95 rasis v
-// 101 right v
-// 103 nearnoah v
-// 104 nana v
-// 106 natsuhi
-// 107 cocona
-// 122 hime?
-// 123 hina?
-
-// ARENA data
 export const ARENA = {
   'Set 1 (04/25/22)': {
     details: {
@@ -942,7 +1068,7 @@ export const VALGENE = {
 
 export const PREGENE = [
   {
-    id: 0,
+    id: 1,
     items: {
       'crew': [131],
       'stamp': [69, 70, 71, 72, 73, 74, 75, 76, 77, 78],
@@ -951,7 +1077,7 @@ export const PREGENE = [
     probability: [0.01, 0.39, 0.6]
   },
   {
-    id: 1,
+    id: 2,
     items: {
       'crew': [134],
       'stamp': [110, 111, 112, 113, 114, 115, 116, 117, 118, 119],

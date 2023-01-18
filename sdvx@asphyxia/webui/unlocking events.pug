@@ -1,0 +1,48 @@
+-
+link(rel="stylesheet" href="static/asset/css/datatables.css")
+div
+    .card
+        .card-header
+            p.card-header-title
+                span.icon
+                    i.mdi.mdi-star
+                | Stamp Events
+        .card-content
+            .field
+                .control
+                    .select
+                        select(name="stampevent_select" id="stampevent_select")
+                            option(name="none" id="none") Select Stamp Event
+        .stamp.list
+    .card
+        .card-header
+            p.card-header-title
+                span.icon
+                    i.mdi.mdi-star
+                | Gift Events
+        .card-content
+            .field
+                .control
+                    .select
+                        select(name="giftevent_select" id="giftevent_select")
+                            option(name="none" id="none") Select Gift Event
+        .gift.list
+    .card
+        .card-header
+            p.card-header-title
+                span.icon
+                    i.mdi.mdi-star
+                | Cross Events
+        .card-content
+            .field
+                .control
+                    .select
+                        select(name="crossevent_select" id="crossevent_select")
+                            option(name="none" id="none") Select Cross Event
+        .cross.list
+    div.field.is-grouped
+        div.control.is-expanded
+        div.control
+            button.button.is-link(id="event-submit") Apply
+
+script(src="static/asset/js/events.js") 
