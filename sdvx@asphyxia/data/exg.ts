@@ -948,7 +948,7 @@ export const VALGENE = {
 
 export const PREGENE = [
   {
-    id: 0,
+    id: 1,
     items: {
       'crew': [131],
       'stamp': [69, 70, 71, 72, 73, 74, 75, 76, 77, 78],
@@ -957,7 +957,7 @@ export const PREGENE = [
     probability: [0.01, 0.39, 0.6]
   },
   {
-    id: 1,
+    id: 2,
     items: {
       'crew': [134],
       'stamp': [110, 111, 112, 113, 114, 115, 116, 117, 118, 119],
