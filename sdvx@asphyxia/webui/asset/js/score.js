@@ -20,6 +20,9 @@ function getReleaseDate(musicid) {
     //console.log(music_db["mdb"]["music"])
     //console.log(musicid+" "+type);
     var result = music_db["mdb"]["music"].filter(object => object["@id"] == musicid);
+    if (result.length == 0) {
+        return "Unknown";
+    }
     return result[0]["info"]["distribution_date"]["#text"]
         //console.log(result);
 }
