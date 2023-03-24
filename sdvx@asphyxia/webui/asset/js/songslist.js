@@ -14,12 +14,42 @@ function getInfDifficulty(inf_ver) {
 }
 $(document).ready(function() {
     $.getJSON("static/asset/json/music_db.json", function(json) {
+        const translate_table = {
+              '龕': '€',
+              '釁': '🍄',
+              '驩': 'Ø',
+              '曦': 'à',
+              '齷': 'é',
+              '骭': 'ü',
+              '齶': '♡',
+              '彜': 'ū',
+              '罇': 'ê',
+              '雋': 'Ǜ',
+              '鬻': '♃',
+              '鬥': 'Ã',
+              '鬆': 'Ý',
+              '曩': 'è',
+              '驫': 'ā',
+              '齲': '♥',
+              '騫': 'á',
+              '趁': 'Ǣ',
+              '鬮': '¡',
+              '盥': '⚙︎',
+              '隍': '︎Ü',
+              '頽': 'ä',
+              '餮': 'Ƶ',
+              '黻': '*',
+              '蔕': 'ũ',
+              '闃': 'Ā'
+        }
+		
         music_db = json;
         var music_data = [];
         for (let mdata in music_db.mdb.music) {
             var temp_data = {};
             temp_data.mid = music_db.mdb.music[mdata]['@id'];
             temp_data.songname = music_db.mdb.music[mdata]['info']['title_name'];
+            temp_data.songname = temp_data.songname.replace(/[龕釁驩曦齷骭齶彜罇雋鬻鬥鬆曩驫齲騫趁鬮盥隍頽餮黻蔕闃]/g, m => translate_table[m]);
             if('distribution_date' in music_db.mdb.music[mdata]['info']) {
                 temp_data.releasedate = music_db.mdb.music[mdata]['info']['distribution_date']['#text'];
             } else {
