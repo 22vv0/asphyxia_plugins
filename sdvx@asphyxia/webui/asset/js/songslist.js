@@ -42,7 +42,6 @@ $(document).ready(function() {
               '蔕': 'ũ',
               '闃': 'Ā'
         }
-		
         music_db = json;
         var music_data = [];
         for (let mdata in music_db.mdb.music) {
