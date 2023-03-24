@@ -1,6 +1,8 @@
+let hiddenEvents = ['xrecord', 'bpl2021', 'bsb2021', 'sdvx10thstamp', 'reflecstamp', 'gmz2022', 'pcbevent', '2023appealstampevent', '11thannivappealstampevent']
+
 function generateEventToggles(eventInfo, eventConfig) {
     let cardContent = $('<div class="card-content">')
-    if(!['bpl2022', 'konasute', 'xrecord'].includes(eventInfo['id'])) {
+    if(!['bpl2022', 'konasute'].includes(eventInfo['id'])) {
         cardContent.append(
             $('<div class="field is-horizontal">').append(
                 $('<div class="field-label is-normal"><label class="label" for="' + eventInfo['id'] + '">Enable</label></div>')
@@ -39,13 +41,12 @@ async function readEventsJsonFile() {
 }
 
 async function generateNewEventsConfigFile() {
-    let hiddenEvents = ['bpl2021', 'bsb2021', 'gmz2022', 'pcbevent']
     let eventConfig = {}
     let eventData = await readEventsJsonFile()
     for(const eventIter in eventData['events']) {
         let hidden = false
         let toggle = false
-        if(['bpl2022', 'konasute', 'xrecord'].includes(eventData['events'][eventIter]['id'])) {
+        if(['bpl2022', 'konasute'].includes(eventData['events'][eventIter]['id'])) {
             toggle = {}
             for(const toggleIter in eventData['events'][eventIter]['info']) {
                 toggle[eventData['events'][eventIter]['id'] + '_' + (parseInt(toggleIter) + 1)] = false
@@ -59,7 +60,6 @@ async function generateNewEventsConfigFile() {
             'toggle': toggle
         }
     }
-    console.log(eventConfig)
     return eventConfig
 }
 
@@ -68,6 +68,14 @@ $(document).ready(async function() {
     let eventData = await readEventsJsonFile()
     let eventConfig = await readEventsConfigFile()
     for(const eventIter in eventData['events']) {
+
+        // NEEDS MORE WORK FOR EVENTS WITH MULTIPLE TOGGLES EACH
+        if(!(eventData['events'][eventIter]['id'] in eventConfig)) {
+            eventConfig[eventData['events'][eventIter]['id']] = {
+                'hidden': hiddenEvents.includes(eventData['events'][eventIter]['id']),
+                'toggle': false
+            }
+        }
         if(!eventConfig[eventData['events'][eventIter]['id']]['hidden']) {
             $('div.main').append(
                 $('<header class="card-header"><p class="card-header-title"><span class="icon"><i class="mdi mdi-calendar-clock"></i></span>' + eventData['events'][eventIter]['name'] + '</p></header>')

@@ -468,6 +468,7 @@ export const copyResourcesFromGame = async (data: {}) => {
 export const preGeneRoll = async (data: {
   set: number,
   refid: string,
+  geneEdition: string,
   items: []
 }) => {
   // prem_items_crew: DB.Find(refid, {collection:"item",type:11})

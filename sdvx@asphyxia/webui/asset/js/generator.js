@@ -48,10 +48,22 @@ async function getGeneratorEditionItems(gene_edition, itemSet) {
 }
 
 async function loadItems(itemSet, gene_edition, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys) {
+    console.log(gene_edition)
     let geneItems = await getGeneratorEditionItems(gene_edition, itemSet)
     let itemCounts = countGeneItems(geneItems, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys)
-    if(itemCounts[0] >= itemCounts[1]) $('#pregene-roll').attr('disabled', 'disabled')
-    else $('#pregene-roll').removeAttr('disabled')
+    if(gene_edition === 'premium') {
+        console.log('naur')
+        if(itemCounts[0] >= itemCounts[1]) $('#pregene-roll').attr('disabled', 'disabled')
+        else $('#pregene-roll').removeAttr('disabled')
+    } else if(gene_edition === 'valkyrie') {
+        console.log('yes1')
+        if(itemSet >= 1 && itemSet <= 5) {
+            console.log('yes2')
+            if(itemCounts[0] >= itemCounts[1]) $('#valgene-roll').attr('disabled', 'disabled')
+            else $('#valgene-roll').removeAttr('disabled')
+        } else $('#valgene-roll').attr('disabled', 'disabled')
+    }
+    
 
     $('.count').text('Unlocked items: ' + itemCounts[0] + "/" + itemCounts[1])
     if(itemSet === 1) {
@@ -140,8 +152,9 @@ $(document).ready(async function() {
         loadItems(parseInt($('#set_select').val()), gene_edition, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys)
     })
 
-    $('#pregene-roll').on('click', async function() {
-        $('#pregene-roll').attr('disabled', 'disabled')
+    $('#pregene-roll, #valgene-roll').on('click', async function() {
+        console.log('cliucked')
+        $('#pregene-roll, #valgene-roll').attr('disabled', 'disabled')
         if(gene_edition === 'premium' && window.location.search.match(/(premium)/g) != undefined) {
             let geneItems = await getGeneratorEditionItems(gene_edition, parseInt($('#set_select').val()))
             if(countGeneItems(geneItems, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys)[0] >= countGeneItems(geneItems, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys)[1]) {
@@ -150,6 +163,7 @@ $(document).ready(async function() {
                 emit('preGeneRoll', {
                     set: parseInt(document.getElementById('set_select').value),
                     refid: refid, 
+                    geneEdition: gene_edition,
                     items: items_crew.concat(items_stamp, items_subbg, items_bgm, items_nemsys)
                 }).then(
                 function() {

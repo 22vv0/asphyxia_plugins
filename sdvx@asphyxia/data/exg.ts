@@ -36,7 +36,8 @@ export const EVENT6 = [
   'MEGAMIX_ENABLE',
   'VALGENE_ENABLE',
   'ARENA_ENABLE',
-  'DISP_PASELI_BANNER'
+  'DISP_PASELI_BANNER',
+  'S_PUC_EFFECT_ENABLE'
 ];
 
 export const INFORMATION6 = {
@@ -129,6 +130,21 @@ export const EVENT_SONGS6 = {
   ],
   "bpl2022_6": [
     '1947', '1953'
+  ],
+  "bpl2022_7": [
+    '1944', '1950'
+  ],
+  "bpl2022_8": [
+    '1954', '1945'
+  ],
+  "bpl2022_9": [
+    '1942'
+  ],
+  "bpl2022_10": [
+    '1940'
+  ],
+  "bpl2022_11": [
+    '1939'
   ]
 }
 
@@ -184,6 +200,21 @@ export const RESTRICTED_SONGS6 = {
   ],
   "bpl2022_6": [
     '1947', '1953'
+  ],
+  "bpl2022_7": [
+    '1944', '1950'
+  ],
+  "bpl2022_8": [
+    '1954', '1945'
+  ],
+  "bpl2022_9": [
+    '1942'
+  ],
+  "bpl2022_10": [
+    '1940'
+  ],
+  "bpl2022_11": [
+    '1939'
   ]
 }
 
@@ -631,6 +662,75 @@ export const ARENA = {
         price: 2000,
         item_type: 0,
         item_id: 132,
+        param: 8,
+      }
+    ]
+  },
+  'Set 6 (02/16/23)': {
+    details: {
+      // season: 4,
+      time_start: BigInt(Date.parse('16 Feb 2023 00:00:00 GMT')),
+      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_start: BigInt(Date.parse('16 Feb 2023 00:00:00 GMT')),
+      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      is_open: 1,
+      is_shop: 1
+    },
+    arena_items: [
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 1846,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 1743,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 342,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 131,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 612,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 8,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 323,
         param: 8,
       }
     ]
