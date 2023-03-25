@@ -197,18 +197,25 @@ export const copyResourcesFromGame = async (data: {}) => {
   
     mdb.mdb.music.forEach(musicValue => {
       if(Object.keys(prevAssetMdb).length > 0) {
-        if(prevAssetMdb['mdb']['music'].find(item => parseInt(item['@id']) == parseInt(musicValue.info.label['@content'])) == undefined) {
+        if(prevAssetMdb['mdb']['music'].find(item => parseInt(item['@id']) == parseInt(musicValue['@attr'].id)) == undefined) {
           console.log("New song added to json: " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
           newJsonSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
+        }
+
+        if(prevAssetMdb['mdb']['music'].find(item => (parseInt(item['@id']) == parseInt(musicValue['@attr'].id) && parseInt(item['info']['inf_ver']['#text']) === 0)) != undefined) {
+          if(musicValue.info.inf_ver['@content'] == '6') {
+            console.log("New XCD difficulty song: " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
+            newXCDSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
+          }
         }
       } else {
         console.log("New song added to json: " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
         newJsonSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
-      }
-
-      if(musicValue.info.inf_ver['@content'] == '6') {
-        console.log("New XCD difficulty song: " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
-        newXCDSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
+        
+        if(musicValue.info.inf_ver['@content'] == '6') {
+          console.log("New XCD difficulty song: " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
+          newXCDSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
+        }
       }
 
       if(parseInt(musicValue.info.distribution_date['@content'][0]) >= parseInt(version.substring(0,8))) {
@@ -290,21 +297,19 @@ export const copyResourcesFromGame = async (data: {}) => {
     for await (const nemsys of nemsysFiles) {
       let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/game_nemsys/" + nemsys.name)
       if(!IO.Exists('webui/asset/nemsys/' + nemsys.name.substring(0, (nemsys.name.length - 4)) + ".png") && !IO.Exists('webui/asset/nemsys/' + nemsys.name.substring(0, (nemsys.name.length - 4)) + ".jpg")) {
+        console.log("[nemsys] copying " + nemsys.name)
         IO.WriteFile('webui/asset/nemsys/' + nemsys.name, fileToWrite)
         newNemsysData.push(nemsys.name)
-      } else {
-        console.log(nemsys.name + " exists")
       }
-    }
 
-    newNemsysData.forEach(fileName => {
-      if(fileName.match(/([0-9]+)/g) != undefined) {
-        let nemsysId = parseInt(fileName.match(/([0-9]+)/g)[0])
+      if(nemsys.name.match(/([0-9]+)/g) != undefined) {
+        let nemsysId = parseInt(nemsys.name.match(/([0-9]+)/g)[0])
         if(nemsysId && resourceJsonData.nemsys.find(nem => nem.value == nemsysId) == undefined) {
-          resourceJsonData.nemsys.push({"value": nemsysId, "name": fileName + " (please rename)"})
+          console.log("[nemsys] adding to json: " + nemsys.name)
+          resourceJsonData.nemsys.push({"value": nemsysId, "name": nemsys.name + " (please rename)"})
         }
       }
-    })
+    }
   } else {
     console.log('Error reading nemsys directory. Check your "Exceed Gear Data Directory" config.')
     runErrors.push('[nemsys] Error reading nemsys directory. Check your "Exceed Gear Data Directory" config.')
@@ -318,24 +323,23 @@ export const copyResourcesFromGame = async (data: {}) => {
       if (subbg.name.match(/(\.png|\.jpg)/g)) {
         let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/submonitor_bg/" + subbg.name)
         if(!IO.Exists('webui/asset/submonitor_bg/' + subbg.name.substring(0, (subbg.name.length - 4)) + ".png") && !IO.Exists('webui/asset/submonitor_bg/' + subbg.name.substring(0, (subbg.name.length - 4))  + ".jpg")) {
+          console.log("[subbg] copying " + subbg.name)
           IO.WriteFile('webui/asset/submonitor_bg/' + subbg.name, fileToWrite)
           newSubBGData.push(subbg.name)
-        } else {
-          console.log(subbg.name + " exists")
+        } 
+
+        let subbgId = parseInt(subbg.name.match(/([0-9]+)/g)[0])
+        if(subbgId) {
+          let subbgName = subbg.name
+          let foundSubbg = resourceJsonData.subbg.find(subbg => subbg.value === subbgId)
+          if(foundSubbg == undefined) {
+            if(subbg.name.match(/(subbg_[0-9]+_[0-9]+)/g)) subbgName = subbg.name.match(/(subbg_[0-9]+)/g)[0]
+            console.log("[subbg] adding to json: " + subbgId + " - " + subbgName)
+            resourceJsonData.subbg.push({"value": subbgId, "name": subbgName + " (please rename)"})
+          }
         }
       }
     }
-
-    newSubBGData.forEach(fileName => {
-      let subbgId = parseInt(fileName.match(/([0-9]+)/g)[0])
-      if(subbgId) {
-        let foundSubbg = resourceJsonData.subbg.find(subbg => subbg.value === subbgId)
-        if(foundSubbg == undefined) {
-          if(fileName.match(/(subbg_[0-9]+_[0-9]+)/g)) fileName = fileName.match(/(subbg_[0-9]+)/g)
-          resourceJsonData.subbg.push({"value": subbgId, "name": fileName + " (please rename)"})
-        }
-      }
-    })
   } else {
     console.log('Error reading submonitor_bg directory. Check your "Exceed Gear Data Directory" config.')
     runErrors.push('[submonitor_bg] Error reading submonitor_bg directory. Check your "Exceed Gear Data Directory" config.')
@@ -351,21 +355,19 @@ export const copyResourcesFromGame = async (data: {}) => {
         if(folderName != '') {
           let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/sound/custom/" + bgm.name)
           if(!IO.Exists('webui/asset/audio/' + folderName)) {
+            console.log("[bgm] copying " + bgm.name)
             IO.WriteFile('webui/asset/audio/' + folderName + '/' + bgm.name, fileToWrite)
             newBGMData.push(bgm.name)
-          } else {
-            console.log(bgm.name + " exists")
+          } 
+
+          let bgmId = parseInt(bgm.name.match(/(?<=(custom|special)_)([0-9]*)/g)[0])
+          if(bgmId && resourceJsonData.bgm.find(bgm => bgm.value == bgmId) == undefined) {
+            console.log("[bgm] adding to json: " + bgmId + " - " + bgm.name)
+            resourceJsonData.bgm.push({"value": bgmId, "name": bgm.name + " (please rename)"})
           }
         }
       }
     }
-
-    newBGMData.forEach(fileName => {
-      let bgmId = parseInt(fileName.match(/(?<=(custom|special)_)([0-9]*)/g)[0])
-      if(bgmId && resourceJsonData.bgm.find(bgm => bgm.value == bgmId) == undefined) {
-        resourceJsonData.bgm.push({"value": bgmId, "name": fileName + " (please rename)"})
-      }
-    })
   } else {
     console.log('Error reading BGM directory. Check your "Exceed Gear Data Directory" config.')
     runErrors.push('[BGM] Error reading BGM directory. Check your "Exceed Gear Data Directory" config.')
@@ -379,11 +381,10 @@ export const copyResourcesFromGame = async (data: {}) => {
       if (valgeneItem.name.substring(valgeneItem.name.length-4, valgeneItem.name.length).match(/(\.png|\.jpg)/g)) {
         let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/valgene_item/" + valgeneItem.name)
         if(!IO.Exists('webui/asset/valgene_item/' + valgeneItem.name.substring(0, (valgeneItem.name.length - 4)) + ".png") && !IO.Exists('webui/asset/valgene_item/' + valgeneItem.name.substring(0, (valgeneItem.name.length - 4))  + ".jpg")) {
+          console.log("[valgene_item] copying " + valgeneItem.name)
           IO.WriteFile('webui/asset/valgene_item/' + valgeneItem.name, fileToWrite)
           newValgeneItemFiles.push(valgeneItem.name)
-        } else {
-          console.log(valgeneItem.name + " exists")
-        }
+        } 
       }
     }
   } else {
@@ -397,6 +398,7 @@ export const copyResourcesFromGame = async (data: {}) => {
     let akanameData = U.parseXML(U.DecodeString(await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/others/akaname_parts.xml"), "shift_jis"), false)
     for(const akaname of akanameData.akaname_parts.part) {
       if(resourceJsonData.akaname.find(aka => aka.value === akaname['@attr'].id) == undefined) {
+        console.log("[akaname] adding " + akaname['@attr'].id + " - " + akaname.word['@content'] != undefined ? akaname.word['@content'] : '')
         resourceJsonData.akaname.push({"value": akaname['@attr'].id, "name": akaname.word['@content'] != undefined ? akaname.word['@content'] : '' })
         newAkanames.push(akaname['@attr'].id + ": " + akaname.word['@content'])
       } 
@@ -413,10 +415,12 @@ export const copyResourcesFromGame = async (data: {}) => {
     let apCardData = U.parseXML(U.DecodeString(await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/others/appeal_card.xml"), "shift_jis"), false)
     for(const apCard of apCardData.appeal_card_data.card) {
       if(apCardJsonData.appeal_card_data.card.find(ap => ap['@id'] === apCard['@attr'].id) == undefined) {
+        console.log("[ap_card] adding to json: " + apCard['@attr'].id + " - " + apCard.info['title']['@content'])
         apCardJsonData.appeal_card_data.card.push({"@id": apCard['@attr'].id, "info": {"texture": apCard.info['texture']['@content'], "title": apCard.info['title']['@content']}})
         newAPCardData.push(apCard['@attr'].id + ": " + apCard.info['texture']['@content'] + "(" + apCard.info['title']['@content'] + ")")
       }
       if(!IO.Exists('webui/asset/ap_card/' + apCard.info['texture']['@content'] + '.png') && !IO.Exists('webui/asset/ap_card/' + apCard.info['texture']['@content'] + '.jpg')) {
+        console.log("[ap_card] copying " + apCard.info['texture']['@content'] + '.png')
         let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/ap_card/" + apCard.info['texture']['@content'] + ".png")
         IO.WriteFile('webui/asset/ap_card/' + apCard.info['texture']['@content'] + '.png', fileToWrite)
       }
@@ -434,10 +438,12 @@ export const copyResourcesFromGame = async (data: {}) => {
     // console.log(JSON.stringify(chatStampData.chat_stamp_data))
     for(const chatStamp of chatStampData.chat_stamp_data.info) {
       if(resourceJsonData.stamp.find(stamp => stamp['value'] === chatStamp.id['@content'][0]) == undefined) {
+        console.log("[chat_stamp] adding to json: " + chatStamp.id['@content'][0] + " - " + chatStamp.filename['@content'])
         resourceJsonData.stamp.push({"value": chatStamp.id['@content'][0], "name": chatStamp.filename['@content']})
         newChatStampData.push(chatStamp.id['@content'][0] + ": " + chatStamp.filename['@content'])
       }
       if(!IO.Exists('webui/asset/chat_stamp/' + chatStamp.filename['@content'] + '.png') && !IO.Exists('webui/asset/chat_stamp/' + chatStamp.filename['@content'] + '.png')) {
+        console.log("[chat_stamp] copying " + chatStamp.filename['@content'] + '.png')
         let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/chat_stamp/" + chatStamp.filename['@content'] + ".png")
         IO.WriteFile('webui/asset/chat_stamp/' + chatStamp.filename['@content'] + '.png', fileToWrite)
       }
@@ -470,11 +476,6 @@ export const preGeneRoll = async (data: {
   refid: string,
   items: []
 }) => {
-  // prem_items_crew: DB.Find(refid, {collection:"item",type:11})
-  // prem_items_stamp: DB.Find(refid, { collection:"item",type:17 })
-  // prem_items_subbg: DB.Find(refid, { collection:"item",type:18 })
-  // prem_items_bgm: DB.Find(refid, { collection:"item",type:19 })
-  // prem_items_nemsys: DB.Find(refid, { collection:"item",type:20 })
 
   let itemId = {
     'crew': 11,

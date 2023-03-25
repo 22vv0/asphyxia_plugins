@@ -6,25 +6,19 @@ function zeroPad(num, places) {
 }
 
 function getSongName(musicid) {
-    //console.log(music_db["mdb"]["music"])
-    //console.log(musicid+" "+type);
     var result = music_db["mdb"]["music"].filter(object => object["@id"] == musicid);
     if (result.length == 0) {
         return "Custom Song";
     }
     return result[0]["info"]["title_name"]
-        //console.log(result);
 }
 
 function getReleaseDate(musicid) {
-    //console.log(music_db["mdb"]["music"])
-    //console.log(musicid+" "+type);
     var result = music_db["mdb"]["music"].filter(object => object["@id"] == musicid);
-    if (result.length == 0) {
-        return "Unknown";
-    }
+    if (result.length == 0 || !('distribution_date' in result[0]['info'])) {
+        return "Unknown"
+    } 
     return result[0]["info"]["distribution_date"]["#text"]
-        //console.log(result);
 }
 
 
@@ -34,7 +28,6 @@ function getDifficulty(musicid, type) {
         return "NOV";
     }
     var inf_ver = result[0]["info"]["inf_ver"]["#text"] ? result[0]["info"]["inf_ver"]["#text"] : 5;
-    //console.log([type,inf_ver]);
     switch (type) {
         case 0:
             return "NOV";
