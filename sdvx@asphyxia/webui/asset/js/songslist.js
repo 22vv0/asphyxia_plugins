@@ -52,7 +52,7 @@ $(document).ready(function() {
             if('distribution_date' in music_db.mdb.music[mdata]['info']) {
                 temp_data.releasedate = music_db.mdb.music[mdata]['info']['distribution_date']['#text'];
             } else {
-                temp_data.releasedate = ''
+                temp_data.releasedate = 'Unknown'
             }
             temp_data.nov = "";
             temp_data.adv = "";
