@@ -339,7 +339,7 @@ export const common: EPR = async (info, data, send) => {
       })
     })
 
-    if(currentDate.substring(0,3) === '4/1') {
+    if(currentDate.substring(0,4) === '4/1/') {
       console.log('Using April Fools Event')
       events.push('APRIL_GRACE');
       events.push('EVENTDATE_APRILFOOL');
