@@ -2,13 +2,18 @@
     "events": [
         {
             "id": "xrecord",
-            "in_game_event": false,
+            "type": "cross_online",
+            "enabled": false,
             "name": "X-record",
-            "info": "1st set of songs from X-record; originally unlocked by playing either SOUND VOLTEX on the Valkyrie model, or beatmaniaIIDX on the Lightning model.<br>Enable this option to activate this event.<br>(imho all cross events like this should be in a separate asphyxia plugin altogether)"
+            "info": [
+                "1st set of songs from X-record; originally unlocked by playing either SOUND VOLTEX on the Valkyrie model, or beatmaniaIIDX on the Lightning model.<br>Enable this option to have them automatically unlocked and saved to your account.",
+                "2nd set of songs from X-record; originally unlocked by playing either SOUND VOLTEX on the Valkyrie model, or beatmaniaIIDX on the Lightning model.<br>Enable this option to have them automatically unlocked and saved to your account."
+            ]
         },
         {
             "id": "konasute",
-            "in_game_event": false,
+            "type": "gift",
+            "enabled": true,
             "name": "グレイスからの挑戦状!! (GRACE kara no chousenjou!!)",
             "info": [
                "Enables unlock for the song 'ドゥサンコオデッセイ!!' by cosMo＠暴走P upon logging in.<br>This song is originally unlocked by having played it first on the コナステ (Konasute) version of Sound Voltex.",
@@ -20,37 +25,43 @@
         },
         {
             "id": "bpl2021",
-            "in_game_event": false,
+            "type": "cross_online",
+            "enabled": false,
             "name": "BPL応援 楽曲解禁スタンプラリー (BPL ouen gakkyoku kaikin stamp rally)",
             "info": "Songs in this event are originally unlocked by accessing the official BEMANI PRO LEAGUE 2021 website and obtaining the stamp by watching VODs of the BPL competition.<br>Enable this option to activate this event."
         },
         {
             "id": "bsb2021",
-            "in_game_event": false,
+            "type": "cross_online",
+            "enabled": false,
             "name": "BEMANI 2021真夏の歌合戦5番勝負 (BEMANI 2021 manatsu no utagassen 5 ban shoubu)",
             "info": "This is a cross-BEMANI event. Songs are originally unlocked by playing participating BEMANI games and earn 'Yell' points.<br>Enable this option to activate this event."
         },
         {
             "id": "sdvx10thstamp",
-            "in_game_event": true,
+            "type": "stamp",
+            "enabled": true,
             "name": "SOUND VOLTEX 10th Anniversary",
-            "info": "Stamp event to unlock 7 songs.<br>Enable this option to enable this stamp event in-game."
+            "info": "Stamp event to unlock 7 songs.<br>Toggle this on to enable this stamp event."
         },
         {
             "id": "reflecstamp",
-            "in_game_event": true,
+            "type": "stamp",
+            "enabled": true,
             "name": "REFLEC BEAT Song Stamp Event",
-            "info": "Stamp event to unlock 5 songs originally from the REFLEC BEAT game.<br>Enable this option to enable this stamp event in-game."
+            "info": "Stamp event to unlock 5 songs originally from the REFLEC BEAT game series.<br>Toggle this on to enable this stamp event."
         },
         {
             "id": "gmz2022",
-            "in_game_event": false,
+            "type": "cross_online",
+            "enabled": false,
             "name": "いちかのごちゃまぜMix UP！ (Ichika no gochamaze Mix UP! )",
             "info": "This is a cross-BEMANI event. Songs include some that are shared from other BEMANI games and some that are mashup/remixes of the shared songs. These are originally unlocked by playing participating BEMANI games and earning points to fill different gauges.<br><br>Enable this option to activate this event."
         },
         {
             "id": "bpl2022",
-            "in_game_event": false,
+            "type": "gift",
+            "enabled": true,
             "name": "BEMANI PRO LEAGUE -SEASON 2-! Original Song",
             "info": [
                 "Week 1 songs: 'Chat perché' and 'WINNING ROAD'<br>Enable this option to have these songs unlocked on the next login. Otherwise, the songs are still unlockable through BLASTER GATE.",
@@ -68,21 +79,24 @@
         },
         {
             "id": "pcbevent",
-            "in_game_event": true,
-            "name": "PCB Stamp Event",
-            "info": "Stamp event to earn PCB.<br>Enable this option to activate this stamp event in-game."
+            "type": "stamp",
+            "enabled": false,
+            "name": "PCBおかわりスタンプイベント | PCB Refill Stamp Event",
+            "info": "Stamp event to earn PCB. Once the stamp goal is complete, it will start over and you can earn more PCB.<br>Toggle this on to enable this stamp event."
         },
         {
-            "id": "2023appealstampevent",
-            "in_game_event": true,
-            "name": "新春スタンプボーナス (2023 New Year Stamp Bonus Event)",
-            "info": "Stamp event to unlock a special appeal card to commemorate the new year (2023).<br>Enable this option to activate this stamp event in-game."
+            "id": "2023stamp",
+            "type": "stamp",
+            "enabled": true,
+            "name": "んだんだぺったん☆二〇二三 | New Year 2023 Stamp Event",
+            "info": "Stamp event to unlock the んだんだぺったん☆二〇二三 appeal card.<br>Toggle this on to enable this stamp event."
         },
         {
-            "id": "11thannivappealstampevent",
-            "in_game_event": true,
-            "name": "11周年記念スタンプ (SDVX 11th Anniversary Appeal Card Stamp Bonus Event)",
-            "info": "Stamp event to unlock a special appeal card to commemorate the 11th anniversary of SOUND VOLTEX.<br>Enable this option to activate this stamp event in-game."
+            "id": "himehina",
+            "type": "stamp",
+            "enabled": true,
+            "name": "HIMEHINAコラボイベント | HIMEHINA Collab Stamp Event",
+            "info": "Stamp event to unlock the HIMEHINA crew.<br>Toggle this on to enable this stamp event."
         }
     ]
 }

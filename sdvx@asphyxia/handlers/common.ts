@@ -1,7 +1,8 @@
 import { EVENT4, COURSES4, EXTENDS4 } from '../data/hvn';
 import { EVENT5, COURSES5, EXTENDS5 } from '../data/vvw';
-import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIEEXCLUSIVESONGS,
-          MISSINGSONGS6, ARENA, VALGENE, INFORMATION6, RESTRICTED_SONGS6, EVENT_SONGS6
+import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIE_SONGS,
+          MISSINGSONGS6, ARENA, VALGENE, INFORMATION6, RESTRICTED_SONGS6, EVENT_SONGS6,
+          STAMP_EVENTS6
 } from '../data/exg';
 import { COURSE2 } from '../data/inf';
 import {getVersion, getRandomIntInclusive} from '../utils';
@@ -110,7 +111,7 @@ export const common: EPR = async (info, data, send) => {
                 if(MISSINGSONGS6.includes(i.toString())) {
                   limitedNo += 1;
                 }
-                else if(VALKYRIEEXCLUSIVESONGS.includes(i.toString()) && (!U.GetConfig('enable_valk_songs') && info.model.split(":")[2].match(/^(G|H)$/g) == null)){
+                else if(VALKYRIE_SONGS.includes(i.toString()) && (!U.GetConfig('enable_valk_songs') && info.model.split(":")[2].match(/^(G|H)$/g) == null)){
                   limitedNo -= 1;
                 }
                 for(let j = 0; j < 5; j++) {
@@ -120,7 +121,7 @@ export const common: EPR = async (info, data, send) => {
                     limited: K.ITEM('u8', limitedNo),
                   });
                 }
-              } else if (songData.info.inf_ver['#text'] === '6') { // if song from previous sdvx iteration but with new XCD track; wouldn't work without updated webui asset
+              } else if (songData.info.inf_ver['#text'] === '6') { // if song has new XCD track; wouldn't work without updated webui asset
                 songs.push({
                   music_id: K.ITEM('s32', i),
                   music_type: K.ITEM('u8', 3),
@@ -165,7 +166,8 @@ export const common: EPR = async (info, data, send) => {
           '',
         ],
       });
-    } else if(INFORMATION6[version.toString()] != undefined) {
+    } 
+    else if(INFORMATION6[version.toString()] != undefined) {
       console.log("Sending server information");
       let time = new Date();
       let tempDate = time.getDate();
@@ -190,6 +192,82 @@ export const common: EPR = async (info, data, send) => {
       }
     }
 
+    if(IO.Exists('handlers/test.json')) {
+      let testExtend = JSON.parse(await IO.ReadFile('handlers/test.json'))
+      if(testExtend.length > 0) {
+        testExtend.forEach(td => {
+          console.log("testExtend: " + JSON.stringify(td))
+          extend.push({
+            id: td['id'],
+            type: td['type'],
+            params: td['params']
+          });
+        }) 
+      }
+    }
+
+    if(IO.Exists('webui/asset/config/events.json')) {
+      const itemTypeList = {"track": 'e', "appeal": 'a', "crew": 'c', "pcb": 'b'}
+      let eventData = JSON.parse(await IO.ReadFile('webui/asset/json/events.json'))
+      let eventConfig = JSON.parse(await IO.ReadFile('webui/asset/config/events.json'))
+      for(const eventIter in eventData['events']) {
+        if(eventData['events'][eventIter]['type'] === 'stamp' && eventConfig[eventData['events'][eventIter]['id']]['toggle']) {
+          let stmpEvntInfo = STAMP_EVENTS6[eventData['events'][eventIter]['id']]
+          let prmStr1Sel = ''
+
+          for(const stmpDataIter in stmpEvntInfo['info']['data']) {
+            let stmpRwrd = stmpEvntInfo['info']['data'][stmpDataIter]['stprwrd']
+            let prmStr5 = ''
+            let sSheetName = (stmpRwrd[stmpRwrd.length - 1][1] === 'crew') ? stmpRwrd[stmpRwrd.length - 1][3] : stmpRwrd[stmpRwrd.length - 1][2]
+            prmStr1Sel += stmpEvntInfo['info']['data'][stmpDataIter]['stmpid'] + '#' + stmpEvntInfo['info']['data'][stmpDataIter]['bnr'] + '#' + itemTypeList[stmpRwrd[stmpRwrd.length - 1][1]] + '#' + sSheetName + (stmpEvntInfo['info']['data'].length - 1 === parseInt(stmpDataIter) ? '' : ',')
+            for(const stmpRwrdIter in stmpRwrd) {
+              let iID = stmpRwrd[stmpRwrdIter][2]
+              if (stmpRwrd[stmpRwrdIter][1] === 'track') iID += stmpRwrd[stmpRwrdIter][3]
+              prmStr5 += stmpRwrd[stmpRwrdIter][0] + ':' + itemTypeList[stmpRwrd[stmpRwrdIter][1]] + ':' + iID + (stmpRwrd.length - 1 === parseInt(stmpRwrdIter) ? '' : ' ')
+            }
+            let prmStep = [
+              5,
+              stmpEvntInfo['info']['data'][stmpDataIter]['stps'], 
+              0, 
+              stmpEvntInfo['info']['data'][stmpDataIter]['stps'], 
+              0,
+              '',
+              stmpEvntInfo['info']['stmpHd'],
+              '',
+              stmpEvntInfo['info']['stmpFt'],
+              prmStr5
+            ]
+            let newSelMainExtend = {
+              'type': 3,
+              'id': stmpEvntInfo['info']['data'][stmpDataIter]['stmpid'],
+              'params': prmStep
+            }
+            extend.push(newSelMainExtend)
+          }
+
+          if(stmpEvntInfo['type'] === 'select') {
+            let newSelExtend = {
+              'type': 3,
+              'id': stmpEvntInfo['info']['id'],
+              'params': [
+                9,
+                0,
+                0,
+                0,
+                0,
+                prmStr1Sel,
+                '',
+                stmpEvntInfo['info']['stmpSlHd'],
+                stmpEvntInfo['info']['stmpSlFt'],
+                stmpEvntInfo['info']['stmpBg']
+              ]
+            }
+            extend.push(newSelExtend)
+          }
+        }
+      }
+    }
+      
     if(U.GetConfig('use_asphyxia_gameover')){
       let time = new Date();
       let tempDate = time.getDate();
@@ -339,7 +417,7 @@ export const common: EPR = async (info, data, send) => {
       })
     })
 
-    if(currentDate.substring(0,3) === '4/1') {
+    if(currentDate.substring(0,4) === '4/1/') {
       console.log('Using April Fools Event')
       events.push('APRIL_GRACE');
       events.push('EVENTDATE_APRILFOOL');
