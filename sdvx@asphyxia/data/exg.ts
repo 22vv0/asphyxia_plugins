@@ -832,6 +832,11 @@ export const VALGENE = {
       valgene_name: "ヴァルキリージェネレーター　第9弾",
       valgene_name_english: "Valkyrie Generator Vol. 9",
       valgene_id: 9
+    },
+    {
+      valgene_name: "ヴァルキリージェネレーター　第10弾",
+      valgene_name_english: "Valkyrie Generator Vol. 10",
+      valgene_id: 9
     }
   ],
   rarity: {
@@ -1060,6 +1065,27 @@ export const VALGENE = {
         {
           type: 20, // nemsys
           item_ids: [32]
+        }
+      ]
+    },
+    {
+      volume: 10,
+      items: [
+        {
+          type: 17, // chat stamp
+          item_ids: [120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150]
+        },
+        {
+          type: 18,  // submonitor bg
+          item_ids: [224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237]
+        },
+        {
+          type: 19, // bgm
+          item_ids: [48, 49, 50, 51]
+        },
+        {
+          type: 20, // nemsys
+          item_ids: [33, 34]
         }
       ]
     },
