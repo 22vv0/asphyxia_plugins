@@ -97,10 +97,12 @@ export const common: EPR = async (info, data, send) => {
         EVENT_SONGS = EVENT_SONGS.concat(EVENT_SONGS6[Object.keys(EVENT_SONGS6)[keyIter]])
       }
       
-      let mdb = JSON.parse(music_db);
+      let mdb = JSON.parse(music_db.toString());
       
       let limitedNo = 2;
-      for (let i = 0; i < songNum; i++) {
+      songNum = parseInt(mdb.mdb.music[mdb.mdb.music.length - 1]['@id'])
+      console.log("Latest song id in mdb: " + songNum)
+      for (let i = 0; i <= songNum; i++) {
         var foundSongIndex = mdb.mdb.music.map(function(x) {return x['@id']; }).indexOf(i.toString());
         if(foundSongIndex != -1) {
           var songData = mdb.mdb.music[foundSongIndex];
@@ -192,24 +194,27 @@ export const common: EPR = async (info, data, send) => {
       }
     }
 
-    if(IO.Exists('handlers/test.json')) {
-      let testExtend = JSON.parse(await IO.ReadFile('handlers/test.json'))
-      if(testExtend.length > 0) {
-        testExtend.forEach(td => {
-          console.log("testExtend: " + JSON.stringify(td))
-          extend.push({
-            id: td['id'],
-            type: td['type'],
-            params: td['params']
-          });
-        }) 
-      }
-    }
+    // if(IO.Exists('handlers/test.json')) {
+    //   let bufExtend = await IO.ReadFile('handlers/test.json')
+    //   let testExtend = JSON.parse(bufExtend.toString())
+    //   if(testExtend.length > 0) {
+    //     testExtend.forEach(td => {
+    //       console.log("testExtend: " + JSON.stringify(td))
+    //       extend.push({
+    //         id: td['id'],
+    //         type: td['type'],
+    //         params: td['params']
+    //       });
+    //     }) 
+    //   }
+    // }
 
     if(IO.Exists('webui/asset/config/events.json')) {
       const itemTypeList = {"track": 'e', "appeal": 'a', "crew": 'c', "pcb": 'b'}
-      let eventData = JSON.parse(await IO.ReadFile('webui/asset/json/events.json'))
-      let eventConfig = JSON.parse(await IO.ReadFile('webui/asset/config/events.json'))
+      let bufEventData = await IO.ReadFile('webui/asset/json/events.json')
+      let bufEventConfig = await IO.ReadFile('webui/asset/config/events.json')
+      let eventData = JSON.parse(bufEventData.toString())
+      let eventConfig = JSON.parse(bufEventConfig.toString())
       for(const eventIter in eventData['events']) {
         if(eventData['events'][eventIter]['type'] === 'stamp' && eventConfig[eventData['events'][eventIter]['id']]['toggle']) {
           let stmpEvntInfo = STAMP_EVENTS6[eventData['events'][eventIter]['id']]
@@ -251,7 +256,7 @@ export const common: EPR = async (info, data, send) => {
               'id': stmpEvntInfo['info']['id'],
               'params': [
                 9,
-                0,
+                stmpEvntInfo['info']['num'],
                 0,
                 0,
                 0,

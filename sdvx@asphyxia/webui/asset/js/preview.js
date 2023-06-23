@@ -10,13 +10,13 @@ function getImageFileFormat(assetType, id) {
 }
 
 function checkPregeneSubbg(subbg) {
-    pregeneSlideshows = [
-        // pregene aqua
-        166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185,
-        // pregene 1
-        214, 215, 216, 217, 218, 219, 220, 221, 222, 223
-    ]
-    return pregeneSlideshows.includes(parseInt(subbg))
+    let stat = $.ajax({
+        url:'static/asset/submonitor_bg/subbg_' + zeroPad(subbg, 4) + getImageFileFormat(0, parseInt(zeroPad(subbg, 4))),
+        type:'HEAD',
+        async: false
+    }).status;
+    if(stat === 200) return false
+    else return true
 }
 
 ;
@@ -45,8 +45,9 @@ $('#nemsys_select').change(function() {
     $('#nemsys_pre').fadeIn(200);
 });
 
-$('[name="subbg"]').change(function() {
-    $('#sub_pre').fadeOut(200, () => { $('#sub_pre').attr("src", checkPregeneSubbg($('[name="subbg"]').val()) ? "static/asset/submonitor_bg/subbg_" + zeroPad($('[name="subbg"]').val(), 4) + "_0" + (Math.floor(Math.random() * 3) + 1) + getImageFileFormat(0, parseInt(zeroPad($('[name="subbg"]').val(), 4))) : "static/asset/submonitor_bg/subbg_" + zeroPad($('[name="subbg"]').val(), 4) + getImageFileFormat(0, parseInt(zeroPad($('[name="subbg"]').val(), 4)) )); });
+$('[name="subbg"]').change(async function() {
+    let isSubbgSlideshow = checkPregeneSubbg($('[name="subbg"]').val())
+    $('#sub_pre').fadeOut(200, () => { $('#sub_pre').attr("src", isSubbgSlideshow ? "static/asset/submonitor_bg/subbg_" + zeroPad($('[name="subbg"]').val(), 4) + "_0" + (Math.floor(Math.random() * 3) + 1) + getImageFileFormat(0, parseInt(zeroPad($('[name="subbg"]').val(), 4))) : "static/asset/submonitor_bg/subbg_" + zeroPad($('[name="subbg"]').val(), 4) + getImageFileFormat(0, parseInt(zeroPad($('[name="subbg"]').val(), 4)) )); });
     $('#sub_pre').fadeIn(200);
 });
 

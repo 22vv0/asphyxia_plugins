@@ -644,8 +644,10 @@ export const load: EPR = async (info, data, send) => {
   let presents = []
   if(version === 6) {
     if(IO.Exists('webui/asset/config/events.json')) {
-      let eventData = JSON.parse(await IO.ReadFile('webui/asset/json/events.json'))
-      let eventConfig = JSON.parse(await IO.ReadFile('webui/asset/config/events.json'))
+      let bufEventData = await IO.ReadFile('webui/asset/json/events.json')
+      let bufEventConfig = await IO.ReadFile('webui/asset/config/events.json')
+      let eventData = JSON.parse(bufEventData.toString())
+      let eventConfig = JSON.parse(bufEventConfig.toString())
       for(const eventIter in eventData['events']) {
         if(eventData['events'][eventIter]['type'] === 'gift') {
           if(typeof eventConfig[eventData['events'][eventIter]['id']]['toggle'] === "boolean") {

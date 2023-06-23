@@ -94,7 +94,7 @@ $(document).ready(async function() {
 
                 if(eventData['events'][eventIter]['id'] === $(value).parent().children('input').attr('name')) {
                     eventConfig[eventData['events'][eventIter]['id']]['toggle'] = toggle
-                } else if ($(value).parent().children('input').attr('name').includes(eventData['events'][eventIter]['id'])) {
+                } else if ($(value).parent().children('input').attr('name').includes(eventData['events'][eventIter]['id'] + "_")) {
                     eventConfig[eventData['events'][eventIter]['id']]['toggle'][[$(value).parent().children('input').attr('name')]] = toggle
                 }
             }

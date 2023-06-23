@@ -81,7 +81,7 @@ export const rival: EPR = async (info, data, send) => {
             await DB.Find<MusicRecord>(p.__refid, { collection: 'music' })
           ).map(r => ({
             // Changes were somehow made in the order of the field for the version 2023042500
-            param: K.ARRAY('u32', version < 2023042500 ? [r.mid, r.type, r.score, r.clear, r.grade] : [r.mid, r.type, r.score, r.grade, r.clear]),
+            param: K.ARRAY('u32', version < 2023042500 ? [r.mid, r.type, r.score, r.clear, r.grade] : [r.mid, r.type, r.score, r.exscore, r.clear, r.grade]),
           })),
         };
       })

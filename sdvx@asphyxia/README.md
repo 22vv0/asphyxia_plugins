@@ -28,7 +28,37 @@ The plugin now mainly maintained versions:
 Fork Changelog
 ===========
 ### Latest supported game version
-- 2022122001
+- EG 2023042500
+
+## fork-6.0.1.0
+
+### New:
+
+1. Support for EG 2023042500
+2. S-PUC effect enabled (haven't tested yet. couldn't be bothered to try lol)
+3. Player Radar enabled
+4. Single Battle mode enabled (haven't tested, idk if it works as is)
+5. Added stamp events
+	- 2023 appeal card stamp event
+	- 11th anniversary appeal card stamp event
+6. Added the remaining BPL weekly song toggles
+7. Added Valkyrie Generator Vol. 10 and Vol. 11
+8. Added Premium Generator Vol. 2
+9. Valkyrie Generator Volumes 1 to 5 can now be rolled in WebUI
+10. Added Arena Station 6 and 7.
+11. Updated MISSING_SONGS to include the new licensed songs (HIMEHINA, Synthion, etc.)
+
+### Fixes:
+
+1. Updated songNum from 2000 to 3000 since the mdb now passed 2000 music IDs (for use of Unlock All Songs option; otherwise it will base on the music_db.json in the assets file)
+2. Updated rival feature to include r.exscore (fixes some crashes in song select screen)
+
+### Todo:
+
+1. BPL Season 2 Special Stamp Event Implementation
+	- All songs on the stamp event selection screen should be completed and unlocked for SuddeИDeath to appear. Still don't know how to implement that.
+2. Figure out how to use image (png) files to appear in information/news popup.
+3. Implement BPL Supporter banner
 
 ## fork-6.0.0.2
 

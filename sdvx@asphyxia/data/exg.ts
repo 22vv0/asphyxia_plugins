@@ -37,7 +37,9 @@ export const EVENT6 = [
   'VALGENE_ENABLE',
   'ARENA_ENABLE',
   'DISP_PASELI_BANNER',
-  'S_PUC_EFFECT_ENABLE'
+  'S_PUC_EFFECT_ENABLE',
+  'PLAYER_RADAR_ENABLE',
+  'SINGLE_BATTLE_ENABLE'
 ];
 
 export const INFORMATION6 = {
@@ -48,7 +50,8 @@ export const INFORMATION6 = {
   '2022081600': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]'],
   '2022083000': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
   '2022101800': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
-  '2022122001': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]']
+  '2022122001': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
+  // '2023042500': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]']
 }
 
 export const MISSINGSONGS6 = [
@@ -59,7 +62,10 @@ export const MISSINGSONGS6 = [
 
   // 0726 - 1018
   '1857', '1858', '1860', '1861', '1862', '1856', '1859', '1863', '1864', '1865',
-  '1903', '1904', '1911', '1916', '1917'
+  '1903', '1904', '1911', '1916', '1917',
+
+  // 230228 - 230425
+  '1960', '1961', '1962', '2028', '2029', '1912', '1913', '2030'
 ]
 
 export const STAMP_EVENTS6 = {
@@ -259,13 +265,121 @@ export const STAMP_EVENTS6 = {
         }
       ]
     }
-  }
+  },
+  '11thanniv': {
+    'type': 'main',
+    'info': {
+      'id': 0,
+      'stmpSlHd': '',
+      'stmpSlFt': '',
+      'stmpHd': '[sz:22]SPECIAL STAMP BONUS',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/1 ~ 1/9',
+      'stmpBg': '',
+      'data': [
+        {
+          'stmpid': 13,
+          'bnr': '',
+          'stps': 1,
+          'stprwrd': [
+            ['1', 'appeal', '5523', '']
+          ]
+        }
+      ]
+    }
+  },
+  'bpl2022stamp': {
+    'type': 'select',
+    'info': {
+      'id': 3,
+      'num2': -1,
+      'stmpSlHd': '[sz:22][c:FFA6AA]BEMANI PRO LEAGUE -SEASON 2- SPECIAL STAMP',
+      'stmpSlFt': '[sz:23]{TextStamp}[br:5]{TextTerm} 2023/03/30~2023/05/07',
+      'stmpHd': '[sz:22][c:DAC491]BEMANI PRO LEAGUE -SEASON 2- SPECIAL STAMP',
+      'stmpFt': '[sz:22]YOU CAN GET STAMPS BY PLAYING SDVX!',
+      'stmpBg': 'bg_stamp_bpl',
+      'data': [
+        {
+          'stmpid': 14,
+          'bnr': 'sheet_track_1919',
+          'stps': 15,
+          'stprwrd': [
+            ['15', 'track', '1919', '23']
+          ]
+        },
+        {
+          'stmpid': 15,
+          'bnr': 'sheet_track_1920',
+          'stps': 15,
+          'stprwrd': [
+            ['15', 'track', '1920', '23']
+          ]
+        },
+        {
+          'stmpid': 16,
+          'bnr': 'sheet_track_1921',
+          'stps': 15,
+          'stprwrd': [
+            ['15', 'track', '1921', '23']
+          ]
+        },
+        {
+          'stmpid': 17,
+          'bnr': 'sheet_track_1922',
+          'stps': 15,
+          'stprwrd': [
+            ['15', 'track', '1922', '23']
+          ]
+        },
+        {
+          'stmpid': 18,
+          'bnr': 'sheet_track_1923',
+          'stps': 15,
+          'stprwrd': [
+            ['15', 'track', '1923', '23']
+          ]
+        },
+        {
+          'stmpid': 19,
+          'bnr': 'sheet_track_1924',
+          'stps': 15,
+          'stprwrd': [
+            ['15', 'track', '1924', '23']
+          ]
+        },
+        {
+          'stmpid': 20,
+          'bnr': 'sheet_track_1925',
+          'stps': 15,
+          'stprwrd': [
+            ['15', 'track', '1925', '23']
+          ]
+        },
+        {
+          'stmpid': 21,
+          'bnr': 'sheet_track_1926',
+          'stps': 15,
+          'stprwrd': [
+            ['15', 'track', '1926', '23']
+          ]
+        },
+        {
+          'stmpid': 22,
+          'bnr': 'sheet_track_1938',
+          'stps': 30,
+          'stprwrd': [
+            ['30', 'track', '1938', '23']
+          ]
+        }
+      ]
+    }
+  },
 }
 
 export const EVENT_SONGS6 = {
   // X-Record songs
   'xrecord_1': ['1736', '1737', '1738'],
-  'xrecord_2': ['1848', '1847', '1849'],
+  'xrecord_2': ['1847', '1848', '1849'],
+  'xrecord_3': ['1980', '1978', '1979'],
   // Konaste songs
   'konasute_1': ['1762'],
   'konasute_2': ['1763'],
@@ -288,13 +402,21 @@ export const EVENT_SONGS6 = {
   "bpl2022_3": ['1956', '1949'],
   "bpl2022_4": ['1946', '1958'],
   "bpl2022_5": ['1957', '1955'],
-  "bpl2022_6": ['1947', '1953']
+  "bpl2022_6": ['1947', '1953'],
+  "bpl2022_7": ['1950', '1944'],
+  "bpl2022_8": ['1945', '1954'],
+  "bpl2022_9": ['1942'],
+  "bpl2022_10": ['1939'],
+  "bpl2022_11": ['1940'],
+  "bpl2022_12": ['1941'],
+
 }
 
 export const RESTRICTED_SONGS6 = {
   // X-Record songs
   'xrecord_1': ['1736', '1737', '1738'],
-  'xrecord_2': ['1848', '1847', '1849'],
+  'xrecord_2': ['1847', '1848', '1849'],
+  'xrecord_3': ['1980', '1978', '1979'],
   // Konaste songs
   'konasute_1': ['1762'],
   'konasute_2': ['1763'],
@@ -317,7 +439,13 @@ export const RESTRICTED_SONGS6 = {
   "bpl2022_3": ['1956', '1949'],
   "bpl2022_4": ['1946', '1958'],
   "bpl2022_5": ['1957', '1955'],
-  "bpl2022_6": ['1947', '1953']
+  "bpl2022_6": ['1947', '1953'],
+  "bpl2022_7": ['1950', '1944'],
+  "bpl2022_8": ['1945', '1954'],
+  "bpl2022_9": ['1942'],
+  "bpl2022_10": ['1939'],
+  "bpl2022_11": ['1940'],
+  "bpl2022_12": ['1941'],
 }
 
 export const APRILFOOLSSONGS = [
@@ -327,7 +455,7 @@ export const APRILFOOLSSONGS = [
 export const VALKYRIE_SONGS = [
   '1744', '1672', // Valk exclusives 
   '1855', '1742', '1743', '1745',  // Arena station songs
-  '1736', '1737', '1738', '1848', '1847', '1849' // X-record
+  '1736', '1737', '1738', '1847', '1848', '1849', '1980', '1978', '1979' // X-record
 ]
 
 export const ARENA = {
@@ -824,6 +952,155 @@ export const ARENA = {
         param: 8,
       }
     ]
+  },
+  'Set 7 (04/27/23)': {
+    details: {
+      // season: 4,
+      time_start: BigInt(Date.parse('27 Apr 2023 00:00:00 GMT')),
+      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_start: BigInt(Date.parse('27 Apr 2023 00:00:00 GMT')),
+      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      is_open: 1,
+      is_shop: 1
+    },
+    arena_items: [
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 15000,
+        item_type: 11,
+        item_id: 122,
+        param: 1,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 15000,
+        item_type: 11,
+        item_id: 123,
+        param: 1,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 786,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 787,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 788,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 789,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 790,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 610,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 1902,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 381,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 633,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 332,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 711,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 871,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 872,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 64,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 88,
+        param: 8,
+      }
+    ]
   }
   // 'debug': {
   //   details: {
@@ -906,7 +1183,12 @@ export const VALGENE = {
     {
       valgene_name: "ヴァルキリージェネレーター　第10弾",
       valgene_name_english: "Valkyrie Generator Vol. 10",
-      valgene_id: 9
+      valgene_id: 10
+    },
+    {
+      valgene_name: "ヴァルキリージェネレーター　第11弾",
+      valgene_name_english: "Valkyrie Generator Vol. 11",
+      valgene_id: 11
     }
   ],
   rarity: {
@@ -1142,23 +1424,44 @@ export const VALGENE = {
       volume: 10,
       items: [
         {
-          type: 17, // chat stamp
+          type: 17,
           item_ids: [120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150]
         },
         {
-          type: 18,  // submonitor bg
+          type: 18,
           item_ids: [224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237]
         },
         {
-          type: 19, // bgm
+          type: 19,
           item_ids: [48, 49, 50, 51]
         },
         {
-          type: 20, // nemsys
+          type: 20,
           item_ids: [33, 34]
         }
       ]
     },
+    {
+      volume: 11,
+      items: [
+        {
+          type: 17,
+          item_ids: [163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193]
+        },
+        {
+          type: 18,
+          item_ids: [273, 274, 275, 276, 277, 278, 279, 280]
+        },
+        {
+          type: 19,
+          item_ids: [52, 53, 54, 55, 56, 57, 58, 59]
+        },
+        {
+          type: 20,
+          item_ids: [35, 36, 37, 38, 39, 40, 41, 42]
+        }
+      ]
+    }
   ]
 }
 
@@ -1178,6 +1481,15 @@ export const PREGENE = [
       'crew': [134],
       'stamp': [110, 111, 112, 113, 114, 115, 116, 117, 118, 119],
       'subbg': [200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223]
+    },
+    probability: [0.01, 0.39, 0.6]
+  },
+  {
+    id: 3,
+    items: {
+      'crew': [136, 137, 138],
+      'stamp': [151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162],
+      'subbg': [238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272]
     },
     probability: [0.01, 0.39, 0.6]
   }

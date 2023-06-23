@@ -6,8 +6,9 @@
             "enabled": false,
             "name": "X-record",
             "info": [
-                "1st set of songs from X-record; originally unlocked by playing either SOUND VOLTEX on the Valkyrie model, or beatmaniaIIDX on the Lightning model.<br>Enable this option to have them automatically unlocked and saved to your account.",
-                "2nd set of songs from X-record; originally unlocked by playing either SOUND VOLTEX on the Valkyrie model, or beatmaniaIIDX on the Lightning model.<br>Enable this option to have them automatically unlocked and saved to your account."
+                "1st set of songs from X-record; originally unlocked by playing either SOUND VOLTEX on the Valkyrie model, or beatmaniaIIDX on the Lightning model.<br>Not implemented yet",
+                "2nd set of songs from X-record; originally unlocked by playing either SOUND VOLTEX on the Valkyrie model, or beatmaniaIIDX on the Lightning model.<br>Not implemented yet",
+                "2nd set of songs from X-record; originally unlocked by playing either SOUND VOLTEX on the Valkyrie model, or beatmaniaIIDX on the Lightning model.<br>Not implemented yet"
             ]
         },
         {
@@ -42,7 +43,7 @@
             "type": "stamp",
             "enabled": true,
             "name": "SOUND VOLTEX 10th Anniversary",
-            "info": "Stamp event to unlock 7 songs.<br>Toggle this on to enable this stamp event."
+            "info": "Stamp event to unlock 7 songs in any order.<br>Toggle this on to enable this stamp event."
         },
         {
             "id": "reflecstamp",
@@ -64,17 +65,18 @@
             "enabled": true,
             "name": "BEMANI PRO LEAGUE -SEASON 2-! Original Song",
             "info": [
-                "Week 1 songs: 'Chat perché' and 'WINNING ROAD'<br>Enable this option to have these songs unlocked on the next login. Otherwise, the songs are still unlockable through BLASTER GATE.",
-                "Week 2 songs: 'ENDGAME' and 'ИADIR'<br>Enable this option to have these songs unlocked on the next login. Otherwise, the songs are still unlockable through BLASTER GATE.",
-                "Week 3 songs: 'Ice Fortress' and 'MURASAME'<br>Enable this option to have these songs unlocked on the next login. Otherwise, the songs are still unlockable through BLASTER GATE.",
-                "Week 4 songs: 'Initiating League' and 'Scat Jazz Dance'<br>Enable this option to have these songs unlocked on the next login. Otherwise, the songs are still unlockable through BLASTER GATE.",
-                "Week 5 songs: '最果ての勇者にラブソングを' and '灼ナル刃、破カヰ譜'<br>Enable this option to have these songs unlocked on the next login. Otherwise, the songs are still unlockable through BLASTER GATE.",
-                "Week 6 songs: 'Fl0ating:' and 'Petit espoir'<br>Enable this option to have these songs unlocked on the next login. Otherwise, the songs are still unlockable through BLASTER GATE.",
-                "Week 7 songs: 'Paradigm Shift' and 'イグノアザーズ'<br>Enable this option to have these songs unlocked on the next login. Otherwise, the songs are still unlockable through BLASTER GATE.",
-                "Week 8 songs: 'Thousand Triggers' and 'trea→journey'<br>Enable this option to have these songs unlocked on the next login. Otherwise, the songs are still unlockable through BLASTER GATE.",
-                "Week 9 songs: 'MILITARY R04D'<br>Enable this option to have this song unlocked on the next login. Otherwise, the songs are still unlockable through BLASTER GATE.",
-                "Week 10 songs: 'DEUX EX MĀXHINĀ'<br>Enable this option to have this song unlocked on the next login. Otherwise, the songs are still unlockable through BLASTER GATE.",
-                "Week 11 songs: 'All We Need is HAPPY END!!!'<br>Enable this option to have this song unlocked on the next login. Otherwise, the songs are still unlockable through BLASTER GATE."
+                "Toggle to have the songs from the 1st week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.<br>Songs: 'Chat perché' and 'WINNING ROAD'",
+                "Toggle to have the songs from the 2nd week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.<br>Songs: 'ENDGAME' and 'ИADIR'",
+                "Toggle to have the songs from the 3rd week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.<br>Songs: 'Ice Fortress' and 'MURASAME'",
+                "Toggle to have the songs from the 4th week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.<br>Songs: 'Initiating League' and 'Scat Jazz Dance'",
+                "Toggle to have the songs from the 5th week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.<br>Songs: '最果ての勇者にラブソングを' and '灼ナル刃、破カヰ譜'",
+                "Toggle to have the songs from the 6th week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.<br>Songs: 'Fl0ating:' and 'Petit espoir'",
+                "Toggle to have the songs from the 7th week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.<br>Songs: 'Paradigm Shift' and 'イグノアザーズ'",
+                "Toggle to have the songs from the 8th week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.<br>Songs: 'Thousand Triggers' and 'trea→journey'",
+                "Toggle to have the song from the 9th week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.<br>Song: 'MILITARY R04D'",
+                "Toggle to have the song from the 10th week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.<br>Song: 'DEUX EX MĀXHINĀ'",
+                "Toggle to have the song from the 11th week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.<br>Song: 'All We Need is HAPPY END!!!'",
+                "Toggle to have the song from the 12th week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.<br>Song: 'Glory of Fighters'"
             ]
         },
         {
@@ -97,6 +99,20 @@
             "enabled": true,
             "name": "HIMEHINAコラボイベント | HIMEHINA Collab Stamp Event",
             "info": "Stamp event to unlock the HIMEHINA crew.<br>Toggle this on to enable this stamp event."
+        },
+        {
+            "id": "11thanniv",
+            "type": "stamp",
+            "enabled": true,
+            "name": "ボルテ11周年★記念限定カード | SOUND VOLTEX 11th Anniversary Stamp Event",
+            "info": "Stamp event to unlock the ボルテ11周年★記念限定カード appeal card to commemorate 11 years of SOUND VOLTEX.<br>Toggle this on to enable this stamp event."
+        },
+        {
+            "id": "bpl2022stamp",
+            "type": "stamp",
+            "enabled": false,
+            "name": "Commemorating BEMANI PRO LEAGUE -SEASON 2-! Original Song Contest Special Stamp Event",
+            "info": "Stamp event to unlock 9 songs, including SuddeИDeath. Songs can be unlocked in any order, except for SuddeИDeath, which will be available to unlock once all the other songs are unlocked.<br>Toggle this on to enable this stamp event."
         }
     ]
 }
