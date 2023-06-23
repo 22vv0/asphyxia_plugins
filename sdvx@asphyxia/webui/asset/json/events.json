@@ -98,7 +98,7 @@
             "type": "stamp",
             "enabled": true,
             "name": "HIMEHINAコラボイベント | HIMEHINA Collab Stamp Event",
-            "info": "Stamp event to unlock the HIMEHINA crew.<br>Toggle this on to enable this stamp event."
+            "info": "Stamp event to unlock the HIMEHINA crew. Both can be unlocked in any order.<br>Toggle this on to enable this stamp event."
         },
         {
             "id": "11thanniv",
