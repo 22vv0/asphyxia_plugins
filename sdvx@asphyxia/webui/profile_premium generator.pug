@@ -9,6 +9,8 @@
 
   prem_items_nemsys: DB.Find(refid, { collection:"item",type:20 })
 
+  prem_items_sysbg: DB.Find(refid, { collection:"item",type:21 })
+
   unlock_all: U.GetConfig('unlock_all_valk_items')
 
 -
@@ -48,6 +50,7 @@ div(hidden id='data-pass-stamp') !{JSON.stringify(prem_items_stamp)}
 div(hidden id='data-pass-subbg') !{JSON.stringify(prem_items_subbg)}
 div(hidden id='data-pass-bgm') !{JSON.stringify(prem_items_bgm)}
 div(hidden id='data-pass-nemsys') !{JSON.stringify(prem_items_nemsys)}
+div(hidden id='data-pass-sysbg') !{JSON.stringify(prem_items_sysbg)}
 div(hidden id='data-pass-unlock-all') !{unlock_all}
 div(hidden id='generator-edition') premium
 script(src="static/asset/js/generator.js") 

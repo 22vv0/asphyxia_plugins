@@ -11,6 +11,8 @@
 
   items_nemsys: DB.Find(refid, { collection:"item",type:20 })
 
+  items_sysbg: DB.Find(refid, { collection:"item",type:21 })
+
   unlock_all: U.GetConfig('unlock_all_valk_items')
 
 -
@@ -57,6 +59,11 @@ div
                     select(name="akaname" id="akaname_select")
           //.control
             input.input(type="number" step=1 name="akaname", placeholder=profile.akaname)//
+        .field
+          label.label BPL Team Supporter
+          .control.is-expanded 
+                  .select.is-fullwidth
+                    select(name="bplSupport" id="bplsupport_select")
         br
         div(style="font-size:26px;font-weight:bold;vertical-align:top; overflow-wrap: break-word;word-break: break-all;") EXCEED GEAR VALKYRIE GENERATOR CUSTOMIZATION
           .tile.is-ancestor
@@ -87,6 +94,11 @@ div
                     .select.is-fullwidth
                       select(name="bgm")
                     //input.input(type="number" step=1 name="bgm", placeholder=profile.bgm)
+                .field
+                  label.label System Background
+                  .control
+                    .select.is-fullwidth
+                      select(name="sysBG" id="sysbg_select")
                 .field
                   label.label AStamp
                     //span.icon.has-tooltip-right(data-tooltip="Check \"data/graphics/chat_stamp\" 000X_0Y => 4*(X-1)+Y=StampID stamp_0000_01~04 is not usable!!!")
@@ -177,5 +189,6 @@ div(hidden id='data-pass-stamp') !{JSON.stringify(items_stamp)}
 div(hidden id='data-pass-subbg') !{JSON.stringify(items_subbg)}
 div(hidden id='data-pass-bgm') !{JSON.stringify(items_bgm)}
 div(hidden id='data-pass-nemsys') !{JSON.stringify(items_nemsys)}
+div(hidden id='data-pass-sysbg') !{JSON.stringify(items_sysbg)}
 div(hidden id='data-pass-unlock-all') !{unlock_all}
 script(src="static/asset/js/preview.js") 

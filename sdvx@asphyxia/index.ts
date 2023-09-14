@@ -1,4 +1,4 @@
-import {common,log,unhandledt} from './handlers/common';
+import {common, log} from './handlers/common';
 import {hiscore, rival, saveMix, loadMix, globalMatch} from './handlers/features';
 import {
   updateProfile,
@@ -36,12 +36,12 @@ export function register() {
   // R.Config('new_year_special',{ type: 'boolean', default: false, name:'Use New Year Special', desc:'Enable New Year Special BGM for login (doesn\'t work right now)'});
   // R.Config('april_fools',{ type: 'boolean', default: false, name:'April Fools', desc:'Enable April Fools Event (doesn\'t work properly right now)'});
   R.Config('use_blasterpass',{ type: 'boolean', default: true, name:'Use Blaster Pass', desc:'Enable Blaster Pass for VW and EG'});
-  R.Config('unlock_all_valk_items', { type: 'boolean', default: false, name:'Unlock All Valkyrie and Premium Items', desc: 'Unlock Nemsys, BGM, Submonitor BG and Stamp Items (Valk crews not included; check \'unlock all navigators\' option)'});
+  R.Config('unlock_all_valk_items', { type: 'boolean', default: false, name:'Unlock All Valkyrie and Premium Items', desc: 'Unlock Nemsys, BGM, Submonitor BG, System BG and Stamp Items (Valk crews not included; check \'unlock all navigators\' option)'});
   R.Config('unlock_all_songs', { type: 'boolean', default: false, name:'Unlock All Songs'});
   R.Config('unlock_all_navigators', { type: 'boolean', default: false, name:'Unlock All Navigators'} );
   R.Config('unlock_all_appeal_cards', { type: 'boolean', default: false, name:'Unlock All Appeal Cards'});
   R.Config('sdvx_eg_root_dir', { type: 'string', needRestart: true, default: '', name: 'Exceed Gear Data Directory', desc: 'The root directory of your SDVX Exceed Gear game files (for asset copying)'});
-  R.Config('use_information' ,{ type: 'boolean', default: true, name:'Use Information', desc:'Enable the information section after entry.'});
+  R.Config('use_information' ,{ type: 'boolean', default: true, name:'Use Asphyxia Information', desc:'Enable the Asphyxia information section after entry. Otherwise, it will try to look for official information data and display them.'});
   R.Config('use_asphyxia_gameover',{ type: 'boolean', default: true, name:'Use Asphyxia Gameover', desc:'Enable the Asphyxia gameover message after ending the game.'})
 
   R.WebUIEvent('copyResourcesFromGame', copyResourcesFromGame);
@@ -98,16 +98,6 @@ export function register() {
   MultiRoute('entry_e', true);
   MultiRoute('exception', true);
   MultiRoute('log',log);
-
-  /*
-  print_h
-  sample
-  save_campaign
-  save_fi
-  save_pb
-  save_valgene - DONE
-  serial
-  */
  
   R.Route('eventlog.write', (_, __, send) => send.object({
     gamesession: K.ITEM('s64', BigInt(1)),
@@ -126,8 +116,4 @@ export function register() {
     //logerrlevel: K.ITEM('s32', 0),
     //evtidnosendflg: K.ITEM('s32', 0)
   }));
-
-
-  // R.Unhandled();
-  R.Unhandled(unhandledt);
 }

@@ -1,0 +1,58 @@
+{
+	"supportTeams": [
+		{
+			"id": 0,
+			"name": "None"
+		},
+		{
+			"id": 1,
+			"name": "APINA VRAMeS"
+		},
+		{
+			"id": 2,
+			"name": "GiGO"
+		},
+		{
+			"id": 3,
+			"name": "GamePanic"
+		},
+		{
+			"id": 4,
+			"name": "Silk Hat"
+		},
+		{
+			"id": 5,
+			"name": "SUPERNOVA Tohoku"
+		},
+		{
+			"id": 6,
+			"name": "TAITO STATION Tradz"
+		},
+		{
+			"id": 7,
+			"name": "ROUND1"
+		},
+		{
+			"id": 8,
+			"name": "Leisureland"
+		}
+	],
+	"sysbg": [
+		{
+			"id": 0,
+			"name": "Default"
+		},
+		{
+			"id": 1,
+			"name": "BOOTH"
+		},
+		{
+			"id": 2,
+			"name": "Infinite Infection"
+		},
+		{
+			"id": 3,
+			"name": "Gravity Wars"
+		}
+	]
+}

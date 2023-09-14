@@ -5,7 +5,9 @@ export interface CourseRecord {
 
   sid: number;
   cid: number;
+  stype: number;
   score: number;
+  exscore: number;
   clear: number;
   grade: number;
   rate: number;

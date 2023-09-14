@@ -9,6 +9,7 @@ export const updateProfile = async (data: {
   name?: string;
   appeal?: string;
   akaname?: string;
+  bplSupport?: string;
   nemsys?: string;
   bgm?: string;
   subbg?: string;
@@ -16,6 +17,7 @@ export const updateProfile = async (data: {
   stampB?: string;
   stampC?: string;
   stampD?: string;
+  sysBG?: string;
 }) => {
   if (data.refid == null) return;
 
@@ -42,6 +44,11 @@ export const updateProfile = async (data: {
   if (data.nemsys && data.nemsys.length > 0) {
     const validNemsys = parseInt(data.nemsys);
     if (!_.isNaN(validNemsys)) update.nemsys = validNemsys;
+  }
+
+  if (data.bplSupport && data.bplSupport.length > 0) {
+    const validBplSupport = parseInt(data.bplSupport);
+    if (!_.isNaN(validBplSupport)) update.bplSupport = validBplSupport;
   }
 
   if (data.subbg && data.subbg.length > 0) {
@@ -72,6 +79,12 @@ export const updateProfile = async (data: {
   if (data.stampD && data.stampD.length > 0) {
     const validStampD = parseInt(data.stampD);
     if (!_.isNaN(validStampD)) update.stampD = validStampD;
+  }
+
+  if (data.sysBG && data.sysBG.length > 0) {
+    console.log(data.sysBG)
+    const validSysBG = parseInt(data.sysBG);
+    if (!_.isNaN(validSysBG)) update.sysBG = validSysBG;
   }
 
   await DB.Update<Profile>(
@@ -157,7 +170,7 @@ export const deleteMix = async (data: { code: string }) => {
 };
 
 
-export const copyResourcesFromGame = async (data: {}) => {
+export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
   let mdbJsonFix = [];
   let mdbJsonFixFinal;
   let newJsonSongs = [];
@@ -281,10 +294,6 @@ export const copyResourcesFromGame = async (data: {}) => {
       }
     };
     IO.WriteFile('webui/asset/json/music_db.json', JSON.stringify(mdbJsonFixFinal, null, 4));
-    if(!IO.Exists('webui/asset/json/music_db_' + version + '.json')){
-      IO.WriteFile('webui/asset/json/music_db_' + version + '.json', JSON.stringify(mdbJsonFixFinal, null, 4));
-    }
-
   } else {
     console.log('Error reading music_db.xml. Check your "Exceed Gear Data Directory" config.')
     runErrors.push('[music_db] Error reading music_db.xml. Check your "Exceed Gear Data Directory" config.')
@@ -456,7 +465,9 @@ export const copyResourcesFromGame = async (data: {}) => {
 
   await IO.WriteFile('webui/asset/json/data.json', JSON.stringify(resourceJsonData, null, 4))
   await IO.WriteFile('webui/asset/json/appeal.json', JSON.stringify(apCardJsonData, null, 4))
-  await IO.WriteFile('webui/asset/logs/copyResourcesFromGame.json', JSON.stringify({
+  send.json(
+    {
+    status: 'ok',
     akaname: newAkanames,
     nemsys: newNemsysData,
     apCard: newAPCardData,
@@ -468,21 +479,23 @@ export const copyResourcesFromGame = async (data: {}) => {
     jsonSongs: newJsonSongs.sort((a, b) => a[0] - b[0]),
     xcdSongs: newXCDSongs.sort((a, b) => a[0] - b[0]),
     errors: runErrors
-  }, null, 4))
+  }
+  )
 }
 
 export const preGeneRoll = async (data: {
   set: number,
   refid: string,
   items: []
-}) => {
+}, send: WebUISend) => {
 
   let itemId = {
     'crew': 11,
     'stamp': 17,
     'subbg': 18,
     'bgm': 19,
-    'nemsys': 20
+    'nemsys': 20,
+    'sysbg': 21
   }
   let preGeneSet = PREGENE.find(itemSet => itemSet.id === data.set)
   let finishedRolling = false
@@ -529,8 +542,14 @@ export const preGeneRoll = async (data: {
           )
         }
         let finalItemType = (Object.keys(preGeneSet.items)[rollWhat] === 'subbg') ? 'bg' : Object.keys(preGeneSet.items)[rollWhat]
-        await IO.WriteFile('webui/asset/logs/preGeneRollResult.json', JSON.stringify({'id': unobtainedItems[randomItemIndex], 'type': finalItemType}))
         finishedRolling = true
+        send.json(
+          {
+            status: 'ok',
+            id: unobtainedItems[randomItemIndex],
+            type: finalItemType
+          }
+        )
       } else {
         console.log("No more " + Object.keys(preGeneSet.items)[rollWhat] + " items to get, will re-roll.")
       }

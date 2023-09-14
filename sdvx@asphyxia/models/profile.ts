@@ -41,8 +41,19 @@ export interface Profile {
   stampB: number;
   stampC: number;
   stampD: number;
+  sysBG: number;
 
   boothFrame: number[];
 
   playCount: number;
+  dayCount: number;
+  todayCount: number;
+  playchain: number;
+  maxPlayChain: number;
+  weekCount: number;
+  weekPlayCount: number;
+  weekChain: number;
+  maxWeekChain: number;
+
+  bplSupport: number;
 }

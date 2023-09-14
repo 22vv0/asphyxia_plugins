@@ -32,14 +32,15 @@ export const EVENT6 = [
   'CREW_SELECT_ABLE',
   'PREMIUM_TIME_ENABLE',
   'OMEGA_ENABLE\t1,2,3,4,5,6,7,8,9',
-  'HEXA_ENABLE\t1,2,3,4,5,6,7',
+  'HEXA_ENABLE\t1,2,3,4,5,6,7,8,9',
   'MEGAMIX_ENABLE',
   'VALGENE_ENABLE',
   'ARENA_ENABLE',
   'DISP_PASELI_BANNER',
   'S_PUC_EFFECT_ENABLE',
   'PLAYER_RADAR_ENABLE',
-  'SINGLE_BATTLE_ENABLE'
+  'SINGLE_BATTLE_ENABLE',
+  // 'DEMOLOOP_INFORMATION',
 ];
 
 export const INFORMATION6 = {
@@ -51,10 +52,10 @@ export const INFORMATION6 = {
   '2022083000': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
   '2022101800': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
   '2022122001': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
-  // '2023042500': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]']
+  '2023091200': ['[img:ver06/info_psd.ifs:230831_info_generator]', '[img:ver06/info_psd.ifs:230914_hexadiver]']
 }
 
-export const MISSINGSONGS6 = [
+export const LICENSED_SONGS6 = [
   '1471', '1477', '1634', '1635', '1636', '1637', '1649', '1650', '1653', '1654',
   '1655', '1657', '1658', '1739', '1740', '1741', '1744', '1753', '1754', '1755', 
   '1756', '1757', '1758', '1759', '1760', '1761', '1810', '1813', '1814', '1821', 
@@ -65,7 +66,10 @@ export const MISSINGSONGS6 = [
   '1903', '1904', '1911', '1916', '1917',
 
   // 230228 - 230425
-  '1960', '1961', '1962', '2028', '2029', '1912', '1913', '2030'
+  '1960', '1961', '1962', '2028', '2029', '1912', '1913', '2030',
+
+  // 230518 - 230912
+  '2031', '2032', '2033', '2034', '2035', '2036', '1905', '1882', '2058'
 ]
 
 export const STAMP_EVENTS6 = {
@@ -74,9 +78,9 @@ export const STAMP_EVENTS6 = {
     'info': {
       'id': 1,
       'stmpSlHd': '[sz:22][c:FFA6AA]SOUND VOLTEX 10th Anniversary',
-      'stmpSlFt': '[sz:23]期間 2022/01/18~2022/03/21',
+      'stmpSlFt': '[sz:23]期間 2022/01/18～2022/03/21',
       'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
-      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/18~3/21',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/18～3/21',
       'stmpBg': 'bg_stamp_anniversary_10th',
       'data': [
         {
@@ -145,7 +149,7 @@ export const STAMP_EVENTS6 = {
       'stmpSlHd': '',
       'stmpSlFt': '',
       'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
-      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 3/30 ~ 5/8',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 3/30～5/8',
       'stmpBg': '',
       'data': [
         {
@@ -170,7 +174,7 @@ export const STAMP_EVENTS6 = {
       'stmpSlHd': '',
       'stmpSlFt': '',
       'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
-      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 12/8 ~ 1/15',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 12/8～1/15',
       'stmpBg': '',
       'data': [
         {
@@ -195,7 +199,7 @@ export const STAMP_EVENTS6 = {
       'stmpSlHd': '',
       'stmpSlFt': '',
       'stmpHd': '[sz:22]SPECIAL STAMP BONUS',
-      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/1 ~ 1/9',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/1～1/9',
       'stmpBg': '',
       'data': [
         {
@@ -214,9 +218,9 @@ export const STAMP_EVENTS6 = {
     'info': {
       'id': 2,
       'stmpSlHd': '[sz:22][c:FFA6AA]HIMEHINAコラボ開催中!',
-      'stmpSlFt': '[sz:23]期間 2022/04/07~2022/05/08',
+      'stmpSlFt': '[sz:23]期間 2022/04/07～2022/05/08',
       'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
-      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 4/7 ~ 5/8',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 4/7～5/8',
       'stmpBg': 'bg_stamp_himehina',
       'data': [
         {
@@ -273,7 +277,7 @@ export const STAMP_EVENTS6 = {
       'stmpSlHd': '',
       'stmpSlFt': '',
       'stmpHd': '[sz:22]SPECIAL STAMP BONUS',
-      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/1 ~ 1/9',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/1～1/9',
       'stmpBg': '',
       'data': [
         {
@@ -291,9 +295,9 @@ export const STAMP_EVENTS6 = {
     'type': 'select',
     'info': {
       'id': 3,
-      'num2': -1,
+      'textstampval': -1,
       'stmpSlHd': '[sz:22][c:FFA6AA]BEMANI PRO LEAGUE -SEASON 2- SPECIAL STAMP',
-      'stmpSlFt': '[sz:23]{TextStamp}[br:5]{TextTerm} 2023/03/30~2023/05/07',
+      'stmpSlFt': '[sz:23]{TextStamp}[br:5]{TextTerm} 2023/03/30～2023/05/07',
       'stmpHd': '[sz:22][c:DAC491]BEMANI PRO LEAGUE -SEASON 2- SPECIAL STAMP',
       'stmpFt': '[sz:22]YOU CAN GET STAMPS BY PLAYING SDVX!',
       'stmpBg': 'bg_stamp_bpl',
@@ -373,6 +377,56 @@ export const STAMP_EVENTS6 = {
       ]
     }
   },
+  'kac2023stamp': {
+    'type': 'main',
+    'info': {
+      'id': 0,
+      'stmpSlHd': '',
+      'stmpSlFt': '',
+      'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 8/9～9/11',
+      'stmpBg': '',
+      'data': [
+        {
+          'stmpid': 23,
+          'bnr': '',
+          'stps': 10,
+          'stprwrd': [
+            ['10', 'track', '2060', '23'],
+          ]
+        }
+      ]
+    }
+  },
+  'kac2023stamp2': {
+    'type': 'select',
+    'info': {
+      'id': 4,
+      'stmpSlHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      'stmpSlFt': '[sz:23]期間 2023/09/20～2023/10/23',
+      'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 9/20～10/23',
+      'stmpBg': 'bg_stamp_kac_11th',
+      'data': [
+        {
+          'stmpid': 24,
+          'bnr': 'sheet_track_2061',
+          'stps': 10,
+          'stprwrd': [
+            ['10', 'track', '2061', '23']
+          ]
+        },
+        {
+          'stmpid': 25,
+          'bnr': 'sheet_track_2062',
+          'stps': 10,
+          'stprwrd': [
+            ['10', 'track', '2062', '23']
+          ]
+        }
+      ]
+    }
+  }
 }
 
 export const EVENT_SONGS6 = {
@@ -409,43 +463,14 @@ export const EVENT_SONGS6 = {
   "bpl2022_10": ['1939'],
   "bpl2022_11": ['1940'],
   "bpl2022_12": ['1941'],
-
-}
-
-export const RESTRICTED_SONGS6 = {
-  // X-Record songs
-  'xrecord_1': ['1736', '1737', '1738'],
-  'xrecord_2': ['1847', '1848', '1849'],
-  'xrecord_3': ['1980', '1978', '1979'],
-  // Konaste songs
-  'konasute_1': ['1762'],
-  'konasute_2': ['1763'],
-  'konasute_3': ['1764'],
-  'konasute_4': ['1765'],
-  'konasute_5': ['1811'],
-  // BPL2021 songs
-  'bpl2021': ['1808', '1809'],
-  // BSB2021 songs
-  'bsb2021': ['1802', '1803', '1804', '1805', '1806', '1807'],
-  // SDVX 10th anniversary stamp event songs
-  'sdvx10thstamp': ['1838', '1839', '1840', '1841', '1842', '1843', '1844'],
-  // REFLECT BEAT stamp event songs
-  'reflecstamp': ['1850', '1851', '1852', '1853', '1854'],
-  // BEMANI ichika 2022 event songs
-  'gmz2022': ['1906', '1907', '1908', '1909', '1910'],
-  // BPL2022 songs
-  "bpl2022_1": ['1952', '1943'],
-  "bpl2022_2": ['1948', '1951'],
-  "bpl2022_3": ['1956', '1949'],
-  "bpl2022_4": ['1946', '1958'],
-  "bpl2022_5": ['1957', '1955'],
-  "bpl2022_6": ['1947', '1953'],
-  "bpl2022_7": ['1950', '1944'],
-  "bpl2022_8": ['1945', '1954'],
-  "bpl2022_9": ['1942'],
-  "bpl2022_10": ['1939'],
-  "bpl2022_11": ['1940'],
-  "bpl2022_12": ['1941'],
+  // KAC2023
+  "kac2023perfecteater": ['2059'],
+  "kac2023stamp": ['2060'],
+  "kac2023stamp2": ['2061', '2062'],
+  // BPL S3 Triple Tribe
+  "bpls3songs_1": ['2063'],
+  "bpls3songs_2": ['2064'],
+  "bpls3songs_3": ['2065']
 }
 
 export const APRILFOOLSSONGS = [
@@ -453,8 +478,8 @@ export const APRILFOOLSSONGS = [
 ]
 
 export const VALKYRIE_SONGS = [
-  '1744', '1672', // Valk exclusives 
-  '1855', '1742', '1743', '1745',  // Arena station songs
+  '1744', '1672', '2063', '2064', '2065',  // Valk exclusives 
+  '1855', '1742', '1743', '1745', '1846',  // Arena station songs
   '1736', '1737', '1738', '1847', '1848', '1849', '1980', '1978', '1979' // X-record
 ]
 
@@ -1101,36 +1126,350 @@ export const ARENA = {
         param: 8,
       }
     ]
+  },
+  'Set 8 (06/08/23)': {
+    details: {
+      // season: 4,
+      time_start: BigInt(Date.parse('8 Jun 2023 00:00:00 GMT')),
+      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_start: BigInt(Date.parse('8 Jun 2023 00:00:00 GMT')),
+      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      is_open: 1,
+      is_shop: 1
+    },
+    arena_items: [
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 15000,
+        item_type: 11,
+        item_id: 112,
+        param: 1,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 510,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 842,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 281,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 1745,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 1742,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 632,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 37,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 239,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 111,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 132,
+        param: 8,
+      }
+    ]
+  },
+  'Set 9 (07/13/23)': {
+    details: {
+      // season: 4,
+      time_start: BigInt(Date.parse('13 Jul 2023 00:00:00 GMT')),
+      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_start: BigInt(Date.parse('13 Jul 2023 00:00:00 GMT')),
+      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      is_open: 1,
+      is_shop: 1
+    },
+    arena_items: [
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 634,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 348,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 165,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 1743,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 1846,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 342,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 131,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 612,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 8,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 323,
+        param: 8,
+      }
+    ]
+  },
+  'Set 10 (08/17/23)': {
+    details: {
+      // season: 4,
+      time_start: BigInt(Date.parse('17 Aug 2023 00:00:00 GMT')),
+      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_start: BigInt(Date.parse('17 Aug 2023 00:00:00 GMT')),
+      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      is_open: 1,
+      is_shop: 1
+    },
+    arena_items: [
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 15000,
+        item_type: 11,
+        item_id: 102,
+        param: 1,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 786,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 787,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 788,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 789,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 790,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 610,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 1902,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 1855,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 381,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 633,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 332,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 711,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 871,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 872,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 64,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 88,
+        param: 8,
+      }
+    ]
   }
-  // 'debug': {
-  //   details: {
-  //     season: 0,
-  //     time_start: BigInt(Date.parse('30 Jun 2022 00:00:00 GMT')),
-  //     time_end: BigInt(Date.parse('31 Dec 2022 23:59:59 GMT')),
-  //     shop_start: BigInt(Date.parse('30 Jun 2022 00:00:00 GMT')),
-  //     shop_end: BigInt(Date.parse('31 Dec 2022 23:59:59 GMT')),
-  //     is_open: 1,
-  //     is_shop: 1
-  //   },
-  //   arena_items: [
-  //     {
-  //       catalog_id: 1,
-  //       catalog_type: 1,
-  //       price: 1000,
-  //       item_type: 1,
-  //       item_id: 10,
-  //       param: 1,
-  //     },
-  //     {
-  //       catalog_id: 1,
-  //       catalog_type: 1,
-  //       price: 1000,
-  //       item_type: parseInt(U.GetConfig('arena_debug_item_type')),
-  //       item_id: 10,
-  //       param: 1,
-  //     }
-  //   ]
-  // }
 }
 
 export const VALGENE = {
@@ -1189,6 +1528,11 @@ export const VALGENE = {
       valgene_name: "ヴァルキリージェネレーター　第11弾",
       valgene_name_english: "Valkyrie Generator Vol. 11",
       valgene_id: 11
+    },
+    {
+      valgene_name: "ヴァルキリージェネレーター　第12弾",
+      valgene_name_english: "Valkyrie Generator Vol. 12",
+      valgene_id: 12
     }
   ],
   rarity: {
@@ -1196,7 +1540,7 @@ export const VALGENE = {
     "17": 20,
     "18": 15,
     "19": 10,
-    "20": 15
+    "20": 15,
   },
   catalog: [
     {
@@ -1461,6 +1805,31 @@ export const VALGENE = {
           item_ids: [35, 36, 37, 38, 39, 40, 41, 42]
         }
       ]
+    },
+    {
+      volume: 12,
+      items: [
+        {
+          type: 11,
+          item_ids: [141]
+        },
+        {
+          type: 17,
+          item_ids: [206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238]
+        },
+        {
+          type: 18,
+          item_ids: [347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358]
+        },
+        {
+          type: 19,
+          item_ids: [60, 61, 62, 63]
+        },
+        {
+          type: 20,
+          item_ids: [43]
+        }
+      ]
     }
   ]
 }
@@ -1492,6 +1861,34 @@ export const PREGENE = [
       'subbg': [238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272]
     },
     probability: [0.01, 0.39, 0.6]
+  },
+  {
+    id: 4,
+    items: {
+      'crew': [139],
+      'stamp': [194, 195, 196, 197, 198, 199],
+      'subbg': [281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313]
+    },
+    probability: [0.01, 0.39, 0.6]
+  },
+  {
+    id: 5,
+    items: {
+      'crew': [140],
+      'stamp': [200, 201, 202, 203, 204, 205],
+      'subbg': [314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346]
+    },
+    probability: [0.01, 0.39, 0.6]
+  },
+  {
+    id: 6,
+    items: {
+      'crew': [142],
+      'stamp': [239, 240, 241, 242, 243, 244, 245, 246, 247, 248],
+      'subbg': [359, 360, 361, 362, 363, 364, 365, 366, 367, 368],
+      'sysbg': [1, 2, 3]
+    },
+    probability: [0.01, 0.42, 0.84, 0.9]
   }
 ]
   
@@ -1500,6 +1897,7 @@ export const COURSES6 = [
     id: 1,
     name: 'SKILL ANALYZER 第1回 Aコース',
     isNew: 0,
+    hasGod: 1,
     courses: [
       {
         id: 1,
@@ -1753,7 +2151,7 @@ export const COURSES6 = [
       },
       {
         id: 11,
-        type: 0,
+        type: 1,
         name: 'SKILL ANALYZER Level.11',
         level: 11,
         nameID: 11,
@@ -1778,7 +2176,7 @@ export const COURSES6 = [
       },
       {
         id: 12,
-        type: 0,
+        type: 1,
         name: 'SKILL ANALYZER Level.∞',
         level: 12,
         nameID: 12,
@@ -1807,6 +2205,7 @@ export const COURSES6 = [
     id: 2,
     name: 'SKILL ANALYZER 第1回 Bコース',
     isNew: 0,
+    hasGod: 1,
     courses: [
       {
         id: 1,
@@ -2060,7 +2459,7 @@ export const COURSES6 = [
       },
       {
         id: 11,
-        type: 0,
+        type: 1,
         name: 'SKILL ANALYZER Level.11',
         level: 11,
         nameID: 11,
@@ -2085,7 +2484,7 @@ export const COURSES6 = [
       },
       {
         id: 12,
-        type: 0,
+        type: 1,
         name: 'SKILL ANALYZER Level.∞',
         level: 12,
         nameID: 12,
@@ -2114,6 +2513,7 @@ export const COURSES6 = [
     id: 3,
     name: 'SKILL ANALYZER 第1回 Cコース',
     isNew: 0,
+    hasGod: 1,
     courses: [
       {
         id: 1,
@@ -2371,6 +2771,7 @@ export const COURSES6 = [
     id: 4,
     name: 'SKILL ANALYZER 第2回',
     isNew: 0,
+    hasGod: 1,
     courses: [
       {
         id: 1,
@@ -2543,7 +2944,7 @@ export const COURSES6 = [
           {
             no: 2,
             mid: 1608,
-            mty: 4,
+            mty: 2,
           },
         ],
       },
@@ -2624,7 +3025,7 @@ export const COURSES6 = [
       },
       {
         id: 11,
-        type: 0,
+        type: 1,
         name: 'SKILL ANALYZER Level.11',
         level: 11,
         nameID: 11,
@@ -2649,7 +3050,7 @@ export const COURSES6 = [
       },
       {
         id: 12,
-        type: 0,
+        type: 1,
         name: 'SKILL ANALYZER Level.∞',
         level: 12,
         nameID: 12,
@@ -2671,163 +3072,14 @@ export const COURSES6 = [
             mty: 4,
           },
         ],
-      },
-      {
-        id: 7,
-        type: 0,
-        name: 'SKILL ANALYZER Level.07',
-        level: 7,
-        nameID: 7,
-        assist: 0,
-        tracks: [
-          {
-            no: 0,
-            mid: 1224,
-            mty: 2,
-          },
-          {
-            no: 1,
-            mid: 989,
-            mty: 2,
-          },
-          {
-            no: 2,
-            mid: 688,
-            mty: 2,
-          },
-        ],
-      },
-      {
-        id: 8,
-        type: 0,
-        name: 'SKILL ANALYZER Level.08',
-        level: 8,
-        nameID: 8,
-        assist: 0,
-        tracks: [
-          {
-            no: 0,
-            mid: 1201,
-            mty: 2,
-          },
-          {
-            no: 1,
-            mid: 980,
-            mty: 2,
-          },
-          {
-            no: 2,
-            mid: 900,
-            mty: 2,
-          },
-        ],
-      },
-      {
-        id: 9,
-        type: 0,
-        name: 'SKILL ANALYZER Level.09',
-        level: 9,
-        nameID: 9,
-        assist: 0,
-        tracks: [
-          {
-            no: 0,
-            mid: 1155,
-            mty: 4,
-          },
-          {
-            no: 1,
-            mid: 937,
-            mty: 4,
-          },
-          {
-            no: 2,
-            mid: 1243,
-            mty: 4,
-          },
-        ],
-      },
-      {
-        id: 10,
-        type: 0,
-        name: 'SKILL ANALYZER Level.10',
-        level: 10,
-        nameID: 10,
-        assist: 0,
-        tracks: [
-          {
-            no: 0,
-            mid: 1158,
-            mty: 4,
-          },
-          {
-            no: 1,
-            mid: 1341,
-            mty: 4,
-          },
-          {
-            no: 2,
-            mid: 1238,
-            mty: 4,
-          },
-        ],
-      },
-      {
-        id: 11,
-        type: 0,
-        name: 'SKILL ANALYZER Level.11',
-        level: 11,
-        nameID: 11,
-        assist: 0,
-        tracks: [
-          {
-            no: 0,
-            mid: 374,
-            mty: 2,
-          },
-          {
-            no: 1,
-            mid: 1277,
-            mty: 4,
-          },
-          {
-            no: 2,
-            mid: 73,
-            mty: 3,
-          },
-        ],
-      },
-      {
-        id: 12,
-        type: 0,
-        name: 'SKILL ANALYZER Level.∞',
-        level: 12,
-        nameID: 12,
-        assist: 0,
-        tracks: [
-          {
-            no: 0,
-            mid: 1101,
-            mty: 4,
-          },
-          {
-            no: 1,
-            mid: 1189,
-            mty: 4,
-          },
-          {
-            no: 2,
-            mid: 1362,
-            mty: 4,
-          },
-        ],
-      },
+      }
     ],
   },
   {
     id: 5,
     name: 'SKILL ANALYZER 第3回',
     isNew: 0,
+    hasGod: 1,
     courses: [
       {
         id: 1,
@@ -3083,7 +3335,7 @@ export const COURSES6 = [
       },
       {
         id: 11,
-        type: 0,
+        type: 1,
         name: 'SKILL ANALYZER Level.11',
         level: 11,
         nameID: 11,
@@ -3108,7 +3360,7 @@ export const COURSES6 = [
       },
       {
         id: 12,
-        type: 0,
+        type: 1,
         name: 'SKILL ANALYZER Level.∞',
         level: 12,
         nameID: 12,
@@ -3351,6 +3603,7 @@ export const COURSES6 = [
     id: 8,
     name: 'SKILL ANALYZER 第4回 Aコース',
     isNew: 0,
+    hasGod: 1,
     courses: [
       {
         id: 1,
@@ -3604,7 +3857,7 @@ export const COURSES6 = [
       },
       {
         id: 11,
-        type: 0,
+        type: 1,
         name: 'SKILL ANALYZER Level.11',
         level: 11,
         nameID: 11,
@@ -3629,7 +3882,7 @@ export const COURSES6 = [
       },
       {
         id: 12,
-        type: 0,
+        type: 1,
         name: 'SKILL ANALYZER Level.∞',
         level: 12,
         nameID: 12,
@@ -3658,6 +3911,7 @@ export const COURSES6 = [
     id: 9,
     name: 'SKILL ANALYZER 第4回 Bコース',
     isNew: 0,
+    hasGod: 1,
     courses: [
       {
         id: 1,
@@ -3911,7 +4165,7 @@ export const COURSES6 = [
       },
       {
         id: 11,
-        type: 0,
+        type: 1,
         name: 'SKILL ANALYZER Level.11',
         level: 11,
         nameID: 11,
@@ -3936,7 +4190,7 @@ export const COURSES6 = [
       },
       {
         id: 12,
-        type: 0,
+        type: 1,
         name: 'SKILL ANALYZER Level.∞',
         level: 12,
         nameID: 12,
@@ -3964,7 +4218,8 @@ export const COURSES6 = [
   {
     id: 10,
     name: 'SKILL ANALYZER 第5回 Aコース',
-    isNew: 1,
+    isNew: 0,
+    hasGod: 1,
     courses: [
       {
         id: 1,
@@ -4056,8 +4311,8 @@ export const COURSES6 = [
           },
           {
             no: 1,
-            mid: 438,
-            mty: 2,
+            mid: 538,
+            mty: 1,
           },
           {
             no: 2,
@@ -4218,7 +4473,7 @@ export const COURSES6 = [
       },
       {
         id: 11,
-        type: 0,
+        type: 1,
         name: 'SKILL ANALYZER Level.11',
         level: 11,
         nameID: 11,
@@ -4243,7 +4498,7 @@ export const COURSES6 = [
       },
       {
         id: 12,
-        type: 0,
+        type: 1,
         name: 'SKILL ANALYZER Level.∞',
         level: 12,
         nameID: 12,
@@ -4271,7 +4526,8 @@ export const COURSES6 = [
   {
     id: 11,
     name: 'SKILL ANALYZER 第5回 Bコース',
-    isNew: 1,
+    isNew: 0,
+    hasGod: 1,
     courses: [
       {
         id: 1,
@@ -4318,7 +4574,7 @@ export const COURSES6 = [
           },
           {
             no: 2,
-            mid: 1755,
+            mid: 944,
             mty: 1,
           },
         ],
@@ -4518,14 +4774,14 @@ export const COURSES6 = [
           },
           {
             no: 2,
-            mid: 234,
+            mid: 900,
             mty: 3,
           },
         ],
       },
       {
         id: 11,
-        type: 0,
+        type: 1,
         name: 'SKILL ANALYZER Level.11',
         level: 11,
         nameID: 11,
@@ -4550,7 +4806,7 @@ export const COURSES6 = [
       },
       {
         id: 12,
-        type: 0,
+        type: 1,
         name: 'SKILL ANALYZER Level.∞',
         level: 12,
         nameID: 12,
@@ -4578,7 +4834,7 @@ export const COURSES6 = [
   {
     id: 12,
     name: 'Red Bull 5G 2022予選コース',
-    isNew: 1,
+    isNew: 0,
     courses: [
       {
         id: 1,
@@ -4681,9 +4937,897 @@ export const COURSES6 = [
         ],
       },
     ]
-  }
-];
+  },
+  {
+    id: 13,
+    name: 'BEMANI MASTER KOREA 2021',
+    isNew: 0,
+    courses: [
+      {
+        id: 1,
+        type: 0,
+        name: 'BEMANI MASTER KOREA 2021 Entry Course',
+        level: 0,
+        nameID: 13,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1641,
+            mty: 4
+          },
+          {
+            no: 1,
+            mid: 1646,
+            mty: 4
+          },
+          {
+            no: 2,
+            mid: 1642,
+            mty: 4
+          },
 
+        ]
+      },
+      {
+        id: 2,
+        type: 0,
+        name: 'BEMANI MASTER KOREA 2021 Enjoy Course',
+        level: 0,
+        nameID: 13,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1641,
+            mty: 1
+          },
+          {
+            no: 1,
+            mid: 1646,
+            mty: 2
+          },
+          {
+            no: 2,
+            mid: 1642,
+            mty: 2
+          },
+
+        ]
+      }
+    ]
+  },
+  {
+    id: 14,
+    name: 'SKILL ANALYZER 第6回',
+    isNew: 1,
+    hasGod: 1,
+    courses: [
+      {
+        id: 1,
+        type: 0,
+        name: 'SKILL ANALYZER Level.01',
+        level: 1,
+        nameID: 1,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1130,
+            mty: 0,
+          },
+          {
+            no: 1,
+            mid: 182,
+            mty: 1,
+          },
+          {
+            no: 2,
+            mid: 328,
+            mty: 1,
+          },
+        ],
+      },
+      {
+        id: 2,
+        type: 0,
+        name: 'SKILL ANALYZER Level.02',
+        level: 2,
+        nameID: 2,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 515,
+            mty: 1,
+          },
+          {
+            no: 1,
+            mid: 222,
+            mty: 1,
+          },
+          {
+            no: 2,
+            mid: 572,
+            mty: 1,
+          },
+        ],
+      },
+      {
+        id: 3,
+        type: 0,
+        name: 'SKILL ANALYZER Level.03',
+        level: 3,
+        nameID: 3,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 631,
+            mty: 1,
+          },
+          {
+            no: 1,
+            mid: 890,
+            mty: 1,
+          },
+          {
+            no: 2,
+            mid: 1748,
+            mty: 1,
+          },
+        ],
+      },
+      {
+        id: 4,
+        type: 0,
+        name: 'SKILL ANALYZER Level.04',
+        level: 4,
+        nameID: 4,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 205,
+            mty: 1,
+          },
+          {
+            no: 1,
+            mid: 1227,
+            mty: 1,
+          },
+          {
+            no: 2,
+            mid: 430,
+            mty: 1,
+          },
+        ],
+      },
+      {
+        id: 5,
+        type: 0,
+        name: 'SKILL ANALYZER Level.05',
+        level: 5,
+        nameID: 5,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1162,
+            mty: 1,
+          },
+          {
+            no: 1,
+            mid: 1282,
+            mty: 1,
+          },
+          {
+            no: 2,
+            mid: 66,
+            mty: 2,
+          },
+        ],
+      },
+      {
+        id: 6,
+        type: 0,
+        name: 'SKILL ANALYZER Level.06',
+        level: 6,
+        nameID: 6,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1401,
+            mty: 2,
+          },
+          {
+            no: 1,
+            mid: 946,
+            mty: 2,
+          },
+          {
+            no: 2,
+            mid: 928,
+            mty: 2,
+          },
+        ],
+      },
+      {
+        id: 7,
+        type: 0,
+        name: 'SKILL ANALYZER Level.07',
+        level: 7,
+        nameID: 7,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1873,
+            mty: 2,
+          },
+          {
+            no: 1,
+            mid: 1746,
+            mty: 2,
+          },
+          {
+            no: 2,
+            mid: 1004,
+            mty: 4,
+          },
+        ],
+      },
+      {
+        id: 8,
+        type: 0,
+        name: 'SKILL ANALYZER Level.08',
+        level: 8,
+        nameID: 8,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 241,
+            mty: 2,
+          },
+          {
+            no: 1,
+            mid: 656,
+            mty: 2,
+          },
+          {
+            no: 2,
+            mid: 1016,
+            mty: 4,
+          },
+        ],
+      },
+      {
+        id: 9,
+        type: 0,
+        name: 'SKILL ANALYZER Level.09',
+        level: 9,
+        nameID: 9,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1159,
+            mty: 4,
+          },
+          {
+            no: 1,
+            mid: 1790,
+            mty: 2,
+          },
+          {
+            no: 2,
+            mid: 1137,
+            mty: 4,
+          },
+        ],
+      },
+      {
+        id: 10,
+        type: 0,
+        name: 'SKILL ANALYZER Level.10',
+        level: 10,
+        nameID: 10,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1806,
+            mty: 4,
+          },
+          {
+            no: 1,
+            mid: 994,
+            mty: 4,
+          },
+          {
+            no: 2,
+            mid: 787,
+            mty: 2,
+          },
+        ],
+      },
+      {
+        id: 11,
+        type: 1,
+        name: 'SKILL ANALYZER Level.11',
+        level: 11,
+        nameID: 11,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1257,
+            mty: 4,
+          },
+          {
+            no: 1,
+            mid: 1778,
+            mty: 4,
+          },
+          {
+            no: 2,
+            mid: 1954,
+            mty: 4,
+          },
+        ],
+      },
+      {
+        id: 12,
+        type: 1,
+        name: 'SKILL ANALYZER Level.∞',
+        level: 12,
+        nameID: 12,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1316,
+            mty: 4,
+          },
+          {
+            no: 1,
+            mid: 1272,
+            mty: 4,
+          },
+          {
+            no: 2,
+            mid: 2037,
+            mty: 4,
+          },
+        ],
+      },
+    ]
+  },
+  {
+    id: 15,
+    name: '春のボルテ祭りコース2023',
+    isNew: 0,
+    courses: [
+      {
+        id: 1,
+        type: 0,
+        name: '春のボルテ祭りコース2023【梅】',
+        level: 0,
+        nameID: 17,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1107,
+            mty: 0
+          },
+          {
+            no: 1,
+            mid: 1180,
+            mty: 0
+          },
+          {
+            no: 2,
+            mid: 1143,
+            mty: 0
+          }
+        ]
+      },
+      {
+        id: 2,
+        type: 0,
+        name: '春のボルテ祭りコース2023【竹】',
+        level: 0,
+        nameID: 17,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1107,
+            mty: 1
+          },
+          {
+            no: 1,
+            mid: 1180,
+            mty: 1
+          },
+          {
+            no: 2,
+            mid: 1143,
+            mty: 1
+          }
+        ]
+      },
+      {
+        id: 3,
+        type: 0,
+        name: '春のボルテ祭りコース2023【松】',
+        level: 0,
+        nameID: 17,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1107,
+            mty: 4
+          },
+          {
+            no: 1,
+            mid: 1180,
+            mty: 4
+          },
+          {
+            no: 2,
+            mid: 1143,
+            mty: 4
+          }
+        ]
+      },
+      {
+        id: 4,
+        type: 0,
+        name: '春のボルテ祭りコース2023【∞∞(* ▼∀▼)∞∞ ふふ…！】',
+        level: 0,
+        nameID: 17,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 840,
+            mty: 3
+          },
+          {
+            no: 1,
+            mid: 1219,
+            mty: 3
+          },
+          {
+            no: 2,
+            mid: 1751,
+            mty: 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 16,
+    name: 'KAC(2023)予選コース',
+    isNew: 1,
+    courses: [
+      {
+        id: 1,
+        type: 1,
+        name: 'KAC 2023 チャレンジコース【完喰】',
+        level: 0,
+        nameID: 18,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 2059,
+            mty: 4
+          },
+          {
+            no: 1,
+            mid: 694,
+            mty: 3
+          },
+          {
+            no: 2,
+            mid: 1773,
+            mty: 4
+          }
+        ]
+      },
+      {
+        id: 2,
+        type: 1,
+        name: 'KAC 2023 エンジョイコース【完喰】',
+        level: 0,
+        nameID: 18,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 2059,
+            mty: 1
+          },
+          {
+            no: 1,
+            mid: 694,
+            mty: 1
+          },
+          {
+            no: 2,
+            mid: 1773,
+            mty: 1
+          }
+        ]
+      },
+      {
+        id: 3,
+        type: 1,
+        name: 'KAC 2023 チャレンジコース【夢吹】',
+        level: 0,
+        nameID: 19,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1807,
+            mty: 4
+          },
+          {
+            no: 1,
+            mid: 1591,
+            mty: 4
+          },
+          {
+            no: 2,
+            mid: 1770,
+            mty: 4
+          }
+        ]
+      },
+      {
+        id: 4,
+        type: 1,
+        name: 'KAC 2023 エンジョイコース【夢吹】',
+        level: 0,
+        nameID: 19,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1807,
+            mty: 1
+          },
+          {
+            no: 1,
+            mid: 1591,
+            mty: 1
+          },
+          {
+            no: 2,
+            mid: 1770,
+            mty: 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 17,
+    name: 'SKILL ANALYZER 第7回',
+    isNew: 1,
+    hasGod: 1,
+    courses: [
+      {
+        id: 1,
+        type: 0,
+        name: 'SKILL ANALYZER Level.01',
+        level: 1,
+        nameID: 1,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1018,
+            mty: 0,
+          },
+          {
+            no: 1,
+            mid: 231,
+            mty: 1,
+          },
+          {
+            no: 2,
+            mid: 1734,
+            mty: 0,
+          },
+        ],
+      },
+      {
+        id: 2,
+        type: 0,
+        name: 'SKILL ANALYZER Level.02',
+        level: 2,
+        nameID: 2,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 278,
+            mty: 1,
+          },
+          {
+            no: 1,
+            mid: 919,
+            mty: 1,
+          },
+          {
+            no: 2,
+            mid: 92,
+            mty: 1,
+          },
+        ],
+      },
+      {
+        id: 3,
+        type: 0,
+        name: 'SKILL ANALYZER Level.03',
+        level: 3,
+        nameID: 3,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 603,
+            mty: 1,
+          },
+          {
+            no: 1,
+            mid: 898,
+            mty: 1,
+          },
+          {
+            no: 2,
+            mid: 80,
+            mty: 1,
+          },
+        ],
+      },
+      {
+        id: 4,
+        type: 0,
+        name: 'SKILL ANALYZER Level.04',
+        level: 4,
+        nameID: 4,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 966,
+            mty: 1,
+          },
+          {
+            no: 1,
+            mid: 983,
+            mty: 1,
+          },
+          {
+            no: 2,
+            mid: 797,
+            mty: 1,
+          },
+        ],
+      },
+      {
+        id: 5,
+        type: 0,
+        name: 'SKILL ANALYZER Level.05',
+        level: 5,
+        nameID: 5,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 345,
+            mty: 1,
+          },
+          {
+            no: 1,
+            mid: 1820,
+            mty: 1,
+          },
+          {
+            no: 2,
+            mid: 1192,
+            mty: 1,
+          },
+        ],
+      },
+      {
+        id: 6,
+        type: 0,
+        name: 'SKILL ANALYZER Level.06',
+        level: 6,
+        nameID: 6,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 998,
+            mty: 2,
+          },
+          {
+            no: 1,
+            mid: 1918,
+            mty: 2,
+          },
+          {
+            no: 2,
+            mid: 115,
+            mty: 2,
+          },
+        ],
+      },
+      {
+        id: 7,
+        type: 0,
+        name: 'SKILL ANALYZER Level.07',
+        level: 7,
+        nameID: 7,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1842,
+            mty: 2,
+          },
+          {
+            no: 1,
+            mid: 480,
+            mty: 3,
+          },
+          {
+            no: 2,
+            mid: 361,
+            mty: 2,
+          },
+        ],
+      },
+      {
+        id: 8,
+        type: 0,
+        name: 'SKILL ANALYZER Level.08',
+        level: 8,
+        nameID: 8,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 528,
+            mty: 2,
+          },
+          {
+            no: 1,
+            mid: 1841,
+            mty: 2,
+          },
+          {
+            no: 2,
+            mid: 272,
+            mty: 2,
+          },
+        ],
+      },
+      {
+        id: 9,
+        type: 0,
+        name: 'SKILL ANALYZER Level.09',
+        level: 9,
+        nameID: 9,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 560,
+            mty: 2,
+          },
+          {
+            no: 1,
+            mid: 1471,
+            mty: 4,
+          },
+          {
+            no: 2,
+            mid: 1801,
+            mty: 4,
+          },
+        ],
+      },
+      {
+        id: 10,
+        type: 0,
+        name: 'SKILL ANALYZER Level.10',
+        level: 10,
+        nameID: 10,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1962,
+            mty: 4,
+          },
+          {
+            no: 1,
+            mid: 1008,
+            mty: 4,
+          },
+          {
+            no: 2,
+            mid: 617,
+            mty: 2,
+          },
+        ],
+      },
+      {
+        id: 11,
+        type: 1,
+        name: 'SKILL ANALYZER Level.11',
+        level: 11,
+        nameID: 11,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1499,
+            mty: 4,
+          },
+          {
+            no: 1,
+            mid: 1037,
+            mty: 4,
+          },
+          {
+            no: 2,
+            mid: 1708,
+            mty: 4,
+          },
+        ],
+      },
+      {
+        id: 12,
+        type: 1,
+        name: 'SKILL ANALYZER Level.∞',
+        level: 12,
+        nameID: 12,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 525,
+            mty: 3,
+          },
+          {
+            no: 1,
+            mid: 1940,
+            mty: 4,
+          },
+          {
+            no: 2,
+            mid: 2038,
+            mty: 4,
+          },
+        ],
+      },
+    ]
+  },
+];
 
 export const SDVX_AUTOMATION_SONGS = [
 	6,
@@ -4926,141 +6070,449 @@ export const SDVX_AUTOMATION_SONGS = [
 ];
 
 export const SDVX_AUTOMATION_SONGS_2 = [
-	1209,
-	1210,
-	1211,
-	1212,
-	1213,
-	1214,
-	1215,
-	1216,
-	1217,
-	1218,
-	1220,
-	1221,
-	1260,
-	1269,
-	1270,
-	1271,
-	1272,
-	1273,
-	1274,
-	1275,
-	1276,
-	1277,
-	1278,
-	1279,
-	1280,
-	1281,
-	1282,
-	1300,
-	1301,
-	1302,
-	1329,
-	1345,
-	1346,
-	1347,
-	1348,
-	1361,
-	1362,
-	1363,
-	1364,
-	1365,
-	1366,
-	1367,
-	1368,
-	1369,
-	1370,
-	1371,
-	1372,
-	1373,
-	1374,
-	1375,
-	1376,
-	1377,
-	1378,
-	1379,
-	1380,
-	1381,
-	1382,
-	1383,
-	1384,
-	1385,
-	1386,
-	1433,
-	1434,
-	1435,
-	1436,
-	1437,
-	1459,
-	1460,
-	1461,
-	1462,
-	1463,
-	1464,
-	1465,
-	1466,
-	1467,
-	1468,
-	1490,
-	1491,
-	1495,
-	1496,
-	1497,
-	1498,
-	1499,
-	1500,
-	1501,
-	1580,
-	1581,
-	1582,
-	1583,
-	1584,
-	1585,
-	1586,
-	1587,
-	1588,
-	1589,
-	1590,
-	1591,
-	1592,
-	1593,
-	1594,
-	1595,
-	1596,
-	1597,
-	1598,
-	1599,
-	1600,
-	1601,
-	1602,
-	1603,
-	1604,
-	1605,
-	1606,
-	1607,
-	1608,
-	1609,
-	1610,
-	1611,
-	1660,
-	1661,
-	1662,
-	1663,
-	1664,
-	1665,
-	1666,
-	1838,
-	1839,
-	1840,
-	1841,
-	1842,
-	1843,
-	1844,
-	99001,
-	99002,
-	99003,
-	99004
+    1209,
+    1210,
+    1211,
+    1212,
+    1213,
+    1214,
+    1215,
+    1216,
+    1217,
+    1218,
+    1220,
+    1221,
+    1260,
+    1269,
+    1270,
+    1271,
+    1272,
+    1273,
+    1274,
+    1275,
+    1276,
+    1277,
+    1278,
+    1279,
+    1280,
+    1281,
+    1282,
+    1300,
+    1301,
+    1302,
+    1329,
+    1345,
+    1346,
+    1347,
+    1348,
+    1361,
+    1362,
+    1363,
+    1364,
+    1365,
+    1366,
+    1367,
+    1368,
+    1369,
+    1370,
+    1371,
+    1372,
+    1373,
+    1374,
+    1375,
+    1376,
+    1377,
+    1378,
+    1379,
+    1380,
+    1381,
+    1382,
+    1383,
+    1384,
+    1385,
+    1386,
+    1433,
+    1434,
+    1435,
+    1436,
+    1437,
+    1459,
+    1460,
+    1461,
+    1462,
+    1463,
+    1464,
+    1465,
+    1466,
+    1467,
+    1468,
+    1490,
+    1491,
+    1495,
+    1496,
+    1497,
+    1498,
+    1499,
+    1500,
+    1501,
+    1580,
+    1581,
+    1582,
+    1583,
+    1584,
+    1585,
+    1586,
+    1587,
+    1588,
+    1589,
+    1590,
+    1591,
+    1592,
+    1593,
+    1594,
+    1595,
+    1596,
+    1597,
+    1598,
+    1599,
+    1600,
+    1601,
+    1602,
+    1603,
+    1604,
+    1605,
+    1606,
+    1607,
+    1608,
+    1609,
+    1610,
+    1611,
+    1660,
+    1661,
+    1662,
+    1663,
+    1664,
+    1665,
+    1666,
+    1838,
+    1839,
+    1840,
+    1841,
+    1842,
+    1843,
+    1844,
+    99001,
+    99002,
+    99003,
+    99004,
+    1,
+    2,
+    3,
+    4,
+    5,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    21,
+    22,
+    23,
+    24,
+    30,
+    36,
+    39,
+    47,
+    60,
+    63,
+    71,
+    73,
+    88,
+    89,
+    90,
+    91,
+    101,
+    109,
+    130,
+    131,
+    135,
+    151,
+    165,
+    166,
+    180,
+    183,
+    198,
+    208,
+    211,
+    213,
+    214,
+    216,
+    220,
+    221,
+    223,
+    228,
+    229,
+    239,
+    247,
+    250,
+    252,
+    255,
+    256,
+    267,
+    269,
+    282,
+    289,
+    295,
+    299,
+    324,
+    332,
+    333,
+    339,
+    341,
+    342,
+    348,
+    393,
+    398,
+    408,
+    413,
+    414,
+    418,
+    420,
+    432,
+    444,
+    459,
+    499,
+    506,
+    507,
+    508,
+    510,
+    522,
+    525,
+    529
+];
+
+export const SDVX_AUTOMATION_SONGS_3 = [
+    532,
+    535,
+    537,
+    540,
+    547,
+    548,
+    550,
+    551,
+    583,
+    587,
+    597,
+    598,
+    600,
+    606,
+    610,
+    615,
+    623,
+    629,
+    680,
+    681,
+    689,
+    717,
+    720,
+    722,
+    725,
+    730,
+    731,
+    733,
+    735,
+    740,
+    741,
+    743,
+    746,
+    783,
+    784,
+    785,
+    819,
+    837,
+    883,
+    888,
+    889,
+    895,
+    925,
+    939,
+    961,
+    963,
+    964,
+    965,
+    966,
+    967,
+    968,
+    969,
+    970,
+    971,
+    977,
+    978,
+    982,
+    983,
+    985,
+    986,
+    992,
+    993,
+    994,
+    995,
+    998,
+    999,
+    1000,
+    1008,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1015,
+    1017,
+    1018,
+    1021,
+    1052,
+    1055,
+    1121,
+    1149,
+    1152,
+    1158,
+    1226,
+    1228,
+    1230,
+    1231,
+    1235,
+    1237,
+    1238,
+    1239,
+    1240,
+    1243,
+    1244,
+    1246,
+    1247,
+    1248,
+    1250,
+    1251,
+    1252,
+    1253,
+    1254,
+    1255,
+    1257,
+    1258,
+    1261,
+    1304,
+    1306,
+    1307,
+    1308,
+    1309,
+    1310,
+    1311,
+    1312,
+    1313,
+    1314,
+    1315,
+    1388,
+    1389,
+    1397,
+    1402,
+    1416,
+    1509,
+    1766,
+    1767,
+    1768,
+    1769,
+    1770,
+    1771,
+    1772,
+    1773,
+    1774,
+    1775,
+    1776,
+    1777,
+    1778,
+    1779,
+    1780,
+    1781,
+    1782,
+    1783,
+    1784,
+    1785,
+    1786,
+    1787,
+    1788,
+    1789,
+    1790,
+    1791,
+    1792,
+    1793,
+    1794,
+    1795,
+    1796,
+    1797,
+    1798,
+    1799,
+    1800,
+    1801,
+    1888,
+    1889,
+    1890,
+    1891,
+    1892,
+    1893,
+    1894,
+    1895,
+    1896,
+    1897,
+    1898,
+    1899,
+    1900,
+    1901,
+    1919,
+    1920,
+    1921,
+    1922,
+    1923,
+    1924,
+    1925,
+    1926,
+    1927,
+    1928,
+    1929,
+    1930,
+    1931,
+    1932,
+    1933,
+    1934,
+    1935,
+    1936,
+    1937,
+    1938,
+    1939,
+    1940,
+    1941,
+    1942,
+    1943,
+    1944,
+    1945,
+    1946,
+    1947,
+    1948,
+    1949,
+    1950,
+    1951,
+    1952,
+    1953,
+    1954,
+    1955,
+    1956,
+    1957,
+    1958
 ]
 
 export const EXTENDS6 = [
@@ -5095,6 +6547,22 @@ export const EXTENDS6 = [
       '',
       '',
     ],
-  },    
+  },
+  {
+    id: 93,
+    type: 17,
+    params: [
+      0,
+      0,
+      0,
+      0,
+      0,
+      SDVX_AUTOMATION_SONGS_3.join(','),
+      '',
+      '',
+      '',
+      '',
+    ],
+  }
 ];
 

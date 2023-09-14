@@ -8,7 +8,7 @@ import { CourseRecord } from '../models/course_record';
 import { Profile } from '../models/profile';
 import { getVersion, IDToCode } from '../utils';
 import { Mix } from '../models/mix';
-import { ARENA, EVENT_SONGS6, RESTRICTED_SONGS6 } from '../data/exg';
+import { ARENA, EVENT_SONGS6 } from '../data/exg';
 
 async function getAutomationMixes(params: Param[]) {
   const mixids = params
@@ -513,18 +513,21 @@ export const save: EPR = async (info, data, send) => {
   }
   
   // New course saving function found in sdvx 20220214
+  // Updated for God mode
   const course = $(data).element('course');
   if(!_.isNil(course)){
       const sid = course.number('ssnid');
       const cid = course.number('crsid');
+      const stype = course.number('st');
 
       if (!(_.isNil(sid) || _.isNil(cid))){
         await DB.Upsert<CourseRecord>(
           refid,
-          { collection: 'course', sid, cid, version },
+          { collection: 'course', sid, cid, stype, version },
           {
             $max: {
               score: course.number('sc', 0),
+              exscore: course.number('ex', 0),
               clear: course.number('ct', 0),
               grade: course.number('gr', 0),
               rate: course.number('ar', 0),
@@ -582,6 +585,7 @@ export const save: EPR = async (info, data, send) => {
         base: $(data).number('skill_base_id'),
         level: $(data).number('skill_level'),
         name: $(data).number('skill_name_id'),
+        type: $(data).number('skill_type'),
       },
     }
   );
@@ -649,7 +653,7 @@ export const load: EPR = async (info, data, send) => {
       let eventData = JSON.parse(bufEventData.toString())
       let eventConfig = JSON.parse(bufEventConfig.toString())
       for(const eventIter in eventData['events']) {
-        if(eventData['events'][eventIter]['type'] === 'gift') {
+        if(eventData['events'][eventIter]['type'] === 'gift' && eventConfig[eventData['events'][eventIter]['id']] !== undefined) {
           if(typeof eventConfig[eventData['events'][eventIter]['id']]['toggle'] === "boolean") {
             if(eventConfig[eventData['events'][eventIter]['id']]['toggle']) {
               for(const itemIter in EVENT_SONGS6[eventData['events'][eventIter]['id']]) {
@@ -735,10 +739,12 @@ export const load: EPR = async (info, data, send) => {
   const stampB = profile.stampB ? profile.stampB : 0;
   const stampC = profile.stampC ? profile.stampC : 0;
   const stampD = profile.stampD ? profile.stampD : 0;
+  const sysBG = profile.sysBG ? profile.sysBG : 0;
+  const bplSupport = profile.bplSupport ? profile.bplSupport : 0;
 
 
   const customize = [];
-  customize.push(bgm, subbg, nemsys, stampA, stampB, stampC, stampD);
+  customize.push(bgm, subbg, nemsys, stampA, stampB, stampC, stampD, 0, 0, 0, 0, sysBG);
 
   var tempCustom = params.findIndex((e) => (e.type == 2 && e.id == 2))
 
@@ -751,7 +757,6 @@ export const load: EPR = async (info, data, send) => {
   if (params[tempCustom]) {
     params[tempCustom].param = customize;
   }
-
 
   let blasterpass = U.GetConfig('use_blasterpass') ? 1 : 0;
 
@@ -824,6 +829,8 @@ export const create: EPR = async (info, data, send) => {
     stampC: 0,
     stampD: 0,
 
+    sysBG: 0,
+
     headphone: 0,
     musicID: 0,
     musicType: 0,
@@ -832,7 +839,17 @@ export const create: EPR = async (info, data, send) => {
     mUserCnt: 0,
     boothFrame: [0, 0, 0, 0, 0],
 
-    playCount: 0
+    playCount: 0,
+    dayCount: 0,
+    todayCount: 0,
+    playchain: 0,
+    maxPlayChain: 0,
+    weekCount: 0,
+    weekPlayCount: 0,
+    weekChain: 0,
+    maxWeekChain: 0,
+
+    bplSupport: 0
   };
 
   await DB.Upsert(refid, { collection: 'profile' }, profile);

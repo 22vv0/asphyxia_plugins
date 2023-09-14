@@ -113,6 +113,38 @@
             "enabled": false,
             "name": "Commemorating BEMANI PRO LEAGUE -SEASON 2-! Original Song Contest Special Stamp Event",
             "info": "Stamp event to unlock 9 songs, including SuddeИDeath. Songs can be unlocked in any order, except for SuddeИDeath, which will be available to unlock once all the other songs are unlocked.<br>Toggle this on to enable this stamp event."
+        },
+        {
+            "id": "kac2023perfecteater",
+            "type": "gift",
+            "enabled": true,
+            "name": "KONAMI Arcade Championship (2023) Entry Song",
+            "info": "Unlocks パーフェクトイーター / Perfect Eater."
+        },
+        {
+            "id": "kac2023stamp",
+            "type": "stamp",
+            "enabled": true,
+            "name": "KAC 2023 Special Stamp Event (累乗のカルマ)",
+            "info": "Stamp event to unlock 累乗のカルマ. Collect 10 stamps."
+        },
+        {
+            "id": "bpls3songs",
+            "type": "gift",
+            "enabled": true,
+            "name": "BEMANI PRO LEAGUE -SEASON 3- Triple Tribe",
+            "info": [
+                "Unlocks 'stellar rain.'",
+                "Unlocks 'THE PEERLESS UNDER HEAVEN.'",
+                "Unlocks 'suspicions.'"
+            ]
+        },
+        {
+            "id": "kac2023stamp2",
+            "type": "stamp",
+            "enabled": true,
+            "name": "KAC 2023 Special Stamp Event (Stylus and QQ)",
+            "info": "Stamp select event to unlock Stylus and QQ and can be unlocked in any order. Collect 10 stamps for each song."
         }
     ]
 }

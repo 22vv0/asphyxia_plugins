@@ -16,106 +16,101 @@ $(document).ready(async function() {
             document.getElementById("logtextarea").textContent = 'Running....\n'
             await emit("copyResourcesFromGame").then(
                 function(response){
-                    document.getElementById("logtextarea").textContent += 'Done.\n'
-                    $.getJSON( "static/asset/logs/copyResourcesFromGame.json", function( data ) {
-                        document.getElementById("logtextarea").textContent += 'NOTE:\n- labels for these new files (nemsys, bgm, submonitor bg, chat stamps) in the asset/json/data.json file needs to be updated.\n'
-                        document.getElementById("logtextarea").textContent += '- for converting s3p files to mp3, check guide in the notes section above.\n'
+                    document.getElementById("logtextarea").textContent = 'Done.\n\n'
+                    document.getElementById("logtextarea").textContent += 'NOTE:\n- labels for these new files (nemsys, bgm, submonitor bg, chat stamps) in the asset/json/data.json file needs to be updated.\n'
+                    document.getElementById("logtextarea").textContent += '- for converting s3p files to mp3, check guide in the notes section above.\n\n\n\n'
 
-                        if(data['errors'].length > 0) {
-                            document.getElementById("logtextarea").textContent += 'Errors: \n'
-                            $.each(data['errors'], function(key, val) {
-                                document.getElementById("logtextarea").textContent += "- " + val + '\n'
-                            })
-                            document.getElementById("logtextarea").textContent += '\n\n'
-                        }
+                    if(response['data']['errors'].length > 0) {
+                        document.getElementById("logtextarea").textContent += 'Errors: \n'
+                        $.each(response['data']['errors'], function(key, val) {
+                            document.getElementById("logtextarea").textContent += "- " + val + '\n'
+                        })
+                        document.getElementById("logtextarea").textContent += '\n\n'
+                    }
 
-                        if(data['versionSongs'].length > 0) {
-                            document.getElementById("logtextarea").textContent += 'New songs in latest version data: \n'
-                            $.each(data['versionSongs'], function(key, val) {
-                                document.getElementById("logtextarea").textContent += "- " +  val[1] + '\n'
-                            })
-                            document.getElementById("logtextarea").textContent += '\n\n'
-                        }
-
-
-                        if(data['jsonSongs'].length > 0) {
-                            document.getElementById("logtextarea").textContent += 'New songs added to mdb asset: \n'
-                            $.each(data['jsonSongs'], function(key, val) {
-                                document.getElementById("logtextarea").textContent += "- " +  val[1] + '\n'
-                            })
-                            document.getElementById("logtextarea").textContent += '\n\n'
-                        }
-
-                        if(data['xcdSongs'].length > 0) {
-                            document.getElementById("logtextarea").textContent += 'XCD songs: \n'
-                            $.each(data['xcdSongs'], function(key, val) {
-                                document.getElementById("logtextarea").textContent += "- " +  val[1] + '\n'
-                            })
-                            document.getElementById("logtextarea").textContent += '\n\n'
-                        }
-
-                        if(data['nemsys'].length > 0) {
-                            document.getElementById("logtextarea").textContent += 'New nemsys: \n'
-                            $.each(data['nemsys'], function(key, val) {
-                                document.getElementById("logtextarea").textContent += "- " + val + '\n'
-                            })
-                            document.getElementById("logtextarea").textContent += '\n\n'
-                        }
-
-                        if(data['bgm'].length > 0) {
-                            document.getElementById("logtextarea").textContent += 'New bgm: \n'
-                            $.each(data['bgm'], function(key, val) {
-                                document.getElementById("logtextarea").textContent += "- " +  val + '\n'
-                            })
-                            document.getElementById("logtextarea").textContent += '\n\n'
-                        }
-
-                        if(data['apCard'].length > 0) {
-                            document.getElementById("logtextarea").textContent += 'New appeal cards: \n'
-                            $.each(data['apCard'], function(key, val) {
-                                document.getElementById("logtextarea").textContent += "- " +  val + '\n'
-                            })
-                            document.getElementById("logtextarea").textContent += '\n\n'
-                        }
-
-                        if(data['subbg'].length > 0) {                        
-                            document.getElementById("logtextarea").textContent += 'New submonitor backgrounds: \n'
-                            $.each(data['subbg'], function(key, val) {
-                                document.getElementById("logtextarea").textContent += "- " +  val + '\n'
-                            })
-                            document.getElementById("logtextarea").textContent += '\n\n'
-                        }
+                    if(response['data']['versionSongs'].length > 0) {
+                        document.getElementById("logtextarea").textContent += 'New songs in latest version data: \n'
+                        $.each(response['data']['versionSongs'], function(key, val) {
+                            document.getElementById("logtextarea").textContent += "- " +  val[1] + '\n'
+                        })
+                        document.getElementById("logtextarea").textContent += '\n\n'
+                    }
 
 
-                        if(data['chatStamp'].length > 0) {
-                            document.getElementById("logtextarea").textContent += 'New chat stamps: \n'
-                            $.each(data['chatStamp'], function(key, val) {
-                                document.getElementById("logtextarea").textContent += "- " +  val + '\n'
-                            })
-                            document.getElementById("logtextarea").textContent += '\n\n'
-                        }
+                    if(response['data']['jsonSongs'].length > 0) {
+                        document.getElementById("logtextarea").textContent += 'New songs added to mdb asset: \n'
+                        $.each(response['data']['jsonSongs'], function(key, val) {
+                            document.getElementById("logtextarea").textContent += "- " +  val[1] + '\n'
+                        })
+                        document.getElementById("logtextarea").textContent += '\n\n'
+                    }
+
+                    if(response['data']['xcdSongs'].length > 0) {
+                        document.getElementById("logtextarea").textContent += 'XCD songs: \n'
+                        $.each(response['data']['xcdSongs'], function(key, val) {
+                            document.getElementById("logtextarea").textContent += "- " +  val[1] + '\n'
+                        })
+                        document.getElementById("logtextarea").textContent += '\n\n'
+                    }
+
+                    if(response['data']['nemsys'].length > 0) {
+                        document.getElementById("logtextarea").textContent += 'New nemsys: \n'
+                        $.each(response['data']['nemsys'], function(key, val) {
+                            document.getElementById("logtextarea").textContent += "- " + val + '\n'
+                        })
+                        document.getElementById("logtextarea").textContent += '\n\n'
+                    }
+
+                    if(response['data']['bgm'].length > 0) {
+                        document.getElementById("logtextarea").textContent += 'New bgm: \n'
+                        $.each(response['data']['bgm'], function(key, val) {
+                            document.getElementById("logtextarea").textContent += "- " +  val + '\n'
+                        })
+                        document.getElementById("logtextarea").textContent += '\n\n'
+                    }
+
+                    if(response['data']['apCard'].length > 0) {
+                        document.getElementById("logtextarea").textContent += 'New appeal cards: \n'
+                        $.each(response['data']['apCard'], function(key, val) {
+                            document.getElementById("logtextarea").textContent += "- " +  val + '\n'
+                        })
+                        document.getElementById("logtextarea").textContent += '\n\n'
+                    }
+
+                    if(response['data']['subbg'].length > 0) {                        
+                        document.getElementById("logtextarea").textContent += 'New submonitor backgrounds: \n'
+                        $.each(response['data']['subbg'], function(key, val) {
+                            document.getElementById("logtextarea").textContent += "- " +  val + '\n'
+                        })
+                        document.getElementById("logtextarea").textContent += '\n\n'
+                    }
 
 
-                        if(data['valgeneItemFiles'].length > 0) {
-                            document.getElementById("logtextarea").textContent += 'New valgene_item files: \n'
-                            $.each(data['valgeneItemFiles'], function(key, val) {
-                                document.getElementById("logtextarea").textContent += "- " +  val + '\n'
-                            })
-                            document.getElementById("logtextarea").textContent += '\n\n'
-                        }
+                    if(response['data']['chatStamp'].length > 0) {
+                        document.getElementById("logtextarea").textContent += 'New chat stamps: \n'
+                        $.each(response['data']['chatStamp'], function(key, val) {
+                            document.getElementById("logtextarea").textContent += "- " +  val + '\n'
+                        })
+                        document.getElementById("logtextarea").textContent += '\n\n'
+                    }
 
-                        // console.log(JSON.stringify(data))
-                        if(data['akaname'].length > 0) {
-                            document.getElementById("logtextarea").textContent += 'New akanames: \n'
-                            $.each(data['akaname'], function(key, val) {
-                                document.getElementById("logtextarea").textContent += "- " +  val + '\n'
-                            })
-                            document.getElementById("logtextarea").textContent += '\n\n'
-                        }
-                    })
-                },
-                function(error){
-                    console.log(error);
+
+                    if(response['data']['valgeneItemFiles'].length > 0) {
+                        document.getElementById("logtextarea").textContent += 'New valgene_item files: \n'
+                        $.each(response['data']['valgeneItemFiles'], function(key, val) {
+                            document.getElementById("logtextarea").textContent += "- " +  val + '\n'
+                        })
+                        document.getElementById("logtextarea").textContent += '\n\n'
+                    }
+
+                    // console.log(JSON.stringify(data))
+                    if(response['data']['akaname'].length > 0) {
+                        document.getElementById("logtextarea").textContent += 'New akanames: \n'
+                        $.each(response['data']['akaname'], function(key, val) {
+                            document.getElementById("logtextarea").textContent += "- " +  val + '\n'
+                        })
+                        document.getElementById("logtextarea").textContent += '\n\n'
+                    }
                 }
             )
         }

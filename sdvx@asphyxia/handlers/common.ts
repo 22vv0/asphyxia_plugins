@@ -1,8 +1,7 @@
 import { EVENT4, COURSES4, EXTENDS4 } from '../data/hvn';
 import { EVENT5, COURSES5, EXTENDS5 } from '../data/vvw';
 import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIE_SONGS,
-          MISSINGSONGS6, ARENA, VALGENE, INFORMATION6, RESTRICTED_SONGS6, EVENT_SONGS6,
-          STAMP_EVENTS6
+          LICENSED_SONGS6, ARENA, VALGENE, INFORMATION6, STAMP_EVENTS6
 } from '../data/exg';
 import { COURSE2 } from '../data/inf';
 import {getVersion, getRandomIntInclusive} from '../utils';
@@ -56,22 +55,13 @@ export const common: EPR = async (info, data, send) => {
         //events = EVENT6;
         EVENT6.forEach(val => events.push(val));
         courses = COURSES6;
-        // IO.ReadFile('webui\\asset\\json\\course_data.json').then(
-        //   function(yesData){
-        //     console.log('yes')
-        //     let courseData = JSON.parse(yesData)
-        //     courses = courseData.courseData.find(data => data.version == 6).info;
-        //   },
-        //   function(noData){
-        //     console.log(noData)
-        //   })
         EXTENDS6.forEach(val => extend.push(Object.assign({}, val)));
         break;
       }
     }
     let songs = [];
     const gameVersion = getVersion(info);
-    let songNum = 3000;
+    let songNum = 2100;
     if(gameVersion === 2) songNum = 554;
     if(gameVersion === 3) songNum = 954;
     if(gameVersion === 4) songNum = 1368;
@@ -87,16 +77,7 @@ export const common: EPR = async (info, data, send) => {
           });
         }
       }
-    } else {
-      let RESTRICT_SONGS = [] //KONASTESONGS.concat(BEMANI2021EVENTSONGS, BPLSTAMPRALLYSONGS, SDVX10THSTAMPSONGS, REFLECBEATSTAMPSONGS);
-      let EVENT_SONGS = []
-      for(const keyIter in Object.keys(RESTRICTED_SONGS6)) {
-        RESTRICT_SONGS = RESTRICT_SONGS.concat(RESTRICTED_SONGS6[Object.keys(RESTRICTED_SONGS6)[keyIter]])
-      }
-      for(const keyIter in Object.keys(EVENT_SONGS6)) {
-        EVENT_SONGS = EVENT_SONGS.concat(EVENT_SONGS6[Object.keys(EVENT_SONGS6)[keyIter]])
-      }
-      
+    } else {  
       let mdb = JSON.parse(music_db.toString());
       
       let limitedNo = 2;
@@ -107,10 +88,15 @@ export const common: EPR = async (info, data, send) => {
         if(foundSongIndex != -1) {
           var songData = mdb.mdb.music[foundSongIndex];
           if(gameVersion === 6 || gameVersion === -6) {
-            if((!RESTRICT_SONGS.includes(i.toString()) || EVENT_SONGS.includes(i.toString())) && parseInt(songData['info']['distribution_date']['#text']) <= currentYMDDate) {
+            if(parseInt(songData['info']['distribution_date']['#text']) >= currentYMDDate) {
+              console.log("Unreleased song: " + songData.info.title_name)
+            }
+            else {
               limitedNo = 2;
-              if(songData.info.version['#text'] === '6') { // if song is released during exceed gear
-                if(MISSINGSONGS6.includes(i.toString())) {
+              // if song is released during exceed gear
+              if(songData.info.version['#text'] === '6') { 
+                // Licensed songs released in Exceed Gear needs limited=3 to appear
+                if(LICENSED_SONGS6.includes(i.toString())) {
                   limitedNo += 1;
                 }
                 else if(VALKYRIE_SONGS.includes(i.toString()) && (!U.GetConfig('enable_valk_songs') && info.model.split(":")[2].match(/^(G|H)$/g) == null)){
@@ -123,15 +109,15 @@ export const common: EPR = async (info, data, send) => {
                     limited: K.ITEM('u8', limitedNo),
                   });
                 }
-              } else if (songData.info.inf_ver['#text'] === '6') { // if song has new XCD track; wouldn't work without updated webui asset
+              } 
+              // if song has new XCD track
+              else if (songData.info.inf_ver['#text'] === '6') { 
                 songs.push({
                   music_id: K.ITEM('s32', i),
                   music_type: K.ITEM('u8', 3),
                   limited: K.ITEM('u8', limitedNo),
                 });
               }
-            } else {
-              console.log("Restricted song: " + songData.info.title_name)
             }
           }
         }
@@ -194,21 +180,6 @@ export const common: EPR = async (info, data, send) => {
       }
     }
 
-    // if(IO.Exists('handlers/test.json')) {
-    //   let bufExtend = await IO.ReadFile('handlers/test.json')
-    //   let testExtend = JSON.parse(bufExtend.toString())
-    //   if(testExtend.length > 0) {
-    //     testExtend.forEach(td => {
-    //       console.log("testExtend: " + JSON.stringify(td))
-    //       extend.push({
-    //         id: td['id'],
-    //         type: td['type'],
-    //         params: td['params']
-    //       });
-    //     }) 
-    //   }
-    // }
-
     if(IO.Exists('webui/asset/config/events.json')) {
       const itemTypeList = {"track": 'e', "appeal": 'a', "crew": 'c', "pcb": 'b'}
       let bufEventData = await IO.ReadFile('webui/asset/json/events.json')
@@ -216,7 +187,7 @@ export const common: EPR = async (info, data, send) => {
       let eventData = JSON.parse(bufEventData.toString())
       let eventConfig = JSON.parse(bufEventConfig.toString())
       for(const eventIter in eventData['events']) {
-        if(eventData['events'][eventIter]['type'] === 'stamp' && eventConfig[eventData['events'][eventIter]['id']]['toggle']) {
+        if(eventData['events'][eventIter]['type'] === 'stamp' && eventConfig[eventData['events'][eventIter]['id']] !== undefined && eventConfig[eventData['events'][eventIter]['id']]['toggle']) {
           let stmpEvntInfo = STAMP_EVENTS6[eventData['events'][eventIter]['id']]
           let prmStr1Sel = ''
 
@@ -230,22 +201,21 @@ export const common: EPR = async (info, data, send) => {
               if (stmpRwrd[stmpRwrdIter][1] === 'track') iID += stmpRwrd[stmpRwrdIter][3]
               prmStr5 += stmpRwrd[stmpRwrdIter][0] + ':' + itemTypeList[stmpRwrd[stmpRwrdIter][1]] + ':' + iID + (stmpRwrd.length - 1 === parseInt(stmpRwrdIter) ? '' : ' ')
             }
-            let prmStep = [
-              5,
-              stmpEvntInfo['info']['data'][stmpDataIter]['stps'], 
-              0, 
-              stmpEvntInfo['info']['data'][stmpDataIter]['stps'], 
-              0,
-              '',
-              stmpEvntInfo['info']['stmpHd'],
-              '',
-              stmpEvntInfo['info']['stmpFt'],
-              prmStr5
-            ]
             let newSelMainExtend = {
               'type': 3,
               'id': stmpEvntInfo['info']['data'][stmpDataIter]['stmpid'],
-              'params': prmStep
+              'params': [
+                5,
+                stmpEvntInfo['info']['data'][stmpDataIter]['stps'], 
+                0, 
+                stmpEvntInfo['info']['data'][stmpDataIter]['stps'], 
+                0,
+                '',
+                stmpEvntInfo['info']['stmpHd'],
+                '',
+                stmpEvntInfo['info']['stmpFt'],
+                prmStr5
+              ]
             }
             extend.push(newSelMainExtend)
           }
@@ -256,7 +226,7 @@ export const common: EPR = async (info, data, send) => {
               'id': stmpEvntInfo['info']['id'],
               'params': [
                 9,
-                stmpEvntInfo['info']['num'],
+                (stmpEvntInfo['info']['textstampval'] !== undefined) ? stmpEvntInfo['info']['textstampval'] : 0,
                 0,
                 0,
                 0,
@@ -377,19 +347,6 @@ export const common: EPR = async (info, data, send) => {
     let catalog = []
     let campaign = []
 
-    // if(U.GetConfig('arena_szn') == 'debug') {
-    //   for(let xxx = 1; xxx<=150; xxx++){
-    //     arena_catalog_items.push({
-    //       catalog_id: K.ITEM('s32', 1),
-    //       catalog_type: K.ITEM('s32', 1),
-    //       price: K.ITEM('s32', 1000),
-    //       item_type: K.ITEM('s32', 11),
-    //       item_id: K.ITEM('s32', xxx),
-    //       param: K.ITEM('s32', 1),
-    //     })
-    //   }
-    // }
-    // else{
     for (let catalog_item in ARENA[U.GetConfig('arena_szn')].arena_items) {
       arena_catalog_items.push({
         catalog_id: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].arena_items[catalog_item].catalog_id),
@@ -400,7 +357,6 @@ export const common: EPR = async (info, data, send) => {
         param: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].arena_items[catalog_item].param),
       })
     }
-    // }
 
     let valgene_info = []
     let valgene_items = []
@@ -477,27 +433,53 @@ export const common: EPR = async (info, data, send) => {
         music_limited: { info: songs },
         skill_course: {
           info: courses.reduce(
-            (acc, s) =>
-              acc.concat(
-                s.courses.map(c => ({
-                  season_id: K.ITEM('s32', s.id),
-                  season_name: K.ITEM('str', s.name),
-                  season_new_flg: K.ITEM('bool', s.isNew),
-                  course_type: K.ITEM('s16', 0),
-                  course_id: K.ITEM('s16', c.id),
-                  course_name: K.ITEM('str', c.name),
-                  skill_level: K.ITEM('s16', c.level),
-                  skill_name_id: K.ITEM('s16', c.nameID),
-                  matching_assist: K.ITEM('bool', c.assist),
-                  clear_rate: K.ITEM('s32', 5000),
-                  avg_score: K.ITEM('u32', 15000000),
-                  track: c.tracks.map(t => ({
-                    track_no: K.ITEM('s16', t.no),
-                    music_id: K.ITEM('s32', t.mid),
-                    music_type: K.ITEM('s8', t.mty),
-                  })),
-                }))
-              ),
+            (acc, s) => {
+              let courseData = s.courses.map(c => ({
+                season_id: K.ITEM('s32', s.id),
+                season_name: K.ITEM('str', s.name),
+                season_new_flg: K.ITEM('bool', s.isNew),
+                course_type: K.ITEM('s16', c.type),
+                course_id: K.ITEM('s16', c.id),
+                course_name: K.ITEM('str', c.name),
+                skill_level: K.ITEM('s16', c.level),
+                skill_type: K.ITEM('s16', 0),
+                skill_name_id: K.ITEM('s16', c.nameID),
+                matching_assist: K.ITEM('bool', c.assist),
+                clear_rate: K.ITEM('s32', 5000),
+                avg_score: K.ITEM('u32', 15000000),
+                track: c.tracks.map(t => ({
+                  track_no: K.ITEM('s16', t.no),
+                  music_id: K.ITEM('s32', t.mid),
+                  music_type: K.ITEM('s8', t.mty),
+                })),
+              }))
+              acc = acc.concat(courseData)
+              if((info.model.split(":")[2] === 'G' || info.model.split(":")[2] === 'H') && s.hasGod !== undefined && s.hasGod === 1) {
+                courseData = courseData.concat(
+                  s.courses.map(c => ({
+                    season_id: K.ITEM('s32', s.id),
+                    season_name: K.ITEM('str', s.name),
+                    season_new_flg: K.ITEM('bool', s.isNew),
+                    course_type: K.ITEM('s16', c.type),
+                    course_id: K.ITEM('s16', c.id),
+                    course_name: K.ITEM('str', c.name),
+                    skill_level: K.ITEM('s16', c.level),
+                    skill_type: K.ITEM('s16', s.hasGod),
+                    skill_name_id: K.ITEM('s16', c.nameID),
+                    matching_assist: K.ITEM('bool', c.assist),
+                    clear_rate: K.ITEM('s32', 5000),
+                    avg_score: K.ITEM('u32', 15000000),
+                    track: c.tracks.map(t => ({
+                      track_no: K.ITEM('s16', t.no),
+                      music_id: K.ITEM('s32', t.mid),
+                      music_type: K.ITEM('s8', t.mty),
+                    })),
+                  }))
+                )
+                acc = acc.concat(courseData)
+              }
+              return acc
+            },
             []
           ),
         },
@@ -511,13 +493,4 @@ export const common: EPR = async (info, data, send) => {
 
 export const log: EPR = async (info, data, send) => {
   send.success();
-}
-
-export const unhandledt: EPR = async (info, data, send) => {
-    console.log("")
-    console.log("Unhandled: " + info.method + " | " + info.model + " | " + info.module)
-    console.log(JSON.stringify(info))
-    console.log(JSON.stringify(data))
-    console.log("")
-    return send.success()
 }

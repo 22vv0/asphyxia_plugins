@@ -1,4 +1,4 @@
-function countGeneItems(geneItems, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys) {
+function countGeneItems(geneItems, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys, items_sysbg) {
     let obtained = 0, total = 0;
     if('crew' in geneItems.items) {
         obtained += items_crew.filter(crew => geneItems.items.crew.includes(crew['id'])).length
@@ -19,6 +19,10 @@ function countGeneItems(geneItems, items_crew, items_stamp, items_subbg, items_b
     if('nemsys' in geneItems.items) {
         obtained += items_nemsys.filter(nemsys => geneItems.items.nemsys.includes(nemsys['id'])).length
         total += geneItems.items['nemsys'].length
+    }
+    if('sysbg' in geneItems.items) {
+        obtained += items_sysbg.filter(sysbg => geneItems.items.sysbg.includes(sysbg['id'])).length
+        total += geneItems.items['sysbg'].length
     }
 
     return [obtained, total]
@@ -47,18 +51,14 @@ async function getGeneratorEditionItems(gene_edition, itemSet) {
     }
 }
 
-async function loadItems(itemSet, gene_edition, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys) {
-    console.log(gene_edition)
+async function loadItems(itemSet, gene_edition, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys, items_sysbg) {
     let geneItems = await getGeneratorEditionItems(gene_edition, itemSet)
-    let itemCounts = countGeneItems(geneItems, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys)
+    let itemCounts = countGeneItems(geneItems, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys, items_sysbg)
     if(gene_edition === 'premium') {
-        console.log('naur')
         if(itemCounts[0] >= itemCounts[1]) $('#pregene-roll').attr('disabled', 'disabled')
         else $('#pregene-roll').removeAttr('disabled')
     } else if(gene_edition === 'valkyrie') {
-        console.log('yes1')
-        if(itemSet >= 1 && itemSet <= 5) {
-            console.log('yes2')
+        if([1,2,3,4,5,6,8,9,10].includes(itemSet)) { // available valgene sets in webui
             if(itemCounts[0] >= itemCounts[1]) $('#valgene-roll').attr('disabled', 'disabled')
             else $('#valgene-roll').removeAttr('disabled')
         } else $('#valgene-roll').attr('disabled', 'disabled')
@@ -121,6 +121,16 @@ async function loadItems(itemSet, gene_edition, items_crew, items_stamp, items_s
             return 0;
         }), 'nemsys', items_nemsys)
     }
+
+    if('sysbg' in geneItems.items) {
+        $('.item_banners').append('<div style="padding: 5px"><h3>System BG</h3></div>')
+        $('.item_banners').append('<div class=sysbg-items style="text-align: center; background-color: #3a3a3a; padding: 20px; border-radius: 6px;"></div><br>')
+        loadImages(geneItems.items['sysbg'].sort(function(a, b) { 
+            if(a.id < b.id) { return -1; }
+            if(a.id > b.id) { return 1; }
+            return 0;
+        }), 'sysbg', items_sysbg)
+    }
 }
 
 async function loadValgeneData(gene_edition) {
@@ -136,7 +146,14 @@ async function loadValgeneData(gene_edition) {
             $('#set_select').append('<option value=' + valGeneData.pregene[pregeneDataIndex].id + '>' + valGeneData.pregene[pregeneDataIndex].name + '</option>')
         }
     }
-    $('#set_select').val($("#set_select option").length)
+    let urlParams = new URLSearchParams(window.location.search);
+    return (urlParams.has('set') && urlParams.get('set') !== "") ? urlParams.get('set') : $("#set_select option").length
+}
+
+function redirectAfterRoll() {
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set('set', $('#set_select').val());
+    location.search = urlParams;
 }
 
 $(document).ready(async function() {
@@ -146,14 +163,12 @@ $(document).ready(async function() {
         return 0;
     }
 
-    $('#roll-result').on('click', function(){location.reload()})
-
     $('html').keypress(function(e){
         if([13, 27, 32].includes(e.keyCode) && $('.modal.is-active').length > 0) {
-            location.reload()
+            redirectAfterRoll()
         }
     })
-
+    
     $('.input').hide()
     $('.button').addClass('is-link')
     let refid = document.getElementsByName("refid")[0].value
@@ -162,14 +177,16 @@ $(document).ready(async function() {
     let items_subbg = JSON.parse(document.getElementById("data-pass-subbg").innerText);
     let items_bgm = JSON.parse(document.getElementById("data-pass-bgm").innerText);
     let items_nemsys = JSON.parse(document.getElementById("data-pass-nemsys").innerText);
+    let items_sysbg = JSON.parse(document.getElementById("data-pass-sysbg").innerText);
     let gene_edition = document.getElementById("generator-edition").innerText;
-    await loadValgeneData(gene_edition)
-    loadItems($('#set_select').val(), gene_edition, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys)
+    let currentSet = await loadValgeneData(gene_edition)
+    $('#set_select').val(currentSet)
+    loadItems(currentSet, gene_edition, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys, items_sysbg)
     
     $('#set_select').change(function() {
         $('.count').text('')
         $('.item_banners').empty()
-        loadItems(parseInt($('#set_select').val()), gene_edition, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys)
+        loadItems(parseInt($('#set_select').val()), gene_edition, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys, items_sysbg)
     })
 
     $('#pregene-roll, #valgene-roll').on('click', async function() {
@@ -177,22 +194,20 @@ $(document).ready(async function() {
         $('#pregene-roll, #valgene-roll').attr('disabled', 'disabled')
         if(gene_edition === 'premium' && window.location.search.match(/(premium)/g) != undefined) {
             let geneItems = await getGeneratorEditionItems(gene_edition, parseInt($('#set_select').val()))
-            if(countGeneItems(geneItems, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys)[0] >= countGeneItems(geneItems, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys)[1]) {
+            if(countGeneItems(geneItems, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys, items_sysbg)[0] >= countGeneItems(geneItems, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys, items_sysbg)[1]) {
                 alert("All items have been unlocked already.")
             } else {
                 emit('preGeneRoll', {
                     set: parseInt(document.getElementById('set_select').value),
                     refid: refid, 
                     geneEdition: gene_edition,
-                    items: items_crew.concat(items_stamp, items_subbg, items_bgm, items_nemsys)
+                    items: items_crew.concat(items_stamp, items_subbg, items_bgm, items_nemsys, items_sysbg)
                 }).then(
-                function() {
-                    $.getJSON("static/asset/logs/preGeneRollResult.json", function(data) {
-                        $('.modal-card-head').append('<p class="modal-card-title">Rolled item!</p>')
-                        $('.modal-card-body').append('<img style="width: 400px; padding: 10px;" src="static/asset/valgene_item/item_' + data.type + '_' + data.id + '.png">')
-                        $('.modal-card-foot').append('<button onclick=location.reload(); class="button is-primary">Close</button>')
-                        $('.modal').addClass('is-active')
-                    })
+                function(response) {
+                    $('.modal-card-head').append('<p class="modal-card-title">Rolled item!</p>')
+                    $('.modal-card-body').append('<img style="width: 400px; padding: 10px;" src="static/asset/valgene_item/item_' + response['data'].type + '_' + response['data'].id + '.png">')
+                    $('.modal-card-foot').append('<button onclick=redirectAfterRoll(); class="button is-primary">Close</button>')
+                    $('.modal').addClass('is-active')
                 })
             }
         } else {

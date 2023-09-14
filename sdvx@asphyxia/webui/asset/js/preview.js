@@ -146,8 +146,32 @@ $(document).ready(function() {
     items_subbg = JSON.parse(document.getElementById("data-pass-subbg").innerText);
     items_bgm = JSON.parse(document.getElementById("data-pass-bgm").innerText);
     items_nemsys = JSON.parse(document.getElementById("data-pass-nemsys").innerText);
+    items_sysbg = JSON.parse(document.getElementById("data-pass-sysbg").innerText);
     unlock_all = (document.getElementById("data-pass-unlock-all").innerText === 'true');
-    
+
+    $.getJSON("static/asset/json/customize_data_ext.json", function(json) {
+        database = json;
+
+        for (var i in json["supportTeams"]) {
+            $('[name="bplSupport"]').append($('<option>', {
+                value: json["supportTeams"][i].id,
+                text: json["supportTeams"][i].name,
+            }));
+        }
+        $('[name="bplSupport"]').val(profile_data["bplSupport"] ? profile_data["bplSupport"] : 0);
+
+        for (var i in json["sysbg"]) {
+            console.log(json["sysbg"][i].id)
+            if(unlock_all || (items_sysbg.find(x => x.id === json["sysbg"][i].id) || json["sysbg"][i].id === 0)) {
+                $('[name="sysBG"]').append($('<option>', {
+                    value: json["sysbg"][i].id,
+                    text: json["sysbg"][i].name,
+                }));
+            }
+        }
+        $('[name="sysBG"]').val(profile_data["sysBG"] ? profile_data["sysBG"] : 0);
+    });
+
     $.getJSON("static/asset/json/data.json", function(json) {
         database = json;
 

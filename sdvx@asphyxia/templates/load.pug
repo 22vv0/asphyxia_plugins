@@ -31,6 +31,10 @@ game
   skill_level(__type="s16") #{skill.level}
   skill_base_id(__type="s16") #{skill.base}
   skill_name_id(__type="s16") #{skill.name}
+  skill_type(__type="s16") #{skill.type !== undefined ? skill.type : 0}
+
+  if bplSupport
+    support_team_id(__type="s32") #{bplSupport}
   
   ea_shop
     packet_booster(__type="s32") 1
@@ -51,8 +55,9 @@ game
       course
         ssnid(__type="s16") #{course.sid}
         crsid(__type="s16") #{course.cid}
+        st(__type="s16") #{course.stype !== undefined ? course.stype : 0}
         sc(__type="s32") #{course.score}
-        ex(__type="s32") 0
+        ex(__type="s32") #{course.exscore !== undefined ? course.exscore : 0}
         ct(__type="s16") #{course.clear}
         gr(__type="s16") #{course.grade}
         ar(__type="s16") #{course.rate}
