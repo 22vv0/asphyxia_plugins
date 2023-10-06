@@ -5,21 +5,16 @@ function zeroPad(num, places) {
 
 function getImageFileFormat(assetType, id) {
     if(assetType == 0) {
-        return (id >= 103) ? '.png' : '.jpg'
+        if (id >= 103) {
+            if (id >= 359 && id <= 368) {
+                return '.mp4'
+            }
+            return '.png'
+        } 
+        return '.jpg'
     }
 }
 
-function checkPregeneSubbg(subbg) {
-    let stat = $.ajax({
-        url:'static/asset/submonitor_bg/subbg_' + zeroPad(subbg, 4) + getImageFileFormat(0, parseInt(zeroPad(subbg, 4))),
-        type:'HEAD',
-        async: false
-    }).status;
-    if(stat === 200) return false
-    else return true
-}
-
-;
 (function($) {
     $.preload = function() {
         var imgs = Object.prototype.toString.call(arguments[0]) === '[object Array]' ?
@@ -46,9 +41,17 @@ $('#nemsys_select').change(function() {
 });
 
 $('[name="subbg"]').change(async function() {
-    let isSubbgSlideshow = checkPregeneSubbg($('[name="subbg"]').val())
-    $('#sub_pre').fadeOut(200, () => { $('#sub_pre').attr("src", isSubbgSlideshow ? "static/asset/submonitor_bg/subbg_" + zeroPad($('[name="subbg"]').val(), 4) + "_0" + (Math.floor(Math.random() * 3) + 1) + getImageFileFormat(0, parseInt(zeroPad($('[name="subbg"]').val(), 4))) : "static/asset/submonitor_bg/subbg_" + zeroPad($('[name="subbg"]').val(), 4) + getImageFileFormat(0, parseInt(zeroPad($('[name="subbg"]').val(), 4)) )); });
-    $('#sub_pre').fadeIn(200);
+    let isSubbgSlideshow = (database['subbg'][$('[name="subbg"]').val()]['type'] === 'slideshow')
+    $('#sub_pre').fadeOut(200)
+    $('#sub_pre_vid').fadeOut(200)
+    if(getImageFileFormat(0, parseInt(zeroPad($('[name="subbg"]').val(), 4))) === '.mp4') {
+        $('#sub_pre_vid_src').attr('src', "static/asset/submonitor_bg/subbg_" + zeroPad($('[name="subbg"]').val(), 4) + getImageFileFormat(0, parseInt(zeroPad($('[name="subbg"]').val(), 4))))
+        document.getElementById('sub_pre_vid').load()
+        $('#sub_pre_vid').fadeIn(200)
+    } else {
+        $('#sub_pre').fadeOut(200, () => { $('#sub_pre').attr("src", isSubbgSlideshow ? "static/asset/submonitor_bg/subbg_" + zeroPad($('[name="subbg"]').val(), 4) + "_0" + (Math.floor(Math.random() * 3) + 1) + getImageFileFormat(0, parseInt(zeroPad($('[name="subbg"]').val(), 4))) : "static/asset/submonitor_bg/subbg_" + zeroPad($('[name="subbg"]').val(), 4) + getImageFileFormat(0, parseInt(zeroPad($('[name="subbg"]').val(), 4)) )); });
+        $('#sub_pre').fadeIn(200);
+    }
 });
 
 $('[name="bgm"]').change(function() {
@@ -74,8 +77,6 @@ $('[name="bgm"]').change(function() {
 });
 
 var testcurrent = 2.8;
-
-
 
 $('[name="stampA"]').change(function() {
     $('#a_pre').fadeOut(200, () => {
@@ -136,6 +137,66 @@ $('[name="stampD"]').change(function() {
     });
     $('#d_pre').fadeIn(200);
 });
+
+$('[name="stampRA"]').change(function() {
+    $('#ra_pre').fadeOut(200, () => {
+        var stamp = $('[name="stampRA"]').val();
+        if (stamp == 0) {
+            $('#ra_pre').attr("src", "static/asset/nostamp.png");
+        } else {
+            var group = Math.trunc((stamp - 1) / 4 + 1);
+            var item = stamp % 4;
+            if (item == 0) item = 4;
+            $('#ra_pre').attr("src", "static/asset/chat_stamp/stamp_" + zeroPad(group, 4) + "/stamp_" + zeroPad(group, 4) + "_" + zeroPad(item, 2) + ".png");
+        }
+    });
+    $('#ra_pre').fadeIn(200);
+});
+
+$('[name="stampRB"]').change(function() {
+    $('#rb_pre').fadeOut(200, () => {
+        var stamp = $('[name="stampRB"]').val();
+        if (stamp == 0) {
+            $('#rb_pre').attr("src", "static/asset/nostamp.png");
+        } else {
+            var group = Math.trunc((stamp - 1) / 4 + 1);
+            var item = stamp % 4;
+            if (item == 0) item = 4;
+            $('#rb_pre').attr("src", "static/asset/chat_stamp/stamp_" + zeroPad(group, 4) + "/stamp_" + zeroPad(group, 4) + "_" + zeroPad(item, 2) + ".png");
+        }
+    });
+    $('#rb_pre').fadeIn(200);
+});
+
+$('[name="stampRC"]').change(function() {
+    $('#rc_pre').fadeOut(200, () => {
+        var stamp = $('[name="stampRC"]').val();
+        if (stamp == 0) {
+            $('#rc_pre').attr("src", "static/asset/nostamp.png");
+        } else {
+            var group = Math.trunc((stamp - 1) / 4 + 1);
+            var item = stamp % 4;
+            if (item == 0) item = 4;
+            $('#rc_pre').attr("src", "static/asset/chat_stamp/stamp_" + zeroPad(group, 4) + "/stamp_" + zeroPad(group, 4) + "_" + zeroPad(item, 2) + ".png");
+        }
+    });
+    $('#rc_pre').fadeIn(200);
+});
+
+$('[name="stampRD"]').change(function() {
+    $('#rd_pre').fadeOut(200, () => {
+        var stamp = $('[name="stampRD"]').val();
+        if (stamp == 0) {
+            $('#rd_pre').attr("src", "static/asset/nostamp.png");
+        } else {
+            var group = Math.trunc((stamp - 1) / 4 + 1);
+            var item = stamp % 4;
+            if (item == 0) item = 4;
+            $('#rd_pre').attr("src", "static/asset/chat_stamp/stamp_" + zeroPad(group, 4) + "/stamp_" + zeroPad(group, 4) + "_" + zeroPad(item, 2) + ".png");
+        }
+    });
+    $('#rd_pre').fadeIn(200);
+});
 var profile_data, database;
 var play_bgm = false;
 var play_sel = false;
@@ -161,7 +222,6 @@ $(document).ready(function() {
         $('[name="bplSupport"]').val(profile_data["bplSupport"] ? profile_data["bplSupport"] : 0);
 
         for (var i in json["sysbg"]) {
-            console.log(json["sysbg"][i].id)
             if(unlock_all || (items_sysbg.find(x => x.id === json["sysbg"][i].id) || json["sysbg"][i].id === 0)) {
                 $('[name="sysBG"]').append($('<option>', {
                     value: json["sysbg"][i].id,
@@ -201,13 +261,15 @@ $(document).ready(function() {
             if(unlock_all || (json["subbg"][i].value === 0 || items_subbg.find(x => x.id === json["subbg"][i].value))) {
                 $('[name="subbg"]').append($('<option>', {
                     value: json["subbg"][i].value,
+                    type: json["subbg"][i].type,
                     text: json["subbg"][i].name,
                 }));
                 var image = new Image();
-                if (checkPregeneSubbg(json["subbg"][i].value)) {
+                if (json["subbg"][i].type === 'slideshow') {
                     image.src = "static/asset/submonitor_bg/subbg_" + zeroPad(json["subbg"][i].value, 4) + "_0" + (Math.floor(Math.random() * 3) + 1) + getImageFileFormat(0, parseInt(zeroPad(json["subbg"][i].value, 4)));
-                } else image.src = "static/asset/submonitor_bg/subbg_" + zeroPad(json["subbg"][i].value, 4) + getImageFileFormat(0, parseInt(zeroPad(json["subbg"][i].value, 4)));
-                
+                } else if (json["subbg"][i].type === 'normal') {
+                    image.src = "static/asset/submonitor_bg/subbg_" + zeroPad(json["subbg"][i].value, 4) + getImageFileFormat(0, parseInt(zeroPad(json["subbg"][i].value, 4)));
+                }
                 // console.log(image);
                 //console.log(profile_data["subbg"])
             }
@@ -268,6 +330,31 @@ $(document).ready(function() {
                     text: json["stamp"][i].name,
                 }));
                 $('[name="stampD"]').val(profile_data["stampD"]);
+
+                $('[name="stampRA"]').append($('<option>', {
+                    value: json["stamp"][i].value,
+                    text: json["stamp"][i].name,
+                }));
+                $('[name="stampRA"]').val(profile_data["stampRA"]);
+
+                $('[name="stampRB"]').append($('<option>', {
+                    value: json["stamp"][i].value,
+                    text: json["stamp"][i].name,
+                }));
+                $('[name="stampRB"]').val(profile_data["stampRB"]);
+
+                $('[name="stampRC"]').append($('<option>', {
+                    value: json["stamp"][i].value,
+                    text: json["stamp"][i].name,
+                }));
+                $('[name="stampRC"]').val(profile_data["stampRC"]);
+
+                $('[name="stampRD"]').append($('<option>', {
+                    value: json["stamp"][i].value,
+                    text: json["stamp"][i].name,
+                }));
+                $('[name="stampRD"]').val(profile_data["stampRD"]);
+
                 var group = Math.trunc((json["stamp"][i].value - 1) / 4 + 1);
                 var item = json["stamp"][i].value % 4;
                 if (item == 0) item = 4;
@@ -285,14 +372,24 @@ $(document).ready(function() {
         $('#nemsys_pre').attr("src", "static/asset/nemsys/nemsys_aprilfool.png");
     }
 
-    $('#sub_pre').attr("src", "static/asset/submonitor_bg/subbg_" + zeroPad(profile_data["subbg"], 4) + getImageFileFormat(0, parseInt(zeroPad(profile_data["subbg"], 4))));
+    $('#sub_pre').fadeOut(200)
+    $('#sub_pre_vid').fadeOut(200)
+    if(getImageFileFormat(0, parseInt(zeroPad(profile_data["subbg"], 4))) === '.mp4') {
+        $('#sub_pre_vid').empty().append(
+            $("<source id='sub_pre_vid_src' src='static/asset/submonitor_bg/subbg_" + zeroPad(profile_data["subbg"], 4) + getImageFileFormat(0, parseInt(zeroPad(profile_data["subbg"], 4))) + "'>")
+        )
+        $('#sub_pre_vid').fadeIn(200)
+    } else {
+        $('#sub_pre').attr("src", "static/asset/submonitor_bg/subbg_" + zeroPad(profile_data["subbg"], 4) + getImageFileFormat(0, parseInt(zeroPad(profile_data["subbg"], 4))));
+        $('#sub_pre').fadeIn(200)
+    }
     $('#custom_0').attr("src", "static/asset/audio/custom_" + zeroPad(profile_data["bgm"], 2) + "/0.mp3");
     $('#custom_1').attr("src", "static/asset/audio/custom_" + zeroPad(profile_data["bgm"], 2) + "/1.mp3");
     $('#custom_0').prop("volume", 0.5);
     $('#custom_1').prop("volume", 0.2);
 
     var stamp = profile_data["stampA"];
-    if (stamp == 0) {
+    if (stamp == 0 || stamp == null) {
         $('#a_pre').attr("src", "static/asset/nostamp.png");
     } else {
         var group = Math.trunc((stamp - 1) / 4 + 1);
@@ -301,7 +398,7 @@ $(document).ready(function() {
         $('#a_pre').attr("src", "static/asset/chat_stamp/stamp_" + zeroPad(group, 4) + "/stamp_" + zeroPad(group, 4) + "_" + zeroPad(item, 2) + ".png");
     }
     stamp = profile_data["stampB"];
-    if (stamp == 0) {
+    if (stamp == 0 || stamp == null) {
         $('#b_pre').attr("src", "static/asset/nostamp.png");
     } else {
         var group = Math.trunc((stamp - 1) / 4 + 1);
@@ -310,7 +407,7 @@ $(document).ready(function() {
         $('#b_pre').attr("src", "static/asset/chat_stamp/stamp_" + zeroPad(group, 4) + "/stamp_" + zeroPad(group, 4) + "_" + zeroPad(item, 2) + ".png");
     }
     stamp = profile_data["stampC"];
-    if (stamp == 0) {
+    if (stamp == 0 || stamp == null) {
         $('#c_pre').attr("src", "static/asset/nostamp.png");
     } else {
         var group = Math.trunc((stamp - 1) / 4 + 1);
@@ -319,13 +416,50 @@ $(document).ready(function() {
         $('#c_pre').attr("src", "static/asset/chat_stamp/stamp_" + zeroPad(group, 4) + "/stamp_" + zeroPad(group, 4) + "_" + zeroPad(item, 2) + ".png");
     }
     stamp = profile_data["stampD"];
-    if (stamp == 0) {
+    if (stamp == 0 || stamp == null) {
         $('#d_pre').attr("src", "static/asset/nostamp.png");
     } else {
         var group = Math.trunc((stamp - 1) / 4 + 1);
         var item = stamp % 4;
         if (item == 0) item = 4;
         $('#d_pre').attr("src", "static/asset/chat_stamp/stamp_" + zeroPad(group, 4) + "/stamp_" + zeroPad(group, 4) + "_" + zeroPad(item, 2) + ".png");
+    }
+
+    stamp = profile_data["stampRA"];
+    if (stamp == 0 || stamp == null) {
+        $('#ra_pre').attr("src", "static/asset/nostamp.png");
+    } else {
+        var group = Math.trunc((stamp - 1) / 4 + 1);
+        var item = stamp % 4;
+        if (item == 0) item = 4;
+        $('#ra_pre').attr("src", "static/asset/chat_stamp/stamp_" + zeroPad(group, 4) + "/stamp_" + zeroPad(group, 4) + "_" + zeroPad(item, 2) + ".png");
+    }
+    stamp = profile_data["stampRB"];
+    if (stamp == 0 || stamp == null) {
+        $('#rb_pre').attr("src", "static/asset/nostamp.png");
+    } else {
+        var group = Math.trunc((stamp - 1) / 4 + 1);
+        var item = stamp % 4;
+        if (item == 0) item = 4;
+        $('#rb_pre').attr("src", "static/asset/chat_stamp/stamp_" + zeroPad(group, 4) + "/stamp_" + zeroPad(group, 4) + "_" + zeroPad(item, 2) + ".png");
+    }
+    stamp = profile_data["stampRC"];
+    if (stamp == 0 || stamp == null) {
+        $('#rc_pre').attr("src", "static/asset/nostamp.png");
+    } else {
+        var group = Math.trunc((stamp - 1) / 4 + 1);
+        var item = stamp % 4;
+        if (item == 0) item = 4;
+        $('#rc_pre').attr("src", "static/asset/chat_stamp/stamp_" + zeroPad(group, 4) + "/stamp_" + zeroPad(group, 4) + "_" + zeroPad(item, 2) + ".png");
+    }
+    stamp = profile_data["stampRD"];
+    if (stamp == 0 || stamp == null) {
+        $('#rd_pre').attr("src", "static/asset/nostamp.png");
+    } else {
+        var group = Math.trunc((stamp - 1) / 4 + 1);
+        var item = stamp % 4;
+        if (item == 0) item = 4;
+        $('#rd_pre').attr("src", "static/asset/chat_stamp/stamp_" + zeroPad(group, 4) + "/stamp_" + zeroPad(group, 4) + "_" + zeroPad(item, 2) + ".png");
     }
 
     $('#bgm_pre').append(

@@ -1,5 +1,6 @@
 import { Profile } from '../models/profile';
 import { MusicRecord } from '../models/music_record';
+import { Matchmaker } from '../models/matchmaker';
 import { getVersion, IDToCode, GetCounter } from '../utils';
 import { Mix } from '../models/mix';
 
@@ -156,27 +157,84 @@ export const loadMix: EPR = async (info, data, send) => {
 };
 
 export const globalMatch: EPR = async (info, data, send) => {
-  // console.log("Current MID: "+$(data).number('mid'));
-  // console.log("Port: "+$(data).number('port'));
-  // console.log("Global IP: "+$(data).numbers('gip'));
-  // console.log("Private IP: "+$(data).numbers('lip'));
+  let entryData: Matchmaker = {
+    collection: 'matchmaker',
+    timestamp: Date.now(),
+    c_ver: $(data).number('c_ver'),
+    p_num: $(data).number('p_num'),
+    p_rest: $(data).number('p_rest'),
+    filter: $(data).number('filter'),
+    mid: $(data).number('mid'),
+    sec: $(data).number('sec'),
+    port: $(data).number('port'),
+    gip: $(data).numbers('gip'),
+    lip: $(data).numbers('lip'),
+    claim: $(data).number('claim'),
+    entry_id: $(data).number('entry_id')
+  }
 
-  // var mid = $(data).number('mid');
-  // var port = $(data).number('port');
-  // var gip = $(data).str('gip');
-  // var lip = $(data).str('lip');
-  // var testArray = [{
-  //   port: port,
-  //   gip:gip,
-  //   lip:lip,
-  // }];
-  // return send.object({
-  //   entry_id: K.ITEM('str', '123456789'),
-  //   entry: testArray.map(a=>{
-  //     port: K.ITEM('u16',a.port);
-  //     gip: K.ITEM('ip4',a.gip);
-  //     lip: K.ITEM('ip4',a.lip);
-  //   })
-  // });
-  send.success();
+  let loggip = entryData.gip.join(".")
+
+  console.log("====================================")
+  console.log("[" + loggip + "] Searching for online match opponents")
+  console.log("[" + loggip + "] Removed " + await DB.Remove({collection:'matchmaker', timestamp: {$lt: Date.now() - 100000}}) + " expired match data.")
+  
+  if(entryData.p_rest < 1) {
+    console.log("[" + loggip + "] Room is full. Halting.")
+    return send.deny();
+  }
+
+  // console.log("   c_ver: " + entryData.c_ver)
+  // console.log("   p_num: " + entryData.p_num) // current match player count
+  // console.log("  p_rest: " + entryData.p_rest) // remaining player spaces
+  // console.log("  filter: " + entryData.filter) // game mode matchmaking filter
+  // console.log("     mid: " + entryData.mid)
+  // console.log("     sec: " + entryData.sec) // remaining seconds
+  // console.log("    port: " + entryData.port)
+  // console.log("     gip: " + entryData.gip)
+  // console.log("     lip: " + entryData.lip)
+  // console.log("   claim: " + entryData.claim)
+  // console.log("entry_id: " + entryData.entry_id)
+
+  console.log("[" + loggip + "] Adding/updating your match data")
+  if(await DB.Count({collection: 'matchmaker', gip: entryData.gip}) === 0) {
+    await DB.Upsert<Matchmaker>(
+      { collection: 'matchmaker', gip: entryData.gip },
+      entryData
+    )
+  } else {
+    await DB.Upsert<Matchmaker>(
+      { collection: 'matchmaker', gip: entryData.gip},
+      { $set: {
+          c_ver: entryData.c_ver,
+          p_num: entryData.p_num,
+          p_rest: entryData.p_rest,
+          filter: entryData.filter,
+          mid: entryData.mid,
+          sec: entryData.sec,
+          claim: entryData.claim
+        }
+      }
+    )
+  }
+
+  console.log("[" + loggip + "] Searching...")
+  let filteredDB = await DB.Find<Matchmaker>({collection: "matchmaker", entry_id: entryData.entry_id, filter: entryData.filter, $not: {gip: entryData.gip}})
+
+  let opponents = filteredDB.length === 0 ? null : {
+    entry_id: K.ITEM('u32', entryData.entry_id),
+    entry: filteredDB.map(e => ({
+      port: K.ITEM('u16', e.port),
+      gip: K.ITEM('4u8', e.gip),
+      lip: K.ITEM('4u8', e.lip)
+    }))
+  }
+  if(opponents !== null) {
+    console.log("[" + loggip + "] Opponent/s found.") 
+    send.object(opponents)
+  }
+  else {
+    console.log("[" + loggip + "] No found opponents.")
+    send.deny()
+  }
 }

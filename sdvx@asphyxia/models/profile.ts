@@ -41,6 +41,10 @@ export interface Profile {
   stampB: number;
   stampC: number;
   stampD: number;
+  stampRA: number;
+  stampRB: number;
+  stampRC: number;
+  stampRD: number;
   sysBG: number;
 
   boothFrame: number[];

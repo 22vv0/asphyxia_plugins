@@ -20,11 +20,45 @@
 
 Changelog
 ===========
+## fork-6.0.2.2
+
+### New:
+
+1. Event updates:
+	- Enabled BPL S2 (SuddeИDeath) stamp event. Unlock all other songs first to make SuddeИDeath appear.
+	- Added SDVX x CCJ song online crossover event.
+	- Enabled item auto-unlock for 'cross_online' / cross events (X-record, BPL2021, Ichika, CCJ, etc.)
+		- I would love to make point/progression systems for each event but it would take a lot of work and I would potentially need to update other games' plugins, so I'd rather not, and just give the option to unlock the songs automatically. Maybe in the future?
+2. ARENA updates:
+	- Ranked match and rule implementation:
+		- The active ranked match game mode and the point system used depends on the individual season.
+		- Some seasons will have the ARENA BATTLE as the active ranked match, some will have SINGLE BATTLE.
+		- Point system/rule can either be based on score, or based on star point. As of the moment, only season 1 has used the score-based rule.
+		- Reference: [BEMANIWiki](https://bemaniwiki.com/index.php?SOUND+VOLTEX+EXCEED+GEAR/ARENA+BATTLE#ONLINE_ARENA)
+	- ARENA STATION catalog will still be based on the season it came out with.
+	- Added option to not choose an active ARENA season.
+3. Other:
+	- Initial online matchmaking code (WIP / unfinished / doesn't work)
+4. WebUI:
+	- Added support for setting FX-R chat stamps.
+	- Added video player for submonitor background videos (via Video.js)
+
+### Fixes: 
+
+1. Fixes WebUI resource update not adding video submonitor backgrounds. I 100% recommend updating your WebUI assets.
+
+### Todo:
+1. Figure out how to use image (png) files to appear in information/news popup.
+2. Figure out how demoloop works.
+3. More work/research on online matchmaking (globalMatch.) I can't seem to make clients establish a connection. 
+
+
 ## fork-6.0.2.1
 
 ### Fixes:
 
 1. Fixed missing Megamix songs (extend string param getting cut off)
+
 
 ## fork-6.0.2.0
 
@@ -42,7 +76,7 @@ Changelog
 7. Added support for System Backgrounds
 8. Added event data:
 	- BPL S3 Triple Tribe songs unlock toggle (suspicions, etc.)
-	- KAC 2023 song unlock toggle (Perfect Eater)
+	- KAC 2023 song unlock toggle (パーフェクトイーター)
 	- KAC 2023 song stamp event (for 累乗のカルマ)
 	- KAC 2023 song stamp event (for Stylus & QQ)
 9. Updated licensed songs and valk-exclusive songs list
@@ -61,9 +95,3 @@ Changelog
 2. Fixed bug in stamp select data.
 3. Fixed bug for when common.ts or profiles.ts is looking for a specific event key but it is undefined.
 3. Skill Analyzer: skill level requirement for Lv.11 and ∞. Song input/unlock status must be met as well, or just use the unlock all songs option in the WebUI.
-
-### Todo:
-1. BPL Season 2 Special Stamp Event Implementation
-	- All songs on the stamp event selection screen should be completed and unlocked for SuddeИDeath to appear. Still don't know how to implement that.
-2. Figure out how to use image (png) files to appear in information/news popup and in demo_info.
-3. Megamix Battle song list updated but I cannot make a lot of them appear in the list.

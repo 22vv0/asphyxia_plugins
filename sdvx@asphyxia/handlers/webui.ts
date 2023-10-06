@@ -17,6 +17,10 @@ export const updateProfile = async (data: {
   stampB?: string;
   stampC?: string;
   stampD?: string;
+  stampRA?: string;
+  stampRB?: string;
+  stampRC?: string;
+  stampRD?: string;
   sysBG?: string;
 }) => {
   if (data.refid == null) return;
@@ -79,6 +83,26 @@ export const updateProfile = async (data: {
   if (data.stampD && data.stampD.length > 0) {
     const validStampD = parseInt(data.stampD);
     if (!_.isNaN(validStampD)) update.stampD = validStampD;
+  }
+
+  if (data.stampRA && data.stampRA.length > 0) {
+    const validStampRA = parseInt(data.stampRA);
+    if (!_.isNaN(validStampRA)) update.stampRA = validStampRA;
+  }
+
+  if (data.stampRB && data.stampRB.length > 0) {
+    const validStampRB = parseInt(data.stampRB);
+    if (!_.isNaN(validStampRB)) update.stampRB = validStampRB;
+  }
+
+  if (data.stampRC && data.stampRC.length > 0) {
+    const validStampRC = parseInt(data.stampRC);
+    if (!_.isNaN(validStampRC)) update.stampRC = validStampRC;
+  }
+
+  if (data.stampRD && data.stampRD.length > 0) {
+    const validStampRD = parseInt(data.stampRD);
+    if (!_.isNaN(validStampRD)) update.stampRD = validStampRD;
   }
 
   if (data.sysBG && data.sysBG.length > 0) {
@@ -315,7 +339,7 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
         let nemsysId = parseInt(nemsys.name.match(/([0-9]+)/g)[0])
         if(nemsysId && resourceJsonData.nemsys.find(nem => nem.value == nemsysId) == undefined) {
           console.log("[nemsys] adding to json: " + nemsys.name)
-          resourceJsonData.nemsys.push({"value": nemsysId, "name": nemsys.name + " (please rename)"})
+          resourceJsonData.nemsys.push({"value": nemsysId, "name": nemsys.name})
         }
       }
     }
@@ -329,9 +353,9 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
   if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/submonitor_bg")) {
     let subBGFiles = await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/submonitor_bg")
     for await (const subbg of subBGFiles) {
-      if (subbg.name.match(/(\.png|\.jpg)/g)) {
+      if (subbg.name.match(/(\.png|\.jpg|\.mp4)/g)) {
         let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/submonitor_bg/" + subbg.name)
-        if(!IO.Exists('webui/asset/submonitor_bg/' + subbg.name.substring(0, (subbg.name.length - 4)) + ".png") && !IO.Exists('webui/asset/submonitor_bg/' + subbg.name.substring(0, (subbg.name.length - 4))  + ".jpg")) {
+        if(!IO.Exists('webui/asset/submonitor_bg/' + subbg.name.substring(0, (subbg.name.length - 4)) + ".png") && !IO.Exists('webui/asset/submonitor_bg/' + subbg.name.substring(0, (subbg.name.length - 4))  + ".jpg") && !IO.Exists('webui/asset/submonitor_bg/' + subbg.name.substring(0, (subbg.name.length - 4))  + ".mp4")) {
           console.log("[subbg] copying " + subbg.name)
           IO.WriteFile('webui/asset/submonitor_bg/' + subbg.name, fileToWrite)
           newSubBGData.push(subbg.name)
@@ -340,11 +364,19 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
         let subbgId = parseInt(subbg.name.match(/([0-9]+)/g)[0])
         if(subbgId) {
           let subbgName = subbg.name
-          let foundSubbg = resourceJsonData.subbg.find(subbg => subbg.value === subbgId)
-          if(foundSubbg == undefined) {
-            if(subbg.name.match(/(subbg_[0-9]+_[0-9]+)/g)) subbgName = subbg.name.match(/(subbg_[0-9]+)/g)[0]
-            console.log("[subbg] adding to json: " + subbgId + " - " + subbgName)
-            resourceJsonData.subbg.push({"value": subbgId, "name": subbgName + " (please rename)"})
+          let subbgType = 'normal'
+          let foundSubbg = resourceJsonData.subbg.findIndex(subbg => subbg.value === subbgId)
+          
+
+          if(subbg.name.match(/(subbg_[0-9]+_[0-9]+)/g)) {
+            subbgName = subbg.name.match(/(subbg_[0-9]+)/g)[0]
+            subbgType = 'slideshow'
+          } else if(subbg.name.includes('.mp4')) subbgType = 'video'
+          console.log("[subbg] adding to json: " + subbgId + " - " + subbgName)
+          if(foundSubbg == -1) {
+            resourceJsonData.subbg.push({"value": subbgId, "type": subbgType, "name": subbgName})
+          } else {
+            resourceJsonData.subbg[foundSubbg] = {"value": subbgId, "type": subbgType, "name": subbgName}
           }
         }
       }
@@ -372,7 +404,7 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
           let bgmId = parseInt(bgm.name.match(/(?<=(custom|special)_)([0-9]*)/g)[0])
           if(bgmId && resourceJsonData.bgm.find(bgm => bgm.value == bgmId) == undefined) {
             console.log("[bgm] adding to json: " + bgmId + " - " + bgm.name)
-            resourceJsonData.bgm.push({"value": bgmId, "name": bgm.name + " (please rename)"})
+            resourceJsonData.bgm.push({"value": bgmId, "name": bgm.name})
           }
         }
       }
@@ -467,19 +499,19 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
   await IO.WriteFile('webui/asset/json/appeal.json', JSON.stringify(apCardJsonData, null, 4))
   send.json(
     {
-    status: 'ok',
-    akaname: newAkanames,
-    nemsys: newNemsysData,
-    apCard: newAPCardData,
-    subbg: newSubBGData,
-    bgm: newBGMData,
-    chatStamp: newChatStampData,
-    valgeneItemFiles: newValgeneItemFiles,
-    versionSongs: newVersionSongs.sort((a, b) => a[0] - b[0]),
-    jsonSongs: newJsonSongs.sort((a, b) => a[0] - b[0]),
-    xcdSongs: newXCDSongs.sort((a, b) => a[0] - b[0]),
-    errors: runErrors
-  }
+      status: 'ok',
+      akaname: newAkanames,
+      nemsys: newNemsysData,
+      apCard: newAPCardData,
+      subbg: newSubBGData,
+      bgm: newBGMData,
+      chatStamp: newChatStampData,
+      valgeneItemFiles: newValgeneItemFiles,
+      versionSongs: newVersionSongs.sort((a, b) => a[0] - b[0]),
+      jsonSongs: newJsonSongs.sort((a, b) => a[0] - b[0]),
+      xcdSongs: newXCDSongs.sort((a, b) => a[0] - b[0]),
+      errors: runErrors
+    }
   )
 }
 

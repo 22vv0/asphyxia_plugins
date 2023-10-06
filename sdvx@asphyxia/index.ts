@@ -31,7 +31,7 @@ export function register() {
   R.Contributor("ovv (this fork)");
   R.GameCode('KFC');
 
-  R.Config('arena_szn',{ type: 'string', options: Object.keys(ARENA), default: 'Set 1 (04/25/22)', name: 'Arena Station Item Set', desc: 'Choose which season set of items in the arena station you want to show up in arena station'});
+  R.Config('arena_szn',{ type: 'string', options: Object.keys(ARENA), default: 'None', name: 'Ranked Match Season', desc: 'Current ARENA/SINGLE BATTLE ranked season. Also sets ARENA STATION catalog corresponding to that season.'});
   R.Config('enable_valk_songs' ,{ type: 'boolean', default: false, name:'Enable Valkyrie Model Songs', desc:'Enable the valkyrie model songs on non-valkyrie mode.'});
   // R.Config('new_year_special',{ type: 'boolean', default: false, name:'Use New Year Special', desc:'Enable New Year Special BGM for login (doesn\'t work right now)'});
   // R.Config('april_fools',{ type: 'boolean', default: false, name:'April Fools', desc:'Enable April Fools Event (doesn\'t work properly right now)'});
@@ -91,7 +91,7 @@ export function register() {
     nxt_time: K.ITEM('u32', 1000 * 5 * 60)
   }));
   MultiRoute('save_e', saveE);
-  MultiRoute('save_mega',true);
+  MultiRoute('save_mega', true);
   MultiRoute('play_e', true);
   MultiRoute('play_s', true);
   MultiRoute('entry_s', globalMatch);

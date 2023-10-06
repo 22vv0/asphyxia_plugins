@@ -1,5 +1,10 @@
 function generateEventToggles(eventInfo, eventConfig, eventEnabled) {
     let cardContent = $('<div class="card-content">')
+    cardContent.append('<div class="field is-horizontal"').append(
+        $("<h5>" + eventInfo['name'] + "</h5>")
+        ).append(
+        $("<p style='font-size: 15px;'>" + eventInfo['desc'] + "</p>")
+        )
     if(typeof eventInfo['info'] === 'string') {
         cardContent.append(
             $('<div class="field is-horizontal">').append(
@@ -95,6 +100,7 @@ $(document).ready(async function() {
                 if(eventData['events'][eventIter]['id'] === $(value).parent().children('input').attr('name')) {
                     eventConfig[eventData['events'][eventIter]['id']]['toggle'] = toggle
                 } else if ($(value).parent().children('input').attr('name').includes(eventData['events'][eventIter]['id'] + "_")) {
+                    if(eventConfig[eventData['events'][eventIter]['id']]['toggle'] !== undefined && typeof eventConfig[eventData['events'][eventIter]['id']]['toggle'] === 'boolean') eventConfig[eventData['events'][eventIter]['id']]['toggle'] = {}
                     eventConfig[eventData['events'][eventIter]['id']]['toggle'][[$(value).parent().children('input').attr('name')]] = toggle
                 }
             }

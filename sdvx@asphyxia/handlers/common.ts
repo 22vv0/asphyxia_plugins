@@ -15,7 +15,7 @@ export const common: EPR = async (info, data, send) => {
     let date = new Date();
     let currentYMDDate = parseInt([date.getFullYear(), ((date.getMonth() + 1) > 9 ? '' : '0') + (date.getMonth() + 1), (date.getDate() > 9 ? '' : '0') + date.getDate()].join(''));
     let currentDate = date.toLocaleDateString()
-    console.log('-----------------------------------------------')
+    console.log('====================================')
     console.log("Calling common function");
     
     const version = parseInt(info.model.split(":")[4]);
@@ -146,7 +146,7 @@ export const common: EPR = async (info, data, send) => {
           '                              [c:e5f3ff,a3d5ff]SDVX Plugin ver 6.0.0\n \n \n'+
           '\n\n           [f:0][c:ff3333,ffffff]FREE SOFTWARE. BEWARE OF SCAMMERS.\n'+
           '[c:ffffff,888888]  If you bought this software, request refund immediately.\n \n \n[/ol]'+
-          '[br:10][c:00FFFF][sz:50]ãƒ¡ãƒªãƒ¼ã€‚ã€‚ã€‚ã‚¯ãƒªã‚¹ãƒžã‚¹ã€ã§ã™ã€‚ã€‚ã€‚'+
+          '[br:10][c:00FFFF][sz:50]¥á¥ê©`¡£¡£¡£¥¯¥ê¥¹¥Þ¥¹¡¢¤Ç¤¹¡£¡£¡£'+
           '\n \n \n \n[sz:32][c:560000,FC0000]DO NOT STREAM OR DISTRIBUTE THIS GAME IN PUBLIC',
           //'[img:test]',
           '',
@@ -181,7 +181,7 @@ export const common: EPR = async (info, data, send) => {
     }
 
     if(IO.Exists('webui/asset/config/events.json')) {
-      const itemTypeList = {"track": 'e', "appeal": 'a', "crew": 'c', "pcb": 'b'}
+      const itemTypeList = {"track": 'e', "appeal": 'a', "crew": 'c', "pcb": 'b', "prereq": "r"}
       let bufEventData = await IO.ReadFile('webui/asset/json/events.json')
       let bufEventConfig = await IO.ReadFile('webui/asset/config/events.json')
       let eventData = JSON.parse(bufEventData.toString())
@@ -198,7 +198,7 @@ export const common: EPR = async (info, data, send) => {
             prmStr1Sel += stmpEvntInfo['info']['data'][stmpDataIter]['stmpid'] + '#' + stmpEvntInfo['info']['data'][stmpDataIter]['bnr'] + '#' + itemTypeList[stmpRwrd[stmpRwrd.length - 1][1]] + '#' + sSheetName + (stmpEvntInfo['info']['data'].length - 1 === parseInt(stmpDataIter) ? '' : ',')
             for(const stmpRwrdIter in stmpRwrd) {
               let iID = stmpRwrd[stmpRwrdIter][2]
-              if (stmpRwrd[stmpRwrdIter][1] === 'track') iID += stmpRwrd[stmpRwrdIter][3]
+              if (stmpRwrd[stmpRwrdIter][1] === 'track' || stmpRwrd[stmpRwrdIter][1] === 'prereq') iID += stmpRwrd[stmpRwrdIter][3]
               prmStr5 += stmpRwrd[stmpRwrdIter][0] + ':' + itemTypeList[stmpRwrd[stmpRwrdIter][1]] + ':' + iID + (stmpRwrd.length - 1 === parseInt(stmpRwrdIter) ? '' : ' ')
             }
             let newSelMainExtend = {
@@ -343,28 +343,30 @@ export const common: EPR = async (info, data, send) => {
 
     console.log("Sending common objects");
 
+    let arena_szn = U.GetConfig('arena_szn')  
     let arena_catalog_items = []
-    let catalog = []
-    let campaign = []
 
-    for (let catalog_item in ARENA[U.GetConfig('arena_szn')].arena_items) {
-      arena_catalog_items.push({
-        catalog_id: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].arena_items[catalog_item].catalog_id),
-        catalog_type: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].arena_items[catalog_item].catalog_type),
-        price: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].arena_items[catalog_item].price),
-        item_type: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].arena_items[catalog_item].item_type),
-        item_id: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].arena_items[catalog_item].item_id),
-        param: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].arena_items[catalog_item].param),
-      })
+    if(arena_szn !== 'None') {
+      arena_catalog_items = ARENA[arena_szn].arena_items.map(item => ({
+        catalog_id: K.ITEM('s32', item.catalog_id),
+        catalog_type: K.ITEM('s32', item.catalog_type),
+        price: K.ITEM('s32', item.price),
+        item_type: K.ITEM('s32', item.item_type),
+        item_id: K.ITEM('s32', item.item_id),
+        param: K.ITEM('s32', item.param),
+      }))
     }
 
     let valgene_info = []
     let valgene_items = []
-    VALGENE.info.forEach(val => valgene_info.push({
+
+    valgene_info = VALGENE.info.map(val => ({
       valgene_name: K.ITEM('str', val.valgene_name),
       valgene_name_english: K.ITEM('str', val.valgene_name_english),
       valgene_id: K.ITEM('s32', val.valgene_id)
     }))
+
+
     VALGENE.catalog.forEach((val) => {
       val.items.forEach((itemVal) => {
         itemVal.item_ids.forEach((item_id) => {
@@ -399,16 +401,18 @@ export const common: EPR = async (info, data, send) => {
           info: valgene_info,
           catalog: valgene_items
         },
-        arena: {
-          // season: K.ITEM('s32', ARENA[U.GetConfig('arena_szn')].details.season),
-          time_start: K.ITEM('u64', ARENA[U.GetConfig('arena_szn')].details.time_start),
-          time_end: K.ITEM('u64', ARENA[U.GetConfig('arena_szn')].details.time_end),
-          shop_start: K.ITEM('u64', ARENA[U.GetConfig('arena_szn')].details.shop_start),
-          shop_end: K.ITEM('u64', ARENA[U.GetConfig('arena_szn')].details.shop_end),
-          is_open: K.ITEM('bool', ARENA[U.GetConfig('arena_szn')].details.is_open),
-          is_shop: K.ITEM('bool', ARENA[U.GetConfig('arena_szn')].details.is_shop),
+        arena: (arena_szn !== 'None') ? {
+          season: K.ITEM('s32', ARENA[arena_szn].details.season),
+          rule: K.ITEM('s32', ARENA[arena_szn].details.rule),
+          rank_match_target: K.ITEM('s32', ARENA[arena_szn].details.rank_match_target),
+          time_start: K.ITEM('u64', ARENA[arena_szn].details.time_start),
+          time_end: K.ITEM('u64', ARENA[arena_szn].details.time_end),
+          shop_start: K.ITEM('u64', ARENA[arena_szn].details.shop_start),
+          shop_end: K.ITEM('u64', ARENA[arena_szn].details.shop_end),
+          is_open: K.ITEM('bool', ARENA[arena_szn].details.is_open),
+          is_shop: K.ITEM('bool', ARENA[arena_szn].details.is_shop),
           catalog: arena_catalog_items
-        },
+        } : {},
         event: {
           info: events.map(e => ({
             event_id: K.ITEM('str', e),

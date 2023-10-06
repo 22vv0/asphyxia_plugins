@@ -133,9 +133,10 @@ game
 
   if arena
     arena
-      ultimate_rate(__type="s32") #{arena.ultimateRate}
-      shop_point(__type="s32") #{arena.shopPoint}
+      last_play_season(__type="s32") #{arena.season !== undefined ? arena.season : 0}
       rank_point(__type="s32") #{arena.rankPoint}
-      live_energy(__type="s32") #{arena.liveEnergy}
+      shop_point(__type="s32") #{arena.shopPoint}
+      ultimate_rate(__type="s32") #{arena.ultimateRate}
+      ultimate_rank_num(__type="s32") #{arena.ultimateRankNum !== undefined ? arena.ultimateRankNum : 0}
       rank_play_cnt(__type="s32") #{arena.rankCount}
       ultimate_play_cnt(__type="s32") #{arena.ultimateCount}

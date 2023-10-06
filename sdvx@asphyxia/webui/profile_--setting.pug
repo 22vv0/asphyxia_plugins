@@ -100,7 +100,7 @@ div
                     .select.is-fullwidth
                       select(name="sysBG" id="sysbg_select")
                 .field
-                  label.label AStamp
+                  label.label FX-L A Stamp
                     //span.icon.has-tooltip-right(data-tooltip="Check \"data/graphics/chat_stamp\" 000X_0Y => 4*(X-1)+Y=StampID stamp_0000_01~04 is not usable!!!")
                       i.mdi.mdi-help-circle
                   .control
@@ -108,7 +108,7 @@ div
                       select(name="stampA")
                     //input.input(type="number" step=1 name="stampA", placeholder=profile.stampA)
                 .field
-                  label.label BStamp
+                  label.label FX-L B Stamp
                     //span.icon.has-tooltip-right(data-tooltip="Check \"data/graphics/chat_stamp\" 000X_0Y => 4*(X-1)+Y=StampID stamp_0000_01~04 is not usable!!!")
                       i.mdi.mdi-help-circle
                   .control
@@ -116,7 +116,7 @@ div
                       select(name="stampB")
                     //input.input(type="number" step=1 name="stampB", placeholder=profile.stampB)
                 .field
-                  label.label CStamp
+                  label.label FX-L C Stamp
                     //span.icon.has-tooltip-right(data-tooltip="Check \"data/graphics/chat_stamp\" 000X_0Y => 4*(X-1)+Y=StampID stamp_0000_01~04 is not usable!!!")
                       i.mdi.mdi-help-circle
                   .control
@@ -124,13 +124,46 @@ div
                       select(name="stampC")
                     //input.input(type="number" step=1 name="stampC", placeholder=profile.stampC)
                 .field
-                  label.label DStamp
+                  label.label FX-L D Stamp
                     //span.icon.has-tooltip-right(data-tooltip="Check \"data/graphics/chat_stamp\" 000X_0Y => 4*(X-1)+Y=StampID stamp_0000_01~04 is not usable!!!")
                       i.mdi.mdi-help-circle
                   .control
                     .select.is-fullwidth
                       select(name="stampD")
                     //input.input(type="number" step=1 name="stampD", placeholder=profile.stampD)
+
+                .field
+                  label.label FX-R A Stamp
+                    //span.icon.has-tooltip-right(data-tooltip="Check \"data/graphics/chat_stamp\" 000X_0Y => 4*(X-1)+Y=StampID stamp_0000_01~04 is not usable!!!")
+                      i.mdi.mdi-help-circle
+                  .control
+                    .select.is-fullwidth
+                      select(name="stampRA")
+                    //input.input(type="number" step=1 name="stampRA", placeholder=profile.stampRA)
+                .field
+                  label.label FX-R B Stamp
+                    //span.icon.has-tooltip-right(data-tooltip="Check \"data/graphics/chat_stamp\" 000X_0Y => 4*(X-1)+Y=StampID stamp_0000_01~04 is not usable!!!")
+                      i.mdi.mdi-help-circle
+                  .control
+                    .select.is-fullwidth
+                      select(name="stampRB")
+                    //input.input(type="number" step=1 name="stampRB", placeholder=profile.stampRB)
+                .field
+                  label.label FX-R C Stamp
+                    //span.icon.has-tooltip-right(data-tooltip="Check \"data/graphics/chat_stamp\" 000X_0Y => 4*(X-1)+Y=StampID stamp_0000_01~04 is not usable!!!")
+                      i.mdi.mdi-help-circle
+                  .control
+                    .select.is-fullwidth
+                      select(name="stampRC")
+                    //input.input(type="number" step=1 name="stampRC", placeholder=profile.stampRC)
+                .field
+                  label.label FX-R D Stamp
+                    //span.icon.has-tooltip-right(data-tooltip="Check \"data/graphics/chat_stamp\" 000X_0Y => 4*(X-1)+Y=StampID stamp_0000_01~04 is not usable!!!")
+                      i.mdi.mdi-help-circle
+                  .control
+                    .select.is-fullwidth
+                      select(name="stampRD")
+                    //input.input(type="number" step=1 name="stampRD", placeholder=profile.stampRD)
                 .field
                   button.button.is-primary(type="submit") 
                     span.icon
@@ -146,26 +179,45 @@ div
                   .tile.is-child
                     p Submonitor Preview
                     img(src='static/asset/submonitor_bg/subbg_0001.jpg' id="sub_pre")
+                    video(id="sub_pre_vid" controls preload="auto")
+                      source(id="sub_pre_vid_src")
               .tile 
                 .tile.is-parent.btm
                   .tile.is-child
-                    p A
+                    p FX-L A
                     img(src='static/asset/nostamp.png' id="a_pre")
                 .tile.is-parent.btm
                   .tile.is-child
-                    p B
+                    p FX-L B
                     img(src='static/asset/nostamp.png' id="b_pre")
                 .tile.is-parent.btm
                   .tile.is-child
-                    p C
+                    p FX-L C
                     img(src='static/asset/nostamp.png' id="c_pre")
                 .tile.is-parent.btm
                   .tile.is-child
-                    p D
+                    p FX-L D
                     img(src='static/asset/nostamp.png' id="d_pre")
+              .tile 
+                .tile.is-parent.btm
+                  .tile.is-child
+                    p FX-R A
+                    img(src='static/asset/nostamp.png' id="ra_pre")
+                .tile.is-parent.btm
+                  .tile.is-child
+                    p FX-R B
+                    img(src='static/asset/nostamp.png' id="rb_pre")
+                .tile.is-parent.btm
+                  .tile.is-child
+                    p FX-R C
+                    img(src='static/asset/nostamp.png' id="rc_pre")
+                .tile.is-parent.btm
+                  .tile.is-child
+                    p FX-R D
+                    img(src='static/asset/nostamp.png' id="rd_pre")
               .tile.is-parent.is-vertical(id='bgm_pre')
                 p BGM preview
-                audio(controls style="width:100%;display:none;" src='static/asset/audio/custom_00/0.mp3' type='audio/mp3' id='custom_0')
+                audio(controls style="width:100%;display:none;" src='static/asset/audio/custom_00/0.mp3' type='audio/mp3' id='custom_0' loop)
               .tile.is-parent.is-vertical(id='sel_pre')
                 p Song selection preview
                 audio(controls style="width:100%;display:none;" src='static/asset/audio/custom_00/1.mp3' type='audio/mp3' id='custom_1')
@@ -192,3 +244,4 @@ div(hidden id='data-pass-nemsys') !{JSON.stringify(items_nemsys)}
 div(hidden id='data-pass-sysbg') !{JSON.stringify(items_sysbg)}
 div(hidden id='data-pass-unlock-all') !{unlock_all}
 script(src="static/asset/js/preview.js") 
+script(src="https://vjs.zencdn.net/8.5.2/video.min.js")

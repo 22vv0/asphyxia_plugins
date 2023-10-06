@@ -371,6 +371,14 @@ export const STAMP_EVENTS6 = {
           'bnr': 'sheet_track_1938',
           'stps': 30,
           'stprwrd': [
+            ['0', 'prereq', 'x', '14'],
+            ['0', 'prereq', 'x', '15'],
+            ['0', 'prereq', 'x', '16'],
+            ['0', 'prereq', 'x', '17'],
+            ['0', 'prereq', 'x', '18'],
+            ['0', 'prereq', 'x', '19'],
+            ['0', 'prereq', 'x', '20'],
+            ['0', 'prereq', 'x', '21'],
             ['30', 'track', '1938', '23']
           ]
         }
@@ -431,9 +439,15 @@ export const STAMP_EVENTS6 = {
 
 export const EVENT_SONGS6 = {
   // X-Record songs
-  'xrecord_1': ['1736', '1737', '1738'],
-  'xrecord_2': ['1847', '1848', '1849'],
-  'xrecord_3': ['1980', '1978', '1979'],
+  'xrecord_1_1': ['1737'],
+  'xrecord_1_2': ['1738'],
+  'xrecord_1_3': ['1736'],
+  'xrecord_2_1': ['1848'],
+  'xrecord_2_2': ['1849'],
+  'xrecord_2_3': ['1847'],
+  'xrecord_3_1': ['1979'],
+  'xrecord_3_2': ['1980'],
+  'xrecord_3_3': ['1978'],
   // Konaste songs
   'konasute_1': ['1762'],
   'konasute_2': ['1763'],
@@ -441,15 +455,25 @@ export const EVENT_SONGS6 = {
   'konasute_4': ['1765'],
   'konasute_5': ['1811'],
   // BPL2021 songs
-  'bpl2021': ['1808', '1809'],
+  'bpl2021_1': ['1808'],
+  'bpl2021_2': ['1809'],
   // BSB2021 songs
-  'bsb2021': ['1802', '1803', '1804', '1805', '1806', '1807'],
+  'bsb2021_1': ['1802'],
+  'bsb2021_2': ['1803'],
+  'bsb2021_3': ['1804'],
+  'bsb2021_4': ['1805'],
+  'bsb2021_5': ['1806'],
+  'bsb2021_6': ['1807'],
   // SDVX 10th anniversary stamp event songs
   'sdvx10thstamp': ['1838', '1839', '1840', '1841', '1842', '1843', '1844'],
   // REFLECT BEAT stamp event songs
   'reflecstamp': ['1850', '1851', '1852', '1853', '1854'],
   // BEMANI ichika 2022 event songs
-  'gmz2022': ['1906', '1907', '1908', '1909', '1910'],
+  'gmz2022_1': ['1906'],
+  'gmz2022_2': ['1907'],
+  'gmz2022_3': ['1908'],
+  'gmz2022_4': ['1909'],
+  'gmz2022_5': ['1910'],
   // BPL2022 songs
   "bpl2022_1": ['1952', '1943'],
   "bpl2022_2": ['1948', '1951'],
@@ -470,7 +494,9 @@ export const EVENT_SONGS6 = {
   // BPL S3 Triple Tribe
   "bpls3songs_1": ['2063'],
   "bpls3songs_2": ['2064'],
-  "bpls3songs_3": ['2065']
+  "bpls3songs_3": ['2065'],
+  // CHASECHASEJOKERS song
+  "ccjsong": ['2027']
 }
 
 export const APRILFOOLSSONGS = [
@@ -484,9 +510,12 @@ export const VALKYRIE_SONGS = [
 ]
 
 export const ARENA = {
-  'Set 1 (04/25/22)': {
+  'None': {},
+  'Season 1 (ARENA BATTLE 2022/04/25～2022/06/05)': {
     details: {
-      // season: 1,
+      season: 1,
+      rule: 0,
+      rank_match_target: 0,
       time_start: BigInt(Date.parse('25 Apr 2022 00:00:00 GMT')),
       time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('25 Apr 2022 00:00:00 GMT')),
@@ -585,9 +614,11 @@ export const ARENA = {
       },
     ] 
   },
-  'Set 2 (06/30/22)': {
+  'Season 2 (ARENA BATTLE 2022/06/30～2022/08/14)': {
     details: {
-      // season: 2,
+      season: 2,
+      rule: 1,
+      rank_match_target: 0,
       time_start: BigInt(Date.parse('30 Jun 2022 00:00:00 GMT')),
       time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('30 Jun 2022 00:00:00 GMT')),
@@ -652,11 +683,13 @@ export const ARENA = {
         item_id: 132,
         param: 8,
       }
-    ],
-  },  
-  'Set 3 (09/01/22)': {
+    ]
+  },
+  'Season 3 (ARENA BATTLE 2022/09/01～2022/10/02)': {
     details: {
-      // season: 3,
+      season: 3,
+      rule: 1,
+      rank_match_target: 0,
       time_start: BigInt(Date.parse('01 Sep 2022 00:00:00 GMT')),
       time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('01 Sep 2022 00:00:00 GMT')),
@@ -721,11 +754,13 @@ export const ARENA = {
         item_id: 323,
         param: 8,
       }
-    ],
+    ]
   },
-  'Set 4 (10/20/22)': {
+  'Season 4 (ARENA BATTLE 2022/10/20～2022/11/13)': {
     details: {
-      // season: 4,
+      season: 4,
+      rule: 1,
+      rank_match_target: 0,
       time_start: BigInt(Date.parse('20 Oct 2022 00:00:00 GMT')),
       time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('20 Oct 2022 00:00:00 GMT')),
@@ -830,11 +865,13 @@ export const ARENA = {
         item_id: 88,
         param: 8,
       },
-    ],
+    ]
   },
-  'Set 5 (12/22/22)': {
+  'Season 5 (ARENA BATTLE 2022/12/22～2023/01/16)': {
     details: {
-      // season: 4,
+      season: 5,
+      rule: 1,
+      rank_match_target: 0,
       time_start: BigInt(Date.parse('22 Dec 2022 00:00:00 GMT')),
       time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('22 Dec 2022 00:00:00 GMT')),
@@ -909,9 +946,11 @@ export const ARENA = {
       }
     ]
   },
-  'Set 6 (02/16/23)': {
+  'Season 6 (ARENA BATTLE 2023/02/16～2023/03/13)': {
     details: {
-      // season: 4,
+      season: 6,
+      rule: 1,
+      rank_match_target: 0,
       time_start: BigInt(Date.parse('16 Feb 2023 00:00:00 GMT')),
       time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('16 Feb 2023 00:00:00 GMT')),
@@ -978,9 +1017,11 @@ export const ARENA = {
       }
     ]
   },
-  'Set 7 (04/27/23)': {
+  'Season 7 (SINGLE BATTLE 2023/04/27～2023/05/15)': {
     details: {
-      // season: 4,
+      season: 7,
+      rule: 1,
+      rank_match_target: 1,
       time_start: BigInt(Date.parse('27 Apr 2023 00:00:00 GMT')),
       time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('27 Apr 2023 00:00:00 GMT')),
@@ -1127,9 +1168,11 @@ export const ARENA = {
       }
     ]
   },
-  'Set 8 (06/08/23)': {
+  'Season 8 (SINGLE BATTLE 2023/06/08～2023/06/26)': {
     details: {
-      // season: 4,
+      season: 8,
+      rule: 1,
+      rank_match_target: 1,
       time_start: BigInt(Date.parse('8 Jun 2023 00:00:00 GMT')),
       time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('8 Jun 2023 00:00:00 GMT')),
@@ -1228,9 +1271,11 @@ export const ARENA = {
       }
     ]
   },
-  'Set 9 (07/13/23)': {
+  'Season 9 (ARENA BATTLE 2023/07/13～2023/07/31)': {
     details: {
-      // season: 4,
+      season: 9,
+      rule: 1,
+      rank_match_target: 0,
       time_start: BigInt(Date.parse('13 Jul 2023 00:00:00 GMT')),
       time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('13 Jul 2023 00:00:00 GMT')),
@@ -1321,9 +1366,11 @@ export const ARENA = {
       }
     ]
   },
-  'Set 10 (08/17/23)': {
+  'Season 10 (SINGLE BATTLE 2023/08/17～2023/09/04)': {
     details: {
-      // season: 4,
+      season: 10,
+      rule: 1,
+      rank_match_target: 1,
       time_start: BigInt(Date.parse('17 Aug 2023 00:00:00 GMT')),
       time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('17 Aug 2023 00:00:00 GMT')),

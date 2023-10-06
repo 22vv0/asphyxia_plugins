@@ -593,9 +593,10 @@ export const save: EPR = async (info, data, send) => {
   // Save Arena Data
   const arena_data = $(data).elements('arena');
   for (const are of arena_data) {
-    const earnedUR = are.number('earned_ultimate_rate');
-    const earnedSP = are.number('earned_shop_point');
+    const szn = are.number('season');
     const earnedRP = are.number('earned_rank_point');
+    const earnedSP = are.number('earned_shop_point');
+    const earnedUR = are.number('earned_ultimate_rate');
     const earnedLE = are.number('earned_live_energy');
     const rankPlay = are.str('rank_play') == 'true' ? 1 : 0;
     const ultimatePlay = are.str('ultimate_play') == 'true' ? 1 : 0;
@@ -603,7 +604,7 @@ export const save: EPR = async (info, data, send) => {
       refid,
       { 
         collection: 'arena',
-        season: Object.keys(ARENA).findIndex(data => data == U.GetConfig('arena_szn')) + 1
+        season: szn
       },
       { 
         $inc: { 
@@ -653,7 +654,7 @@ export const load: EPR = async (info, data, send) => {
       let eventData = JSON.parse(bufEventData.toString())
       let eventConfig = JSON.parse(bufEventConfig.toString())
       for(const eventIter in eventData['events']) {
-        if(eventData['events'][eventIter]['type'] === 'gift' && eventConfig[eventData['events'][eventIter]['id']] !== undefined) {
+        if(['gift', 'cross_online'].includes(eventData['events'][eventIter]['type']) && eventConfig[eventData['events'][eventIter]['id']] !== undefined) {
           if(typeof eventConfig[eventData['events'][eventIter]['id']]['toggle'] === "boolean") {
             if(eventConfig[eventData['events'][eventIter]['id']]['toggle']) {
               for(const itemIter in EVENT_SONGS6[eventData['events'][eventIter]['id']]) {
@@ -739,12 +740,16 @@ export const load: EPR = async (info, data, send) => {
   const stampB = profile.stampB ? profile.stampB : 0;
   const stampC = profile.stampC ? profile.stampC : 0;
   const stampD = profile.stampD ? profile.stampD : 0;
+  const stampRA = profile.stampRA ? profile.stampRA : 0;
+  const stampRB = profile.stampRB ? profile.stampRB : 0;
+  const stampRC = profile.stampRC ? profile.stampRC : 0;
+  const stampRD = profile.stampRD ? profile.stampRD : 0;
   const sysBG = profile.sysBG ? profile.sysBG : 0;
   const bplSupport = profile.bplSupport ? profile.bplSupport : 0;
 
 
   const customize = [];
-  customize.push(bgm, subbg, nemsys, stampA, stampB, stampC, stampD, 0, 0, 0, 0, sysBG);
+  customize.push(bgm, subbg, nemsys, stampA, stampB, stampC, stampD, stampRA, stampRB, stampRC, stampRD, sysBG);
 
   var tempCustom = params.findIndex((e) => (e.type == 2 && e.id == 2))
 
@@ -828,6 +833,10 @@ export const create: EPR = async (info, data, send) => {
     stampB: 0,
     stampC: 0,
     stampD: 0,
+    stampRA: 0,
+    stampRB: 0,
+    stampRC: 0,
+    stampRD: 0,
 
     sysBG: 0,
 
