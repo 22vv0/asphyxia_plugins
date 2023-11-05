@@ -146,7 +146,7 @@ export const common: EPR = async (info, data, send) => {
           '                              [c:e5f3ff,a3d5ff]SDVX Plugin ver 6.0.0\n \n \n'+
           '\n\n           [f:0][c:ff3333,ffffff]FREE SOFTWARE. BEWARE OF SCAMMERS.\n'+
           '[c:ffffff,888888]  If you bought this software, request refund immediately.\n \n \n[/ol]'+
-          '[br:10][c:00FFFF][sz:50]•·•Í©`°£°£°£•Ø•Í•π•ﬁ•π°¢§«§π°£°£°£'+
+          '[br:10][c:00FFFF][sz:50]„É°„É™„Éº„ÄÇ„ÄÇ„ÄÇ„ÇØ„É™„Çπ„Éû„Çπ„ÄÅ„Åß„Åô„ÄÇ„ÄÇ„ÄÇ'+
           '\n \n \n \n[sz:32][c:560000,FC0000]DO NOT STREAM OR DISTRIBUTE THIS GAME IN PUBLIC',
           //'[img:test]',
           '',

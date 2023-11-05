@@ -174,13 +174,14 @@ export const globalMatch: EPR = async (info, data, send) => {
   }
 
   let loggip = entryData.gip.join(".")
+  let loglip = entryData.lip.join(".")
 
   console.log("====================================")
-  console.log("[" + loggip + "] Searching for online match opponents")
-  console.log("[" + loggip + "] Removed " + await DB.Remove({collection:'matchmaker', timestamp: {$lt: Date.now() - 100000}}) + " expired match data.")
+  console.log("[" + loglip + " | " + loggip + "] Searching for online match opponents")
+  console.log("[" + loglip + " | " + loggip + "] Removed " + await DB.Remove({collection:'matchmaker', timestamp: {$lt: Date.now() - 100000}}) + " expired match data.")
   
   if(entryData.p_rest < 1) {
-    console.log("[" + loggip + "] Room is full. Halting.")
+    console.log("[" + loglip + " | " + loggip + "] Room is full. Halting.")
     return send.deny();
   }
 
@@ -196,15 +197,15 @@ export const globalMatch: EPR = async (info, data, send) => {
   // console.log("   claim: " + entryData.claim)
   // console.log("entry_id: " + entryData.entry_id)
 
-  console.log("[" + loggip + "] Adding/updating your match data")
-  if(await DB.Count({collection: 'matchmaker', gip: entryData.gip}) === 0) {
+  console.log("[" + loglip + " | " + loggip + "] Adding/updating your match data")
+  if(await DB.Count({collection: 'matchmaker', lip: entryData.lip}) === 0) {
     await DB.Upsert<Matchmaker>(
-      { collection: 'matchmaker', gip: entryData.gip },
+      { collection: 'matchmaker', gip: entryData.gip, lip: entryData.lip},
       entryData
     )
   } else {
     await DB.Upsert<Matchmaker>(
-      { collection: 'matchmaker', gip: entryData.gip},
+      { collection: 'matchmaker', gip: entryData.gip, lip: entryData.lip},
       { $set: {
           c_ver: entryData.c_ver,
           p_num: entryData.p_num,
@@ -218,8 +219,8 @@ export const globalMatch: EPR = async (info, data, send) => {
     )
   }
 
-  console.log("[" + loggip + "] Searching...")
-  let filteredDB = await DB.Find<Matchmaker>({collection: "matchmaker", entry_id: entryData.entry_id, filter: entryData.filter, $not: {gip: entryData.gip}})
+  console.log("[" + loglip + " | " + loggip + "] Searching...")
+  let filteredDB = await DB.Find<Matchmaker>({collection: "matchmaker", entry_id: entryData.entry_id, filter: entryData.filter, $not: {lip: entryData.lip}})
 
   let opponents = filteredDB.length === 0 ? null : {
     entry_id: K.ITEM('u32', entryData.entry_id),
@@ -230,11 +231,11 @@ export const globalMatch: EPR = async (info, data, send) => {
     }))
   }
   if(opponents !== null) {
-    console.log("[" + loggip + "] Opponent/s found.") 
+    console.log("[" + loglip + " | " + loggip + "] Opponent/s found.") 
     send.object(opponents)
   }
   else {
-    console.log("[" + loggip + "] No found opponents.")
+    console.log("[" + loglip + " | " + loggip + "] No found opponents.")
     send.deny()
   }
 }

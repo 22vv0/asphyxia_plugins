@@ -54,5 +54,83 @@
 			"id": 3,
 			"name": "Gravity Wars"
 		}
+	],
+	"skilltitle": [
+		{
+			"id": 1,
+			"name": "岳翔 (Lv01)"
+		},
+		{
+			"id": 2,
+			"name": "流星 (Lv02)"
+		},
+		{
+			"id": 3,
+			"name": "月衝 (Lv03)"
+		},
+		{
+			"id": 4,
+			"name": "瞬光 (Lv04)"
+		},
+		{
+			"id": 5,
+			"name": "天極 (Lv05)"
+		},
+		{
+			"id": 6,
+			"name": "烈風 (Lv06)"
+		},
+		{
+			"id": 7,
+			"name": "雷電 (Lv07)"
+		},
+		{
+			"id": 8,
+			"name": "麗華 (Lv08)"
+		},
+		{
+			"id": 9,
+			"name": "魔騎士 (Lv09)"
+		},
+		{
+			"id": 10,
+			"name": "剛力羅 (Lv10)"
+		},
+		{
+			"id": 11,
+			"name": "或帝滅斗 (Lv11)"
+		},
+		{
+			"id": 12,
+			"name": "暴龍天 (Lv∞)"
+		},
+		{
+			"id": 13,
+			"name": "BMK2021 (BEMANI MASTER KOREA 2021)"
+		},
+		{
+			"id": 14,
+			"name": "天晴 (10th Anniversary)"
+		},
+		{
+			"id": 15,
+			"name": "詠鰤琉 (New Life Support)"
+		},
+		{
+			"id": 16,
+			"name": "Red Bull (Red Bull 5G 2022)"
+		},
+		{
+			"id": 17,
+			"name": "U.S.O. (Spring Volte Festival 2023)"
+		},
+		{
+			"id": 18,
+			"name": "完喰 (KAC 2023 Challenge Round A)"
+		},
+		{
+			"id": 19,
+			"name": "夢吹 (KAC 2023 Challenge Round B)"
+		}
 	]
 }

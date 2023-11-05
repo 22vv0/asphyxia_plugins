@@ -1,10 +1,10 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.2.1
+**Plugin Version:** fork-6.0.2.3
 
 **Supported game versions:** EXCEED GEAR
 
-**Latest supported game datacode:** 2023091200
+**Latest supported game datacode:** 2023102400
 
 **Unsupported game versions:** Every other game, as they're untested.
 
@@ -12,14 +12,51 @@
 
 **Notes:**
 - This fork enables a few of the features that are added in the later updates of Exceed Gear. However, I still highly recommend using the official stable version of the plugin. 
-- Most importantly, for everything to properly work:
+- Before using this plugin:
 	- run the [WebUI Asset Update](/plugin/sdvx@asphyxia/update%20webui%20assets). Do this every data update.
 	- go to [Unlocking Events](/plugin/sdvx@asphyxia/unlocking%20events) and click "Apply" at least once. Check out the many options available while you're there.
+	- also adjust the plugin settings at the WebUI dashboard to your liking.
 - Don't expect stability, there might be some bugs. Please back up your save data to prevent unwanted issues (just in case)
 
 
 Changelog
 ===========
+## fork-6.0.2.3
+
+### New:
+
+1. Main:
+	- Added ~~ARENA~~ MEGAMIX BATTLE ranked match season & ARENA STATION set 11.
+	- Added PREMIUM GENERATOR Fubuki set.
+	- Updated licensed songs list (Fubuki songs)
+2. WebUI
+	- Updated ARENA Season statistics display in detail page. Displays rank, rank point meter, megamix rate (for ranked megamix,) ultimate rate (for ultimate players,) and arena power.
+	- Added achievements list page (work in progress)
+	- Added ability to set how many Valkyrie Generator tickets you have. These tickets are used to purchase valkyrie generator items.
+	- Added ability to change Skill Titles. Players can only switch to titles they own.
+	- (Update webui resources) Added code to extract wma audio from .s3p files. Largely based on [mon's s3p_extract](https://github.com/mon/s3p_extract) code.
+3. Others:
+	- DEMOLOOP_INFORMATION implementation (attract mode announcements images)
+	- Updated bgm_convert batch script to remove the need for s3p_extract.
+
+### Fixes:
+
+1. Game
+	- Fixed gibberish on Asphyxia card entry information data.
+2. WebUI
+	- Fixed details page error for players with no skill course data.
+	- Fixed sorting of Valgene/Pregene item images.
+3. Misc:
+	- Updated BPL Triple Tribe event category from 'gift' to 'event_online.'
+	- Added missing matchmaker model file.
+
+### Todo:
+1. Figure out how to extract textures from .ifs files in TS/JS.
+2. ~~Figure out how to extract audio files from .s3p files in TS/JS~~ Figure out how to convert wma audio to mp3 in JS/TS.
+3. Figure out how to use image (png) files to appear in information/news popup.
+4. More work/research on online matchmaking (globalMatch.) I can't seem to make clients establish a connection.
+
+
 ## fork-6.0.2.2
 
 ### New:
@@ -46,11 +83,6 @@ Changelog
 ### Fixes: 
 
 1. Fixes WebUI resource update not adding video submonitor backgrounds. I 100% recommend updating your WebUI assets.
-
-### Todo:
-1. Figure out how to use image (png) files to appear in information/news popup.
-2. Figure out how demoloop works.
-3. More work/research on online matchmaking (globalMatch.) I can't seem to make clients establish a connection. 
 
 
 ## fork-6.0.2.1

@@ -1,0 +1,39 @@
+//DATA//
+  achievements: DB.Find(refid, { collection: 'item', type: 10 })
+
+-
+  //const padded = _.padStart(achievements.id.toString(), 8);
+  //const sdvxid = `${padded.slice(0, 4)}-${padded.slice(4)}`;
+
+link(rel="stylesheet" href="static/asset/css/datatables.css")
+div
+  .card
+    .card-header
+      p.card-header-title
+        span.icon
+          i.mdi.mdi-account-edit
+        | Achievements
+    .card-content
+      .ach-filter
+        p() Filter
+        .field
+          .control
+            .select
+              select(id="ach-filter")
+                option(value=1) Complete
+                option(value=2) Incomplete
+                option(value=3) All
+      br
+      .ach-list
+        table.table(id="achlist" style="width:100%")
+          thead
+            tr    
+              th #
+              th Achievement
+              th Status
+              th Reward
+          tbody
+      
+div(hidden id='data-pass') !{JSON.stringify(achievements)}
+script(src="static/asset/js/achievements.js") 
+script(src="static/asset/js/datatables.js")

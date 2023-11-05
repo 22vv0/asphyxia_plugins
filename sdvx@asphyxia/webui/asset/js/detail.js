@@ -74,7 +74,7 @@ function getMedal(clear) {
 function getAppealCard(appeal) {
 
     var result = appeal_db["appeal_card_data"]["card"].filter(object => object["@id"] == appeal);
-    return "static/asset/ap_card/" + result[0]["info"]["texture"] + ".jpg"
+    return "static/asset/ap_card/" + ((result.length > 0) ? result[0]["info"]["texture"] : 'ap_06_0001') + ".jpg"
 }
 
 function getSongLevel(musicid, type) {
@@ -639,7 +639,6 @@ $('#version_select').change(function() {
     $('#skillLV').fadeIn(200);
 });
 
-
 function getPlayerSkill(version) {
     // console.log(getPlayerMaxVersion())
     if (skill_data.length == 0) return 0;
@@ -656,17 +655,111 @@ function getVersionSelect() {
     return versionDATA;
 }
 
+function displayArenaSeasonData(season) {
+    let sznData = arena_data.find(e => e.season === parseInt(season))
+    if(sznData !== undefined) {
+        let rankInfo = getArenaRank(sznData.rankPoint)
+        $('.arena-details').append(
+            $('<div class="tile is-parent is-7">').append(
+                $('<article class="tile is-child arena-details-child-left">').append(
+                    // $('<img>', {
+                    //     src: 'static/asset/arena_icon/' + rankInfo[0] + ".png"
+                    // })
+                    $('<h1 style="font-size:100px">' + ((rankInfo[0] === 'none') ? 'n/a' : rankInfo[0].toUpperCase()) + "</h1>")
+                )
+            )
+        ).append(
+            $('<div class="tile is-parent is-5" style="position:relative">').append(
+                $('<article class="tile is-child arena-details-child-right">').append(
+                    $('<p class="title" style="font-family: testfont">Arena Power</p>').append(
+                        $('<div class="content">' + sznData.shopPoint + ' AP </div>')
+                    )
+                ).append(
+                    (sznData.megamixRate !== (0 || undefined)) ? $('<p class="title" style="font-family: testfont">Megamix Rate</p>').append(
+                        $('<div class="content">' + sznData.megamixRate + '</div>')
+                    ) : $("<p></p>")
+                )
+            )
+        )
+
+        if(sznData.rankPoint >= 23600) {
+            $('.arena-details-child-right').append(
+                $('<p class="title" style="font-family: testfont">Rank Point</p>').append(
+                    $('<div class="content">' + sznData.rankPoint + ' points</div>')
+                )
+            )
+        }
+
+        if(sznData.rankPoint !== 0 && sznData.rankPoint < 27800) {
+            $('.arena-details-child-left').append(
+                $('<meter id="rank-point-mtr" style="width:80%" min="' + rankInfo[1] + '"max="' + ((rankInfo[2] !== undefined) ? rankInfo[2].point : rankInfo[1]) + '" value="' + sznData.rankPoint + '"></meter>')
+            ).append(
+                $('<h5 style="font-family: testfont">' + sznData.rankPoint + ' pts (' + (rankInfo[2].point - sznData.rankPoint) + ' pts to ' + rankInfo[2].rank.toUpperCase() + ')</h5>')
+            )
+        } else if(rankInfo[0] !== 'none'){
+            $('.arena-details-child-left').append(
+                $('<h5 style="font-family:testfont">Ultimate rate: ' + sznData.ultimateRate + '</h5>')
+            ).append(
+                
+            )
+        }
+    }
+}
+
+function getArenaRank(rp) {
+    let arenaRanksList = [
+        { rank: 'none', point: 0 },
+        { rank: 'd4', point: 1 },
+        { rank: 'd3', point: 600 },
+        { rank: 'd2', point: 1600 },
+        { rank: 'd1', point: 2600 },
+        { rank: 'c4', point: 3600 },
+        { rank: 'c3', point: 4700 },
+        { rank: 'c2', point: 5800 },
+        { rank: 'c1', point: 6900 },
+        { rank: 'b4', point: 8000 },
+        { rank: 'b3', point: 9200 },
+        { rank: 'b2', point: 10400 },
+        { rank: 'b1', point: 11600 },
+        { rank: 'a4', point: 12800 },
+        { rank: 'a3', point: 14100 },
+        { rank: 'a2', point: 15400 },
+        { rank: 'a1', point: 16700 },
+        { rank: 's4', point: 18000 },
+        { rank: 's3', point: 19400 },
+        { rank: 's2', point: 20800 },
+        { rank: 's1', point: 22200 },
+        { rank: 'u4', point: 23600 },
+        { rank: 'u3', point: 25000 },
+        { rank: 'u2', point: 26400 },
+        { rank: 'u1', point: 27800 }
+    ]
+
+    let prevRank = ''
+    let rankIndex = 0
+    let rankPointMin = 0
+    let rankPointNext = 0
+    arenaRanksList.forEach(rank => {
+        if(rp >= rank.point) {
+            prevRank = rank.rank
+            rankPointMin = rank.point
+            rankNext = arenaRanksList[rankIndex + 1]
+        }
+        rankIndex++;
+    })
+    return [prevRank, rankPointMin, rankNext]
+}
+
 $(document).ready(function() {
     profile_data = JSON.parse(document.getElementById("data-pass").innerText);
     score_db = JSON.parse(document.getElementById("score-pass").innerText);
     skill_data = JSON.parse(document.getElementById("skill-pass").innerText);
-    xrecord_data = JSON.parse(document.getElementById("xrecord-pass").innerText);
     arena_data = JSON.parse(document.getElementById("arena-pass").innerText);
 
     skill_data.sort(function(a, b) {
-            return b.version - a.version;
-        })
-        // console.log(score_db);
+        return b.version - a.version;
+    })
+    // console.log(score_db);
 
     // $('#test').append(
     //     $('<div>').append(
@@ -692,30 +785,28 @@ $(document).ready(function() {
         })
     ).then(function() {
         var currentVF = calculateVolforce();
-        var maxVer = parseInt(skill_data[0]["version"])
+        var maxVer = skill_data.length > 0 ? parseInt(skill_data[0]["version"]) : 0
 
         var versionInfo = getVersionSelect();
-        console.log(versionInfo);
-        for (var i = 0; i < versionInfo.length; i++) {
-            console.log(versionInfo[i])
+        if(versionInfo.length <= 0) {
             $('#version_select').append(
                 $('<option>', {
-                    value: versionInfo[i],
-                    text: versionText[versionInfo[i]],
+                    value: 0,
+                    text: 'No data found',
                 })
             )
+            $('#version_select').attr('disabled', 'disabled')
+        } else {
+            for (var i = 0; i < versionInfo.length; i++) {
+                console.log(versionInfo[i])
+                $('#version_select').append(
+                    $('<option>', {
+                        value: versionInfo[i],
+                        text: versionText[versionInfo[i]],
+                    })
+                )
+            }
         }
-
-        var lm = vm = 0;
-        if(xrecord_data != null) {
-            lm = xrecord_data['lm'];
-            vm = xrecord_data['vm'];
-        }
-        var arenaPower = [];
-        arena_data.forEach(arena_sszn_data => {
-            arenaPower.push([arena_sszn_data.season, arena_sszn_data.shopPoint])
-        })
-        arenaPower.sort((a, b) => a[0] - b[0])
 
         $('#test').append(
             $('<div class="card is-inlineblocked">').append(
@@ -827,64 +918,29 @@ $(document).ready(function() {
                         $('<span class="icon">').append(
                             $('<i class="mdi mdi-pulse">')
                         )
-                    ).append("Arena")
+                    ).append("Arena Stats")
                 )
             ).append(
                 $('<div class="card-content">').append(
                     $('<div class="tile is-ancestor">').append(
                         $('<div class="tile is-parent">').append(
-                            $('<article class="tile is-child box">').append(
-                                $('<p class="title">').append(
-                                    "Arena Power"
-                                ).append(
-                                    $('<div class="content" id=arena-power-data>')
-                                ).css('font-family', "testfont") 
+                            $('<div class="tile is-child field">').append(
+                                $('<div class="control">').append(
+                                    $('<div class="select">').append(
+                                        $('<select id="arena-szn-sel">')
+                                    )
+                                )
                             )
                         )
                     ).css('vertical-align', 'middle')
+                ).append(
+                    $('<div class="tile is-ancestor is-centered">').append(
+                        $('<div class="tile is-parent arena-details">')
+                    )
                 )
             )
 
-        ).append(
-            $('<div class="card  is-inlineblocked">').append(
-                $('<div class="card-header">').append(
-                    $('<p class="card-header-title">').append(
-                        $('<span class="icon">').append(
-                            $('<i class="mdi mdi-pulse">')
-                        )
-                    ).append("X-record")
-                )
-            ).append(
-                $('<div class="card-content">').append(
-                    $('<div class="tile is-ancestor">').append(
-                        $('<div class="tile is-parent">').append(
-                            $('<article class="tile is-child box">').append(
-                                $('<p class="title">').append(
-                                    "LM"
-                                ).append(
-                                    $('<div class="content">').append(
-                                        lm
-                                    )
-                                ).css('font-family', "testfont") 
-                            )
-                        )
-                    ).append(
-                        $('<div class="tile is-parent">').append(
-                            $('<article class="tile is-child box">').append(
-                                $('<p class="title">').append(
-                                    "VM"
-                                ).append(
-                                    $('<div class="content">').append(
-                                        vm
-                                    )
-                                ).css('font-family', "testfont") 
-                            )
-                        )
-                    ).css('vertical-align', 'middle')
-                )
-            )
         )
-
         .append(
             $('<div class="card">').append(
                 $('<div class="card-header">').append(
@@ -950,24 +1006,34 @@ $(document).ready(function() {
             )
         )
 
-        arenaPower.forEach(ap => {
-            console.log('yes' + ap)
-            $('#arena-power-data').append(
-                $('<article class="tile is-child box">').append(
-                    $('<p class="title">').append(
-                        "Season " + ap[0]
-                    ).append(
-                        $('<div class="content">').append(
-                            ap[1]
-                        )
-                    )
-                )
+        arena_data = arena_data.sort(function(a,b) { return a['season'] - b['season'] } )
+        if(arena_data.length <= 0) {
+            $('#arena-szn-sel').append(
+                $('<option>', {
+                    value: 0,
+                    text: 'No available arena data.',
+                })
             )
-        })
-        
+            $('#arena-szn-sel').attr('disabled', 'disabled')
+        } else {
+            arena_data.forEach(are => {
+                $('#arena-szn-sel').append(
+                    $('<option>', {
+                        value: are['season'],
+                        text: 'Season: ' + are['season'],
+                    })
+                )
+            })
+        }
+
+        $('#arena-szn-sel').change(function() {
+            $('.arena-details').empty()
+            displayArenaSeasonData($('#arena-szn-sel').val())
+        });
 
         setUpStatistics();
         setCMpD();
+        displayArenaSeasonData($('#arena-szn-sel').val())
 
         $('.dots').fadeOut(400, function() {
 

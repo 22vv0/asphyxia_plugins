@@ -35,7 +35,7 @@ game
 
   if bplSupport
     support_team_id(__type="s32") #{bplSupport}
-  
+
   ea_shop
     packet_booster(__type="s32") 1
     if version < 5
@@ -138,5 +138,11 @@ game
       shop_point(__type="s32") #{arena.shopPoint}
       ultimate_rate(__type="s32") #{arena.ultimateRate}
       ultimate_rank_num(__type="s32") #{arena.ultimateRankNum !== undefined ? arena.ultimateRankNum : 0}
+      megamix_rate(__type="s32") #{arena.megamixRate !== undefined ? arena.megamixRate : 0}
       rank_play_cnt(__type="s32") #{arena.rankCount}
       ultimate_play_cnt(__type="s32") #{arena.ultimateCount}
+
+  if valgeneTicket
+    valgene_ticket
+      ticket_num(__type="s32") #{valgeneTicket.ticketNum}
+      limit_date(__type="u64") #{valgeneTicket.limitDate}

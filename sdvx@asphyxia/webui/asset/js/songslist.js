@@ -12,6 +12,37 @@ function getInfDifficulty(inf_ver) {
             return "XCD"
     }
 }
+
+function populateSongsList(music_data) {
+    $('#songslist').DataTable({
+        data: music_data,
+        columns: [
+            { data: 'mid' },
+            { data: 'songname' },
+            { data: 'releasedate' },
+            { data: 'nov', },
+            { data: 'adv' },
+            { data: 'exh' },
+            { data: 'mxm' },
+            { data: 'oth' }
+        ],
+        columnDefs: [
+
+        ],
+        responsive: {
+            details: {
+                display: $.fn.dataTable.Responsive.display.modal({
+                    header: function(row) {
+                        var data = row.data();
+                        return 'Details for ' + data.songname;
+                    }
+                })
+            }
+        },
+
+    });
+}
+
 $(document).ready(function() {
     $.getJSON("static/asset/json/music_db.json", function(json) {
         const translate_table = {
@@ -79,35 +110,7 @@ $(document).ready(function() {
             music_data.push(temp_data);
         }
 
-        $('#songslist').DataTable({
-            data: music_data,
-            columns: [
-                { data: 'mid' },
-                { data: 'songname' },
-                { data: 'releasedate' },
-                { data: 'nov', },
-                { data: 'adv' },
-                { data: 'exh' },
-                { data: 'mxm' },
-                { data: 'oth' }
-            ],
-            columnDefs: [
-
-            ],
-            responsive: {
-                details: {
-                    display: $.fn.dataTable.Responsive.display.modal({
-                        header: function(row) {
-                            var data = row.data();
-                            return 'Details for ' + data.songname;
-                        }
-                    })
-                }
-            },
-
-        });
-
-
+        populateSongsList(music_data);
     });
 
 

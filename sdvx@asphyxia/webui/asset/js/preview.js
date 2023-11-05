@@ -208,6 +208,9 @@ $(document).ready(function() {
     items_bgm = JSON.parse(document.getElementById("data-pass-bgm").innerText);
     items_nemsys = JSON.parse(document.getElementById("data-pass-nemsys").innerText);
     items_sysbg = JSON.parse(document.getElementById("data-pass-sysbg").innerText);
+    valgene_ticket = JSON.parse(document.getElementById("data-pass-valgeneticket").innerText);
+    courses = JSON.parse(document.getElementById("data-pass-courses").innerText);
+    skill = JSON.parse(document.getElementById("data-pass-skill").innerText);
     unlock_all = (document.getElementById("data-pass-unlock-all").innerText === 'true');
 
     $.getJSON("static/asset/json/customize_data_ext.json", function(json) {
@@ -230,6 +233,18 @@ $(document).ready(function() {
             }
         }
         $('[name="sysBG"]').val(profile_data["sysBG"] ? profile_data["sysBG"] : 0);
+
+        for (var i in json["skilltitle"]) {
+            let foundCourses = courses.filter(c => c.cid === json["skilltitle"][i].id && c.clear >= 2)
+            if(foundCourses.length > 0) {   
+                $('[name="skilltitle"]').append($('<option>', {
+                    value: json["skilltitle"][i].id,
+                    text: json["skilltitle"][i].name,
+                }));
+            }
+        }
+        if(skill.length > 0) $('[name="skilltitle"]').val(skill[0]["name"]);
+        else $('[name="skilltitle"]').attr('disabled')
     });
 
     $.getJSON("static/asset/json/data.json", function(json) {
@@ -239,7 +254,7 @@ $(document).ready(function() {
         //console.log(profile_data);
 
         for (var i in json["nemsys"]) {
-            if(unlock_all || (json["nemsys"][i].value === 0 || items_nemsys.find(x => x.id === json["nemsys"][i].value))) {
+            if(![8, 9, 10, 11].includes(json["nemsys"][i].value) && (unlock_all || (json["nemsys"][i].value === 0 || items_nemsys.find(x => x.id === json["nemsys"][i].value)))) {
                 $('#nemsys_select').append($('<option>', {
                     value: json["nemsys"][i].value,
                     text: json["nemsys"][i].name,
@@ -304,6 +319,9 @@ $(document).ready(function() {
             //console.log(profile_data["akaname"])
         }
         $('[name="akaname"]').val(profile_data["akaname"]);
+
+        let ticketNum = (valgene_ticket !== null) ? valgene_ticket.ticketNum : 0
+        $('[name="valgeneTicket"]').val(ticketNum)
 
         for (var i in json["stamp"]) {
             if(unlock_all || (json["stamp"][i].value === 0 || items_stamp.find(x => x.id === json["stamp"][i].value))) {

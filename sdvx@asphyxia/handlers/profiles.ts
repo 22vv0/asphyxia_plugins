@@ -6,6 +6,7 @@ import { Arena } from '../models/arena';
 import { MusicRecord } from '../models/music_record';
 import { CourseRecord } from '../models/course_record';
 import { Profile } from '../models/profile';
+import { ValgeneTicket } from '../models/valgene_ticket';
 import { getVersion, IDToCode } from '../utils';
 import { Mix } from '../models/mix';
 import { ARENA, EVENT_SONGS6 } from '../data/exg';
@@ -597,6 +598,7 @@ export const save: EPR = async (info, data, send) => {
     const earnedRP = are.number('earned_rank_point');
     const earnedSP = are.number('earned_shop_point');
     const earnedUR = are.number('earned_ultimate_rate');
+    const earnedMR = are.number('earned_megamix_rate');
     const earnedLE = are.number('earned_live_energy');
     const rankPlay = are.str('rank_play') == 'true' ? 1 : 0;
     const ultimatePlay = are.str('ultimate_play') == 'true' ? 1 : 0;
@@ -609,6 +611,7 @@ export const save: EPR = async (info, data, send) => {
       { 
         $inc: { 
           ultimateRate: _.isNil(earnedUR) ? 0 : earnedUR,
+          megamixRate: _.isNil(earnedMR) ? 0 : earnedMR,
           shopPoint: _.isNil(earnedSP) ? 0 : earnedSP,
           rankPoint: _.isNil(earnedRP) ? 0 : earnedRP,
           liveEnergy: _.isNil(earnedLE) ? 0 : earnedLE,
@@ -704,7 +707,9 @@ export const load: EPR = async (info, data, send) => {
   const items = await DB.Find<Item>(refid, { collection: 'item' });
   const courses = await DB.Find<CourseRecord>(refid, { collection: 'course', version });
   const params = await DB.Find<Param>(refid, { collection: 'param' });
-  const arena = await DB.FindOne<Arena>(refid, { collection: 'arena', season: Object.keys(ARENA).findIndex(data => data == U.GetConfig('arena_szn')) + 1 });
+  const arena = await DB.FindOne<Arena>(refid, { collection: 'arena', season: (U.GetConfig('arena_szn') !== "None") ? ARENA[U.GetConfig('arena_szn')]['details']['season'] : 0 });
+  const valgeneTicket = await DB.FindOne<ValgeneTicket>(refid, { collection: 'valgene_ticket' })
+
   let time = new Date();
   let tempHour = time.getHours();
   let tempDate = time.getDate();
@@ -788,6 +793,7 @@ export const load: EPR = async (info, data, send) => {
     automation: version == 5 ? SDVX_AUTOMATION_SONGS : [],
     code: IDToCode(profile.id),
     arena,
+    valgeneTicket,
     ...profile,
   });
 };
@@ -939,6 +945,7 @@ export const saveValgene: EPR = async (info, data, send) => {
   console.log("Saving Valkyrie Generator Item")
   const refid = $(data).str('refid');
   const items = $(data).elements('item.info');
+  const useTicket = $(data).bool('use_ticket');
   let itemsToAdd = []
   for (const i of items) {
     const type = i.number('type');
@@ -967,11 +974,27 @@ export const saveValgene: EPR = async (info, data, send) => {
     );
   }
 
-  return send.object({ result: K.ITEM('u8', 0) });
+  if(useTicket) {
+    await DB.Upsert<ValgeneTicket>(
+      refid,
+      { collection: 'valgene_ticket' },
+      { $inc: {ticketNum: -1} }
+    )
+  }
+  let valgeneTicket = await DB.FindOne<ValgeneTicket>(refid, { collection: 'valgene_ticket' })
+  let result = {
+    result: K.ITEM('s32', 1)
+  }
+  if(valgeneTicket !== null) {
+    result['ticket_num'] = K.ITEM('s32', valgeneTicket.ticketNum)
+    result['limit_date'] = K.ITEM('u64', BigInt(valgeneTicket.limitDate))
+  }
+
+  return send.object(result);
 }
 
 export const saveE: EPR = async (info, data, send) => {
-  console.log("save_e")
+  console.log("save_e - WIP")
 
-  return send.object({ result: K.ITEM('u8', 0) });
+  send.success();
 }

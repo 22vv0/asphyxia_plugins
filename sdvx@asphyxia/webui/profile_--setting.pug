@@ -3,15 +3,21 @@
 
   items_crew: DB.Find(refid, {$or:[{collection:"item",type:11,id:117}, {collection:"item",type:11,id:119}, {collection:"item",type:11,id:120}, {collection:"item",type:11,id:121}, {collection:"item",type:11,id:124}, {collection:"item",type:11,id:129}]})
 
-  items_stamp: DB.Find(refid, { collection:"item",type:17 })
+  items_stamp: DB.Find(refid, { collection:"item", type:17 })
 
-  items_subbg: DB.Find(refid, { collection:"item",type:18 })
+  items_subbg: DB.Find(refid, { collection:"item", type:18 })
 
-  items_bgm: DB.Find(refid, { collection:"item",type:19 })
+  items_bgm: DB.Find(refid, { collection:"item", type:19 })
 
-  items_nemsys: DB.Find(refid, { collection:"item",type:20 })
+  items_nemsys: DB.Find(refid, { collection:"item", type:20 })
 
-  items_sysbg: DB.Find(refid, { collection:"item",type:21 })
+  items_sysbg: DB.Find(refid, { collection: "item", type:21 })
+
+  valgene_tickets: DB.FindOne(refid, { collection: "valgene_ticket" })
+
+  courses: DB.Find(refid, {collection: "course"})
+  
+  skill: DB.Find(refid, {collection: "skill"})
 
   unlock_all: U.GetConfig('unlock_all_valk_items')
 
@@ -51,7 +57,14 @@ div
           .control
             input.input(type="number" step=1 name="appeal", placeholder=profile.appeal)
         .field
-          label.label Akaname
+          label.label Skill Title
+            span.icon.has-tooltip-right(data-tooltip="Changes the title displayed on your skill plate.")
+              i.mdi.mdi-help-circle
+          .control.is-expanded 
+                  .select.is-fullwidth
+                    select(name="skilltitle" id="skilltitle_select")
+        .field
+          label.label Appeal Title
             span.icon.has-tooltip-right(data-tooltip="Custom is set as ID 50000, if you want to use custom, please make sure you add the entry to the xml file.")
               i.mdi.mdi-help-circle
           .control.is-expanded 
@@ -64,6 +77,12 @@ div
           .control.is-expanded 
                   .select.is-fullwidth
                     select(name="bplSupport" id="bplsupport_select")
+        .field
+          label.label Valgene Tickets
+            span.icon.has-tooltip-right(data-tooltip="Number of tickets you can use to buy Valkyrie Generator Items, instead of PASELI or credits.")
+              i.mdi.mdi-help-circle
+          .control.is-expanded 
+            input.input(type="number" name="valgeneTicket" id="valgeneticket_select")
         br
         div(style="font-size:26px;font-weight:bold;vertical-align:top; overflow-wrap: break-word;word-break: break-all;") EXCEED GEAR VALKYRIE GENERATOR CUSTOMIZATION
           .tile.is-ancestor
@@ -242,6 +261,9 @@ div(hidden id='data-pass-subbg') !{JSON.stringify(items_subbg)}
 div(hidden id='data-pass-bgm') !{JSON.stringify(items_bgm)}
 div(hidden id='data-pass-nemsys') !{JSON.stringify(items_nemsys)}
 div(hidden id='data-pass-sysbg') !{JSON.stringify(items_sysbg)}
+div(hidden id='data-pass-valgeneticket') !{JSON.stringify(valgene_tickets)}
+div(hidden id='data-pass-courses') !{JSON.stringify(courses)}
+div(hidden id='data-pass-skill') !{JSON.stringify(skill)}
 div(hidden id='data-pass-unlock-all') !{unlock_all}
 script(src="static/asset/js/preview.js") 
 script(src="https://vjs.zencdn.net/8.5.2/video.min.js")

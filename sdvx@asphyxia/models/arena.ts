@@ -5,6 +5,7 @@ export interface Arena {
   rank_point: number;
   shop_point: number;
   ultimate_rate: number;
+  megamix_rate: number;
   rank_play_cnt: number;
   ultimate_play_cnt: number;
 }

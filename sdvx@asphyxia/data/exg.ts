@@ -40,7 +40,8 @@ export const EVENT6 = [
   'S_PUC_EFFECT_ENABLE',
   'PLAYER_RADAR_ENABLE',
   'SINGLE_BATTLE_ENABLE',
-  // 'DEMOLOOP_INFORMATION',
+  'DEMOLOOP_INFORMATION\tdemo_info/230710_bpls3_streaming.png',
+  'CHARACTER_IGNORE_DISABLE\t122,123,131,139,140,143'
 ];
 
 export const INFORMATION6 = {
@@ -69,7 +70,10 @@ export const LICENSED_SONGS6 = [
   '1960', '1961', '1962', '2028', '2029', '1912', '1913', '2030',
 
   // 230518 - 230912
-  '2031', '2032', '2033', '2034', '2035', '2036', '1905', '1882', '2058'
+  '2031', '2032', '2033', '2034', '2035', '2036', '1905', '1882', '2058',
+
+  // 231005
+  '2069', '2070', '2071', '2072', '2073'
 ]
 
 export const STAMP_EVENTS6 = {
@@ -1516,6 +1520,133 @@ export const ARENA = {
         param: 8,
       }
     ]
+  },
+  'Season 11 (MEGAMIX BATTLE 2023/10/26～2023/11/13)': {
+    details: {
+      season: 11,
+      rule: 0,
+      rank_match_target: 2,
+      time_start: BigInt(Date.parse('26 Oct 2023 00:00:00 GMT')),
+      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_start: BigInt(Date.parse('26 Oct 2023 00:00:00 GMT')),
+      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      is_open: 1,
+      is_shop: 1
+    },
+    arena_items: [
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 15000,
+        item_type: 11,
+        item_id: 104,
+        param: 1,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 1742,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 1745,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 289,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 241,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 390,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 510,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 842,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 281,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 632,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 37,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 239,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 111,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 132,
+        param: 8,
+      }
+    ]
   }
 }
 
@@ -1936,6 +2067,15 @@ export const PREGENE = [
       'sysbg': [1, 2, 3]
     },
     probability: [0.01, 0.42, 0.84, 0.9]
+  },
+  {
+    id: 7,
+    items: {
+      'crew': [143],
+      'stamp': [249, 250, 251, 252, 253, 254, 255, 256, 257, 258],
+      'subbg': [369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381]
+    },
+    probability: [0.01, 0.39, 0.6]
   }
 ]
   

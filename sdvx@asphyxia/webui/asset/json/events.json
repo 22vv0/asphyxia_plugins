@@ -185,7 +185,7 @@
         },
         {
             "id": "bpls3songs",
-            "type": "gift",
+            "type": "cross_online",
             "enabled": true,
             "name": "BEMANI PRO LEAGUE -SEASON 3- Triple Tribe",
             "desc": "Crossover event between SOUND VOLTEX EXCEED GEAR, DanceDanceRevolution A3, and beatmania IIDX 30 RESIDENT where you would earn TD, TB and TS points which can be used to unlock songs through the participating games.<br>However, since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding SOUND VOLTEX songs' option to automatically unlock them on your next login.",

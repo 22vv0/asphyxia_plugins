@@ -12,10 +12,9 @@ div
       br
       p.card-header-bgm-guide
         h5() BGM asset guide
-        p() This feature pulls BGM files from the data, however they are in unplayable s3p format. For BGM preview to work, we need to extract the audio files from the s3p, and convert it to mp3.
-        p() For Windows, there is a bgm_convert.bat script in the SDVX plugin root directory but it requires 2 things:
+        p() This feature pulls BGM files from the data, however they are in the WMA file format, which is unsupported. For BGM preview to work, they have to be converted to MP3 format.
+        p() To convert these files to MP3, you can use ffmpeg. If you have ffmpeg already installed, there is a bgm_convert.bat script in the SDVX plugin directory that can automate the conversion to mp3.
         ul
-          li() <a href="https://github.com/mon/s3p_extract/releases/latest">s3p_extract</a> - download the .exe file from the latest release and put in the same directory as the bat script
           li() <a href="https://www.gyan.dev/ffmpeg/builds/">ffmpeg</a> - download and extract ffmpeg.exe and put it in the same directory as the bat script (or put ffmpeg.exe in PATH environment variable)
   .card
     .card-header

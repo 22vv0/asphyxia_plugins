@@ -2,7 +2,6 @@
   profile: DB.FindOne(refid, { collection: 'profile' })
   score_data: DB.Find(refid, { collection: 'music' })
   skill_data: DB.Find(refid,{collection: 'skill'})
-  xrecord_data: DB.FindOne(refid,{collection: 'x-record'})
   arena_data: DB.Find(refid,{collection: 'arena'})
 
 -
@@ -20,9 +19,10 @@ div
     .card-content
       .field
             label.label Skill Version Select
-            .control
-              .select
-                select(name="version_select" id="version_select")
+            .ver-select
+              .control
+                .select
+                  select(name="version_select" id="version_select")
       div(style="width:100%;text-align:center;vertical-align:middle;")
         div(class="dots is-centered" ) 
           div 
@@ -33,6 +33,5 @@ div
 div(hidden id='data-pass') !{JSON.stringify(profile)}
 div(hidden id='score-pass') !{JSON.stringify(score_data)}
 div(hidden id='skill-pass') !{JSON.stringify(skill_data)}
-div(hidden id='xrecord-pass') !{JSON.stringify(xrecord_data)}
 div(hidden id='arena-pass') !{JSON.stringify(arena_data)}
 script(src="static/asset/js/detail.js") 

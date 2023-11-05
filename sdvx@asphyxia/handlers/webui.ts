@@ -1,5 +1,7 @@
 import { Profile } from '../models/profile';
 import { MusicRecord } from '../models/music_record';
+import { ValgeneTicket } from '../models/valgene_ticket';
+import { Skill } from '../models/skill';
 import { getVersion, IDToCode, GetCounter } from '../utils';
 import { Mix } from '../models/mix';
 import { PREGENE } from '../data/exg';
@@ -22,6 +24,8 @@ export const updateProfile = async (data: {
   stampRC?: string;
   stampRD?: string;
   sysBG?: string;
+  valgeneTicket?: string;
+  skilltitle?: string;
 }) => {
   if (data.refid == null) return;
 
@@ -106,7 +110,6 @@ export const updateProfile = async (data: {
   }
 
   if (data.sysBG && data.sysBG.length > 0) {
-    console.log(data.sysBG)
     const validSysBG = parseInt(data.sysBG);
     if (!_.isNaN(validSysBG)) update.sysBG = validSysBG;
   }
@@ -116,6 +119,29 @@ export const updateProfile = async (data: {
     { collection: 'profile' },
     { $set: update }
   );
+
+  if (parseInt(data.skilltitle) >= 0) {
+    await DB.Update<Skill>(
+      data.refid,
+      { collection: 'skill' },
+      { $set: {
+          name: parseInt(data.skilltitle)
+        } 
+      }
+    );
+  }
+  
+  if (parseInt(data.valgeneTicket) >= 0) {
+    await DB.Upsert<ValgeneTicket>(
+      data.refid,
+      { collection: 'valgene_ticket' },
+      { $set: {
+          ticketNum: parseInt(data.valgeneTicket),
+          limitDate: Date.parse('31 Dec 2099 23:59:59 GMT')
+        } 
+      }
+    );
+  }
 };
 
 export const updateMix = async (data: {
@@ -353,7 +379,7 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
   if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/submonitor_bg")) {
     let subBGFiles = await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/submonitor_bg")
     for await (const subbg of subBGFiles) {
-      if (subbg.name.match(/(\.png|\.jpg|\.mp4)/g)) {
+      if (subbg.name.match(/^(subbg[_0-9]*)(\.png|\.jpg|\.mp4)/g)) {
         let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/submonitor_bg/" + subbg.name)
         if(!IO.Exists('webui/asset/submonitor_bg/' + subbg.name.substring(0, (subbg.name.length - 4)) + ".png") && !IO.Exists('webui/asset/submonitor_bg/' + subbg.name.substring(0, (subbg.name.length - 4))  + ".jpg") && !IO.Exists('webui/asset/submonitor_bg/' + subbg.name.substring(0, (subbg.name.length - 4))  + ".mp4")) {
           console.log("[subbg] copying " + subbg.name)
@@ -367,13 +393,13 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
           let subbgType = 'normal'
           let foundSubbg = resourceJsonData.subbg.findIndex(subbg => subbg.value === subbgId)
           
-
           if(subbg.name.match(/(subbg_[0-9]+_[0-9]+)/g)) {
             subbgName = subbg.name.match(/(subbg_[0-9]+)/g)[0]
             subbgType = 'slideshow'
           } else if(subbg.name.includes('.mp4')) subbgType = 'video'
-          console.log("[subbg] adding to json: " + subbgId + " - " + subbgName)
+          
           if(foundSubbg == -1) {
+            console.log("[subbg] adding " + subbgId + " - " + subbgName + " (" + subbgType + ")")
             resourceJsonData.subbg.push({"value": subbgId, "type": subbgType, "name": subbgName})
           } else {
             resourceJsonData.subbg[foundSubbg] = {"value": subbgId, "type": subbgType, "name": subbgName}
@@ -394,16 +420,40 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
       if (bgm.name.match(/(\.s3p)/g)) {
         let folderName = bgm.name.match(/(custom|special)_([0-9]*)/g)[0]
         if(folderName != '') {
-          let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/sound/custom/" + bgm.name)
           if(!IO.Exists('webui/asset/audio/' + folderName)) {
-            console.log("[bgm] copying " + bgm.name)
-            IO.WriteFile('webui/asset/audio/' + folderName + '/' + bgm.name, fileToWrite)
-            newBGMData.push(bgm.name)
+            console.log("[bgm] extracting audio files from " + bgm.name + ".")
+
+            // Thanks to mon/s3p_extract on GitHub.
+            let bufOffset = 4
+            let s3pBuffer = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/sound/custom/" + bgm.name, {flag: 'r'})
+            let fileMagic = s3pBuffer.toString('utf8', 0, 4)
+            let fileEntries = s3pBuffer.readInt32LE(bufOffset)
+            let entries = []
+            bufOffset += 4
+            for(let entryCtr = 0; entryCtr < fileEntries; entryCtr++) {
+              entries.push(
+                {
+                  offset: s3pBuffer.readInt32LE(bufOffset),
+                  length: s3pBuffer.readInt32LE(bufOffset + 4)
+                }
+              )
+              bufOffset += 8
+            }
+
+            let filename = 0
+            entries.forEach(entry => {
+              let magic = s3pBuffer.toString('utf8', entry.offset, entry.offset + 4)
+              let fileStart = s3pBuffer.readInt32LE(entry.offset + 4)
+              let arrayBuffer = s3pBuffer.buffer.slice(entry.offset, entry.offset + entry.length)
+              IO.WriteFile('webui/asset/audio/' + folderName + '/' + filename + '.wma', s3pBuffer.toString('binary', entry.offset + fileStart, entry.offset + entry.length), {encoding: 'binary'})
+              filename++
+            })
           } 
 
           let bgmId = parseInt(bgm.name.match(/(?<=(custom|special)_)([0-9]*)/g)[0])
           if(bgmId && resourceJsonData.bgm.find(bgm => bgm.value == bgmId) == undefined) {
             console.log("[bgm] adding to json: " + bgmId + " - " + bgm.name)
+            newBGMData.push(bgm.name)
             resourceJsonData.bgm.push({"value": bgmId, "name": bgm.name})
           }
         }
@@ -412,6 +462,30 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
   } else {
     console.log('Error reading BGM directory. Check your "Exceed Gear Data Directory" config.')
     runErrors.push('[BGM] Error reading BGM directory. Check your "Exceed Gear Data Directory" config.')
+  }
+
+  // Copying new chat stamps from gamedata
+  console.log("Copying new chat stamps from gamedata")
+  if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/others/chat_stamp.xml")) {
+    let chatStampData = U.parseXML(U.DecodeString(await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/others/chat_stamp.xml"), "shift_jis"), false)
+    // console.log(JSON.stringify(chatStampData.chat_stamp_data))
+    for(const chatStamp of chatStampData.chat_stamp_data.info) {
+      if(resourceJsonData.stamp.find(stamp => stamp['value'] === chatStamp.id['@content'][0]) == undefined) {
+        let stampTitle = chatStamp.title['@content'] + " " + (parseInt(chatStamp.id['@content'][0]) % 4 !== 0 ? parseInt(chatStamp.id['@content'][0]) % 4 : 4)
+        console.log("[chat_stamp] " + chatStamp.id['@content'][0] + " - " + stampTitle)
+        resourceJsonData.stamp.push({"value": chatStamp.id['@content'][0], "name": stampTitle})
+        newChatStampData.push(chatStamp.id['@content'][0] + ": " + chatStamp.filename['@content'])
+      } 
+      if(!IO.Exists('webui/asset/chat_stamp/' + chatStamp.filename['@content'] + '.png') && !IO.Exists('webui/asset/chat_stamp/' + chatStamp.filename['@content'] + '.png')) {
+        console.log("[chat_stamp] copying " + chatStamp.filename['@content'] + '.png')
+        let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/chat_stamp/" + chatStamp.filename['@content'] + ".png")
+        IO.WriteFile('webui/asset/chat_stamp/' + chatStamp.filename['@content'] + '.png', fileToWrite)
+      }
+    }
+    resourceJsonData.stamp.sort(function(a, b){return a.value - b.value})
+  } else {
+    console.log('Error reading chat stamp xml file. Check your "Exceed Gear Data Directory" config.')
+    runErrors.push('[chat stamp] Error reading chat stamp xml file. Check your "Exceed Gear Data Directory" config.')
   }
 
   // Copying new valgene_item files from gamedata
@@ -425,7 +499,8 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
           console.log("[valgene_item] copying " + valgeneItem.name)
           IO.WriteFile('webui/asset/valgene_item/' + valgeneItem.name, fileToWrite)
           newValgeneItemFiles.push(valgeneItem.name)
-        } 
+        }
+
       }
     }
   } else {
@@ -434,14 +509,16 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
   }
 
   // Copying new akanames from gamedata
-  console.log("Copying new akanames from gamedata")
+  console.log("Copying new appeal titles from gamedata")
+  // resourceJsonData.akaname = []
   if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/others/akaname_parts.xml")) {
     let akanameData = U.parseXML(U.DecodeString(await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/others/akaname_parts.xml"), "shift_jis"), false)
     for(const akaname of akanameData.akaname_parts.part) {
-      if(resourceJsonData.akaname.find(aka => aka.value === akaname['@attr'].id) == undefined) {
-        console.log("[akaname] adding " + akaname['@attr'].id + " - " + akaname.word['@content'] != undefined ? akaname.word['@content'] : '')
-        resourceJsonData.akaname.push({"value": akaname['@attr'].id, "name": akaname.word['@content'] != undefined ? akaname.word['@content'] : '' })
-        newAkanames.push(akaname['@attr'].id + ": " + akaname.word['@content'])
+      if(resourceJsonData.akaname.find(aka => aka.value === akaname['@attr'].id) === undefined) {
+        let akanameFmtd = ('@content' in akaname.word) ? akaname.word['@content'].replace(/(\[[A-z0-9:,\/\]]*)/g,'') : ''
+        console.log("[appeal title] adding " + akaname['@attr'].id + " - " + akanameFmtd)
+        resourceJsonData.akaname.push({"value": akaname['@attr'].id, "name": akanameFmtd})
+        newAkanames.push(akaname['@attr'].id + ": " + akanameFmtd )
       } 
     }
     resourceJsonData.akaname.sort(function(a, b){return parseInt(a.value) - parseInt(b.value)})
@@ -470,29 +547,6 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
   } else {
     console.log('Error reading appeal card xml file. Check your "Exceed Gear Data Directory" config.')
     runErrors.push('[appeal card] Error reading appeal card xml file. Check your "Exceed Gear Data Directory" config.')
-  }
-
-  // Copying new chat stamps from gamedata
-  console.log("Copying new chat stamps from gamedata")
-  if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/others/chat_stamp.xml")) {
-    let chatStampData = U.parseXML(U.DecodeString(await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/others/chat_stamp.xml"), "shift_jis"), false)
-    // console.log(JSON.stringify(chatStampData.chat_stamp_data))
-    for(const chatStamp of chatStampData.chat_stamp_data.info) {
-      if(resourceJsonData.stamp.find(stamp => stamp['value'] === chatStamp.id['@content'][0]) == undefined) {
-        console.log("[chat_stamp] adding to json: " + chatStamp.id['@content'][0] + " - " + chatStamp.filename['@content'])
-        resourceJsonData.stamp.push({"value": chatStamp.id['@content'][0], "name": chatStamp.filename['@content']})
-        newChatStampData.push(chatStamp.id['@content'][0] + ": " + chatStamp.filename['@content'])
-      }
-      if(!IO.Exists('webui/asset/chat_stamp/' + chatStamp.filename['@content'] + '.png') && !IO.Exists('webui/asset/chat_stamp/' + chatStamp.filename['@content'] + '.png')) {
-        console.log("[chat_stamp] copying " + chatStamp.filename['@content'] + '.png')
-        let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/chat_stamp/" + chatStamp.filename['@content'] + ".png")
-        IO.WriteFile('webui/asset/chat_stamp/' + chatStamp.filename['@content'] + '.png', fileToWrite)
-      }
-    }
-    resourceJsonData.stamp.sort(function(a, b){return a.value - b.value})
-  } else {
-    console.log('Error reading chat stamp xml file. Check your "Exceed Gear Data Directory" config.')
-    runErrors.push('[chat stamp] Error reading chat stamp xml file. Check your "Exceed Gear Data Directory" config.')
   }
 
   await IO.WriteFile('webui/asset/json/data.json', JSON.stringify(resourceJsonData, null, 4))
