@@ -239,7 +239,7 @@ $(document).ready(function() {
             if(foundCourses.length > 0) {   
                 $('[name="skilltitle"]').append($('<option>', {
                     value: json["skilltitle"][i].id,
-                    text: json["skilltitle"][i].name,
+                    text: json["skilltitle"][i].name + ' (' + json["skilltitle"][i].info + ')',
                 }));
             }
         }

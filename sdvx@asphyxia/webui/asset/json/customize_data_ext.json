@@ -58,79 +58,98 @@
 	"skilltitle": [
 		{
 			"id": 1,
-			"name": "岳翔 (Lv01)"
+			"name": "岳翔",
+			"info": "Lv01"
 		},
 		{
 			"id": 2,
-			"name": "流星 (Lv02)"
+			"name": "流星",
+			"info": "Lv02"
 		},
 		{
 			"id": 3,
-			"name": "月衝 (Lv03)"
+			"name": "月衝",
+			"info": "Lv03"
 		},
 		{
 			"id": 4,
-			"name": "瞬光 (Lv04)"
+			"name": "瞬光",
+			"info": "Lv04"
 		},
 		{
 			"id": 5,
-			"name": "天極 (Lv05)"
+			"name": "天極",
+			"info": "Lv05"
 		},
 		{
 			"id": 6,
-			"name": "烈風 (Lv06)"
+			"name": "烈風",
+			"info": "Lv06"
 		},
 		{
 			"id": 7,
-			"name": "雷電 (Lv07)"
+			"name": "雷電",
+			"info": "Lv07"
 		},
 		{
 			"id": 8,
-			"name": "麗華 (Lv08)"
+			"name": "麗華",
+			"info": "Lv08"
 		},
 		{
 			"id": 9,
-			"name": "魔騎士 (Lv09)"
+			"name": "魔騎士",
+			"info": "Lv09"
 		},
 		{
 			"id": 10,
-			"name": "剛力羅 (Lv10)"
+			"name": "剛力羅",
+			"info": "Lv10"
 		},
 		{
 			"id": 11,
-			"name": "或帝滅斗 (Lv11)"
+			"name": "或帝滅斗",
+			"info": "Lv11"
 		},
 		{
 			"id": 12,
-			"name": "暴龍天 (Lv∞)"
+			"name": "暴龍天",
+			"info": "Lv∞"
 		},
 		{
 			"id": 13,
-			"name": "BMK2021 (BEMANI MASTER KOREA 2021)"
+			"name": "BMK2021",
+			"info": "BEMANI MASTER KOREA 2021"
 		},
 		{
 			"id": 14,
-			"name": "天晴 (10th Anniversary)"
+			"name": "天晴",
+			"info": "10th Anniversary"
 		},
 		{
 			"id": 15,
-			"name": "詠鰤琉 (New Life Support)"
+			"name": "詠鰤琉",
+			"info": "New Life Support"
 		},
 		{
 			"id": 16,
-			"name": "Red Bull (Red Bull 5G 2022)"
+			"name": "Red Bull",
+			"info": "Red Bull 5G 2022"
 		},
 		{
 			"id": 17,
-			"name": "U.S.O. (Spring Volte Festival 2023)"
+			"name": "U.S.O.",
+			"info": "Spring Volte Festival 2023"
 		},
 		{
 			"id": 18,
-			"name": "完喰 (KAC 2023 Challenge Round A)"
+			"name": "完喰",
+			"info": "KAC 2023 Challenge Round A"
 		},
 		{
 			"id": 19,
-			"name": "夢吹 (KAC 2023 Challenge Round B)"
+			"name": "夢吹",
+			"info": "KAC 2023 Challenge Round B"
 		}
 	]
 }

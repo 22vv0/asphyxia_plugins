@@ -1,27 +1,18 @@
 div
   .card
-    button.collapse() Notes
-    .card-info.collapsible-card
-      p.card-header-info
-        h5() Notes:
-        ul
-          li() For use with Exceed Gear arcade data.
-          li() Use this if you have arcade data that can be used. It wouldn't work otherwise.
-          li() Make sure you have your 'Exceed Gear Data Directory' in the plugin settings properly configured. 
-          li() Update your datacode in the ea3-config.xml file.
-      br
-      p.card-header-bgm-guide
-        h5() BGM asset guide
-        p() This feature pulls BGM files from the data, however they are in the WMA file format, which is unsupported. For BGM preview to work, they have to be converted to MP3 format.
-        p() To convert these files to MP3, you can use ffmpeg. If you have ffmpeg already installed, there is a bgm_convert.bat script in the SDVX plugin directory that can automate the conversion to mp3.
-        ul
-          li() <a href="https://www.gyan.dev/ffmpeg/builds/">ffmpeg</a> - download and extract ffmpeg.exe and put it in the same directory as the bat script (or put ffmpeg.exe in PATH environment variable)
-  .card
     .card-header
       p.card-header-title
         span.icon
           i.mdi.mdi-account-edit
         | Update WebUI Assets (pull from game files)
+    .card-info.collapsible-card
+      ul
+        li(style="font-size:14px") To use this feature, configure 'Exceed Gear Data Directory' in the plugin settings.
+        li(style="font-size:14px") This will extract certain textures/images from .ifs files, however, currently it will only support IFS files used in the latest game version supported by this plugin.
+        li(style="font-size:14px") This feature pulls BGM files from the data, however they are in the WMA file format, which playback is unsupported so they have to be converted to MP3 format. To convert these files to MP3, you can use ffmpeg. If you have ffmpeg already installed, there are bgm_convert scripts in the SDVX plugin directory that can automate the conversion to mp3 (.bat for Windows, .sh for Linux)
+        ul
+          li(style="font-size:14px") Windows: <a href="https://www.gyan.dev/ffmpeg/builds/">download</a> and extract ffmpeg.exe and put it in the same directory as the bat script (or put ffmpeg.exe in PATH environment variable)
+          li(style="font-size:14px") Linux: follow <a href="https://json2video.com/how-to/ffmpeg-course/install-ffmpeg-linux.html">this guide</a> on how to install ffmpeg on your specific Linux distro.
     .card-content
       .field
         button.button.is-primary(type="update" id="updateResources") 

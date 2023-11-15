@@ -1,6 +1,6 @@
-var music_db, course_db, score_db, data_db, appeal_db;
+var music_db, course_db, score_db, data_db, appeal_db, skill_title_db;
 var volforceArray = [];
-var profile_data, skill_data;
+var profile_data, skill_data, course_data;
 var baseTBodyCMpD, baseTBodyCMpL, baseTBodyGpD, baseTBodyGpL, baseTBodyASpL;
 var notFirst = false;
 var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVIDWAVE', 'EXCEED GEAR']
@@ -24,7 +24,16 @@ function zeroPad(num, places) {
 
 
 function getSkillAsset(skill) {
-    return "static/asset/skill_lv/skill_" + zeroPad(skill, 2) + ".png";
+    return "static/asset/skill_lv/skill_" + ((skill === -1) ? 'none' : zeroPad(skill, 2)) + ".png";
+}
+
+function getSkillFrameAsset(frame) {
+    return "static/asset/skill_lv/skill_frame_" + frame + ".png";
+}
+
+function getSkillTitle() {
+    if(skill_data.length <= 0 || skill_data[0].name === (undefined || 0)) return ''
+    return skill_title_db.filter(e => e.id === skill_data[0].name)[0].name
 }
 
 function getGrade(grade) {
@@ -634,17 +643,46 @@ function setUpStatistics() {
 $('#version_select').change(function() {
     $('#skillLV').fadeOut(200, () => {
         console.log("change version select");
-        $('#skillLV').attr('src', getSkillAsset(getPlayerSkill($('#version_select').val())))
+        $('#skillLV').attr('src', getSkillAsset(getPlayerSkill($('#version_select').val())[0]))
     });
     $('#skillLV').fadeIn(200);
 });
 
 function getPlayerSkill(version) {
     // console.log(getPlayerMaxVersion())
-    if (skill_data.length == 0) return 0;
+    if (skill_data.length == 0) return [-1, 0];
     var k = skill_data.filter(e => e.version == version)
-    return parseInt(k[0].level);
+    let courseDataFil = course_data.filter(e => ![6,7,12,13,15,16].includes(e.sid) && e.cid === k[0].level && ((k[0].type !== undefined) ? k[0].type : 0) === ((e.stype !== undefined) ? e.stype : 0))
+    return [(courseDataFil.length > 0) ? k[0].level : -1, (k[0].type !== undefined) ? k[0].type : 0];
 }
+
+function getPlayerCourse(version, playerSkill) {
+    if(version === 0) return 'none'
+    let skillFrame = ['normal', 'god']
+    let skillThrsh = [[130, 150, 160, 170], [150, 160, 170, 180]]
+    let skillThrshVal = (playerSkill[0] <= 9) ? 0 : playerSkill[0] - 9
+    var k = course_db.courseData.filter(e => e.version == version)[0].info
+    let sidCourses = []
+    k.forEach(kd => {
+        kd.courses.forEach(kdc => {
+            kdc['sid'] = kd.id
+            kdc['isNew'] = kd.isNew
+            sidCourses.push(kdc)
+        })
+    })
+    sidCourses = sidCourses.filter(e => ![6,7,12,13,15,16].includes(e.sid) && e.level === playerSkill[0])
+    let newCourses = sidCourses.filter(e => e.isNew === 1).map(a => a.sid)
+    let foundCourses = course_data.filter(e => e.cid === playerSkill[0] && ((e.stype !== undefined) ? e.stype : 0) === playerSkill[1] && e.clear >= 2)
+    let newCompleteCourses = foundCourses.filter(e => newCourses.includes(e.sid))
+    let thrshCourses = foundCourses.filter(e => Math.floor(e.rate/100) >= skillThrsh[playerSkill[1]][skillThrshVal])
+
+    if(sidCourses.length > 0 && thrshCourses.length === sidCourses.length) return skillFrame[playerSkill[1]] + '_sp'
+    if(sidCourses.length > 0 && foundCourses.length === sidCourses.length) return skillFrame[playerSkill[1]] + '_gold'
+    if(newCompleteCourses.length > 1) return skillFrame[playerSkill[1]] + '_silver'
+    if(foundCourses.length > 1 && playerSkill[1] === 1) return skillFrame[playerSkill[1]] + '_sp_none'
+    return 'none'
+}
+
 
 function getVersionSelect() {
     if (skill_data.length == 0) return [];
@@ -662,10 +700,10 @@ function displayArenaSeasonData(season) {
         $('.arena-details').append(
             $('<div class="tile is-parent is-7">').append(
                 $('<article class="tile is-child arena-details-child-left">').append(
-                    // $('<img>', {
-                    //     src: 'static/asset/arena_icon/' + rankInfo[0] + ".png"
-                    // })
-                    $('<h1 style="font-size:100px">' + ((rankInfo[0] === 'none') ? 'n/a' : rankInfo[0].toUpperCase()) + "</h1>")
+                    $('<img>', {
+                        src: 'static/asset/arena_rank/' + rankInfo[0] + ".png"
+                    })
+                    // $('<h1 style="font-size:100px">' + ((rankInfo[0] === 'none') ? 'n/a' : rankInfo[0].toUpperCase()) + "</h1>")
                 )
             )
         ).append(
@@ -674,10 +712,6 @@ function displayArenaSeasonData(season) {
                     $('<p class="title" style="font-family: testfont">Arena Power</p>').append(
                         $('<div class="content">' + sznData.shopPoint + ' AP </div>')
                     )
-                ).append(
-                    (sznData.megamixRate !== (0 || undefined)) ? $('<p class="title" style="font-family: testfont">Megamix Rate</p>').append(
-                        $('<div class="content">' + sznData.megamixRate + '</div>')
-                    ) : $("<p></p>")
                 )
             )
         )
@@ -695,12 +729,12 @@ function displayArenaSeasonData(season) {
                 $('<meter id="rank-point-mtr" style="width:80%" min="' + rankInfo[1] + '"max="' + ((rankInfo[2] !== undefined) ? rankInfo[2].point : rankInfo[1]) + '" value="' + sznData.rankPoint + '"></meter>')
             ).append(
                 $('<h5 style="font-family: testfont">' + sznData.rankPoint + ' pts (' + (rankInfo[2].point - sznData.rankPoint) + ' pts to ' + rankInfo[2].rank.toUpperCase() + ')</h5>')
+            ).append(
+                (sznData.megamixRate !== (0 || undefined)) ? $('<h5 style="font-family: testfont">Megamix rate: ' + sznData.megamixRate + ' <img style="width:20px" src="static/asset/arena_rank/mixstar.png"></p></div></h5>') : $('<h5>')
             )
         } else if(rankInfo[0] !== 'none'){
             $('.arena-details-child-left').append(
-                $('<h5 style="font-family:testfont">Ultimate rate: ' + sznData.ultimateRate + '</h5>')
-            ).append(
-                
+                (sznData.megamixRate !== (0 || undefined)) ? $('<h5 style="font-family: testfont">Megamix rate: ' + sznData.megamixRate + ' <img style="width:20px" src="static/asset/arena_rank/mixstar.png"></p></div></h5>') : $('<h5 style="font-family:testfont">Ultimate rate: ' + sznData.ultimateRate + '</h5>')
             )
         }
     }
@@ -754,6 +788,7 @@ $(document).ready(function() {
     profile_data = JSON.parse(document.getElementById("data-pass").innerText);
     score_db = JSON.parse(document.getElementById("score-pass").innerText);
     skill_data = JSON.parse(document.getElementById("skill-pass").innerText);
+    course_data = JSON.parse(document.getElementById("course-pass").innerText);
     arena_data = JSON.parse(document.getElementById("arena-pass").innerText);
 
     skill_data.sort(function(a, b) {
@@ -782,7 +817,10 @@ $(document).ready(function() {
         $.getJSON("static/asset/json/appeal.json", function(json) {
             appeal_db = json;
             //console.log(appeal_db);
-        })
+        }),
+        $.getJSON("static/asset/json/customize_data_ext.json", function(json) {
+            skill_title_db = json.skilltitle;
+        }),
     ).then(function() {
         var currentVF = calculateVolforce();
         var maxVer = skill_data.length > 0 ? parseInt(skill_data[0]["version"]) : 0
@@ -809,7 +847,7 @@ $(document).ready(function() {
         }
 
         $('#test').append(
-            $('<div class="card is-inlineblocked">').append(
+            $('<div class="card is-inlineblocked" style="padding-bottom:30px">').append(
                 $('<div class="card-header">').append(
                     $('<p class="card-header-title">').append(
                         $('<span class="icon">').append(
@@ -873,32 +911,27 @@ $(document).ready(function() {
                 ).css('width', '100%')
             ).css('vertical-align', 'top')
             .css('max-width', '100%')
-        ).append(
-            $('<div class="card  is-inlineblocked">').append(
-                $('<div class="card-header">').append(
-                    $('<p class="card-header-title">').append(
-                        $('<span class="icon">').append(
-                            $('<i class="mdi mdi-pulse">')
-                        )
-                    ).append("Other Data")
-                )
-            ).append(
+            .append(
                 $('<div class="card-content">').append(
                     $('<div class="tile is-ancestor">').append(
                         $('<div class="tile is-parent is-7">').append(
-                            $('<article class="tile is-child box">').append(
-                                $('<p class="title">').append(
-                                    "Skill Level"
+                            $('<article class="tile is-child">').append(
+                                $('<div class="content" style="position: relative;display: flex;justify-content: center;align-items: center;">').append(
+                                    $('<img id="skillLV">').attr('src', getSkillAsset(getPlayerSkill(maxVer)[0]))
                                 ).append(
-                                    $('<div class="content">').append(
-                                            $('<img id="skillLV">').attr('src', getSkillAsset(getPlayerSkill(maxVer)))
+                                    $('<div style="position:absolute;width:100%;height:100%display: flex;justify-content: center;align-items: center;">').append(
+                                        $('<img id="skillFrame" style="height:100%">')
                                     )
-                                ).css('font-family', "testfont")
+                                ).append(
+                                    $('<div style="position:absolute;padding-left:20px;width:100%;height:100%;display: flex;justify-content: center;align-items: center;">').append(
+                                        $('<p id="skillTitle"></p>')
+                                    )
+                                )
                             )
                         )
                     ).append(
                         $('<div class="tile is-parent is-5">').append(
-                            $('<article class="tile is-child box">').append(
+                            $('<article class="tile is-child">').append(
                                 $('<p class="title">').append(
                                     "PCB"
                                 ).append(
@@ -1030,6 +1063,11 @@ $(document).ready(function() {
             $('.arena-details').empty()
             displayArenaSeasonData($('#arena-szn-sel').val())
         });
+
+        let skillFrame = getPlayerCourse(maxVer, getPlayerSkill(maxVer))
+        if(skillFrame !== 'none') $('#skillFrame').attr('src', getSkillFrameAsset(skillFrame))
+        $('#skillTitle').text(getSkillTitle())
+        $('#skillTitle').attr('style', 'font-size:25px; color:black; font-weight:bold;color:' + (getPlayerSkill(maxVer)[0] === 11 ? '#FFC100' : ((getPlayerSkill(maxVer)[0] === 12) ? '#FFE000' : "black")))
 
         setUpStatistics();
         setCMpD();

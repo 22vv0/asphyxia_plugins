@@ -5187,7 +5187,7 @@ export const COURSES6 = [
   {
     id: 14,
     name: 'SKILL ANALYZER 第6回',
-    isNew: 1,
+    isNew: 0,
     hasGod: 1,
     courses: [
       {
@@ -5602,7 +5602,7 @@ export const COURSES6 = [
   {
     id: 16,
     name: 'KAC(2023)予選コース',
-    isNew: 1,
+    isNew: 0,
     courses: [
       {
         id: 1,

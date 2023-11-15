@@ -65,9 +65,10 @@ async function loadItems(itemSet, gene_edition, items_crew, items_stamp, items_s
     }
     
 
-    $('.count').text('Unlocked items: ' + itemCounts[0] + "/" + itemCounts[1])
-    if(itemSet === 1) {
-        $('.setinfo').append('<p class="jpn-excl" style="padding:5px">These items are only usable in Japan. Change region to Japan in the ea3-config.xml file.</p>')
+    $('.count').text('Obtained items: ' + itemCounts[0] + "/" + itemCounts[1])
+    if(geneItems.jpn_exc) {
+        $('.jpn-excl').remove()
+        $('.setinfo').append('<p class="jpn-excl" style="padding:5px">These items are only usable if your game region is set to Japan. Change your game region through either modifying ea3-config.xml or dll patch.</p>')
     } else {
         $('.jpn-excl').remove()
     }

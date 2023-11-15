@@ -18,12 +18,25 @@ $(document).ready(async function() {
                 function(response){
                     document.getElementById("logtextarea").textContent = 'Done.\n\n'
                     document.getElementById("logtextarea").textContent += 'NOTE:\n- labels for these new files (nemsys, bgm, submonitor bg, chat stamps) in the asset/json/data.json file needs to be updated.\n'
-                    document.getElementById("logtextarea").textContent += '- for converting s3p files to mp3, check guide in the notes section above.\n\n\n\n'
+                    document.getElementById("logtextarea").textContent += '- for converting s3p files to mp3, check guide in the notes section above.\n\n'
 
                     if(response['data']['errors'].length > 0) {
                         document.getElementById("logtextarea").textContent += 'Errors: \n'
                         $.each(response['data']['errors'], function(key, val) {
                             document.getElementById("logtextarea").textContent += "- " + val + '\n'
+                        })
+                        document.getElementById("logtextarea").textContent += '\n\n'
+                    }
+
+                    if(response['data']['course']) {
+                        document.getElementById("logtextarea").textContent += "Updated course_data.json from data/exg.ts!"
+                    }
+                    document.getElementById("logtextarea").textContent += '\n\n\n'
+
+                    if(response['data']['ifs'].length > 0) {
+                        document.getElementById("logtextarea").textContent += 'Successfully extracted textures: \n'
+                        $.each(response['data']['ifs'], function(key, val) {
+                            document.getElementById("logtextarea").textContent += "- " +  val + '\n'
                         })
                         document.getElementById("logtextarea").textContent += '\n\n'
                     }
@@ -103,7 +116,6 @@ $(document).ready(async function() {
                         document.getElementById("logtextarea").textContent += '\n\n'
                     }
 
-                    // console.log(JSON.stringify(data))
                     if(response['data']['akaname'].length > 0) {
                         document.getElementById("logtextarea").textContent += 'New akanames: \n'
                         $.each(response['data']['akaname'], function(key, val) {

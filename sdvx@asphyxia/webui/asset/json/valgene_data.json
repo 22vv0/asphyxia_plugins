@@ -3,6 +3,7 @@
         {
             "id": 1,
             "name": "Premium Generator（この素晴らしい世界に祝福を！）",
+            "jpn_exc": true,
             "items": {
                 "crew": [131],
                 "stamp": [69, 70, 71, 72, 73, 74, 75, 76, 77, 78],
@@ -12,6 +13,7 @@
         {
             "id": 2,
             "name": "Premium Generator Vol. 1",
+            "jpn_exc": false,
             "items": {
                 "crew": [134],
                 "stamp": [110, 111, 112, 113, 114, 115, 116, 117, 118, 119],
@@ -21,6 +23,7 @@
         {
             "id": 3,
             "name": "Premium Generator Vol. 2",
+            "jpn_exc": false,
             "items": {
                 "crew": [136, 137, 138],
                 "stamp": [151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162],
@@ -30,6 +33,7 @@
         {
             "id": 4,
             "name": "Premium Generator （Re:ゼロから始める異世界生活）前半",
+            "jpn_exc": true,
             "items": {
                 "crew": [139],
                 "stamp": [194, 195, 196, 197, 198, 199],
@@ -39,6 +43,7 @@
         {
             "id": 5,
             "name": "Premium Generator （Re:ゼロから始める異世界生活）後半",
+            "jpn_exc": true,
             "items": {
                 "crew": [140],
                 "stamp": [200, 201, 202, 203, 204, 205],
@@ -48,6 +53,7 @@
         {
             "id": 6,
             "name": "Premium Generator Vol. 3",
+            "jpn_exc": false,
             "items": {
                 "crew": [142],
                 "stamp": [239, 240, 241, 242, 243, 244, 245, 246, 247, 248],
@@ -58,6 +64,7 @@
         {
             "id": 7,
             "name": "Premium Generator（白上フブキ）",
+            "jpn_exc": true,
             "items": {
                 "crew": [143],
                 "stamp": [249, 250, 251, 252, 253, 254, 255, 256, 257, 258],
