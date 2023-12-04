@@ -1,8 +1,8 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.2.4
+**Plugin Version:** fork-6.0.2.5
 
-**Supported game versions:** EXCEED GEAR (2023102400)
+**Supported game versions:** EXCEED GEAR (2023110700)
 
 **Unsupported game versions:** Every other game, as they're untested.
 
@@ -16,6 +16,13 @@
 
 Changelog
 ===========
+## fork-6.0.2.5
+
+### New:
+
+1. Main:
+	- Added the new Kinoshita songs to LICENSED_SONGS list.
+
 ## fork-6.0.2.4
 
 ### New:
@@ -75,32 +82,3 @@ Changelog
 3. Misc:
 	- Updated BPL Triple Tribe event category from 'gift' to 'event_online.'
 	- Added missing matchmaker model file.
-
-
-## fork-6.0.2.2
-
-### New:
-
-1. Event updates:
-	- Enabled BPL S2 (SuddeИDeath) stamp event. Unlock all other songs first to make SuddeИDeath appear.
-	- Added SDVX x CCJ song online crossover event.
-	- Enabled item auto-unlock for 'cross_online' / cross events (X-record, BPL2021, Ichika, CCJ, etc.)
-		- I would love to make point/progression systems for each event but it would take a lot of work and I would potentially need to update other games' plugins, so I'd rather not, and just give the option to unlock the songs automatically. Maybe in the future?
-2. ARENA updates:
-	- Ranked match and rule implementation:
-		- The active ranked match game mode and the point system used depends on the individual season.
-		- Some seasons will have the ARENA BATTLE as the active ranked match, some will have SINGLE BATTLE.
-		- Point system/rule can either be based on score, or based on star point. As of the moment, only season 1 has used the score-based rule.
-		- Reference: [BEMANIWiki](https://bemaniwiki.com/index.php?SOUND+VOLTEX+EXCEED+GEAR/ARENA+BATTLE#ONLINE_ARENA)
-	- ARENA STATION catalog will still be based on the season it came out with.
-	- Added option to not choose an active ARENA season.
-3. Other:
-	- Initial online matchmaking code (WIP / unfinished / doesn't work)
-4. WebUI:
-	- Added support for setting FX-R chat stamps.
-	- Added video player for submonitor background videos (via Video.js)
-
-### Fixes: 
-
-1. Fixes WebUI resource update not adding video submonitor backgrounds. I 100% recommend updating your WebUI assets.
-
