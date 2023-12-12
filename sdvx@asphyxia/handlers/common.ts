@@ -54,6 +54,13 @@ export const common: EPR = async (info, data, send) => {
         console.log('Game: Exceed Gear')
         //events = EVENT6;
         EVENT6.forEach(val => events.push(val));
+        if(IO.Exists('webui/asset/config/flags.json')) {
+          let bufFlagConfig = await IO.ReadFile('webui/asset/config/flags.json')
+          let flagConfig = JSON.parse(bufFlagConfig.toString())
+          for(const flagIter in flagConfig) {
+            if(flagConfig[flagIter]['toggle']) events.push(flagConfig[flagIter]['str'])
+          }
+        }
         courses = COURSES6;
         EXTENDS6.forEach(val => extend.push(Object.assign({}, val)));
         break;

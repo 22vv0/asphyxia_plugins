@@ -211,5 +211,37 @@
             "desc": "Online crossover event with CHASE CHASE JOKERS. Obtaining 6 stamps on the event site would unlock a song originally from CCJ.",
             "info": "Toggle this option on to unlock チェイスチェイスジョーカーズのうた on your next login."
         }
+    ],
+    "flags": [
+        {
+            "id": "cuda",
+            "key": "USE_CUDA_VIDEO_PRESENTER",
+            "str": "USE_CUDA_VIDEO_PRESENTER",
+            "explain": ""
+        },
+        {
+            "id": "hiscoredatalimit",
+            "key": "HISCORE_DATA_LIMIT",
+            "str": "HISCORE_DATA_LIMIT",
+            "explain": ""
+        },
+        {
+            "id": "submonvsync",
+            "key": "SUBMONITOR_VSYNC_ENABLE",
+            "str": "SUBMONITOR_VSYNC_ENABLE",
+            "explain": "Enables vertical sync for secondary display."
+        },
+        {
+            "id": "demoloopinfo",
+            "key": "DEMOLOOP_INFORMATION",
+            "str": "DEMOLOOP_INFORMATION\tdemo_info/230710_bpls3_streaming.png",
+            "explain": "Enables display of available information in attract mode."
+        },
+        {
+            "id": "konami50",
+            "key": "KONAMI_50TH_LOGO",
+            "str": "KONAMI_50TH_LOGO",
+            "explain": "Enables the 50th anniversary KONAMI logo."
+        }
     ]
 }

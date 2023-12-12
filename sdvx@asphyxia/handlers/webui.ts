@@ -782,3 +782,9 @@ export const manageEvents = async (data: {
 }) => {
   IO.WriteFile('webui/asset/config/events.json', JSON.stringify(data.eventConfig, null, 4));
 }
+
+export const manageStartupFlags = async (data: {
+  flagConfig: {}
+}) => {
+  IO.WriteFile('webui/asset/config/flags.json', JSON.stringify(data.flagConfig, null, 4));
+}

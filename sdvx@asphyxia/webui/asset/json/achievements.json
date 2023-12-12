@@ -5292,6 +5292,13 @@
             "rtype": "aptitle",
             "rid": 10326,
             "troptype": 2
+        },
+        {
+            "id": 757,
+            "title": "HEXA DIVER 10 ―CODE：DimiourGEAR―を全曲獲得。",
+            "rtype": "aptitle",
+            "rid": 10327,
+            "troptype": 3
         }
     ]
 }

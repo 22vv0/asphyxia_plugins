@@ -1,8 +1,8 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.2.5
+**Plugin Version:** fork-6.0.2.6
 
-**Supported game versions:** EXCEED GEAR (2023110700)
+**Supported game versions:** EXCEED GEAR (2023120500)
 
 **Unsupported game versions:** Every other game, as they're untested.
 
@@ -16,12 +16,32 @@
 
 Changelog
 ===========
+## fork-6.0.2.6
+
+### New:
+
+1. Main:
+	- 2023120500 support.
+	- Enabled HEXA DIVER 10.
+	- Enabled HEXA REVOLUTION features.
+	- Added SKILL ANALYZER 8 courses.
+2. WebUI:
+	- Added "Startup Flags" page - for toggling a few select game flags/events on the fly without restarting core, such as USE_CUDA_VIDEO_PRESENTER, etc.
+	- Updated game achievements list.
+
+### Todo:
+
+1. Figure out how to use image (png) files to appear in information/news popup.
+2. More work on online matchmaking (globalMatch.) I can't seem to make clients establish a connection.
+
+
 ## fork-6.0.2.5
 
 ### New:
 
 1. Main:
 	- Added the new Kinoshita songs to LICENSED_SONGS list.
+
 
 ## fork-6.0.2.4
 
@@ -46,39 +66,6 @@ Changelog
 	- Updated bgm_convert.bat
 
 ### Fixes:
+
 1. WebUI
 	- Fixed Japan-exclusive warning not displaying for some Premium Generator sets.
-
-### Todo:
-1. Figure out how to use image (png) files to appear in information/news popup.
-2. More work on online matchmaking (globalMatch.) I can't seem to make clients establish a connection.
-
-
-## fork-6.0.2.3
-
-### New:
-
-1. Main:
-	- Added ~~ARENA~~ MEGAMIX BATTLE ranked match season & ARENA STATION set 11.
-	- Added PREMIUM GENERATOR Fubuki set.
-	- Updated licensed songs list (Fubuki songs)
-2. WebUI
-	- Updated ARENA Season statistics display in detail page. Displays rank, rank point meter, megamix rate (for ranked megamix,) ultimate rate (for ultimate players,) and arena power.
-	- Added achievements list page (work in progress)
-	- Added ability to set how many Valkyrie Generator tickets you have. These tickets are used to purchase valkyrie generator items.
-	- Added ability to change Skill Titles. Players can only switch to titles they own.
-	- (Update webui resources) Added code to extract wma audio from .s3p files. Largely based on [mon's s3p_extract](https://github.com/mon/s3p_extract) code.
-3. Others:
-	- DEMOLOOP_INFORMATION implementation (attract mode announcements images)
-	- Updated bgm\_convert batch script to remove the need for s3p\_extract.
-
-### Fixes:
-
-1. Game
-	- Fixed gibberish on Asphyxia card entry information data.
-2. WebUI
-	- Fixed details page error for players with no skill course data.
-	- Fixed sorting of Valgene/Pregene item images.
-3. Misc:
-	- Updated BPL Triple Tribe event category from 'gift' to 'event_online.'
-	- Added missing matchmaker model file.

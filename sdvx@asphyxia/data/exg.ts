@@ -1,4 +1,9 @@
 export const EVENT6 = [
+  // 'APPEAL_CARD_GEN_PRICE\t100',
+  // 'APPEAL_CARD_GEN_NEW_PRICE\t200',
+  // 'APPEAL_CARD_UNLOCK\t0,20170914,0,20171014,0,20171116,0,20180201,0,20180607,0,20181206,0,20200326,0,20200611,4,10140732,6,10150431',
+  // 'EVENTDATE_GOTT',
+  // 'EVENTDATE_ONIGO',
   'DEMOGAME_PLAY',
   'MATCHING_MODE',
   'MATCHING_MODE_FREE_IP',
@@ -12,36 +17,29 @@ export const EVENT6 = [
   'TENKAICHI_MODE',
   'QC_MODE',
   'KAC_MODE',
-  // 'APPEAL_CARD_GEN_PRICE\t100',
-  // 'APPEAL_CARD_GEN_NEW_PRICE\t200',
-  // 'APPEAL_CARD_UNLOCK\t0,20170914,0,20171014,0,20171116,0,20180201,0,20180607,0,20181206,0,20200326,0,20200611,4,10140732,6,10150431',
+  'DISABLE_MONITOR_ID_CHECK',
   'FAVORITE_APPEALCARD_MAX\t200',
   'FAVORITE_MUSIC_MAX\t200',
-  //'EVENTDATE_APRILFOOL',
-  //'KONAMI_50TH_LOGO',
-  'OMEGA_ARS_ENABLE',
-  'DISABLE_MONITOR_ID_CHECK',
-  'SKILL_ANALYZER_ABLE',
-  'BLASTER_ABLE',
   'STANDARD_UNLOCK_ENABLE',
   'PLAYERJUDGEADJ_ENABLE',
   'MIXID_INPUT_ENABLE',
-  'EVENTDATE_ONIGO',
-  'EVENTDATE_GOTT',
+  'DISP_PASELI_BANNER',
+  'CHARACTER_IGNORE_DISABLE\t122,123,131,139,140,143',
+  'OMEGA_ENABLE\t1,2,3,4,5,6,7,8,9',
+  'OMEGA_ARS_ENABLE',
+  'HEXA_ENABLE\t1,2,3,4,5,6,7,8,9,10',
+  'HEXA_OVERDRIVE_ENABLE\t8',
+  'SKILL_ANALYZER_ABLE',
+  'BLASTER_ABLE',
+  'PREMIUM_TIME_ENABLE',
+  'MEGAMIX_ENABLE',
+  'ARENA_ENABLE',
+  'SINGLE_BATTLE_ENABLE',
   'GENERATOR_ABLE',
   'CREW_SELECT_ABLE',
-  'PREMIUM_TIME_ENABLE',
-  'OMEGA_ENABLE\t1,2,3,4,5,6,7,8,9',
-  'HEXA_ENABLE\t1,2,3,4,5,6,7,8,9',
-  'MEGAMIX_ENABLE',
   'VALGENE_ENABLE',
-  'ARENA_ENABLE',
-  'DISP_PASELI_BANNER',
-  'S_PUC_EFFECT_ENABLE',
   'PLAYER_RADAR_ENABLE',
-  'SINGLE_BATTLE_ENABLE',
-  'DEMOLOOP_INFORMATION\tdemo_info/230710_bpls3_streaming.png',
-  'CHARACTER_IGNORE_DISABLE\t122,123,131,139,140,143'
+  'S_PUC_EFFECT_ENABLE'
 ];
 
 export const INFORMATION6 = {
@@ -5707,7 +5705,7 @@ export const COURSES6 = [
   {
     id: 17,
     name: 'SKILL ANALYZER 第7回',
-    isNew: 1,
+    isNew: 0,
     hasGod: 1,
     courses: [
       {
@@ -6012,6 +6010,314 @@ export const COURSES6 = [
       },
     ]
   },
+  {
+    id: 18,
+    name: 'SKILL ANALYZER 第8回',
+    isNew: 1,
+    hasGod: 1,
+    courses: [
+      {
+        id: 1,
+        type: 0,
+        name: 'SKILL ANALYZER Level.01',
+        level: 1,
+        nameID: 1,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1211,
+            mty: 0,
+          },
+          {
+            no: 1,
+            mid: 781,
+            mty: 1,
+          },
+          {
+            no: 2,
+            mid: 922,
+            mty: 0,
+          },
+        ],
+      },
+      {
+        id: 2,
+        type: 0,
+        name: 'SKILL ANALYZER Level.02',
+        level: 2,
+        nameID: 2,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 191,
+            mty: 1,
+          },
+          {
+            no: 1,
+            mid: 520,
+            mty: 1,
+          },
+          {
+            no: 2,
+            mid: 1740,
+            mty: 1,
+          },
+        ],
+      },
+      {
+        id: 3,
+        type: 0,
+        name: 'SKILL ANALYZER Level.03',
+        level: 3,
+        nameID: 3,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 397,
+            mty: 1,
+          },
+          {
+            no: 1,
+            mid: 1233,
+            mty: 1,
+          },
+          {
+            no: 2,
+            mid: 1387,
+            mty: 1,
+          },
+        ],
+      },
+      {
+        id: 4,
+        type: 0,
+        name: 'SKILL ANALYZER Level.04',
+        level: 4,
+        nameID: 4,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 724,
+            mty: 1,
+          },
+          {
+            no: 1,
+            mid: 829,
+            mty: 1,
+          },
+          {
+            no: 2,
+            mid: 752,
+            mty: 1,
+          },
+        ],
+      },
+      {
+        id: 5,
+        type: 0,
+        name: 'SKILL ANALYZER Level.05',
+        level: 5,
+        nameID: 5,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1618,
+            mty: 1,
+          },
+          {
+            no: 1,
+            mid: 740,
+            mty: 1,
+          },
+          {
+            no: 2,
+            mid: 1795,
+            mty: 1,
+          },
+        ],
+      },
+      {
+        id: 6,
+        type: 0,
+        name: 'SKILL ANALYZER Level.06',
+        level: 6,
+        nameID: 6,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1123,
+            mty: 2,
+          },
+          {
+            no: 1,
+            mid: 1876,
+            mty: 2,
+          },
+          {
+            no: 2,
+            mid: 968,
+            mty: 2,
+          },
+        ],
+      },
+      {
+        id: 7,
+        type: 0,
+        name: 'SKILL ANALYZER Level.07',
+        level: 7,
+        nameID: 7,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1094,
+            mty: 2,
+          },
+          {
+            no: 1,
+            mid: 1167,
+            mty: 2,
+          },
+          {
+            no: 2,
+            mid: 521,
+            mty: 2,
+          },
+        ],
+      },
+      {
+        id: 8,
+        type: 0,
+        name: 'SKILL ANALYZER Level.08',
+        level: 8,
+        nameID: 8,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 955,
+            mty: 4,
+          },
+          {
+            no: 1,
+            mid: 855,
+            mty: 2,
+          },
+          {
+            no: 2,
+            mid: 1682,
+            mty: 2,
+          },
+        ],
+      },
+      {
+        id: 9,
+        type: 0,
+        name: 'SKILL ANALYZER Level.09',
+        level: 9,
+        nameID: 9,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1677,
+            mty: 4,
+          },
+          {
+            no: 1,
+            mid: 1437,
+            mty: 2,
+          },
+          {
+            no: 2,
+            mid: 2036,
+            mty: 4,
+          },
+        ],
+      },
+      {
+        id: 10,
+        type: 0,
+        name: 'SKILL ANALYZER Level.10',
+        level: 10,
+        nameID: 10,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1803,
+            mty: 4,
+          },
+          {
+            no: 1,
+            mid: 873,
+            mty: 2,
+          },
+          {
+            no: 2,
+            mid: 362,
+            mty: 2,
+          },
+        ],
+      },
+      {
+        id: 11,
+        type: 1,
+        name: 'SKILL ANALYZER Level.11',
+        level: 11,
+        nameID: 11,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 1930,
+            mty: 4,
+          },
+          {
+            no: 1,
+            mid: 1843,
+            mty: 4,
+          },
+          {
+            no: 2,
+            mid: 1276,
+            mty: 4,
+          },
+        ],
+      },
+      {
+        id: 12,
+        type: 1,
+        name: 'SKILL ANALYZER Level.∞',
+        level: 12,
+        nameID: 12,
+        assist: 0,
+        tracks: [
+          {
+            no: 0,
+            mid: 258,
+            mty: 3,
+          },
+          {
+            no: 1,
+            mid: 1582,
+            mty: 4,
+          },
+          {
+            no: 2,
+            mid: 2085,
+            mty: 4,
+          },
+        ],
+      },
+    ]
+  }
 ];
 
 export const SDVX_AUTOMATION_SONGS = [
