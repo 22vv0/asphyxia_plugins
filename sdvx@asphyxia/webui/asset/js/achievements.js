@@ -31,7 +31,12 @@ async function populateAch(listType) {
 			if(ach['rtype'] === 'pcb') {
 				reward = ach['rid'] + " PCB"
 			} else if(ach['rtype'] === 'aptitle') {
-				reward = "Appeal Title \"" + aptitlelist.find(e => parseInt(e['value']) === ach['rid'])['name'] + "\""
+				let aptitle = aptitlelist.find(e => parseInt(e['value']) === ach['rid'])
+				if (aptitle !== undefined) {
+					reward = "Appeal Title \"" + aptitle['name'] + "\""
+				} else {
+					reward = "Unknown Appeal Title"
+				}
 			}
 		} else {
 			reward = '-----'
