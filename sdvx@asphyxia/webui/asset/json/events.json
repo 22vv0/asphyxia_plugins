@@ -210,6 +210,14 @@
             "name": "CHASE CHASE JOKERS × SOUND VOLTEX collaboration event",
             "desc": "Online crossover event with CHASE CHASE JOKERS. Obtaining 6 stamps on the event site would unlock a song originally from CCJ.",
             "info": "Toggle this option on to unlock チェイスチェイスジョーカーズのうた on your next login."
+        },
+        {
+            "id": "2024stamp",
+            "type": "stamp",
+            "enabled": true,
+            "name": "ドラゴンの宴☆二〇二四 | New Year 2024 Stamp Event",
+            "desc": "Stamp select event to unlock the 2024 appeal card, plus PCB for 10 steps.",
+            "info": "Toggle this option to enable this stamp event."
         }
     ],
     "flags": [
@@ -242,6 +250,12 @@
             "key": "KONAMI_50TH_LOGO",
             "str": "KONAMI_50TH_LOGO",
             "explain": "Enables the 50th anniversary KONAMI logo."
+        },
+        {
+            "id": "christmas2023",
+            "key": "MERRY_CHRISTMAS_2023",
+            "str": "MERRY_CHRISTMAS_2023",
+            "explain": "Enables Navigator Christmas greeting."
         }
     ]
 }

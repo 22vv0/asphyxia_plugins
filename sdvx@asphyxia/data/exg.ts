@@ -69,7 +69,9 @@ export const LICENSED_SONGS6 = [
   // 231005
   '2069', '2070', '2071', '2072', '2073',
   // 231107
-  '2074', '2075'
+  '2074', '2075',
+  // 231219
+  '2076'
 ]
 
 export const STAMP_EVENTS6 = {
@@ -430,6 +432,36 @@ export const STAMP_EVENTS6 = {
           'stps': 10,
           'stprwrd': [
             ['10', 'track', '2062', '23']
+          ]
+        }
+      ]
+    }
+  },
+  '2024stamp': {
+    'type': 'main',
+    'info': {
+      'id': 0,
+      'stmpSlHd': '',
+      'stmpSlFt': '',
+      'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/1～1/8',
+      'stmpBg': '',
+      'data': [
+        {
+          'stmpid': 26,
+          'bnr': '',
+          'stps': 10,
+          'stprwrd': [
+            ['1', 'appeal', '5526', ''],
+            ['2', 'pcb', '2024', ''],
+            ['3', 'pcb', '2024', ''],
+            ['4', 'pcb', '2024', ''],
+            ['5', 'pcb', '2024', ''],
+            ['6', 'pcb', '2024', ''],
+            ['7', 'pcb', '2024', ''],
+            ['8', 'pcb', '2024', ''],
+            ['9', 'pcb', '2024', ''],
+            ['10', 'pcb', '4649', '']
           ]
         }
       ]
@@ -1643,6 +1675,117 @@ export const ARENA = {
         param: 8,
       }
     ]
+  },
+  'Season 12 (ARENA BATTLE 2023/12/21～2024/01/15)': {
+    details: {
+      season: 12,
+      rule: 1,
+      rank_match_target: 0,
+      time_start: BigInt(Date.parse('21 Dec 2023 00:00:00 GMT')),
+      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_start: BigInt(Date.parse('21 Dec 2023 00:00:00 GMT')),
+      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      is_open: 1,
+      is_shop: 1
+    },
+    arena_items: [
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 5000,
+        item_type: 11,
+        item_id: 29,
+        param: 1,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 5000,
+        item_type: 11,
+        item_id: 83,
+        param: 1,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 5000,
+        item_type: 0,
+        item_id: 2077,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 5000,
+        item_type: 0,
+        item_id: 2078,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 634,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 348,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 165,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 342,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 131,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 612,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 8,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 323,
+        param: 8,
+      }
+    ]
   }
 }
 
@@ -2072,6 +2215,16 @@ export const PREGENE = [
       'subbg': [369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381]
     },
     probability: [0.01, 0.39, 0.6]
+  },
+  {
+    id: 8,
+    items: {
+      'crew': [146, 147],
+      'stamp': [259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278],
+      'subbg': [382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396],
+      'sysbg': [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    },
+    probability: [0.01, 0.42, 0.84, 0.9]
   }
 ]
   

@@ -1,8 +1,8 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.2.6
+**Plugin Version:** fork-6.0.2.7
 
-**Supported game versions:** EXCEED GEAR (2023120500)
+**Supported game versions:** EXCEED GEAR (2023121900)
 
 **Unsupported game versions:** Every other game, as they're untested.
 
@@ -16,6 +16,28 @@
 
 Changelog
 ===========
+## fork-6.0.2.7
+
+### New:
+
+1. Main:
+	- 2023121900 support
+	- Added Arena Season 12 (Arena Battle)
+		- Arena Station set 12 added.
+	- Added Premium Generator (Coconatsu set)
+		- **Small note:** latest available data is missing Coconatsu submonitor BG files. You can roll for them in the Premium Generator page but they aren't selectable in the customization page.
+	- Added New Year 2024 appeal card + PCB event.
+	- Updated LICENSED_SONGS.
+2. WebUI:
+	- Added MERRY_CHRISTMAS_2023 to startup flags options.
+	- Minor JS fixes.
+
+### Todo:
+
+1. Figure out how to use image (png) files to appear in information/news popup.
+2. More work on online matchmaking (globalMatch.) I can't seem to make clients establish a connection.
+
+
 ## fork-6.0.2.6
 
 ### New:
@@ -29,11 +51,6 @@ Changelog
 	- Added "Startup Flags" page - for toggling a few select game flags/events on the fly without restarting core, such as USE_CUDA_VIDEO_PRESENTER, etc.
 	- Updated game achievements list.
 
-### Todo:
-
-1. Figure out how to use image (png) files to appear in information/news popup.
-2. More work on online matchmaking (globalMatch.) I can't seem to make clients establish a connection.
-
 
 ## fork-6.0.2.5
 
@@ -41,31 +58,3 @@ Changelog
 
 1. Main:
 	- Added the new Kinoshita songs to LICENSED_SONGS list.
-
-
-## fork-6.0.2.4
-
-### New:
-
-1. Main:
-	- Updated EG course data (isNew flags)
-2. WebUI:
-	- Profile details
-		- Added display of skill frames (normal or god.) Asset update required. 
-			- frame might misalign a bit depending on window size, sorry
-		- Added display of arena rank image. Asset update required.
-		- Added display of your currently selected skill title.
-		- Changed how Megamix rate and Ultimate rate is displayed in arena stats.
-	- Asset update
-		- Added ability to extract images/textures from .ifs files, with file information provided (seen on data/webui.ts.) Used to extract arena/skill course-related textures. Will probably utilize more in the future. Only ifs files used in latest data are supported.
-			- Massive thanks to [mon's ifstools](https://github.com/mon/ifstools), the code where this feature is largely based on.
-			- Added [pngjs library files](https://github.com/pngjs/pngjs) to handle PNG file creation. Couldn't find a more elegant way but this will do for now.
-		- Added course_data.json update using the course data in exg.ts.
-3. Other:
-	- Added bgm_convert.sh file for Linux
-	- Updated bgm_convert.bat
-
-### Fixes:
-
-1. WebUI
-	- Fixed Japan-exclusive warning not displaying for some Premium Generator sets.

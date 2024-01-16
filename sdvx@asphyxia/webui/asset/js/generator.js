@@ -66,12 +66,8 @@ async function loadItems(itemSet, gene_edition, items_crew, items_stamp, items_s
     
 
     $('.count').text('Obtained items: ' + itemCounts[0] + "/" + itemCounts[1])
-    if(geneItems.jpn_exc) {
-        $('.jpn-excl').remove()
-        $('.setinfo').append('<p class="jpn-excl" style="padding:5px">These items are only usable if your game region is set to Japan. Change your game region through either modifying ea3-config.xml or dll patch.</p>')
-    } else {
-        $('.jpn-excl').remove()
-    }
+    $('.jpn-excl').remove()
+    if(geneItems.jpn_exc) $('.setinfo').append('<p class="jpn-excl" style="padding:5px">These items are only usable if your game region is set to Japan. Change your game region through either modifying ea3-config.xml or dll patch.</p>')
 
     if('crew' in geneItems.items) {
         $('.item_banners').append('<div style="padding: 5px"><h3>Nemsys Crew</h3></div>')
