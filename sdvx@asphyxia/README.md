@@ -1,8 +1,8 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.2.7
+**Plugin Version:** fork-6.0.2.8
 
-**Supported game versions:** EXCEED GEAR (2023121900)
+**Supported game versions:** EXCEED GEAR (2024013001)
 
 **Unsupported game versions:** Every other game, as they're untested.
 
@@ -16,6 +16,18 @@
 
 Changelog
 ===========
+## fork-6.0.2.8
+
+### New:
+
+1. Main:
+	- 2024013001 support
+	- Added Valkyrie Generator 13.
+	- Added 12th Anniversary Appeal Card Stamp Event
+	- Added BPL S3 SDVX songs unlock toggle (unlocking events page)
+	- Updated LICENSED_SONGS.
+
+
 ## fork-6.0.2.7
 
 ### New:
@@ -50,11 +62,3 @@ Changelog
 2. WebUI:
 	- Added "Startup Flags" page - for toggling a few select game flags/events on the fly without restarting core, such as USE_CUDA_VIDEO_PRESENTER, etc.
 	- Updated game achievements list.
-
-
-## fork-6.0.2.5
-
-### New:
-
-1. Main:
-	- Added the new Kinoshita songs to LICENSED_SONGS list.

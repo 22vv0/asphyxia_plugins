@@ -81,7 +81,7 @@
             "type": "stamp",
             "enabled": true,
             "name": "SOUND VOLTEX 10th Anniversary",
-            "desc": "Stamp event to unlock 7 songs in any order. As of July 06, 2023, all the songs included in this event can now be unlocked via PCB.",
+            "desc": "Stamp event to unlock 7 songs in any order. As of 07/06/2023, all the songs included in this event can now be unlocked via PCB.",
             "info": "Toggle this on to enable this stamp event."
         },
         {
@@ -89,15 +89,15 @@
             "type": "stamp",
             "enabled": true,
             "name": "REFLEC BEAT Song Stamp Event",
-            "desc": "Stamp event to unlock 5 songs originally from the REFLEC BEAT game series.",
+            "desc": "Stamp event to unlock 5 songs originally from the REFLEC BEAT game series.<br><br>As of 01/30/2024, these songs are now unlockable via PCB.",
             "info": "Toggle this on to enable this stamp event."
         },
         {
             "id": "gmz2022",
             "type": "cross_online",
             "enabled": true,
-            "name": "いちかのごちゃまぜMix UP！ (Ichika no gochamaze Mix UP! )",
-            "desc": "This is a cross-BEMANI event. Songs include some that are shared from other BEMANI games and some that are mashup/remixes of the shared songs. These are originally unlocked by playing participating BEMANI games and earning points to fill different gauges.<br><br>However, since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding SOUND VOLTEX songs' option to automatically unlock them on your next login.", 
+            "name": "いちかのごちゃまぜMix UP！ (Ichika no gochamaze Mix UP!)",
+            "desc": "This is a cross-BEMANI event. Songs include some that are shared from other BEMANI games and some that are mashup/remixes of the shared songs. These are originally unlocked by playing participating BEMANI games and earning points to fill different gauges.<br><br>However, since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding SOUND VOLTEX songs' option to automatically unlock them on your next login.<br><br>As of 01/30/2024, these songs are now unlockable via PCB.", 
             "info": [
                 "Song 1: perditus†paradisus -- from beatmania IIDX 18 Resort Anthem",
                 "Song 2: Snowmelt -- from GITADORA HIGH-VOLTAGE",
@@ -164,7 +164,7 @@
             "type": "stamp",
             "enabled": true,
             "name": "Commemorating BEMANI PRO LEAGUE -SEASON 2-! Original Song Contest Special Stamp Event",
-            "desc": "Stamp event to unlock 9 songs, including SuddeИDeath. Songs can be unlocked in any order, except for SuddeИDeath, which will be available to unlock once all the other songs are unlocked.",
+            "desc": "Stamp event to unlock 9 songs, including SuddeИDeath. Songs can be unlocked in any order, except for SuddeИDeath, which will be available to unlock once all the other songs are unlocked.<br><br>As of 01/30/2024, these songs are now unlockable via BLASTER GATE.",
             "info": "Toggle this on to enable this stamp event."
         },
         {
@@ -208,7 +208,7 @@
             "type": "cross_online",
             "enabled": true,
             "name": "CHASE CHASE JOKERS × SOUND VOLTEX collaboration event",
-            "desc": "Online crossover event with CHASE CHASE JOKERS. Obtaining 6 stamps on the event site would unlock a song originally from CCJ.",
+            "desc": "Online crossover event with CHASE CHASE JOKERS. Obtaining 6 stamps on the event site would unlock a song originally from CCJ.<br><br>As of 01/30/2024, this song is now unlockable via PCB.",
             "info": "Toggle this option on to unlock チェイスチェイスジョーカーズのうた on your next login."
         },
         {
@@ -216,8 +216,34 @@
             "type": "stamp",
             "enabled": true,
             "name": "ドラゴンの宴☆二〇二四 | New Year 2024 Stamp Event",
-            "desc": "Stamp select event to unlock the 2024 appeal card, plus PCB for 10 steps.",
+            "desc": "Stamp event to unlock the 2024 appeal card, plus PCB for the remaining 9 steps.",
             "info": "Toggle this option to enable this stamp event."
+        },
+        {
+            "id": "12thanniv",
+            "type": "stamp",
+            "enabled": true,
+            "name": "ボルテ12周年★記念限定カード | 12th Anniversary Appeal Card",
+            "desc": "Stamp event to unlock the SDVX 12th anniversary appeal card.",
+            "info": "Toggle this option to enable this stamp event."
+        },
+        {
+            "id": "12thannivpcbevent",
+            "type": "stamp",
+            "enabled": false,
+            "name": "PCBおかわりスタンプイベント | 12th Anniversary PCB Refill Stamp Event",
+            "desc": "Stamp event to earn PCB. Once the stamp goal is complete, it will start over and you can earn more PCB.",
+            "info": "Toggle this on to enable this stamp event."
+        },  
+        {
+            "id": "bpls3sdvx",
+            "type": "gift",
+            "enabled": true,
+            "name": "BEMANI PRO LEAGUE -SEASON 3-! Original Song",
+            "desc": "Songs revealed for the BEMANI Pro League Season 3 sightread challenges.<br>Toggle to have the songs from their corresponding week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.",
+            "info": [
+                "Week 1 songs: 'We Are All The Dreamer' and 'Double or Nothing'"
+            ]
         }
     ],
     "flags": [
@@ -242,7 +268,7 @@
         {
             "id": "demoloopinfo",
             "key": "DEMOLOOP_INFORMATION",
-            "str": "DEMOLOOP_INFORMATION\tdemo_info/230710_bpls3_streaming.png",
+            "str": "DEMOLOOP_INFORMATION\tdemo_info/240129_bpls3_streaming.png",
             "explain": "Enables display of available information in attract mode."
         },
         {

@@ -71,7 +71,9 @@ export const LICENSED_SONGS6 = [
   // 231107
   '2074', '2075',
   // 231219
-  '2076'
+  '2076',
+  // 240116
+  '2066', '2067', '2068'
 ]
 
 export const STAMP_EVENTS6 = {
@@ -466,6 +468,58 @@ export const STAMP_EVENTS6 = {
         }
       ]
     }
+  },
+  '12thanniv': {
+    'type': 'main',
+    'info': {
+      'id': 0,
+      'stmpSlHd': '',
+      'stmpSlFt': '',
+      'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/18～2/4',
+      'stmpBg': '',
+      'data': [
+        {
+          'stmpid': 27,
+          'bnr': '',
+          'stps': 1,
+          'stprwrd': [
+            ['1', 'appeal', '5527', '']
+          ]
+        }
+      ]
+    }
+  },
+  '12thannivpcbevent': {
+    'type': 'main',
+    'info': {
+      'id': 0,
+      'stmpSlHd': '',
+      'stmpSlFt': '',
+      'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/1～1/8',
+      'stmpBg': '',
+      'data': [
+        {
+          'stmpid': 28,
+          'bnr': '',
+          'stps': 10,
+          'stprwrd': [
+            ['1', 'pcb', '329', ''],
+            ['2', 'pcb', '329', ''],
+            ['3', 'pcb', '329', ''],
+            ['4', 'pcb', '329', ''],
+            ['5', 'pcb', '1009', ''],
+            ['6', 'pcb', '329', ''],
+            ['7', 'pcb', '329', ''],
+            ['8', 'pcb', '329', ''],
+            ['9', 'pcb', '329', ''],
+            ['10', 'pcb', '1009', ''],
+
+          ]
+        }
+      ]
+    }
   }
 }
 
@@ -528,7 +582,9 @@ export const EVENT_SONGS6 = {
   "bpls3songs_2": ['2064'],
   "bpls3songs_3": ['2065'],
   // CHASECHASEJOKERS song
-  "ccjsong": ['2027']
+  "ccjsong": ['2027'],
+  // BPL S3 SDVX songs
+  "bpls3sdvx_1": ['2129', '2130']
 }
 
 export const APRILFOOLSSONGS = [
@@ -1850,6 +1906,11 @@ export const VALGENE = {
       valgene_name: "ヴァルキリージェネレーター　第12弾",
       valgene_name_english: "Valkyrie Generator Vol. 12",
       valgene_id: 12
+    },
+    {
+      valgene_name: "ヴァルキリージェネレーター　第13弾",
+      valgene_name_english: "Valkyrie Generator Vol. 13",
+      valgene_id: 13
     }
   ],
   rarity: {
@@ -2145,6 +2206,23 @@ export const VALGENE = {
         {
           type: 20,
           item_ids: [43]
+        }
+      ]
+    },
+    {
+      volume: 13,
+      items: [
+        {
+          type: 11,
+          item_ids: [148]
+        },
+        {
+          type: 17,
+          item_ids: [279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311]
+        },
+        {
+          type: 18,
+          item_ids: [397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418]
         }
       ]
     }
