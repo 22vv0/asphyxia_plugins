@@ -16,6 +16,15 @@
 
 Changelog
 ===========
+## fork-6.0.2.8a
+
+### New:
+
+1. Fixes:
+	- Changed songNum to 2200 to fix "Unlock all songs" not showing up songs with ID > 2100
+		- Thanks [talkouki89](https://github.com/talkouki89)
+
+
 ## fork-6.0.2.8
 
 ### New:
@@ -49,16 +58,3 @@ Changelog
 1. Figure out how to use image (png) files to appear in information/news popup.
 2. More work on online matchmaking (globalMatch.) I can't seem to make clients establish a connection.
 
-
-## fork-6.0.2.6
-
-### New:
-
-1. Main:
-	- 2023120500 support.
-	- Enabled HEXA DIVER 10.
-	- Enabled HEXA REVOLUTION features.
-	- Added SKILL ANALYZER 8 courses.
-2. WebUI:
-	- Added "Startup Flags" page - for toggling a few select game flags/events on the fly without restarting core, such as USE_CUDA_VIDEO_PRESENTER, etc.
-	- Updated game achievements list.
