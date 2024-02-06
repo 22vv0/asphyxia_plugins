@@ -68,7 +68,7 @@ export const common: EPR = async (info, data, send) => {
     }
     let songs = [];
     const gameVersion = getVersion(info);
-    let songNum = 2100;
+    let songNum = 2200;
     if(gameVersion === 2) songNum = 554;
     if(gameVersion === 3) songNum = 954;
     if(gameVersion === 4) songNum = 1368;
