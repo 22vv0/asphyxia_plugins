@@ -1,8 +1,8 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.2.8
+**Plugin Version:** fork-6.0.2.8b
 
-**Supported game versions:** EXCEED GEAR (2024013001)
+**Supported game versions:** EXCEED GEAR (2024020600)
 
 **Unsupported game versions:** Every other game, as they're untested.
 
@@ -16,6 +16,19 @@
 
 Changelog
 ===========
+## fork-6.0.2.8b
+
+### New:
+
+1. Main:
+	- 2024020600 support
+	- Updated events.json to include and enable BPL S3 SDVX Week 2 songs unlock event.
+		- Added info on future song unlock events but they are disabled for now (shhhh)
+
+2. Fixes:
+	- Fixed songs not appearing when songs' distribution date === current date. This is for when "unlock all songs" is disabled; unaffected otherwise.
+
+
 ## fork-6.0.2.8a
 
 ### New:
@@ -36,22 +49,6 @@ Changelog
 	- Added BPL S3 SDVX songs unlock toggle (unlocking events page)
 	- Updated LICENSED_SONGS.
 
-
-## fork-6.0.2.7
-
-### New:
-
-1. Main:
-	- 2023121900 support
-	- Added Arena Season 12 (Arena Battle)
-		- Arena Station set 12 added.
-	- Added Premium Generator (Coconatsu set)
-		- **Small note:** latest available data is missing Coconatsu submonitor BG files. You can roll for them in the Premium Generator page but they aren't selectable in the customization page.
-	- Added New Year 2024 appeal card + PCB event.
-	- Updated LICENSED_SONGS.
-2. WebUI:
-	- Added MERRY_CHRISTMAS_2023 to startup flags options.
-	- Minor JS fixes.
 
 ### Todo:
 

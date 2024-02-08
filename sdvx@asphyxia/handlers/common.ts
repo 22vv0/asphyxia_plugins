@@ -95,7 +95,7 @@ export const common: EPR = async (info, data, send) => {
         if(foundSongIndex != -1) {
           var songData = mdb.mdb.music[foundSongIndex];
           if(gameVersion === 6 || gameVersion === -6) {
-            if(parseInt(songData['info']['distribution_date']['#text']) >= currentYMDDate) {
+            if(parseInt(songData['info']['distribution_date']['#text']) > currentYMDDate) {
               console.log("Unreleased song: " + songData.info.title_name)
             }
             else {

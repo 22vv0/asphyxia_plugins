@@ -15,13 +15,15 @@ function generateEventToggles(eventInfo, eventConfig, eventEnabled) {
         )
     } else {
         for(const infoIter in eventInfo['info']) {
-            cardContent.append(
-                $('<div class="field is-horizontal">').append(
-                    $('<div class="field-label is-normal"><label class="label" for="' + eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString() + '">Enable Set ' + (parseInt(infoIter) + 1).toString() + '</label></div>')
-                ).append(
-                    $('<div class="field-body"><div class="field"><div class="control"><label class="switch is-rounded"><input type="checkbox" ' + (eventConfig['toggle'][eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString()] ? 'checked' : '') + ' name="' + eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString() + '"><span class="check"></span></label></div><p class="help">' + eventInfo['info'][infoIter] + '</p></div></div>')
+            if(eventInfo['info'][infoIter].includes('/hd') !== true) {
+                cardContent.append(
+                    $('<div class="field is-horizontal">').append(
+                        $('<div class="field-label is-normal"><label class="label" for="' + eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString() + '">Enable Set ' + (parseInt(infoIter) + 1).toString() + '</label></div>')
+                    ).append(
+                        $('<div class="field-body"><div class="field"><div class="control"><label class="switch is-rounded"><input type="checkbox" ' + (eventConfig['toggle'][eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString()] ? 'checked' : '') + ' name="' + eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString() + '"><span class="check"></span></label></div><p class="help">' + eventInfo['info'][infoIter] + '</p></div></div>')
+                    )
                 )
-            )
+            }
         }
     }
     return cardContent

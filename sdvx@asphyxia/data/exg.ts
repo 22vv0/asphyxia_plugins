@@ -584,7 +584,13 @@ export const EVENT_SONGS6 = {
   // CHASECHASEJOKERS song
   "ccjsong": ['2027'],
   // BPL S3 SDVX songs
-  "bpls3sdvx_1": ['2129', '2130']
+  "bpls3sdvx_1": ['2129', '2130'],
+  "bpls3sdvx_2": ['2132', '2133', '2134'],
+  "bpls3sdvx_3": ['2135', '2136', '2137'],
+  // BPL S3 Triple Tribe 2
+  "bpls3tripletribe2_1": ['2162'],
+  "bpls3tripletribe2_2": ['2163'],
+  "bpls3tripletribe2_3": ['2164']
 }
 
 export const APRILFOOLSSONGS = [
@@ -592,7 +598,7 @@ export const APRILFOOLSSONGS = [
 ]
 
 export const VALKYRIE_SONGS = [
-  '1744', '1672', '2063', '2064', '2065',  // Valk exclusives 
+  '1744', '1672', '2063', '2064', '2065', '2162', '2163', '2164', // Valk exclusives 
   '1855', '1742', '1743', '1745', '1846',  // Arena station songs
   '1736', '1737', '1738', '1847', '1848', '1849', '1980', '1978', '1979' // X-record
 ]
