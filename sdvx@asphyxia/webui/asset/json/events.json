@@ -244,13 +244,13 @@
             "info": [
                 "Week 1 songs: 'We Are All The Dreamer' and 'Double or Nothing'",
                 "Week 2 songs: 'トリコエリヌム▽コンチェルト,' '群青纏う朱の槍,' and 'CHOVERY GOOSE!!!'",
-                "/hdWeek 3 songs: 'V!LLA!N,' 'TOYBOX CANNØN=墸Σ≡=｡ﾟ:*.:+｡.☆,' and 'ON THE WORLD'"
+                "Week 3 songs: 'V!LLA!N,' 'TOYBOX CANNØN=墸Σ≡=｡ﾟ:*.:+｡.☆,' and 'ON THE WORLD'"
             ]
         },
         {
             "id": "bpls3tripletribe2",
             "type": "cross_online",
-            "enabled": false,
+            "enabled": true,
             "name": "BEMANI PRO LEAGUE -SEASON 3- Triple Tribe (part 2)",
             "desc": "Crossover event between SOUND VOLTEX -Valkyrie model-, DanceDanceRevolution 20th anniversary model, and beatmania IIDX LIGHTNING MODEL cabinets where you would earn TD, TB and TS points which can be used to unlock songs through the participating games.<br>However, since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding SOUND VOLTEX songs' option to automatically unlock them on your next login.",
             "info": [

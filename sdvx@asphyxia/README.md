@@ -1,6 +1,6 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.2.8b
+**Plugin Version:** fork-6.0.2.8c
 
 **Supported game versions:** EXCEED GEAR (2024020600)
 
@@ -16,6 +16,14 @@
 
 Changelog
 ===========
+## fork-6.0.2.8c
+
+### New:
+
+1. Main:
+	- Updated events.json to enable this week's BPL S3 SDVX songs unlock event, and the Triple Tribe songs.
+
+
 ## fork-6.0.2.8b
 
 ### New:
@@ -36,18 +44,6 @@ Changelog
 1. Fixes:
 	- Changed songNum to 2200 to fix "Unlock all songs" not showing up songs with ID > 2100
 		- Thanks [talkouki89](https://github.com/talkouki89)
-
-
-## fork-6.0.2.8
-
-### New:
-
-1. Main:
-	- 2024013001 support
-	- Added Valkyrie Generator 13.
-	- Added 12th Anniversary Appeal Card Stamp Event
-	- Added BPL S3 SDVX songs unlock toggle (unlocking events page)
-	- Updated LICENSED_SONGS.
 
 
 ### Todo:
