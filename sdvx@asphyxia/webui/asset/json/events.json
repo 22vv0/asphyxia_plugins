@@ -296,6 +296,18 @@
             "key": "MERRY_CHRISTMAS_2023",
             "str": "MERRY_CHRISTMAS_2023",
             "explain": "Enables Navigator Christmas greeting."
+        },
+        {
+            "id": "valentines2024",
+            "key": "VALENTINES_DAY_2024",
+            "str": "VALENTINES_DAY_2024",
+            "explain": "Enables Navigator Valentines Day greeting."
+        },
+        {
+            "id": "whiteday2024",
+            "key": "WHITE_DAY_2024",
+            "str": "WHITE_DAY_2024",
+            "explain": "Enables Navigator White Day greeting."
         }
     ]
 }

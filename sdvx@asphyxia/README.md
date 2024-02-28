@@ -1,6 +1,6 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.2.8c
+**Plugin Version:** fork-6.0.2.8d
 
 **Supported game versions:** EXCEED GEAR (2024020600)
 
@@ -16,6 +16,14 @@
 
 Changelog
 ===========
+## fork-6.0.2.8d
+
+### New:
+
+1. Main:
+	- Updated events.json to add startup flags for Valentines Day 2024 and White Day 2024.
+
+
 ## fork-6.0.2.8c
 
 ### New:
@@ -35,15 +43,6 @@ Changelog
 
 2. Fixes:
 	- Fixed songs not appearing when songs' distribution date === current date. This is for when "unlock all songs" is disabled; unaffected otherwise.
-
-
-## fork-6.0.2.8a
-
-### New:
-
-1. Fixes:
-	- Changed songNum to 2200 to fix "Unlock all songs" not showing up songs with ID > 2100
-		- Thanks [talkouki89](https://github.com/talkouki89)
 
 
 ### Todo:
