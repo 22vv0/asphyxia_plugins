@@ -58,10 +58,7 @@ async function loadItems(itemSet, gene_edition, items_crew, items_stamp, items_s
         if(itemCounts[0] >= itemCounts[1]) $('#pregene-roll').attr('disabled', 'disabled')
         else $('#pregene-roll').removeAttr('disabled')
     } else if(gene_edition === 'valkyrie') {
-        if([1,2,3,4,5,6,8,9,10].includes(itemSet)) { // available valgene sets in webui
-            if(itemCounts[0] >= itemCounts[1]) $('#valgene-roll').attr('disabled', 'disabled')
-            else $('#valgene-roll').removeAttr('disabled')
-        } else $('#valgene-roll').attr('disabled', 'disabled')
+        $('#valgene-roll').attr('disabled', 'disabled')
     }
     
 
@@ -163,7 +160,6 @@ $(document).ready(async function() {
     })
 
     $('#pregene-roll, #valgene-roll').on('click', async function() {
-        console.log('cliucked')
         $('#pregene-roll, #valgene-roll').attr('disabled', 'disabled')
         if(gene_edition === 'premium' && window.location.search.match(/(premium)/g) != undefined) {
             let geneItems = await getGeneratorEditionItems(gene_edition, parseInt($('#set_select').val()))

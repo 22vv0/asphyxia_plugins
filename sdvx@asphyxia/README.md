@@ -1,8 +1,8 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.2.8d
+**Plugin Version:** fork-6.0.2.9
 
-**Supported game versions:** EXCEED GEAR (2024020600)
+**Supported game versions:** EXCEED GEAR (2024022000)
 
 **Unsupported game versions:** Every other game, as they're untested.
 
@@ -16,6 +16,19 @@
 
 Changelog
 ===========
+## fork-6.0.2.9
+
+### New:
+
+1. Main:
+	- Updated events.json to add weeks 4 & 5 of BPL event songs.
+	- Added Premium Generator (Nekomata Okayu) set.
+	- Updated licensed songs list (Okayu songs)
+2. Misc:
+	- Added crew id 149 to CHARACTER_IGNORE_DISABLE
+	- Tweaked Premium Generator odds (1% chance for a crew is a bit unfair lol, changed to 5%)
+
+
 ## fork-6.0.2.8d
 
 ### New:
@@ -30,19 +43,6 @@ Changelog
 
 1. Main:
 	- Updated events.json to enable this week's BPL S3 SDVX songs unlock event, and the Triple Tribe songs.
-
-
-## fork-6.0.2.8b
-
-### New:
-
-1. Main:
-	- 2024020600 support
-	- Updated events.json to include and enable BPL S3 SDVX Week 2 songs unlock event.
-		- Added info on future song unlock events but they are disabled for now (shhhh)
-
-2. Fixes:
-	- Fixed songs not appearing when songs' distribution date === current date. This is for when "unlock all songs" is disabled; unaffected otherwise.
 
 
 ### Todo:
