@@ -156,7 +156,12 @@ export const loadMix: EPR = async (info, data, send) => {
   });
 };
 
-export const globalMatch: EPR = async (info, data, send) => {
+export const entryE: EPR = async (info, data, send) => {
+  console.log("entry_e id: " + $(data).number('eid'))
+  send.success()
+}
+
+export const globalMatch: EPR = async (info, data, send) => {  
   let entryData: Matchmaker = {
     collection: 'matchmaker',
     timestamp: Date.now(),
@@ -177,14 +182,6 @@ export const globalMatch: EPR = async (info, data, send) => {
   let loglip = entryData.lip.join(".")
 
   console.log("====================================")
-  console.log("[" + loglip + " | " + loggip + "] Searching for online match opponents")
-  console.log("[" + loglip + " | " + loggip + "] Removed " + await DB.Remove({collection:'matchmaker', timestamp: {$lt: Date.now() - 100000}}) + " expired match data.")
-  
-  if(entryData.p_rest < 1) {
-    console.log("[" + loglip + " | " + loggip + "] Room is full. Halting.")
-    return send.deny();
-  }
-
   // console.log("   c_ver: " + entryData.c_ver)
   // console.log("   p_num: " + entryData.p_num) // current match player count
   // console.log("  p_rest: " + entryData.p_rest) // remaining player spaces
@@ -196,14 +193,18 @@ export const globalMatch: EPR = async (info, data, send) => {
   // console.log("     lip: " + entryData.lip)
   // console.log("   claim: " + entryData.claim)
   // console.log("entry_id: " + entryData.entry_id)
+  console.log("[" + loglip + " | " + loggip + "] Searching for online match opponents")
+  let expCnt = await DB.Remove({collection: 'matchmaker', timestamp: {$lt: Date.now() - 100000}})
+  console.log("[" + loglip + " | " + loggip + "] Removed " + expCnt + " expired match data.")
 
-  console.log("[" + loglip + " | " + loggip + "] Adding/updating your match data")
   if(await DB.Count({collection: 'matchmaker', lip: entryData.lip}) === 0) {
+    console.log("[" + loglip + " | " + loggip + "] Adding your info.")
     await DB.Upsert<Matchmaker>(
       { collection: 'matchmaker', gip: entryData.gip, lip: entryData.lip},
       entryData
     )
   } else {
+    console.log("[" + loglip + " | " + loggip + "] Updating info.")
     await DB.Upsert<Matchmaker>(
       { collection: 'matchmaker', gip: entryData.gip, lip: entryData.lip},
       { $set: {
@@ -218,24 +219,41 @@ export const globalMatch: EPR = async (info, data, send) => {
       }
     )
   }
+  
+  if(entryData.p_rest < 1) {
+    console.log("[" + loglip + " | " + loggip + "] Room is full. Halting.")
+    return send.deny();
+  }
 
   console.log("[" + loglip + " | " + loggip + "] Searching...")
-  let filteredDB = await DB.Find<Matchmaker>({collection: "matchmaker", entry_id: entryData.entry_id, filter: entryData.filter, $not: {lip: entryData.lip}})
 
-  let opponents = filteredDB.length === 0 ? null : {
+  let opData = await DB.Find<Matchmaker>({collection: 'matchmaker', filter: entryData.filter, mid: entryData.mid, claim: entryData.claim, entry_id: entryData.entry_id})
+  let opponents = {
     entry_id: K.ITEM('u32', entryData.entry_id),
-    entry: filteredDB.map(e => ({
+    entry: opData.map(e => ({
       port: K.ITEM('u16', e.port),
       gip: K.ITEM('4u8', e.gip),
       lip: K.ITEM('4u8', e.lip)
     }))
   }
-  if(opponents !== null) {
-    console.log("[" + loglip + " | " + loggip + "] Opponent/s found.") 
-    send.object(opponents)
-  }
-  else {
-    console.log("[" + loglip + " | " + loggip + "] No found opponents.")
-    send.deny()
+  console.log("[" + loglip + " | " + loggip + "] Players found: " + (opponents.entry.length - 1) + "")
+  if(opponents.entry.length === 1) send.deny()
+  else send.object(opponents)
+}
+
+export const lounge: EPR = async (info, data, send) => {
+  let filter = $(data).number('filter')
+  await DB.Remove({collection: 'matchmaker', timestamp: {$lt: Date.now() - 100000}})
+  let matches = await DB.Find<Matchmaker>({collection: 'matchmaker', filter: filter})
+  if(matches.length < 1) {
+    send.object({
+      interval: K.ITEM('u32', 5)
+    })
+  } else {
+    let longestWait = Math.max(...matches.map(m => m.sec))
+    send.object({
+      interval: K.ITEM('u32', 10),
+      wait: K.ITEM('u32', longestWait)
+    })
   }
 }

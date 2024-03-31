@@ -5,12 +5,7 @@ function zeroPad(num, places) {
 
 function getImageFileFormat(assetType, id) {
     if(assetType == 0) {
-        if (id >= 103) {
-            if (id >= 359 && id <= 368) {
-                return '.mp4'
-            }
-            return '.png'
-        } 
+        if (id >= 103) return '.png' 
         return '.jpg'
     }
 }
@@ -41,11 +36,12 @@ $('#nemsys_select').change(function() {
 });
 
 $('[name="subbg"]').change(async function() {
-    let isSubbgSlideshow = (database['subbg'][$('[name="subbg"]').val()]['type'] === 'slideshow')
+    let subbgType = database['subbg'].filter((e => e.value === parseInt($('[name="subbg"]').val())))[0]['type']
+    let isSubbgSlideshow = (subbgType === 'slideshow')
     $('#sub_pre').fadeOut(200)
     $('#sub_pre_vid').fadeOut(200)
-    if(getImageFileFormat(0, parseInt(zeroPad($('[name="subbg"]').val(), 4))) === '.mp4') {
-        $('#sub_pre_vid_src').attr('src', "static/asset/submonitor_bg/subbg_" + zeroPad($('[name="subbg"]').val(), 4) + getImageFileFormat(0, parseInt(zeroPad($('[name="subbg"]').val(), 4))))
+    if(subbgType === 'video') {
+        $('#sub_pre_vid_src').attr('src', "static/asset/submonitor_bg/subbg_" + zeroPad($('[name="subbg"]').val(), 4) + '.mp4')
         document.getElementById('sub_pre_vid').load()
         $('#sub_pre_vid').fadeIn(200)
     } else {
@@ -392,15 +388,23 @@ $(document).ready(function() {
 
     $('#sub_pre').fadeOut(200)
     $('#sub_pre_vid').fadeOut(200)
-    if(getImageFileFormat(0, parseInt(zeroPad(profile_data["subbg"], 4))) === '.mp4') {
-        $('#sub_pre_vid').empty().append(
-            $("<source id='sub_pre_vid_src' src='static/asset/submonitor_bg/subbg_" + zeroPad(profile_data["subbg"], 4) + getImageFileFormat(0, parseInt(zeroPad(profile_data["subbg"], 4))) + "'>")
-        )
-        $('#sub_pre_vid').fadeIn(200)
-    } else {
-        $('#sub_pre').attr("src", "static/asset/submonitor_bg/subbg_" + zeroPad(profile_data["subbg"], 4) + getImageFileFormat(0, parseInt(zeroPad(profile_data["subbg"], 4))));
-        $('#sub_pre').fadeIn(200)
-    }
+
+    $.getJSON("static/asset/json/data.json", function(json) {
+        database = json
+        let subbgType = database['subbg'].filter((e => e.value === parseInt(profile_data["subbg"])))[0]['type']
+        let isSubbgSlideshow = (subbgType === 'slideshow')
+
+        if(subbgType === 'video') {
+            $('#sub_pre_vid').empty().append(
+                $("<source id='sub_pre_vid_src' src='static/asset/submonitor_bg/subbg_" + zeroPad(profile_data["subbg"], 4) + ".mp4'>")
+            )
+            $('#sub_pre_vid').fadeIn(200)
+        } else {
+            $('#sub_pre').attr("src", isSubbgSlideshow ? "static/asset/submonitor_bg/subbg_" + zeroPad(profile_data["subbg"], 4) + "_0" + (Math.floor(Math.random() * 3) + 1) + getImageFileFormat(0, parseInt(zeroPad($('[name="subbg"]').val(), 4))) : "static/asset/submonitor_bg/subbg_" + zeroPad(profile_data["subbg"], 4) + getImageFileFormat(0, parseInt(zeroPad(profile_data["subbg"], 4))));
+            $('#sub_pre').fadeIn(200)
+        }
+    })
+    // console.log(database)
     $('#custom_0').attr("src", "static/asset/audio/custom_" + zeroPad(profile_data["bgm"], 2) + "/0.mp3");
     $('#custom_1').attr("src", "static/asset/audio/custom_" + zeroPad(profile_data["bgm"], 2) + "/1.mp3");
     $('#custom_0').prop("volume", 0.5);

@@ -48,11 +48,75 @@
 		},
 		{
 			"id": 2,
-			"name": "Infinite Infection"
+			"name": "infinite infection"
 		},
 		{
 			"id": 3,
-			"name": "Gravity Wars"
+			"name": "GRAVITY WARS"
+		},
+		{
+			"id": 4,
+			"name": "サウダージ・店内"
+		},
+		{
+			"id": 5,
+			"name": "サウダージ・外観"
+		},
+		{
+			"id": 6,
+			"name": "いずみ洋裁店・店内"
+		},
+		{
+			"id": 7,
+			"name": "いずみ洋裁店・外観"
+		},
+		{
+			"id": 8,
+			"name": "兎月堂・店内"
+		},
+		{
+			"id": 9,
+			"name": "兎月堂・外観"
+		},
+		{
+			"id": 10,
+			"name": "シャノワール・店内"
+		},
+		{
+			"id": 11,
+			"name": "シャノワール・外観"
+		},
+		{
+			"id": 12,
+			"name": "霜月書林・店内"
+		},
+		{
+			"id": 13,
+			"name": "霜月書林・外観"
+		},
+		{
+			"id": 14,
+			"name": "日向美商店街"
+		},
+		{
+			"id": 15,
+			"name": "倉野川城址公園"
+		},
+		{
+			"id": 16,
+			"name": "やまもり温泉"
+		},
+		{
+			"id": 17,
+			"name": "GRAVITY WARS 2nd Season"
+		},
+		{
+			"id": 18,
+			"name": "HEAVENLY HAVEN"
+		},
+		{
+			"id": 19,
+			"name": "VIVID WAVE"
 		}
 	],
 	"skilltitle": [

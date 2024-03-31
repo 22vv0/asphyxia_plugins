@@ -246,7 +246,9 @@
                 "Week 2 songs: 'トリコエリヌム▽コンチェルト,' '群青纏う朱の槍,' and 'CHOVERY GOOSE!!!'",
                 "Week 3 songs: 'V!LLA!N,' 'TOYBOX CANNØN=墸Σ≡=｡ﾟ:*.:+｡.☆,' and 'ON THE WORLD'",
                 "Week 4 songs: '花火のおもちゃ箱,' 'イグジスター,' and 'La Nostra Storia!'",
-                "Week 5 songs: 'グリーディ・スターズ！,' 'Di-Da-De-Doo,' and 'Break Through Δpex'"
+                "Week 5 songs: 'グリーディ・スターズ！,' 'Di-Da-De-Doo,' and 'Break Through Δpex'",
+                "Week 6 songs: 'Ars Magna,' 'Inevitable Magic,' and 'LOVE TONIC'",
+                "Week 7 songs: 'Crawl Out Immortal,' 'MΔX FLAVØR,' 'SΛMVICΛ,' and '異次元の孤独～カナタノキミヘ～'"
             ]
         },
         {
@@ -310,6 +312,12 @@
             "key": "WHITE_DAY_2024",
             "str": "WHITE_DAY_2024",
             "explain": "Enables Navigator White Day greeting."
+        },
+        {
+            "id": "aprilrainbowline",
+            "key": "APRIL_RAINBOW_LINE_ACTIVE",
+            "str": "APRIL_RAINBOW_LINE_ACTIVE",
+            "explain": "Enables April Fools 2024 Effect: rainbow lasers. Type V-RAN on song search bar to enable."
         }
     ]
 }

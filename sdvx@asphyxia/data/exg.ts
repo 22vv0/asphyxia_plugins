@@ -34,6 +34,13 @@ export const EVENT6 = [
   'PREMIUM_TIME_ENABLE',
   'MEGAMIX_ENABLE',
   'ARENA_ENABLE',
+  'ARENA_LOCAL_TO_ONLINE_ENABLE',
+  'ARENA_ALTER_MODE_WINDOW_ENABLE',
+  'ARENA_PASS_MATCH_WINDOW_ENABLE',
+  'ARENA_VOTE_MODE_ENABLE',
+  'ARENA_LOCAL_ULTIMATE_MATCH_ALWAYS',
+  'MEGAMIX_BATTLE_MATCH_ENABLE',
+  'DISABLED_MUSIC_IN_ARENA_ONLINE',
   'SINGLE_BATTLE_ENABLE',
   'GENERATOR_ABLE',
   'CREW_SELECT_ABLE',
@@ -591,6 +598,8 @@ export const EVENT_SONGS6 = {
   "bpls3sdvx_3": ['2135', '2136', '2137'],
   "bpls3sdvx_4": ['2138', '2139', '2140'],
   "bpls3sdvx_5": ['2141', '2142', '2143'],
+  "bpls3sdvx_6": ['2144', '2145', '2146'],
+  "bpls3sdvx_7": ['2131', '2147', '2148', '2149'],
   // BPL S3 Triple Tribe 2
   "bpls3tripletribe2_1": ['2162'],
   "bpls3tripletribe2_2": ['2163'],
@@ -1745,7 +1754,7 @@ export const ARENA = {
   'Season 12 (ARENA BATTLE 2023/12/21～2024/01/15)': {
     details: {
       season: 12,
-      rule: 1,
+      rule: 2,
       rank_match_target: 0,
       time_start: BigInt(Date.parse('21 Dec 2023 00:00:00 GMT')),
       time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
@@ -2322,6 +2331,16 @@ export const PREGENE = [
       "subbg": [419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, 433, 434, 435, 436, 437, 438]
     },
     probability: [0.05, 0.39, 0.6]
+  },
+  {
+    id: 10,
+    items: {
+      "crew": [150, 151, 152],
+      "stamp": [322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333],
+      "subbg": [439, 440, 441, 442, 443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 455],
+      "sysbg": [17, 18, 19]
+    },
+    probability: [0.05, 0.39, 0.6, 0.9]
   }
 ]
   

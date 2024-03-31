@@ -373,7 +373,6 @@ export const common: EPR = async (info, data, send) => {
       valgene_id: K.ITEM('s32', val.valgene_id)
     }))
 
-
     VALGENE.catalog.forEach((val) => {
       val.items.forEach((itemVal) => {
         itemVal.item_ids.forEach((item_id) => {
@@ -387,7 +386,7 @@ export const common: EPR = async (info, data, send) => {
       })
     })
 
-    if(currentDate.substring(0,4) === '4/1/') {
+    if(currentDate.substring(0,4) === '4/1/' || U.GetConfig('april_fools')) {
       console.log('Using April Fools Event')
       events.push('APRIL_GRACE');
       events.push('EVENTDATE_APRILFOOL');
