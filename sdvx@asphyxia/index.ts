@@ -6,6 +6,8 @@ import {
   importMix,
   deleteMix,
   copyResourcesFromGame,
+  getRivalScores,
+  addRival,
   preGeneRoll,
   manageEvents,
   manageStartupFlags
@@ -46,6 +48,8 @@ export function register() {
   // R.Config('new_year_special',{ type: 'boolean', default: false, name:'Use New Year Special', desc:'Enable New Year Special BGM for login.'});
 
   R.WebUIEvent('copyResourcesFromGame', copyResourcesFromGame);
+  R.WebUIEvent('getRivalScores', getRivalScores);
+  R.WebUIEvent('addRival', addRival);
   R.WebUIEvent('preGeneRoll', preGeneRoll);
   R.WebUIEvent('manageEvents', manageEvents);
   R.WebUIEvent('manageStartupFlags', manageStartupFlags);

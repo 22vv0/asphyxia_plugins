@@ -262,6 +262,22 @@
                 "Song 2: 'Deep tenDon Reflex.'",
                 "Song 3: 'Ambivalent Vermilia.'"
             ]
+        },
+        {
+            "id": "bpls3sdvxfinal",
+            "type": "completestamp",
+            "enabled": true,
+            "name": "BPL S3 コンプリートスタンプ | BPL S3 Complete Stamp Event",
+            "desc": "Stamp event to unlock the BPL S3 SDVX Semifinal songs (Xeno Gravity, Cuz we <3 this Game) and the Final song (NEMSYS ARENA World Hexathlon.)<br>Clear the songs displayed on the sheet to earn their stamps. A total of 23 stamps can be obtained.",
+            "info": "Toggle this option to enable this complete stamp event."
+        },
+        {
+            "id": "minigracegift",
+            "type": "gift_crew",
+            "enabled": true,
+            "name": "Mini Grace NEMSYS Crew Gift",
+            "desc": "Sent to people who bought tickets for the BPL S3 SDVX Finals event.",
+            "info": "Toggle this on to automatically get the item."
         }
     ],
     "flags": [

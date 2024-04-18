@@ -60,4 +60,5 @@ export interface Profile {
   maxWeekChain: number;
 
   bplSupport: number;
+  creatorItem: number;
 }

@@ -75,15 +75,15 @@ $(document).ready(async function() {
         }
 
         if(eventData['events'][eventIter]['enabled']) {   
-            if(eventData['events'][eventIter]['type'] === 'stamp') {
+            if(/stamp|completestamp/.test(eventData['events'][eventIter]['type'])) {
                 $('#stampevent_select').append(
                     '<option value=' + eventData['events'][eventIter]['id'] + '>' + eventData['events'][eventIter]['name'] + '</option>'
                 )
-            } else if(eventData['events'][eventIter]['type'] === 'gift') {
+            } else if(/gift/.test(eventData['events'][eventIter]['type'])) {
                 $('#giftevent_select').append(
                     '<option value=' + eventData['events'][eventIter]['id'] + '>' + eventData['events'][eventIter]['name'] + '</option>'
                 )
-            } else if(eventData['events'][eventIter]['type'] === 'cross_online') {
+            } else if(/cross_online/.test(eventData['events'][eventIter]['type'])) {
                 $('#crossevent_select').append(
                     '<option value=' + eventData['events'][eventIter]['id'] + '>' + eventData['events'][eventIter]['name'] + '</option>'
                 )

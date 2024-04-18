@@ -48,7 +48,7 @@ div
           .control
             input.input(type="text" name="name", placeholder=profile.name)
         .field
-          label.label AppealCardID
+          label.label Appeal Card ID
             span.icon.has-tooltip-right(data-tooltip="Check \"data/others/appeal_card.xml\"")
               i.mdi.mdi-help-circle
           //.control.is-expanded 
@@ -56,6 +56,13 @@ div
                     select(name="appeal" id="appeal_select")//
           .control
             input.input(type="number" step=1 name="appeal", placeholder=profile.appeal)
+        .field
+          label.label Appeal Card Frame
+            span.icon.has-tooltip-right(data-tooltip="Adds a frame on top of your appeal card display.")
+              i.mdi.mdi-help-circle
+          .control.is-expanded 
+            .select.is-fullwidth
+              select(name="creatorItem" id="creatoritem_select")
         .field
           label.label Skill Title
             span.icon.has-tooltip-right(data-tooltip="Changes the title displayed on your skill plate.")

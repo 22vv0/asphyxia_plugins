@@ -4,6 +4,7 @@ import { ValgeneTicket } from '../models/valgene_ticket';
 import { Skill } from '../models/skill';
 import { getVersion, IDToCode, GetCounter } from '../utils';
 import { Mix } from '../models/mix';
+import { Rival } from '../models/rival';
 import { PREGENE, COURSES6} from '../data/exg';
 import { textureslist } from '../data/webui'
 import * as fs from 'fs';
@@ -29,6 +30,7 @@ export const updateProfile = async (data: {
   sysBG?: string;
   valgeneTicket?: string;
   skilltitle?: string;
+  creatorItem?: string;
 }) => {
   if (data.refid == null) return;
 
@@ -115,6 +117,11 @@ export const updateProfile = async (data: {
   if (data.sysBG && data.sysBG.length > 0) {
     const validSysBG = parseInt(data.sysBG);
     if (!_.isNaN(validSysBG)) update.sysBG = validSysBG;
+  }
+
+  if (data.creatorItem && data.creatorItem.length > 0) {
+    const validCreatorItem = parseInt(data.creatorItem);
+    if (!_.isNaN(validCreatorItem)) update.creatorItem = validCreatorItem;
   }
 
   await DB.Update<Profile>(
@@ -221,7 +228,6 @@ export const importMix = async (data: { json: string }) => {
 export const deleteMix = async (data: { code: string }) => {
   await DB.Remove<Mix>({ collection: 'mix', code: data.code });
 };
-
 
 export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
   let mdbJsonFix = [];
@@ -703,11 +709,40 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
   )
 }
 
-export const preGeneRoll = async (data: {
-  set: number,
-  refid: string,
-  items: []
-}, send: WebUISend) => {
+export const getRivalScores = async (data: { rivalId: string; refid: string; }, send: WebUISend) => {
+  let rival = await DB.FindOne<Rival>(data.refid, {collection: 'rival', refid: data.rivalId})
+  send.json({
+    rival: await DB.FindOne<Profile>(data.rivalId, {collection: 'profile'}),
+    yourScores: await DB.Find<MusicRecord>(data.refid, { collection: 'music' }),
+    rivalScores: await DB.Find<MusicRecord>(rival.refid, { collection: 'music' })
+  })
+}
+
+export const addRival = async (data: { rivalId: string; refid: string; }, send: WebUISend) => {
+  let you = await DB.FindOne<Profile>(data.refid, {collection: 'profile'})
+  let rival = await DB.FindOne<Profile>(data.rivalId, {collection: 'profile'})
+
+  let checkMutual = (await DB.Count<Rival>(data.rivalId, {collection: 'rival', refid: data.refid}) > 0)
+  if(await DB.Count<Rival>(data.refid, {collection: 'rival', refid: data.rivalId}) === 0) {
+    if(checkMutual) {
+      DB.Upsert(data.rivalId, {"collection": "rival", "sdvxID": you.id, "refid": data.refid, "name": you.name}, {$set: {"mutual": checkMutual}})
+    }
+    DB.Insert(data.refid, {"collection": "rival", "sdvxID": rival.id, "refid": data.rivalId, "name": rival.name, "mutual": checkMutual})
+    send.json({
+      "msg": "Successfully added profile to rival. In order for your rivals to appear in-game, they need to add you as their rival as well."
+    })
+  } else {
+    if(checkMutual) {
+      DB.Upsert(data.rivalId, {"collection": "rival", "sdvxID": you.id, "refid": data.refid, "name": you.name}, {$set: {"mutual": false}})
+    }
+    DB.Remove(data.refid, {"collection": "rival", "sdvxID": rival.id, "refid": data.rivalId, "name": rival.name})
+    send.json({
+      "msg": "Successfully removed profile from rival."
+    })
+  }
+}
+
+export const preGeneRoll = async (data: { set: number, refid: string, items: [] }, send: WebUISend) => {
 
   let itemId = {
     'crew': 11,
@@ -777,14 +812,10 @@ export const preGeneRoll = async (data: {
   } else console.log('pregeneset none')
 }
 
-export const manageEvents = async (data: {
-  eventConfig: {}
-}) => {
+export const manageEvents = async (data: { eventConfig: {} }) => {
   IO.WriteFile('webui/asset/config/events.json', JSON.stringify(data.eventConfig, null, 4));
 }
 
-export const manageStartupFlags = async (data: {
-  flagConfig: {}
-}) => {
+export const manageStartupFlags = async (data: { flagConfig: {} }) => {
   IO.WriteFile('webui/asset/config/flags.json', JSON.stringify(data.flagConfig, null, 4));
 }

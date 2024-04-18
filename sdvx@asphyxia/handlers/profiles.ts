@@ -9,7 +9,7 @@ import { Profile } from '../models/profile';
 import { ValgeneTicket } from '../models/valgene_ticket';
 import { getVersion, IDToCode } from '../utils';
 import { Mix } from '../models/mix';
-import { ARENA, EVENT_SONGS6 } from '../data/exg';
+import { ARENA, EVENT_ITEMS6 } from '../data/exg';
 
 async function getAutomationMixes(params: Param[]) {
   const mixids = params
@@ -657,22 +657,23 @@ export const load: EPR = async (info, data, send) => {
       let eventData = JSON.parse(bufEventData.toString())
       let eventConfig = JSON.parse(bufEventConfig.toString())
       for(const eventIter in eventData['events']) {
-        if(['gift', 'cross_online'].includes(eventData['events'][eventIter]['type']) && eventConfig[eventData['events'][eventIter]['id']] !== undefined) {
+        let typeIds = {'gift_crew': [11, 1], 'gift': [0, 23], 'cross_online': [0, 23]}
+        if(['gift_crew', 'gift', 'cross_online'].includes(eventData['events'][eventIter]['type']) && eventConfig[eventData['events'][eventIter]['id']] !== undefined) {
           if(typeof eventConfig[eventData['events'][eventIter]['id']]['toggle'] === "boolean") {
             if(eventConfig[eventData['events'][eventIter]['id']]['toggle']) {
-              for(const itemIter in EVENT_SONGS6[eventData['events'][eventIter]['id']]) {
-                let itemId = parseInt(EVENT_SONGS6[eventData['events'][eventIter]['id']][itemIter])
-                if(await DB.Count(refid, {collection:'item', id: itemId}) === 0) {
+              for(const itemIter in EVENT_ITEMS6[eventData['events'][eventIter]['id']]) {
+                let itemId = parseInt(EVENT_ITEMS6[eventData['events'][eventIter]['id']][itemIter])
+                if(await DB.Count(refid, {collection:'item', type: typeIds[eventData['events'][eventIter]['type']], id: itemId}) === 0) {
                   await DB.Upsert(
                     refid, 
-                    {collection: 'item', type: 0, id: itemId}, 
-                    {$set: { param: 23 }}
+                    {collection: 'item', type: typeIds[eventData['events'][eventIter]['type']][0], id: itemId}, 
+                    {$set: { param: typeIds[eventData['events'][eventIter]['type']][1] }}
                   )
 
                   presents.push({
                     id: itemId,
-                    type: 0,
-                    param: 23
+                    type: typeIds[eventData['events'][eventIter]['type']][0],
+                    param: typeIds[eventData['events'][eventIter]['type']][1]
                   })
                 }
               }
@@ -680,19 +681,19 @@ export const load: EPR = async (info, data, send) => {
           } else{
             for(const toggleKeys in Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])) {
               if(eventConfig[eventData['events'][eventIter]['id']]['toggle'][Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])[toggleKeys]]) {
-                for(const itemIter in EVENT_SONGS6[Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])[toggleKeys]]) {
-                  let itemId = parseInt(EVENT_SONGS6[Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])[toggleKeys]][itemIter])
-                  if(await DB.Count(refid, {collection:'item', id: itemId}) === 0) {
+                for(const itemIter in EVENT_ITEMS6[Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])[toggleKeys]]) {
+                  let itemId = parseInt(EVENT_ITEMS6[Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])[toggleKeys]][itemIter])
+                  if(await DB.Count(refid, {collection:'item', type: typeIds[eventData['events'][eventIter]['type']][0], id: itemId}) === 0) {
                     await DB.Upsert(
                       refid, 
-                      {collection: 'item', type: 0, id: itemId}, 
-                      {$set: { param: 23 }}
+                      {collection: 'item', type: typeIds[eventData['events'][eventIter]['type']][0], id: itemId}, 
+                      {$set: { param: typeIds[eventData['events'][eventIter]['type']][1] }}
                     )
 
                     presents.push({
                       id: itemId,
-                      type: 0,
-                      param: 23
+                      type: typeIds[eventData['events'][eventIter]['type']][0],
+                      param: typeIds[eventData['events'][eventIter]['type']][1]
                     })
                   }
                 }
@@ -751,7 +752,7 @@ export const load: EPR = async (info, data, send) => {
   const stampRD = profile.stampRD ? profile.stampRD : 0;
   const sysBG = profile.sysBG ? profile.sysBG : 0;
   const bplSupport = profile.bplSupport ? profile.bplSupport : 0;
-
+  const creatorItem = profile.creatorItem ? profile.creatorItem : 0;
 
   const customize = [];
   customize.push(bgm, subbg, nemsys, stampA, stampB, stampC, stampD, stampRA, stampRB, stampRC, stampRD, sysBG);
@@ -794,6 +795,7 @@ export const load: EPR = async (info, data, send) => {
     code: IDToCode(profile.id),
     arena,
     valgeneTicket,
+    creatorItem,
     ...profile,
   });
 };
@@ -864,7 +866,8 @@ export const create: EPR = async (info, data, send) => {
     weekChain: 0,
     maxWeekChain: 0,
 
-    bplSupport: 0
+    bplSupport: 0,
+    creatorItem: 0
   };
 
   await DB.Upsert(refid, { collection: 'profile' }, profile);

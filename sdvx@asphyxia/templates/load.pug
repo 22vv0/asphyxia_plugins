@@ -146,3 +146,10 @@ game
     valgene_ticket
       ticket_num(__type="s32") #{valgeneTicket.ticketNum}
       limit_date(__type="u64") #{valgeneTicket.limitDate}
+
+  if creatorItem > 1
+    creator_item
+      info
+        creator_type(__type="u32") #{creatorItem}
+        item_id(__type="u32") 0
+        param(__type="u32") 0

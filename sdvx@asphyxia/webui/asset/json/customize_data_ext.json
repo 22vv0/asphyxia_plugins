@@ -215,5 +215,55 @@
 			"name": "夢吹",
 			"info": "KAC 2023 Challenge Round B"
 		}
+	],
+	"appeal_frame" : [
+		{
+			"id": 1,
+			"name": "None"
+		},
+		{
+			"id": 2,
+			"name": "Music"
+		},
+		{
+			"id": 3,
+			"name": "Jacket"
+		},
+		{
+			"id": 4,
+			"name": "Appeal"
+		},
+		{
+			"id": 5,
+			"name": "BEMANI Artist"
+		},
+		{
+			"id": 6,
+			"name": "SDVX Staff"
+		},
+		{
+			"id": 7,
+			"name": "With music"
+		},
+		{
+			"id": 8,
+			"name": "Genesis"
+		},
+		{
+			"id": 9,
+			"name": "KAC Champion"
+		},
+		{
+			"id": 10,
+			"name": "KAC Finalist"
+		},
+		{
+			"id": 11,
+			"name": "Stamp"
+		},
+		{
+			"id": 12,
+			"name": "Panel"
+		}
 	]
 }

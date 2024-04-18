@@ -194,21 +194,10 @@ export const common: EPR = async (info, data, send) => {
       let eventData = JSON.parse(bufEventData.toString())
       let eventConfig = JSON.parse(bufEventConfig.toString())
       for(const eventIter in eventData['events']) {
+        let stmpEvntInfo = STAMP_EVENTS6[eventData['events'][eventIter]['id']]
         if(eventData['events'][eventIter]['type'] === 'stamp' && eventConfig[eventData['events'][eventIter]['id']] !== undefined && eventConfig[eventData['events'][eventIter]['id']]['toggle']) {
-          let stmpEvntInfo = STAMP_EVENTS6[eventData['events'][eventIter]['id']]
-          let prmStr1Sel = ''
-
           for(const stmpDataIter in stmpEvntInfo['info']['data']) {
-            let stmpRwrd = stmpEvntInfo['info']['data'][stmpDataIter]['stprwrd']
-            let prmStr5 = ''
-            let sSheetName = (stmpRwrd[stmpRwrd.length - 1][1] === 'crew') ? stmpRwrd[stmpRwrd.length - 1][3] : stmpRwrd[stmpRwrd.length - 1][2]
-            prmStr1Sel += stmpEvntInfo['info']['data'][stmpDataIter]['stmpid'] + '#' + stmpEvntInfo['info']['data'][stmpDataIter]['bnr'] + '#' + itemTypeList[stmpRwrd[stmpRwrd.length - 1][1]] + '#' + sSheetName + (stmpEvntInfo['info']['data'].length - 1 === parseInt(stmpDataIter) ? '' : ',')
-            for(const stmpRwrdIter in stmpRwrd) {
-              let iID = stmpRwrd[stmpRwrdIter][2]
-              if (stmpRwrd[stmpRwrdIter][1] === 'track' || stmpRwrd[stmpRwrdIter][1] === 'prereq') iID += stmpRwrd[stmpRwrdIter][3]
-              prmStr5 += stmpRwrd[stmpRwrdIter][0] + ':' + itemTypeList[stmpRwrd[stmpRwrdIter][1]] + ':' + iID + (stmpRwrd.length - 1 === parseInt(stmpRwrdIter) ? '' : ' ')
-            }
-            let newSelMainExtend = {
+            extend.push({
               'type': 3,
               'id': stmpEvntInfo['info']['data'][stmpDataIter]['stmpid'],
               'params': [
@@ -221,14 +210,13 @@ export const common: EPR = async (info, data, send) => {
                 stmpEvntInfo['info']['stmpHd'],
                 '',
                 stmpEvntInfo['info']['stmpFt'],
-                prmStr5
+                stmpEvntInfo['info']['data'][stmpDataIter]['stprwrd']
               ]
-            }
-            extend.push(newSelMainExtend)
+            })
           }
 
           if(stmpEvntInfo['type'] === 'select') {
-            let newSelExtend = {
+            extend.push({
               'type': 3,
               'id': stmpEvntInfo['info']['id'],
               'params': [
@@ -237,15 +225,32 @@ export const common: EPR = async (info, data, send) => {
                 0,
                 0,
                 0,
-                prmStr1Sel,
+                stmpEvntInfo['info']['sheet'],
                 '',
                 stmpEvntInfo['info']['stmpSlHd'],
                 stmpEvntInfo['info']['stmpSlFt'],
                 stmpEvntInfo['info']['stmpBg']
               ]
-            }
-            extend.push(newSelExtend)
+            })
           }
+        }
+        else if(eventData['events'][eventIter]['type'] === 'completestamp' && eventConfig[eventData['events'][eventIter]['id']] !== undefined && eventConfig[eventData['events'][eventIter]['id']]['toggle']) {
+          extend.push({
+            'type': 19,
+            'id': stmpEvntInfo['info']['id'],
+            'params': [
+              0,
+              0,
+              0,
+              0,
+              0,
+              JSON.stringify(stmpEvntInfo['info']['data']),
+              '',
+              '',
+              '',
+              ''
+            ]
+          })
         }
       }
     }

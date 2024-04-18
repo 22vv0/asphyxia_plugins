@@ -239,8 +239,16 @@ $(document).ready(function() {
                 }));
             }
         }
-        if(skill.length > 0) $('[name="skilltitle"]').val(skill[0]["name"]);
-        else $('[name="skilltitle"]').attr('disabled')
+        if(skill.length > 1) $('[name="skilltitle"]').val(skill[0]["name"]);
+        else $('[name="skilltitle"]').attr('disabled', 'disabled')
+
+        for (var i in json["appeal_frame"]) {
+            $('[name="creatorItem"]').append($('<option>', {
+                value: json["appeal_frame"][i].id,
+                text: json["appeal_frame"][i].name,
+            }));
+        }
+        $('[name="creatorItem"]').val(profile_data["creatorItem"] ? profile_data["creatorItem"] : 0);
     });
 
     $.getJSON("static/asset/json/data.json", function(json) {

@@ -95,62 +95,42 @@ export const STAMP_EVENTS6 = {
       'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
       'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/18～3/21',
       'stmpBg': 'bg_stamp_anniversary_10th',
+      'sheet': '1#sheet_track_1#e#1838,2#sheet_track_2#e#1839,3#sheet_track_3#e#1840,4#sheet_track_4#e#1841,5#sheet_track_5#e#1842,6#sheet_track_6#e#1843,7#sheet_track_7#e#1844',
       'data': [
         {
           'stmpid': 1,
-          'bnr': 'sheet_track_1',
           'stps': 5,
-          'stprwrd': [
-            ['5', 'track', '1838', '23']
-          ]
+          'stprwrd': '5:e:183823'
         },
         {
           'stmpid': 2,
-          'bnr': 'sheet_track_2',
           'stps': 5,
-          'stprwrd': [
-            ['5', 'track', '1839', '23']
-          ]
+          'stprwrd': '5:e:183923'
         },
         {
           'stmpid': 3,
-          'bnr': 'sheet_track_3',
           'stps': 5,
-          'stprwrd': [
-            ['5', 'track', '1840', '23']
-          ]
+          'stprwrd': '5:e:184023'
         },
         {
           'stmpid': 4,
-          'bnr': 'sheet_track_4',
           'stps': 5,
-          'stprwrd': [
-            ['5', 'track', '1841', '23']
-          ]
+          'stprwrd': '5:e:184123'
         },
         {
           'stmpid': 5,
-          'bnr': 'sheet_track_5',
           'stps': 5,
-          'stprwrd': [
-            ['5', 'track', '1842', '23']
-          ]
+          'stprwrd': '5:e:184223'
         },
         {
           'stmpid': 6,
-          'bnr': 'sheet_track_6',
           'stps': 5,
-          'stprwrd': [
-            ['5', 'track', '1843', '23']
-          ]
+          'stprwrd': '5:e:184323'
         },
         {
           'stmpid': 7,
-          'bnr': 'sheet_track_7',
           'stps': 5,
-          'stprwrd': [
-            ['5', 'track', '1844', '23']
-          ]
+          'stprwrd': '5:e:184423'
         }
       ]
     }
@@ -159,23 +139,13 @@ export const STAMP_EVENTS6 = {
     'type': 'main',
     'info': {
       'id': 0,
-      'stmpSlHd': '',
-      'stmpSlFt': '',
       'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
       'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 3/30～5/8',
-      'stmpBg': '',
       'data': [
         {
           'stmpid': 8,
-          'bnr': '',
           'stps': 15,
-          'stprwrd': [
-            ['1', 'track', '1853', '23'],
-            ['3', 'track', '1851', '23'],
-            ['6', 'track', '1852', '23'],
-            ['10', 'track', '1850', '23'],
-            ['15', 'track', '1854', '23'],
-          ]
+          'stprwrd': '1:e:185323 3:e:185123 6:e:185223 10:e:185023 15:e:185423'
         }
       ]
     }
@@ -184,23 +154,13 @@ export const STAMP_EVENTS6 = {
     'type': 'main',
     'info': {
       'id': 0,
-      'stmpSlHd': '',
-      'stmpSlFt': '',
       'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
       'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 12/8～1/15',
-      'stmpBg': '',
       'data': [
         {
           'stmpid': 9,
-          'bnr': '',
           'stps': 5,
-          'stprwrd': [
-            ['1', 'pcb', '500', ''],
-            ['2', 'pcb', '500', ''],
-            ['3', 'pcb', '1000', ''],
-            ['4', 'pcb', '1000', ''],
-            ['5', 'pcb', '2000', ''],
-          ]
+          'stprwrd': '1:b:500 2:b:500 3:b:1000 4:b:1000 5:b:2000'
         }
       ]
     }
@@ -209,19 +169,13 @@ export const STAMP_EVENTS6 = {
     'type': 'main',
     'info': {
       'id': 0,
-      'stmpSlHd': '',
-      'stmpSlFt': '',
       'stmpHd': '[sz:22]SPECIAL STAMP BONUS',
       'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/1～1/9',
-      'stmpBg': '',
       'data': [
         {
           'stmpid': 10,
-          'bnr': '',
           'stps': 1,
-          'stprwrd': [
-            ['1', 'appeal', '5522', '']
-          ]
+          'stprwrd': '1:a:5522'
         }
       ]
     }
@@ -235,50 +189,17 @@ export const STAMP_EVENTS6 = {
       'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
       'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 4/7～5/8',
       'stmpBg': 'bg_stamp_himehina',
+      'sheet': '11#sheet_crew_1#c#ネメシスクルー田中ヒメ,12#sheet_crew_2#c#ネメシスクルー鈴木ヒナ',
       'data': [
         {
           'stmpid': 11,
-          'bnr': 'sheet_crew_1',
           'stps': 15,
-          'stprwrd': [
-            ['1', 'pcb', '100', ''],
-            ['2', 'pcb', '100', ''],
-            ['3', 'pcb', '100', ''],
-            ['4', 'pcb', '100', ''],
-            ['5', 'pcb', '1000', ''],
-            ['6', 'pcb', '200', ''],
-            ['7', 'pcb', '200', ''],
-            ['8', 'pcb', '200', ''],
-            ['9', 'pcb', '200', ''],
-            ['10', 'pcb', '2000', ''],
-            ['11', 'pcb', '500', ''],
-            ['12', 'pcb', '500', ''],
-            ['13', 'pcb', '500', ''],
-            ['14', 'pcb', '500', ''],
-            ['15', 'crew', '122', 'ネメシスクルー田中ヒメ']
-          ]
+          'stprwrd': '1:b:100 2:b:100 3:b:100 4:b:100 5:b:1000 6:b:200 7:b:200 8:b:200 9:b:200 10:b:2000 11:b:500 12:b:500 13:b:500 14:b:500 15:c:122',
         },
         {
           'stmpid': 12,
-          'bnr': 'sheet_crew_2',
           'stps': 15,
-          'stprwrd': [
-            ['1', 'pcb', '100', ''],
-            ['2', 'pcb', '100', ''],
-            ['3', 'pcb', '100', ''],
-            ['4', 'pcb', '100', ''],
-            ['5', 'pcb', '1000', ''],
-            ['6', 'pcb', '200', ''],
-            ['7', 'pcb', '200', ''],
-            ['8', 'pcb', '200', ''],
-            ['9', 'pcb', '200', ''],
-            ['10', 'pcb', '2000', ''],
-            ['11', 'pcb', '500', ''],
-            ['12', 'pcb', '500', ''],
-            ['13', 'pcb', '500', ''],
-            ['14', 'pcb', '500', ''],
-            ['15', 'crew', '123', 'ネメシスクルー鈴木ヒナ']
-          ]
+          'stprwrd': '1:b:100 2:b:100 3:b:100 4:b:100 5:b:1000 6:b:200 7:b:200 8:b:200 9:b:200 10:b:2000 11:b:500 12:b:500 13:b:500 14:b:500 15:c:123',
         }
       ]
     }
@@ -287,19 +208,13 @@ export const STAMP_EVENTS6 = {
     'type': 'main',
     'info': {
       'id': 0,
-      'stmpSlHd': '',
-      'stmpSlFt': '',
       'stmpHd': '[sz:22]SPECIAL STAMP BONUS',
       'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/1～1/9',
-      'stmpBg': '',
       'data': [
         {
           'stmpid': 13,
-          'bnr': '',
           'stps': 1,
-          'stprwrd': [
-            ['1', 'appeal', '5523', '']
-          ]
+          'stprwrd': '1:a:5523'
         }
       ]
     }
@@ -314,86 +229,52 @@ export const STAMP_EVENTS6 = {
       'stmpHd': '[sz:22][c:DAC491]BEMANI PRO LEAGUE -SEASON 2- SPECIAL STAMP',
       'stmpFt': '[sz:22]YOU CAN GET STAMPS BY PLAYING SDVX!',
       'stmpBg': 'bg_stamp_bpl',
+      'sheet': '14#sheet_track_1919#e#1919,15#sheet_track_1920#e#1920,16#sheet_track_1921#e#1921,17#sheet_track_1922#e#1922,18#sheet_track_1923#e#1923,19#sheet_track_1924#e#1924,20#sheet_track_1925#e#1925,21#sheet_track_1926#e#1926,22#sheet_track_1938#e#1938',
       'data': [
         {
           'stmpid': 14,
-          'bnr': 'sheet_track_1919',
           'stps': 15,
-          'stprwrd': [
-            ['15', 'track', '1919', '23']
-          ]
+          'stprwrd': '15:e:191923'
         },
         {
           'stmpid': 15,
-          'bnr': 'sheet_track_1920',
           'stps': 15,
-          'stprwrd': [
-            ['15', 'track', '1920', '23']
-          ]
+          'stprwrd': '15:e:192023'
         },
         {
           'stmpid': 16,
-          'bnr': 'sheet_track_1921',
           'stps': 15,
-          'stprwrd': [
-            ['15', 'track', '1921', '23']
-          ]
+          'stprwrd': '15:e:192123'
         },
         {
           'stmpid': 17,
-          'bnr': 'sheet_track_1922',
           'stps': 15,
-          'stprwrd': [
-            ['15', 'track', '1922', '23']
-          ]
+          'stprwrd': '15:e:192223'
         },
         {
           'stmpid': 18,
-          'bnr': 'sheet_track_1923',
           'stps': 15,
-          'stprwrd': [
-            ['15', 'track', '1923', '23']
-          ]
+          'stprwrd': '15:e:192323'
         },
         {
           'stmpid': 19,
-          'bnr': 'sheet_track_1924',
           'stps': 15,
-          'stprwrd': [
-            ['15', 'track', '1924', '23']
-          ]
+          'stprwrd': '15:e:192423'
         },
         {
           'stmpid': 20,
-          'bnr': 'sheet_track_1925',
           'stps': 15,
-          'stprwrd': [
-            ['15', 'track', '1925', '23']
-          ]
+          'stprwrd': '15:e:192523'
         },
         {
           'stmpid': 21,
-          'bnr': 'sheet_track_1926',
           'stps': 15,
-          'stprwrd': [
-            ['15', 'track', '1926', '23']
-          ]
+          'stprwrd': '15:e:192623'
         },
         {
           'stmpid': 22,
-          'bnr': 'sheet_track_1938',
           'stps': 30,
-          'stprwrd': [
-            ['0', 'prereq', 'x', '14'],
-            ['0', 'prereq', 'x', '15'],
-            ['0', 'prereq', 'x', '16'],
-            ['0', 'prereq', 'x', '17'],
-            ['0', 'prereq', 'x', '18'],
-            ['0', 'prereq', 'x', '19'],
-            ['0', 'prereq', 'x', '20'],
-            ['0', 'prereq', 'x', '21'],
-            ['30', 'track', '1938', '23']
-          ]
+          'stprwrd': '0:r:x14 0:r:x15 0:r:x16 0:r:x17 0:r:x18 0:r:x19 0:r:x20 0:r:x21 30:e:193823'
         }
       ]
     }
@@ -402,19 +283,13 @@ export const STAMP_EVENTS6 = {
     'type': 'main',
     'info': {
       'id': 0,
-      'stmpSlHd': '',
-      'stmpSlFt': '',
       'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
       'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 8/9～9/11',
-      'stmpBg': '',
       'data': [
         {
           'stmpid': 23,
-          'bnr': '',
           'stps': 10,
-          'stprwrd': [
-            ['10', 'track', '2060', '23'],
-          ]
+          'stprwrd': '10:e:206023'
         }
       ]
     }
@@ -428,22 +303,17 @@ export const STAMP_EVENTS6 = {
       'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
       'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 9/20～10/23',
       'stmpBg': 'bg_stamp_kac_11th',
+      'sheet': '24#sheet_track_2061#e#2061,25#sheet_track_2062#e#2062',
       'data': [
         {
           'stmpid': 24,
-          'bnr': 'sheet_track_2061',
           'stps': 10,
-          'stprwrd': [
-            ['10', 'track', '2061', '23']
-          ]
+          'stprwrd': '10:e:206123'
         },
         {
           'stmpid': 25,
-          'bnr': 'sheet_track_2062',
           'stps': 10,
-          'stprwrd': [
-            ['10', 'track', '2062', '23']
-          ]
+          'stprwrd': '10:e:206223'
         }
       ]
     }
@@ -452,28 +322,13 @@ export const STAMP_EVENTS6 = {
     'type': 'main',
     'info': {
       'id': 0,
-      'stmpSlHd': '',
-      'stmpSlFt': '',
       'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
       'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/1～1/8',
-      'stmpBg': '',
       'data': [
         {
           'stmpid': 26,
-          'bnr': '',
           'stps': 10,
-          'stprwrd': [
-            ['1', 'appeal', '5526', ''],
-            ['2', 'pcb', '2024', ''],
-            ['3', 'pcb', '2024', ''],
-            ['4', 'pcb', '2024', ''],
-            ['5', 'pcb', '2024', ''],
-            ['6', 'pcb', '2024', ''],
-            ['7', 'pcb', '2024', ''],
-            ['8', 'pcb', '2024', ''],
-            ['9', 'pcb', '2024', ''],
-            ['10', 'pcb', '4649', '']
-          ]
+          'stprwrd': '1:a:5526 2:b:2024 3:b:2024 4:b:2024 5:b:2024 6:b:2024 7:b:2024 8:b:2024 9:b:2024 10:b:4649'
         }
       ]
     }
@@ -482,19 +337,13 @@ export const STAMP_EVENTS6 = {
     'type': 'main',
     'info': {
       'id': 0,
-      'stmpSlHd': '',
-      'stmpSlFt': '',
       'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
       'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/18～2/4',
-      'stmpBg': '',
       'data': [
         {
           'stmpid': 27,
-          'bnr': '',
           'stps': 1,
-          'stprwrd': [
-            ['1', 'appeal', '5527', '']
-          ]
+          'stprwrd': '1:a:5527'
         }
       ]
     }
@@ -503,36 +352,45 @@ export const STAMP_EVENTS6 = {
     'type': 'main',
     'info': {
       'id': 0,
-      'stmpSlHd': '',
-      'stmpSlFt': '',
       'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
       'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/1～1/8',
-      'stmpBg': '',
       'data': [
         {
           'stmpid': 28,
-          'bnr': '',
           'stps': 10,
-          'stprwrd': [
-            ['1', 'pcb', '329', ''],
-            ['2', 'pcb', '329', ''],
-            ['3', 'pcb', '329', ''],
-            ['4', 'pcb', '329', ''],
-            ['5', 'pcb', '1009', ''],
-            ['6', 'pcb', '329', ''],
-            ['7', 'pcb', '329', ''],
-            ['8', 'pcb', '329', ''],
-            ['9', 'pcb', '329', ''],
-            ['10', 'pcb', '1009', ''],
-
-          ]
+          'stprwrd': '1:b:329 2:b:329 3:b:329 4:b:329 5:b:1009 6:b:329 7:b:329 8:b:329 9:b:329 10:b:1009'
         }
       ]
+    }
+  },
+  'bpls3sdvxfinal': {
+    'type': 'comp',
+    'info': {
+      'id': 1,
+      'data': {
+        "id": 1,
+        "compo": "stamp_complete_bpls3",
+        "requires": [
+            { "id": 2129, "grades": [0] }, { "id": 2130, "grades": [0] }, { "id": 2131, "grades": [0] },
+            { "id": 2132, "grades": [0] }, { "id": 2133, "grades": [0] }, { "id": 2134, "grades": [0] },
+            { "id": 2135, "grades": [0] }, { "id": 2136, "grades": [0] }, { "id": 2137, "grades": [0] },
+            { "id": 2138, "grades": [0] }, { "id": 2139, "grades": [0] }, { "id": 2140, "grades": [0] },
+            { "id": 2141, "grades": [0] }, { "id": 2142, "grades": [0] }, { "id": 2143, "grades": [0] },
+            { "id": 2144, "grades": [0] }, { "id": 2145, "grades": [0] }, { "id": 2146, "grades": [0] },
+            { "id": 2147, "grades": [0] }, { "id": 2148, "grades": [0] }, { "id": 2149, "grades": [0] },
+            { "id": 2151, "grades": [0] }, { "id": 2150, "grades": [0] }, { "id": 2152, "grades": [0] }
+        ],
+        "rewards":[
+            { "id": 2151, "grades": [0, 1, 2, 4], "needStamp": 7 },
+            { "id": 2150, "grades": [0, 1, 2, 4], "needStamp": 14 },
+            { "id": 2152, "grades": [0, 1, 2, 4], "needStamp": 23 }
+        ]
+      }
     }
   }
 }
 
-export const EVENT_SONGS6 = {
+export const EVENT_ITEMS6 = {
   // X-Record songs
   'xrecord_1_1': ['1737'],
   'xrecord_1_2': ['1738'],
@@ -603,7 +461,9 @@ export const EVENT_SONGS6 = {
   // BPL S3 Triple Tribe 2
   "bpls3tripletribe2_1": ['2162'],
   "bpls3tripletribe2_2": ['2163'],
-  "bpls3tripletribe2_3": ['2164']
+  "bpls3tripletribe2_3": ['2164'],
+  // Mini Grace crew gift
+  "minigracegift": ['159']
 }
 
 export const APRILFOOLSSONGS = [

@@ -3,6 +3,7 @@ import { MusicRecord } from '../models/music_record';
 import { Matchmaker } from '../models/matchmaker';
 import { getVersion, IDToCode, GetCounter } from '../utils';
 import { Mix } from '../models/mix';
+import { Rival } from '../models/rival';
 
 export const hiscore: EPR = async (info, data, send) => {
   const records = await DB.Find<MusicRecord>(null, { collection: 'music' });
@@ -68,18 +69,18 @@ export const rival: EPR = async (info, data, send) => {
   if (!refid) return send.deny();
 
   const rivals = (
-    await DB.Find<Profile>(null, { collection: 'profile' })
-  ).filter(p => p.__refid != refid);
+    await DB.Find<Rival>(refid, { collection: 'rival', mutual: true })
+  ).filter(p => p.refid != refid);
 
   return send.object({
     rival: await Promise.all(
       rivals.map(async (p, index) => {
         return {
           no: K.ITEM('s16', index),
-          seq: K.ITEM('str', IDToCode(p.id)),
+          seq: K.ITEM('str', IDToCode(p.sdvxID)),
           name: K.ITEM('str', p.name),
           music: (
-            await DB.Find<MusicRecord>(p.__refid, { collection: 'music' })
+            await DB.Find<MusicRecord>(p.refid, { collection: 'music' })
           ).map(r => ({
             // Changes were somehow made in the order of the field for the version 2023042500
             param: K.ARRAY('u32', version < 2023042500 ? [r.mid, r.type, r.score, r.clear, r.grade] : [r.mid, r.type, r.score, r.exscore, r.clear, r.grade]),

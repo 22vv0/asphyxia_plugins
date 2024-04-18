@@ -1,0 +1,52 @@
+//DATA//
+  rivals: DB.Find(refid, { collection: 'rival' })
+  profiles: DB.Find(null, { collection: 'profile' })
+-
+link(rel="stylesheet" href="static/asset/css/datatables.css")
+div
+  .card
+    .card-header
+      p.card-header-title
+        span.icon
+          i.mdi.mdi-account-edit
+        | Add rival
+    .card-content
+      .field
+        .control
+          .select.is-fullwidth
+            select.select(id="profilelist")
+              option(value=0) Choose profile
+      .field
+        button.button.is-primary(type="submit" id="addrival") 
+          span(id="rival-button") Add Rival
+
+  .card
+    .card-header
+      p.card-header-title
+        span.icon
+          i.mdi.mdi-account-edit
+        | Rival Score Comparison
+    .card-content
+      h5 Select rival to compare with:
+      .field
+        .control
+          .select.is-fullwidth
+            select.select(id="rivallist")
+              option(value=0) Choose rival
+
+      table.table(id="scorecompare" style="width:100%")
+        thead
+          tr    
+            th ID
+            th Song
+            th Difficulty
+            th Your Score
+            th Rival's Score
+            th Time
+        tbody
+
+//div(hidden id='data-pass') !{JSON.stringify(profile)}
+div(hidden id='rivals-pass') !{JSON.stringify(rivals)}
+div(hidden id='profiles-pass') !{JSON.stringify(profiles)}
+script(src="static/asset/js/rivals.js") 
+script(src="static/asset/js/datatables.js")

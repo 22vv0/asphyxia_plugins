@@ -1,0 +1,49 @@
+//DATA//
+  prem_items_crew: DB.Find(refid, {collection:"item",type:11})
+
+  prem_items_stamp: DB.Find(refid, { collection:"item",type:17 })
+
+  prem_items_subbg: DB.Find(refid, { collection:"item",type:18 })
+
+  prem_items_bgm: DB.Find(refid, { collection:"item",type:19 })
+
+  prem_items_nemsys: DB.Find(refid, { collection:"item",type:20 })
+
+  prem_items_sysbg: DB.Find(refid, { collection:"item",type:21 })
+  
+  unlock_all: U.GetConfig('unlock_all_valk_items')
+
+-
+  //const padded = _.padStart(profile.id.toString(), 8);
+  //const sdvxid = `${padded.slice(0, 4)}-${padded.slice(4)}`;
+
+link(rel="stylesheet" href="static/asset/css/datatables.css")
+div
+  .card
+    .card-header
+      p.card-header-title
+        span.icon
+          i.mdi.mdi-star
+        | Valkyrie Generator
+    .card-content
+      .field
+        .control
+          .select
+            select(name="set_select" id="set_select")
+      div(id="roll-div" style="padding: 15px; text-align: center;")
+        div(style="padding: 5px")
+          h3.count()
+        input.input(type="text" name="refid", value=refid readonly)
+        button.button(id="valgene-roll" style="font-size: 20px") Roll
+      br()
+      div.item_banners()
+
+div(hidden id='data-pass-crew') !{JSON.stringify(prem_items_crew)}
+div(hidden id='data-pass-stamp') !{JSON.stringify(prem_items_stamp)}
+div(hidden id='data-pass-subbg') !{JSON.stringify(prem_items_subbg)}
+div(hidden id='data-pass-bgm') !{JSON.stringify(prem_items_bgm)}
+div(hidden id='data-pass-nemsys') !{JSON.stringify(prem_items_nemsys)}
+div(hidden id='data-pass-sysbg') !{JSON.stringify(prem_items_sysbg)}
+div(hidden id='data-pass-unlock-all') !{unlock_all}
+div(hidden id='generator-edition') valkyrie
+script(src="static/asset/js/generator.js") 
