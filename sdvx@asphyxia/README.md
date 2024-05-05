@@ -1,8 +1,8 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.3.1
+**Plugin Version:** fork-6.0.3.2
 
-**Supported game versions:** EXCEED GEAR (2024040200)
+**Supported game versions:** EXCEED GEAR (2024043001)
 
 **Unsupported game versions:** Every other game, as they're untested.
 
@@ -16,6 +16,21 @@
 
 Changelog
 ===========
+## fork-6.0.3.2
+
+### New:
+
+1. Main:
+	- 2024043001 support
+	- Added ARENA season 13 (rank match: ARENA BATTLE point system)
+		- ARENA STATION set 13 added.
+	- VALKYRIE GENERATOR 14 added.
+	- Added BPL S3 Stamp Event (eXLIPXe)
+		- Check "Unlocking Events -> Stamp Events -> BEMANI PRO LEAGUE -SEASON 3- Special Stamp" to toggle the event.
+2. Misc:
+	- Updated ARENA STATION pricing to reflect real game server prices (might miss some though)
+
+
 ## fork-6.0.3.1
 
 ### New:
@@ -52,21 +67,9 @@ Changelog
 	- Some online matchmaking experimentations (still can't make it work though)
 
 
-## fork-6.0.2.9
-
-### New:
-
-1. Main:
-	- Updated events.json to add weeks 4 & 5 of BPL event songs.
-	- Added Premium Generator (Nekomata Okayu) set.
-	- Updated licensed songs list (Okayu songs)
-2. Misc:
-	- Added crew id 149 to CHARACTER\_IGNORE\_DISABLE
-	- Tweaked Premium Generator odds (1% chance for a crew is a bit unfair lol, changed to 5%)
-
-
 ### Todo:
 
 1. Figure out how to use image (png) files to appear in information/news popup.
 2. More work on online matchmaking (idk if this is possible)
 3. Implement pro_team_id setting.
+4. Reminder to add new achievements (when it is released officially)

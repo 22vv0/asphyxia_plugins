@@ -278,6 +278,14 @@
             "name": "Mini Grace NEMSYS Crew Gift",
             "desc": "Sent to people who bought tickets for the BPL S3 SDVX Finals event.",
             "info": "Toggle this on to automatically get the item."
+        },
+        {
+            "id": "bpls3stamp",
+            "type": "stamp",
+            "enabled": true,
+            "name": "BEMANI PRO LEAGUE -SEASON 3- Special Stamp",
+            "desc": "Similar to BPL S2 stamp event (SuddeИDeath,) this is an event to unlock 10 songs, including { eXLIPXe }. Songs can be unlocked in any order, except for { eXLIPXe }, which will be available to unlock for 30 stamps once all the other songs are unlocked.",
+            "info": "Toggle this on to enable this stamp event."
         }
     ],
     "flags": [

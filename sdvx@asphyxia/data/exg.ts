@@ -387,6 +387,71 @@ export const STAMP_EVENTS6 = {
         ]
       }
     }
+  },
+  'bpls3stamp': {
+    'type': 'select',
+    'info': {
+      'id': 5,
+      'textstampval': -1,
+      'stmpSlHd': '[sz:22][c:FFA6AA]BEMANI PRO LEAGUE -SEASON 3- SPECIAL STAMP',
+      'stmpSlFt': '[sz:23]{TextStamp}[br:5]{TextTerm} 2024/05/02～2024/05/31',
+      'stmpHd': '[sz:22][c:DAC491]BEMANI PRO LEAGUE -SEASON 3- SPECIAL STAMP',
+      'stmpFt': '[sz:22]YOU CAN GET STAMPS BY PLAYING SDVX!',
+      'stmpBg': 'bg_stamp_bpls3',
+      'sheet': '29#sheet_track_2121#e#2121,30#sheet_track_2122#e#2122,31#sheet_track_2123#e#2123,32#sheet_track_2124#e#2124,33#sheet_track_2125#e#2125,34#sheet_track_2126#e#2126,35#sheet_track_2127#e#2127,36#sheet_track_2128#e#2128,37#sheet_track_2160#e#2160,38#sheet_track_2161#e#2161',
+      'data': [
+        {
+          'stmpid': 29,
+          'stps': 15,
+          'stprwrd': '15:e:212123'
+        },
+        {
+          'stmpid': 30,
+          'stps': 15,
+          'stprwrd': '15:e:212223'
+        },
+        {
+          'stmpid': 31,
+          'stps': 15,
+          'stprwrd': '15:e:212323'
+        },
+        {
+          'stmpid': 32,
+          'stps': 15,
+          'stprwrd': '15:e:212423'
+        },
+        {
+          'stmpid': 33,
+          'stps': 15,
+          'stprwrd': '15:e:212523'
+        },
+        {
+          'stmpid': 34,
+          'stps': 15,
+          'stprwrd': '15:e:212623'
+        },
+        {
+          'stmpid': 35,
+          'stps': 15,
+          'stprwrd': '15:e:212723'
+        },
+        {
+          'stmpid': 36,
+          'stps': 15,
+          'stprwrd': '15:e:212823'
+        },
+        {
+          'stmpid': 37,
+          'stps': 15,
+          'stprwrd': '15:e:216023'
+        },
+        {
+          'stmpid': 38,
+          'stps': 30,
+          'stprwrd': '0:r:x29 0:r:x30 0:r:x31 0:r:x32 0:r:x33 0:r:x34 0:r:x35 0:r:x36 0:r:x37 30:e:216123'
+        }
+      ]
+    }
   }
 }
 
@@ -484,9 +549,9 @@ export const ARENA = {
       rule: 0,
       rank_match_target: 0,
       time_start: BigInt(Date.parse('25 Apr 2022 00:00:00 GMT')),
-      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      time_end: BigInt(Date.parse('05 Jun 2022 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('25 Apr 2022 00:00:00 GMT')),
-      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_end: BigInt(Date.parse('05 Jun 2022 23:59:59 GMT')),
       is_open: 1,
       is_shop: 1
     },
@@ -587,9 +652,9 @@ export const ARENA = {
       rule: 1,
       rank_match_target: 0,
       time_start: BigInt(Date.parse('30 Jun 2022 00:00:00 GMT')),
-      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      time_end: BigInt(Date.parse('14 Aug 2022 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('30 Jun 2022 00:00:00 GMT')),
-      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_end: BigInt(Date.parse('14 Aug 2022 23:59:59 GMT')),
       is_open: 1,
       is_shop: 1
     },
@@ -658,9 +723,9 @@ export const ARENA = {
       rule: 1,
       rank_match_target: 0,
       time_start: BigInt(Date.parse('01 Sep 2022 00:00:00 GMT')),
-      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      time_end: BigInt(Date.parse('02 Oct 2022 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('01 Sep 2022 00:00:00 GMT')),
-      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_end: BigInt(Date.parse('02 Oct 2022 23:59:59 GMT')),
       is_open: 1,
       is_shop: 1
     },
@@ -670,7 +735,7 @@ export const ARENA = {
         catalog_type: 1,
         price: 15000,
         item_type: 11,
-        item_id: 104, // nana v
+        item_id: 104,
         param: 1,
       },
       {
@@ -678,7 +743,7 @@ export const ARENA = {
         catalog_type: 1,
         price: 8000,
         item_type: 0,
-        item_id: 1743, // revvable engine
+        item_id: 1743,
         param: 23,
       },
       {
@@ -729,9 +794,9 @@ export const ARENA = {
       rule: 1,
       rank_match_target: 0,
       time_start: BigInt(Date.parse('20 Oct 2022 00:00:00 GMT')),
-      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      time_end: BigInt(Date.parse('13 Nov 2022 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('20 Oct 2022 00:00:00 GMT')),
-      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_end: BigInt(Date.parse('13 Nov 2022 23:59:59 GMT')),
       is_open: 1,
       is_shop: 1
     },
@@ -755,7 +820,7 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 8000,
+        price: 15000,
         item_type: 0,
         item_id: 1902,
         param: 23,
@@ -840,9 +905,9 @@ export const ARENA = {
       rule: 1,
       rank_match_target: 0,
       time_start: BigInt(Date.parse('22 Dec 2022 00:00:00 GMT')),
-      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      time_end: BigInt(Date.parse('16 Jan 2023 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('22 Dec 2022 00:00:00 GMT')),
-      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_end: BigInt(Date.parse('16 Jan 2023 23:59:59 GMT')),
       is_open: 1,
       is_shop: 1
     },
@@ -919,9 +984,9 @@ export const ARENA = {
       rule: 1,
       rank_match_target: 0,
       time_start: BigInt(Date.parse('16 Feb 2023 00:00:00 GMT')),
-      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      time_end: BigInt(Date.parse('13 Mar 2023 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('16 Feb 2023 00:00:00 GMT')),
-      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_end: BigInt(Date.parse('13 Mar 2023 23:59:59 GMT')),
       is_open: 1,
       is_shop: 1
     },
@@ -990,9 +1055,9 @@ export const ARENA = {
       rule: 1,
       rank_match_target: 1,
       time_start: BigInt(Date.parse('27 Apr 2023 00:00:00 GMT')),
-      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      time_end: BigInt(Date.parse('15 May 2023 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('27 Apr 2023 00:00:00 GMT')),
-      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_end: BigInt(Date.parse('15 May 2023 23:59:59 GMT')),
       is_open: 1,
       is_shop: 1
     },
@@ -1016,7 +1081,7 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 8000,
+        price: 4000,
         item_type: 0,
         item_id: 786,
         param: 8,
@@ -1024,7 +1089,7 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 8000,
+        price: 4000,
         item_type: 0,
         item_id: 787,
         param: 8,
@@ -1032,7 +1097,7 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 8000,
+        price: 4000,
         item_type: 0,
         item_id: 788,
         param: 8,
@@ -1040,7 +1105,7 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 4000,
+        price: 8000,
         item_type: 0,
         item_id: 789,
         param: 8,
@@ -1048,7 +1113,7 @@ export const ARENA = {
       {
         catalog_id: 1,
         catalog_type: 1,
-        price: 4000,
+        price: 8000,
         item_type: 0,
         item_id: 790,
         param: 8,
@@ -1141,9 +1206,9 @@ export const ARENA = {
       rule: 1,
       rank_match_target: 1,
       time_start: BigInt(Date.parse('8 Jun 2023 00:00:00 GMT')),
-      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      time_end: BigInt(Date.parse('26 Jun 2023 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('8 Jun 2023 00:00:00 GMT')),
-      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_end: BigInt(Date.parse('26 Jun 2023 23:59:59 GMT')),
       is_open: 1,
       is_shop: 1
     },
@@ -1244,9 +1309,9 @@ export const ARENA = {
       rule: 1,
       rank_match_target: 0,
       time_start: BigInt(Date.parse('13 Jul 2023 00:00:00 GMT')),
-      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      time_end: BigInt(Date.parse('31 Jul 2023 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('13 Jul 2023 00:00:00 GMT')),
-      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_end: BigInt(Date.parse('31 Jul 2023 23:59:59 GMT')),
       is_open: 1,
       is_shop: 1
     },
@@ -1339,9 +1404,9 @@ export const ARENA = {
       rule: 1,
       rank_match_target: 1,
       time_start: BigInt(Date.parse('17 Aug 2023 00:00:00 GMT')),
-      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      time_end: BigInt(Date.parse('04 Sep 2023 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('17 Aug 2023 00:00:00 GMT')),
-      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_end: BigInt(Date.parse('04 Sep 2023 23:59:59 GMT')),
       is_open: 1,
       is_shop: 1
     },
@@ -1490,9 +1555,9 @@ export const ARENA = {
       rule: 0,
       rank_match_target: 2,
       time_start: BigInt(Date.parse('26 Oct 2023 00:00:00 GMT')),
-      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      time_end: BigInt(Date.parse('13 Nov 2023 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('26 Oct 2023 00:00:00 GMT')),
-      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_end: BigInt(Date.parse('13 Nov 2023 23:59:59 GMT')),
       is_open: 1,
       is_shop: 1
     },
@@ -1617,9 +1682,9 @@ export const ARENA = {
       rule: 2,
       rank_match_target: 0,
       time_start: BigInt(Date.parse('21 Dec 2023 00:00:00 GMT')),
-      time_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      time_end: BigInt(Date.parse('15 Jan 2024 23:59:59 GMT')),
       shop_start: BigInt(Date.parse('21 Dec 2023 00:00:00 GMT')),
-      shop_end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT')),
+      shop_end: BigInt(Date.parse('15 Jan 2024 23:59:59 GMT')),
       is_open: 1,
       is_shop: 1
     },
@@ -1721,6 +1786,197 @@ export const ARENA = {
         param: 8,
       }
     ]
+  },
+  'Season 13 (ARENA BATTLE 2024/05/02～2024/06/03)': {
+    details: {
+      season: 13,
+      rule: 1,
+      rank_match_target: 0,
+      time_start: BigInt(Date.parse('02 May 2024 00:00:00 GMT')),
+      time_end: BigInt(Date.parse('03 Jun 2024 23:59:59 GMT')),
+      shop_start: BigInt(Date.parse('02 May 2024 00:00:00 GMT')),
+      shop_end: BigInt(Date.parse('03 Jun 2024 23:59:59 GMT')),
+      is_open: 1,
+      is_shop: 1
+    },
+    arena_items: [
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 85,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 389,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 635,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 2171,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 786,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 787,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 788,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 789,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 790,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 610,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 5000,
+        item_type: 0,
+        item_id: 2077,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 5000,
+        item_type: 0,
+        item_id: 2078,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 15000,
+        item_type: 0,
+        item_id: 1902,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 1855,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 381,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 633,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 332,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 711,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 871,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 872,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 64,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 88,
+        param: 8,
+      }
+    ]
   }
 }
 
@@ -1790,6 +2046,11 @@ export const VALGENE = {
       valgene_name: "ヴァルキリージェネレーター　第13弾",
       valgene_name_english: "Valkyrie Generator Vol. 13",
       valgene_id: 13
+    },
+    {
+      valgene_name: "ヴァルキリージェネレーター　第14弾",
+      valgene_name_english: "Valkyrie Generator Vol. 14",
+      valgene_id: 14
     }
   ],
   rarity: {
@@ -2102,6 +2363,27 @@ export const VALGENE = {
         {
           type: 18,
           item_ids: [397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418]
+        }
+      ]
+    },
+    {
+      volume: 14,
+      items: [
+        {
+          type: 17,
+          item_ids: [334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367]
+        },
+        {
+          type: 18,
+          item_ids: [456, 457, 458, 459, 460, 461, 462, 463]
+        },
+        {
+          type: 19,
+          item_ids: [64, 65, 66, 67, 68, 69, 70, 71]
+        },
+        {
+          type: 20,
+          item_ids: [44, 45]
         }
       ]
     }
