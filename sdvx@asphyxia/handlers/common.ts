@@ -1,7 +1,8 @@
 import { EVENT4, COURSES4, EXTENDS4 } from '../data/hvn';
 import { EVENT5, COURSES5, EXTENDS5 } from '../data/vvw';
 import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIE_SONGS,
-          LICENSED_SONGS6, ARENA, VALGENE, INFORMATION6, STAMP_EVENTS6
+          LICENSED_SONGS6, ARENA, VALGENE, INFORMATION6, STAMP_EVENTS6,
+          REMOVED_SONGS6
 } from '../data/exg';
 import { COURSE2 } from '../data/inf';
 import {getVersion, getRandomIntInclusive} from '../utils';
@@ -102,6 +103,10 @@ export const common: EPR = async (info, data, send) => {
               limitedNo = 2;
               // if song is released during exceed gear
               if(songData.info.version['#text'] === '6') { 
+                // Songs are removed for multiple reasons, this will check whether to show or hide them (for songs released during EG)
+                if(REMOVED_SONGS6.includes(i.toString()) && !U.GetConfig('enable_removed_songs')) {
+                  limitedNo -= 1;
+                }
                 // Licensed songs released in Exceed Gear needs limited=3 to appear
                 if(LICENSED_SONGS6.includes(i.toString())) {
                   limitedNo += 1;
@@ -124,6 +129,16 @@ export const common: EPR = async (info, data, send) => {
                   music_type: K.ITEM('u8', 3),
                   limited: K.ITEM('u8', limitedNo),
                 });
+              }
+              // Songs are removed for multiple reasons, this will check whether to show or hide them (for songs released before EG)
+              else if(REMOVED_SONGS6.includes(i.toString()) && !U.GetConfig('enable_removed_songs')) {
+                for(let j = 0; j < 5; j++) {
+                  songs.push({
+                    music_id: K.ITEM('s32', i),
+                    music_type: K.ITEM('u8', j),
+                    limited: K.ITEM('u8', 2),
+                  });
+                }
               }
             }
           }

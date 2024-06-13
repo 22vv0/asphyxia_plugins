@@ -1,8 +1,8 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.3.2
+**Plugin Version:** fork-6.0.3.3
 
-**Supported game versions:** EXCEED GEAR (2024043001)
+**Supported game versions:** EXCEED GEAR (2024060401)
 
 **Unsupported game versions:** Every other game, as they're untested.
 
@@ -16,6 +16,21 @@
 
 Changelog
 ===========
+## fork-6.0.3.3
+
+### New:
+
+1. Main:
+	- 2024060401 support
+	- Added PREMIUM GENERATOR (角巻わため､ / Tsunomaki Watame set)
+		- Note: subbg files from this pregene set are missing on some leaked update data, you will not be able to use those until those files are in your data.
+	- Added Watame songs to licensed songs list (exg.ts)
+	- Watame crew usable (exg.ts)
+
+2. Misc
+	- Added option to hide/show serverside-removed music (enabled by default)
+	
+
 ## fork-6.0.3.2
 
 ### New:
@@ -47,24 +62,6 @@ Changelog
 		- Originally this plugin will send all profiles as rivals. Users can now make their own list of rivals.
 		- Added simple score comparison table with your rival/s.
 	- Cleaned up stamp event code & data.
-
-
-## fork-6.0.3.0
-
-### New:
-
-1. Main:
-	- Added Premium Generator Set 4 (BPL S3)
-	- Updated events.json to add weeks 6 & 7 of BPL event songs
-2. Misc:
-	- Fixed ARENA Season 12 rule from 1 (point system) to 2 (voting system)
-	- Added ARENA-related startup flags to exg.ts (arena room id input, online/local match rule voting system, etc.)
-	- Updated system backgrounds list in customize\_data\_ext.json (forgot to update it as it's manual, sorry...)
-	- Added new APRIL\_RAINBOW\_LINE\_ACTIVE to startup flags toggle list. 
-		- Enables April Fools 2024 Effect. Toggle this flag on and type V-RAN on the song search bar to activate it.
-	- Added lounge code (checks for active matches to toggle 'matching' indicator in lounge)
-	- Fixes to profile customization WebUI js where 1: subbg selection doesn't match the one previewed, and 2: it provides the incorrect subbg file format. 
-	- Some online matchmaking experimentations (still can't make it work though)
 
 
 ### Todo:

@@ -41,6 +41,7 @@ export function register() {
   R.Config('unlock_all_songs', { type: 'boolean', default: false, name:'Unlock All Songs'});
   R.Config('unlock_all_navigators', { type: 'boolean', default: false, name:'Unlock All Navigators'} );
   R.Config('unlock_all_appeal_cards', { type: 'boolean', default: false, name:'Unlock All Appeal Cards'});
+  R.Config('enable_removed_songs', {type: 'boolean', default: true, name:'Enable removed songs', desc: 'Songs hidden or removed server-side will appear.'})
   R.Config('sdvx_eg_root_dir', { type: 'string', needRestart: true, default: '', name: 'Exceed Gear Data Directory', desc: 'The root directory of your SDVX Exceed Gear game files (for asset copying)'});
   R.Config('use_information' ,{ type: 'boolean', default: true, name:'Use Asphyxia Information', desc:'Enable the Asphyxia information section after entry. Otherwise, it will try to look for official information data and display them.'});
   R.Config('use_asphyxia_gameover',{ type: 'boolean', default: true, name:'Use Asphyxia Gameover', desc:'Enable the Asphyxia gameover message after ending the game.'})
