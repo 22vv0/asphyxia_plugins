@@ -33,7 +33,7 @@ export enum ClearKind {
   NONE = 6,
   GOOD_COMBO,
   GREAT_COMBO,
-  PERPECT_COMBO,
+  PERFECT_COMBO,
   MARVELOUS_COMBO
 }
 

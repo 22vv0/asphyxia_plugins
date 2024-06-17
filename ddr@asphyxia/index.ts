@@ -2,10 +2,13 @@ import { convcardnumber, eventLog } from "./handlers/common";
 import { usergamedata } from "./handlers/usergamedata";
 import { usergamedata_recv } from "./handlers/usergamedata_recv";
 import { usergamedata_send } from "./handlers/usergamedata_send";
+import { musicdataload, playerdatanew, playerdatasave, playerdataload, rivaldataload, taboowordcheck } from "./handlers/ddrworld";
 import { CommonOffset, OptionOffset, Profile } from "./models/profile";
 
 export function register() {
   R.GameCode("MDX");
+
+  R.Unhandled(undefined);
 
   R.Config("save_option", {
     name: "Save option",
@@ -14,12 +17,43 @@ export function register() {
     type: "boolean"
   });
 
-  R.Route("playerdata.usergamedata_advanced", usergamedata);
-  R.Route("playerdata.usergamedata_recv", usergamedata_recv);
-  R.Route("playerdata.usergamedata_send", usergamedata_send);
+  const RoutePlayerData = (method: string, handler: EPR | boolean) => {
+    R.Route(`playerdata.${method}`, handler);
+    R.Route(`playerdata_2.${method}`, handler);
+  };
 
-  R.Route("system.convcardnumber", convcardnumber);
-  R.Route("eventlog.write", eventLog);
+  const RoutePlayData = (method: string, handler: EPR | boolean) => {
+    R.Route(`playdata_3.${method}`, handler);
+
+  };
+
+  const WordCheck = (method: string, handler: EPR | boolean) => {
+    R.Route(`wordcheck_3.${method}`, handler);
+  }
+
+  const RouteSystem = (method: string, handler: EPR | boolean) => {
+    R.Route(`system.${method}`, handler);
+    R.Route(`system_2.${method}`, handler);
+    R.Route(`system_3.${method}`, handler);
+  };
+
+  const RouteEventLog = (method: string, handler: EPR | boolean) => {
+    R.Route(`eventlog.${method}`, handler);
+    R.Route(`eventlog_2.${method}`, handler);
+    R.Route(`eventlog_3.${method}`, handler);
+  };
+
+  RoutePlayerData('usergamedata_advanced', usergamedata);
+  RoutePlayerData('usergamedata_recv', usergamedata_recv);
+  RoutePlayerData('usergamedata_send', usergamedata_send);
+  RoutePlayData('musicdata_load', musicdataload);
+  RoutePlayData('playerdata_new', playerdatanew);
+  RoutePlayData('playerdata_load', playerdataload);
+  RoutePlayData('playerdata_save', playerdatasave);
+  RoutePlayData('rivaldata_load', rivaldataload);
+  RouteSystem("convcardnumber", convcardnumber);
+  RouteEventLog("write", eventLog);
+  WordCheck('tabooword_check', taboowordcheck)
 
   R.WebUIEvent("updateName", async ({ refid, name }) => {
     let strdata: Profile | string[] = await DB.FindOne<Profile>(refid, { collection: "profile" });
