@@ -1,5 +1,34 @@
 import { Profile } from "../models/profile";
-import { ProfileWorld, ScoreWorld } from "../models/ddrworld";
+import { ProfileWorld, ScoreWorld, EventWorld } from "../models/ddrworld";
+import { SONGS_WORLD, EVENTS_WORLD } from "../data/world";
+
+async function saveScores(refid: string, songId: number, style: number, difficulty: number, rank: number, clearKind: number, score: number, exScore: number, maxCombo: number, flareForce: number, ghostSize: number, ghost: string) {
+  let stepScore = await DB.Find<ScoreWorld>(refid, {collection: "score3", songId: songId, style: style, difficulty: difficulty})
+  if(stepScore.length > 0) {
+    rank = (rank < stepScore[0].rank) ? rank : stepScore[0].rank;
+    clearKind = (clearKind != 6 && clearKind > stepScore[0].clearKind) ? clearKind : stepScore[0].clearKind;
+    score = (score > stepScore[0].score) ? score : stepScore[0].score;
+    exScore = (exScore > stepScore[0].exScore) ? exScore : stepScore[0].exScore;
+    maxCombo = (maxCombo > stepScore[0].maxCombo) ? maxCombo : stepScore[0].maxCombo;
+    flareForce = (flareForce > stepScore[0].flareForce) ? flareForce : stepScore[0].flareForce;
+  }
+
+  await DB.Upsert<ScoreWorld>(refid, {
+    collection: "score3",
+    songId,
+    style,
+    difficulty
+    }, {
+      $set: {
+        rank,
+        clearKind,
+        score,
+        exScore,
+        maxCombo,
+        flareForce
+      }
+  });
+}
 
 export const playerdatanew: EPR = async (info, data, send) => {
   const refid = $(data).str("data.refid");
@@ -20,9 +49,6 @@ export const playerdatanew: EPR = async (info, data, send) => {
 
 export const playerdatasave: EPR = async (info, data, send) => {
   const refid = $(data).str("data.refid");
-  console.log('playerdatasave')
-  console.log(JSON.stringify($(info)))
-  console.log(JSON.stringify($(data)))
   if(!refid.startsWith("X000")) {
     if($(data).number("data.savekind") === 1) {
       await DB.Upsert<ProfileWorld>(refid, { collection: "profile3" }, {
@@ -93,6 +119,20 @@ export const playerdatasave: EPR = async (info, data, send) => {
         cgTipsAdvance: $(data).number('data.checkguide.tips_advance'),
         cgGuideScene: $(data).number('data.checkguide.guide_scene')
       })
+    }
+    else if($(data).number("data.savekind") === 2) {
+      let songId = $(data).number("data.result.mcode");
+      let style = $(data).number("data.result.style");
+      let difficulty = $(data).number("data.result.difficulty");
+      let rank = $(data).number("data.result.rank");
+      let clearKind = $(data).number("data.result.clearkind");
+      let score = $(data).number("data.result.score");
+      let exScore = $(data).number("data.result.exscore");
+      let maxCombo = $(data).number("data.result.maxcombo");
+      let flareForce = $(data).number("data.result.flare_force");
+      let ghostSize = $(data).number("data.result.ghostsize");
+      let ghost = $(data).str("data.result.ghost");
+      saveScores(refid, songId, style, difficulty, rank, clearKind, score, exScore, maxCombo, flareForce, ghostSize, ghost)
     }
     else if($(data).number("data.savekind") === 3) {
       let profile = await DB.FindOne<ProfileWorld>(refid, {collection: "profile3"})
@@ -165,55 +205,34 @@ export const playerdatasave: EPR = async (info, data, send) => {
         cgGuideScene: $(data).number('data.checkguide.guide_scene')
       })
 
-      let scores = $(data).elements('data.result')
-      for(const scoreData of scores) {
-        const songId = scoreData.number("mcode");
-        const style = scoreData.number("style");
-        const difficulty = scoreData.number("difficulty");
-        let rank = scoreData.number("rank");
-        let clearKind = scoreData.number("clearkind");
-        let score = scoreData.number("score");
-        let exScore = scoreData.number("exscore");
-        let maxCombo = scoreData.number("maxcombo");
-        let flareForce = scoreData.number("flare_force");
-        let ghostSize = scoreData.number("ghostsize");
-        let ghost = scoreData.str("ghost");
+      let eventData = $(data).elements('data.event')
+      if(eventData) {
+        for(const e of eventData) {
+          let eid = e.number('eventid')
+          let eno = e.number('eventno')
+          let etype = e.number('eventtype')
+          let ctime = getDate()
+          let sdata = e.number('savedata')
 
-        let stepScore = await DB.Find<ScoreWorld>(refid, {collection: "score3", songId: songId, style: style, difficulty: difficulty})
-        if(stepScore.length > 0) {
-          rank = (scoreData.number("rank") < stepScore[0].rank) ? scoreData.number("rank") : stepScore[0].rank;
-          clearKind = (scoreData.number("clearkind") != 6 && scoreData.number("clearkind") > stepScore[0].clearKind) ? scoreData.number("clearkind") : stepScore[0].clearKind;
-          score = (scoreData.number("score") > stepScore[0].score) ? scoreData.number("score") : stepScore[0].score;
-          exScore = (scoreData.number("exscore") > stepScore[0].exScore) ? scoreData.number("exscore") : stepScore[0].exScore;
-          maxCombo = (scoreData.number("maxcombo") > stepScore[0].maxCombo) ? scoreData.number("maxcombo") : stepScore[0].maxCombo;
-          flareForce = (scoreData.number("flare_force") > stepScore[0].flareForce) ? scoreData.number("flare_force") : stepScore[0].flareForce;
+          await DB.Upsert<EventWorld>(refid, { collection: "event3", eventId: eid }, {
+            collection: "event3", 
+            eventId: eid, 
+            eventNo: eno, 
+            eventType: etype, 
+            compTime: ctime, 
+            saveData: sdata 
+          })
         }
-
-        await DB.Upsert<ScoreWorld>(refid, {
-          collection: "score3",
-          songId,
-          style,
-          difficulty
-          }, {
-            $set: {
-              rank,
-              clearKind,
-              score,
-              exScore,
-              maxCombo,
-              flareForce
-            }
-        });
       }
     }
 
     return send.object({
-      result: K.ITEM('s32', 0)
+      result: K.ITEM("s32", 0)
     })
   }
 
   return send.object({
-    result: K.ITEM('s32', 1)
+    result: K.ITEM("s32", 1)
   })
 };
 
@@ -240,17 +259,25 @@ export const playerdataload: EPR = async (info, data, send) => {
           */
           scr[(scoreData.style === 0) ? 'score_single' : 'score_double'] = [
             {
-              score_str: K.ITEM('str', scoreData.difficulty + ',1,' + scoreData.rank + ',' + scoreData.clearKind + ',' + scoreData.score + ',' + scoreData.maxCombo + ',' + scoreData.flareForce + ',' + scoreData.flareForce)
+              score_str: K.ITEM('str', scoreData.difficulty + ',1,' + scoreData.rank + ',' + scoreData.clearKind + ',' + scoreData.score + ',' + scoreData.exScore + ',' + scoreData.flareForce + ',' + scoreData.flareForce)
             }
           ]
           scoreFin.push(scr)
           
         } else {
           scoreFin[mcodeIndex][(scoreData.style === 0) ? 'score_single' : 'score_double'].push({
-            score_str: K.ITEM('str', scoreData.difficulty + ',1,' + scoreData.rank + ',' + scoreData.clearKind + ',' + scoreData.score + ',' + scoreData.maxCombo + ',' + scoreData.flareForce + ',' + scoreData.flareForce)
+            score_str: K.ITEM('str', scoreData.difficulty + ',1,' + scoreData.rank + ',' + scoreData.clearKind + ',' + scoreData.score + ',' + scoreData.exScore + ',' + scoreData.flareForce + ',' + scoreData.flareForce)
           })
         }
       }
+    }
+
+    let eventFin = []
+    for(const event of EVENTS_WORLD) {
+      let eventData = await DB.FindOne<EventWorld>(refid, { collection: "event3", eventId: event.id, eventNo: event.no });
+      eventFin.push({
+        event_str: K.ITEM('str', event.id + ',' + event.type + ',' + event.no + ',0,' + event.sid + ',' + ((eventData) ? BigInt(eventData.compTime) : '0') + ',' + ((eventData) ? eventData.saveData : '0'))
+      })  
     }
 
     if(!profile) {
@@ -449,7 +476,7 @@ export const playerdataload: EPR = async (info, data, send) => {
       },
       rival: [],
       score: scoreFin,
-      event: []
+      event: eventFin
     });
   }
   return send.object({
@@ -459,10 +486,32 @@ export const playerdataload: EPR = async (info, data, send) => {
 };
 
 export const musicdataload: EPR = async (info, data, send) => {
-  console.log('musicdataload')
-  console.log("----------------------")
-
   let musicList = []
+  if(IO.Exists('data/musicdb.xml')) { 
+    let mdb = U.parseXML(U.DecodeString(await IO.ReadFile('data/musicdb.xml'), "shift_jis"), false)
+    for(const music of mdb['mdb']['music']) {
+      let difficultyArr = $(music).numbers('diffLv')
+      let limited = ($(music).number('limited')) ? $(music).number('limited') : 0
+      for(const [index, diff] of difficultyArr.entries()) {
+        limited = ($(music).numbers('limited_ary')) ? $(music).numbers('limited_ary')[index] : limited
+        limited = ((index % 5 === 4) && $(music).number('limited_cha')) ? $(music).number('limited_cha') : limited
+        musicList.push({
+          music_str: K.ITEM('str', $(music).number('mcode') + ',' + ((index > 4) ? '1,' : '0,') + (index % 5) + ',' + limited + ',' + diff)
+        })
+      }
+    }
+  }
+
+  for(const music of SONGS_WORLD) {
+    for(const [index, diff] of music.diffLv.entries()) {
+      if(music.limited_ary[index] != -1) {
+        musicList.push({
+          music_str: K.ITEM('str', music.mcode + ',' + ((index > 4) ? '1,' : '0,') + (index % 5) + ',' + music.limited_ary[index] + ',' + diff)
+        })
+      }
+    }
+  }
+
   return send.object({
     result: K.ITEM("s32", 0),
     servertime: K.ITEM("u64", BigInt(getDate())),
@@ -471,9 +520,10 @@ export const musicdataload: EPR = async (info, data, send) => {
 };
 
 export const rivaldataload: EPR = async (info, data, send) => {
-  console.log('rivaldataload')
-  console.log("----------------------")
-  return send.deny();
+  return send.object({
+    result: K.ITEM("s32", 0),
+    record: []
+  });
 };
 
 export const taboowordcheck: EPR = async (info, data, send) => {
@@ -484,9 +534,9 @@ export const taboowordcheck: EPR = async (info, data, send) => {
   });
 };
 
-function getDate(): BigInt {
+function getDate(): number {
   let time = new Date();
   let tempDate = time.getDate();
   const currentTime = parseInt((time.getTime()/100000) as unknown as string)*100;
-  return BigInt(currentTime)
+  return currentTime
 }

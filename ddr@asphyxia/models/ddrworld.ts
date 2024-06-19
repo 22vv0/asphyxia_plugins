@@ -21,6 +21,16 @@ export interface ScoreWorld {
   flareForce: number;
 }
 
+export interface EventWorld {
+  collection: "event3";
+
+  eventId: number;
+  eventNo: number;
+  eventType: number;
+  compTime: number;
+  saveData: number;
+}
+
 export interface ProfileWorld {
   collection: "profile3";
 

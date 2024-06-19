@@ -1,6 +1,6 @@
 # DanceDanceRevolution
 
-**Plugin Version:** fork-mdx-3.0.0
+**Plugin Version:** fork-mdx-3.0.0a
 
 **Supported game versions:** WORLD (2024061300)
 
@@ -17,6 +17,19 @@
 
 Changelog
 ===========
+## fork-mdx-3.0.0a
+
+### New:
+
+1. Main:
+	- Flare skill song unlock event
+		- Added event data (ddr@asphyxia/data/world.ts:EVENTS_WORLD)
+		- Fixes crashes on Flare Skill rank up (at least until Mercury, haven't tested higher than that yet.)
+	- musicdata_load
+		- Put your musicdb.xml on 'ddr@asphyxia/data' folder. Tested with A3 musicdb.xml
+		- Added musicdata for new WORLD songs (ddr@asphyxia/data/world.ts:SONGS_WORLD)
+
+
 ## fork-mdx-3.0.0
 
 ### New:
@@ -31,7 +44,7 @@ Changelog
 
 
 ### To do:
-1. Make songs appear
-2. Look for more missing features (I don't play DDR so idk what's missing lol)
-3. Check bugs (on score loading, profile saving, etc.)
-4. Transfer old save data to World (?)
+
+1. Look for more missing features (I don't play DDR so idk what's missing lol)
+2. Check flare skill value consistency
+3. Transfer old save data to World (?)
