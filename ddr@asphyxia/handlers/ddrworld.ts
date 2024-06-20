@@ -1,5 +1,5 @@
 import { Profile } from "../models/profile";
-import { ProfileWorld, ScoreWorld, EventWorld } from "../models/ddrworld";
+import { ProfileWorld, ScoreWorld, EventWorld, GhostWorld } from "../models/ddrworld";
 import { SONGS_WORLD, EVENTS_WORLD } from "../data/world";
 
 async function saveScores(refid: string, songId: number, style: number, difficulty: number, rank: number, clearKind: number, score: number, exScore: number, maxCombo: number, flareForce: number, ghostSize: number, ghost: string) {
@@ -26,6 +26,17 @@ async function saveScores(refid: string, songId: number, style: number, difficul
         exScore,
         maxCombo,
         flareForce
+      }
+  });
+
+  await DB.Upsert<GhostWorld>(refid, {
+    collection: "ghost3",
+    songId,
+    difficulty
+    }, {
+      $set: {
+        ghostSize,
+        ghost
       }
   });
 }
@@ -238,11 +249,111 @@ export const playerdatasave: EPR = async (info, data, send) => {
 
 export const playerdataload: EPR = async (info, data, send) => {
   const refid = $(data).str("data.refid");
-  console.log('playerdataload')
-  console.log("----------------------")
-  if (!refid.startsWith("X000")) {
-    const profile_a3 = await DB.FindOne<Profile>(refid, { collection: "profile" });
-    const profile = await DB.FindOne<ProfileWorld>(refid, { collection: "profile3" });
+  const profile = await DB.FindOne<ProfileWorld>(refid, { collection: "profile3" });
+
+  if (!profile || refid.startsWith("X000"))  {
+    return send.object({
+      result: K.ITEM("s32", 0),
+      refid: K.ITEM("str", refid),
+      gamesession: K.ITEM('s64', BigInt(1)),
+      servertime: K.ITEM("u64", BigInt(getDate())),
+      is_locked: K.ITEM('bool', false),
+      common: {
+        ddrcode: K.ITEM("s32", 0),
+        dancername: K.ITEM("str", ''),
+        is_new: K.ITEM('bool', true),
+        is_registering: K.ITEM('bool', false),
+        area: K.ITEM("s32", 0),
+        extrastar: K.ITEM("s32", 0),
+        playcount: K.ITEM("s32", 0),
+        weight: K.ITEM("s32", 0),
+        today_cal: K.ITEM("u64", BigInt(0)),
+        is_disp_weight: K.ITEM("bool", false),
+        is_takeover: K.ITEM('bool', false),
+        pre_playable_num: K.ITEM("s32", 0)
+      },
+      option: {
+        hispeed: K.ITEM("s32", 0),
+        gauge: K.ITEM("s32", 0),
+        fastslow: K.ITEM("s32", 0),
+        guideline: K.ITEM("s32", 0),
+        stepzone: K.ITEM("s32", 0),
+        timing_disp: K.ITEM("s32", 0),
+        visibility: K.ITEM("s32", 0),
+        visible_time: K.ITEM("s32", 0),
+        lane: K.ITEM("s32", 0),
+        lane_hiddenpos: K.ITEM("s32", 0),
+        lane_suddenpos: K.ITEM("s32", 0),
+        lane_hidsudpos: K.ITEM("s32", 0),
+        lane_filter: K.ITEM("s32", 0),
+        scroll_direction: K.ITEM("s32", 0),
+        scroll_moving: K.ITEM("s32", 0),
+        arrow_priority: K.ITEM("s32", 0),
+        arrow_placement: K.ITEM("s32", 0),
+        arrow_color: K.ITEM("s32", 0),
+        arrow_design: K.ITEM("s32", 0),
+        cut_timing: K.ITEM("s32", 0),
+        cut_freeze: K.ITEM("s32", 0),
+        cut_jump: K.ITEM("s32", 0)
+      },
+      lastplay: {
+        mode: K.ITEM("s32", 0),
+        folder: K.ITEM("s32", 0),
+        mcode: K.ITEM("s32", 0),
+        style: K.ITEM("s32", 0),
+        difficulty: K.ITEM("s32", 0),
+        window_main: K.ITEM("s32", 0),
+        window_sub: K.ITEM("s32", 0),
+        target: K.ITEM("s32", 0),
+        tab_main: K.ITEM("s32", 0),
+        tab_sub: K.ITEM("s32", 0)
+      },
+      filtersort: {
+        title: K.ITEM("u64", BigInt(0)),
+        version: K.ITEM("u64", BigInt(0)),
+        genre: K.ITEM("u64", BigInt(0)),
+        bpm: K.ITEM("u64", BigInt(0)),
+        event: K.ITEM("u64", BigInt(0)),
+        level: K.ITEM("u64", BigInt(0)),
+        flare_rank: K.ITEM("u64", BigInt(0)),
+        clear_rank: K.ITEM("u64", BigInt(0)),
+        flare_skill_target: K.ITEM("u64", BigInt(0)),
+        rival_flare_skill: K.ITEM("u64", BigInt(0)),
+        rival_score_rank: K.ITEM("u64", BigInt(0)),
+        sort_type: K.ITEM("u64", BigInt(0)),
+        order_type: K.ITEM("s32", 0),
+      },
+      checkguide: {
+        tips_basic: K.ITEM("u64", BigInt(0)),
+        tips_option: K.ITEM("u64", BigInt(0)),
+        tips_event: K.ITEM("u64", BigInt(0)),
+        tips_gimmick: K.ITEM("u64", BigInt(0)),
+        tips_advance: K.ITEM("u64", BigInt(0)),
+        guide_scene: K.ITEM("u64", BigInt(0)),
+      },
+      rival: [
+        {
+          slot: K.ITEM("s32", 0),
+          rivalcode: K.ITEM("s32", 0)
+        }
+      ],
+      score: [
+        {
+          mcode: K.ITEM("s32", 0),
+          score_single: {
+            score_str: K.ITEM("str", "")
+          },
+          score_double: {
+            score_str: K.ITEM("str", "")
+          }
+        }
+      ],
+      event: {
+        event_str: K.ITEM("str", "")
+      }
+    })
+  }
+  else {
     const scores = await DB.Find<ScoreWorld>(refid, { collection: "score3" });
 
     let scoreFin = []
@@ -256,6 +367,7 @@ export const playerdataload: EPR = async (info, data, send) => {
           scr['score_double'] = []
           /*
             difficulty,idk,grade,clearkind,score,idk either,flaredisp,flarepoints
+            needs more work, 9 vals
           */
           scr[(scoreData.style === 0) ? 'score_single' : 'score_double'] = [
             {
@@ -278,121 +390,6 @@ export const playerdataload: EPR = async (info, data, send) => {
       eventFin.push({
         event_str: K.ITEM('str', event.id + ',' + event.type + ',' + event.no + ',0,' + event.sid + ',' + ((eventData) ? BigInt(eventData.compTime) : '0') + ',' + ((eventData) ? eventData.saveData : '0'))
       })  
-    }
-
-    if(!profile) {
-      if(profile_a3) {
-        return send.object({
-          result: K.ITEM("s32", 0),
-          refid: K.ITEM("str", refid),
-          gamesession: K.ITEM('s64', BigInt(1)),
-          servertime: K.ITEM("u64", BigInt(getDate())),
-          is_locked: K.ITEM('bool', false),
-          common: {
-            is_takeover: K.ITEM('bool', true)
-          }
-        })
-      }
-      return send.object({
-        result: K.ITEM("s32", 0),
-        refid: K.ITEM("str", refid),
-        gamesession: K.ITEM('s64', BigInt(1)),
-        servertime: K.ITEM("u64", BigInt(getDate())),
-        is_locked: K.ITEM('bool', false),
-        common: {
-          ddrcode: K.ITEM("s32", 0),
-          dancername: K.ITEM("str", ''),
-          is_new: K.ITEM('bool', true),
-          is_registering: K.ITEM('bool', false),
-          area: K.ITEM("s32", 0),
-          extrastar: K.ITEM("s32", 0),
-          playcount: K.ITEM("s32", 0),
-          weight: K.ITEM("s32", 0),
-          today_cal: K.ITEM("u64", BigInt(0)),
-          is_disp_weight: K.ITEM("bool", false),
-          is_takeover: K.ITEM('bool', false),
-          pre_playable_num: K.ITEM("s32", 0)
-        },
-        option: {
-          hispeed: K.ITEM("s32", 0),
-          gauge: K.ITEM("s32", 0),
-          fastslow: K.ITEM("s32", 0),
-          guideline: K.ITEM("s32", 0),
-          stepzone: K.ITEM("s32", 0),
-          timing_disp: K.ITEM("s32", 0),
-          visibility: K.ITEM("s32", 0),
-          visible_time: K.ITEM("s32", 0),
-          lane: K.ITEM("s32", 0),
-          lane_hiddenpos: K.ITEM("s32", 0),
-          lane_suddenpos: K.ITEM("s32", 0),
-          lane_hidsudpos: K.ITEM("s32", 0),
-          lane_filter: K.ITEM("s32", 0),
-          scroll_direction: K.ITEM("s32", 0),
-          scroll_moving: K.ITEM("s32", 0),
-          arrow_priority: K.ITEM("s32", 0),
-          arrow_placement: K.ITEM("s32", 0),
-          arrow_color: K.ITEM("s32", 0),
-          arrow_design: K.ITEM("s32", 0),
-          cut_timing: K.ITEM("s32", 0),
-          cut_freeze: K.ITEM("s32", 0),
-          cut_jump: K.ITEM("s32", 0)
-        },
-        lastplay: {
-          mode: K.ITEM("s32", 0),
-          folder: K.ITEM("s32", 0),
-          mcode: K.ITEM("s32", 0),
-          style: K.ITEM("s32", 0),
-          difficulty: K.ITEM("s32", 0),
-          window_main: K.ITEM("s32", 0),
-          window_sub: K.ITEM("s32", 0),
-          target: K.ITEM("s32", 0),
-          tab_main: K.ITEM("s32", 0),
-          tab_sub: K.ITEM("s32", 0)
-        },
-        filtersort: {
-          title: K.ITEM("u64", BigInt(0)),
-          version: K.ITEM("u64", BigInt(0)),
-          genre: K.ITEM("u64", BigInt(0)),
-          bpm: K.ITEM("u64", BigInt(0)),
-          event: K.ITEM("u64", BigInt(0)),
-          level: K.ITEM("u64", BigInt(0)),
-          flare_rank: K.ITEM("u64", BigInt(0)),
-          clear_rank: K.ITEM("u64", BigInt(0)),
-          flare_skill_target: K.ITEM("u64", BigInt(0)),
-          rival_flare_skill: K.ITEM("u64", BigInt(0)),
-          rival_score_rank: K.ITEM("u64", BigInt(0)),
-          sort_type: K.ITEM("u64", BigInt(0)),
-          order_type: K.ITEM("s32", 0),
-        },
-        checkguide: {
-          tips_basic: K.ITEM("u64", BigInt(0)),
-          tips_option: K.ITEM("u64", BigInt(0)),
-          tips_event: K.ITEM("u64", BigInt(0)),
-          tips_gimmick: K.ITEM("u64", BigInt(0)),
-          tips_advance: K.ITEM("u64", BigInt(0)),
-          guide_scene: K.ITEM("u64", BigInt(0)),
-        },
-        rival: [
-          {
-            slot: K.ITEM("s32", 0),
-            rivalcode: K.ITEM("s32", 0)
-          }
-        ],
-        score: [
-          {
-            mcode: K.ITEM("s32", 0),
-            score_single: {
-              score_str: K.ITEM("str", "")
-            },
-            score_double: {
-              score_str: K.ITEM("str", "")
-            }
-          }
-        ],
-        event: {
-          event_str: K.ITEM("str", "")
-        }
-      })
     }
 
     return send.object({
@@ -479,10 +476,6 @@ export const playerdataload: EPR = async (info, data, send) => {
       event: eventFin
     });
   }
-  return send.object({
-    result: K.ITEM("s32", 0),
-    is_new: K.ITEM("bool", false)
-  })
 };
 
 export const musicdataload: EPR = async (info, data, send) => {
@@ -526,12 +519,32 @@ export const rivaldataload: EPR = async (info, data, send) => {
   });
 };
 
+export const ghostdataload: EPR = async (info, data, send) => {
+  // i quite frankly dk what this is for lol i don't play ddr
+  const refid = $(data).str("data.refid");
+  const ghostId = $(data).number("data.ghostid");
+  let ghostData = await DB.FindOne<GhostWorld>(refid, {collection: 'ghost3', songId: ghostId})
+  if(ghostData) {
+    return send.object({
+      result: K.ITEM("s32", 0),
+      ghostsize: K.ITEM("s32", ghostData.ghostSize),
+      ghost: K.ITEM("str", ghostData.ghost)
+    });
+  }
+  return send.object({ result: K.ITEM("s32", 0) });
+};
+
 export const taboowordcheck: EPR = async (info, data, send) => {
   // Automatically accept word
   return send.object({
     result: K.ITEM("s32", 0),
     is_taboo: K.ITEM("bool", false)
   });
+};
+
+export const minidump: EPR = async (info, data, send) => {
+  console.log($(data).str('minidump'))
+  return send.object({ result: K.ITEM('s32', 0) })
 };
 
 function getDate(): number {

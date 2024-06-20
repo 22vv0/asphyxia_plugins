@@ -1,6 +1,6 @@
 # DanceDanceRevolution
 
-**Plugin Version:** fork-mdx-3.0.0a
+**Plugin Version:** fork-mdx-3.0.0b
 
 **Supported game versions:** WORLD (2024061300)
 
@@ -17,6 +17,17 @@
 
 Changelog
 ===========
+## fork-mdx-3.0.0b
+
+### New:
+
+1. Main:
+	- Flare skill song unlock event.... on Doubles.
+		- Fixes crashes on Flare Skill rank up.... on Doubles (again, just tested until Mercury.)
+		- Event list updated
+	- ghostdata saving and loading (WIP, idk what ghost is)
+
+
 ## fork-mdx-3.0.0a
 
 ### New:
@@ -47,4 +58,8 @@ Changelog
 
 1. Look for more missing features (I don't play DDR so idk what's missing lol)
 2. Check flare skill value consistency
-3. Transfer old save data to World (?)
+3. Transfer old save data from A3 to World (?)
+4. Update re-rated song difficulties
+5. WebUI Profile page
+6. More work on score_str
+7. Rival load

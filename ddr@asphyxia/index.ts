@@ -2,7 +2,7 @@ import { convcardnumber, eventLog } from "./handlers/common";
 import { usergamedata } from "./handlers/usergamedata";
 import { usergamedata_recv } from "./handlers/usergamedata_recv";
 import { usergamedata_send } from "./handlers/usergamedata_send";
-import { musicdataload, playerdatanew, playerdatasave, playerdataload, rivaldataload, taboowordcheck } from "./handlers/ddrworld";
+import { musicdataload, playerdatanew, playerdatasave, playerdataload, rivaldataload, ghostdataload, taboowordcheck, minidump } from "./handlers/ddrworld";
 import { CommonOffset, OptionOffset, Profile } from "./models/profile";
 
 export function register() {
@@ -51,7 +51,9 @@ export function register() {
   RoutePlayData('playerdata_load', playerdataload);
   RoutePlayData('playerdata_save', playerdatasave);
   RoutePlayData('rivaldata_load', rivaldataload);
+  RoutePlayData('ghostdata_load', ghostdataload);
   RouteSystem("convcardnumber", convcardnumber);
+  RouteSystem("minidump", minidump);
   RouteEventLog("write", eventLog);
   WordCheck('tabooword_check', taboowordcheck)
 

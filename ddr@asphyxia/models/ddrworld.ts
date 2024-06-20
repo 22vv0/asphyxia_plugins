@@ -21,6 +21,15 @@ export interface ScoreWorld {
   flareForce: number;
 }
 
+export interface GhostWorld {
+  collection: "ghost3"
+
+  songId: number;
+  difficulty: number;
+  ghostSize: number;
+  ghost: string;
+}
+
 export interface EventWorld {
   collection: "event3";
 
