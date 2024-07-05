@@ -1,26 +1,65 @@
-# Asphyxia CORE Community Plugins
+# DanceDanceRevolution
 
-These plugins are provided by community members and considered officially supported by Team Asphyxia.
+**Plugin Version:** fork-mdx-3.0.0b
 
-## How to use it?
+**Supported game versions:** WORLD (2024061300)
 
-0. Make sure you have [Asphyxia CORE](https://asphyxia-core.github.io/) installed.
-1. Go to [Releases](https://github.com/asphyxia-core/plugins/releases) page.
-2. Download the latest source code.
-3. Extract the code in Asphyxia CORE's `plugins` folder.
+**Unsupported game versions:** Everything below A20 is unsupported. A20 untested. A3 unsupported.
 
-## How do I contribute?
+**Required Asphyxia Core version** [1.50c](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50)
 
-I don't actually follow any coding rules for this jank so neither should you. There is, however, a prettier configuration if you want to format the code automatically and forget about it.
+**Notes:**
+- This is a highly experimental messily-written plugin for MDX-2024061300 and things **WILL** break, please do not use any of your personal save data on this plugin. Use this for experimental & development purposes only. I am not responsible for any problems with your savedata. 
+- Please be aware that this plugin and the savefile it produces are incompatible with the official plugin, or any other forks. Please be cautious of using other plugins' savefiles with this fork of the plugin, or using this fork's savefile with other plugins.
+- Please back up your save data to prevent unwanted issues, especially while using this experimental plugin.
+- Please please please feel free to open PRs!
 
-I'll do my best to merge PR, but please make sure you are submitting code targeted for "public" releases. (Unless it is some ancient rare stuff and you feel generous enough to provide support for it)
 
-- For new plugins: please use `@asphyxia` identifier for your plugin since you are submitting code as the community.
-  - This way we prevent third-party plugins (e.g. `popn` or `popn@someoneelse`) from conflicting with our database.
-- For existing plugins: please inlude a changelog in your PR so it is easier for me to tell what it is for.
+Changelog
+===========
+## fork-mdx-3.0.0b
 
-## How do I make plugins?
+### New:
 
-Checkout our [Documentation](https://asphyxia-core.github.io/typedoc/) and maybe consider join our [Discord](https://discord.gg/3TW3BDm) server. Make sure to familiar yourself with at least XML and Typescript/Javascript.
+1. Main:
+	- Flare skill song unlock event.... on Doubles.
+		- Fixes crashes on Flare Skill rank up.... on Doubles (again, just tested until Mercury.)
+		- Event list updated
+	- ghostdata saving and loading (WIP, idk what ghost is)
 
-Note that you should run `npm install` to install typing for node and lodash, and launch CORE using `--dev` arguments to enable console log and typechecking when using typescript.
+
+## fork-mdx-3.0.0a
+
+### New:
+
+1. Main:
+	- Flare skill song unlock event
+		- Added event data (ddr@asphyxia/data/world.ts:EVENTS_WORLD)
+		- Fixes crashes on Flare Skill rank up (at least until Mercury, haven't tested higher than that yet.)
+	- musicdata_load
+		- Put your musicdb.xml on 'ddr@asphyxia/data' folder. Tested with A3 musicdb.xml
+		- Added musicdata for new WORLD songs (ddr@asphyxia/data/world.ts:SONGS_WORLD)
+
+
+## fork-mdx-3.0.0
+
+### New:
+
+1. Main:
+	- 2024061300 support (DDR World)
+	- DDR profile registration for new and existing Asphyxia profiles
+		- For Asphyxia profiles with no prior DDR A20/A3 profiles registered.
+		- Transfer from A3 not supported (yet?)
+	- Profile saving and loading (probably incomplete)
+	- Score saving and loading (probably incomplete)
+
+
+### To do:
+
+1. Look for more missing features (I don't play DDR so idk what's missing lol)
+2. Check flare skill value consistency
+3. Transfer old save data from A3 to World (?)
+4. Update re-rated song difficulties
+5. WebUI Profile page
+6. More work on score_str
+7. Rival load
