@@ -1,13 +1,3 @@
-# Editor configs
-.vscode
-.idea
-
-# External modules
-node_modules
-
-# Project files
-asphyxia-core.d.ts
-package.json
-package-lock.json
-typedoc.json
-tsconfig.json
+webui/test_asset
+s3p_extract.exe
+ffmpeg.exe

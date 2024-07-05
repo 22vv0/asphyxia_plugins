@@ -1,26 +1,72 @@
-# Asphyxia CORE Community Plugins
+# SOUND VOLTEX
 
-These plugins are provided by community members and considered officially supported by Team Asphyxia.
+**Plugin Version:** fork-6.0.3.3
 
-## How to use it?
+**Supported game versions:** EXCEED GEAR (2024060401)
 
-0. Make sure you have [Asphyxia CORE](https://asphyxia-core.github.io/) installed.
-1. Go to [Releases](https://github.com/asphyxia-core/plugins/releases) page.
-2. Download the latest source code.
-3. Extract the code in Asphyxia CORE's `plugins` folder.
+**Unsupported game versions:** Every other game, as they're untested.
 
-## How do I contribute?
+**Required Asphyxia Core version** [1.50c](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50)
 
-I don't actually follow any coding rules for this jank so neither should you. There is, however, a prettier configuration if you want to format the code automatically and forget about it.
+**Notes:**
+- Please be aware that this plugin and the savefile it produces are incompatible with the official plugin, or any other forks. Please be cautious of using other plugins' savefiles with this fork of the plugin, or using this fork's savefile with other plugins.
+- Before using this plugin, run the [WebUI Asset Update](/plugin/sdvx@asphyxia/update%20webui%20assets). Do this every data and plugin update.
+- Please back up your save data to prevent unwanted issues (just in case)
 
-I'll do my best to merge PR, but please make sure you are submitting code targeted for "public" releases. (Unless it is some ancient rare stuff and you feel generous enough to provide support for it)
 
-- For new plugins: please use `@asphyxia` identifier for your plugin since you are submitting code as the community.
-  - This way we prevent third-party plugins (e.g. `popn` or `popn@someoneelse`) from conflicting with our database.
-- For existing plugins: please inlude a changelog in your PR so it is easier for me to tell what it is for.
+Changelog
+===========
+## fork-6.0.3.3
 
-## How do I make plugins?
+### New:
 
-Checkout our [Documentation](https://asphyxia-core.github.io/typedoc/) and maybe consider join our [Discord](https://discord.gg/3TW3BDm) server. Make sure to familiar yourself with at least XML and Typescript/Javascript.
+1. Main:
+	- 2024060401 support
+	- Added PREMIUM GENERATOR (角巻わため､ / Tsunomaki Watame set)
+		- Note: subbg files from this pregene set are missing on some leaked update data, you will not be able to use those until those files are in your data.
+	- Added Watame songs to licensed songs list (exg.ts)
+	- Watame crew usable (exg.ts)
 
-Note that you should run `npm install` to install typing for node and lodash, and launch CORE using `--dev` arguments to enable console log and typechecking when using typescript.
+2. Misc
+	- Added option to hide/show serverside-removed music (enabled by default)
+	
+
+## fork-6.0.3.2
+
+### New:
+
+1. Main:
+	- 2024043001 support
+	- Added ARENA season 13 (rank match: ARENA BATTLE point system)
+		- ARENA STATION set 13 added.
+	- VALKYRIE GENERATOR 14 added.
+	- Added BPL S3 Stamp Event (eXLIPXe)
+		- Check "Unlocking Events -> Stamp Events -> BEMANI PRO LEAGUE -SEASON 3- Special Stamp" to toggle the event.
+2. Misc:
+	- Updated ARENA STATION pricing to reflect real game server prices (might miss some though)
+
+
+## fork-6.0.3.1
+
+### New:
+
+1. Main:
+	- 2024040200 support
+	- Added BPL Season 3 Complete Stamp Event - collect stamps by clearing the BPL S3 songs to unlock NEMSYS ARENA World Hexathlon and 2 new songs.
+		- Check "Unlocking Events -> Stamp Events -> BPL S3 Complete Stamp Event" to toggle the stamp event.
+	- Added Mini Grace gift.
+		- Check "Unlocking Events -> Gift Events -> Mini Grace NEMSYS Crew Gift" to toggle the gift.
+2. Misc:
+	- Added option to apply frames on the appeal card. Check out "Appeal Card Frame" in the customization page for the list of frames.
+	- Rival implementation. Check "Rivals" page under your profile.
+		- Originally this plugin will send all profiles as rivals. Users can now make their own list of rivals.
+		- Added simple score comparison table with your rival/s.
+	- Cleaned up stamp event code & data.
+
+
+### Todo:
+
+1. Figure out how to use image (png) files to appear in information/news popup.
+2. More work on online matchmaking (idk if this is possible)
+3. Implement pro_team_id setting.
+4. Reminder to add new achievements (when it is released officially)
