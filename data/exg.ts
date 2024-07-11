@@ -444,6 +444,13 @@ export const STAMP_EVENTS6 = {
         }
       ]
     }
+  },
+  'tamaadv': {
+    'type': 'tama',
+    'info': {
+      'id': 39,
+      'list': '1,2,3,4,5,6,7,8,9,10,11'
+    }
   }
 }
 
@@ -1966,6 +1973,133 @@ export const ARENA = {
         price: 2000,
         item_type: 0,
         item_id: 88,
+        param: 8,
+      }
+    ]
+  },
+  'Season 14 (MEGAMIX BATTLE 2024/07/11～2024/08/13)': {
+    details: {
+      season: 14,
+      rule: 0,
+      rank_match_target: 2,
+      time_start: BigInt(Date.parse('11 Jul 2024 00:00:00 GMT')),
+      time_end: BigInt(Date.parse('13 Aug 2024 23:59:59 GMT')),
+      shop_start: BigInt(Date.parse('11 Jul 2024 00:00:00 GMT')),
+      shop_end: BigInt(Date.parse('13 Aug 2024 23:59:59 GMT')),
+      is_open: 1,
+      is_shop: 1
+    },
+    arena_items: [
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 5000,
+        item_type: 0,
+        item_id: 2077,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 5000,
+        item_type: 0,
+        item_id: 2078,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 289,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 241,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 390,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 510,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 842,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 281,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 1745,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 8000,
+        item_type: 0,
+        item_id: 1742,
+        param: 23,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 37,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 4000,
+        item_type: 0,
+        item_id: 239,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 111,
+        param: 8,
+      },
+      {
+        catalog_id: 1,
+        catalog_type: 1,
+        price: 2000,
+        item_type: 0,
+        item_id: 132,
         param: 8,
       }
     ]

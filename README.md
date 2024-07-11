@@ -1,8 +1,8 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.3.3
+**Plugin Version:** fork-6.0.3.4
 
-**Supported game versions:** EXCEED GEAR (2024060401)
+**Supported game versions:** EXCEED GEAR (2024070900)
 
 **Unsupported game versions:** Every other game, as they're untested.
 
@@ -16,6 +16,22 @@
 
 Changelog
 ===========
+## fork-6.0.3.4
+
+### New:
+
+1. Main:
+	- 2024070900 support
+	- Added ARENA season 14 (rank match: MEGAMIX BATTLE)
+		- ARENA STATION set 14 added.
+	- Added TAMANEKO Adventure: new unlock system where you complete map missions and earn food for TAMANEKO. Completing maps unlock new songs and new XCD charts.
+		- Track Liberation map can be enabled/disabled in the main settings.
+		- Check 'Unlocking Events -> Stamp Events -> TAMA猫アドベンチャー (TAMANEKO Adventure)' to toggle the event.
+
+2. Misc:
+	- Updated Achievements list.
+
+
 ## fork-6.0.3.3
 
 ### New:
@@ -44,24 +60,6 @@ Changelog
 		- Check "Unlocking Events -> Stamp Events -> BEMANI PRO LEAGUE -SEASON 3- Special Stamp" to toggle the event.
 2. Misc:
 	- Updated ARENA STATION pricing to reflect real game server prices (might miss some though)
-
-
-## fork-6.0.3.1
-
-### New:
-
-1. Main:
-	- 2024040200 support
-	- Added BPL Season 3 Complete Stamp Event - collect stamps by clearing the BPL S3 songs to unlock NEMSYS ARENA World Hexathlon and 2 new songs.
-		- Check "Unlocking Events -> Stamp Events -> BPL S3 Complete Stamp Event" to toggle the stamp event.
-	- Added Mini Grace gift.
-		- Check "Unlocking Events -> Gift Events -> Mini Grace NEMSYS Crew Gift" to toggle the gift.
-2. Misc:
-	- Added option to apply frames on the appeal card. Check out "Appeal Card Frame" in the customization page for the list of frames.
-	- Rival implementation. Check "Rivals" page under your profile.
-		- Originally this plugin will send all profiles as rivals. Users can now make their own list of rivals.
-		- Added simple score comparison table with your rival/s.
-	- Cleaned up stamp event code & data.
 
 
 ### Todo:

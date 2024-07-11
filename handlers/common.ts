@@ -254,11 +254,7 @@ export const common: EPR = async (info, data, send) => {
             'type': 19,
             'id': stmpEvntInfo['info']['id'],
             'params': [
-              0,
-              0,
-              0,
-              0,
-              0,
+              0, 0, 0, 0, 0,
               JSON.stringify(stmpEvntInfo['info']['data']),
               '',
               '',
@@ -267,6 +263,33 @@ export const common: EPR = async (info, data, send) => {
             ]
           })
         }
+        else if(eventData['events'][eventIter]['type'] === 'tama' && eventConfig[eventData['events'][eventIter]['id']] !== undefined && eventConfig[eventData['events'][eventIter]['id']]['toggle']) {
+          events.push('TAMAADV_ENABLE')
+          extend.push({
+            'type': 20,
+            'id': stmpEvntInfo['info']['id'],
+            'params': [
+              0, 0, 0, 0, 0,
+              (U.GetConfig('tama_track_lib') ? '0,' : '') + stmpEvntInfo['info']['list'],
+              '',
+              '',
+              '',
+              ''
+            ]
+          })
+        }
+      }
+    }
+
+    if(IO.Exists('handlers/test.json')) {
+      let bufTest = await IO.ReadFile('handlers/test.json')
+      let extendTest = JSON.parse(bufTest.toString())
+      for(const ex in extendTest) {
+        extend.push({
+          'type': extendTest[ex]['type'],
+          'id': extendTest[ex]['id'],
+          'params': extendTest[ex]['params']
+        })
       }
     }
       

@@ -75,7 +75,7 @@ $(document).ready(async function() {
         }
 
         if(eventData['events'][eventIter]['enabled']) {   
-            if(/stamp|completestamp/.test(eventData['events'][eventIter]['type'])) {
+            if(/stamp|completestamp|tama/.test(eventData['events'][eventIter]['type'])) {
                 $('#stampevent_select').append(
                     '<option value=' + eventData['events'][eventIter]['id'] + '>' + eventData['events'][eventIter]['name'] + '</option>'
                 )
