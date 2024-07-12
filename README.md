@@ -1,26 +1,25 @@
-# Asphyxia CORE Community Plugins
+## Asphyxia Plugins
 
-These plugins are provided by community members and considered officially supported by Team Asphyxia.
+### Plugins included
 
-## How to use it?
+1. [SOUND VOLTEX (KFC)](https://github.com/22vv0/asphyxia_plugins/tree/kfc)
+2. [DanceDanceRevolution (MDX)](https://github.com/22vv0/asphyxia_plugins/tree/mdx)
 
-0. Make sure you have [Asphyxia CORE](https://asphyxia-core.github.io/) installed.
-1. Go to [Releases](https://github.com/asphyxia-core/plugins/releases) page.
-2. Download the latest source code.
-3. Extract the code in Asphyxia CORE's `plugins` folder.
+### Usage
 
-## How do I contribute?
+1. Download the Asphyxia plugin of your choosing via one of two methods:
+    - Method 1:
+        1. Select the branch of the game plugin you want to use. Branch names use the game's codenames:
+            - kfc for SDVX
+            - mdx for DDR
+        2. Click the green "Code" button and then click "Download ZIP" to start downloading.
+    - Method 2:
+        1. Go to the [Releases](https://github.com/22vv0/asphyxia_plugins/releases) page.
+        2. Find the latest version release of the plugin for your game, indicated again by their codenames.
+        3. Click "Source code (zip)" to start downloading.
+2. Once downloaded, open and extract the files inside the zip to your specific game plugin folder, overwriting any files. 
+    - If you're starting fresh, extract the files to a new folder named ddr@asphyxia or sdvx@asphyxia, depending on the plugin you've downloaded.
 
-I don't actually follow any coding rules for this jank so neither should you. There is, however, a prettier configuration if you want to format the code automatically and forget about it.
+### Special thanks
 
-I'll do my best to merge PR, but please make sure you are submitting code targeted for "public" releases. (Unless it is some ancient rare stuff and you feel generous enough to provide support for it)
-
-- For new plugins: please use `@asphyxia` identifier for your plugin since you are submitting code as the community.
-  - This way we prevent third-party plugins (e.g. `popn` or `popn@someoneelse`) from conflicting with our database.
-- For existing plugins: please inlude a changelog in your PR so it is easier for me to tell what it is for.
-
-## How do I make plugins?
-
-Checkout our [Documentation](https://asphyxia-core.github.io/typedoc/) and maybe consider join our [Discord](https://discord.gg/3TW3BDm) server. Make sure to familiar yourself with at least XML and Typescript/Javascript.
-
-Note that you should run `npm install` to install typing for node and lodash, and launch CORE using `--dev` arguments to enable console log and typechecking when using typescript.
+1. Team Asphyxia for providing the plugins repo that I used as a starting point for this 'project' I started for fun.
