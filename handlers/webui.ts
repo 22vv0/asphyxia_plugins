@@ -410,8 +410,6 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
           if(foundSubbg == -1) {
             console.log("[subbg] adding " + subbgId + " - " + subbgName + " (" + subbgType + ")")
             resourceJsonData.subbg.push({"value": subbgId, "type": subbgType, "name": subbgName})
-          } else {
-            resourceJsonData.subbg[foundSubbg] = {"value": subbgId, "type": subbgType, "name": subbgName}
           }
         }
       }
