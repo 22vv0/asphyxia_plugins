@@ -1,6 +1,6 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.3.4
+**Plugin Version:** fork-6.0.3.4a
 
 **Supported game versions:** EXCEED GEAR (2024070900)
 
@@ -16,6 +16,16 @@
 
 Changelog
 ===========
+## fork-6.0.3.4a
+
+### New:
+
+1. Misc:
+	- Updated webui data.json asset file (renamed some placeholder labels)
+	- Removed most of webui image and audio assets to minimize size.
+		- Run asset update to pull webui assets from game files.
+
+
 ## fork-6.0.3.4
 
 ### New:
@@ -24,7 +34,7 @@ Changelog
 	- 2024070900 support
 	- Added ARENA season 14 (rank match: MEGAMIX BATTLE)
 		- ARENA STATION set 14 added.
-	- Added TAMANEKO Adventure: new unlock system where you complete map missions and earn food for TAMANEKO. Completing maps unlock new songs and new XCD charts.
+	- Added TAMANEKO Adventure: new unlock system where you complete map missions and earn food for TAMANEKO. Completing maps unlocks new songs and new XCD charts.
 		- Track Liberation map can be enabled/disabled in the main settings.
 		- Check 'Unlocking Events -> Stamp Events -> TAMA猫アドベンチャー (TAMANEKO Adventure)' to toggle the event.
 
@@ -47,24 +57,8 @@ Changelog
 	- Added option to hide/show serverside-removed music (enabled by default)
 	
 
-## fork-6.0.3.2
-
-### New:
-
-1. Main:
-	- 2024043001 support
-	- Added ARENA season 13 (rank match: ARENA BATTLE point system)
-		- ARENA STATION set 13 added.
-	- VALKYRIE GENERATOR 14 added.
-	- Added BPL S3 Stamp Event (eXLIPXe)
-		- Check "Unlocking Events -> Stamp Events -> BEMANI PRO LEAGUE -SEASON 3- Special Stamp" to toggle the event.
-2. Misc:
-	- Updated ARENA STATION pricing to reflect real game server prices (might miss some though)
-
-
 ### Todo:
 
 1. Figure out how to use image (png) files to appear in information/news popup.
 2. More work on online matchmaking (idk if this is possible)
 3. Implement pro_team_id setting.
-4. Reminder to add new achievements (when it is released officially)
