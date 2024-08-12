@@ -1,8 +1,8 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.3.4a
+**Plugin Version:** fork-6.0.3.5
 
-**Supported game versions:** EXCEED GEAR (2024070900)
+**Supported game versions:** EXCEED GEAR (2024080500)
 
 **Unsupported game versions:** Every other game, as they're untested.
 
@@ -16,6 +16,17 @@
 
 Changelog
 ===========
+## fork-6.0.3.5
+
+### New:
+
+1. Main:
+	- Reflec Beat song stamp event added (ARACHNE set)
+		- Toggle on "Unlocking Events -> Stamp Events -> REFLEC BEAT Song Stamp Event (2024)"
+	- Added the new maps to TAMANEKO Adventure (3 Touhou songs + 4 XCD charts)
+	- Added VALKYRIE GENERATOR (Touhou Project)
+
+
 ## fork-6.0.3.4a
 
 ### New:
@@ -41,21 +52,6 @@ Changelog
 2. Misc:
 	- Updated Achievements list.
 
-
-## fork-6.0.3.3
-
-### New:
-
-1. Main:
-	- 2024060401 support
-	- Added PREMIUM GENERATOR (角巻わため､ / Tsunomaki Watame set)
-		- Note: subbg files from this pregene set are missing on some leaked update data, you will not be able to use those until those files are in your data.
-	- Added Watame songs to licensed songs list (exg.ts)
-	- Watame crew usable (exg.ts)
-
-2. Misc
-	- Added option to hide/show serverside-removed music (enabled by default)
-	
 
 ### Todo:
 

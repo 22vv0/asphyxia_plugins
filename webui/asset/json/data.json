@@ -167,6 +167,10 @@
         {
             "value": 45,
             "name": "BEMANI PRO LEAGUE -SEASON 3-"
+        },
+        {
+            "value": 46,
+            "name": "VIVID MODEL TYPE 博麗霊夢"
         }
     ],
     "subbg": [
@@ -2508,6 +2512,166 @@
             "value": 482,
             "type": "video",
             "name": "What an amazing swing 02"
+        },
+        {
+            "value": 483,
+            "type": "normal",
+            "name": "BEMANI×東方Project ～幻想郷音樂祭2024～"
+        },
+        {
+            "value": 484,
+            "type": "normal",
+            "name": "残像ニ繋ガレタ追憶ノHIDEAWAY"
+        },
+        {
+            "value": 485,
+            "type": "normal",
+            "name": "SUPER HEROINE!!"
+        },
+        {
+            "value": 486,
+            "type": "normal",
+            "name": "閉塞的フレーション"
+        },
+        {
+            "value": 487,
+            "type": "normal",
+            "name": "弾幕信仰"
+        },
+        {
+            "value": 488,
+            "type": "normal",
+            "name": "Scarlet Moon"
+        },
+        {
+            "value": 489,
+            "type": "normal",
+            "name": "Russian Caravan Rhapsody"
+        },
+        {
+            "value": 490,
+            "type": "normal",
+            "name": "Struggle"
+        },
+        {
+            "value": 491,
+            "type": "normal",
+            "name": "ホメ猫☆センセーション"
+        },
+        {
+            "value": 492,
+            "type": "normal",
+            "name": "プレインエイジア -PHQ remix-"
+        },
+        {
+            "value": 493,
+            "type": "normal",
+            "name": "BEMANI×東方Project Ultimate MasterPieces"
+        },
+        {
+            "value": 494,
+            "type": "normal",
+            "name": "SOUND VOLTEX ULTIMATE TRACKS -東方紅魔郷REMIX-"
+        },
+        {
+            "value": 495,
+            "type": "normal",
+            "name": "SOUND VOLTEX ULTIMATE TRACKS -東方妖々夢 & 輝針城REMIX-"
+        },
+        {
+            "value": 496,
+            "type": "normal",
+            "name": "SOUND VOLTEX×東方Project ULTIMATE COMPLATION REITAISAI 14th"
+        },
+        {
+            "value": 497,
+            "type": "normal",
+            "name": "SOUND VOLTEX×東方Project ULTIMATE COMPLATION REITAISAI 15th"
+        },
+        {
+            "value": 498,
+            "type": "slideshow",
+            "name": "subbg_0498"
+        },
+        {
+            "value": 499,
+            "type": "slideshow",
+            "name": "subbg_0499"
+        },
+        {
+            "value": 500,
+            "type": "normal",
+            "name": "subbg_0500.png"
+        },
+        {
+            "value": 501,
+            "type": "normal",
+            "name": "subbg_0501.png"
+        },
+        {
+            "value": 502,
+            "type": "normal",
+            "name": "subbg_0502.png"
+        },
+        {
+            "value": 503,
+            "type": "normal",
+            "name": "subbg_0503.png"
+        },
+        {
+            "value": 504,
+            "type": "video",
+            "name": "subbg_0504.mp4"
+        },
+        {
+            "value": 505,
+            "type": "video",
+            "name": "subbg_0505.mp4"
+        },
+        {
+            "value": 506,
+            "type": "video",
+            "name": "subbg_0506.mp4"
+        },
+        {
+            "value": 507,
+            "type": "video",
+            "name": "subbg_0507.mp4"
+        },
+        {
+            "value": 508,
+            "type": "video",
+            "name": "subbg_0508.mp4"
+        },
+        {
+            "value": 509,
+            "type": "video",
+            "name": "subbg_0509.mp4"
+        },
+        {
+            "value": 510,
+            "type": "video",
+            "name": "subbg_0510.mp4"
+        },
+        {
+            "value": 511,
+            "type": "video",
+            "name": "subbg_0511.mp4"
+        },
+        {
+            "value": 512,
+            "type": "video",
+            "name": "subbg_0512.mp4"
+        },
+        {
+            "value": 513,
+            "type": "video",
+            "name": "subbg_0513.mp4"
+        },
+        {
+            "value": 514,
+            "type": "video",
+            "name": "subbg_0514.mp4"
         }
     ],
     "bgm": [
@@ -2798,6 +2962,42 @@
         {
             "value": 71,
             "name": "StellarflightS"
+        },
+        {
+            "value": 72,
+            "name": "残像ニ繋ガレタ追憶ノHIDEAWAY"
+        },
+        {
+            "value": 73,
+            "name": "SUPER HEROINE!!"
+        },
+        {
+            "value": 74,
+            "name": "閉塞的フレーション"
+        },
+        {
+            "value": 75,
+            "name": "弾幕信仰"
+        },
+        {
+            "value": 76,
+            "name": "NEON WORLD"
+        },
+        {
+            "value": 77,
+            "name": "妖隠し -あやかしかくし-"
+        },
+        {
+            "value": 78,
+            "name": "プレインエイジア -PHQ remix-"
+        },
+        {
+            "value": 79,
+            "name": "竹取飛翔 ～ Lunatic Princess (Ryu☆Remix)"
+        },
+        {
+            "value": 80,
+            "name": "千年ノ理"
         }
     ],
     "stamp": [
@@ -8836,6 +9036,102 @@
         {
             "value": 1508,
             "name": "角巻わため（ホロライブ）10 4"
+        },
+        {
+            "value": 1509,
+            "name": "東方Project 01 1"
+        },
+        {
+            "value": 1510,
+            "name": "東方Project 01 2"
+        },
+        {
+            "value": 1511,
+            "name": "東方Project 01 3"
+        },
+        {
+            "value": 1512,
+            "name": "東方Project 01 4"
+        },
+        {
+            "value": 1513,
+            "name": "東方Project 02 1"
+        },
+        {
+            "value": 1514,
+            "name": "東方Project 02 2"
+        },
+        {
+            "value": 1515,
+            "name": "東方Project 02 3"
+        },
+        {
+            "value": 1516,
+            "name": "東方Project 02 4"
+        },
+        {
+            "value": 1517,
+            "name": "東方Project 03 1"
+        },
+        {
+            "value": 1518,
+            "name": "東方Project 03 2"
+        },
+        {
+            "value": 1519,
+            "name": "東方Project 03 3"
+        },
+        {
+            "value": 1520,
+            "name": "東方Project 03 4"
+        },
+        {
+            "value": 1521,
+            "name": "東方Project 04 1"
+        },
+        {
+            "value": 1522,
+            "name": "東方Project 04 2"
+        },
+        {
+            "value": 1523,
+            "name": "東方Project 04 3"
+        },
+        {
+            "value": 1524,
+            "name": "東方Project 04 4"
+        },
+        {
+            "value": 1525,
+            "name": "東方Project 05 1"
+        },
+        {
+            "value": 1526,
+            "name": "東方Project 05 2"
+        },
+        {
+            "value": 1527,
+            "name": "東方Project 05 3"
+        },
+        {
+            "value": 1528,
+            "name": "東方Project 05 4"
+        },
+        {
+            "value": 1529,
+            "name": "東方Project 06 1"
+        },
+        {
+            "value": 1530,
+            "name": "東方Project 06 2"
+        },
+        {
+            "value": 1531,
+            "name": "東方Project 06 3"
+        },
+        {
+            "value": 1532,
+            "name": "東方Project 06 4"
         }
     ],
     "akaname": [

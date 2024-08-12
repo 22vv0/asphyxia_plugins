@@ -663,7 +663,7 @@ export const load: EPR = async (info, data, send) => {
             if(eventConfig[eventData['events'][eventIter]['id']]['toggle']) {
               for(const itemIter in EVENT_ITEMS6[eventData['events'][eventIter]['id']]) {
                 let itemId = parseInt(EVENT_ITEMS6[eventData['events'][eventIter]['id']][itemIter])
-                if(await DB.Count(refid, {collection:'item', type: typeIds[eventData['events'][eventIter]['type']], id: itemId}) === 0) {
+                if(await DB.Count(refid, {collection:'item', type: typeIds[eventData['events'][eventIter]['type']][0], id: itemId}) === 0) {
                   await DB.Upsert(
                     refid, 
                     {collection: 'item', type: typeIds[eventData['events'][eventIter]['type']][0], id: itemId}, 

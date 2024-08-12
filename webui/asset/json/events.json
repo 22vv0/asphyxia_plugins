@@ -294,6 +294,14 @@
             "name": "TAMA猫アドベンチャー (TAMANEKO Adventure)",
             "desc": "New unlock system where you complete map missions to earn TAMANEKO food. New and XCD charts are available to unlock, as well as a 'Track Liberation' and 'OVER ADVENTURE' feature.",
             "info": "Toggle to enable/disable event."
+        },
+        {
+            "id": "reflecstamp2",
+            "type": "stamp",
+            "enabled": true,
+            "name": "REFLEC BEAT Song Stamp Event (2024)",
+            "desc": "Stamp event to unlock 5 more songs originally from the REFLEC BEAT game series.",
+            "info": "Toggle this on to enable this stamp event."
         }
     ],
     "flags": [

@@ -449,7 +449,22 @@ export const STAMP_EVENTS6 = {
     'type': 'tama',
     'info': {
       'id': 39,
-      'list': '1,2,3,4,5,6,7,8,9,10,11'
+      'list': '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18'
+    }
+  },
+  'reflecstamp2': {
+    'type': 'main',
+    'info': {
+      'id': 0,
+      'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 8/1～9/23',
+      'data': [
+        {
+          'stmpid': 40,
+          'stps': 15,
+          'stprwrd': '1:e:205323 3:e:205723 6:e:205623 10:e:205523 15:e:205423'
+        }
+      ]
     }
   }
 }
@@ -2177,6 +2192,11 @@ export const VALGENE = {
       valgene_name: "ヴァルキリージェネレーター　第14弾",
       valgene_name_english: "Valkyrie Generator Vol. 14",
       valgene_id: 14
+    },
+    {
+      valgene_name: "ヴァルキリージェネレーター 「東方Project」",
+      valgene_name_english: "VALKYRIE GENERATOR 「Touhou Project」",
+      valgene_id: 15
     }
   ],
   rarity: {
@@ -2510,6 +2530,27 @@ export const VALGENE = {
         {
           type: 20,
           item_ids: [44, 45]
+        }
+      ]
+    },
+    {
+      volume: 15,
+      items: [
+        {
+          type: 17,
+          item_ids: [378, 379, 380, 381, 382, 383]
+        },
+        {
+          type: 18,
+          item_ids: [483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493, 494, 495, 496, 497]
+        },
+        {
+          type: 19,
+          item_ids: [72, 73, 74, 75, 76, 77, 78, 79, 80]
+        },
+        {
+          type: 20,
+          item_ids: [46]
         }
       ]
     }
