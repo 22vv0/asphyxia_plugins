@@ -34,16 +34,14 @@ export function register() {
   R.Contributor("ovv (this fork)");
   R.GameCode('KFC');
 
+  R.Config('sdvx_eg_root_dir', { type: 'string', needRestart: true, default: '', name: 'Exceed Gear Data Directory', desc: 'The root directory of your SDVX Exceed Gear game files (for asset copying)'});
   R.Config('arena_szn',{ type: 'string', options: Object.keys(ARENA), default: 'None', name: 'Ranked Match Season', desc: 'Current ARENA/SINGLE BATTLE ranked season. Also sets ARENA STATION catalog corresponding to that season.'});
-  R.Config('enable_valk_songs' ,{ type: 'boolean', default: false, name:'Enable Valkyrie Model Songs', desc:'Enable the valkyrie model songs on non-valkyrie mode.'});
   R.Config('use_blasterpass',{ type: 'boolean', default: true, name:'Use Blaster Pass', desc:'Enable Blaster Pass for VW and EG'});
   R.Config('tama_track_lib',{ type: 'boolean', default: true, name:'Enable Track Liberation', desc:'(Requires TAMANEKO adventure event to be enabled) A TAMANEKO adventure map that will unlock a random song that has no unlock condition. OVER ADVENTURE will be displayed if this is disabled and if you have completed all other adventures.'});
   R.Config('unlock_all_valk_items', { type: 'boolean', default: false, name:'Unlock All Valkyrie and Premium Items', desc: 'Unlock Nemsys, BGM, Submonitor BG, System BG and Stamp Items (Valk crews not included; check \'unlock all navigators\' option)'});
   R.Config('unlock_all_songs', { type: 'boolean', default: false, name:'Unlock All Songs'});
   R.Config('unlock_all_navigators', { type: 'boolean', default: false, name:'Unlock All Navigators'} );
   R.Config('unlock_all_appeal_cards', { type: 'boolean', default: false, name:'Unlock All Appeal Cards'});
-  R.Config('enable_removed_songs', {type: 'boolean', default: true, name:'Enable removed songs', desc: 'Songs hidden or removed server-side will appear.'})
-  R.Config('sdvx_eg_root_dir', { type: 'string', needRestart: true, default: '', name: 'Exceed Gear Data Directory', desc: 'The root directory of your SDVX Exceed Gear game files (for asset copying)'});
   R.Config('use_information' ,{ type: 'boolean', default: true, name:'Use Asphyxia Information', desc:'Enable the Asphyxia information section after entry. Otherwise, it will try to look for official information data and display them.'});
   R.Config('use_asphyxia_gameover',{ type: 'boolean', default: true, name:'Use Asphyxia Gameover', desc:'Enable the Asphyxia gameover message after ending the game.'})
   R.Config('april_fools',{ type: 'boolean', default: false, name:'April Fools', desc:'Enable April Fools Event (toggles Grace crew + April Fools songs)'});
