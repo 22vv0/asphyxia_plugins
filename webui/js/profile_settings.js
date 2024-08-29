@@ -5,11 +5,15 @@ $('#change-name').on('click', () => {
 });
 
 $('#change-weight').on('click', () => {
-  const weight1 = $('#weight_1').val();
-  const weight2 = $('#weight_2').val();
-  const weight = weight1 + '.' + weight2;
+  const weight = $('#weight_1').val();
 
   emit('updateWeight', { refid, weight }).then(() => location.reload());
+});
+
+$('#reset-today-cal').on('click', () => {
+  if (confirm('Are you sure you want to reset today\'s calories?')) {
+    emit('resetTodayCal', { refid }).then(() => location.reload());
+  }
 });
 
 $('#change-display-calories').on('click', () => {

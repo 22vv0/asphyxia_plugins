@@ -64,7 +64,7 @@ export const playerdatasave: EPR = async (info, data, send) => {
     if($(data).number("data.savekind") === 1) {
       await DB.Upsert<ProfileWorld>(refid, { collection: "profile3" }, {
         collection: "profile3",
-        
+
         ddrCode: $(data).number('data.common.ddrcode'),
         dancerName: $(data).str('data.common.dancername'),
         area: $(data).number('data.common.area'),
@@ -97,7 +97,7 @@ export const playerdatasave: EPR = async (info, data, send) => {
         opCutTiming: $(data).number('data.option.cut_timing'),
         opCutFreeze: $(data).number('data.option.cut_freeze'),
         opCutJump: $(data).number('data.option.cut_jump'),
-        
+
         lpMode: $(data).number('data.lastplay.mode'),
         lpFolder: $(data).number('data.lastplay.folder'),
         lpMcode: $(data).number('data.lastplay.mcode'),
@@ -108,7 +108,7 @@ export const playerdatasave: EPR = async (info, data, send) => {
         lpTarget: $(data).number('data.lastplay.target'),
         lpTabMain: $(data).number('data.lastplay.tab_main'),
         lpTabSub: $(data).number('data.lastplay.tab_sub'),
-        
+
         fsTitle: $(data).number('data.filtersort.title'),
         fsVersion: $(data).number('data.filtersort.version'),
         fsGenre: $(data).number('data.filtersort.genre'),
@@ -122,7 +122,7 @@ export const playerdatasave: EPR = async (info, data, send) => {
         fsRivalScoreRank: $(data).number('data.filtersort.rival_score_rank'),
         fsSortType: $(data).number('data.filtersort.sort_type'),
         fsOrderType: $(data).number('data.filtersort.order_type'),
-        
+
         cgTipsBasic: $(data).number('data.checkguide.tips_basic'),
         cgTipsOption: $(data).number('data.checkguide.tips_option'),
         cgTipsEvent: $(data).number('data.checkguide.tips_event'),
@@ -149,7 +149,7 @@ export const playerdatasave: EPR = async (info, data, send) => {
       let profile = await DB.FindOne<ProfileWorld>(refid, {collection: "profile3"})
       await DB.Upsert<ProfileWorld>(refid, { collection: "profile3" }, {
         collection: "profile3",
-        
+
         ddrCode: $(data).number('data.common.ddrcode'),
         dancerName: $(data).str('data.common.dancername'),
         area: $(data).number('data.common.area'),
@@ -182,7 +182,7 @@ export const playerdatasave: EPR = async (info, data, send) => {
         opCutTiming: $(data).number('data.option.cut_timing'),
         opCutFreeze: $(data).number('data.option.cut_freeze'),
         opCutJump: $(data).number('data.option.cut_jump'),
-        
+
         lpMode: $(data).number('data.lastplay.mode'),
         lpFolder: $(data).number('data.lastplay.folder'),
         lpMcode: $(data).number('data.lastplay.mcode'),
@@ -193,7 +193,7 @@ export const playerdatasave: EPR = async (info, data, send) => {
         lpTarget: $(data).number('data.lastplay.target'),
         lpTabMain: $(data).number('data.lastplay.tab_main'),
         lpTabSub: $(data).number('data.lastplay.tab_sub'),
-        
+
         fsTitle: $(data).number('data.filtersort.title'),
         fsVersion: $(data).number('data.filtersort.version'),
         fsGenre: $(data).number('data.filtersort.genre'),
@@ -207,7 +207,7 @@ export const playerdatasave: EPR = async (info, data, send) => {
         fsRivalScoreRank: $(data).number('data.filtersort.rival_score_rank'),
         fsSortType: $(data).number('data.filtersort.sort_type'),
         fsOrderType: $(data).number('data.filtersort.order_type'),
-        
+
         cgTipsBasic: $(data).number('data.checkguide.tips_basic'),
         cgTipsOption: $(data).number('data.checkguide.tips_option'),
         cgTipsEvent: $(data).number('data.checkguide.tips_event'),
@@ -226,12 +226,12 @@ export const playerdatasave: EPR = async (info, data, send) => {
           let sdata = e.number('savedata')
 
           await DB.Upsert<EventWorld>(refid, { collection: "event3", eventId: eid }, {
-            collection: "event3", 
-            eventId: eid, 
-            eventNo: eno, 
-            eventType: etype, 
-            compTime: ctime, 
-            saveData: sdata 
+            collection: "event3",
+            eventId: eid,
+            eventNo: eno,
+            eventType: etype,
+            compTime: ctime,
+            saveData: sdata
           })
         }
       }
@@ -375,7 +375,7 @@ export const playerdataload: EPR = async (info, data, send) => {
             }
           ]
           scoreFin.push(scr)
-          
+
         } else {
           scoreFin[mcodeIndex][(scoreData.style === 0) ? 'score_single' : 'score_double'].push({
             score_str: K.ITEM('str', scoreData.difficulty + ',1,' + scoreData.rank + ',' + scoreData.clearKind + ',' + scoreData.score + ',' + scoreData.exScore + ',' + scoreData.flareForce + ',' + scoreData.flareForce)
@@ -389,7 +389,7 @@ export const playerdataload: EPR = async (info, data, send) => {
       let eventData = await DB.FindOne<EventWorld>(refid, { collection: "event3", eventId: event.id, eventNo: event.no });
       eventFin.push({
         event_str: K.ITEM('str', event.id + ',' + event.type + ',' + event.no + ',0,' + event.sid + ',' + ((eventData) ? BigInt(eventData.compTime) : '0') + ',' + ((eventData) ? eventData.saveData : '0'))
-      })  
+      })
     }
 
     return send.object({
@@ -480,7 +480,7 @@ export const playerdataload: EPR = async (info, data, send) => {
 
 export const musicdataload: EPR = async (info, data, send) => {
   let musicList = []
-  if(IO.Exists('data/musicdb.xml')) { 
+  if(IO.Exists('data/musicdb.xml')) {
     let mdb = U.parseXML(U.DecodeString(await IO.ReadFile('data/musicdb.xml'), "shift_jis"), false)
     for(const music of mdb['mdb']['music']) {
       let difficultyArr = $(music).numbers('diffLv')
