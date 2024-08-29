@@ -2,9 +2,9 @@
 
 **Plugin Version:** fork-mdx-3.0.0b
 
-**Supported game versions:** WORLD (2024061300)
+**Supported game versions:** WORLD (2024080601)
 
-**Unsupported game versions:** Everything below A20 is unsupported. A20 untested. A3 unsupported.
+**Unsupported game versions:** Everything except world is unsupported
 
 **Required Asphyxia Core version** [1.50c](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50)
 
