@@ -55,7 +55,10 @@ async function loadItems(itemSet, gene_edition, items_crew, items_stamp, items_s
     let geneItems = await getGeneratorEditionItems(gene_edition, itemSet)
     let itemCounts = countGeneItems(geneItems, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys, items_sysbg)
     if(gene_edition === 'premium') {
-        if(itemCounts[0] >= itemCounts[1]) $('#pregene-roll').attr('disabled', 'disabled')
+        if(itemCounts[0] >= itemCounts[1]) {
+            $('#pregene-roll').attr('disabled', 'disabled')
+            checkSetReward(geneItems)
+        }
         else $('#pregene-roll').removeAttr('disabled')
     } else if(gene_edition === 'valkyrie') {
         $('#valgene-roll').attr('disabled', 'disabled')
@@ -124,6 +127,24 @@ function redirectAfterRoll() {
     const urlParams = new URLSearchParams(location.search);
     urlParams.set('set', $('#set_select').val());
     location.search = urlParams;
+}
+
+function checkSetReward(geneItems) {
+    let refid = document.getElementsByName("refid")[0].value
+    if ('reward' in geneItems) {
+        emit('preGeneReward', {
+            reward: geneItems.reward,
+            refid: refid
+        }).then(
+        function(response) {
+            if(response.data.received) {
+                $('.modal-card-head').append('<p class="modal-card-title">Got reward for completing set - ' + response.data.reward[4] + '</p>')
+                $('.modal-card-body').append('<img style="width: 400px; padding: 10px;" src="static/asset/valgene_item/item_' + response.data.reward[3] + '_' + response.data.reward[1] + '.png">')
+                $('.modal-card-foot').append('<button onclick=redirectAfterRoll(); class="button is-primary">Close</button>')
+                $('.modal').addClass('is-active')
+            }
+        })
+    }
 }
 
 $(document).ready(async function() {

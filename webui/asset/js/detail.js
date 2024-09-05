@@ -83,7 +83,7 @@ function getMedal(clear) {
 function getAppealCard(appeal) {
 
     var result = appeal_db["appeal_card_data"]["card"].filter(object => object["@id"] == appeal);
-    return "static/asset/ap_card/" + ((result.length > 0) ? result[0]["info"]["texture"] : 'ap_06_0001') + ".jpg"
+    return "static/asset/ap_card/" + ((result.length > 0) ? result[0]["info"]["texture"] : 'ap_06_0001') + ".png"
 }
 
 function getSongLevel(musicid, type) {

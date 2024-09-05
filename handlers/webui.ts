@@ -5,6 +5,7 @@ import { Skill } from '../models/skill';
 import { getVersion, IDToCode, GetCounter } from '../utils';
 import { Mix } from '../models/mix';
 import { Rival } from '../models/rival';
+import { Item } from '../models/item';
 import { PREGENE, COURSES6} from '../data/exg';
 import { textureslist } from '../data/webui'
 import * as fs from 'fs';
@@ -809,6 +810,24 @@ export const preGeneRoll = async (data: { set: number, refid: string, items: [] 
     }
   } else console.log('pregeneset none')
 }
+
+export const preGeneReward = async (data: { reward: [], refid: string }, send: WebUISend) => {
+  let reward = Object.values(data.reward)
+  let rewardItem = await DB.Find<Item>(data.refid, {collection: 'item', type: reward[0], id: reward[1], param: reward[2]})
+  if(rewardItem.length === 0) {
+    DB.Upsert(data.refid, { collection: "item", type: reward[0], id: reward[1] }, { $set: { param: reward[2] } })
+    send.json({
+      received: true,
+      reward: reward
+    })
+  } else {
+    send.json({
+      received: false,
+      reward: reward
+    })
+  }
+}
+
 
 export const manageEvents = async (data: { eventConfig: {} }) => {
   IO.WriteFile('webui/asset/config/events.json', JSON.stringify(data.eventConfig, null, 4));

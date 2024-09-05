@@ -125,6 +125,16 @@ export const common: EPR = async (info, data, send) => {
                   limited: K.ITEM('u8', limitedNo),
                 });
               }
+              // Licensed songs released pre-exceed gear
+              else if (LICENSED_SONGS6.includes(i.toString())) {
+                for(let j = 0; j < 5; j++) {
+                  songs.push({
+                    music_id: K.ITEM('s32', i),
+                    music_type: K.ITEM('u8', j),
+                    limited: K.ITEM('u8', limitedNo),
+                  });
+                }
+              }
             }
           }
         }

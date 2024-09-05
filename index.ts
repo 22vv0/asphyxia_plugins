@@ -9,6 +9,7 @@ import {
   getRivalScores,
   addRival,
   preGeneRoll,
+  preGeneReward,
   manageEvents,
   manageStartupFlags
 } from './handlers/webui';
@@ -51,6 +52,7 @@ export function register() {
   R.WebUIEvent('getRivalScores', getRivalScores);
   R.WebUIEvent('addRival', addRival);
   R.WebUIEvent('preGeneRoll', preGeneRoll);
+  R.WebUIEvent('preGeneReward', preGeneReward);
   R.WebUIEvent('manageEvents', manageEvents);
   R.WebUIEvent('manageStartupFlags', manageStartupFlags);
   R.WebUIEvent('updateProfile', updateProfile);

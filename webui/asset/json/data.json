@@ -2591,87 +2591,87 @@
         {
             "value": 498,
             "type": "slideshow",
-            "name": "subbg_0498"
+            "name": "Second Game"
         },
         {
             "value": 499,
             "type": "slideshow",
-            "name": "subbg_0499"
+            "name": "archive::zip"
         },
         {
             "value": 500,
             "type": "normal",
-            "name": "subbg_0500.png"
+            "name": "XROSS THE XOUL"
         },
         {
             "value": 501,
             "type": "normal",
-            "name": "subbg_0501.png"
+            "name": "Inixia"
         },
         {
             "value": 502,
             "type": "normal",
-            "name": "subbg_0502.png"
+            "name": "Dawn of Asia(Alkome Remix)"
         },
         {
             "value": 503,
             "type": "normal",
-            "name": "subbg_0503.png"
+            "name": "EXCEED GEAR クライマックスシーズン"
         },
         {
             "value": 504,
             "type": "video",
-            "name": "subbg_0504.mp4"
+            "name": "ゲーム背景(HEAVENLY)"
         },
         {
             "value": 505,
             "type": "video",
-            "name": "subbg_0505.mp4"
+            "name": "ゲーム背景(LIVESTAGE)"
         },
         {
             "value": 506,
             "type": "video",
-            "name": "subbg_0506.mp4"
+            "name": "ゲーム背景(赤い月)"
         },
         {
             "value": 507,
             "type": "video",
-            "name": "subbg_0507.mp4"
+            "name": "ゲーム背景(夜の海)"
         },
         {
             "value": 508,
             "type": "video",
-            "name": "subbg_0508.mp4"
+            "name": "ゲーム背景(桜)"
         },
         {
             "value": 509,
             "type": "video",
-            "name": "subbg_0509.mp4"
+            "name": "ゲーム背景(Firestorm)"
         },
         {
             "value": 510,
             "type": "video",
-            "name": "subbg_0510.mp4"
+            "name": "ゲーム背景(マサカリブレイド)"
         },
         {
             "value": 511,
             "type": "video",
-            "name": "subbg_0511.mp4"
+            "name": "ゲーム背景(月光乱舞)"
         },
         {
             "value": 512,
             "type": "video",
-            "name": "subbg_0512.mp4"
+            "name": "全てを真紅に染め上げる"
         },
         {
             "value": 513,
             "type": "video",
-            "name": "subbg_0513.mp4"
+            "name": "10年の軌跡、重ねる奇跡。"
         },
         {
             "value": 514,
             "type": "video",
-            "name": "subbg_0514.mp4"
+            "name": "今宵、新たなキセキを穿つ"
         }
     ],
     "bgm": [
@@ -9132,6 +9132,214 @@
         {
             "value": 1532,
             "name": "東方Project 06 4"
+        },
+        {
+            "value": 1533,
+            "name": "おしゃべりニアノア 001 1"
+        },
+        {
+            "value": 1534,
+            "name": "おしゃべりニアノア 001 2"
+        },
+        {
+            "value": 1535,
+            "name": "おしゃべりニアノア 001 3"
+        },
+        {
+            "value": 1536,
+            "name": "おしゃべりニアノア 001 4"
+        },
+        {
+            "value": 1537,
+            "name": "おしゃべりニアノア 002 1"
+        },
+        {
+            "value": 1538,
+            "name": "おしゃべりニアノア 002 2"
+        },
+        {
+            "value": 1539,
+            "name": "おしゃべりニアノア 002 3"
+        },
+        {
+            "value": 1540,
+            "name": "おしゃべりニアノア 002 4"
+        },
+        {
+            "value": 1541,
+            "name": "おしゃべりニアノア 003 1"
+        },
+        {
+            "value": 1542,
+            "name": "おしゃべりニアノア 003 2"
+        },
+        {
+            "value": 1543,
+            "name": "おしゃべりニアノア 003 3"
+        },
+        {
+            "value": 1544,
+            "name": "おしゃべりニアノア 003 4"
+        },
+        {
+            "value": 1545,
+            "name": "おしゃべりニアノア 004 1"
+        },
+        {
+            "value": 1546,
+            "name": "おしゃべりニアノア 004 2"
+        },
+        {
+            "value": 1547,
+            "name": "おしゃべりニアノア 004 3"
+        },
+        {
+            "value": 1548,
+            "name": "おしゃべりニアノア 004 4"
+        },
+        {
+            "value": 1549,
+            "name": "おしゃべりグレイス 008 1"
+        },
+        {
+            "value": 1550,
+            "name": "おしゃべりグレイス 008 2"
+        },
+        {
+            "value": 1551,
+            "name": "おしゃべりグレイス 008 3"
+        },
+        {
+            "value": 1552,
+            "name": "おしゃべりグレイス 008 4"
+        },
+        {
+            "value": 1553,
+            "name": "おしゃべりマキシマ 006 1"
+        },
+        {
+            "value": 1554,
+            "name": "おしゃべりマキシマ 006 2"
+        },
+        {
+            "value": 1555,
+            "name": "おしゃべりマキシマ 006 3"
+        },
+        {
+            "value": 1556,
+            "name": "おしゃべりマキシマ 006 4"
+        },
+        {
+            "value": 1557,
+            "name": "おしゃべりつまぶき 006 1"
+        },
+        {
+            "value": 1558,
+            "name": "おしゃべりつまぶき 006 2"
+        },
+        {
+            "value": 1559,
+            "name": "おしゃべりつまぶき 006 3"
+        },
+        {
+            "value": 1560,
+            "name": "おしゃべりつまぶき 006 4"
+        },
+        {
+            "value": 1561,
+            "name": "おしゃべりかなで 006 1"
+        },
+        {
+            "value": 1562,
+            "name": "おしゃべりかなで 006 2"
+        },
+        {
+            "value": 1563,
+            "name": "おしゃべりかなで 006 3"
+        },
+        {
+            "value": 1564,
+            "name": "おしゃべりかなで 006 4"
+        },
+        {
+            "value": 1565,
+            "name": "おしゃべり雷刀 004 1"
+        },
+        {
+            "value": 1566,
+            "name": "おしゃべり雷刀 004 2"
+        },
+        {
+            "value": 1567,
+            "name": "おしゃべり雷刀 004 3"
+        },
+        {
+            "value": 1568,
+            "name": "おしゃべり雷刀 004 4"
+        },
+        {
+            "value": 1569,
+            "name": "おしゃべり雷刀 005 1"
+        },
+        {
+            "value": 1570,
+            "name": "おしゃべり雷刀 005 2"
+        },
+        {
+            "value": 1571,
+            "name": "おしゃべり雷刀 005 3"
+        },
+        {
+            "value": 1572,
+            "name": "おしゃべり雷刀 005 4"
+        },
+        {
+            "value": 1573,
+            "name": "おしゃべり烈風刀 004 1"
+        },
+        {
+            "value": 1574,
+            "name": "おしゃべり烈風刀 004 2"
+        },
+        {
+            "value": 1575,
+            "name": "おしゃべり烈風刀 004 3"
+        },
+        {
+            "value": 1576,
+            "name": "おしゃべり烈風刀 004 4"
+        },
+        {
+            "value": 1577,
+            "name": "おしゃべり烈風刀 005 1"
+        },
+        {
+            "value": 1578,
+            "name": "おしゃべり烈風刀 005 2"
+        },
+        {
+            "value": 1579,
+            "name": "おしゃべり烈風刀 005 3"
+        },
+        {
+            "value": 1580,
+            "name": "おしゃべり烈風刀 005 4"
+        },
+        {
+            "value": 1581,
+            "name": "おしゃべり紅刃 009 1"
+        },
+        {
+            "value": 1582,
+            "name": "おしゃべり紅刃 009 2"
+        },
+        {
+            "value": 1583,
+            "name": "おしゃべり紅刃 009 3"
+        },
+        {
+            "value": 1584,
+            "name": "おしゃべり紅刃 009 4"
         }
     ],
     "akaname": [

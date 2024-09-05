@@ -1,8 +1,8 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.3.5
+**Plugin Version:** fork-6.0.3.6
 
-**Supported game versions:** EXCEED GEAR (2024080500)
+**Supported game versions:** EXCEED GEAR (2024082700)
 
 **Unsupported game versions:** Every other game, as they're untested.
 
@@ -16,6 +16,22 @@
 
 Changelog
 ===========
+## fork-6.0.3.6
+
+### New:
+
+1. Main:
+	- ARENA Rank Season 15 (ARENA BATTLE, point system)
+		- ARENA STATION 15: no new songs/charts
+	- PREMIUM GENERATOR Vol. 5 (Near & Noah EG Set)
+		- Complete the set to get alternate style for Near & Noah.
+
+2. Misc:
+	- Added missing licensed songs released prior to EXCEED GEAR.
+		- [GitHub](https://github.com/22vv0/asphyxia_plugins/issues/4)
+	- Misc WebUI fixes.
+
+
 ## fork-6.0.3.5
 
 ### New:
@@ -35,22 +51,6 @@ Changelog
 	- Updated webui data.json asset file (renamed some placeholder labels)
 	- Removed most of webui image and audio assets to minimize size.
 		- Run asset update to pull webui assets from game files.
-
-
-## fork-6.0.3.4
-
-### New:
-
-1. Main:
-	- 2024070900 support
-	- Added ARENA season 14 (rank match: MEGAMIX BATTLE)
-		- ARENA STATION set 14 added.
-	- Added TAMANEKO Adventure: new unlock system where you complete map missions and earn food for TAMANEKO. Completing maps unlocks new songs and new XCD charts.
-		- Track Liberation map can be enabled/disabled in the main settings.
-		- Check 'Unlocking Events -> Stamp Events -> TAMA猫アドベンチャー (TAMANEKO Adventure)' to toggle the event.
-
-2. Misc:
-	- Updated Achievements list.
 
 
 ### Todo:
