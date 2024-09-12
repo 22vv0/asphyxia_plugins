@@ -1,6 +1,6 @@
 # DanceDanceRevolution
 
-**Plugin Version:** fork-mdx-3.0.0b
+**Plugin Version:** fork-mdx-3.0.2b
 
 **Supported game versions:** WORLD (2024091000)
 
