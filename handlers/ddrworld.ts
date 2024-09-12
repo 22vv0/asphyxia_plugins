@@ -371,14 +371,14 @@ export const playerdataload: EPR = async (info, data, send) => {
           */
           scr[(scoreData.style === 0) ? 'score_single' : 'score_double'] = [
             {
-              score_str: K.ITEM('str', scoreData.difficulty + ',1,' + scoreData.rank + ',' + scoreData.clearKind + ',' + scoreData.score + ',' + scoreData.exScore + ',' + scoreData.flareForce + ',' + scoreData.flareForce)
+              score_str: K.ITEM('str', scoreData.difficulty + ',1,' + scoreData.rank + ',' + scoreData.clearKind + ',' + scoreData.score + ',' + scoreData.songId + ',' + scoreData.flareForce + ',' + scoreData.flareForce)
             }
           ]
           scoreFin.push(scr)
 
         } else {
           scoreFin[mcodeIndex][(scoreData.style === 0) ? 'score_single' : 'score_double'].push({
-            score_str: K.ITEM('str', scoreData.difficulty + ',1,' + scoreData.rank + ',' + scoreData.clearKind + ',' + scoreData.score + ',' + scoreData.exScore + ',' + scoreData.flareForce + ',' + scoreData.flareForce)
+            score_str: K.ITEM('str', scoreData.difficulty + ',1,' + scoreData.rank + ',' + scoreData.clearKind + ',' + scoreData.score + ',' + scoreData.songId + ',' + scoreData.flareForce + ',' + scoreData.flareForce)
           })
         }
       }
