@@ -14719,4 +14719,150 @@
     <limited_ary __type="s32" __count="10">0 0 0 0 -1 -1 0 0 0 -1</limited_ary>
     <diffLv __type="u8" __count="10">1 5 9 11 0 0 3 9 12 0</diffLv>
   </music>
+	<music>
+    <mcode __type="u32">38622</mcode>
+    <basename>tthd</basename>
+    <title>Time to HYPERDRIVE</title>
+    <title_yomi>timetohyperdrive</title_yomi>
+    <artist>Savage States</artist>
+    <series __type="u8">21</series>
+    <limited_ary __type="s32" __count="10">1 1 1 1 -1 -1 1 1 1 -1</limited_ary>
+    <diffLv __type="u8" __count="10">3 4 8 18 0 0 9 13 16 0</diffLv>
+  </music>
+  <music>
+    <mcode __type="u32">38745</mcode>
+    <basename>oroc</basename>
+    <title>OROCHI STRIKE</title>
+    <title_yomi>orochistrike</title_yomi>
+    <artist>Hommarju &amp; BEMANI Sound Team "兎々"</artist>
+    <series __type="u8">21</series>
+    <limited_ary __type="s32" __count="10">1 1 1 1 -1 -1 1 1 1 -1</limited_ary>
+    <diffLv __type="u8" __count="10">3 7 12 16 0 0 7 12 16 0</diffLv>
+  </music>
+  <music>
+    <mcode __type="u32">38747</mcode>
+    <basename>rein</basename>
+    <title>REINCARNATION</title>
+    <title_yomi>reincarnation</title_yomi>
+    <artist>P*Light</artist>
+    <series __type="u8">21</series>
+    <limited_ary __type="s32" __count="10">1 1 1 1 -1 -1 1 1 1 -1</limited_ary>
+    <diffLv __type="u8" __count="10">4 19 15 18 0 0 10 15 18 0</diffLv>
+  </music>
+  <music>
+    <mcode __type="u32">38748</mcode>
+    <basename>rhyz</basename>
+    <title>Re:RHYZE</title>
+    <title_yomi>rerhyze</title_yomi>
+    <artist>beatnation RHYZE</artist>
+    <series __type="u8">21</series>
+    <limited_ary __type="s32" __count="10">1 1 1 1 -1 -1 1 1 1 -1</limited_ary>
+    <diffLv __type="u8" __count="10">4 8 13 16 0 0 9 13 16 0</diffLv>
+  </music>
+  <music>
+    <mcode __type="u32">38734</mcode>
+    <basename>swht</basename>
+    <title>So What</title>
+    <title_yomi>sowhat</title_yomi>
+    <artist>PRIDASK</artist>
+    <bpmmax __type="u16">128</bpmmax>
+    <series __type="u8">21</series>
+    <movie __type="u8">1</movie>
+    <limited_ary __type="s32" __count="10">1 1 1 1 1 -1 1 1 1 1</limited_ary>
+    <diffLv __type="u8" __count="10">3 6 10 14 17 0 9 13 17 18</diffLv>
+  </music>
+  <music>
+    <mcode __type="u32">38622</mcode>
+    <basename>tthd</basename>
+    <title>Time to HYPERDRIVE</title>
+    <title_yomi>timetohyperdrive</title_yomi>
+    <artist>Savage States</artist>
+    <series __type="u8">21</series>
+    <limited_ary __type="s32" __count="10">1 1 1 1 -1 -1 1 1 1 -1</limited_ary>
+    <diffLv __type="u8" __count="10">2 6 10 15 0 0 9 13 17 0</diffLv>
+  </music>
+  <music>
+    <mcode __type="u32">38392</mcode>
+    <basename>esco</basename>
+    <title>Electronic Sports Complex</title>
+    <title_yomi>electronicsportscomplex</title_yomi>
+    <artist>栄免建設</artist>
+    <bpmmin __type="u16">110</bpmmin>
+    <bpmmax __type="u16">220</bpmmax>
+    <series __type="u8">20</series>
+    <limited_ary __type="s32" __count="10">1 1 1 1 -1 -1 1 1 1 -1</limited_ary>
+    <diffLv __type="u8" __count="10">2 6 9 15 0 0 9 13 17 0</diffLv>
+  </music>
+  <music>
+    <mcode __type="u32">38744</mcode>
+    <basename>lich</basename>
+    <title>Lichtsäule</title>
+    <title_yomi>lichtsaule</title_yomi>
+    <artist>かめりあ &amp; BEMANI Sound Team "PHQUASE"</artist>
+    <series __type="u8">21</series>
+    <limited_ary __type="s32" __count="10">1 1 1 1 -1 -1 1 1 1 -1</limited_ary>
+    <diffLv __type="u8" __count="10">4 7 13 17 0 0 7 13 17 0</diffLv>
+  </music>
+  <music>
+    <mcode __type="u32">37234</mcode>
+    <basename>ngon</basename>
+    <title>Moving On</title>
+    <title_yomi>movingon</title_yomi>
+    <artist>J.J. Pops</artist>
+    <series __type="u8">21</series>
+    <limited_ary __type="s32" __count="10">1 1 1 1 -1 -1 1 1 1 -1</limited_ary>
+    <diffLv __type="u8" __count="10">1 6 9 13 0 0 9 13 17 0</diffLv>
+  </music>
+  <music>
+    <mcode __type="u32">37363</mcode>
+    <basename>noma</basename>
+    <title>No Matter What</title>
+    <title_yomi>nomatterwhat</title_yomi>
+    <artist>jun feat.Rita Boudreau</artist>
+    <series __type="u8">21</series>
+    <limited_ary __type="s32" __count="10">1 1 1 1 -1 -1 1 1 1 -1</limited_ary>
+    <diffLv __type="u8" __count="10">1 7 9 11 0 0 9 13 17 0</diffLv>
+  </music>
+  <music>
+    <mcode __type="u32">38749</mcode>
+    <basename>akat</basename>
+    <title>Akatsuki</title>
+    <title_yomi>akatsuki</title_yomi>
+    <artist>PRIDASK</artist>
+    <series __type="u8">21</series>
+    <region __type="u8">2</region>
+    <movie __type="u8">1</movie>
+    <limited_ary __type="s32" __count="10">1 1 1 1 1 -1 1 1 1 1</limited_ary>
+    <diffLv __type="u8" __count="10">2 5 9 10 17 0 9 13 16 17</diffLv>
+  </music>
+  <music>
+    <mcode __type="u32">37222</mcode>
+    <basename>bdow</basename>
+    <title>BRE∀K DOWN! (World Version)</title>
+    <title_yomi>breakdown'worldversion'</title_yomi>
+    <artist>ELE ROCKS</artist>
+    <series __type="u8">21</series>
+    <limited_ary __type="s32" __count="10">1 1 1 1 -1 -1 1 1 1 -1</limited_ary>
+    <diffLv __type="u8" __count="10">3 7 8 14 0 0 9 13 16 0</diffLv>
+  </music>
+  <music>
+    <mcode __type="u32">38746</mcode>
+    <basename>blco</basename>
+    <title>Blφφdy Cφncertφ</title>
+    <title_yomi>bloodyconcerto</title_yomi>
+    <artist>OSTER project &amp; RoughSketch</artist>
+    <series __type="u8">21</series>
+    <limited_ary __type="s32" __count="10">1 1 1 1 -1 -1 1 1 1 -1</limited_ary>
+    <diffLv __type="u8" __count="10">4 8 14 16 0 0 8 14 16 0</diffLv>
+  </music>
+  <music>
+    <mcode __type="u32">37604</mcode>
+    <basename>elrt</basename>
+    <title>El ritmo te controla </title>
+    <title_yomi>elritmotecontrola</title_yomi>
+    <artist>Jeanette Herrera  </artist>
+    <series __type="u8">21</series>
+    <limited_ary __type="s32" __count="10">1 1 1 1 1 -1 1 1 1 1</limited_ary>
+    <diffLv __type="u8" __count="10">2 4 6 17 18 0 9 13 16 18</diffLv>
+  </music>
 </mdb>
