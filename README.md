@@ -2,7 +2,7 @@
 
 **Plugin Version:** fork-mdx-3.0.0b
 
-**Supported game versions:** WORLD (2024080601)
+**Supported game versions:** WORLD (2024091000)
 
 **Unsupported game versions:** Everything except world is unsupported
 
