@@ -366,7 +366,7 @@ export const playerdataload: EPR = async (info, data, send) => {
           scr['score_single'] = []
           scr['score_double'] = []
           /*
-            difficulty,idk,grade,clearkind,score,idk either,flaredisp,flarepoints
+            difficulty,idk,grade,clearkind,score,ghostid,flaredisp,flarepoints
             needs more work, 9 vals
           */
           scr[(scoreData.style === 0) ? 'score_single' : 'score_double'] = [
