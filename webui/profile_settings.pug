@@ -147,15 +147,9 @@ if profile
 
 else if profile3
   -
-    const name = profile3.dancerName;
-    const weight = profile3.weight;
-    const dispWeight = profile3.isDispWeight;
-    // const character = parseInt(common[4]);
-    const arrowSkin = profile3.arrowDesign;
-    const guideline = profile3.opGuideline;
-    // const filter = parseInt(option[12]);
-    const judgmentPriority = profile3.arrowPriority;
-    const displayTiming = profile3.opTimingDisp;
+    const name3 = profile3.dancerName;
+    const weight3 = profile3.weight.toString().split('.');
+    if(weight3.length < 2) weight3.push("0");
 
   div
     .card
@@ -171,110 +165,16 @@ else if profile3
             label.label Dancer Name
           .field-body
             p.control
-              input.input(type="text", id="dancer_name", pattern="[A-Z]{8}", maxlength=8, value=name)
-            //- p.control
-            //-   a.button.is-primary#change-name Change
-
-        //- .field.is-horizontal.has-addons
-        //-   .field-label.is-normal
-        //-     label.label Workout Weight
-        //-   .field-body
-        //-     p.control
-        //-       input.input(type="number", id="weight_1", value=weight.split(".")[0])
-        //-     p.control
-        //-       input.input(type="number", id="weight_2", value=weight.split(".")[1])
-        //-     p.control
-        //-       a.button.is-primary#change-weight Change
-
-        //- .field.is-horizontal.has-addons
-        //-   .field-label.is-normal
-        //-     label.label Workout Display Calories
-        //-   .field-body
-        //-     p.control
-        //-       .select
-        //-         select#display_calories
-        //-           if (dispWeight === 1)
-        //-             option(value=0) Off
-        //-             option(value=1, selected) On
-        //-           else
-        //-             option(value=0, selected) Off
-        //-             option(value=1) On
-        //-     p.control
-        //-       a.button.is-primary#change-display-calories Submit
-
-        //- .field.is-horizontal.has-addons
-        //-   .field-label.is-normal
-        //-     label.label Arrow Skin
-        //-   .field-body
-        //-     p.control
-        //-       .select
-        //-         select#arrow_skin
-        //-           each v, i in arrowSkins
-        //-             if (arrowSkin === i)
-        //-               option(value=i, selected) #{v}
-        //-             else
-        //-               option(value=i) #{v}
-        //-     p.control
-        //-       a.button.is-primary#change-arrow-skin Submit
-
-        //- .field.is-horizontal.has-addons
-        //-   .field-label.is-normal
-        //-     label.label Guideline
-        //-   .field-body
-        //-     p.control
-        //-       .select
-        //-         select#guideline
-        //-           each v, i in guidelines
-        //-             if (guideline === i)
-        //-               option(value=i, selected) #{v}
-        //-             else
-        //-               option(value=i) #{v}
-        //-     p.control
-        //-       a.button.is-primary#change-guideline Submit
-
-        //- .field.is-horizontal.has-addons
-        //-   .field-label.is-normal
-        //-     label.label Filter concentration
-        //-   .field-body
-        //-     p.control
-        //-       .select
-        //-         select#filter
-        //-           each v, i in filters
-        //-             if (filter === i)
-        //-               option(value=i, selected) #{v}
-        //-             else
-        //-               option(value=i) #{v}
-        //-     p.control
-        //-       a.button.is-primary#change-filter Submit
-
-        //- .field.is-horizontal.has-addons
-        //-   .field-label.is-normal
-        //-     label.label Judgment display priority
-        //-   .field-body
-        //-     p.control
-        //-       .select
-        //-         select#judgment_priority
-        //-           each v, i in judgmentPrioritys
-        //-             if (judgmentPriority === i)
-        //-               option(value=i, selected) #{v}
-        //-             else
-        //-               option(value=i) #{v}
-        //-     p.control
-        //-       a.button.is-primary#change-judgment-priority Submit
-
-        //- .field.is-horizontal.has-addons
-        //-   .field-label.is-normal
-        //-     label.label Display Timing judgment
-        //-   .field-body
-        //-     p.control
-        //-       .select
-        //-         select#display_timing
-        //-           each v, i in ["Off", "On"]
-        //-             if (displayTiming === i)
-        //-               option(value=i, selected) #{v}
-        //-             else
-        //-               option(value=i) #{v}
-        //-     p.control
-        //-       a.button.is-primary#change-display-timing Submit
+              input.input(type="text", id="name3", pattern="[A-Z]{8}", maxlength=8, value=name3)
+            p.control
+              a.button.is-primary#change-name3 Change
+          .field-label.is-normal
+            label.label Weight
+          .field-body
+            p.control
+              input.input(type="text", id="weight31", pattern="[0-9]*", value=weight3[0])
+              input.input(type="text", id="weight32", pattern="[0-9]", value=weight3[1])
+            p.control
+              a.button.is-primary#change-weight3 Set
 
 script(src="static/js/profile_settings.js")

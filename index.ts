@@ -4,6 +4,7 @@ import { usergamedata_recv } from "./handlers/usergamedata_recv";
 import { usergamedata_send } from "./handlers/usergamedata_send";
 import { musicdataload, playerdatanew, playerdatasave, playerdataload, rivaldataload, ghostdataload, taboowordcheck, minidump } from "./handlers/ddrworld";
 import { CommonOffset, OptionOffset, Profile } from "./models/profile";
+import { ProfileWorld } from "./models/ddrworld";
 
 export function register() {
   R.GameCode("MDX");
@@ -164,5 +165,21 @@ export function register() {
         }
       });
     }
+  });
+
+  R.WebUIEvent("updateName3", async ({ refid, name }) => {
+    await DB.Update<ProfileWorld>(refid, { collection: "profile3" }, {
+      $set: {
+        dancerName: name
+      }
+    });
+  });
+
+  R.WebUIEvent("updateWeight3", async ({ refid, weight }) => {
+    await DB.Update<ProfileWorld>(refid, { collection: "profile3" }, {
+      $set: {
+        weight: weight
+      }
+    });
   });
 }

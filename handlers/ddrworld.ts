@@ -43,8 +43,6 @@ async function saveScores(refid: string, songId: number, style: number, difficul
 
 export const playerdatanew: EPR = async (info, data, send) => {
   const refid = $(data).str("data.refid");
-  console.log('playerdatanew')
-  console.log("----------------------")
   let ddrCode = _.random(1, 99999999)
   await DB.Upsert<ProfileWorld>(refid, { collection: "profile3" }, {
     collection: "profile3",
@@ -222,10 +220,10 @@ export const playerdatasave: EPR = async (info, data, send) => {
           let eid = e.number('eventid')
           let eno = e.number('eventno')
           let etype = e.number('eventtype')
-          let ctime = getDate()
+          let ctime = e.number('comptime')
           let sdata = e.number('savedata')
 
-          await DB.Upsert<EventWorld>(refid, { collection: "event3", eventId: eid }, {
+          await DB.Upsert<EventWorld>(refid, { collection: "event3", eventId: eid, eventNo: eno, eventType: etype }, {
             collection: "event3", 
             eventId: eid, 
             eventNo: eno, 
@@ -385,11 +383,36 @@ export const playerdataload: EPR = async (info, data, send) => {
     }
 
     let eventFin = []
+    let eventData = await DB.Find<EventWorld>(refid, { collection: "event3"});
     for(const event of EVENTS_WORLD) {
-      let eventData = await DB.FindOne<EventWorld>(refid, { collection: "event3", eventId: event.id, eventNo: event.no });
-      eventFin.push({
-        event_str: K.ITEM('str', event.id + ',' + event.type + ',' + event.no + ',0,' + event.sid + ',' + ((eventData) ? BigInt(eventData.compTime) : '0') + ',' + ((eventData) ? eventData.saveData : '0'))
-      })  
+      let eData = eventData.find(e => e.eventId === event.id)
+      let condmet = true
+      if(event.dep) {
+        event.dep.forEach(dep => {
+          let eData = eventData.find(e => e.eventId === dep)
+          if(eData === undefined) condmet = false
+          else if(eData.compTime === 0) condmet = false
+        })
+      }
+      // id,type,no,condition,reward,comptime,savedata
+      if(condmet) {
+        if(event.type === 17) {
+          if (eData) eData.compTime = eData.compTime ? 0 : 1 
+          event.comp = event.comp ? 0 : 1
+        }
+        eventFin.push({
+          event_str: K.ITEM('str', event.id + ',' + event.type + ',' + event.no + ',' + event.cond + ',' + event.rwrd + ',' + (eData ? BigInt(eData.compTime) : (event.comp !== undefined ? event.comp : '0')) + ',' + ((eData) ? eData.saveData : ((event.save !== undefined) ? event.save : '0')))
+        })  
+      }
+    }
+
+    // test
+    if(IO.Exists('data/test.json')) {
+      let bufTest = await IO.ReadFile('data/test.json')
+      let eventTest = JSON.parse(bufTest.toString())
+      for(const ex in eventTest['eventtest']) {
+        eventFin.push({ event_str: K.ITEM('str', eventTest['eventtest'][ex]) })
+      }
     }
 
     return send.object({
@@ -479,6 +502,7 @@ export const playerdataload: EPR = async (info, data, send) => {
 };
 
 export const musicdataload: EPR = async (info, data, send) => {
+  // I personally use the last A3 db for this, will check for missing songs
   let musicList = []
   if(IO.Exists('data/musicdb.xml')) { 
     let mdb = U.parseXML(U.DecodeString(await IO.ReadFile('data/musicdb.xml'), "shift_jis"), false)
@@ -495,12 +519,27 @@ export const musicdataload: EPR = async (info, data, send) => {
     }
   }
 
+
   for(const music of SONGS_WORLD) {
     for(const [index, diff] of music.diffLv.entries()) {
       if(music.limited_ary[index] != -1) {
         musicList.push({
           music_str: K.ITEM('str', music.mcode + ',' + ((index > 4) ? '1,' : '0,') + (index % 5) + ',' + music.limited_ary[index] + ',' + diff)
         })
+      }
+    }
+  }
+  // test
+  if(IO.Exists('data/test.json')) {
+    let bufTest = await IO.ReadFile('data/test.json')
+    let eventTest = JSON.parse(bufTest.toString())
+    for(const ex in eventTest['songstest']) {
+      for(const [index, diff] of eventTest['songstest'][ex].diffLv.entries()) {
+        if(eventTest['songstest'][ex].limited_ary[index] != -1) {
+          musicList.push({
+            music_str: K.ITEM('str', eventTest['songstest'][ex].mcode + ',' + ((index > 4) ? '1,' : '0,') + (index % 5) + ',' + eventTest['songstest'][ex].limited_ary[index] + ',' + diff)
+          })
+        }
       }
     }
   }
@@ -520,7 +559,6 @@ export const rivaldataload: EPR = async (info, data, send) => {
 };
 
 export const ghostdataload: EPR = async (info, data, send) => {
-  // i quite frankly dk what this is for lol i don't play ddr
   const refid = $(data).str("data.refid");
   const ghostId = $(data).number("data.ghostid");
   let ghostData = await DB.FindOne<GhostWorld>(refid, {collection: 'ghost3', songId: ghostId})
@@ -543,7 +581,6 @@ export const taboowordcheck: EPR = async (info, data, send) => {
 };
 
 export const minidump: EPR = async (info, data, send) => {
-  console.log($(data).str('minidump'))
   return send.object({ result: K.ITEM('s32', 0) })
 };
 

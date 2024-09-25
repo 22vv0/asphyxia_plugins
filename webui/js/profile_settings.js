@@ -12,6 +12,21 @@ $('#change-weight').on('click', () => {
   emit('updateWeight', { refid, weight }).then(() => location.reload());
 });
 
+$('#change-name3').on('click', () => {
+  const name = $('#name3').val().toUpperCase();
+
+  emit('updateName3', { refid, name }).then(() => location.reload());
+});
+
+$('#change-weight3').on('click', () => {
+  const weight1 = $('#weight31').val();
+  const weight2 = $('#weight32').val();
+  const weight = parseInt(weight1 + '.' + weight2);
+
+  emit('updateWeight3', { refid, weight }).then(() => location.reload());
+});
+
+
 $('#change-display-calories').on('click', () => {
   const selected = $('#display_calories option:selected').val();
 
