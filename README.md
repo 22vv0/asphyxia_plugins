@@ -1,8 +1,8 @@
 # DanceDanceRevolution
 
-**Plugin Version:** fork-mdx-3.0.0b
+**Plugin Version:** fork-mdx-3.0.1
 
-**Supported game versions:** WORLD (2024061300)
+**Supported game versions:** WORLD (2024091000)
 
 **Unsupported game versions:** Everything below A20 is unsupported. A20 untested. A3 unsupported.
 
@@ -17,6 +17,21 @@
 
 Changelog
 ===========
+## fork-mdx-3.0.1
+
+### New:
+
+1. Main:
+	- Updated events list & event loading code: 
+		- Galaxy Play
+		- EXTRA SAVIOR
+		- MYSTICAL Re:UNION (songs automatically unlocked on login atm)
+	- Attempts to fix ghost data loading:
+		- Added ghost id to score and ghost data
+		- Ghost data gets created when there is no existing data; and it gets updated when getting a higher or the same score. Side effect of this is when you have set a high score prior to this update, the ghost data won't be updated unless you break or match that high score. 
+		- Unfortunately I could not find a way to match the old scores to their respective ghost data, since the old ghost data only stored the song id and difficulty, and not the style (single/double.)
+
+
 ## fork-mdx-3.0.0b
 
 ### New:
@@ -41,25 +56,11 @@ Changelog
 		- Added musicdata for new WORLD songs (ddr@asphyxia/data/world.ts:SONGS_WORLD)
 
 
-## fork-mdx-3.0.0
-
-### New:
-
-1. Main:
-	- 2024061300 support (DDR World)
-	- DDR profile registration for new and existing Asphyxia profiles
-		- For Asphyxia profiles with no prior DDR A20/A3 profiles registered.
-		- Transfer from A3 not supported (yet?)
-	- Profile saving and loading (probably incomplete)
-	- Score saving and loading (probably incomplete)
-
-
 ### To do:
 
-1. Look for more missing features (I don't play DDR so idk what's missing lol)
-2. Check flare skill value consistency
-3. Transfer old save data from A3 to World (?)
-4. Update re-rated song difficulties
-5. WebUI Profile page
-6. More work on score_str
-7. Rival load
+1. Look for more missing features
+2. Refactor getLastScoreId and addScoreKey
+3. Update re-rated song difficulties
+4. WebUI stuff
+5. More work on score_str
+6. Rival load

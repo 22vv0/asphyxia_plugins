@@ -1,16 +1,46 @@
 import { Profile } from "../models/profile";
-import { ProfileWorld, ScoreWorld, EventWorld, GhostWorld } from "../models/ddrworld";
+import { ProfileWorld, ScoreWorld, EventWorld, GhostWorld, RivalWorld } from "../models/ddrworld";
 import { SONGS_WORLD, EVENTS_WORLD } from "../data/world";
 
+// needs to be faster
+function getLastGhostId(ghost: any) {
+  return ghost.reduce(function(a, b) {
+    let aId = (a && !a.ghostId) ? 0 : a.ghostId
+    let bId = (!b.ghostId) ? 0 : b.ghostId
+    return (a && aId > bId) ? aId : bId
+  })
+}
+
 async function saveScores(refid: string, songId: number, style: number, difficulty: number, rank: number, clearKind: number, score: number, exScore: number, maxCombo: number, flareForce: number, ghostSize: number, ghost: string) {
-  let stepScore = await DB.Find<ScoreWorld>(refid, {collection: "score3", songId: songId, style: style, difficulty: difficulty})
-  if(stepScore.length > 0) {
-    rank = (rank < stepScore[0].rank) ? rank : stepScore[0].rank;
-    clearKind = (clearKind != 6 && clearKind > stepScore[0].clearKind) ? clearKind : stepScore[0].clearKind;
-    score = (score > stepScore[0].score) ? score : stepScore[0].score;
-    exScore = (exScore > stepScore[0].exScore) ? exScore : stepScore[0].exScore;
-    maxCombo = (maxCombo > stepScore[0].maxCombo) ? maxCombo : stepScore[0].maxCombo;
-    flareForce = (flareForce > stepScore[0].flareForce) ? flareForce : stepScore[0].flareForce;
+  let ghostData = await DB.Find<GhostWorld>(null, {collection: "ghost3"})
+  let lastGhostId = getLastGhostId(ghostData)
+  let stepScore = await DB.FindOne<ScoreWorld>(refid, {collection: "score3", songId: songId, style: style, difficulty: difficulty})
+  let ghostId = 0
+  if(lastGhostId === 0) {
+    ghostId = 1
+  } else ghostId = lastGhostId += 1
+  /*
+    Ghost data gets created when there is no existing data and it gets updated when getting a higher or the same score
+    Side effect of this is when you have set a high score prior to this update, the ghost data wouldn't be updated unless you break or match that high score.
+    Unfortunately I could not find a way to match the old scores to their respective ghost data, since the old ghost data only stored the song id and difficulty, and not the style (single/double.) Stupid me.
+    Still needs more work.
+  */
+  if(stepScore) {
+    ghostId = (stepScore.ghostId) ? stepScore.ghostId : ghostId
+    let stepGhost = await DB.FindOne<GhostWorld>(null, {collection: "ghost3", ghostId: ghostId })
+    if(stepGhost) {
+      if(score >= stepScore.score) console.log("overwriting ghostdata")
+      ghostSize = (score >= stepScore.score) ? ghostSize : stepGhost.ghostSize
+      ghost = (score >= stepScore.score) ? ghost : stepGhost.ghost
+    }
+
+    rank = (rank < stepScore.rank) ? rank : stepScore.rank;
+    clearKind = (clearKind != 6 && clearKind > stepScore.clearKind) ? clearKind : stepScore.clearKind;
+    score = (score > stepScore.score) ? score : stepScore.score;
+    exScore = (exScore > stepScore.exScore) ? exScore : stepScore.exScore;
+    maxCombo = (maxCombo > stepScore.maxCombo) ? maxCombo : stepScore.maxCombo;
+    flareForce = (flareForce > stepScore.flareForce) ? flareForce : stepScore.flareForce;
+
   }
 
   await DB.Upsert<ScoreWorld>(refid, {
@@ -20,19 +50,18 @@ async function saveScores(refid: string, songId: number, style: number, difficul
     difficulty
     }, {
       $set: {
+        ghostId,
         rank,
         clearKind,
         score,
-        exScore,
-        maxCombo,
-        flareForce
+        exScore
       }
   });
 
+  console.log("saving ghostid: " + ghostId)
   await DB.Upsert<GhostWorld>(refid, {
     collection: "ghost3",
-    songId,
-    difficulty
+    ghostId,
     }, {
       $set: {
         ghostSize,
@@ -40,6 +69,31 @@ async function saveScores(refid: string, songId: number, style: number, difficul
       }
   });
 }
+
+// async function addGhostId(refid: string) {
+//   const ghost = await DB.Find<GhostWorld>(null, { collection: "ghost3" });
+//   if(ghost) {
+//     let lastGhostId = getLastScoreId(ghost)
+//     if(lastGhostId === 0) {
+//       console.log("Modifying score data to add ghost id.")
+//       for(const scoreData of scores) {
+//         let songId = scoreData.songId
+//         let style = scoreData.style
+//         let difficulty = scoreData.difficulty
+//         let rank = scoreData.rank
+//         let clearKind = scoreData.clearKind
+//         let score = scoreData.score
+//         let exScore = scoreData.exScore
+//         let maxCombo = scoreData.maxCombo
+//         let flareForce = scoreData.flareForce
+//         let ghostSize = (scoreData.ghostSize) ? scoreData.ghostSize : 0
+//         let ghost = (scoreData.ghost) ? scoreData.ghost : '0'
+//         await DB.Remove<ScoreWorld>(refid, {collection: "score3", songId: songId, style: style, difficulty: difficulty})
+//         await saveScores(refid, songId, style, difficulty, rank, clearKind, score, exScore, maxCombo, flareForce, ghostSize, ghost)
+//       }
+//     }
+//   }
+// }
 
 export const playerdatanew: EPR = async (info, data, send) => {
   const refid = $(data).str("data.refid");
@@ -141,7 +195,7 @@ export const playerdatasave: EPR = async (info, data, send) => {
       let flareForce = $(data).number("data.result.flare_force");
       let ghostSize = $(data).number("data.result.ghostsize");
       let ghost = $(data).str("data.result.ghost");
-      saveScores(refid, songId, style, difficulty, rank, clearKind, score, exScore, maxCombo, flareForce, ghostSize, ghost)
+      await saveScores(refid, songId, style, difficulty, rank, clearKind, score, exScore, maxCombo, flareForce, ghostSize, ghost)
     }
     else if($(data).number("data.savekind") === 3) {
       let profile = await DB.FindOne<ProfileWorld>(refid, {collection: "profile3"})
@@ -249,7 +303,7 @@ export const playerdataload: EPR = async (info, data, send) => {
   const refid = $(data).str("data.refid");
   const profile = await DB.FindOne<ProfileWorld>(refid, { collection: "profile3" });
 
-  if (!profile || refid.startsWith("X000"))  {
+  if (!profile || !profile.dancerName || refid.startsWith("X000"))  {
     return send.object({
       result: K.ITEM("s32", 0),
       refid: K.ITEM("str", refid),
@@ -257,17 +311,17 @@ export const playerdataload: EPR = async (info, data, send) => {
       servertime: K.ITEM("u64", BigInt(getDate())),
       is_locked: K.ITEM('bool', false),
       common: {
-        ddrcode: K.ITEM("s32", 0),
+        ddrcode: K.ITEM("s32", profile ? profile.ddrCode : 0),
         dancername: K.ITEM("str", ''),
-        is_new: K.ITEM('bool', true),
-        is_registering: K.ITEM('bool', false),
+        is_new: K.ITEM('bool', (!profile || refid.startsWith("X000")) ? true : false),
+        is_registering: K.ITEM('bool', (profile && !profile.dancerName) ? true : false),
+        is_takeover: K.ITEM('bool', false),
         area: K.ITEM("s32", 0),
         extrastar: K.ITEM("s32", 0),
         playcount: K.ITEM("s32", 0),
         weight: K.ITEM("s32", 0),
         today_cal: K.ITEM("u64", BigInt(0)),
         is_disp_weight: K.ITEM("bool", false),
-        is_takeover: K.ITEM('bool', false),
         pre_playable_num: K.ITEM("s32", 0)
       },
       option: {
@@ -352,8 +406,8 @@ export const playerdataload: EPR = async (info, data, send) => {
     })
   }
   else {
+    // await addGhostId(refid)
     const scores = await DB.Find<ScoreWorld>(refid, { collection: "score3" });
-
     let scoreFin = []
     if(scores) {
       for(const scoreData of scores) {
@@ -369,14 +423,14 @@ export const playerdataload: EPR = async (info, data, send) => {
           */
           scr[(scoreData.style === 0) ? 'score_single' : 'score_double'] = [
             {
-              score_str: K.ITEM('str', scoreData.difficulty + ',1,' + scoreData.rank + ',' + scoreData.clearKind + ',' + scoreData.score + ',' + scoreData.exScore + ',' + scoreData.flareForce + ',' + scoreData.flareForce)
+              score_str: K.ITEM('str', scoreData.difficulty + ',1,' + scoreData.rank + ',' + scoreData.clearKind + ',' + scoreData.score + ',' + scoreData.ghostId + ',' + scoreData.flareForce + ',' + scoreData.flareForce)
             }
           ]
           scoreFin.push(scr)
           
         } else {
           scoreFin[mcodeIndex][(scoreData.style === 0) ? 'score_single' : 'score_double'].push({
-            score_str: K.ITEM('str', scoreData.difficulty + ',1,' + scoreData.rank + ',' + scoreData.clearKind + ',' + scoreData.score + ',' + scoreData.exScore + ',' + scoreData.flareForce + ',' + scoreData.flareForce)
+            score_str: K.ITEM('str', scoreData.difficulty + ',1,' + scoreData.rank + ',' + scoreData.clearKind + ',' + scoreData.score + ',' + scoreData.ghostId + ',' + scoreData.flareForce + ',' + scoreData.flareForce)
           })
         }
       }
@@ -559,9 +613,11 @@ export const rivaldataload: EPR = async (info, data, send) => {
 };
 
 export const ghostdataload: EPR = async (info, data, send) => {
+  // Choosing world, area and machine #1 target scores doesn't seem to call this endpoint yet (or at all)
   const refid = $(data).str("data.refid");
   const ghostId = $(data).number("data.ghostid");
-  let ghostData = await DB.FindOne<GhostWorld>(refid, {collection: 'ghost3', songId: ghostId})
+  console.log("loading ghostid: " + ghostId)
+  let ghostData = await DB.FindOne<GhostWorld>(null, {collection: 'ghost3', ghostId: ghostId})
   if(ghostData) {
     return send.object({
       result: K.ITEM("s32", 0),

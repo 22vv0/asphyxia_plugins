@@ -69,10 +69,8 @@ export const EVENTS_WORLD = [
 	{ id: 37, no: 1, cond: 1, rwrd: 38665, type: 81 }, { id: 38, no: 1, cond: 1, rwrd: 38665, type: 82 }, { id: 39, no: 1, cond: 1, rwrd: 38665, type: 83 }, { id: 40, no: 1, cond: 1, rwrd: 38665, type: 84 }, 
 	{ id: 41, no: 1, cond: 1, rwrd: 38669, type: 81 }, { id: 42, no: 1, cond: 1, rwrd: 38669, type: 82 }, { id: 43, no: 1, cond: 1, rwrd: 38669, type: 83 }, { id: 44, no: 1, cond: 1, rwrd: 38669, type: 84 }, 
 	{ id: 45, no: 1, cond: 1, rwrd: 38659, type: 81 }, { id: 46, no: 1, cond: 1, rwrd: 38659, type: 82 }, { id: 47, no: 1, cond: 1, rwrd: 38659, type: 83 }, { id: 48, no: 1, cond: 1, rwrd: 38659, type: 84 },
-
 	{ id: 49, no: 0, cond: 2, rwrd: 38736, type: 27 }, { id: 50, no: 0, cond: 2, rwrd: 38735, type: 27 }, { id: 51, no: 0, cond: 2, rwrd: 38728, type: 27 },
 	{ id: 52, no: 0, cond: 1, rwrd: 38624, type: 27 }, { id: 53, no: 0, cond: 1, rwrd: 38623, type: 27 }, { id: 54, no: 0, cond: 1, rwrd: 38628, type: 27 },
-
 	{ id: 55, no: 0, cond: 1, rwrd: 38736, type: 25 }, { id: 56, no: 1, cond: 1, rwrd: 38736, type: 25 }, { id: 57, no: 2, cond: 1, rwrd: 38736, type: 25 }, { id: 58, no: 3, cond: 1, rwrd: 38736, type: 25 }, 
 	{ id: 59, no: 0, cond: 1, rwrd: 38735, type: 25 }, { id: 60, no: 1, cond: 1, rwrd: 38735, type: 25 }, { id: 61, no: 2, cond: 1, rwrd: 38735, type: 25 }, { id: 62, no: 3, cond: 1, rwrd: 38735, type: 25 }, 
 	{ id: 63, no: 0, cond: 1, rwrd: 38728, type: 25 }, { id: 64, no: 1, cond: 1, rwrd: 38728, type: 25 }, { id: 65, no: 2, cond: 1, rwrd: 38728, type: 25 }, { id: 66, no: 3, cond: 1, rwrd: 38728, type: 25 }, 
@@ -81,11 +79,11 @@ export const EVENTS_WORLD = [
 	{ id: 77, no: 0, cond: 1, rwrd: 38628, type: 25 }, { id: 78, no: 1, cond: 1, rwrd: 38628, type: 25 }, { id: 79, no: 2, cond: 1, rwrd: 38628, type: 25 }, { id: 80, no: 3, cond: 1, rwrd: 38628, type: 25 }, 
 	{ id: 81, no: 0, cond: 1, rwrd: 1185, type: 201, save: 1, dep: [67, 68, 69, 70, 72, 73, 74, 75, 77, 78, 79, 80] },
 	{ id: 82, no: 0, cond: 1, rwrd: 1186, type: 201, save: 1, dep: [67, 68, 69, 70, 71, 72, 73, 74, 75, 77, 78, 79, 80] },
-
 	{ id: 83, no: 0, cond: 1, rwrd: 38746, type: 17, comp: 0, save: 1 },
 	{ id: 84, no: 0, cond: 1, rwrd: 38745, type: 17, comp: 0, save: 1 },
 	{ id: 85, no: 0, cond: 1, rwrd: 38744, type: 17, comp: 0, save: 1 },
 	{ id: 86, no: 0, cond: 1, rwrd: 38747, type: 17, comp: 0, save: 1 },
 	{ id: 87, no: 0, cond: 1, rwrd: 38748, type: 17, comp: 0, save: 1 },
-	{ id: 88, no: 0, cond: 1, rwrd: 1189, type: 201, save: 1 }
+	{ id: 88, no: 0, cond: 1, rwrd: 1189, type: 201, save: 1 },
+	{ id: 89, no: 0, cond: 1, rwrd: 1188, type: 201, save: 1 }
 ]	

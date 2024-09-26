@@ -10,9 +10,11 @@ export interface RivalWorld {
 export interface ScoreWorld {
   collection: "score3";
 
+  scoreId: number;
   songId: number;
   style: number;
   difficulty: Difficulty;
+  ghostId: number;
   rank: Rank;
   clearKind: ClearKind;
   score: number;
@@ -24,8 +26,7 @@ export interface ScoreWorld {
 export interface GhostWorld {
   collection: "ghost3"
 
-  songId: number;
-  difficulty: number;
+  ghostId: number;
   ghostSize: number;
   ghost: string;
 }
