@@ -5,6 +5,7 @@ import { usergamedata_send } from "./handlers/usergamedata_send";
 import { musicdataload, playerdatanew, playerdatasave, playerdataload, rivaldataload, ghostdataload, taboowordcheck, minidump } from "./handlers/ddrworld";
 import { CommonOffset, OptionOffset, Profile } from "./models/profile";
 import { ProfileWorld } from "./models/ddrworld";
+import { SONGS_WORLD, SONGS_OVERRIDE_WORLD } from "./data/world"
 
 export function register() {
   R.GameCode("MDX");
@@ -182,4 +183,31 @@ export function register() {
       }
     });
   });
+
+  R.WebUIEvent("getMDB", async (data: {}, send: WebUISend) => {
+    let mdbData = []
+    if(IO.Exists('data/musicdb.xml')) { 
+      let mdb = U.parseXML(U.DecodeString(await IO.ReadFile('data/musicdb.xml'), "shift_jis"), false)
+      mdb['mdb']['music'].forEach(music => {
+        if(SONGS_OVERRIDE_WORLD.findIndex(so => so.mcode === $(music).number('mcode')) < 0) {
+          let diffLv = music.diffLv
+          mdbData.push({
+            mcode: $(music).number('mcode'),
+            diffLv: $(music).numbers('diffLv')
+          })
+        }
+      })
+      SONGS_WORLD.concat(SONGS_OVERRIDE_WORLD).forEach(sw => {
+        let mIndex = mdbData.findIndex(m => m.mcode === sw.mcode)
+        if(mIndex > -1) mdbData[mIndex]['diffLv'] = sw.diffLv
+        else {
+          mdbData.push({
+            mcode: sw.mcode,
+            diffLv: sw.diffLv
+          })
+        }
+      })
+    } 
+    send.json({mdb: mdbData})
+  })
 }

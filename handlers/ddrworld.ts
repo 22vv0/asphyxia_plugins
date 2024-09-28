@@ -1,6 +1,6 @@
 import { Profile } from "../models/profile";
 import { ProfileWorld, ScoreWorld, EventWorld, GhostWorld, RivalWorld } from "../models/ddrworld";
-import { SONGS_WORLD, EVENTS_WORLD } from "../data/world";
+import { SONGS_WORLD, SONGS_OVERRIDE_WORLD, EVENTS_WORLD } from "../data/world";
 
 // needs to be faster
 function getLastGhostId(ghost: any) {
@@ -54,7 +54,9 @@ async function saveScores(refid: string, songId: number, style: number, difficul
         rank,
         clearKind,
         score,
-        exScore
+        exScore,
+        maxCombo,
+        flareForce
       }
   });
 
@@ -423,14 +425,14 @@ export const playerdataload: EPR = async (info, data, send) => {
           */
           scr[(scoreData.style === 0) ? 'score_single' : 'score_double'] = [
             {
-              score_str: K.ITEM('str', scoreData.difficulty + ',1,' + scoreData.rank + ',' + scoreData.clearKind + ',' + scoreData.score + ',' + scoreData.ghostId + ',' + scoreData.flareForce + ',' + scoreData.flareForce)
+              score_str: K.ITEM('str', scoreData.difficulty + ',1,' + scoreData.rank + ',' + scoreData.clearKind + ',' + scoreData.score + ',' + scoreData.ghostId + ',' + (scoreData.flareForce ? scoreData.flareForce : '-1') + ',' + (scoreData.flareForce ? scoreData.flareForce : '-1'))
             }
           ]
           scoreFin.push(scr)
           
         } else {
           scoreFin[mcodeIndex][(scoreData.style === 0) ? 'score_single' : 'score_double'].push({
-            score_str: K.ITEM('str', scoreData.difficulty + ',1,' + scoreData.rank + ',' + scoreData.clearKind + ',' + scoreData.score + ',' + scoreData.ghostId + ',' + scoreData.flareForce + ',' + scoreData.flareForce)
+            score_str: K.ITEM('str', scoreData.difficulty + ',1,' + scoreData.rank + ',' + scoreData.clearKind + ',' + scoreData.score + ',' + scoreData.ghostId + ',' + (scoreData.flareForce ? scoreData.flareForce : '-1') + ',' + (scoreData.flareForce ? scoreData.flareForce : '-1'))
           })
         }
       }
@@ -563,8 +565,16 @@ export const musicdataload: EPR = async (info, data, send) => {
     for(const music of mdb['mdb']['music']) {
       let difficultyArr = $(music).numbers('diffLv')
       let limited = ($(music).number('limited')) ? $(music).number('limited') : 0
+      let limitedAry = ($(music).numbers('limited_ary')) ? $(music).numbers('limited_ary') : []
+
+      let overrideIndex = SONGS_OVERRIDE_WORLD.findIndex(s => s.mcode === $(music).number('mcode'))
+      if(overrideIndex > -1) {
+        limitedAry = (SONGS_OVERRIDE_WORLD[overrideIndex]['limited_ary'] !== [] ? SONGS_OVERRIDE_WORLD[overrideIndex]['limited_ary'] : limitedAry)
+        difficultyArr = SONGS_OVERRIDE_WORLD[overrideIndex]['diffLv']
+      }
+
       for(const [index, diff] of difficultyArr.entries()) {
-        limited = ($(music).numbers('limited_ary')) ? $(music).numbers('limited_ary')[index] : limited
+        limited = (limitedAry) ? limitedAry[index] : limited
         limited = ((index % 5 === 4) && $(music).number('limited_cha')) ? $(music).number('limited_cha') : limited
         musicList.push({
           music_str: K.ITEM('str', $(music).number('mcode') + ',' + ((index > 4) ? '1,' : '0,') + (index % 5) + ',' + limited + ',' + diff)
