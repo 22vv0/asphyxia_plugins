@@ -1,5 +1,5 @@
 import { Profile } from "../models/profile";
-import { ProfileWorld, ScoreWorld, EventWorld, GhostWorld, RivalWorld } from "../models/ddrworld";
+import { ProfileWorld, ScoreWorld, EventWorld, GhostWorld, RivalWorld, HiScoreWorld } from "../models/ddrworld";
 import { SONGS_WORLD, SONGS_OVERRIDE_WORLD, EVENTS_WORLD } from "../data/world";
 
 // needs to be faster
@@ -11,10 +11,11 @@ function getLastGhostId(ghost: any) {
   })
 }
 
-async function saveScores(refid: string, songId: number, style: number, difficulty: number, rank: number, clearKind: number, score: number, exScore: number, maxCombo: number, flareForce: number, ghostSize: number, ghost: string) {
+async function saveScores(refid: string, hiScoreInfo: any, songId: number, style: number, difficulty: number, rank: number, clearKind: number, score: number, exScore: number, maxCombo: number, flareForce: number, ghostSize: number, ghost: string) {
+  let stepScore = await DB.FindOne<ScoreWorld>(refid, {collection: "score3", songId: songId, style: style, difficulty: difficulty})
   let ghostData = await DB.Find<GhostWorld>(null, {collection: "ghost3"})
   let lastGhostId = getLastGhostId(ghostData)
-  let stepScore = await DB.FindOne<ScoreWorld>(refid, {collection: "score3", songId: songId, style: style, difficulty: difficulty})
+  let hiScoreCheck = score
   let ghostId = 0
   if(lastGhostId === 0) {
     ghostId = 1
@@ -28,6 +29,7 @@ async function saveScores(refid: string, songId: number, style: number, difficul
   if(stepScore) {
     ghostId = (stepScore.ghostId) ? stepScore.ghostId : ghostId
     let stepGhost = await DB.FindOne<GhostWorld>(null, {collection: "ghost3", ghostId: ghostId })
+    
     if(stepGhost) {
       if(score >= stepScore.score) console.log("overwriting ghostdata")
       ghostSize = (score >= stepScore.score) ? ghostSize : stepGhost.ghostSize
@@ -70,32 +72,106 @@ async function saveScores(refid: string, songId: number, style: number, difficul
         ghost
       }
   });
-}
 
-// async function addGhostId(refid: string) {
-//   const ghost = await DB.Find<GhostWorld>(null, { collection: "ghost3" });
-//   if(ghost) {
-//     let lastGhostId = getLastScoreId(ghost)
-//     if(lastGhostId === 0) {
-//       console.log("Modifying score data to add ghost id.")
-//       for(const scoreData of scores) {
-//         let songId = scoreData.songId
-//         let style = scoreData.style
-//         let difficulty = scoreData.difficulty
-//         let rank = scoreData.rank
-//         let clearKind = scoreData.clearKind
-//         let score = scoreData.score
-//         let exScore = scoreData.exScore
-//         let maxCombo = scoreData.maxCombo
-//         let flareForce = scoreData.flareForce
-//         let ghostSize = (scoreData.ghostSize) ? scoreData.ghostSize : 0
-//         let ghost = (scoreData.ghost) ? scoreData.ghost : '0'
-//         await DB.Remove<ScoreWorld>(refid, {collection: "score3", songId: songId, style: style, difficulty: difficulty})
-//         await saveScores(refid, songId, style, difficulty, rank, clearKind, score, exScore, maxCombo, flareForce, ghostSize, ghost)
-//       }
-//     }
-//   }
-// }
+  let slot = 0
+  let country = hiScoreInfo.country
+  let region = hiScoreInfo.region
+  let customerCode = hiScoreInfo.customerCode
+  let companyCode = hiScoreInfo.companyCode
+  let locationId = hiScoreInfo.locationId
+  let pcbid = hiScoreInfo.pcbid
+  let dancerName = hiScoreInfo.dancerName
+
+  let worldBreak = false
+  let areaBreak = false
+  let machineBreak = false
+
+  // Hiscore stuff
+  let hiScoreWorld1 = await DB.FindOne<HiScoreWorld>(null, {collection: 'hiscore3', slot: 1, songId: songId, style: style, difficulty: difficulty})
+  console.log('--------------------------------------------------------------')
+  ghostData = await DB.Find<GhostWorld>(null, {collection: "ghost3"})
+  lastGhostId = getLastGhostId(ghostData)
+  ghostId = 0
+  if(lastGhostId === 0) ghostId = 1
+  else ghostId = lastGhostId += 1
+
+  if(hiScoreWorld1) {
+    console.log('[world1] ' + hiScoreCheck + ' >= ' + hiScoreWorld1.score)
+    if(hiScoreCheck >= hiScoreWorld1.score) {
+      console.log('[world1] high score beat')
+      worldBreak = true
+      ghostId = (hiScoreWorld1.ghostId) ? hiScoreWorld1.ghostId : ghostId
+      console.log('[world1] ghostid exists, saving to id ' + ghostId)
+      await DB.Upsert<GhostWorld>(refid, {collection: "ghost3", ghostId }, {$set: { ghostSize, ghost }});
+    }
+  } else {
+    worldBreak = true
+    console.log('[world1] entry does not exist. creating')    
+    await DB.Upsert<GhostWorld>(refid, {collection: "ghost3", ghostId }, {$set: { ghostSize, ghost }});
+  }
+  slot = 1
+  if(worldBreak) {
+    console.log("[world1] saving hiscore - ghost id " + ghostId)
+    await DB.Upsert<HiScoreWorld>(refid, {collection: "hiscore3", slot, songId, style, difficulty}, { $set: { country, region, customerCode, companyCode, locationId, pcbid, dancerName, score: hiScoreCheck, ghostId }});
+  }
+
+  let hiScoreArea1 = await DB.FindOne<HiScoreWorld>(null, {collection: 'hiscore3', slot: 2, locationId: locationId, songId: songId, style: style, difficulty: difficulty})
+  console.log('--------------------------------------------------------------')
+  ghostData = await DB.Find<GhostWorld>(null, {collection: "ghost3"})
+  lastGhostId = getLastGhostId(ghostData)
+  ghostId = 0
+  if(lastGhostId === 0) ghostId = 1
+  else ghostId = lastGhostId += 1
+
+  if(hiScoreArea1) {
+    console.log('[area1] ' + hiScoreCheck + ' >= ' + hiScoreArea1.score)
+    if(hiScoreCheck >= hiScoreArea1.score) {
+      console.log('[area1] high score beat')
+      areaBreak = true
+      ghostId = (hiScoreArea1.ghostId) ? hiScoreArea1.ghostId : ghostId
+      console.log('[area1] ghostid exists, saving to id ' + ghostId)
+      await DB.Upsert<GhostWorld>(refid, {collection: "ghost3", ghostId }, {$set: { ghostSize, ghost }});
+    }
+  } else {
+    areaBreak = true
+    console.log('[area1] entry does not exist. creating')    
+    await DB.Upsert<GhostWorld>(refid, {collection: "ghost3", ghostId }, {$set: { ghostSize, ghost }});
+  }
+  slot = 2
+  if(areaBreak) {
+    console.log("[area1] saving hiscore - ghost id " + ghostId)
+    await DB.Upsert<HiScoreWorld>(refid, {collection: "hiscore3", slot, locationId, songId, style, difficulty}, { $set: { country, region, customerCode, companyCode, pcbid, dancerName, score: hiScoreCheck, ghostId }});
+  }
+
+
+  let hiScoreMachine1 = await DB.FindOne<HiScoreWorld>(null, {collection: 'hiscore3', slot: 3, locationId: locationId, pcbid: pcbid, songId: songId, style: style, difficulty: difficulty})
+  console.log('--------------------------------------------------------------')
+  ghostData = await DB.Find<GhostWorld>(null, {collection: "ghost3"})
+  lastGhostId = getLastGhostId(ghostData)
+  ghostId = 0
+  if(lastGhostId === 0) ghostId = 1
+  else ghostId = lastGhostId += 1
+
+  if(hiScoreMachine1) {
+    console.log('[machine1] ' + hiScoreCheck + ' >= ' + hiScoreMachine1.score)
+    if(hiScoreCheck >= hiScoreMachine1.score) {
+      console.log('[machine1] high score beat')
+      machineBreak = true
+      ghostId = (hiScoreMachine1.ghostId) ? hiScoreMachine1.ghostId : ghostId
+      console.log('[machine1] ghostid exists, saving to id ' + ghostId)
+      await DB.Upsert<GhostWorld>(refid, {collection: "ghost3", ghostId }, {$set: { ghostSize, ghost }});
+    }
+  } else {
+    machineBreak = true
+    console.log('[machine1] entry does not exist. creating')  
+    await DB.Upsert<GhostWorld>(refid, {collection: "ghost3", ghostId }, {$set: { ghostSize, ghost }});
+  }
+  slot = 3
+  if(machineBreak) {
+    console.log("[machine1] saving hiscore - ghost id " + ghostId)
+    await DB.Upsert<HiScoreWorld>(refid, {collection: "hiscore3", slot, locationId, pcbid, songId, style, difficulty}, { $set: { country, region, customerCode, companyCode, dancerName, score: hiScoreCheck, ghostId }});
+  }
+}
 
 export const playerdatanew: EPR = async (info, data, send) => {
   const refid = $(data).str("data.refid");
@@ -186,6 +262,17 @@ export const playerdatasave: EPR = async (info, data, send) => {
       })
     }
     else if($(data).number("data.savekind") === 2) {
+      console.log(JSON.stringify($(data), null, 4))
+      let hiScoreInfo = {
+        country: $(data).str("data.country"),
+        region: $(data).str("data.region"),
+        customerCode: $(data).str("data.customercode"),
+        companyCode: $(data).str("data.companycode"),
+        locationId: $(data).str("data.locationid"),
+        pcbid: $(data).str("data.pcbid"),
+        dancerName: $(data).str("data.common.dancername")
+      }
+
       let songId = $(data).number("data.result.mcode");
       let style = $(data).number("data.result.style");
       let difficulty = $(data).number("data.result.difficulty");
@@ -197,7 +284,7 @@ export const playerdatasave: EPR = async (info, data, send) => {
       let flareForce = $(data).number("data.result.flare_force");
       let ghostSize = $(data).number("data.result.ghostsize");
       let ghost = $(data).str("data.result.ghost");
-      await saveScores(refid, songId, style, difficulty, rank, clearKind, score, exScore, maxCombo, flareForce, ghostSize, ghost)
+      await saveScores(refid, hiScoreInfo, songId, style, difficulty, rank, clearKind, score, exScore, maxCombo, flareForce, ghostSize, ghost)
     }
     else if($(data).number("data.savekind") === 3) {
       let profile = await DB.FindOne<ProfileWorld>(refid, {collection: "profile3"})
@@ -420,19 +507,19 @@ export const playerdataload: EPR = async (info, data, send) => {
           scr['score_single'] = []
           scr['score_double'] = []
           /*
-            difficulty,idk,grade,clearkind,score,idk either,flaredisp,flarepoints
+            difficulty,idk,grade,clearkind,score,ghostid,flaredisp,flarepoints,idk
             needs more work, 9 vals
           */
           scr[(scoreData.style === 0) ? 'score_single' : 'score_double'] = [
             {
-              score_str: K.ITEM('str', scoreData.difficulty + ',1,' + scoreData.rank + ',' + scoreData.clearKind + ',' + scoreData.score + ',' + scoreData.ghostId + ',' + (scoreData.flareForce ? scoreData.flareForce : '-1') + ',' + (scoreData.flareForce ? scoreData.flareForce : '-1'))
+              score_str: K.ITEM('str', scoreData.difficulty + ',1,' + scoreData.rank + ',' + scoreData.clearKind + ',' + scoreData.score + ',' + scoreData.ghostId + ',' + scoreData.flareForce + ',' + scoreData.flareForce)
             }
           ]
           scoreFin.push(scr)
           
         } else {
           scoreFin[mcodeIndex][(scoreData.style === 0) ? 'score_single' : 'score_double'].push({
-            score_str: K.ITEM('str', scoreData.difficulty + ',1,' + scoreData.rank + ',' + scoreData.clearKind + ',' + scoreData.score + ',' + scoreData.ghostId + ',' + (scoreData.flareForce ? scoreData.flareForce : '-1') + ',' + (scoreData.flareForce ? scoreData.flareForce : '-1'))
+            score_str: K.ITEM('str', scoreData.difficulty + ',1,' + scoreData.rank + ',' + scoreData.clearKind + ',' + scoreData.score + ',' + scoreData.ghostId + ',' + scoreData.flareForce + ',' + scoreData.flareForce)
           })
         }
       }
@@ -565,6 +652,7 @@ export const musicdataload: EPR = async (info, data, send) => {
     for(const music of mdb['mdb']['music']) {
       let difficultyArr = $(music).numbers('diffLv')
       let limited = ($(music).number('limited')) ? $(music).number('limited') : 0
+      let limitedCha = ($(music).number('limited_cha')) ? $(music).number('limited_cha') : 0
       let limitedAry = ($(music).numbers('limited_ary')) ? $(music).numbers('limited_ary') : []
 
       let overrideIndex = SONGS_OVERRIDE_WORLD.findIndex(s => s.mcode === $(music).number('mcode'))
@@ -574,15 +662,14 @@ export const musicdataload: EPR = async (info, data, send) => {
       }
 
       for(const [index, diff] of difficultyArr.entries()) {
+        limited = ((index % 5 === 4) && limitedCha) ? limitedCha : limited
         limited = (limitedAry) ? limitedAry[index] : limited
-        limited = ((index % 5 === 4) && $(music).number('limited_cha')) ? $(music).number('limited_cha') : limited
         musicList.push({
           music_str: K.ITEM('str', $(music).number('mcode') + ',' + ((index > 4) ? '1,' : '0,') + (index % 5) + ',' + limited + ',' + diff)
         })
       }
     }
   }
-
 
   for(const music of SONGS_WORLD) {
     for(const [index, diff] of music.diffLv.entries()) {
@@ -616,10 +703,37 @@ export const musicdataload: EPR = async (info, data, send) => {
 };
 
 export const rivaldataload: EPR = async (info, data, send) => {
+  const ddrCode = $(data).number("data.ddrcode");
+  const loadKind = $(data).number("data.loadkind");
+  const country = $(data).str("data.country");
+  const region = $(data).str("data.region");
+  const customerCode = $(data).str("data.customercode");
+  const companyCode = $(data).str("data.companycode");
+  const locationId = $(data).str("data.locationid");
+  const pcbid = $(data).str("data.pcbid");
+
+  // song id, style, difficulty, idk, dancername, idk, idk, scoredisp, score, ghost
+  let ssssss = ''
+  let record = []
+  let hiscore: any
+  if(ddrCode === 0) {
+    if(loadKind === 1) {
+      hiscore = await DB.Find<HiScoreWorld>(null, {collection: 'hiscore3', slot: loadKind})
+    } else if(loadKind === 2) {
+      hiscore = await DB.Find<HiScoreWorld>(null, {collection: 'hiscore3', slot: loadKind, locationId: locationId})
+    } else if(loadKind === 3) {
+      hiscore = await DB.Find<HiScoreWorld>(null, {collection: 'hiscore3', slot: loadKind, locationId: locationId, pcbid: pcbid})
+    }
+    for(const hsi in hiscore) {
+      record.push({
+        record_str: K.ITEM('str', hiscore[hsi].songId + ',' + hiscore[hsi].style + ',' + hiscore[hsi].difficulty + ',0,' + hiscore[hsi].dancerName + ',0,0,1,' + hiscore[hsi].score + ',' + hiscore[hsi].ghostId)
+      })
+    }
+  }
   return send.object({
     result: K.ITEM("s32", 0),
-    record: []
-  });
+    record: record
+  })
 };
 
 export const ghostdataload: EPR = async (info, data, send) => {

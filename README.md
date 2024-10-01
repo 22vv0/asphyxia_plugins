@@ -9,7 +9,7 @@
 **Required Asphyxia Core version** [1.50c](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50)
 
 **Notes:**
-- This is a highly experimental messily-written plugin for MDX-2024061300 and things **WILL** break, please do not use any of your personal save data on this plugin. Use this for experimental & development purposes only. I am not responsible for any problems with your savedata. 
+- This is a WIP plugin for DDR World and things might break so please use this at your own risk.
 - Please be aware that this plugin and the savefile it produces are incompatible with the official plugin, or any other forks. Please be cautious of using other plugins' savefiles with this fork of the plugin, or using this fork's savefile with other plugins.
 - Please back up your save data to prevent unwanted issues, especially while using this experimental plugin.
 - Please please please feel free to open PRs!
@@ -30,6 +30,10 @@ Changelog
 		- Added ghost id to score and ghost data
 		- Ghost data gets created when there is no existing data; and it gets updated when getting a higher or the same score. Side effect of this is when you have set a high score prior to this update, the ghost data won't be updated unless you break or match that high score. 
 		- Unfortunately I could not find a way to match the old scores to their respective ghost data, since the old ghost data only stored the song id and difficulty, and not the style (single/double.)
+	- World, Area and Machine #1 high score saving/loading (WIP)
+		- Area high score: uses locationid to search, save and load scores. 
+		- Machine high score: uses locationid and pcbid.
+		- Ghost data also gets created for each new high score (overwritten when high score is broken/matched)
 
 
 ## fork-mdx-3.0.0b
@@ -59,8 +63,7 @@ Changelog
 ### To do:
 
 1. Look for more missing features
-2. Refactor getLastScoreId and addScoreKey
-3. Update re-rated song difficulties
-4. WebUI stuff
-5. More work on score_str
-6. Rival load
+2. Refactor getLastScoreId
+3. WebUI stuff
+4. More work on score_str
+5. Rival load

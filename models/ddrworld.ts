@@ -23,6 +23,24 @@ export interface ScoreWorld {
   flareForce: number;
 }
 
+export interface HiScoreWorld {
+  collection: "hiscore3";
+
+  slot: number;
+  country: string;
+  region: string;
+  customerCode: string;
+  companyCode: string;
+  locationId: string;
+  pcbid: string;
+  songId: number;
+  style: number;
+  difficulty: number;
+  dancerName: string;
+  score: number;
+  ghostId: number;
+}
+
 export interface GhostWorld {
   collection: "ghost3"
 
