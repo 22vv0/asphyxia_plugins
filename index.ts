@@ -18,6 +18,18 @@ export function register() {
     default: true,
     type: "boolean"
   });
+  R.Config("mdb_limited", {
+    name: "musicdb.xml for musicdata_load",
+    desc: "musicdb.xml file to use for importing limited and diffLv info. Put this xml file in the 'data' directory of the plugin.",
+    type: "string",
+    default: ""
+  });
+  R.Config("mdb_title", {
+    name: "musicdb.xml for WebUI",
+    desc: "musicdb.xml file to retrieve song titles from, for use in WebUI. Put this xml file in the 'data' directory of the plugin, or keep this blank if you want to use the same file as above.",
+    type: "string",
+    default: ""
+  });
 
   const RoutePlayerData = (method: string, handler: EPR | boolean) => {
     R.Route(`playerdata.${method}`, handler);
@@ -184,30 +196,51 @@ export function register() {
     });
   });
 
+  R.WebUIEvent("updateDisplayCalories3", async ({ refid, selected }) => {
+    await DB.Update<ProfileWorld>(refid, { collection: "profile3" }, {
+      $set: {
+        isDispWeight: selected
+      }
+    });
+  });
+
   R.WebUIEvent("getMDB", async (data: {}, send: WebUISend) => {
     let mdbData = []
-    if(IO.Exists('data/musicdb.xml')) { 
-      let mdb = U.parseXML(U.DecodeString(await IO.ReadFile('data/musicdb.xml'), "shift_jis"), false)
-      mdb['mdb']['music'].forEach(music => {
-        if(SONGS_OVERRIDE_WORLD.findIndex(so => so.mcode === $(music).number('mcode')) < 0) {
-          let diffLv = music.diffLv
-          mdbData.push({
-            mcode: $(music).number('mcode'),
-            diffLv: $(music).numbers('diffLv')
-          })
-        }
-      })
-      SONGS_WORLD.concat(SONGS_OVERRIDE_WORLD).forEach(sw => {
-        let mIndex = mdbData.findIndex(m => m.mcode === sw.mcode)
-        if(mIndex > -1) mdbData[mIndex]['diffLv'] = sw.diffLv
-        else {
+    let mdbLimName = U.GetConfig('mdb_limited')
+    let mdbTitleName = U.GetConfig('mdb_title')
+
+    if(mdbLimName !== '') {
+      if(IO.Exists('data/' + mdbLimName)) { 
+        let mdbLim = U.parseXML(U.DecodeString(await IO.ReadFile('data/' + mdbLimName), "utf8"), false)
+        
+        mdbLim['mdb']['music'].forEach(music => {
+          if(SONGS_WORLD.concat(SONGS_OVERRIDE_WORLD).findIndex(so => so.mcode === $(music).number('mcode')) < 0) {
+            mdbData.push({
+              mcode: $(music).number('mcode'),
+              title: $(music).str('title'),
+              diffLv: $(music).numbers('diffLv'),
+              series: $(music).number('series')
+            })
+          }
+        })
+        let mdbTitle = (mdbTitleName === mdbLimName || mdbTitleName === '') ? mdbLim : U.parseXML(U.DecodeString(await IO.ReadFile('data/' + mdbTitleName), "utf8"), false)
+        SONGS_WORLD.concat(SONGS_OVERRIDE_WORLD).forEach(sw => {
+          let musicInfo = mdbTitle['mdb']['music'].find(m => $(m).number('mcode') === sw.mcode)
+          let songTitle = 'ID ' + sw.mcode
+          let series = 0
+          if(musicInfo) {
+            songTitle = $(musicInfo).str('title')
+            series = $(musicInfo).number('series')
+          }
           mdbData.push({
             mcode: sw.mcode,
-            diffLv: sw.diffLv
+            title: songTitle,
+            diffLv: sw.diffLv,
+            series: series
           })
-        }
-      })
-    } 
+        })
+      } 
+    }
     send.json({mdb: mdbData})
   })
 }

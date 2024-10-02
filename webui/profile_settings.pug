@@ -168,6 +168,8 @@ else if profile3
               input.input(type="text", id="name3", pattern="[A-Z]{8}", maxlength=8, value=name3)
             p.control
               a.button.is-primary#change-name3 Change
+
+        .field.is-horizontal.has-addons
           .field-label.is-normal
             label.label Weight
           .field-body
@@ -176,5 +178,22 @@ else if profile3
               input.input(type="text", id="weight32", pattern="[0-9]", value=weight3[1])
             p.control
               a.button.is-primary#change-weight3 Set
+
+        .field.is-horizontal.has-addons
+          .field-label.is-normal
+            label.label Calorie display in-game
+          .field-body
+            p.control
+              .select
+                select#display_calories3
+                  if (profile3.isDispWeight)
+                    option(value=0) Off
+                    option(value=1, selected) On
+                  else
+                    option(value=0, selected) Off
+                    option(value=1) On
+            p.control
+              a.button.is-primary#change-display-calories3 Change
+
 
 script(src="static/js/profile_settings.js")

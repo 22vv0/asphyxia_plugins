@@ -1,0 +1,56 @@
+//DATA//
+  profile: DB.FindOne(refid, { collection: "profile" })
+  profile3: DB.FindOne(refid, { collection: "profile3" })
+  score3: DB.Find(refid, { collection: "score3" })
+
+-
+
+if profile3
+  div
+    .card
+      .card-header
+        p.card-header-title
+          span.icon
+            i.mdi.mdi-account
+          | Basic Info
+
+      .card-content
+        table.basic_data
+          tr
+            td Dancer Name
+            td #{profile3.dancerName}
+          tr
+            td DDR Code
+              td #{profile3.ddrCode}
+          tr(id="area")
+              td Area
+          tr
+              td Total Plays
+              td #{profile3.playCount}
+
+    .card
+      .card-header
+        p.card-header-title
+          span.icon
+            i.mdi.mdi-fire
+          | Flare Skill
+
+      .card-content
+        table.flare_skill
+            th 
+            th SINGLE
+            th DOUBLE
+            tr(id="skillrank")
+                td Rank
+            tr(id="skilltotal")
+                td Total
+            tr(id="skillclassic")
+                td CLASSIC
+            tr(id="skillwhite")
+                td WHITE
+            tr(id="skillgold")
+                td GOLD
+
+    div(hidden id='profile3-pass') !{JSON.stringify(profile3)}
+    div(hidden id='score-pass') !{JSON.stringify(score3)}
+    script(src="static/js/profile_details.js")
