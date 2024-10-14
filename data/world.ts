@@ -20,7 +20,7 @@ export const SONGS_WORLD = [
 	{ mcode: 38706, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [1, 4, 9, 13, 0, 0, 4, 9, 13, 0] },
 	{ mcode: 38705, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 6, 10, 13, 0, 0, 6, 10, 13, 0] },
 	{ mcode: 38727, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 7, 11, 14, 0, 0, 7, 11, 14, 0] },
-	{ mcode: 38739, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 5, 9, 12, 15, 0, 5, 9, 12, 15] },
+	{ mcode: 38739, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 5, 9, 12, 15, 0, 5, 9, 12, 15] },
 	{ mcode: 38664, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 7, 9, 12, 0, 0, 7, 9, 12, 0] },
 	{ mcode: 38670, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [4, 7, 10, 13, 0, 0, 7, 10, 13, 0] },
 	{ mcode: 38680, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 6, 11, 14, 0, 0, 6, 11, 14, 0] },
@@ -43,16 +43,19 @@ export const SONGS_WORLD = [
 	{ mcode: 38744, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 7, 13, 17, 0, 0, 7, 13, 17, 0] },
 	{ mcode: 38747, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 10, 15, 18, 0, 0, 10, 15, 18, 0] },
 	{ mcode: 38748, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 9, 13, 16, 0, 0, 9, 13, 16, 0] },
-	{ mcode: 38734, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [2, 2, 7, 11, 13, 0, 2, 7, 11, 14] },
-	{ mcode: 38749, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 6, 10, 13, 8, 0, 6, 10, 13, 9] },
+	{ mcode: 38749, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [2, 2, 7, 11, 13, 0, 2, 7, 11, 14] },
+	{ mcode: 38734, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 6, 10, 13, 8, 0, 6, 10, 13, 9] },
 
-	{ mcode: 38737, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 6, 11, 13, 16, 0, 6, 11, 13, 16] },
-	{ mcode: 38738, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [2, 5, 8, 12, 17, 5, 8, 12, 17] },
+	{ mcode: 38737, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [3, 6, 11, 13, 16, 0, 6, 11, 13, 16] },
+	{ mcode: 38738, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [2, 5, 8, 12, 17, 5, 8, 12, 17] },
 
-	{ mcode: 37222, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 4, 10, 13, 0, 0, 4, 9, 13, 0] },
-	{ mcode: 37604, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [2, 6, 9, 12, 14, 0, 5, 9, 12, 14] },
+	{ mcode: 37222, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [2, 4, 10, 13, 0, 0, 4, 9, 13, 0] },
+	{ mcode: 37604, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [2, 6, 9, 12, 14, 0, 5, 9, 12, 14] },
 	{ mcode: 37234, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [1, 3, 7, 11, 0, 0, 3, 7, 11, 0] },
-	{ mcode: 37363, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 5, 9, 13, 0, 0, 5, 9, 13, 0] }
+	{ mcode: 37363, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [2, 5, 9, 13, 0, 0, 5, 9, 13, 0] }
+
+	// songs that have yet to release. unknown difficulty lvls.
+	// { mcode: 38622, limited_ary: [], diffLv: [] }
 
 ]
 
@@ -205,20 +208,21 @@ export const SONGS_OVERRIDE_WORLD = [
 	{ mcode: 38652, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [2, 6, 10, 15, 17, 0, 6, 10, 15, 17] },
 	{ mcode: 37251, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [6, 10, 12, 15, 18, 0, 10, 11, 16, 17] },
 
-	{ mcode: 38212, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 7, 10, 15, 16, 0, 8, 11, 15, 16] },
-	{ mcode: 38295, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 7, 11, 14, 17, 0, 7, 11, 14, 17] },
-	{ mcode: 38258, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [2, 6, 10, 14, 16, 0, 6, 11, 14, 16] },
-	{ mcode: 38263, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 7, 11, 14, 16, 0, 8, 12, 15, 16] },
-	{ mcode: 38195, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [5, 7, 10, 13, 17, 0, 7, 10, 13, 17] },
-	{ mcode: 38420, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 8, 12, 15, 17, 0, 8, 12, 15, 17] },
-	{ mcode: 38405, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 6, 9, 13, 17, 0, 5, 9, 14, 17] },
-	{ mcode: 38442, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 8, 13, 16, 18, 0, 8, 13, 16, 18] },
-	{ mcode: 38436, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 7, 11, 14, 17, 0, 7, 11, 14, 17] }
+	{ mcode: 38212, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 7, 10, 15, 16, 0, 8, 11, 15, 16] },
+	{ mcode: 38295, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 7, 11, 14, 17, 0, 7, 11, 14, 17] },
+	{ mcode: 38258, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [2, 6, 10, 14, 16, 0, 6, 11, 14, 16] },
+	{ mcode: 38263, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 7, 11, 14, 16, 0, 8, 12, 15, 16] },
+	{ mcode: 38195, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [5, 7, 10, 13, 17, 0, 7, 10, 13, 17] },
+	{ mcode: 38420, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 8, 12, 15, 17, 0, 8, 12, 15, 17] },
+	{ mcode: 38405, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 6, 9, 13, 17, 0, 5, 9, 14, 17] },
+	{ mcode: 38442, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 8, 13, 16, 18, 0, 8, 13, 16, 18] },
+	{ mcode: 38436, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 7, 11, 14, 17, 0, 7, 11, 14, 17] }
 ]
 
 export const EVENTS_WORLD = [
 	{ id: 89, no: 0, cond: 0, rwrd: 0, type: 9999 },
 	{ id: 96, no: 0, cond: 0, rwrd: 0, type: 9999 },
+	{ id: 101, no: 0, cond: 0, rwrd: 0, type: 9999 },
 
 	{ id: 1, no: 1, cond: 1, rwrd: 38667, type: 70 }, { id: 2, no: 1, cond: 1, rwrd: 38667, type: 71 }, { id: 3, no: 1, cond: 1, rwrd: 38667, type: 72 }, { id: 4, no: 1, cond: 1, rwrd: 38667, type: 73 },
 	{ id: 5, no: 1, cond: 1, rwrd: 38661, type: 70 }, { id: 6, no: 1, cond: 1, rwrd: 38661, type: 71 },	{ id: 7, no: 1, cond: 1, rwrd: 38661, type: 72 }, { id: 8, no: 1, cond: 1, rwrd: 38661, type: 73 },
@@ -248,5 +252,64 @@ export const EVENTS_WORLD = [
 	{ id: 86, no: 0, cond: 1, rwrd: 38747, type: 17, comp: 0, save: 1 },
 	{ id: 87, no: 0, cond: 1, rwrd: 38748, type: 17, comp: 0, save: 1 },
 	{ id: 88, no: 0, cond: 1, rwrd: 1189, type: 201, save: 1 },
-	{ id: 89, no: 0, cond: 1, rwrd: 1188, type: 201, save: 1 }
-]	
+	{ id: 89, no: 0, cond: 1, rwrd: 1188, type: 201, save: 1 },
+	{ id: 90, no: 0, cond: 1, rwrd: 38737, type: 50 },
+	{ id: 91, no: 0, cond: 1, rwrd: 38737, type: 52 },
+	{ id: 92, no: 0, cond: 1, rwrd: 38738, type: 50 },
+	{ id: 93, no: 0, cond: 1, rwrd: 38738, type: 52 },
+	{ id: 94, no: 0, cond: 1, rwrd: 38212, type: 52 },
+	{ id: 95, no: 0, cond: 1, rwrd: 38295, type: 52 },
+	{ id: 96, no: 0, cond: 1, rwrd: 38258, type: 52 },
+	{ id: 97, no: 0, cond: 1, rwrd: 38263, type: 52 },
+	{ id: 98, no: 0, cond: 1, rwrd: 38195, type: 52 },
+	{ id: 99, no: 0, cond: 1, rwrd: 38739, type: 52 },
+	{ id: 100, no: 0, cond: 1, rwrd: 38420, type: 52 },
+	{ id: 101, no: 0, cond: 1, rwrd: 38405, type: 52 },
+	{ id: 102, no: 0, cond: 1, rwrd: 38442, type: 52 },
+	{ id: 103, no: 0, cond: 1, rwrd: 37222, type: 50 },
+	{ id: 104, no: 0, cond: 1, rwrd: 37604, type: 50 },
+	{ id: 105, no: 0, cond: 1, rwrd: 37604, type: 52 },
+	{ id: 106, no: 0, cond: 1, rwrd: 37234, type: 50 },
+	{ id: 107, no: 0, cond: 1, rwrd: 37363, type: 50 },
+	{ id: 108, no: 0, cond: 1, rwrd: 38436, type: 52 }
+]
+
+export const LEAGUE_WORLD = [
+	{
+		id: 1,
+		name: "第1回 WORLD LEAGUE",
+		name_eng: "The 1st WORLD LEAGUE",
+		start: BigInt(Date.parse('8 Oct 2024 01:00:00 GMT')),
+		end: BigInt(Date.parse('6 Nov 2024 08:00:00 GMT')),
+		summary: BigInt(Date.parse('6 Nov 2024 09:00:00 GMT')),
+		advanceBorder: [0, 0, 0]
+	}
+]
+
+export const LOCKED_SONGS = [
+	{
+		unlock_date: BigInt(Date.parse("1 Jul 2024 01:00:00 GMT")),
+		ids: [38583],
+		ids_cha: []
+	},
+	{
+		unlock_date: BigInt(Date.parse("31 Jul 2024 01:00:00 GMT")),
+		ids: [38591, 38593, 38597, 38592, 38598, 38595, 38596, 38594, 38599],
+		ids_cha: [38591]
+	},
+	{
+		unlock_date: BigInt(Date.parse("30 Aug 2024 01:00:00 GMT")),
+		ids: [],
+		ids_cha: [38625, 38626, 38627]
+	},
+	{
+		unlock_date: BigInt(Date.parse("29 Nov 2024 01:00:00 GMT")),
+		ids: [38632, 38618, 38619, 38637, 38639, 38638],
+		ids_cha: [38102, 38517]
+	},
+	{
+		unlock_date: BigInt(Date.parse("27 Dec 2024 01:00:00 GMT")),
+		ids: [38644, 38647, 38645, 38651, 38648, 38650, 38646, 38649],
+		ids_cha: [38138, 38017]
+	}
+];

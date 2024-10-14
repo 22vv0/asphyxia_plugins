@@ -1,6 +1,6 @@
 # DanceDanceRevolution
 
-**Plugin Version:** fork-mdx-3.0.1
+**Plugin Version:** fork-mdx-3.0.2
 
 **Supported game versions:** WORLD (2024091000)
 
@@ -28,6 +28,27 @@ musicdb.xml Usage Guide
 
 Changelog
 ===========
+### fork-mdx-3.0.2
+
+- WORLD LEAGUE
+	- I did my best emulating what I understand how WORLD LEAGUE works, so my apologies if there's something that isn't accurately implemented. But this is how it works right now:
+		- Promotion and demotion borders are determined by the league score of the player in rank 1. If you play alone on your server, you'll automatically be rank 1 all the time.
+			- Bronze class promotion border is set to >= 50% of the rank 1's score.
+			- Silver class promotion and demotion borders are set to >= 65% and <= 15% of the rank 1's score, respectively.
+			- Gold class demotion border is set to <= 15% as well.
+		- League info and period is defined in data/world.ts:LEAGUE_WORLD.
+			- League period ends after 'end' datetime.
+			- Promotion/demotion occurs after 'summary' datetime.
+			- Class benefits will apply depending on your class.
+			- Note: Since difficulty level info isn't revealed until the songs are officially released, I cannot add them to the list yet. I will update this plugin with the correct song info once they are released officially.
+- Privilege of early play: this filter now displays applicable songs (Grand Prix advanced play songs)
+- WebUI stuff
+	- Flare Data Page: displays your top 30 songs for Classic, White and Gold.
+- Fixes
+	- Rewrote getLastGhostId function.
+	- Fixed "So What" and "Akatsuki" diffLv mix up.
+
+
 ### fork-mdx-3.0.1
 
 - Support for 2024091000.
@@ -58,24 +79,13 @@ Changelog
 - ghostdata saving and loading (WIP, idk what ghost is)
 
 
-### fork-mdx-3.0.0a
-
-- Flare skill song unlock event
-	- Added event data (ddr@asphyxia/data/world.ts:EVENTS_WORLD)
-	- Fixes crashes on Flare Skill rank up (at least until Mercury, haven't tested higher than that yet.)
-- musicdata_load
-	- Put your musicdb.xml on 'ddr@asphyxia/data' folder. Tested with A3 musicdb.xml
-	- Added musicdata for new WORLD songs (ddr@asphyxia/data/world.ts:SONGS_WORLD)
-
-
 
 To do:
 ===========
 
 1. Look for more missing features
-2. Refactor getLastGhostId
-3. Refactor hiscore code
-4. More WebUI stuff 
-5. Figure out unknown values in score_str
-6. Rival loading and figure out unknown values in rival record_str
-7. Proper loading of Flare skill in-game (make sure to include only top 30 scores from classic, white and gold)
+2. Refactor hiscore code
+3. More WebUI stuff 
+4. Figure out unknown values in score_str
+5. Rival loading and figure out unknown values in rival record_str
+6. Proper loading of Flare skill in-game (make sure to include only top 30 scores from classic, white and gold)

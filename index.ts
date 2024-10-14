@@ -5,7 +5,7 @@ import { usergamedata_send } from "./handlers/usergamedata_send";
 import { musicdataload, playerdatanew, playerdatasave, playerdataload, rivaldataload, ghostdataload, taboowordcheck, minidump } from "./handlers/ddrworld";
 import { CommonOffset, OptionOffset, Profile } from "./models/profile";
 import { ProfileWorld } from "./models/ddrworld";
-import { SONGS_WORLD, SONGS_OVERRIDE_WORLD } from "./data/world"
+import { SONGS_WORLD, SONGS_OVERRIDE_WORLD, LEAGUE_WORLD } from "./data/world"
 
 export function register() {
   R.GameCode("MDX");

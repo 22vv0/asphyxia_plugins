@@ -59,6 +59,16 @@ export interface EventWorld {
   saveData: number;
 }
 
+export interface LeagueWorld {
+  collection: "league3";
+
+  id: number,
+  class: number,
+  score: number,
+  playCount: number,
+  ended: boolean
+}
+
 export interface ProfileWorld {
   collection: "profile3";
 
@@ -126,30 +136,4 @@ export interface ProfileWorld {
   cgTipsGimmick: number;
   cgTipsAdvance: number;
   cgGuideScene: number;
-  
-  
-
-  singleGrade?: number;
-  doubleGrade?: number;
-
-  events?: {};
-
-  usergamedata?: {
-    COMMON?: {
-      strdata?: string;
-      bindata?: string;
-    };
-    OPTION?: {
-      strdata?: string;
-      bindata?: string;
-    };
-    LAST?: {
-      strdata?: string;
-      bindata?: string;
-    };
-    RIVAL?: {
-      strdata?: string;
-      bindata?: string;
-    };
-  };
 }

@@ -1,14 +1,10 @@
 import { Profile } from "../models/profile";
-import { ProfileWorld, ScoreWorld, EventWorld, GhostWorld, RivalWorld, HiScoreWorld } from "../models/ddrworld";
-import { SONGS_WORLD, SONGS_OVERRIDE_WORLD, EVENTS_WORLD } from "../data/world";
+import { ProfileWorld, ScoreWorld, EventWorld, GhostWorld, RivalWorld, HiScoreWorld, LeagueWorld } from "../models/ddrworld";
+import { SONGS_WORLD, SONGS_OVERRIDE_WORLD, EVENTS_WORLD, LEAGUE_WORLD, LOCKED_SONGS } from "../data/world";
 
-// needs to be faster
 function getLastGhostId(ghost: any) {
-  return ghost.reduce(function(a, b) {
-    let aId = (a && !a.ghostId) ? 0 : a.ghostId
-    let bId = (!b.ghostId) ? 0 : b.ghostId
-    return (a && aId > bId) ? aId : bId
-  })
+  if(ghost.length > 0) return ghost.filter(a => (a.ghostId !== undefined)).sort((a, b) => b.ghostId - a.ghostId)[0].ghostId
+  else return 0
 }
 
 async function saveScores(refid: string, hiScoreInfo: any, songId: number, style: number, difficulty: number, rank: number, clearKind: number, score: number, exScore: number, maxCombo: number, flareForce: number, ghostSize: number, ghost: string) {
@@ -375,6 +371,22 @@ export const playerdatasave: EPR = async (info, data, send) => {
           })
         }
       }
+
+      let leagueData = $(data).element('data.league.current')
+      if(leagueData) {
+        let leagueId = leagueData.number("league_id")
+        let score = leagueData.number("score")
+        let playCount = leagueData.number("playcount")
+        let leagueExist = await DB.FindOne<LeagueWorld>(refid, {collection: 'league3', id: leagueId})
+         
+        await DB.Upsert<LeagueWorld>(refid, { collection: "league3", id: leagueId }, {
+          $set: {
+            class: ((leagueExist.class === 0) ? 1 : leagueExist.class),
+            score: score,
+            playCount: playCount
+          }
+        })
+      }
     }
 
     return send.object({
@@ -548,6 +560,118 @@ export const playerdataload: EPR = async (info, data, send) => {
       }
     }
 
+    let leagueData = {}
+    let curLeague = LEAGUE_WORLD[0]
+    let league = await DB.FindOne(refid, {collection: 'league3', id: curLeague.id})
+    if(!league) {
+      let leagueClass = 0
+      let prevLeague = await DB.FindOne(refid, {collection: 'league3', id: curLeague.id - 1})
+      if(prevLeague) leagueClass = prevLeague['class']
+      await DB.Upsert<LeagueWorld>(refid, { collection: "league3", id: curLeague.id }, {
+        collection: "league3",
+
+        id: curLeague.id,
+        class: leagueClass,
+        score: 0,
+        playCount: 0,
+        ended: false,
+      })
+    }
+    league = await DB.FindOne(refid, {collection: 'league3', id: curLeague.id})
+    if(league) {
+      let leagueAll = await DB.Find(null, {collection: 'league3', id: curLeague.id, class: league['class']})
+      let joinNum = leagueAll.length
+      let resultClass = league['class']
+      let promoteScore = 0
+      let promoteRank = 0
+      let demoteScore = 0
+      let demoteRank = 0
+      let leagueStatus = 0
+      let leagueScores = leagueAll.map(a => a['score']).sort((a, b) => b - a)
+      if(leagueScores[0] > 0) {
+        if(league['class'] === 1) {
+          promoteScore = Math.round(leagueScores[0] / 2)
+          leagueScores = leagueScores.concat([promoteScore]).sort((a, b) => b - a)
+          promoteRank = leagueScores.findIndex(s => s === promoteScore) + 1
+          joinNum += ((joinNum < 2) ? 2 : 1)
+        } else if(league['class'] === 2) {
+          promoteScore = Math.round(leagueScores[0] - (leagueScores[0] - (35 / 100 * leagueScores[0])))
+          demoteScore = Math.round(leagueScores[0] - (leagueScores[0] - (85 / 100 * leagueScores[0])))
+          leagueScores = leagueScores.concat([promoteScore, demoteScore]).sort((a, b) => b - a)
+          promoteRank = leagueScores.findIndex(s => s === promoteScore) + 1
+          demoteScore = leagueScores.findIndex(s => s === demoteScore) + 1
+          joinNum += 2
+        } else if(league['class'] === 3) {
+          demoteScore = Math.round(leagueScores[0] - (leagueScores[0] - (85 / 100 * leagueScores[0])))
+          leagueScores = leagueScores.concat([demoteScore]).sort((a, b) => b - a)
+          demoteRank = leagueScores.findIndex(s => s === demoteScore) + 1
+          joinNum += ((joinNum < 2) ? 2 : 1)
+        }
+      }
+      let rank = leagueScores.findIndex(s => s === league['score']) + 1
+      let leagueClass = (league['class'] === 0) ? 1 : league['class']
+
+      if(leagueClass === 1 && league['score'] >= promoteScore) resultClass += 1
+      else if(leagueClass === 2) {
+        if(league['score'] >= promoteScore) resultClass += 1
+        else if(league['score'] < demoteScore) resultClass -= 1
+      }
+      else if(leagueClass === 3 && league['score'] < demoteScore) resultClass -= 1
+
+      if(BigInt(Date.now()) >= curLeague.start) leagueStatus = 1 
+      if(BigInt(Date.now()) >= curLeague.end) leagueStatus = 2
+      if(BigInt(Date.now()) >= curLeague.summary) {
+        leagueStatus = 0
+        if(!league['ended']) await DB.Upsert<LeagueWorld>(refid, {collection: 'league3', id: curLeague.id}, {$set: {ended: true, class: resultClass}})
+      }
+      leagueData = {
+        league_class: K.ITEM("s32", (BigInt(Date.now()) >= curLeague.summary && !league['ended']) ? resultClass : league['class']),
+        current: {
+          league_id: K.ITEM("s32", curLeague.id),
+          league_name: K.ITEM("str", Buffer.from(curLeague.name, 'utf8').toString('base64')),
+          league_name_eng: K.ITEM("str", Buffer.from(curLeague.name_eng, 'utf8').toString('base64')),
+          starttime: K.ITEM("u64", curLeague.start),
+          endtime: K.ITEM("u64", curLeague.end),
+          summarytime: K.ITEM("u64", curLeague.summary),
+          league_status: K.ITEM("s32", leagueStatus),
+          league_class: K.ITEM("s32", leagueClass),
+          result_league_class: K.ITEM("s32", resultClass),
+          rank: K.ITEM("s32", rank),
+          score: K.ITEM("s32", league['score']),
+          playcount: K.ITEM("s32", league['playCount']),
+          advance_border: K.ITEM("s32", curLeague.advanceBorder[leagueClass - 1]),
+          join_num: K.ITEM("s32", joinNum), 
+          promote_rank: K.ITEM("s32", promoteRank),
+          promote_score: K.ITEM("s32", promoteScore),
+          demote_rank: K.ITEM("s32", demoteRank),
+          demote_score: K.ITEM("s32", demoteScore),
+          ranking_score: K.ITEM("s32", league['score'])
+        },
+        result: (BigInt(Date.now()) >= curLeague.summary && !league['ended']) ? [
+          {
+            league_id: K.ITEM("s32", curLeague.id),
+            league_name: K.ITEM("str", Buffer.from(curLeague.name, 'utf8').toString('base64')),
+            league_name_eng: K.ITEM("str", Buffer.from(curLeague.name_eng, 'utf8').toString('base64')),
+            starttime: K.ITEM("u64", curLeague.start),
+            endtime: K.ITEM("u64", curLeague.end),
+            summarytime: K.ITEM("u64", curLeague.summary),
+            league_status: K.ITEM("s32", 1),
+            league_class: K.ITEM("s32", league['class']),
+            result_league_class: K.ITEM("s32", resultClass),
+            rank: K.ITEM("s32", rank),
+            score: K.ITEM("s32", league['score']),
+            playcount: K.ITEM("s32", league['playCount']),
+            advance_border: K.ITEM("s32", curLeague.advanceBorder[leagueClass - 1]),
+            join_num: K.ITEM("s32", joinNum), 
+            promote_rank: K.ITEM("s32", promoteRank),
+            promote_score: K.ITEM("s32", promoteScore),
+            demote_rank: K.ITEM("s32", demoteRank),
+            demote_score: K.ITEM("s32", demoteScore)
+          }
+        ] : []
+      }
+    }
+
     // test
     if(IO.Exists('data/test.json')) {
       let bufTest = await IO.ReadFile('data/test.json')
@@ -638,7 +762,8 @@ export const playerdataload: EPR = async (info, data, send) => {
       },
       rival: [],
       score: scoreFin,
-      event: eventFin
+      event: eventFin,
+      league: leagueData
     });
   }
 };
@@ -664,7 +789,25 @@ export const musicdataload: EPR = async (info, data, send) => {
         
         for(const [index, diff] of difficultyArr.entries()) {
           limited = ((index % 5 === 4) && limitedCha) ? limitedCha : limited
-          limited = (limitedAry) ? limitedAry[index] : limited
+          limited = (limitedAry.length > 0) ? limitedAry[index] : limited
+          
+          if($(music).number('series') === 20 && overrideIndex === -1) {
+            limited = 0
+            for(const ls in LOCKED_SONGS) {
+              if(index % 5 < 4) {
+                if(LOCKED_SONGS[ls].ids.includes($(music).number('mcode')) && BigInt(Date.now()) < LOCKED_SONGS[ls].unlock_date) {
+                  limited = 1
+                  break
+                }
+              } else if(index % 5 === 4) {
+                if(LOCKED_SONGS[ls].ids_cha.includes($(music).number('mcode')) && BigInt(Date.now()) < LOCKED_SONGS[ls].unlock_date) {
+                  limited = 1
+                  break
+                }
+              }
+            }
+          }
+          
           musicList.push({
             music_str: K.ITEM('str', $(music).number('mcode') + ',' + ((index > 4) ? '1,' : '0,') + (index % 5) + ',' + limited + ',' + diff)
           })
