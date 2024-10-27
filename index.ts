@@ -25,9 +25,8 @@ import {
   saveValgene,
   saveE
 } from './handlers/profiles';
-import {
-  ARENA
-} from './data/exg';
+import { ARENA } from './data/exg';
+import { dataUpdate } from './handlers/migrate'
 
 export function register() {
 
@@ -124,4 +123,6 @@ export function register() {
   }));
   
   R.Unhandled(undefined)
+
+  dataUpdate()
 }

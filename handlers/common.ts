@@ -103,12 +103,11 @@ export const common: EPR = async (info, data, send) => {
               // if song is released during exceed gear
               if(songData.info.version['#text'] === '6') { 
                 // Licensed songs released in Exceed Gear needs limited=3 to appear
-                if(LICENSED_SONGS6.includes(i.toString())) {
-                  limitedNo += 1;
-                }
-                else if(VALKYRIE_SONGS.includes(i.toString()) && info.model.split(":")[2].match(/^(G|H)$/g) == null){
-                  limitedNo -= 1;
-                }
+                if(LICENSED_SONGS6.includes(i.toString())) limitedNo += 1;
+                else if(VALKYRIE_SONGS.includes(i.toString()) && info.model.split(":")[2].match(/^(G|H)$/g) == null) limitedNo -= 1;
+                
+                if(i === 2034) limitedNo = 2;
+
                 for(let j = 0; j < 5; j++) {
                   songs.push({
                     music_id: K.ITEM('s32', i),
@@ -231,7 +230,7 @@ export const common: EPR = async (info, data, send) => {
               'id': stmpEvntInfo['info']['id'],
               'params': [
                 9,
-                (stmpEvntInfo['info']['textstampval'] !== undefined) ? stmpEvntInfo['info']['textstampval'] : 0,
+                ((stmpEvntInfo['info']['textstampval'] !== undefined) ? stmpEvntInfo['info']['textstampval'] : 0),
                 0,
                 0,
                 0,
@@ -383,10 +382,7 @@ export const common: EPR = async (info, data, send) => {
         ],
       });
       }
-      
     }
-
-    console.log("Sending common objects");
 
     let arena_szn = U.GetConfig('arena_szn')  
     let arena_catalog_items = []
@@ -439,6 +435,7 @@ export const common: EPR = async (info, data, send) => {
       }
     }
 
+    console.log("Sending common objects");
     send.object(
       {
         valgene: {

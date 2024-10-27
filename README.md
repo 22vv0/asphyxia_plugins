@@ -1,8 +1,8 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.3.6
+**Plugin Version:** fork-6.0.3.7
 
-**Supported game versions:** EXCEED GEAR (2024082700)
+**Supported game versions:** EXCEED GEAR (2024091000)
 
 **Unsupported game versions:** Every other game, as they're untested.
 
@@ -16,6 +16,25 @@
 
 Changelog
 ===========
+## fork-6.0.3.7
+
+### New:
+
+1. Main:
+	- MYSTICAL Re:UNION added to events list. Toggle the individual songs to unlock them to your account.
+
+2. Misc:
+	- **Important**: EG Skill Analyzer course IDs have been updated. The plugin's new migrate.ts should update your course data to reflect these new IDs but if there are issues with your course data, please let me know. 
+	- KAC 2023 Skill Analyzer courses now displayed as it did officially (uses KAC jacket)
+	- BPL Pro Player badge: display this instead of the BPL Supporter badge. Check the "BPL Pro Player" option in the customization page.
+	- Force locked the song "無意識レクイエム (cosmobsp rmx)" to allow for the secret unlock method to work. Still overridden by the unlock songs option.
+	- Updated VALKYRIE GENERATOR 7 item data: removed ID 33 from appeal stamp list. 
+	- Updated placeholder names in data.json.
+
+3. Issues:
+	- Game crashes on continue screen when a Stamp Select event is enabled. Unsure if this is a plugin issue, or just an isolated gamedata issue.
+
+
 ## fork-6.0.3.6
 
 ### New:
@@ -41,16 +60,6 @@ Changelog
 		- Toggle on "Unlocking Events -> Stamp Events -> REFLEC BEAT Song Stamp Event (2024)"
 	- Added the new maps to TAMANEKO Adventure (3 Touhou songs + 4 XCD charts)
 	- Added VALKYRIE GENERATOR (Touhou Project)
-
-
-## fork-6.0.3.4a
-
-### New:
-
-1. Misc:
-	- Updated webui data.json asset file (renamed some placeholder labels)
-	- Removed most of webui image and audio assets to minimize size.
-		- Run asset update to pull webui assets from game files.
 
 
 ### Todo:

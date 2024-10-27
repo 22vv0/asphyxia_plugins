@@ -520,12 +520,16 @@ export const save: EPR = async (info, data, send) => {
       const sid = course.number('ssnid');
       const cid = course.number('crsid');
       const stype = course.number('st');
+      const kacid = course.str('kac_id');
 
       if (!(_.isNil(sid) || _.isNil(cid))){
         await DB.Upsert<CourseRecord>(
           refid,
           { collection: 'course', sid, cid, stype, version },
           {
+            $set: {
+              kacId: kacid
+            },
             $max: {
               score: course.number('sc', 0),
               exscore: course.number('ex', 0),
@@ -635,7 +639,7 @@ export const load: EPR = async (info, data, send) => {
   console.log("DataID: " + refid);
   if (version == 0) return send.deny();
 
-  const profile = await DB.FindOne<Profile>(refid, {
+  let profile = await DB.FindOne<Profile>(refid, {
     collection: 'profile',
   });
 
@@ -751,8 +755,9 @@ export const load: EPR = async (info, data, send) => {
   const stampRC = profile.stampRC ? profile.stampRC : 0;
   const stampRD = profile.stampRD ? profile.stampRD : 0;
   const sysBG = profile.sysBG ? profile.sysBG : 0;
-  const bplSupport = profile.bplSupport ? profile.bplSupport : 0;
   const creatorItem = profile.creatorItem ? profile.creatorItem : 0;
+  const bplPro = (profile.bplSupport > 10) ? true : false
+  profile.bplSupport = profile.bplSupport ? profile.bplSupport % 10 : 0;
 
   const customize = [];
   customize.push(bgm, subbg, nemsys, stampA, stampB, stampC, stampD, stampRA, stampRB, stampRC, stampRD, sysBG);
@@ -796,6 +801,7 @@ export const load: EPR = async (info, data, send) => {
     arena,
     valgeneTicket,
     creatorItem,
+    bplPro,
     ...profile,
   });
 };

@@ -218,7 +218,10 @@ $(document).ready(function() {
                 text: json["supportTeams"][i].name,
             }));
         }
-        $('[name="bplSupport"]').val(profile_data["bplSupport"] ? profile_data["bplSupport"] : 0);
+        let bplSupport = profile_data["bplSupport"] ? profile_data["bplSupport"] % 10 : 0
+        $('[name="bplSupport"]').val(bplSupport);
+
+        if(profile_data["bplSupport"] >= 10) $('[name="bplPro"]').attr('checked', true);
 
         for (var i in json["sysbg"]) {
             if(unlock_all || (items_sysbg.find(x => x.id === json["sysbg"][i].id) || json["sysbg"][i].id === 0)) {

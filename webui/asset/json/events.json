@@ -302,6 +302,20 @@
             "name": "REFLEC BEAT Song Stamp Event (2024)",
             "desc": "Stamp event to unlock 5 more songs originally from the REFLEC BEAT game series.",
             "info": "Toggle this on to enable this stamp event."
+        },
+        {
+            "id": "mystreun",
+            "type": "cross_online",
+            "enabled": true,
+            "name": "MYSTICAL Re:UNION",
+            "desc": "Crossover event for SDVX and DDR. Toggle on to unlock song/s.",
+            "info": [
+                "Song 1: Blφφdy Cφncertφ",
+                "Song 2: OROCHI STRIKE",
+                "Song 3: Lichtsäule",
+                "Song 4: REINCARNATION",
+                "Song 5: Re:RHYZE"
+            ]
         }
     ],
     "flags": [

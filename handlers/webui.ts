@@ -17,6 +17,7 @@ export const updateProfile = async (data: {
   appeal?: string;
   akaname?: string;
   bplSupport?: string;
+  bplPro?: boolean;
   nemsys?: string;
   bgm?: string;
   subbg?: string;
@@ -61,7 +62,7 @@ export const updateProfile = async (data: {
   }
 
   if (data.bplSupport && data.bplSupport.length > 0) {
-    const validBplSupport = parseInt(data.bplSupport);
+    const validBplSupport = data.bplPro ? parseInt(data.bplSupport) + 10 : parseInt(data.bplSupport);
     if (!_.isNaN(validBplSupport)) update.bplSupport = validBplSupport;
   }
 

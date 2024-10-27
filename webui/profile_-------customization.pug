@@ -85,6 +85,17 @@ div
                   .select.is-fullwidth
                     select(name="bplSupport" id="bplsupport_select")
         .field
+          label.label BPL Pro Player
+            span.icon.has-tooltip-right(data-tooltip="Enabling this will show the BPL Pro Player label instead of the Supporter label.")
+              i.mdi.mdi-help-circle
+          .control.is-expanded 
+                  .field-body
+                    .field
+                      .control
+                        label.switch.is-rounded
+                          input(name="bplPro" type="checkbox")
+                          span.check
+        .field
           label.label Valgene Tickets
             span.icon.has-tooltip-right(data-tooltip="Number of tickets you can use to buy Valkyrie Generator Items, instead of PASELI or credits.")
               i.mdi.mdi-help-circle

@@ -33,8 +33,12 @@ game
   skill_name_id(__type="s16") #{skill.name}
   skill_type(__type="s16") #{skill.type !== undefined ? skill.type : 0}
 
-  if bplSupport
+  if bplSupport > 0 && !bplPro
     support_team_id(__type="s32") #{bplSupport}
+
+  additional_info
+    if bplPro && bplSupport > 0
+      pro_team_id(val=`${bplSupport}`)
 
   ea_shop
     packet_booster(__type="s32") 1
