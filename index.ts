@@ -18,6 +18,12 @@ export function register() {
     default: true,
     type: "boolean"
   });
+  R.Config("song_unlock", {
+    name: "Unlock all songs",
+    desc: "Still requires musicdb.xml to get the song ids.",
+    default: true,
+    type: "boolean"
+  });
   R.Config("mdb_limited", {
     name: "musicdb.xml for musicdata_load",
     desc: "musicdb.xml file to use for importing limited and diffLv info. Put this xml file in the 'data' directory of the plugin.",

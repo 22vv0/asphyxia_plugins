@@ -52,11 +52,18 @@ export const SONGS_WORLD = [
 	{ mcode: 37222, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [2, 4, 10, 13, 0, 0, 4, 9, 13, 0] },
 	{ mcode: 37604, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [2, 6, 9, 12, 14, 0, 5, 9, 12, 14] },
 	{ mcode: 37234, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [1, 3, 7, 11, 0, 0, 3, 7, 11, 0] },
-	{ mcode: 37363, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [2, 5, 9, 13, 0, 0, 5, 9, 13, 0] }
+	{ mcode: 37363, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [2, 5, 9, 13, 0, 0, 5, 9, 13, 0] },
+	
+	{ mcode: 38756, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 8, 15, 18, 0, 0, 8, 14, 18, 0] },
+	{ mcode: 38758, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [5, 10, 13, 17, 0, 0, 10, 13, 17, 0] },
+	{ mcode: 38759, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 6, 13, 15, 0, 0, 7, 13, 15, 0] },
 
 	// songs that have yet to release. unknown difficulty lvls.
-	// { mcode: 38622, limited_ary: [], diffLv: [] }
-
+	// { mcode: 38622, limited_ary: [], diffLv: [] },
+	// { mcode: 38629, limited_ary: [], diffLv: [] },
+	// { mcode: 38757, limited_ary: [], diffLv: [] },
+	// { mcode: 38760, limited_ary: [], diffLv: [] },
+	// { mcode: 38761, limited_ary: [], diffLv: [] }
 ]
 
 export const SONGS_OVERRIDE_WORLD = [
@@ -216,7 +223,12 @@ export const SONGS_OVERRIDE_WORLD = [
 	{ mcode: 38420, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 8, 12, 15, 17, 0, 8, 12, 15, 17] },
 	{ mcode: 38405, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 6, 9, 13, 17, 0, 5, 9, 14, 17] },
 	{ mcode: 38442, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 8, 13, 16, 18, 0, 8, 13, 16, 18] },
-	{ mcode: 38436, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 7, 11, 14, 17, 0, 7, 11, 14, 17] }
+	{ mcode: 38436, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 7, 11, 14, 17, 0, 7, 11, 14, 17] },
+	{ mcode: 38407, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 9, 12, 16, 17, 0, 9, 12, 16, 17] },
+
+	// { mcode: 38339, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 7, 11, 14, ?, 0, 7, 11, 14, ?] },
+	// { mcode: 38424, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 8, 11, 14, ?, 0, 8, 11, 14, ?] },
+	// { mcode: 38428, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 8, 12, 16, ?, 0, 8, 12, 16, ?] },
 ]
 
 export const EVENTS_WORLD = [
@@ -271,7 +283,12 @@ export const EVENTS_WORLD = [
 	{ id: 105, no: 0, cond: 1, rwrd: 37604, type: 52 },
 	{ id: 106, no: 0, cond: 1, rwrd: 37234, type: 50 },
 	{ id: 107, no: 0, cond: 1, rwrd: 37363, type: 50 },
-	{ id: 108, no: 0, cond: 1, rwrd: 38436, type: 52 }
+	{ id: 108, no: 0, cond: 1, rwrd: 38436, type: 52 },
+	// Triple tribe 4. Song does not appear if non-Gold.
+	{ id: 109, no: 0, cond: 1, rwrd: 1197, type: 201, save: 1 },
+	{ id: 110, no: 0, cond: 1, rwrd: 38759, type: 43, comp: 0, save: 1 },
+	{ id: 111, no: 0, cond: 1, rwrd: 38758, type: 43, comp: 0, save: 1 },
+	{ id: 112, no: 0, cond: 1, rwrd: 38756, type: 43, comp: 0, save: 1 }
 ]
 
 export const LEAGUE_WORLD = [

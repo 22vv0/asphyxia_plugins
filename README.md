@@ -1,10 +1,8 @@
 # DanceDanceRevolution
 
-**Plugin Version:** fork-mdx-3.0.2
+**Plugin Version:** fork-mdx-3.0.3
 
-**Supported game versions:** WORLD (2024091000)
-
-**Unsupported game versions:** Everything below A20 is unsupported. A20 untested. A3 unsupported.
+**Supported game versions:** WORLD (2024101500)
 
 **Required Asphyxia Core version** [1.50c](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50)
 
@@ -28,6 +26,17 @@ musicdb.xml Usage Guide
 
 Changelog
 ===========
+### fork-mdx-3.0.3
+
+- Fixed WebUI flare skill calculation mistake.
+- Added "unlock all songs" option. 
+	- Still requires musicdb.xml to get the song ids.
+- Added Triple Tribe 4 event data.
+	- Gold cab exclusive, otherwise the songs will not appear in the songs list. 
+	- You can use patches to force the game to imitate gold cab.
+- Added "Step This Way" Challenge difficulties
+
+
 ### fork-mdx-3.0.2
 
 - WORLD LEAGUE
@@ -69,14 +78,6 @@ Changelog
 	- Basic profile info
 	- Flare skill info
 	- Music/score table
-
-
-### fork-mdx-3.0.0b
-
-- Flare skill song unlock event.... on Doubles.
-	- Fixes crashes on Flare Skill rank up.... on Doubles (again, just tested until Mercury.)
-	- Event list updated
-- ghostdata saving and loading (WIP, idk what ghost is)
 
 
 

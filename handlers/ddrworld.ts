@@ -27,7 +27,6 @@ async function saveScores(refid: string, hiScoreInfo: any, songId: number, style
     let stepGhost = await DB.FindOne<GhostWorld>(null, {collection: "ghost3", ghostId: ghostId })
     
     if(stepGhost) {
-      if(score >= stepScore.score) console.log("overwriting ghostdata")
       ghostSize = (score >= stepScore.score) ? ghostSize : stepGhost.ghostSize
       ghost = (score >= stepScore.score) ? ghost : stepGhost.ghost
     }
@@ -58,7 +57,6 @@ async function saveScores(refid: string, hiScoreInfo: any, songId: number, style
       }
   });
 
-  console.log("saving ghostid: " + ghostId)
   await DB.Upsert<GhostWorld>(refid, {
     collection: "ghost3",
     ghostId,
@@ -84,7 +82,6 @@ async function saveScores(refid: string, hiScoreInfo: any, songId: number, style
 
   // Hiscore stuff
   let hiScoreWorld1 = await DB.FindOne<HiScoreWorld>(null, {collection: 'hiscore3', slot: 1, songId: songId, style: style, difficulty: difficulty})
-  console.log('--------------------------------------------------------------')
   ghostData = await DB.Find<GhostWorld>(null, {collection: "ghost3"})
   lastGhostId = getLastGhostId(ghostData)
   ghostId = 0
@@ -92,27 +89,21 @@ async function saveScores(refid: string, hiScoreInfo: any, songId: number, style
   else ghostId = lastGhostId += 1
 
   if(hiScoreWorld1) {
-    console.log('[world1] ' + hiScoreCheck + ' >= ' + hiScoreWorld1.score)
     if(hiScoreCheck >= hiScoreWorld1.score) {
-      console.log('[world1] high score beat')
       worldBreak = true
       ghostId = (hiScoreWorld1.ghostId) ? hiScoreWorld1.ghostId : ghostId
-      console.log('[world1] ghostid exists, saving to id ' + ghostId)
       await DB.Upsert<GhostWorld>(refid, {collection: "ghost3", ghostId }, {$set: { ghostSize, ghost }});
     }
   } else {
     worldBreak = true
-    console.log('[world1] entry does not exist. creating')    
     await DB.Upsert<GhostWorld>(refid, {collection: "ghost3", ghostId }, {$set: { ghostSize, ghost }});
   }
   slot = 1
   if(worldBreak) {
-    console.log("[world1] saving hiscore - ghost id " + ghostId)
     await DB.Upsert<HiScoreWorld>(refid, {collection: "hiscore3", slot, songId, style, difficulty}, { $set: { country, region, customerCode, companyCode, locationId, pcbid, dancerName, score: hiScoreCheck, ghostId }});
   }
 
   let hiScoreArea1 = await DB.FindOne<HiScoreWorld>(null, {collection: 'hiscore3', slot: 2, locationId: locationId, songId: songId, style: style, difficulty: difficulty})
-  console.log('--------------------------------------------------------------')
   ghostData = await DB.Find<GhostWorld>(null, {collection: "ghost3"})
   lastGhostId = getLastGhostId(ghostData)
   ghostId = 0
@@ -120,28 +111,22 @@ async function saveScores(refid: string, hiScoreInfo: any, songId: number, style
   else ghostId = lastGhostId += 1
 
   if(hiScoreArea1) {
-    console.log('[area1] ' + hiScoreCheck + ' >= ' + hiScoreArea1.score)
     if(hiScoreCheck >= hiScoreArea1.score) {
-      console.log('[area1] high score beat')
       areaBreak = true
       ghostId = (hiScoreArea1.ghostId) ? hiScoreArea1.ghostId : ghostId
-      console.log('[area1] ghostid exists, saving to id ' + ghostId)
       await DB.Upsert<GhostWorld>(refid, {collection: "ghost3", ghostId }, {$set: { ghostSize, ghost }});
     }
   } else {
     areaBreak = true
-    console.log('[area1] entry does not exist. creating')    
     await DB.Upsert<GhostWorld>(refid, {collection: "ghost3", ghostId }, {$set: { ghostSize, ghost }});
   }
   slot = 2
   if(areaBreak) {
-    console.log("[area1] saving hiscore - ghost id " + ghostId)
     await DB.Upsert<HiScoreWorld>(refid, {collection: "hiscore3", slot, locationId, songId, style, difficulty}, { $set: { country, region, customerCode, companyCode, pcbid, dancerName, score: hiScoreCheck, ghostId }});
   }
 
 
   let hiScoreMachine1 = await DB.FindOne<HiScoreWorld>(null, {collection: 'hiscore3', slot: 3, locationId: locationId, pcbid: pcbid, songId: songId, style: style, difficulty: difficulty})
-  console.log('--------------------------------------------------------------')
   ghostData = await DB.Find<GhostWorld>(null, {collection: "ghost3"})
   lastGhostId = getLastGhostId(ghostData)
   ghostId = 0
@@ -149,22 +134,17 @@ async function saveScores(refid: string, hiScoreInfo: any, songId: number, style
   else ghostId = lastGhostId += 1
 
   if(hiScoreMachine1) {
-    console.log('[machine1] ' + hiScoreCheck + ' >= ' + hiScoreMachine1.score)
     if(hiScoreCheck >= hiScoreMachine1.score) {
-      console.log('[machine1] high score beat')
       machineBreak = true
       ghostId = (hiScoreMachine1.ghostId) ? hiScoreMachine1.ghostId : ghostId
-      console.log('[machine1] ghostid exists, saving to id ' + ghostId)
       await DB.Upsert<GhostWorld>(refid, {collection: "ghost3", ghostId }, {$set: { ghostSize, ghost }});
     }
   } else {
     machineBreak = true
-    console.log('[machine1] entry does not exist. creating')  
     await DB.Upsert<GhostWorld>(refid, {collection: "ghost3", ghostId }, {$set: { ghostSize, ghost }});
   }
   slot = 3
   if(machineBreak) {
-    console.log("[machine1] saving hiscore - ghost id " + ghostId)
     await DB.Upsert<HiScoreWorld>(refid, {collection: "hiscore3", slot, locationId, pcbid, songId, style, difficulty}, { $set: { country, region, customerCode, companyCode, dancerName, score: hiScoreCheck, ghostId }});
   }
 }
@@ -541,6 +521,7 @@ export const playerdataload: EPR = async (info, data, send) => {
     for(const event of EVENTS_WORLD) {
       let eData = eventData.find(e => e.eventId === event.id)
       let condmet = true
+      let compTime = 0
       if(event.dep) {
         event.dep.forEach(dep => {
           let eData = eventData.find(e => e.eventId === dep)
@@ -550,12 +531,12 @@ export const playerdataload: EPR = async (info, data, send) => {
       }
       // id,type,no,condition,reward,comptime,savedata
       if(condmet) {
-        if(event.type === 17) {
+        if([17, 43].includes(event.type)) {
           if (eData) eData.compTime = eData.compTime ? 0 : 1 
-          event.comp = event.comp ? 0 : 1
+          compTime = event.comp ? 0 : 1
         }
         eventFin.push({
-          event_str: K.ITEM('str', event.id + ',' + event.type + ',' + event.no + ',' + event.cond + ',' + event.rwrd + ',' + (eData ? BigInt(eData.compTime) : (event.comp !== undefined ? event.comp : '0')) + ',' + ((eData) ? eData.saveData : ((event.save !== undefined) ? event.save : '0')))
+          event_str: K.ITEM('str', event.id + ',' + event.type + ',' + event.no + ',' + event.cond + ',' + event.rwrd + ',' + (eData ? BigInt(eData.compTime) : compTime) + ',' + ((eData) ? eData.saveData : ((event.save !== undefined) ? event.save : '0')))
         })  
       }
     }
@@ -809,7 +790,7 @@ export const musicdataload: EPR = async (info, data, send) => {
           }
           
           musicList.push({
-            music_str: K.ITEM('str', $(music).number('mcode') + ',' + ((index > 4) ? '1,' : '0,') + (index % 5) + ',' + limited + ',' + diff)
+            music_str: K.ITEM('str', $(music).number('mcode') + ',' + ((index > 4) ? '1,' : '0,') + (index % 5) + ',' + (U.GetConfig('song_unlock') && limited != -1 ? '0' : limited) + ',' + diff)
           })
         }
       }
@@ -820,7 +801,7 @@ export const musicdataload: EPR = async (info, data, send) => {
     for(const [index, diff] of music.diffLv.entries()) {
       if(music.limited_ary[index] != -1) {
         musicList.push({
-          music_str: K.ITEM('str', music.mcode + ',' + ((index > 4) ? '1,' : '0,') + (index % 5) + ',' + music.limited_ary[index] + ',' + diff)
+          music_str: K.ITEM('str', music.mcode + ',' + ((index > 4) ? '1,' : '0,') + (index % 5) + ',' + (U.GetConfig('song_unlock') && music.limited_ary[index] != -1 ? '0' : music.limited_ary[index]) + ',' + diff)
         })
       }
     }
@@ -884,7 +865,6 @@ export const rivaldataload: EPR = async (info, data, send) => {
 export const ghostdataload: EPR = async (info, data, send) => {
   const refid = $(data).str("data.refid");
   const ghostId = $(data).number("data.ghostid");
-  console.log("loading ghostid: " + ghostId)
   let ghostData = await DB.FindOne<GhostWorld>(null, {collection: 'ghost3', ghostId: ghostId})
   if(ghostData) {
     return send.object({

@@ -92,30 +92,30 @@ async function getFlareInfo(scores) {
 		})
 
 		flareData.classicSgTop30 = flareTopScores.sg.filter(ft => ft.series <= 13).sort((a, b) => b.flare - a.flare)
-		if(flareData.classicSgTop30.length > 30) flareData.classicSgTop30.slice(0, 30)
+		if(flareData.classicSgTop30.length > 30) flareData.classicSgTop30 = flareData.classicSgTop30.slice(0, 30)
 		flareData.classicSgFlare = flareData.classicSgTop30.reduce((n, {flare}) => n + flare, 0)
 
 		flareData.whiteSgTop30 = flareTopScores.sg.filter(ft => ft.series >= 14 && ft.series <= 17).sort((a, b) => b.flare - a.flare)
-		if(flareData.whiteSgTop30.length > 30) flareData.whiteSgTop30.slice(0, 30)
+		if(flareData.whiteSgTop30.length > 30) flareData.whiteSgTop30 = flareData.whiteSgTop30.slice(0, 30)
 		flareData.whiteSgFlare = flareData.whiteSgTop30.reduce((n, {flare}) => n + flare, 0)
 
 		flareData.goldSgTop30 = flareTopScores.sg.filter(ft => ft.series >= 18).sort((a, b) => b.flare - a.flare)
-		if(flareData.goldSgTop30.length > 30) flareData.goldSgTop30.slice(0, 30)
+		if(flareData.goldSgTop30.length > 30) flareData.goldSgTop30 = flareData.goldSgTop30.slice(0, 30)
 		flareData.goldSgFlare = flareData.goldSgTop30.reduce((n, {flare}) => n + flare, 0)
 
 		flareData.totalSgFlare = flareData.classicSgTop30.concat(flareData.whiteSgTop30, flareData.goldSgTop30).reduce((n, {flare}) => n + flare, 0)
 
 
 		flareData.classicDbTop30 = flareTopScores.db.filter(ft => ft.series <= 13).sort((a, b) => b.flare - a.flare)
-		if(flareData.classicDbTop30.length > 30) flareData.classicDbTop30.slice(0, 30)
+		if(flareData.classicDbTop30.length > 30) flareData.classicDbTop30 = flareData.classicDbTop30.slice(0, 30)
 		flareData.classicDbFlare = flareData.classicDbTop30.reduce((n, {flare}) => n + flare, 0)
 
 		flareData.whiteDbTop30 = flareTopScores.db.filter(ft => ft.series >= 14 && ft.series <= 17).sort((a, b) => b.flare - a.flare)
-		if(flareData.whiteDbTop30.length > 30) flareData.whiteDbTop30.slice(0, 30)
+		if(flareData.whiteDbTop30.length > 30) flareData.whiteDbTop30 = flareData.whiteDbTop30.slice(0, 30)
 		flareData.whiteDbFlare = flareData.whiteDbTop30.reduce((n, {flare}) => n + flare, 0)
 
 		flareData.goldDbTop30 = flareTopScores.db.filter(ft => ft.series >= 18).sort((a, b) => b.flare - a.flare)
-		if(flareData.goldDbTop30.length > 30) flareData.goldDbTop30.slice(0, 30)
+		if(flareData.goldDbTop30.length > 30) flareData.goldDbTop30 = flareData.goldDbTop30.slice(0, 30)
 		flareData.goldDbFlare = flareData.goldDbTop30.reduce((n, {flare}) => n + flare, 0)
 
 		flareData.totalDbFlare = flareData.classicDbTop30.concat(flareData.whiteDbTop30, flareData.goldDbTop30).reduce((n, {flare}) => n + flare, 0)
