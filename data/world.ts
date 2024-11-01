@@ -45,23 +45,20 @@ export const SONGS_WORLD = [
 	{ mcode: 38748, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 9, 13, 16, 0, 0, 9, 13, 16, 0] },
 	{ mcode: 38749, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [2, 2, 7, 11, 13, 0, 2, 7, 11, 14] },
 	{ mcode: 38734, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 6, 10, 13, 8, 0, 6, 10, 13, 9] },
-
 	{ mcode: 38737, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [3, 6, 11, 13, 16, 0, 6, 11, 13, 16] },
 	{ mcode: 38738, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [2, 5, 8, 12, 17, 5, 8, 12, 17] },
-
 	{ mcode: 37222, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [2, 4, 10, 13, 0, 0, 4, 9, 13, 0] },
 	{ mcode: 37604, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [2, 6, 9, 12, 14, 0, 5, 9, 12, 14] },
 	{ mcode: 37234, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [1, 3, 7, 11, 0, 0, 3, 7, 11, 0] },
 	{ mcode: 37363, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [2, 5, 9, 13, 0, 0, 5, 9, 13, 0] },
-	
 	{ mcode: 38756, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 8, 15, 18, 0, 0, 8, 14, 18, 0] },
 	{ mcode: 38758, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [5, 10, 13, 17, 0, 0, 10, 13, 17, 0] },
 	{ mcode: 38759, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 6, 13, 15, 0, 0, 7, 13, 15, 0] },
+	{ mcode: 38757, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 5, 8, 13, 0, 0, 5, 8, 13, 0] }
 
 	// songs that have yet to release. unknown difficulty lvls.
 	// { mcode: 38622, limited_ary: [], diffLv: [] },
 	// { mcode: 38629, limited_ary: [], diffLv: [] },
-	// { mcode: 38757, limited_ary: [], diffLv: [] },
 	// { mcode: 38760, limited_ary: [], diffLv: [] },
 	// { mcode: 38761, limited_ary: [], diffLv: [] }
 ]

@@ -1,6 +1,6 @@
 # DanceDanceRevolution
 
-**Plugin Version:** fork-mdx-3.0.3
+**Plugin Version:** fork-mdx-3.0.3a
 
 **Supported game versions:** WORLD (2024101500)
 
@@ -26,7 +26,7 @@ musicdb.xml Usage Guide
 
 Changelog
 ===========
-### fork-mdx-3.0.3
+### fork-mdx-3.0.3a
 
 - Fixed WebUI flare skill calculation mistake.
 - Added "unlock all songs" option. 
@@ -35,6 +35,7 @@ Changelog
 	- Gold cab exclusive, otherwise the songs will not appear in the songs list. 
 	- You can use patches to force the game to imitate gold cab.
 - Added "Step This Way" Challenge difficulties
+- Added "MVP" to SONGS_WORLD.
 
 
 ### fork-mdx-3.0.2
