@@ -1,6 +1,6 @@
 # DanceDanceRevolution
 
-**Plugin Version:** fork-mdx-3.0.3a
+**Plugin Version:** fork-mdx-3.0.3b
 
 **Supported game versions:** WORLD (2024101500)
 
@@ -26,9 +26,10 @@ musicdb.xml Usage Guide
 
 Changelog
 ===========
-### fork-mdx-3.0.3a
+### fork-mdx-3.0.3b
 
 - Fixed WebUI flare skill calculation mistake.
+- Fixed getLastGhostId function.
 - Added "unlock all songs" option. 
 	- Still requires musicdb.xml to get the song ids.
 - Added Triple Tribe 4 event data.

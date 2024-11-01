@@ -3,7 +3,8 @@ import { ProfileWorld, ScoreWorld, EventWorld, GhostWorld, RivalWorld, HiScoreWo
 import { SONGS_WORLD, SONGS_OVERRIDE_WORLD, EVENTS_WORLD, LEAGUE_WORLD, LOCKED_SONGS } from "../data/world";
 
 function getLastGhostId(ghost: any) {
-  if(ghost.length > 0) return ghost.filter(a => (a.ghostId !== undefined)).sort((a, b) => b.ghostId - a.ghostId)[0].ghostId
+  let ghostFiltered = ghost.filter(a => (a.ghostId !== undefined))
+  if(ghostFiltered.length > 0) return ghostFiltered.sort((a, b) => b.ghostId - a.ghostId)[0].ghostId
   else return 0
 }
 
