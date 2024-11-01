@@ -30,7 +30,13 @@ export enum Rank {
 }
 
 export enum ClearKind {
-  NONE = 6,
+  NONE,
+  FAILED,
+  ASSIST_CLEAR,
+  CLEAR,
+  LIFE4_1,
+  LIFE4_2,
+  LIFE4,
   GOOD_COMBO,
   GREAT_COMBO,
   PERFECT_COMBO,

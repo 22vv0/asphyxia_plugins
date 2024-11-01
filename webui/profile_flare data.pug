@@ -1,0 +1,84 @@
+//DATA//
+  profile: DB.FindOne(refid, { collection: "profile" })
+  profile3: DB.FindOne(refid, { collection: "profile3" })
+  score3: DB.Find(refid, { collection: "score3" })
+
+-
+
+if profile3
+  div
+    .card
+      .card-header
+        p.card-header-title
+          span.icon
+            i.mdi.mdi-filter
+          | Filter Results
+      .card-content
+        .score-filter
+          .field.is-horizontal.has-addons
+            .field-label.is-normal
+              label.label Chart Style
+            .field-body
+              .control
+                .select
+                  select(id="style_select" value=0)
+                    option(value=0) SINGLE
+                    option(value=1) DOUBLE
+
+    .card
+      .card-header
+        p.card-header-title
+          span.icon
+            i.mdi.mdi-fire
+          | Classic
+
+      .card-content
+        table
+          thead
+            tr
+              th(style="width:10%") #
+              th(style="width:60%") Title
+              th(style="width:15%") Difficulty
+              th(style="width:15%") Flare Skill
+          tbody#classic_flare
+
+    .card
+      .card-header
+        p.card-header-title
+          span.icon
+            i.mdi.mdi-fire
+          | White
+
+      .card-content
+        table
+          thead
+            tr
+              th(style="width:10%") #
+              th(style="width:60%") Title
+              th(style="width:15%") Difficulty
+              th(style="width:15%") Flare Skill
+          tbody#white_flare
+
+    .card
+      .card-header
+        p.card-header-title
+          span.icon
+            i.mdi.mdi-fire
+          | Gold
+
+      .card-content
+        table
+          thead
+            tr
+              th(style="width:10%") #
+              th(style="width:60%") Title
+              th(style="width:15%") Difficulty
+              th(style="width:15%") Flare Skill
+          tbody#gold_flare
+
+
+
+    div(hidden id='profile3-pass') !{JSON.stringify(profile3)}
+    div(hidden id='score-pass') !{JSON.stringify(score3)}
+    script(src="static/js/flaredata.js")
+    script(src="static/js/common.js")

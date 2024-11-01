@@ -10,9 +10,11 @@ export interface RivalWorld {
 export interface ScoreWorld {
   collection: "score3";
 
+  scoreId: number;
   songId: number;
   style: number;
   difficulty: Difficulty;
+  ghostId: number;
   rank: Rank;
   clearKind: ClearKind;
   score: number;
@@ -21,11 +23,28 @@ export interface ScoreWorld {
   flareForce: number;
 }
 
+export interface HiScoreWorld {
+  collection: "hiscore3";
+
+  slot: number;
+  country: string;
+  region: string;
+  customerCode: string;
+  companyCode: string;
+  locationId: string;
+  pcbid: string;
+  songId: number;
+  style: number;
+  difficulty: number;
+  dancerName: string;
+  score: number;
+  ghostId: number;
+}
+
 export interface GhostWorld {
   collection: "ghost3"
 
-  songId: number;
-  difficulty: number;
+  ghostId: number;
   ghostSize: number;
   ghost: string;
 }
@@ -38,6 +57,16 @@ export interface EventWorld {
   eventType: number;
   compTime: number;
   saveData: number;
+}
+
+export interface LeagueWorld {
+  collection: "league3";
+
+  id: number,
+  class: number,
+  score: number,
+  playCount: number,
+  ended: boolean
 }
 
 export interface ProfileWorld {
@@ -107,30 +136,4 @@ export interface ProfileWorld {
   cgTipsGimmick: number;
   cgTipsAdvance: number;
   cgGuideScene: number;
-  
-  
-
-  singleGrade?: number;
-  doubleGrade?: number;
-
-  events?: {};
-
-  usergamedata?: {
-    COMMON?: {
-      strdata?: string;
-      bindata?: string;
-    };
-    OPTION?: {
-      strdata?: string;
-      bindata?: string;
-    };
-    LAST?: {
-      strdata?: string;
-      bindata?: string;
-    };
-    RIVAL?: {
-      strdata?: string;
-      bindata?: string;
-    };
-  };
 }

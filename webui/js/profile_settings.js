@@ -51,3 +51,24 @@ $('#change-display-timing').on('click', () => {
 
   emit('updateDisplayTiming', { refid, selected }).then(() => location.reload());
 });
+
+
+$('#change-name3').on('click', () => {
+  const name = $('#name3').val().toUpperCase();
+
+  emit('updateName3', { refid, name }).then(() => location.reload());
+});
+
+$('#change-weight3').on('click', () => {
+  const weight1 = $('#weight31').val();
+  const weight2 = $('#weight32').val();
+  const weight = parseInt(weight1 + '.' + weight2);
+
+  emit('updateWeight3', { refid, weight }).then(() => location.reload());
+});
+
+$('#change-display-calories3').on('click', () => {
+  const selected = parseInt($('#display_calories3 option:selected').val()) !== 0
+
+  emit('updateDisplayCalories3', { refid, selected }).then(() => location.reload());
+});

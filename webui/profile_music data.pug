@@ -1,0 +1,61 @@
+//DATA//
+  profile3: DB.FindOne(refid, { collection: "profile3" })
+  score3: DB.Find(refid, { collection: "score3" })
+
+-
+link(rel="stylesheet" href="static/css/datatables.css")
+
+if profile3
+  div
+    .card
+      .card-header
+        p.card-header-title
+          span.icon
+            i.mdi.mdi-filter
+          | Filter Results
+      .card-content
+        .score-filter
+          .field.is-horizontal.has-addons
+            .field-label.is-normal
+              label.label Chart Style
+            .field-body
+              .control
+                .select
+                  select(id="style_select" value=0)
+                    option(value=0) SINGLE
+                    option(value=1) DOUBLE
+          .field.is-horizontal.has-addons
+            .field-label.is-normal
+              label.label Displayed Info
+            .field-body
+              .control
+                .select
+                  select(id="info_select" value=0)
+                    option(value=0) Score
+                    option(value=1) Clear Rank
+                    option(value=2) Clear Type
+                    option(value=3) Flare Rank
+
+    .card
+      .card-header
+        p.card-header-title
+          span.icon
+            i.mdi.mdi-music
+          | Music Data
+
+      .card-content
+        .score-table
+          table.table(id="musicdata" style="width:100%")
+            thead
+              tr    
+                th Song
+                th BEGINNER
+                th BASIC
+                th DIFFICULT
+                th EXPERT
+                th CHALLENGE
+            tbody
+            
+div(hidden id='score-pass') !{JSON.stringify(score3)}
+script(src="static/js/musicdata.js")
+script(src="static/js/datatables.js")
