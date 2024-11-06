@@ -69,6 +69,14 @@ export interface LeagueWorld {
   ended: boolean
 }
 
+export interface CustomizeWorld {
+  collection: "customize3";
+
+  category: number;
+  key: number;
+  pattern: number;
+}
+
 export interface ProfileWorld {
   collection: "profile3";
 

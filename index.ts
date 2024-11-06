@@ -4,7 +4,7 @@ import { usergamedata_recv } from "./handlers/usergamedata_recv";
 import { usergamedata_send } from "./handlers/usergamedata_send";
 import { musicdataload, playerdatanew, playerdatasave, playerdataload, rivaldataload, ghostdataload, taboowordcheck, minidump } from "./handlers/ddrworld";
 import { CommonOffset, OptionOffset, Profile } from "./models/profile";
-import { ProfileWorld } from "./models/ddrworld";
+import { ProfileWorld, CustomizeWorld } from "./models/ddrworld";
 import { SONGS_WORLD, SONGS_OVERRIDE_WORLD, LEAGUE_WORLD } from "./data/world"
 
 export function register() {
@@ -206,6 +206,17 @@ export function register() {
     await DB.Update<ProfileWorld>(refid, { collection: "profile3" }, {
       $set: {
         isDispWeight: selected
+      }
+    });
+  });
+
+  R.WebUIEvent("playerCustomize", async ({ customize, refid, selected }) => {
+    const catPat = {'appeal': [1, 1]}
+    if(selected === 0) await DB.Remove<CustomizeWorld>(refid, { collection: "customize3", category: catPat[customize][0], pattern: catPat[customize][1] })
+    else await DB.Upsert<CustomizeWorld>(refid, { collection: "customize3", category: catPat[customize][0] }, { 
+      $set: { 
+        key: selected, 
+        pattern: catPat[customize][1] 
       }
     });
   });

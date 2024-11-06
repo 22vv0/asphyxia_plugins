@@ -1,6 +1,6 @@
 # DanceDanceRevolution
 
-**Plugin Version:** fork-mdx-3.0.3b
+**Plugin Version:** fork-mdx-3.0.3c
 
 **Supported game versions:** WORLD (2024101500)
 
@@ -26,7 +26,7 @@ musicdb.xml Usage Guide
 
 Changelog
 ===========
-### fork-mdx-3.0.3b
+### fork-mdx-3.0.3c
 
 - Fixed WebUI flare skill calculation mistake.
 - Fixed getLastGhostId function.
@@ -37,6 +37,15 @@ Changelog
 	- You can use patches to force the game to imitate gold cab.
 - Added "Step This Way" Challenge difficulties
 - Added "MVP" to SONGS_WORLD.
+- Added "Time to HYPERDRIVE" to SONGS_WORLD.
+	- Song should appear if you're Silver rank in WORLD LEAGUE.
+- Added new charts to advanced play
+	- "1116"
+	- "Sahara"
+	- "High & Low" (CHA)
+	- "ONYX" (CHA)
+- Added new player customization options in Profile Settings.
+	- BPL Team Supporter Appeal Board 
 
 
 ### fork-mdx-3.0.2

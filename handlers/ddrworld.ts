@@ -1,5 +1,5 @@
 import { Profile } from "../models/profile";
-import { ProfileWorld, ScoreWorld, EventWorld, GhostWorld, RivalWorld, HiScoreWorld, LeagueWorld } from "../models/ddrworld";
+import { ProfileWorld, ScoreWorld, EventWorld, GhostWorld, RivalWorld, HiScoreWorld, LeagueWorld, CustomizeWorld } from "../models/ddrworld";
 import { SONGS_WORLD, SONGS_OVERRIDE_WORLD, EVENTS_WORLD, LEAGUE_WORLD, LOCKED_SONGS } from "../data/world";
 
 function getLastGhostId(ghost: any) {
@@ -654,6 +654,16 @@ export const playerdataload: EPR = async (info, data, send) => {
       }
     }
 
+    let userCustomize = []
+    let customize = await DB.Find<CustomizeWorld>(refid, {collection: 'customize3'})
+    customize.forEach(cus => {
+      userCustomize.push({
+        category: K.ITEM('s32', cus.category),
+        key: K.ITEM('s32', cus.key),
+        pattern: K.ITEM('s32', cus.pattern)
+      })
+    })
+
     // test
     if(IO.Exists('data/test.json')) {
       let bufTest = await IO.ReadFile('data/test.json')
@@ -745,7 +755,8 @@ export const playerdataload: EPR = async (info, data, send) => {
       rival: [],
       score: scoreFin,
       event: eventFin,
-      league: leagueData
+      league: leagueData,
+      customize: userCustomize
     });
   }
 };
@@ -840,7 +851,6 @@ export const rivaldataload: EPR = async (info, data, send) => {
   const pcbid = $(data).str("data.pcbid");
 
   // song id, style, difficulty, idk, dancername, idk, idk, scoredisp, score, ghost
-  let ssssss = ''
   let record = []
   let hiscore: any
   if(ddrCode === 0) {

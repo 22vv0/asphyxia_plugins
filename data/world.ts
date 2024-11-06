@@ -54,13 +54,13 @@ export const SONGS_WORLD = [
 	{ mcode: 38756, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 8, 15, 18, 0, 0, 8, 14, 18, 0] },
 	{ mcode: 38758, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [5, 10, 13, 17, 0, 0, 10, 13, 17, 0] },
 	{ mcode: 38759, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 6, 13, 15, 0, 0, 7, 13, 15, 0] },
-	{ mcode: 38757, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 5, 8, 13, 0, 0, 5, 8, 13, 0] }
+	{ mcode: 38757, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 5, 8, 13, 0, 0, 5, 8, 13, 0] },
+	{ mcode: 38622, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [2, 7, 12, 15, 0, 0, 7, 12, 15, 0] },
+	{ mcode: 38760, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 8, 13, 16, 18, 0, 8, 13, 16, 18] },
+	{ mcode: 38761, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 8, 12, 15, 0, 0, 8, 12, 15, 0] }
 
 	// songs that have yet to release. unknown difficulty lvls.
-	// { mcode: 38622, limited_ary: [], diffLv: [] },
-	// { mcode: 38629, limited_ary: [], diffLv: [] },
-	// { mcode: 38760, limited_ary: [], diffLv: [] },
-	// { mcode: 38761, limited_ary: [], diffLv: [] }
+	// { mcode: 38629, limited_ary: [], diffLv: [] }, hakken
 ]
 
 export const SONGS_OVERRIDE_WORLD = [
@@ -211,7 +211,6 @@ export const SONGS_OVERRIDE_WORLD = [
 	{ mcode: 38269, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 5, 7, 10, 0, 0, 5, 7, 10, 0] },
 	{ mcode: 38652, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [2, 6, 10, 15, 17, 0, 6, 10, 15, 17] },
 	{ mcode: 37251, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [6, 10, 12, 15, 18, 0, 10, 11, 16, 17] },
-
 	{ mcode: 38212, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 7, 10, 15, 16, 0, 8, 11, 15, 16] },
 	{ mcode: 38295, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 7, 11, 14, 17, 0, 7, 11, 14, 17] },
 	{ mcode: 38258, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [2, 6, 10, 14, 16, 0, 6, 11, 14, 16] },
@@ -222,10 +221,11 @@ export const SONGS_OVERRIDE_WORLD = [
 	{ mcode: 38442, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 8, 13, 16, 18, 0, 8, 13, 16, 18] },
 	{ mcode: 38436, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 7, 11, 14, 17, 0, 7, 11, 14, 17] },
 	{ mcode: 38407, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 9, 12, 16, 17, 0, 9, 12, 16, 17] },
+	{ mcode: 38428, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 8, 12, 16, 18, 0, 8, 12, 16, 18] },
+	{ mcode: 38424, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 8, 11, 14, 17, 0, 8, 11, 14, 17] }
 
-	// { mcode: 38339, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 7, 11, 14, ?, 0, 7, 11, 14, ?] },
-	// { mcode: 38424, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 8, 11, 14, ?, 0, 8, 11, 14, ?] },
-	// { mcode: 38428, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 8, 12, 16, ?, 0, 8, 12, 16, ?] },
+	// new charts
+	// { mcode: 38339, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 7, 11, 14, ?, 0, 7, 11, 14, ?] }, cbme
 ]
 
 export const EVENTS_WORLD = [
@@ -285,7 +285,13 @@ export const EVENTS_WORLD = [
 	{ id: 109, no: 0, cond: 1, rwrd: 1197, type: 201, save: 1 },
 	{ id: 110, no: 0, cond: 1, rwrd: 38759, type: 43, comp: 0, save: 1 },
 	{ id: 111, no: 0, cond: 1, rwrd: 38758, type: 43, comp: 0, save: 1 },
-	{ id: 112, no: 0, cond: 1, rwrd: 38756, type: 43, comp: 0, save: 1 }
+	{ id: 112, no: 0, cond: 1, rwrd: 38756, type: 43, comp: 0, save: 1 },
+	{ id: 113, no: 0, cond: 1, rwrd: 1201, type: 201, save: 1 },
+	{ id: 114, no: 0, cond: 1, rwrd: 38760, type: 50 },
+	{ id: 115, no: 0, cond: 1, rwrd: 38760, type: 52 },
+	{ id: 116, no: 0, cond: 1, rwrd: 38761, type: 50 },
+	{ id: 117, no: 0, cond: 1, rwrd: 38428, type: 52 },
+	{ id: 118, no: 0, cond: 1, rwrd: 38424, type: 52 }
 ]
 
 export const LEAGUE_WORLD = [

@@ -68,3 +68,10 @@ $('#change-display-calories3').on('click', () => {
 
   emit('updateDisplayCalories3', { refid, selected }).then(() => location.reload());
 });
+
+$('#change-bpl-appeal').on('click', () => {
+  const customize = "appeal"
+  const selected = parseInt($('#bpl-appeal option:selected').val())
+
+  emit('playerCustomize', { customize, refid, selected }).then(() => location.reload());
+});

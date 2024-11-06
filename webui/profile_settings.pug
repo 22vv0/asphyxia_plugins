@@ -1,6 +1,7 @@
 //DATA//
   profile: DB.FindOne(refid, { collection: "profile" })
   profile3: DB.FindOne(refid, { collection: "profile3" })
+  customizebpl: DB.FindOne(refid, { collection: "customize3", category: 1})
 
 -
   const onOff = [ "Off", "On" ];
@@ -150,6 +151,7 @@ else if profile3
     const name3 = profile3.dancerName;
     const weight3 = profile3.weight.toString().split('.');
     if(weight3.length < 2) weight3.push("0");
+    const bplAppeal = customizebpl ? customizebpl.key : 0
 
   div
     .card
@@ -194,6 +196,24 @@ else if profile3
                     option(value=1) On
             p.control
               a.button.is-primary#change-display-calories3 Change
+
+        .field.is-horizontal.has-addons
+          .field-label.is-normal
+            label.label BPL Appeal Board
+          .field-body
+            p.control
+              .select
+                select#bpl-appeal
+                  option(value=0, selected=bplAppeal===0) None
+                  option(value=100001, selected=bplAppeal===100001) APINA VRAMeS
+                  option(value=100002, selected=bplAppeal===100002) GiGO
+                  option(value=100003, selected=bplAppeal===100003) GamePanic
+                  option(value=100004, selected=bplAppeal===100004) Silk Hat
+                  option(value=100005, selected=bplAppeal===100005) TAITO STATION Tradz
+                  option(value=100006, selected=bplAppeal===100006) ROUND1
+                  option(value=100007, selected=bplAppeal===100007) Leisureland
+            p.control
+              a.button.is-primary#change-bpl-appeal Change
 
 
 script(src="static/js/profile_settings.js")
