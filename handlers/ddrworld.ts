@@ -543,7 +543,7 @@ export const playerdataload: EPR = async (info, data, send) => {
     }
 
     let leagueData = {}
-    let curLeague = LEAGUE_WORLD[0]
+    let curLeague = LEAGUE_WORLD[1]
     let league = await DB.FindOne(refid, {collection: 'league3', id: curLeague.id})
     if(!league) {
       let leagueClass = 0

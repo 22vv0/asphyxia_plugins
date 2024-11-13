@@ -1,6 +1,6 @@
 # DanceDanceRevolution
 
-**Plugin Version:** fork-mdx-3.0.3c
+**Plugin Version:** fork-mdx-3.0.3d
 
 **Supported game versions:** WORLD (2024101500)
 
@@ -26,7 +26,7 @@ musicdb.xml Usage Guide
 
 Changelog
 ===========
-### fork-mdx-3.0.3c
+### fork-mdx-3.0.3d
 
 - Fixed WebUI flare skill calculation mistake.
 - Fixed getLastGhostId function.
@@ -45,7 +45,10 @@ Changelog
 	- "High & Low" (CHA)
 	- "ONYX" (CHA)
 - Added new player customization options in Profile Settings.
-	- BPL Team Supporter Appeal Board 
+	- BPL Team Supporter Appeal Board
+- Added 2nd WORLD LEAGUE info
+	- Will start 11/14 10:00 JST.
+	- Will add Hakken difficulties as soon as it is revealed. 
 
 
 ### fork-mdx-3.0.2

@@ -57,10 +57,10 @@ export const SONGS_WORLD = [
 	{ mcode: 38757, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 5, 8, 13, 0, 0, 5, 8, 13, 0] },
 	{ mcode: 38622, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [2, 7, 12, 15, 0, 0, 7, 12, 15, 0] },
 	{ mcode: 38760, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 8, 13, 16, 18, 0, 8, 13, 16, 18] },
-	{ mcode: 38761, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 8, 12, 15, 0, 0, 8, 12, 15, 0] }
-
+	{ mcode: 38761, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 8, 12, 15, 0, 0, 8, 12, 15, 0] },
+	
 	// songs that have yet to release. unknown difficulty lvls.
-	// { mcode: 38629, limited_ary: [], diffLv: [] }, hakken
+	// { mcode: 38629, limited_ary: [13, 13, 13, 13, -1, -1 13, 13 13, -1], diffLv: [] } // hakken
 ]
 
 export const SONGS_OVERRIDE_WORLD = [
@@ -281,7 +281,6 @@ export const EVENTS_WORLD = [
 	{ id: 106, no: 0, cond: 1, rwrd: 37234, type: 50 },
 	{ id: 107, no: 0, cond: 1, rwrd: 37363, type: 50 },
 	{ id: 108, no: 0, cond: 1, rwrd: 38436, type: 52 },
-	// Triple tribe 4. Song does not appear if non-Gold.
 	{ id: 109, no: 0, cond: 1, rwrd: 1197, type: 201, save: 1 },
 	{ id: 110, no: 0, cond: 1, rwrd: 38759, type: 43, comp: 0, save: 1 },
 	{ id: 111, no: 0, cond: 1, rwrd: 38758, type: 43, comp: 0, save: 1 },
@@ -302,6 +301,15 @@ export const LEAGUE_WORLD = [
 		start: BigInt(Date.parse('8 Oct 2024 01:00:00 GMT')),
 		end: BigInt(Date.parse('6 Nov 2024 08:00:00 GMT')),
 		summary: BigInt(Date.parse('6 Nov 2024 09:00:00 GMT')),
+		advanceBorder: [0, 0, 0]
+	},
+	{
+		id: 2,
+		name: "第2回 WORLD LEAGUE",
+		name_eng: "The 2nd WORLD LEAGUE",
+		start: BigInt(Date.parse('14 Nov 2024 01:00:00 GMT')),
+		end: BigInt(Date.parse('11 Dec 2024 08:00:00 GMT')),
+		summary: BigInt(Date.parse('11 Dec 2024 09:00:00 GMT')),
 		advanceBorder: [0, 0, 0]
 	}
 ]
