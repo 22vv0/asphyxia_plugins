@@ -316,6 +316,18 @@
                 "Song 4: REINCARNATION",
                 "Song 5: Re:RHYZE"
             ]
+        },
+        {
+            "id": "bpls4tripletribe",
+            "type": "cross_online",
+            "enabled": true,
+            "name": "BEMANI PRO LEAGUE -SEASON 4- Triple Tribe",
+            "desc": "Crossover event between SOUND VOLTEX -Valkyrie model-, DanceDanceRevolution 20th anniversary model, and beatmania IIDX LIGHTNING MODEL cabinets where you would earn TD, TB and TS points which can be used to unlock songs through the participating games.<br>However, since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding SOUND VOLTEX songs' option to automatically unlock them on your next login.",
+            "info": [
+                "Song 1: 'Come to Life",
+                "Song 2: 'SOLAR ECLIPSE'",
+                "Song 3: 'COSMIC V3LOCITY'"
+            ]
         }
     ],
     "flags": [
@@ -366,6 +378,12 @@
             "key": "WHITE_DAY_2024",
             "str": "WHITE_DAY_2024",
             "explain": "Enables Navigator White Day greeting."
+        },
+        {
+            "id": "halloween",
+            "key": "HALLOWEEN_EVENT",
+            "str": "HALLOWEEN_EVENT",
+            "explain": "Enables Navigator Halloween greeting."
         },
         {
             "id": "aprilrainbowline",

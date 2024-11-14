@@ -420,7 +420,10 @@ export const common: EPR = async (info, data, send) => {
       })
     })
 
-    if(currentDate.substring(0,4) === '4/1/' || U.GetConfig('april_fools')) {
+    if(currentDate.substring(0,4) === '2/5/') events.push("EVENTDATE_ONIGO")
+    if(currentDate.substring(0,5) === '2/14/') events.push('VALENTINES_DAY_2024')
+    if(currentDate.substring(0,5) === '2/15/') events.push('WHITE_DAY_2024')
+    if(currentDate.substring(0,4) === '4/1/') {
       console.log('Using April Fools Event')
       events.push('APRIL_GRACE');
       events.push('EVENTDATE_APRILFOOL');
@@ -434,7 +437,10 @@ export const common: EPR = async (info, data, send) => {
         }
       }
     }
-
+    if(currentDate.substring(0,5) === '5/10/') events.push("EVENTDATE_GOTT")
+    if(['10/24/', '10/25/', '10/26/', '10/27/', '10/28/', '10/29/', '10/30/', '10/31/'].includes(currentDate.substring(0,6))) events.push('HALLOWEEN_EVENT')
+    if(['12/24/', '12/25/', '12/26/'].includes(currentDate.substring(0,6))) events.push('MERRY_CHRISTMAS_2023')
+    
     console.log("Sending common objects");
     send.object(
       {

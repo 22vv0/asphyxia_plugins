@@ -1,8 +1,8 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.3.7
+**Plugin Version:** fork-6.0.4
 
-**Supported game versions:** EXCEED GEAR (2024091000)
+**Supported game versions:** EXCEED GEAR (2024110500)
 
 **Unsupported game versions:** Every other game, as they're untested.
 
@@ -16,6 +16,25 @@
 
 Changelog
 ===========
+## fork-6.0.4
+
+### New:
+- Added PREMIUM GENERATOR sets
+	- この素晴らしい世界に祝福を！3 (Konosuba 3)
+	- 宝鐘マリン (Houshou Marine)
+- Added HEXADIVER 11 (NEMSYS GAME EXPO)
+- Added BEMANI PRO LEAGUE S4 -Triple Tribe- event.
+	- Toggle on Unlocking Events page -> Cross Events
+- Added ARENA Season 16
+	- Rank match: MEGAMIX BATTLE
+	- Added ARENA STATION set 16
+- Added songs to licensed songs list: Konosuba, Houshou Marine
+- Added a few date-related events (Onigo day, Gott day, etc.)
+- Updated MEGAMIX BATTLE songs list (89 new songs)
+- Updated Achievements list
+- Updated data.json (will add labels for Houshou Marine subbg at a later date)
+
+
 ## fork-6.0.3.7
 
 ### New:
@@ -49,17 +68,6 @@ Changelog
 	- Added missing licensed songs released prior to EXCEED GEAR.
 		- [GitHub](https://github.com/22vv0/asphyxia_plugins/issues/4)
 	- Misc WebUI fixes.
-
-
-## fork-6.0.3.5
-
-### New:
-
-1. Main:
-	- Reflec Beat song stamp event added (ARACHNE set)
-		- Toggle on "Unlocking Events -> Stamp Events -> REFLEC BEAT Song Stamp Event (2024)"
-	- Added the new maps to TAMANEKO Adventure (3 Touhou songs + 4 XCD charts)
-	- Added VALKYRIE GENERATOR (Touhou Project)
 
 
 ### Todo:
