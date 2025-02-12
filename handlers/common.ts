@@ -68,7 +68,7 @@ export const common: EPR = async (info, data, send) => {
     }
     let songs = [];
     const gameVersion = getVersion(info);
-    let songNum = 2200;
+    let songNum = 2300;
     if(gameVersion === 2) songNum = 554;
     if(gameVersion === 3) songNum = 954;
     if(gameVersion === 4) songNum = 1368;
@@ -118,6 +118,7 @@ export const common: EPR = async (info, data, send) => {
               } 
               // if song has new XCD track
               else if (songData.info.inf_ver['#text'] === '6') { 
+                if (i === 469) limitedNo = 2;
                 songs.push({
                   music_id: K.ITEM('s32', i),
                   music_type: K.ITEM('u8', 3),
@@ -264,7 +265,7 @@ export const common: EPR = async (info, data, send) => {
             'id': stmpEvntInfo['info']['id'],
             'params': [
               0, 0, 0, 0, 0,
-              (U.GetConfig('tama_track_lib') ? '0,' : '') + stmpEvntInfo['info']['list'],
+              stmpEvntInfo['info']['list'],
               '',
               '',
               '',
@@ -420,6 +421,7 @@ export const common: EPR = async (info, data, send) => {
       })
     })
 
+    console.log(currentDate.substring(0,6))
     if(currentDate.substring(0,4) === '2/5/') events.push("EVENTDATE_ONIGO")
     if(currentDate.substring(0,5) === '2/14/') events.push('VALENTINES_DAY_2024')
     if(currentDate.substring(0,5) === '2/15/') events.push('WHITE_DAY_2024')
@@ -441,6 +443,23 @@ export const common: EPR = async (info, data, send) => {
     if(['10/24/', '10/25/', '10/26/', '10/27/', '10/28/', '10/29/', '10/30/', '10/31/'].includes(currentDate.substring(0,6))) events.push('HALLOWEEN_EVENT')
     if(['12/24/', '12/25/', '12/26/'].includes(currentDate.substring(0,6))) events.push('MERRY_CHRISTMAS_2023')
     
+
+    let curWeekly = []
+    if(IO.Exists('webui/asset/config/weeklymusic.json')) {
+      let bufWeeklyMusic = await IO.ReadFile('webui/asset/config/weeklymusic.json')
+      let weeklyMusic = JSON.parse(bufWeeklyMusic.toString())
+      let weekData
+      for(let weekIter in weeklyMusic) {
+        if(Number(date) > weeklyMusic[weekIter].start) weekData = weeklyMusic[weekIter]
+      }
+      curWeekly.push({
+        weekId: weekData.weekId,
+        musicId: weekData.musicId,
+        start: weekData.start,
+        end: weekData.end
+      })
+    }
+
     console.log("Sending common objects");
     send.object(
       {
@@ -534,6 +553,12 @@ export const common: EPR = async (info, data, send) => {
             []
           ),
         },
+        weekly_music: curWeekly.map(w => ({
+          week_id: K.ITEM('s32', w.weekId),
+          music_id: K.ITEM('s32', w.musicId),
+          time_start: K.ITEM('u64', BigInt(w.start)),
+          time_end: K.ITEM('u64', BigInt(w.end))
+        }))
       },
       { encoding: 'utf8' }
     );

@@ -328,6 +328,14 @@
                 "Song 2: 'SOLAR ECLIPSE'",
                 "Song 3: 'COSMIC V3LOCITY'"
             ]
+        },
+        {
+            "id": "puc2024",
+            "type": "stamp",
+            "enabled": true,
+            "name": "PRECIOUS UNIVERSAL CELEBRATE STAMP",
+            "desc": "Stamp select event where you can unlock 9 songs in any order.",
+            "info": "Toggle this on to enable this stamp event."
         }
     ],
     "flags": [

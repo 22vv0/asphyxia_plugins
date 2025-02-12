@@ -1,15 +1,16 @@
-import { Profile } from '../models/profile';
-import { MusicRecord } from '../models/music_record';
-import { ValgeneTicket } from '../models/valgene_ticket';
-import { Skill } from '../models/skill';
-import { getVersion, IDToCode, GetCounter } from '../utils';
-import { Mix } from '../models/mix';
-import { Rival } from '../models/rival';
-import { Item } from '../models/item';
-import { PREGENE, COURSES6} from '../data/exg';
+import { Profile } from '../models/profile'
+import { MusicRecord } from '../models/music_record'
+import { ValgeneTicket } from '../models/valgene_ticket'
+import { Skill } from '../models/skill'
+import { getVersion, IDToCode, GetCounter } from '../utils'
+import { Mix } from '../models/mix'
+import { Rival } from '../models/rival'
+import { Item } from '../models/item'
+import { WeeklyMusicScore } from '../models/weeklymusic'
+import { PREGENE, COURSES6} from '../data/exg'
 import { textureslist } from '../data/webui'
-import * as fs from 'fs';
-import { PNG } from '../webui/asset/js/pngjs/png.js';
+import * as fs from 'fs'
+import { PNG } from '../webui/asset/js/pngjs/png.js'
 
 export const updateProfile = async (data: {
   refid: string;
@@ -836,4 +837,65 @@ export const manageEvents = async (data: { eventConfig: {} }) => {
 
 export const manageStartupFlags = async (data: { flagConfig: {} }) => {
   IO.WriteFile('webui/asset/config/flags.json', JSON.stringify(data.flagConfig, null, 4));
+}
+
+export const addWeekly = async(data: { mid: number }) => {
+  let weekly = []
+  let newStart = 0
+  let newWeekId = 1
+  if(IO.Exists('webui/asset/config/weeklymusic.json')) weekly = JSON.parse(U.DecodeString(await IO.ReadFile('webui/asset/config/weeklymusic.json'), 'utf8'))
+  if(weekly.length > 0) {
+    let newStartDate = new Date(Number(weekly[weekly.length - 1].start))
+    let newEndDate = new Date(Number(weekly[weekly.length - 1].end))
+    newStartDate.setDate(newStartDate.getDate() + 7)
+    newEndDate.setDate(newEndDate.getDate() + 7)
+    weekly.push({
+      weekId: weekly[weekly.length - 1].weekId + 1,
+      musicId: data.mid,
+      start: Number(BigInt(newStartDate)),
+      end: Number(BigInt(newEndDate))
+    })
+  } else {
+    let newStartDate = new Date()
+    let newEndDate = new Date()
+    newStartDate.setDate((newStartDate.getDate() + (newStartDate.getDay() === 0 ? -6 : 1)))
+    // newStartDate.setDate((newStartDate.getDay() === 0) ? newStartDate.getDate() + (1 - newStartDate.getDay() % 7) : newStartDate.getDate() + (8 - newStartDate.getDay() % 7))
+    newStartDate.setUTCHours(1, 0, 0)
+    newEndDate.setDate(newStartDate.getDate() + 7)
+    newEndDate.setUTCHours(0, 59, 59)
+    weekly.push({
+      weekId: 1,
+      musicId: data.mid,
+      start: Number(BigInt(newStartDate)),
+      end: Number(BigInt(newEndDate))
+    })
+  }
+
+  IO.WriteFile('webui/asset/config/weeklymusic.json', JSON.stringify(weekly, null, 4));
+}
+
+export const getWeekRankList = async(data: { week: number, mid: number, mtype: number}, send: WebUISend) => {
+  let results = await getRankListDB(data.week, data.mid, data.mtype)
+  send.json({
+    results: results
+  })
+}
+
+export async function getRankListDB(week, mid, mtype) {
+  let rankResults = await DB.Find<WeeklyMusicScore>(null, {collection: 'weeklymusicscore', week: week, mid: mid, mtype: mtype})
+  let jRankResults = []
+  if (rankResults.length > 0) {
+    jRankResults = rankResults.sort((a, b) => b.exscore - a.exscore || b['updatedAt'].localeCompare(a['updatedAt']))
+    jRankResults = jRankResults.map((e, ind) => ({
+      refid: e['__refid'],
+      name: e.name,
+      date: e['updatedAt'].getFullYear() + '-' + String(e['updatedAt'].getMonth() + 1).padStart(2, "0") + '-' + String(e['updatedAt'].getDate()).padStart(2, "0") + ' ' + String(e['updatedAt'].getHours()).padStart(2, "0") + ":" + String(e['updatedAt'].getMinutes()).padStart(2, "0") + ":" + String(e['updatedAt'].getSeconds()).padStart(2, "0"),
+      week: week,
+      mid: mid,
+      mtype: mtype,
+      exscore: e.exscore,
+      rank: ind + 1
+    }))
+  } 
+  return jRankResults
 }

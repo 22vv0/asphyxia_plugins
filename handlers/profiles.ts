@@ -1,15 +1,17 @@
-import { Skill } from '../models/skill';
-import { SDVX_AUTOMATION_SONGS } from '../data/vvw';
-import { Item } from '../models/item';
-import { Param } from '../models/param';
-import { Arena } from '../models/arena';
-import { MusicRecord } from '../models/music_record';
-import { CourseRecord } from '../models/course_record';
-import { Profile } from '../models/profile';
-import { ValgeneTicket } from '../models/valgene_ticket';
-import { getVersion, IDToCode } from '../utils';
-import { Mix } from '../models/mix';
-import { ARENA, EVENT_ITEMS6 } from '../data/exg';
+import { Skill } from '../models/skill'
+import { SDVX_AUTOMATION_SONGS } from '../data/vvw'
+import { Item } from '../models/item'
+import { Param } from '../models/param'
+import { Arena } from '../models/arena'
+import { MusicRecord } from '../models/music_record'
+import { CourseRecord } from '../models/course_record'
+import { Profile } from '../models/profile'
+import { ValgeneTicket } from '../models/valgene_ticket'
+import { WeeklyMusicScore } from '../models/weeklymusic'
+import { getVersion, IDToCode } from '../utils'
+import { Mix } from '../models/mix'
+import { ARENA, EVENT_ITEMS6 } from '../data/exg'
+import { getRankListDB } from './webui'
 
 async function getAutomationMixes(params: Param[]) {
   const mixids = params
@@ -709,11 +711,39 @@ export const load: EPR = async (info, data, send) => {
     }
   }
 
+  let curWeekly = []
+  let date = new Date()
+  if(IO.Exists('webui/asset/config/weeklymusic.json')) {
+    let bufWeeklyMusic = await IO.ReadFile('webui/asset/config/weeklymusic.json')
+    let weeklyMusic = JSON.parse(bufWeeklyMusic.toString())
+    let weekData
+    for(let weekIter in weeklyMusic) {
+      if(Number(date) > weeklyMusic[weekIter].start) weekData = weeklyMusic[weekIter]
+    }
+    curWeekly.push({
+      weekId: weekData.weekId,
+      musicId: weekData.musicId,
+      start: weekData.start,
+      end: weekData.end
+    })
+  }
+
   const items = await DB.Find<Item>(refid, { collection: 'item' });
   const courses = await DB.Find<CourseRecord>(refid, { collection: 'course', version });
   const params = await DB.Find<Param>(refid, { collection: 'param' });
   const arena = await DB.FindOne<Arena>(refid, { collection: 'arena', season: (U.GetConfig('arena_szn') !== "None") ? ARENA[U.GetConfig('arena_szn')]['details']['season'] : 0 });
   const valgeneTicket = await DB.FindOne<ValgeneTicket>(refid, { collection: 'valgene_ticket' })
+  let weeklyMusic = []
+
+  if (curWeekly.length > 0) {
+    for(let wCtr = 0; wCtr <= 4; wCtr++) {
+      let jRankResults = await getRankListDB(curWeekly[0].weekId, curWeekly[0].musicId, wCtr)
+      if(jRankResults.length > 0) {
+        jRankResults = jRankResults.filter(e => e.refid === refid)[0]
+        weeklyMusic.push(jRankResults)
+      }
+    }
+  }
 
   let time = new Date();
   let tempHour = time.getHours();
@@ -802,6 +832,7 @@ export const load: EPR = async (info, data, send) => {
     valgeneTicket,
     creatorItem,
     bplPro,
+    weeklyMusic,
     ...profile,
   });
 };
@@ -1003,7 +1034,62 @@ export const saveValgene: EPR = async (info, data, send) => {
 }
 
 export const saveE: EPR = async (info, data, send) => {
-  console.log("save_e - WIP")
+  const refid = $(data).str('refid');
 
-  send.success();
+  // Save Weekly Score
+  let weeklyScores = $(data).elements('weekly_music')
+  let weeklyMusicResp = []
+  let jRankResults = []
+  for(let wScoreIter in weeklyScores) {
+    let week = weeklyScores[wScoreIter].number('week_id')
+    let mid = weeklyScores[wScoreIter].number('music_id')
+    let mtype = weeklyScores[wScoreIter].number('music_type')
+    let exscore = weeklyScores[wScoreIter].number('exscore')
+    let playCount = weeklyScores[wScoreIter].number('play_cnt')
+    let hiscoreCount = weeklyScores[wScoreIter].number('hiscore_cnt')
+
+    let score = await DB.FindOne<WeeklyMusicScore>(refid, {collection: 'weeklymusicscore', week: week, mid: mid, mtype: mtype})
+    let profile = await DB.FindOne<Profile>(refid, {collection: 'profile'})
+    let curExscore = 0
+    if(score !== null) curExscore = score.exscore
+    if(exscore > curExscore) {
+      curExscore = exscore
+      await DB.Upsert<WeeklyMusicScore>(
+        refid,
+        { collection: 'weeklymusicscore', week, mid, mtype },
+        {
+          $set: {
+            exscore: curExscore,
+            name: profile.name
+          },
+          $inc: {
+            playCount: playCount,
+            hiscoreCount: hiscoreCount
+          }
+        }
+      )
+      jRankResults = await getRankListDB(week, mid, mtype)
+      jRankResults = jRankResults.filter(e => e.refid === refid)[0]
+      weeklyMusicResp.push(jRankResults)
+    }    
+  }
+  
+  send.object(
+    {
+      weekly_music: weeklyMusicResp.map(ws => ({
+        week_id: K.ITEM('s32', ws.week),
+        music_id: K.ITEM('s32', ws.mid),
+        music_type: K.ITEM('s32', ws.mtype),
+        exscore: K.ITEM('u32', ws.exscore),
+        rank: K.ITEM('s32', ws.rank)
+      }))
+    }
+  ) 
+
+  // send.object({
+  //   bpl_campaign: {
+  //     total_ticket: K.ITEM('s32', 69),
+  //     get_ticket: K.ITEM('s32', 3)
+  //   }
+  // })
 }

@@ -1,0 +1,40 @@
+-
+link(rel="stylesheet" href="static/asset/css/datatables.css")
+div
+  .card
+    .card-header
+      p.card-header-title
+        span.icon
+          i.mdi.mdi-account-edit
+        | Add Weekly Songs
+    .card-content
+      div.field.is-grouped
+        .field
+          input.input(id="mid" type="text" name="music_id" placeholder="Song ID")
+        div.control
+            button.button.is-link(id="weekly-submit") Add
+
+      table(id="wsongs" style="width:100%")
+        tbody
+
+  .card
+    .card-header
+      p.card-header-title
+        span.icon
+          i.mdi.mdi-account-edit
+        | Weekly Song Rankings
+    .card-content
+      div.song-info
+      div
+        table.table(id="ranking" style="width:100%")
+          thead
+            tr
+              th Rank
+              th Name
+              th Best Score
+              th Date
+          tbody
+
+
+script(src="static/asset/js/weekly.js") 
+script(src="static/asset/js/datatables.js")

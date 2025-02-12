@@ -11,7 +11,9 @@ import {
   preGeneRoll,
   preGeneReward,
   manageEvents,
-  manageStartupFlags
+  manageStartupFlags,
+  addWeekly,
+  getWeekRankList
 } from './handlers/webui';
 import {
   load,
@@ -37,7 +39,6 @@ export function register() {
   R.Config('sdvx_eg_root_dir', { type: 'string', needRestart: true, default: '', name: 'Exceed Gear Data Directory', desc: 'The root directory of your SDVX Exceed Gear game files (for asset copying)'});
   R.Config('arena_szn',{ type: 'string', options: Object.keys(ARENA), default: 'None', name: 'Ranked Match Season', desc: 'Current ARENA/SINGLE BATTLE ranked season. Also sets ARENA STATION catalog corresponding to that season.'});
   R.Config('use_blasterpass',{ type: 'boolean', default: true, name:'Use Blaster Pass', desc:'Enable Blaster Pass for VW and EG'});
-  R.Config('tama_track_lib',{ type: 'boolean', default: true, name:'Enable Track Liberation', desc:'(Requires TAMANEKO adventure event to be enabled) A TAMANEKO adventure map that will unlock a random song that has no unlock condition. OVER ADVENTURE will be displayed if this is disabled and if you have completed all other adventures.'});
   R.Config('unlock_all_valk_items', { type: 'boolean', default: false, name:'Unlock All Valkyrie and Premium Items', desc: 'Unlock Nemsys, BGM, Submonitor BG, System BG and Stamp Items (Valk crews not included; check \'unlock all navigators\' option)'});
   R.Config('unlock_all_songs', { type: 'boolean', default: false, name:'Unlock All Songs'});
   R.Config('unlock_all_navigators', { type: 'boolean', default: false, name:'Unlock All Navigators'} );
@@ -58,6 +59,8 @@ export function register() {
   R.WebUIEvent('updateMix', updateMix);
   R.WebUIEvent('importMix', importMix);
   R.WebUIEvent('deleteMix', deleteMix);
+  R.WebUIEvent('addWeekly', addWeekly);
+  R.WebUIEvent('getWeekRankList', getWeekRankList);
 
   const MultiRoute = (method: string, handler: EPR | boolean) => {
     // Helper for register multiple versions.

@@ -36,6 +36,16 @@ game
   if bplSupport > 0 && !bplPro
     support_team_id(__type="s32") #{bplSupport}
 
+  if weeklyMusic
+    each weekly in weeklyMusic
+      weekly_music
+        week_id(__type="s32") #{weekly.week}
+        music_id(__type="s32") #{weekly.mid}
+        music_type(__type="s32") #{weekly.mtype}
+        exscore(__type="u32") #{weekly.exscore}
+        rank(__type="s32") #{weekly.rank}
+
+
   additional_info
     if bplPro && bplSupport > 0
       pro_team_id(val=`${bplSupport}`)

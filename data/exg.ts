@@ -23,6 +23,8 @@ export const EVENT6 = [
   'MIXID_INPUT_ENABLE',
   'DISP_PASELI_BANNER',
   'CHARACTER_IGNORE_DISABLE\t122,123,131,139,140,143,149,160,162,163,164',
+  'STAMP_IGNORE_DISABLE\t69~78,194~205,249~278,312~321,368~377,397~418',
+  'SUBBG_IGNORE_DISABLE\t166~185,281~346,369~381,419~438,464~482,515~552',
   'OMEGA_ENABLE\t1,2,3,4,5,6,7,8,9',
   'OMEGA_ARS_ENABLE',
   'HEXA_ENABLE\t1,2,3,4,5,6,7,8,9,10,11',
@@ -44,7 +46,8 @@ export const EVENT6 = [
   'CREW_SELECT_ABLE',
   'VALGENE_ENABLE',
   'PLAYER_RADAR_ENABLE',
-  'S_PUC_EFFECT_ENABLE'
+  'S_PUC_EFFECT_ENABLE',
+  'FAVORITE_CREW_ENABLE'
 ];
 
 export const INFORMATION6 = {
@@ -70,7 +73,7 @@ export const LICENSED_SONGS6 = [
   '2030', '2031', '2032', '2033', '2034', '2035', '2036', '1905', '1882', '2058', 
   '2069', '2070', '2071', '2072', '2073', '2074', '2075', '2076', '2066', '2067', 
   '2068', '2165', '2166', '2167', '2172', '2173', '2174', '2175', '2184', '2193', 
-  '2194', '2195', '2196', '2197'
+  '2194', '2195', '2196', '2197', '2210', '2211', '2212'
 ]
 
 export const STAMP_EVENTS6 = {
@@ -445,7 +448,7 @@ export const STAMP_EVENTS6 = {
     'type': 'tama',
     'info': {
       'id': 39,
-      'list': '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18'
+      'list': '0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24'
     }
   },
   'reflecstamp2': {
@@ -459,6 +462,66 @@ export const STAMP_EVENTS6 = {
           'stmpid': 40,
           'stps': 15,
           'stprwrd': '1:e:205323 3:e:205723 6:e:205623 10:e:205523 15:e:205423'
+        }
+      ]
+    }
+  },
+  'puc2024': {
+    'type': 'select',
+    'info': {
+      'id': 6,
+      'textstampval': -1,
+      'stmpSlHd': '[sz:22][c:FFA6AA]PRECIOUS UNIVERSAL CELEBRATE STAMP',
+      'stmpSlFt': '[sz:23]{TextTerm} 2024/12/12～2025/02/02',
+      'stmpHd': '[sz:22][c:DAC491]PRECIOUS UNIVERSAL CELEBRATE STAMP',
+      'stmpFt': '[sz:22]YOU CAN A STAMP AND BONUS! :)[br:5]TERM: 12/12～2/2',
+      'stmpBg': 'bg_stamp_puct',
+      'sheet': '41#sheet_track_1969#e#1969,42#sheet_track_1970#e#1970,43#sheet_track_1971#e#1971,44#sheet_track_1972#e#1972,45#sheet_track_1973#e#1973,46#sheet_track_1974#e#1974,47#sheet_track_1975#e#1975,48#sheet_track_1976#e#1976,49#sheet_track_1977#e#1977',
+      'data': [
+        {
+          'stmpid': 41,
+          'stps': 15,
+          'stprwrd': '15:e:196923'
+        },
+        {
+          'stmpid': 42,
+          'stps': 25,
+          'stprwrd': '25:e:197023'
+        },
+        {
+          'stmpid': 43,
+          'stps': 15,
+          'stprwrd': '15:e:197123'
+        },
+        {
+          'stmpid': 44,
+          'stps': 25,
+          'stprwrd': '25:e:197223'
+        },
+        {
+          'stmpid': 45,
+          'stps': 25,
+          'stprwrd': '25:e:197323'
+        },
+        {
+          'stmpid': 46,
+          'stps': 25,
+          'stprwrd': '25:e:197423'
+        },
+        {
+          'stmpid': 47,
+          'stps': 15,
+          'stprwrd': '15:e:197523'
+        },
+        {
+          'stmpid': 48,
+          'stps': 15,
+          'stprwrd': '15:e:197623'
+        },
+        {
+          'stmpid': 49,
+          'stps': 15,
+          'stprwrd': '15:e:197723'
         }
       ]
     }
@@ -7445,6 +7508,18 @@ export const EXTENDS6 = [
       0,0,0,0,0,
       "kac:16,161,163",
       "",
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "type": 21,
+    "id": 538,
+    "params": [
+      0, 0, 0, 0, 0,
+      "241107_marine_demo.mp4",
+      "241107_marine_demo.s3v",
       "",
       "",
       ""

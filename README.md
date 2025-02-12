@@ -1,21 +1,59 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.4
+**Plugin Version:** fork-6.0.5
 
-**Supported game versions:** EXCEED GEAR (2024110500)
+**Supported game versions:** EXCEED GEAR (2024121000)
 
 **Unsupported game versions:** Every other game, as they're untested.
 
 **Required Asphyxia Core version** [1.50c](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50)
 
 **Notes:**
+===========
 - Please be aware that this plugin and the savefile it produces are incompatible with the official plugin, or any other forks. Please be cautious of using other plugins' savefiles with this fork of the plugin, or using this fork's savefile with other plugins.
 - Before using this plugin, run the [WebUI Asset Update](/plugin/sdvx@asphyxia/update%20webui%20assets). Do this every data and plugin update.
 - Please back up your save data to prevent unwanted issues (just in case)
 
+**Report issues:**
+===========
+
+#### Run asphyxia in dev mode 
+1. Make sure you have npm in your machine. [Installing Node.js](https://nodejs.org/en/download) should do it.
+2. From the asphyxia-core zip file, extract these files to your plugins folder:
+	- plugins/asphyxia-core.d.ts
+	- plugins/package.json
+	- plugins/tsconfig.json
+3. Open a command prompt/terminal window, cd to your asphyxia plugins folder, then install node and lodash typings by run these two commands:
+	- npm install --save @types/lodash
+	- npm install --save @types/node
+4. Now from the asphyxia root folder, run asphyxia in dev mode by adding "--dev" after the executable filename (eg: asphyxia-core-x64.exe --dev). This should run and provide more logs during game runtime.
+
+#### Create Github Issue
+Add an issue to the GitHub repository and make sure to provide the logs from Asphyxia dev mode so I could have a better idea on where to check for bugs and issues.
 
 Changelog
 ===========
+## fork-6.0.5
+
+### New:
+- Weekly Score Attack feature
+	- See Weekly Score Attack page in WebUI (uses Song ID)
+	- Line up weekly songs in advance via song ID. Weekly song will start every Monday 01:00 UTC. (Might add ability to remove a lined up song in the future)
+	- Check current rankings by clicking on the difficulty icons.
+- Added 3 songs to licensed songs list (nora2r songs).
+- Updated TAMANEKO ADVENTURE mission list.
+	- Removed TRACK LIBERATION plugin setting, it should work as intended in TAMANEKO ADVENTURE.
+- Added PRECIOUS UNIVERSAL CELEBRATE stamp event.
+	- Toggle on Unlocking Events -> Stamp Events
+- Added ability to select favorite crews (FAVORITE_CREW_ENABLE)
+- Added region unlock for chat stamps and submonitor BGs for select Premium Generator sets (SUBBG_IGNORE_DISABLE, STAMP_IGNORE_DISABLE)
+- Updated songNum to 2300.
+- Added force lock to 幸せになれる隠しコマンドがあるらしい (XCD.) Unlock via the Konami code.
+- Added ability to display attract mode video (currently set to Houshou Marine demo video -- /data/movie/538/)
+- Added WebUI labels to Houshou Marine items.
+- Fixed error in Skill Analyzer data migration.
+
+
 ## fork-6.0.4
 
 ### New:
@@ -54,24 +92,7 @@ Changelog
 	- Game crashes on continue screen when a Stamp Select event is enabled. Unsure if this is a plugin issue, or just an isolated gamedata issue.
 
 
-## fork-6.0.3.6
-
-### New:
-
-1. Main:
-	- ARENA Rank Season 15 (ARENA BATTLE, point system)
-		- ARENA STATION 15: no new songs/charts
-	- PREMIUM GENERATOR Vol. 5 (Near & Noah EG Set)
-		- Complete the set to get alternate style for Near & Noah.
-
-2. Misc:
-	- Added missing licensed songs released prior to EXCEED GEAR.
-		- [GitHub](https://github.com/22vv0/asphyxia_plugins/issues/4)
-	- Misc WebUI fixes.
-
-
 ### Todo:
 
 1. Figure out how to use image (png) files to appear in information/news popup.
 2. More work on online matchmaking (idk if this is possible)
-3. Implement pro_team_id setting.
