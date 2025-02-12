@@ -33,7 +33,7 @@ async function saveScores(refid: string, hiScoreInfo: any, songId: number, style
     }
 
     rank = (rank < stepScore.rank) ? rank : stepScore.rank;
-    clearKind = (clearKind != 6 && clearKind > stepScore.clearKind) ? clearKind : stepScore.clearKind;
+    clearKind = (clearKind > stepScore.clearKind) ? clearKind : stepScore.clearKind;
     score = (score > stepScore.score) ? score : stepScore.score;
     exScore = (exScore > stepScore.exScore) ? exScore : stepScore.exScore;
     maxCombo = (maxCombo > stepScore.maxCombo) ? maxCombo : stepScore.maxCombo;

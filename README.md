@@ -26,6 +26,12 @@ musicdb.xml Usage Guide
 
 Changelog
 ===========
+### fork-mdx-3.0.3d-fix1
+
+- Fixes to music data table sorting.
+- Fixed clear lamp not updating in certain cases.
+
+
 ### fork-mdx-3.0.3d
 
 - Fixed WebUI flare skill calculation mistake.

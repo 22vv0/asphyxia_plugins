@@ -1,6 +1,6 @@
-let clearRank = ['AAA', 'AA+', 'AA', 'AA-', 'A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'E']
+let clearRank = ['AAA', 'AA+', 'AA', 'AA-', 'A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'E', '-'].reverse()
 let clearKind = ['-', 'Fail', 'Assisted Clear', 'Clear', 'Life4 Clear (1)', 'Life4 Clear (2)', 'Life4 Clear', 'FC', 'GFC', 'PFC', 'MFC']
-let flareRank = ['None', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'EX']
+let flareRank = ['-', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'EX']
 
 async function populateScoreTable(scores, style, info) {
 
@@ -23,15 +23,32 @@ async function populateScoreTable(scores, style, info) {
 				'1': '-',
 				'2': '-',
 				'3': '-',
-				'4': '-'
+				'4': '-',
+				'0h': (info === 1) ? 0 : '-',
+				'1h': (info === 1) ? 0 : '-',
+				'2h': (info === 1) ? 0 : '-',
+				'3h': (info === 1) ? 0 : '-',
+				'4h': (info === 1) ? 0 : '-'
 			})
 		}
 		scoreIndex = scoreTableData.findIndex(scoreData => scoreData.songId === score.songId && style === score.style)
 		if(scoreIndex > -1) {
-			if(info === 0) scoreTableData[scoreIndex][score.difficulty] = score.score
-			if(info === 1) scoreTableData[scoreIndex][score.difficulty] = clearRank[score.rank]
-			if(info === 2) scoreTableData[scoreIndex][score.difficulty] = clearKind[score.clearKind]
-			if(info === 3) scoreTableData[scoreIndex][score.difficulty] = (score.flareForce > -1) ? flareRank[score.flareForce] : '-' 
+			if(info === 0) {
+				scoreTableData[scoreIndex][score.difficulty] = score.score
+				scoreTableData[scoreIndex][score.difficulty + 'h'] = score.score
+			}
+			if(info === 1) {
+				scoreTableData[scoreIndex][score.difficulty] = clearRank[clearRank.length - 1 - score.rank]
+				scoreTableData[scoreIndex][score.difficulty + 'h'] = clearRank.length - 1 - score.rank
+			}
+			if(info === 2) {
+				scoreTableData[scoreIndex][score.difficulty] = clearKind[score.clearKind]
+				scoreTableData[scoreIndex][score.difficulty + 'h'] = score.clearKind
+			}
+			if(info === 3) {
+				scoreTableData[scoreIndex][score.difficulty] = (score.flareForce > -1) ? flareRank[score.flareForce] : '-'
+				scoreTableData[scoreIndex][score.difficulty + 'h'] = score.flareForce
+			} 
 		}
 	})
 
@@ -39,12 +56,17 @@ async function populateScoreTable(scores, style, info) {
     $('#musicdata').DataTable({
         data: scoreTableData,
         columns: [
-            { data: 'songTitle' },
-            { data: '0' },
-            { data: '1' },
-            { data: '2' },
-            { data: '3' },
-            { data: '4' }
+            { title: 'Song', data: 'songTitle' },
+            { title: 'BEGINNER', data: '0', orderData: [6] },
+            { title: 'BASIC', data: '1', orderData: [7] },
+            { title: 'DIFFICULT', data: '2', orderData: [8] },
+            { title: 'EXPERT', data: '3', orderData: [9] },
+            { title: 'CHALLENGE', data: '4', orderData: [10] },
+            { data: '0h', visible: false },
+            { data: '1h', visible: false },
+            { data: '2h', visible: false },
+            { data: '3h', visible: false },
+            { data: '4h', visible: false }
         ],
         pageLength: 100,
         columnDefs: [

@@ -46,6 +46,9 @@ if profile3
       .card-content
         .score-table
           table.table(id="musicdata" style="width:100%")
+            colgroup
+              col(span="6")
+              col(span="7" style="visibility: collapse;")
             thead
               tr    
                 th Song
@@ -54,6 +57,11 @@ if profile3
                 th DIFFICULT
                 th EXPERT
                 th CHALLENGE
+                th BEVAL
+                th BAVAL
+                th DIFVAL
+                th EXPVAL
+                th CHAVAL
             tbody
             
 div(hidden id='score-pass') !{JSON.stringify(score3)}
