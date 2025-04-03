@@ -840,15 +840,28 @@ export const manageStartupFlags = async (data: { flagConfig: {} }) => {
 }
 
 export const addWeekly = async(data: { mid: number }) => {
+  let dateToday = new Date()
   let weekly = []
   let newStart = 0
   let newWeekId = 1
   if(IO.Exists('webui/asset/config/weeklymusic.json')) weekly = JSON.parse(U.DecodeString(await IO.ReadFile('webui/asset/config/weeklymusic.json'), 'utf8'))
+
+  let curWeekMonday = new Date(dateToday)
+  curWeekMonday.setUTCHours(1, 0, 0)
+  let dayOffset = (dateToday.getDay() === 0) ? -6 : 1 - dateToday.getDay()
+  curWeekMonday.setDate(dateToday.getDate() + dayOffset)
+
   if(weekly.length > 0) {
     let newStartDate = new Date(Number(weekly[weekly.length - 1].start))
     let newEndDate = new Date(Number(weekly[weekly.length - 1].end))
     newStartDate.setDate(newStartDate.getDate() + 7)
     newEndDate.setDate(newEndDate.getDate() + 7)
+
+    if(newStartDate <= curWeekMonday) {
+      newStartDate = curWeekMonday
+      newEndDate.setDate(newStartDate.getDate() + 7)
+      newEndDate.setUTCHours(0, 59, 59)
+    }
     weekly.push({
       weekId: weekly[weekly.length - 1].weekId + 1,
       musicId: data.mid,
@@ -856,17 +869,14 @@ export const addWeekly = async(data: { mid: number }) => {
       end: Number(BigInt(newEndDate))
     })
   } else {
-    let newStartDate = new Date()
-    let newEndDate = new Date()
-    newStartDate.setDate((newStartDate.getDate() + (newStartDate.getDay() === 0 ? -6 : 1)))
-    // newStartDate.setDate((newStartDate.getDay() === 0) ? newStartDate.getDate() + (1 - newStartDate.getDay() % 7) : newStartDate.getDate() + (8 - newStartDate.getDay() % 7))
-    newStartDate.setUTCHours(1, 0, 0)
-    newEndDate.setDate(newStartDate.getDate() + 7)
+    let newEndDate = new Date(curWeekMonday)
+    console.log(curWeekMonday.getDate())
+    newEndDate.setDate(curWeekMonday.getDate() + 7)
     newEndDate.setUTCHours(0, 59, 59)
     weekly.push({
       weekId: 1,
       musicId: data.mid,
-      start: Number(BigInt(newStartDate)),
+      start: Number(BigInt(curWeekMonday)),
       end: Number(BigInt(newEndDate))
     })
   }

@@ -37,19 +37,21 @@ Changelog
 
 ### New:
 - Weekly Score Attack feature
-	- See Weekly Score Attack page in WebUI (uses Song ID)
-	- Line up weekly songs in advance via song ID. Weekly song will start every Monday 01:00 UTC. (Might add ability to remove a lined up song in the future)
+	- See Weekly Score Attack page in WebUI (queue your own weekly song challenges, added via Song ID)
+	- Line up weekly songs in advance via song ID. Weekly song will start every Monday 01:00 UTC.
 	- Check current rankings by clicking on the difficulty icons.
+	- Check rankings from the past 3 completed weeks.
 - Added 3 songs to licensed songs list (nora2r songs).
 - Updated TAMANEKO ADVENTURE mission list.
 	- Removed TRACK LIBERATION plugin setting, it should work as intended in TAMANEKO ADVENTURE.
 - Added PRECIOUS UNIVERSAL CELEBRATE stamp event.
 	- Toggle on Unlocking Events -> Stamp Events
-- Added ability to select favorite crews (FAVORITE_CREW_ENABLE)
-- Added region unlock for chat stamps and submonitor BGs for select Premium Generator sets (SUBBG_IGNORE_DISABLE, STAMP_IGNORE_DISABLE)
-- Updated songNum to 2300.
+- Added ability to select favorite crews (FAVORITE\_CREW\_ENABLE)
+- Added region unlock for chat stamps and submonitor BGs for select Premium Generator sets (SUBBG\_IGNORE\_DISABLE, STAMP\_IGNORE\_DISABLE)
+- Updated max songNum to 2300. (for use with "Unlock all songs")
 - Added force lock to 幸せになれる隠しコマンドがあるらしい (XCD.) Unlock via the Konami code.
 - Added ability to display attract mode video (currently set to Houshou Marine demo video -- /data/movie/538/)
+- Added mini handler for refill stamp sheets.
 - Added WebUI labels to Houshou Marine items.
 - Fixed error in Skill Analyzer data migration.
 

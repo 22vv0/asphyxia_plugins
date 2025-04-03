@@ -130,7 +130,7 @@
         {
             "id": "pcbevent",
             "type": "stamp",
-            "enabled": false,
+            "enabled": true,
             "name": "PCBおかわりスタンプイベント | PCB Refill Stamp Event",
             "desc": "Stamp event to earn PCB. Once the stamp goal is complete, it will start over and you can earn more PCB.",
             "info": "Toggle this on to enable this stamp event."
@@ -230,7 +230,7 @@
         {
             "id": "12thannivpcbevent",
             "type": "stamp",
-            "enabled": false,
+            "enabled": true,
             "name": "PCBおかわりスタンプイベント | 12th Anniversary PCB Refill Stamp Event",
             "desc": "Stamp event to earn PCB. Once the stamp goal is complete, it will start over and you can earn more PCB.",
             "info": "Toggle this on to enable this stamp event."

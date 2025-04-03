@@ -10,7 +10,7 @@ import { ValgeneTicket } from '../models/valgene_ticket'
 import { WeeklyMusicScore } from '../models/weeklymusic'
 import { getVersion, IDToCode } from '../utils'
 import { Mix } from '../models/mix'
-import { ARENA, EVENT_ITEMS6 } from '../data/exg'
+import { ARENA, EVENT_ITEMS6, STAMP_EVENTS6 } from '../data/exg'
 import { getRankListDB } from './webui'
 
 async function getAutomationMixes(params: Param[]) {
@@ -553,9 +553,13 @@ export const save: EPR = async (info, data, send) => {
   for (const i of items) {
     const type = i.number('type');
     const id = i.number('id');
-    const param = i.number('param');
+    let param = i.number('param');
 
     if (_.isNil(type) || _.isNil(id) || _.isNil(param)) continue;
+
+    if(type === 2 && id.toString() in STAMP_EVENTS6['refillStamps']) {
+      if(param >= STAMP_EVENTS6['refillStamps'][id.toString()]) param = 0
+    }
 
     await DB.Upsert<Item>(
       refid,
@@ -718,14 +722,16 @@ export const load: EPR = async (info, data, send) => {
     let weeklyMusic = JSON.parse(bufWeeklyMusic.toString())
     let weekData
     for(let weekIter in weeklyMusic) {
-      if(Number(date) > weeklyMusic[weekIter].start) weekData = weeklyMusic[weekIter]
+      if(Number(date) > weeklyMusic[weekIter].start && Number(date) <= weeklyMusic[weekIter].end) weekData = weeklyMusic[weekIter]
     }
-    curWeekly.push({
-      weekId: weekData.weekId,
-      musicId: weekData.musicId,
-      start: weekData.start,
-      end: weekData.end
-    })
+    if(weekData != undefined) {
+      curWeekly.push({
+        weekId: weekData.weekId,
+        musicId: weekData.musicId,
+        start: weekData.start,
+        end: weekData.end
+      })
+    }
   }
 
   const items = await DB.Find<Item>(refid, { collection: 'item' });

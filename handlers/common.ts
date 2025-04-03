@@ -214,7 +214,7 @@ export const common: EPR = async (info, data, send) => {
                 5,
                 stmpEvntInfo['info']['data'][stmpDataIter]['stps'], 
                 0, 
-                stmpEvntInfo['info']['data'][stmpDataIter]['stps'], 
+                (stmpEvntInfo['info']['data'][stmpDataIter]['stmpid'].toString() in STAMP_EVENTS6['refillStamps']) ? 12 : stmpEvntInfo['info']['data'][stmpDataIter]['stps'], 
                 0,
                 '',
                 stmpEvntInfo['info']['stmpHd'],
@@ -450,14 +450,16 @@ export const common: EPR = async (info, data, send) => {
       let weeklyMusic = JSON.parse(bufWeeklyMusic.toString())
       let weekData
       for(let weekIter in weeklyMusic) {
-        if(Number(date) > weeklyMusic[weekIter].start) weekData = weeklyMusic[weekIter]
+        if(Number(date) > weeklyMusic[weekIter].start && Number(date) <= weeklyMusic[weekIter].end) weekData = weeklyMusic[weekIter]
       }
-      curWeekly.push({
-        weekId: weekData.weekId,
-        musicId: weekData.musicId,
-        start: weekData.start,
-        end: weekData.end
-      })
+      if(weekData != undefined) {
+        curWeekly.push({
+          weekId: weekData.weekId,
+          musicId: weekData.musicId,
+          start: weekData.start,
+          end: weekData.end
+        })
+      }
     }
 
     console.log("Sending common objects");
@@ -553,12 +555,12 @@ export const common: EPR = async (info, data, send) => {
             []
           ),
         },
-        weekly_music: curWeekly.map(w => ({
+        weekly_music: curWeekly != [] ? curWeekly.map(w => ({
           week_id: K.ITEM('s32', w.weekId),
           music_id: K.ITEM('s32', w.musicId),
           time_start: K.ITEM('u64', BigInt(w.start)),
           time_end: K.ITEM('u64', BigInt(w.end))
-        }))
+        })) : []
       },
       { encoding: 'utf8' }
     );

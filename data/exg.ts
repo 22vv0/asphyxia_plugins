@@ -77,6 +77,10 @@ export const LICENSED_SONGS6 = [
 ]
 
 export const STAMP_EVENTS6 = {
+  'refillStamps': {
+    '9': 5,
+    '28': 10
+  },
   'sdvx10thstamp': {
     'type': 'select',
     'info': {

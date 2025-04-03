@@ -17,6 +17,7 @@ function populateRankList(rankings) {
 }
 
 function populateWeeklySongsList(weekly, mdb) {
+    let compltWeekCtr = 0
     for(let songCtr = weekly.length - 1; songCtr >= 0; songCtr--) {
         let now = new Date()
         let start = new Date(Number(weekly[songCtr]['start']))
@@ -25,23 +26,26 @@ function populateWeeklySongsList(weekly, mdb) {
         let endFormat = end.getFullYear() + '-' + String(end.getMonth() + 1).padStart(2, "0") + '-' + String(end.getDate()).padStart(2, "0") + ' ' + String(end.getHours()).padStart(2, "0") + ":" + String(end.getMinutes()).padStart(2, "0")
         let songInfo = mdb.mdb.music.find(m => m['@id'] === weekly[songCtr]['musicId'].toString())
         let infdiff = ['inf', 'grv', 'hvn', 'vvd', 'xcd']
-        $('#wsongs tbody').append(
-            '<tr>'
-        ).append(
-            '<td>'+ songInfo.info.title_name + '</td>'
-        ).append(
-            '<td>'+ startFormat + ' ~ ' + endFormat + '</td>'
-        ).append(
-            '<td style="text-align:center;">' + (Number(now) > Number(weekly[songCtr]['start']) ? ((songInfo.difficulty.novice.difnum['#text'] !== '0') ? '<img id="difRank" week=' + weekly[songCtr]['weekId'] + ' mid=' + weekly[songCtr]['musicId'] + ' mtype=0 src="static/asset/difficulty/level_small_nov.png">' : "-") : "-") + "</td>"
-        ).append(
-            '<td style="text-align:center;">' + (Number(now) > Number(weekly[songCtr]['start']) ? ((songInfo.difficulty.advanced.difnum['#text'] !== '0') ? '<img id="difRank" week=' + weekly[songCtr]['weekId'] + ' mid=' + weekly[songCtr]['musicId'] + ' mtype=1 src="static/asset/difficulty/level_small_adv.png">' : "-") : "-") + "</td>"
-        ).append(
-            '<td style="text-align:center;">' + (Number(now) > Number(weekly[songCtr]['start']) ? ((songInfo.difficulty.exhaust.difnum['#text'] !== '0') ? '<img id="difRank" week=' + weekly[songCtr]['weekId'] + ' mid=' + weekly[songCtr]['musicId'] + ' mtype=2 src="static/asset/difficulty/level_small_exh.png">' : "-")  : "-") + "</td>"
-        ).append(
-            '<td style="text-align:center;">' + (Number(now) > Number(weekly[songCtr]['start']) ? ((songInfo.difficulty.maximum.difnum['#text'] !== '0') ? '<img id="difRank" week=' + weekly[songCtr]['weekId'] + ' mid=' + weekly[songCtr]['musicId'] + ' mtype=4 src="static/asset/difficulty/level_small_mxm.png">' : "-")  : "-") + "</td>"
-        ).append(
-            '<td style="text-align:center;">' + (Number(now) > Number(weekly[songCtr]['start']) ? ((songInfo.info.inf_ver['#text'] !== '0') ? '<img id="difRank" week=' + weekly[songCtr]['weekId'] + ' mid=' + weekly[songCtr]['musicId'] + ' mtype=3 src="static/asset/difficulty/level_small_'+ infdiff[parseInt(songInfo.info.inf_ver['#text']) - 2] +'.png">' : "-")  : "-") + "</td>"
-        )
+        compltWeekCtr = (now >= end) ? compltWeekCtr += 1 : compltWeekCtr
+        if(now < end || compltWeekCtr <= 3) {
+            $('#wsongs tbody').append(
+                '<tr>'
+            ).append(
+                '<td>'+ songInfo.info.title_name + '</td>'
+            ).append(
+                '<td>'+ startFormat + ' ~ ' + endFormat + '</td>'
+            ).append(
+                '<td style="text-align:center;">' + (Number(now) > Number(weekly[songCtr]['start']) ? ((songInfo.difficulty.novice.difnum['#text'] !== '0') ? '<img id="difRank" week=' + weekly[songCtr]['weekId'] + ' mid=' + weekly[songCtr]['musicId'] + ' mtype=0 src="static/asset/difficulty/level_small_nov.png">' : "-") : "-") + "</td>"
+            ).append(
+                '<td style="text-align:center;">' + (Number(now) > Number(weekly[songCtr]['start']) ? ((songInfo.difficulty.advanced.difnum['#text'] !== '0') ? '<img id="difRank" week=' + weekly[songCtr]['weekId'] + ' mid=' + weekly[songCtr]['musicId'] + ' mtype=1 src="static/asset/difficulty/level_small_adv.png">' : "-") : "-") + "</td>"
+            ).append(
+                '<td style="text-align:center;">' + (Number(now) > Number(weekly[songCtr]['start']) ? ((songInfo.difficulty.exhaust.difnum['#text'] !== '0') ? '<img id="difRank" week=' + weekly[songCtr]['weekId'] + ' mid=' + weekly[songCtr]['musicId'] + ' mtype=2 src="static/asset/difficulty/level_small_exh.png">' : "-")  : "-") + "</td>"
+            ).append(
+                '<td style="text-align:center;">' + (Number(now) > Number(weekly[songCtr]['start']) ? ((songInfo.difficulty.maximum.difnum['#text'] !== '0') ? '<img id="difRank" week=' + weekly[songCtr]['weekId'] + ' mid=' + weekly[songCtr]['musicId'] + ' mtype=4 src="static/asset/difficulty/level_small_mxm.png">' : "-")  : "-") + "</td>"
+            ).append(
+                '<td style="text-align:center;">' + (Number(now) > Number(weekly[songCtr]['start']) ? ((songInfo.info.inf_ver['#text'] !== '0') ? '<img id="difRank" week=' + weekly[songCtr]['weekId'] + ' mid=' + weekly[songCtr]['musicId'] + ' mtype=3 src="static/asset/difficulty/level_small_'+ infdiff[parseInt(songInfo.info.inf_ver['#text']) - 2] +'.png">' : "-")  : "-") + "</td>"
+            )
+        }
     }
 }
 
