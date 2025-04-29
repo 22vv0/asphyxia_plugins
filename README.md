@@ -1,6 +1,6 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.5
+**Plugin Version:** fork-6.0.5a
 
 **Supported game versions:** EXCEED GEAR (2024121000)
 
@@ -34,6 +34,9 @@ Add an issue to the GitHub repository and make sure to provide the logs from Asp
 Changelog
 ===========
 ## fork-6.0.5
+
+### Minor additions/fixes:
+- Added SKILL ANALYZER 9 course data.
 
 ### New:
 - Weekly Score Attack feature

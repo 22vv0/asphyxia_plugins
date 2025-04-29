@@ -276,8 +276,8 @@ export const common: EPR = async (info, data, send) => {
       }
     }
 
-    if(IO.Exists('handlers/test.json')) {
-      let bufTest = await IO.ReadFile('handlers/test.json')
+    if(IO.Exists('handlers/extend.json')) {
+      let bufTest = await IO.ReadFile('handlers/extend.json')
       let extendTest = JSON.parse(bufTest.toString())
       for(const ex in extendTest) {
         extend.push({

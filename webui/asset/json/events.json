@@ -292,7 +292,7 @@
             "type": "tama",
             "enabled": true,
             "name": "TAMA猫アドベンチャー (TAMANEKO Adventure)",
-            "desc": "New unlock system where you complete map missions to earn TAMANEKO food. New and XCD charts are available to unlock, as well as a 'Track Liberation' and 'OVER ADVENTURE' feature.",
+            "desc": "New unlock system where you complete map missions to earn TAMANEKO food. New and XCD charts are available to unlock, as well as a 'Track Liberation' and a 'OVER ADVENTURE' map.",
             "info": "Toggle to enable/disable event."
         },
         {
@@ -373,25 +373,25 @@
             "id": "christmas2023",
             "key": "MERRY_CHRISTMAS_2023",
             "str": "MERRY_CHRISTMAS_2023",
-            "explain": "Enables Navigator Christmas greeting."
+            "explain": "Enables Navigator Christmas greeting (only use one of the greeting flags at a time)"
         },
         {
             "id": "valentines2024",
             "key": "VALENTINES_DAY_2024",
             "str": "VALENTINES_DAY_2024",
-            "explain": "Enables Navigator Valentines Day greeting."
+            "explain": "Enables Navigator Valentines Day greeting (only use one of the greeting flags at a time)"
         },
         {
             "id": "whiteday2024",
             "key": "WHITE_DAY_2024",
             "str": "WHITE_DAY_2024",
-            "explain": "Enables Navigator White Day greeting."
+            "explain": "Enables Navigator White Day greeting (only use one of the greeting flags at a time)"
         },
         {
             "id": "halloween",
             "key": "HALLOWEEN_EVENT",
             "str": "HALLOWEEN_EVENT",
-            "explain": "Enables Navigator Halloween greeting."
+            "explain": "Enables Navigator Halloween greeting (only use one of the greeting flags at a time)"
         },
         {
             "id": "aprilrainbowline",
