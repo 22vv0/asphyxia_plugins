@@ -667,8 +667,8 @@ export const load: EPR = async (info, data, send) => {
       let eventData = JSON.parse(bufEventData.toString())
       let eventConfig = JSON.parse(bufEventConfig.toString())
       for(const eventIter in eventData['events']) {
-        let typeIds = {'gift_crew': [11, 1], 'gift': [0, 23], 'cross_online': [0, 23]}
-        if(['gift_crew', 'gift', 'cross_online'].includes(eventData['events'][eventIter]['type']) && eventConfig[eventData['events'][eventIter]['id']] !== undefined) {
+        let typeIds = {'gift_crew': [11, 1], 'gift_ap': [1, 1], 'gift': [0, 23], 'cross_online': [0, 23]}
+        if(['gift_crew', 'gift_ap', 'gift', 'cross_online'].includes(eventData['events'][eventIter]['type']) && eventConfig[eventData['events'][eventIter]['id']] !== undefined) {
           if(typeof eventConfig[eventData['events'][eventIter]['id']]['toggle'] === "boolean") {
             if(eventConfig[eventData['events'][eventIter]['id']]['toggle']) {
               for(const itemIter in EVENT_ITEMS6[eventData['events'][eventIter]['id']]) {

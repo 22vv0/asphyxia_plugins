@@ -5502,6 +5502,27 @@
             "rtype": "aptitle",
             "rid": 10348,
             "troptype": 3
+        },
+        {
+            "id": 787,
+            "title": "TAMA猫アドベンチャーで『OVER ADVENTURE』を 8周する",
+            "rtype": "aptitle",
+            "rid": 10349,
+            "troptype": 3
+        },
+        {
+            "id": 788,
+            "title": "TAMA猫アドベンチャーで『OVER ADVENTURE』を 9周する",
+            "rtype": "aptitle",
+            "rid": 10350,
+            "troptype": 3
+        },
+        {
+            "id": 789,
+            "title": "TAMA猫アドベンチャーで『OVER ADVENTURE』を 10周する",
+            "rtype": "aptitle",
+            "rid": 10351,
+            "troptype": 3
         }
     ]
 }

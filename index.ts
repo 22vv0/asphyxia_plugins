@@ -33,7 +33,7 @@ import { dataUpdate } from './handlers/migrate'
 export function register() {
 
   R.Contributor("LatoWolf#1170");
-  R.Contributor("ovv (this fork)");
+  R.Contributor("22vv0");
   R.GameCode('KFC');
 
   R.Config('sdvx_eg_root_dir', { type: 'string', needRestart: true, default: '', name: 'Exceed Gear Data Directory', desc: 'The root directory of your SDVX Exceed Gear game files (for asset copying)'});

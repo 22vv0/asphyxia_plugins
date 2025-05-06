@@ -390,12 +390,12 @@ export const common: EPR = async (info, data, send) => {
 
     if(arena_szn !== 'None') {
       arena_catalog_items = ARENA[arena_szn].arena_items.map(item => ({
-        catalog_id: K.ITEM('s32', item.catalog_id),
-        catalog_type: K.ITEM('s32', item.catalog_type),
-        price: K.ITEM('s32', item.price),
-        item_type: K.ITEM('s32', item.item_type),
-        item_id: K.ITEM('s32', item.item_id),
-        param: K.ITEM('s32', item.param),
+        catalog_id: K.ITEM('s32', item[0]),
+        catalog_type: K.ITEM('s32', item[1]),
+        price: K.ITEM('s32', item[2]),
+        item_type: K.ITEM('s32', item[3]),
+        item_id: K.ITEM('s32', item[4]),
+        param: K.ITEM('s32', item[5]),
       }))
     }
 

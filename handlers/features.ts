@@ -198,7 +198,7 @@ export const globalMatch: EPR = async (info, data, send) => {
   let expCnt = await DB.Remove({collection: 'matchmaker', timestamp: {$lt: Date.now() - 100000}})
   console.log("[" + loglip + " | " + loggip + "] Removed " + expCnt + " expired match data.")
 
-  if(await DB.Count({collection: 'matchmaker', lip: entryData.lip}) === 0) {
+  if(await DB.Count({collection: 'matchmaker', gip: entryData.gip}) === 0) {
     console.log("[" + loglip + " | " + loggip + "] Adding your info.")
     await DB.Upsert<Matchmaker>(
       { collection: 'matchmaker', gip: entryData.gip, lip: entryData.lip},
@@ -228,7 +228,7 @@ export const globalMatch: EPR = async (info, data, send) => {
 
   console.log("[" + loglip + " | " + loggip + "] Searching...")
 
-  let opData = await DB.Find<Matchmaker>({collection: 'matchmaker', filter: entryData.filter, mid: entryData.mid, claim: entryData.claim, entry_id: entryData.entry_id})
+  let opData = await DB.Find<Matchmaker>({collection: 'matchmaker', filter: entryData.filter, mid: entryData.mid, claim: entryData.claim, entry_id: entryData.entry_id, $not: {lip: entryData.lip}})
   let opponents = {
     entry_id: K.ITEM('u32', entryData.entry_id),
     entry: opData.map(e => ({
@@ -237,8 +237,8 @@ export const globalMatch: EPR = async (info, data, send) => {
       lip: K.ITEM('4u8', e.lip)
     }))
   }
-  console.log("[" + loglip + " | " + loggip + "] Players found: " + (opponents.entry.length - 1) + "")
-  if(opponents.entry.length === 1) send.deny()
+  console.log("[" + loglip + " | " + loggip + "] Opponents: " + opponents.entry.length)
+  if(opponents.entry.length === 0) send.deny()
   else send.object(opponents)
 }
 

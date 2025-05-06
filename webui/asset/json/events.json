@@ -336,6 +336,30 @@
             "name": "PRECIOUS UNIVERSAL CELEBRATE STAMP",
             "desc": "Stamp select event where you can unlock 9 songs in any order.",
             "info": "Toggle this on to enable this stamp event."
+        },
+        {
+            "id": "2025stamp",
+            "type": "stamp",
+            "enabled": true,
+            "name": "2025 U,R,B,R,,, YE-AR---!!!ｷｬ----!!!!!! スタンプボーナス | New Year 2025 Stamp Event",
+            "desc": "Stamp event to unlock the 2025 appeal card, plus PCB for the remaining 9 steps.",
+            "info": "Toggle this option to enable this stamp event."
+        },
+        {
+            "id": "13thannivap",
+            "type": "gift_ap",
+            "enabled": true,
+            "name": "13th anniversary Tsubaki-chan appeal card gift",
+            "desc": "",
+            "info": "Toggle this on to automatically get the item."
+        },
+        {
+            "id": "13thannivpcbevent",
+            "type": "stamp",
+            "enabled": true,
+            "name": "PCBおかわりスタンプイベント | 13th Anniversary PCB Refill Stamp Event",
+            "desc": "Stamp event to earn PCB. Once the stamp goal is complete, it will start over and you can earn more PCB.",
+            "info": "Toggle this on to enable this stamp event."
         }
     ],
     "flags": [

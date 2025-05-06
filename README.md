@@ -1,8 +1,8 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.5a
+**Plugin Version:** fork-6.0.6
 
-**Supported game versions:** EXCEED GEAR (2024121000)
+**Supported game versions:** EXCEED GEAR (2025011400)
 
 **Unsupported game versions:** Every other game, as they're untested.
 
@@ -33,6 +33,29 @@ Add an issue to the GitHub repository and make sure to provide the logs from Asp
 
 Changelog
 ===========
+## fork-6.0.6
+
+### Minor additions/fixes:
+- Cleaned up ARENA data in exg.ts to minimize size.
+- Updated Achievements list.
+- Renamed "Unlocking Events" to "Unlock Events"
+
+### New:
+- Updated TAMANEKO ADVENTURE mission list.
+	- ネメシスメトロポリス / KAC開催決定記念！オリジナル楽曲コンテスト2023 #2
+- Added ARENA Season 17 data - rank match: ARENA BATTLE (point system)
+	- Added ARENA STATION set 17
+- Added unlock events:
+	- 2025 U,R,B,R,,, YE-AR---!!!ｷｬ----!!!!!! スタンプボーナス
+	- 13th Anniversary PCB Refill Stamp Event
+	- 13th anniversary Tsubaki-chan appeal card gift
+- Added songs to licensed songs list:
+	- 強風オールバック
+	- 人マニア	
+	- メズマライザー
+	- テトリス
+
+
 ## fork-6.0.5
 
 ### Minor additions/fixes:
@@ -77,24 +100,6 @@ Changelog
 - Updated Achievements list
 - Updated data.json (will add labels for Houshou Marine subbg at a later date)
 
-
-## fork-6.0.3.7
-
-### New:
-
-1. Main:
-	- MYSTICAL Re:UNION added to events list. Toggle the individual songs to unlock them to your account.
-
-2. Misc:
-	- **Important**: EG Skill Analyzer course IDs have been updated. The plugin's new migrate.ts should update your course data to reflect these new IDs but if there are issues with your course data, please let me know. 
-	- KAC 2023 Skill Analyzer courses now displayed as it did officially (uses KAC jacket)
-	- BPL Pro Player badge: display this instead of the BPL Supporter badge. Check the "BPL Pro Player" option in the customization page.
-	- Force locked the song "無意識レクイエム (cosmobsp rmx)" to allow for the secret unlock method to work. Still overridden by the unlock songs option.
-	- Updated VALKYRIE GENERATOR 7 item data: removed ID 33 from appeal stamp list. 
-	- Updated placeholder names in data.json.
-
-3. Issues:
-	- Game crashes on continue screen when a Stamp Select event is enabled. Unsure if this is a plugin issue, or just an isolated gamedata issue.
 
 
 ### Todo:
