@@ -228,7 +228,7 @@ export const globalMatch: EPR = async (info, data, send) => {
 
   console.log("[" + loglip + " | " + loggip + "] Searching...")
 
-  let opData = await DB.Find<Matchmaker>({collection: 'matchmaker', filter: entryData.filter, mid: entryData.mid, claim: entryData.claim, entry_id: entryData.entry_id, $not: {lip: entryData.lip}})
+  let opData = await DB.Find<Matchmaker>({collection: 'matchmaker', c_ver: entryData.c_ver, filter: entryData.filter, mid: entryData.mid, claim: entryData.claim, entry_id: entryData.entry_id, $not: {lip: entryData.lip}})
   let opponents = {
     entry_id: K.ITEM('u32', entryData.entry_id),
     entry: opData.map(e => ({

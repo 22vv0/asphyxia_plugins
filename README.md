@@ -1,8 +1,8 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.6
+**Plugin Version:** fork-6.0.6a
 
-**Supported game versions:** EXCEED GEAR (2025011400)
+**Supported game versions:** EXCEED GEAR (2025012100)
 
 **Unsupported game versions:** Every other game, as they're untested.
 
@@ -54,6 +54,7 @@ Changelog
 	- 人マニア	
 	- メズマライザー
 	- テトリス
+- Added VALKYRIE GENERATOR Vol. 15 data.
 
 
 ## fork-6.0.5

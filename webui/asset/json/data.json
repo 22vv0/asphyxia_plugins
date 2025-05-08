@@ -2862,6 +2862,116 @@
             "value": 552,
             "type": "video",
             "name": "幽霊船戦 02"
+        },
+        {
+            "value": 553,
+            "type": "normal",
+            "name": "今日のプレーはこれに決めたっ！"
+        },
+        {
+            "value": 554,
+            "type": "normal",
+            "name": "紡ぎ、言祝ぐ花囃子"
+        },
+        {
+            "value": 555,
+            "type": "normal",
+            "name": "Gemelli porta fortuna"
+        },
+        {
+            "value": 556,
+            "type": "normal",
+            "name": "RESiSTANCE×SiGNAL"
+        },
+        {
+            "value": 557,
+            "type": "normal",
+            "name": "なんだか立体的ﾃﾞｩ！？"
+        },
+        {
+            "value": 558,
+            "type": "normal",
+            "name": "ボ活！"
+        },
+        {
+            "value": 559,
+            "type": "normal",
+            "name": "touch >>> support + cheer !!!"
+        },
+        {
+            "value": 560,
+            "type": "normal",
+            "name": "芽生"
+        },
+        {
+            "value": 561,
+            "type": "normal",
+            "name": "I Love♡Universe!!"
+        },
+        {
+            "value": 562,
+            "type": "normal",
+            "name": "SWEETS♡PARTY!!"
+        },
+        {
+            "value": 563,
+            "type": "normal",
+            "name": "みんなで！飛び出せ！ゴーゴー！"
+        },
+        {
+            "value": 564,
+            "type": "normal",
+            "name": "グレイス"
+        },
+        {
+            "value": 565,
+            "type": "normal",
+            "name": "burn!"
+        },
+        {
+            "value": 566,
+            "type": "normal",
+            "name": "Happy Tea Time?"
+        },
+        {
+            "value": 567,
+            "type": "normal",
+            "name": "Jackpot"
+        },
+        {
+            "value": 568,
+            "type": "normal",
+            "name": "Let's Dance!"
+        },
+        {
+            "value": 569,
+            "type": "normal",
+            "name": "パパラッチの小休止"
+        },
+        {
+            "value": 570,
+            "type": "normal",
+            "name": "お前の『真像』は何処に在る？"
+        },
+        {
+            "value": 571,
+            "type": "normal",
+            "name": "おやつ休憩、一緒にどう？"
+        },
+        {
+            "value": 572,
+            "type": "normal",
+            "name": "超重奏ッ！BLASTER充填率／＞△＜＼203%！！！"
+        },
+        {
+            "value": 573,
+            "type": "normal",
+            "name": "鏡合わせの宿命を超えて"
+        },
+        {
+            "value": 574,
+            "type": "normal",
+            "name": "恋するいちばん星"
         }
     ],
     "bgm": [
@@ -3188,6 +3298,34 @@
         {
             "value": 80,
             "name": "千年ノ理"
+        },
+        {
+            "value": 81,
+            "name": "PLANISPHERE"
+        },
+        {
+            "value": 82,
+            "name": "Foolish Again"
+        },
+        {
+            "value": 83,
+            "name": "夢の終わり、世界のはじまり。"
+        },
+        {
+            "value": 84,
+            "name": "ゔぉるみっくす!!!!"
+        },
+        {
+            "value": 85,
+            "name": "sparky spark"
+        },
+        {
+            "value": 86,
+            "name": "Test Flight"
+        },
+        {
+            "value": 87,
+            "name": "Perfect Ultimate Celebration!!"
         }
     ],
     "stamp": [
@@ -9882,6 +10020,102 @@
         {
             "value": 1672,
             "name": "宝鐘マリン（ホロライブ）10 4"
+        },
+        {
+            "value": 1673,
+            "name": "雛＆桃＆蒼 1"
+        },
+        {
+            "value": 1674,
+            "name": "雛＆桃＆蒼 2"
+        },
+        {
+            "value": 1675,
+            "name": "雛＆桃＆蒼 3"
+        },
+        {
+            "value": 1676,
+            "name": "雛＆桃＆蒼 4"
+        },
+        {
+            "value": 1677,
+            "name": "グレイスファミリー 1"
+        },
+        {
+            "value": 1678,
+            "name": "グレイスファミリー 2"
+        },
+        {
+            "value": 1679,
+            "name": "グレイスファミリー 3"
+        },
+        {
+            "value": 1680,
+            "name": "グレイスファミリー 4"
+        },
+        {
+            "value": 1681,
+            "name": "魂、冷音、灯色 1"
+        },
+        {
+            "value": 1682,
+            "name": "魂、冷音、灯色 2"
+        },
+        {
+            "value": 1683,
+            "name": "魂、冷音、灯色 3"
+        },
+        {
+            "value": 1684,
+            "name": "魂、冷音、灯色 4"
+        },
+        {
+            "value": 1685,
+            "name": "ロワーレ、識苑、トライプル、ヴェルテックス 1"
+        },
+        {
+            "value": 1686,
+            "name": "ロワーレ、識苑、トライプル、ヴェルテックス 2"
+        },
+        {
+            "value": 1687,
+            "name": "ロワーレ、識苑、トライプル、ヴェルテックス 3"
+        },
+        {
+            "value": 1688,
+            "name": "ロワーレ、識苑、トライプル、ヴェルテックス 4"
+        },
+        {
+            "value": 1689,
+            "name": "煉＆鈴音、キサ、ノイジア 1"
+        },
+        {
+            "value": 1690,
+            "name": "煉＆鈴音、キサ、ノイジア 2"
+        },
+        {
+            "value": 1691,
+            "name": "煉＆鈴音、キサ、ノイジア 3"
+        },
+        {
+            "value": 1692,
+            "name": "煉＆鈴音、キサ、ノイジア 4"
+        },
+        {
+            "value": 1693,
+            "name": "レックス、るぅき、ユタニケ、カデンツァ 1"
+        },
+        {
+            "value": 1694,
+            "name": "レックス、るぅき、ユタニケ、カデンツァ 2"
+        },
+        {
+            "value": 1695,
+            "name": "レックス、るぅき、ユタニケ、カデンツァ 3"
+        },
+        {
+            "value": 1696,
+            "name": "レックス、るぅき、ユタニケ、カデンツァ 4"
         }
     ],
     "akaname": [
@@ -12876,6 +13110,62 @@
         {
             "value": "40230",
             "name": "第１５回アルティメットマッチ"
+        },
+        {
+            "value": "40231",
+            "name": "第１７回アルティメットマッチ　１位"
+        },
+        {
+            "value": "40232",
+            "name": "第１７回アルティメットマッチ　２位"
+        },
+        {
+            "value": "40233",
+            "name": "第１７回アルティメットマッチ　３位"
+        },
+        {
+            "value": "40234",
+            "name": "第１７回アルティメットマッチ　TOP10"
+        },
+        {
+            "value": "40235",
+            "name": "第１７回アルティメットマッチ　TOP20"
+        },
+        {
+            "value": "40236",
+            "name": "第１７回アルティメットマッチ　TOP30"
+        },
+        {
+            "value": "40237",
+            "name": "第１７回アルティメットマッチ　TOP40"
+        },
+        {
+            "value": "40238",
+            "name": "第１７回アルティメットマッチ　TOP50"
+        },
+        {
+            "value": "40239",
+            "name": "第１７回アルティメットマッチ　TOP60"
+        },
+        {
+            "value": "40240",
+            "name": "第１７回アルティメットマッチ　TOP70"
+        },
+        {
+            "value": "40241",
+            "name": "第１７回アルティメットマッチ　TOP80"
+        },
+        {
+            "value": "40242",
+            "name": "第１７回アルティメットマッチ　TOP90"
+        },
+        {
+            "value": "40243",
+            "name": "第１７回アルティメットマッチ　TOP100"
+        },
+        {
+            "value": "40244",
+            "name": "第１７回アルティメットマッチ"
         },
         {
             "value": "50000",

@@ -569,7 +569,6 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
     let manifestJson = {}
     let bufOffset = 0
     let magic = '6CAD8F89'
-    console.log(textureslist[listIter]['file'] + ":")
     let ifsBuffer = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + textureslist[listIter].file, {flag: 'r'})
     if(!fs.existsSync('plugins/sdvx@asphyxia/webui/asset/' + textureslist[listIter].asset_folder)) {
       fs.mkdirSync('plugins/sdvx@asphyxia/webui/asset/' + textureslist[listIter].asset_folder)
@@ -659,10 +658,8 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
             pngf.data = Buffer.from(decompressed)
             const outputStream = await fs.createWriteStream('plugins/sdvx@asphyxia/webui/asset/' + textureslist[listIter].asset_folder + '/' + tdFileName);
             await pngf.pack().pipe(outputStream);
-            console.log(' - ' + tdFileName + ' created successfully.');
             ifsSuccess.push(textureslist[listIter].file + ' - ' + tdFileName)
           } else {
-            console.log("Decompression mismatch.")
             runErrors.push('[ifs] decompression mismatch for ' + textureslist[listIter]['file'] + '/' + tdFileName)
           }
         }

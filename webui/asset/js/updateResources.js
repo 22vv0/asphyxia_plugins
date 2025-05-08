@@ -33,14 +33,6 @@ $(document).ready(async function() {
                     }
                     document.getElementById("logtextarea").textContent += '\n\n\n'
 
-                    if(response['data']['ifs'].length > 0) {
-                        document.getElementById("logtextarea").textContent += 'Successfully extracted textures: \n'
-                        $.each(response['data']['ifs'], function(key, val) {
-                            document.getElementById("logtextarea").textContent += "- " +  val + '\n'
-                        })
-                        document.getElementById("logtextarea").textContent += '\n\n'
-                    }
-
                     if(response['data']['versionSongs'].length > 0) {
                         document.getElementById("logtextarea").textContent += 'New songs in latest version data: \n'
                         $.each(response['data']['versionSongs'], function(key, val) {
@@ -121,6 +113,11 @@ $(document).ready(async function() {
                         $.each(response['data']['akaname'], function(key, val) {
                             document.getElementById("logtextarea").textContent += "- " +  val + '\n'
                         })
+                        document.getElementById("logtextarea").textContent += '\n\n'
+                    }
+
+                    if(response['data']['ifs'].length > 0) {
+                        document.getElementById("logtextarea").textContent += 'Successfully extracted textures from IFS files. \n'
                         document.getElementById("logtextarea").textContent += '\n\n'
                     }
                 }

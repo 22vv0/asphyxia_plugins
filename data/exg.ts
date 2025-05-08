@@ -1420,6 +1420,11 @@ export const VALGENE = {
       valgene_name: "ヴァルキリージェネレーター 「東方Project」",
       valgene_name_english: "VALKYRIE GENERATOR 「Touhou Project」",
       valgene_id: 15
+    },
+    {
+      valgene_name: "ヴァルキリージェネレーター 第15弾",
+      valgene_name_english: "Valkyrie Generator Vol. 15",
+      valgene_id: 16
     }
   ],
   rarity: {
@@ -1776,7 +1781,28 @@ export const VALGENE = {
           item_ids: [46]
         }
       ]
-    }
+    },
+    {
+      volume: 16,
+      items: [
+        {
+          type: 11,
+          item_ids: [165]
+        },
+        {
+          type: 17,
+          item_ids: [419, 420, 421, 422, 423, 424]
+        },
+        {
+          type: 18,
+          item_ids: [553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574]
+        },
+        {
+          type: 19,
+          item_ids: [81, 82, 83, 84, 85, 86, 87]
+        }
+      ]
+    },
   ]
 }
 
