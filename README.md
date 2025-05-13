@@ -1,20 +1,25 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.6a
+**Plugin Version:** fork-6.1.0
 
-**Supported game versions:** EXCEED GEAR (2025012100)
+**Supported game versions:** EXCEED GEAR (2025042202)
 
-**Unsupported game versions:** Every other game, as they're untested.
+**Unsupported game versions:**
+- BOOTH
+- INFINITE INFECTION
+- GRAVITY WARS
+- HEAVENLY HAVEN
+- VIVID WAVE
 
 **Required Asphyxia Core version** [1.50c](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50)
 
-**Notes:**
+Notes:
 ===========
 - Please be aware that this plugin and the savefile it produces are incompatible with the official plugin, or any other forks. Please be cautious of using other plugins' savefiles with this fork of the plugin, or using this fork's savefile with other plugins.
 - Before using this plugin, run the [WebUI Asset Update](/plugin/sdvx@asphyxia/update%20webui%20assets). Do this every data and plugin update.
 - Please back up your save data to prevent unwanted issues (just in case)
 
-**Report issues:**
+Report issues:
 ===========
 
 #### Run asphyxia in dev mode 
@@ -33,12 +38,72 @@ Add an issue to the GitHub repository and make sure to provide the logs from Asp
 
 Changelog
 ===========
+## fork-6.1.0
+
+### New:
+- 20250205
+	- Updated TAMANEKO ADVENTURE missions list.
+		- ネメシスメトロポリス / KAC開催決定記念！オリジナル楽曲コンテスト2023 #3
+- 20250212
+	- Added PREMIUM GENERATOR (Meto Meu) data.
+	- Added to licensed songs list:
+		- チョコレートスマイル
+		- じもとっこスイーツ♪
+		- ロマンシングエスケープ
+- 20250218
+	- Added PREMIUM GENERATOR (Usada Pekora) data.
+	- Added stamp event data: hololive SUPER EXPO 2025出展記念!コラボスタンプ
+	- Added to licensed songs list:
+		- いいわけバニー
+		- 全人類　兎化計画！
+		- ララララビット！！
+		- 最強女神†ウーサペコラ
+- 20250225
+	- Added ARENA Season 18 data - rank match: MEGAMIX BATTLE
+		- Added ARENA STATION set 18
+- 20250317
+	- Updated TAMANEKO ADVENTURE missions list.
+		- ネメシスギャラクシー / ブルーガーデン
+	- Added VALKYRIE GENERATOR Vol. 16 data.
+- 20250324
+	- Added PREMIUM GENERATOR (Kurumi Noah) set.
+	- Added to licensed songs list:
+		- かくれんぼ (胡桃のあ Cover)
+	- Added Yukkuri April Fools startup flag.
+- 20250422
+	- Added VARIANT GATE data.
+		- configure OVER TRACK settings in the UI. 
+		- VARIANT POWER only available when VARIANT GATE is enabled.
+	- Added PREMIUM GENERATOR (Ichika) set.
+		- Roll all items to unlock extra alternate outfit.
+	- Added ぼる×りこ Cross Resonance event.
+
+### Minor changes/fixes:
+- **Important:** Removed support for BOOTH - VIVID WAVE code.
+- handlers/profiles.ts: Removed blaster_count and earned_extrack_energy: 
+	- These are attributes removed in the 0422 update: this caused save func issues.
+- data/exg.ts: 
+	- added ids 167 and 170 to CHARACTER\_IGNORE\_DISABLE.
+	- changed STAMP_EVENTS6 to UNLOCK_EVENTS6
+	- Remove songs from VALKYRIE_SONGS. Multiple songs have since become available for NEMSYS mode as well.
+- data/webui.ts:
+	- Updated psd_level.ifs texture offsets.
+- Removed custom login information message and game over screen.
+- WebUI:
+	- Updated Achievements list.
+	- MAXXIVE Clear
+		- fixed VOLFORCE calculation to account for MAXXIVE clears
+		- added MAXXIVE label to score page
+	- Unlock Events
+		- Moved TAMANEKO ADVENTURE to new "Unlock Events" dropdown menu, alongside VARIANT GATE.
+
+
 ## fork-6.0.6
 
-### Minor additions/fixes:
+### Minor changes/fixes:
 - Cleaned up ARENA data in exg.ts to minimize size.
 - Updated Achievements list.
-- Renamed "Unlocking Events" to "Unlock Events"
+- Renamed "Unlocking Events" page to "Unlock Events"
 
 ### New:
 - Updated TAMANEKO ADVENTURE mission list.
@@ -83,27 +148,9 @@ Changelog
 - Fixed error in Skill Analyzer data migration.
 
 
-## fork-6.0.4
-
-### New:
-- Added PREMIUM GENERATOR sets
-	- この素晴らしい世界に祝福を！3 (Konosuba 3)
-	- 宝鐘マリン (Houshou Marine)
-- Added HEXADIVER 11 (NEMSYS GAME EXPO)
-- Added BEMANI PRO LEAGUE S4 -Triple Tribe- event.
-	- Toggle on Unlocking Events page -> Cross Events
-- Added ARENA Season 16
-	- Rank match: MEGAMIX BATTLE
-	- Added ARENA STATION set 16
-- Added songs to licensed songs list: Konosuba, Houshou Marine
-- Added a few date-related events (Onigo day, Gott day, etc.)
-- Updated MEGAMIX BATTLE songs list (89 new songs)
-- Updated Achievements list
-- Updated data.json (will add labels for Houshou Marine subbg at a later date)
-
-
 
 ### Todo:
 
-1. Figure out how to use image (png) files to appear in information/news popup.
-2. More work on online matchmaking (idk if this is possible)
+1. Proper handling of appeal title customization.
+2. Figure out how to use image (png) files to appear in information/news popup.
+3. More work on online matchmaking (idk if this is possible)

@@ -13,15 +13,6 @@ function getSongName(musicid) {
     return result[0]["info"]["title_name"]
 }
 
-function getReleaseDate(musicid) {
-    var result = music_db["mdb"]["music"].filter(object => object["@id"] == musicid);
-    if (result.length == 0 || !('distribution_date' in result[0]['info'])) {
-        return "Unknown"
-    } 
-    return result[0]["info"]["distribution_date"]["#text"]
-}
-
-
 function getDifficulty(musicid, type) {
     var result = music_db["mdb"]["music"].filter(object => object["@id"] == musicid);
     if (result.length == 0) {
@@ -87,11 +78,13 @@ function getMedal(clear) {
         case 0:
             return "No Data";
         case 1:
-            return "Played";
+            return "PLAYED";
         case 2:
-            return "Clear";
+            return "EFFECTIVE CLEAR";
         case 3:
-            return "Hard Clear";
+            return "EXCESSIVE CLEAR";
+        case 6:
+            return "MAXXIVE CLEAR";
         case 4:
             return "UC";
         case 5:
@@ -261,7 +254,6 @@ $(document).ready(function() {
             temp_data.songname = getSongName(profile_data[i].mid);
             temp_data.songname = temp_data.songname.replace(/[龕釁驩曦齷骭齶彜罇雋鬻鬥鬆曩驫齲騫趁鬮盥隍頽餮黻蔕闃]/g, m => translate_table[m]);
             temp_data.diff = getDifficulty(profile_data[i].mid, profile_data[i].type);
-            temp_data.releasedate = getReleaseDate(profile_data[i].mid);
             temp_data.score = profile_data[i].score;
             temp_data.exscore = ((profile_data[i].exscore) ? profile_data[i].exscore : 0);
             temp_data.grade = getGrade(profile_data[i].grade);
@@ -285,7 +277,6 @@ $(document).ready(function() {
                 { data: 'mid' },
                 { data: 'songname' },
                 { data: 'diff', "type": "diff" },
-                { data: 'releasedate'},
                 { data: 'score', },
                 { data: 'exscore' },
                 { data: 'grade', "type": "grade" },

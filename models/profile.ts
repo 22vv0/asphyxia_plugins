@@ -19,8 +19,6 @@ export interface Profile {
   sortType: number;
   headphone: number;
   blasterEnergy: number;
-  blasterCount: number;
-  extrackEnergy: number;
 
   hiSpeed: number;
   laneSpeed: number;

@@ -1,10 +1,7 @@
 import {common, log} from './handlers/common';
-import {hiscore, rival, saveMix, loadMix, globalMatch, lounge, entryE} from './handlers/features';
+import {hiscore, rival, globalMatch, lounge, entryE} from './handlers/features';
 import {
   updateProfile,
-  updateMix,
-  importMix,
-  deleteMix,
   copyResourcesFromGame,
   getRivalScores,
   addRival,
@@ -43,8 +40,6 @@ export function register() {
   R.Config('unlock_all_songs', { type: 'boolean', default: false, name:'Unlock All Songs'});
   R.Config('unlock_all_navigators', { type: 'boolean', default: false, name:'Unlock All Navigators'} );
   R.Config('unlock_all_appeal_cards', { type: 'boolean', default: false, name:'Unlock All Appeal Cards'});
-  R.Config('use_information' ,{ type: 'boolean', default: true, name:'Use Asphyxia Information', desc:'Enable the Asphyxia information section after entry. Otherwise, it will try to look for official information data and display them.'});
-  R.Config('use_asphyxia_gameover',{ type: 'boolean', default: true, name:'Use Asphyxia Gameover', desc:'Enable the Asphyxia gameover message after ending the game.'})
   // R.Config('april_fools',{ type: 'boolean', default: false, name:'April Fools', desc:'Enable April Fools Event (toggles Grace crew + April Fools songs)'});
   // R.Config('new_year_special',{ type: 'boolean', default: false, name:'Use New Year Special', desc:'Enable New Year Special BGM for login.'});
 
@@ -56,19 +51,11 @@ export function register() {
   R.WebUIEvent('manageEvents', manageEvents);
   R.WebUIEvent('manageStartupFlags', manageStartupFlags);
   R.WebUIEvent('updateProfile', updateProfile);
-  R.WebUIEvent('updateMix', updateMix);
-  R.WebUIEvent('importMix', importMix);
-  R.WebUIEvent('deleteMix', deleteMix);
   R.WebUIEvent('addWeekly', addWeekly);
   R.WebUIEvent('getWeekRankList', getWeekRankList);
 
   const MultiRoute = (method: string, handler: EPR | boolean) => {
     // Helper for register multiple versions.
-    R.Route(`game.${method}`, handler);
-    R.Route(`game_2.${method}`, handler);
-    //R.Route(`game_3.${method}`, handler);
-    R.Route(`game.sv4_${method}`, handler);
-    R.Route(`game.sv5_${method}`, handler);
     R.Route(`game.sv6_${method}`, handler);
   };
 
@@ -90,8 +77,6 @@ export function register() {
   // Features
   MultiRoute('hiscore', hiscore);
   MultiRoute('load_r', rival);
-  MultiRoute('save_ap', saveMix);
-  MultiRoute('load_ap', loadMix);
 
   // Lazy
   MultiRoute('lounge', lounge);

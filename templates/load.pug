@@ -12,8 +12,6 @@ game
   sort_type(__type="u8") #{sortType}
   headphone(__type="u8") #{headphone}
   blaster_energy(__type="u32") #{blasterEnergy}
-  blaster_count(__type="u32") 0
-  extrack_energy(__type="u16") #{extrackEnergy}
 
   hispeed(__type="s32") #{hiSpeed}
   lanespeed(__type="u32") #{laneSpeed}
@@ -84,13 +82,6 @@ game
         id(__type="u32") #{item.id}
         param(__type="u32") #{item.param}
 
-    //- Unlock automation songs
-    each song in automation
-      info
-        type(__type="u8") 15
-        id(__type="u32") #{song}
-        param(__type="u32") 1
-
   present
     each item in present
       info
@@ -131,20 +122,6 @@ game
   if maxWeekChain
     max_week_chain(__type="u32") #{maxWeekChain}
 
-  if mixes
-    each mix in mixes
-      automation
-        mix_id(__type="s32") #{mix.id}
-        mix_code(__type="str") #{mix.code}
-        seq(__type="str")
-        mix_name(__type="str") #{mix.name}
-        player_name(__type="str") #{mix.creator}
-        generate_param(__type="str") #{mix.param}
-        distribution_date(__type="u32") 20200101
-        jacket_id(__type="s32") #{mix.jacket}
-        tag_bit(__type="s32") #{mix.tag}
-        like_flg(__type="u8") 0
-
   if arena
     arena
       last_play_season(__type="s32") #{arena.season !== undefined ? arena.season : 0}
@@ -167,3 +144,14 @@ game
         creator_type(__type="u32") #{creatorItem}
         item_id(__type="u32") 0
         param(__type="u32") 0
+
+  if variant
+    variant_gate
+      power(__type="s32") #{variant.power}
+      element
+        notes(__type="s32") #{variant.notes}
+        peak(__type="s32") #{variant.peak}
+        tsumami(__type="s32") #{variant.tsumami}
+        tricky(__type="s32") #{variant.tricky}
+        onehand(__type="s32") #{variant.onehand}
+        handtrip(__type="s32") #{variant.handtrip}

@@ -1,5 +1,4 @@
 import { Skill } from '../models/skill'
-import { SDVX_AUTOMATION_SONGS } from '../data/vvw'
 import { Item } from '../models/item'
 import { Param } from '../models/param'
 import { Arena } from '../models/arena'
@@ -8,17 +7,11 @@ import { CourseRecord } from '../models/course_record'
 import { Profile } from '../models/profile'
 import { ValgeneTicket } from '../models/valgene_ticket'
 import { WeeklyMusicScore } from '../models/weeklymusic'
+import { VariantPower } from '../models/variant'
 import { getVersion, IDToCode } from '../utils'
 import { Mix } from '../models/mix'
-import { ARENA, EVENT_ITEMS6, STAMP_EVENTS6 } from '../data/exg'
+import { ARENA, EVENT_ITEMS6, UNLOCK_EVENTS6 } from '../data/exg'
 import { getRankListDB } from './webui'
-
-async function getAutomationMixes(params: Param[]) {
-  const mixids = params
-    .filter(p => p.id == 3)
-    .reduce((res, p) => _.union(res, p.param), []);
-  return await DB.Find<Mix>({ collection: 'mix', id: { $in: mixids } });
-}
 
 function unlockNavigators(items: Partial<Item>[]) {
   for (let i = 0; i < 300; ++i) items.push({ type: 11, id: i, param: 15 });
@@ -61,60 +54,11 @@ export const loadScore: EPR = async (info, data, send) => {
   const version = Math.abs(getVersion(info));
   console.log("Got version: " + version);
   let refid = $(data).str('refid', $(data).attr().dataid);
-  if (version === 2) refid = $(data).str('dataid', '0');
-  //console.log('loading score');
   console.log("DataID:" + refid);
   if (!refid) return send.deny();
   console.log('Finding record');
   const records = await DB.Find<MusicRecord>(refid, { collection: 'music' });
 
-
-  //console.log(version);
-  if (version === 1) {
-    return send.object({
-      music: records.map(r => (K.ATTR({ music_id: String(r.mid) }, {
-        type: (() => {
-          const records = [];
-
-          for (let i = 1; i <= 3; i++) {
-            if (r.type != i) continue;
-            records.push(K.ATTR({
-              type_id: String(i),
-              score: String(r.score),
-              clear_type: String(r.clear),
-              score_grade: String(r.grade),
-              cnt: "0"
-            }));
-          }
-
-          return records;
-        })()
-      })))
-    });
-  }
-
-  if (version === 2) {
-    let temp = Array.from(records.values()).filter(r => (r.mid <= 554));
-    //console.log([...temp]);
-    //return send.pugFile('templates/infiniteinfection/score.pug', {
-    //      temp});
-    return send.object(
-      {
-        "new": {
-          music: temp.map(r => ({
-            music_id: K.ITEM('u32', r.mid),
-            music_type: K.ITEM('u32', r.type),
-            score: K.ITEM('u32', r.score),
-            cnt: K.ITEM('u32', 1),
-            clear_type: K.ITEM('u32', r.clear),
-            score_grade: K.ITEM('u32', r.grade),
-            btn_rate: K.ITEM('u32', r.buttonRate),
-            long_rate: K.ITEM('u32', r.longRate),
-            vol_rate: K.ITEM('u32', r.volRate),
-          }))
-        }, old: {}
-      }, { rootName: "game" });
-  }
 
   if (version === 6) {
     return send.object({
@@ -147,63 +91,6 @@ export const loadScore: EPR = async (info, data, send) => {
       },
     });
   }
-
-  if (version === 4 || version === 3) {
-    let temp = Array.from(records.values()).filter(r => (r.mid <= 1368));
-
-
-    return send.object({
-      music: {
-        info: temp.map(r => ({
-          param: K.ARRAY('u32', [
-            r.mid,
-            r.type,
-            r.score,
-            r.clear,
-            r.grade,
-            0,
-            0,
-            r.buttonRate,
-            r.longRate,
-            r.volRate,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-          ]),
-        })
-        ),
-      },
-    });
-  }
-
-
-  return send.object({
-    music: {
-      info: records.map(r => ({
-        param: K.ARRAY('u32', [
-          r.mid,
-          r.type,
-          r.score,
-          r.clear,
-          r.grade,
-          0,
-          0,
-          r.buttonRate,
-          r.longRate,
-          r.volRate,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-        ]),
-      })),
-    },
-  });
 };
 
 export const saveScore: EPR = async (info, data, send) => {
@@ -211,53 +98,6 @@ export const saveScore: EPR = async (info, data, send) => {
   if (!refid) return send.deny();
 
   const version = getVersion(info);
-
-  // Booth - Save score
-  if (version === 1) {
-    try {
-      const mid = parseInt($(data).attr().music_id);
-      const type = parseInt($(data).attr().music_type);
-
-      if (_.isNil(mid) || _.isNil(type)) return send.deny();
-
-      const record = (await DB.FindOne<MusicRecord>(refid, {
-        collection: 'music',
-        mid,
-        type,
-      })) || {
-        collection: 'music',
-        mid,
-        type,
-        score: 0,
-        clear: 0,
-        grade: 0,
-        buttonRate: 0,
-        longRate: 0,
-        volRate: 0,
-      };
-
-      const score = $(data).attr().score ? parseInt($(data).attr().score) : 0;
-      const clear = $(data).attr().clear_type ? parseInt($(data).attr().clear_type) : 0;
-      const grade = $(data).attr().score_grade ? parseInt($(data).attr().score_grade) : 0;
-      if (score > record.score) {
-        record.score = score;
-      }
-
-      record.clear = Math.max(clear, record.clear);
-      record.grade = Math.max(grade, record.grade);
-
-      await DB.Upsert<MusicRecord>(
-        refid,
-        { collection: 'music', mid, type },
-        record
-      );
-
-      return send.success();
-    } catch {
-      return send.deny();
-    }
-  }
-
 
   if (version === -6) { // Using alternate scoring system after 20210831
     const tracks = $(data).elements('track');
@@ -364,7 +204,7 @@ export const saveCourse: EPR = async (info, data, send) => {
   if (!refid) return send.deny();
 
   const version = Math.abs(getVersion(info));
-  if (version == 0) return send.deny();
+  if (version === 0) return send.deny();
 
   const sid = $(data).number('ssnid');
   const cid = $(data).number('crsid');
@@ -395,38 +235,7 @@ export const save: EPR = async (info, data, send) => {
   if (!refid) return send.deny();
 
   const version = Math.abs(getVersion(info));
-  if (version == 0) return send.deny();
-
-  if (version === 1) {
-    try {
-      // Save Profile
-      await DB.Update<Profile>(
-        refid,
-        { collection: 'profile' },
-        {
-          $set: {
-            headphone: $(data).number('headphone'),
-            hiSpeed: $(data).number('hispeed'),
-            appeal: $(data).number('appeal_id'),
-            boothFrame: [$(data).number('frame0'), $(data).number('frame1'), $(data).number('frame2'), $(data).number('frame3'), $(data).number('frame4')],
-            musicID: parseInt($(data).attr("last").music_id),
-            musicType: parseInt($(data).attr("last").music_type),
-            sortType: parseInt($(data).attr("last").sort_type),
-            mUserCnt: $(data).number('m_user_cnt'),
-          },
-          $inc: {
-            expPoint: $(data).number('gain_exp'),
-            packets: $(data).number('earned_gamecoin_packet'),
-            blocks: $(data).number('earned_gamecoin_block'),
-          },
-        }
-      );
-
-      return send.success();
-    } catch {
-      return send.deny();
-    }
-  }
+  if (version === 0) return send.deny();
 
   // Save Profile
   if (version === 6) {
@@ -441,50 +250,6 @@ export const save: EPR = async (info, data, send) => {
           musicType: $(data).number('music_type'),
           sortType: $(data).number('sort_type'),
           headphone: $(data).number('headphone'),
-          blasterCount: $(data).number('blaster_count'),
-
-          hiSpeed: $(data).number('hispeed'),
-          laneSpeed: $(data).number('lanespeed'),
-          gaugeOption: $(data).number('gauge_option'),
-          arsOption: $(data).number('ars_option'),
-          notesOption: $(data).number('notes_option'),
-          earlyLateDisp: $(data).number('early_late_disp'),
-          drawAdjust: $(data).number('draw_adjust'),
-          effCLeft: $(data).number('eff_c_left'),
-          effCRight: $(data).number('eff_c_right'),
-          narrowDown: $(data).number('narrow_down'),
-        },
-        $inc: {
-          packets: $(data).number('earned_gamecoin_packet'),
-          blocks: $(data).number('earned_gamecoin_block'),
-          blasterEnergy: $(data).number('earned_blaster_energy'),
-          extrackEnergy: $(data).number('earned_extrack_energy'),
-          playCount: 1,
-          dayCount: 1,
-          todayCount: 1,
-          playChain: 1,
-          maxPlayChain: 1,
-          weekCount: 1,
-          weekPlayCount: 1,
-          weekChain: 1,
-          maxWeekChain: 1
-        },
-      }
-    );
-  }
-  if (version === 5 || version === 4) {
-    await DB.Update<Profile>(
-      refid,
-      { collection: 'profile' },
-      {
-        $set: {
-          appeal: $(data).number('appeal_id'),
-
-          musicID: $(data).number('music_id'),
-          musicType: $(data).number('music_type'),
-          sortType: $(data).number('sort_type'),
-          headphone: $(data).number('headphone'),
-          blasterCount: $(data).number('blaster_count'),
 
           hiSpeed: $(data).number('hispeed'),
           laneSpeed: $(data).number('lanespeed'),
@@ -515,7 +280,7 @@ export const save: EPR = async (info, data, send) => {
     );
   }
   
-  // New course saving function found in sdvx 20220214
+  // New course saving function found in version 20220214
   // Updated for God mode
   const course = $(data).element('course');
   if(!_.isNil(course)){
@@ -557,8 +322,8 @@ export const save: EPR = async (info, data, send) => {
 
     if (_.isNil(type) || _.isNil(id) || _.isNil(param)) continue;
 
-    if(type === 2 && id.toString() in STAMP_EVENTS6['refillStamps']) {
-      if(param >= STAMP_EVENTS6['refillStamps'][id.toString()]) param = 0
+    if(type === 2 && id.toString() in UNLOCK_EVENTS6['refillStamps']) {
+      if(param >= UNLOCK_EVENTS6['refillStamps'][id.toString()]) param = 0
     }
 
     await DB.Upsert<Item>(
@@ -632,6 +397,30 @@ export const save: EPR = async (info, data, send) => {
     );
   }
 
+  // Save Variant Power
+  const variant = $(data).elements('variant_gate');
+  for (const vp of variant) {
+    const earnedPwr = vp.number('earned_power');
+    const earnedN = vp.number('earned_element.notes');
+    const earnedP = vp.number('earned_element.peak');
+    const earnedTs = vp.number('earned_element.tsumami');
+    const earnedTr = vp.number('earned_element.tricky');
+    const earnedO = vp.number('earned_element.onehand');
+    const earnedH = vp.number('earned_element.handtrip');
+    await DB.Upsert<VariantPower>( refid, { collection: 'variantpower' }, { 
+        $inc: { 
+          power: _.isNil(earnedPwr) ? 0 : earnedPwr,
+          notes: _.isNil(earnedN) ? 0 : earnedN,
+          peak: _.isNil(earnedP) ? 0 : earnedP,
+          tsumami: _.isNil(earnedTs) ? 0 : earnedTs,
+          tricky: _.isNil(earnedTr) ? 0 : earnedTr,
+          onehand: _.isNil(earnedO) ? 0 : earnedO,
+          handtrip: _.isNil(earnedH) ? 0 : earnedH
+        } 
+      }
+    );
+  }
+
   return send.success();
 };
 
@@ -643,14 +432,13 @@ export const load: EPR = async (info, data, send) => {
   const version = Math.abs(getVersion(info));
   console.log("Got version: " + version);
   console.log("DataID: " + refid);
-  if (version == 0) return send.deny();
+  if (version === 0) return send.deny();
 
   let profile = await DB.FindOne<Profile>(refid, {
     collection: 'profile',
   });
 
   if (!profile) {
-    if (version === 1) return send.object(K.ATTR({ none: "1" }));
     return send.object({ result: K.ITEM('u8', 1) });
   }
 
@@ -660,6 +448,8 @@ export const load: EPR = async (info, data, send) => {
   })) || { base: 0, name: 0, level: 0 };
 
   let presents = []
+  let date = new Date()
+  let currentDate = date.toLocaleDateString()
   if(version === 6) {
     if(IO.Exists('webui/asset/config/events.json')) {
       let bufEventData = await IO.ReadFile('webui/asset/json/events.json')
@@ -713,10 +503,38 @@ export const load: EPR = async (info, data, send) => {
         }
       }
     }
+
+    let flagConfig = {}
+    if(IO.Exists('webui/asset/config/flags.json')) {
+      let bufFlagConfig = await IO.ReadFile('webui/asset/config/flags.json')
+      flagConfig = JSON.parse(bufFlagConfig.toString())
+    }
+
+
+    let addlPresents = []
+    if('aprilyukkuri' in flagConfig && flagConfig['aprilyukkuri']['toggle'] || currentDate.substring(0,4) === '4/1/') {
+      addlPresents.push([5546, 1, 1])
+      addlPresents.push([10244, 14, 1])
+    }
+    
+    for(const giftIter in addlPresents) {
+      if(await DB.Count(refid, {collection:'item', type: addlPresents[giftIter][1], id: addlPresents[giftIter][0]}) === 0) {
+        await DB.Upsert(
+          refid, 
+          {collection: 'item', type: addlPresents[giftIter][1], id: addlPresents[giftIter][0]}, 
+          {$set: { param: addlPresents[giftIter][2] }}
+        )
+
+        presents.push({
+          id: addlPresents[giftIter][0],
+          type: addlPresents[giftIter][1],
+          param: addlPresents[giftIter][2]
+        })
+      }
+    }
   }
 
   let curWeekly = []
-  let date = new Date()
   if(IO.Exists('webui/asset/config/weeklymusic.json')) {
     let bufWeeklyMusic = await IO.ReadFile('webui/asset/config/weeklymusic.json')
     let weeklyMusic = JSON.parse(bufWeeklyMusic.toString())
@@ -739,6 +557,7 @@ export const load: EPR = async (info, data, send) => {
   const params = await DB.Find<Param>(refid, { collection: 'param' });
   const arena = await DB.FindOne<Arena>(refid, { collection: 'arena', season: (U.GetConfig('arena_szn') !== "None") ? ARENA[U.GetConfig('arena_szn')]['details']['season'] : 0 });
   const valgeneTicket = await DB.FindOne<ValgeneTicket>(refid, { collection: 'valgene_ticket' })
+  const variant = await DB.FindOne<VariantPower>(refid, { collection: 'variantpower' })
   let weeklyMusic = []
 
   if (curWeekly.length > 0) {
@@ -759,26 +578,7 @@ export const load: EPR = async (info, data, send) => {
   time.setDate(tempDate);
   time.setHours(tempHour);
   const currentTime = time.getTime();
-  const mixes = version == 5 ? await getAutomationMixes(params) : [];
-  if (!profile.extrackEnergy) {
-    profile.extrackEnergy = 0;
-  }
 
-  if (version === 1) {
-    return send.pugFile('templates/booth/load.pug', { code: IDToCode(profile.id), ...profile });
-  }
-
-  if (version === 2) {
-    let tempItem = U.GetConfig('unlock_all_appeal_cards') ? unlockAppealCards(items) : items
-    tempItem = Array.from(tempItem.values()).filter(r => (r.id <= 220));
-    return send.pugFile('templates/infiniteinfection/load.pug', {
-      courses,
-      tempItem,
-      params,
-      skill,
-      ...profile
-    });
-  }
   const bgm = profile.bgm ? profile.bgm : 0;
   const subbg = profile.subbg ? profile.subbg : 0;
   const nemsys = profile.nemsys ? profile.nemsys : 0;
@@ -829,16 +629,15 @@ export const load: EPR = async (info, data, send) => {
     params,
     skill,
     currentTime,
-    mixes,
     version,
     blasterpass,
-    automation: version == 5 ? SDVX_AUTOMATION_SONGS : [],
     code: IDToCode(profile.id),
     arena,
     valgeneTicket,
     creatorItem,
     bplPro,
     weeklyMusic,
+    variant,
     ...profile,
   });
 };
@@ -874,9 +673,7 @@ export const create: EPR = async (info, data, send) => {
     laneSpeed: 0,
     narrowDown: 0,
     notesOption: 0,
-    blasterCount: 0,
     blasterEnergy: 0,
-    extrackEnergy: 0,
     bgm: 0,
     subbg: 0,
     nemsys: 0,

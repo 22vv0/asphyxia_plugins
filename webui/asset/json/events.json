@@ -82,7 +82,7 @@
             "enabled": true,
             "name": "SOUND VOLTEX 10th Anniversary",
             "desc": "Stamp event to unlock 7 songs in any order. As of 07/06/2023, all the songs included in this event can now be unlocked via PCB.",
-            "info": "Toggle this on to enable this stamp event."
+            "info": "Toggle this on to enable/disable this stamp event."
         },
         {
             "id": "reflecstamp",
@@ -90,7 +90,7 @@
             "enabled": true,
             "name": "REFLEC BEAT Song Stamp Event",
             "desc": "Stamp event to unlock 5 songs originally from the REFLEC BEAT game series.<br><br>As of 01/30/2024, these songs are now unlockable via PCB.",
-            "info": "Toggle this on to enable this stamp event."
+            "info": "Toggle this on to enable/disable this stamp event."
         },
         {
             "id": "gmz2022",
@@ -133,7 +133,7 @@
             "enabled": true,
             "name": "PCBおかわりスタンプイベント | PCB Refill Stamp Event",
             "desc": "Stamp event to earn PCB. Once the stamp goal is complete, it will start over and you can earn more PCB.",
-            "info": "Toggle this on to enable this stamp event."
+            "info": "Toggle this on to enable/disable this stamp event."
         },
         {
             "id": "2023stamp",
@@ -141,7 +141,7 @@
             "enabled": true,
             "name": "んだんだぺったん☆二〇二三 | New Year 2023 Stamp Event",
             "desc": "Stamp event to unlock the んだんだぺったん☆二〇二三 appeal card.",
-            "info": "Toggle this on to enable this stamp event."
+            "info": "Toggle this on to enable/disable this stamp event."
         },
         {
             "id": "himehina",
@@ -149,7 +149,7 @@
             "enabled": true,
             "name": "HIMEHINAコラボイベント | HIMEHINA Collab Stamp Event",
             "desc": "Stamp event to unlock the HIMEHINA crew. Both can be unlocked in any order.",
-            "info": "Toggle this on to enable this stamp event."
+            "info": "Toggle this on to enable/disable this stamp event."
         },
         {
             "id": "11thanniv",
@@ -157,7 +157,7 @@
             "enabled": true,
             "name": "ボルテ11周年★記念限定カード | SOUND VOLTEX 11th Anniversary Stamp Event",
             "desc": "Stamp event to unlock the ボルテ11周年★記念限定カード appeal card to commemorate 11 years of SOUND VOLTEX.",
-            "info": "Toggle this on to enable this stamp event."
+            "info": "Toggle this on to enable/disable this stamp event."
         },
         {
             "id": "bpl2022stamp",
@@ -165,7 +165,7 @@
             "enabled": true,
             "name": "Commemorating BEMANI PRO LEAGUE -SEASON 2-! Original Song Contest Special Stamp Event",
             "desc": "Stamp event to unlock 9 songs, including SuddeИDeath. Songs can be unlocked in any order, except for SuddeИDeath, which will be available to unlock once all the other songs are unlocked.<br><br>As of 01/30/2024, these songs are now unlockable via BLASTER GATE.",
-            "info": "Toggle this on to enable this stamp event."
+            "info": "Toggle this on to enable/disable this stamp event."
         },
         {
             "id": "kac2023perfecteater",
@@ -173,7 +173,7 @@
             "enabled": true,
             "name": "KONAMI Arcade Championship (2023) Entry Song",
             "desc": "Enabled by entering the Konami Arcade Championship 2023 SOUND VOLTEX qualifiers, this event unlocks the song パーフェクトイーター / Perfect Eater on your next login.",
-            "info": "Toggle this on to enable this event."
+            "info": "Toggle this on to enable/disable this event."
         },
         {
             "id": "kac2023stamp",
@@ -181,7 +181,7 @@
             "enabled": true,
             "name": "KAC 2023 Special Stamp Event (累乗のカルマ)",
             "desc": "Enabled by entering the Konami Arcade Championship 2023 SOUND VOLTEX qualifiers, this event will start a stamp event to unlock a new song, 累乗のカルマ. Collect 10 stamps to complete the stamp event.",
-            "info": "Toggle this on to enable this event."
+            "info": "Toggle this on to enable/disable this event."
         },
         {
             "id": "bpls3songs",
@@ -201,7 +201,7 @@
             "enabled": true,
             "name": "KAC 2023 Special Stamp Event (Stylus and QQ)",
             "desc": "Stamp select event to unlock Stylus and QQ and can be unlocked in any order. Collect 10 stamps for each song.",
-            "info": "Toggle this option to enable this stamp event."
+            "info": "Toggle this option to enable/disable this stamp event."
         },
         {
             "id": "ccjsong",
@@ -217,7 +217,7 @@
             "enabled": true,
             "name": "ドラゴンの宴☆二〇二四 | New Year 2024 Stamp Event",
             "desc": "Stamp event to unlock the 2024 appeal card, plus PCB for the remaining 9 steps.",
-            "info": "Toggle this option to enable this stamp event."
+            "info": "Toggle this option to enable/disable this stamp event."
         },
         {
             "id": "12thanniv",
@@ -225,7 +225,7 @@
             "enabled": true,
             "name": "ボルテ12周年★記念限定カード | 12th Anniversary Appeal Card",
             "desc": "Stamp event to unlock the SDVX 12th anniversary appeal card.",
-            "info": "Toggle this option to enable this stamp event."
+            "info": "Toggle this option to enable/disable this stamp event."
         },
         {
             "id": "12thannivpcbevent",
@@ -233,7 +233,7 @@
             "enabled": true,
             "name": "PCBおかわりスタンプイベント | 12th Anniversary PCB Refill Stamp Event",
             "desc": "Stamp event to earn PCB. Once the stamp goal is complete, it will start over and you can earn more PCB.",
-            "info": "Toggle this on to enable this stamp event."
+            "info": "Toggle this on to enable/disable this stamp event."
         },  
         {
             "id": "bpls3sdvx",
@@ -269,7 +269,7 @@
             "enabled": true,
             "name": "BPL S3 コンプリートスタンプ | BPL S3 Complete Stamp Event",
             "desc": "Stamp event to unlock the BPL S3 SDVX Semifinal songs (Xeno Gravity, Cuz we <3 this Game) and the Final song (NEMSYS ARENA World Hexathlon.)<br>Clear the songs displayed on the sheet to earn their stamps. A total of 23 stamps can be obtained.",
-            "info": "Toggle this option to enable this complete stamp event."
+            "info": "Toggle this option to enable/disable this stamp event."
         },
         {
             "id": "minigracegift",
@@ -285,7 +285,7 @@
             "enabled": true,
             "name": "BEMANI PRO LEAGUE -SEASON 3- Special Stamp",
             "desc": "Similar to BPL S2 stamp event (SuddeИDeath,) this is an event to unlock 10 songs, including { eXLIPXe }. Songs can be unlocked in any order, except for { eXLIPXe }, which will be available to unlock for 30 stamps once all the other songs are unlocked.",
-            "info": "Toggle this on to enable this stamp event."
+            "info": "Toggle this on to enable/disable this stamp event."
         },
         {
             "id": "tamaadv",
@@ -301,7 +301,7 @@
             "enabled": true,
             "name": "REFLEC BEAT Song Stamp Event (2024)",
             "desc": "Stamp event to unlock 5 more songs originally from the REFLEC BEAT game series.",
-            "info": "Toggle this on to enable this stamp event."
+            "info": "Toggle this on to enable/disable this stamp event."
         },
         {
             "id": "mystreun",
@@ -335,7 +335,7 @@
             "enabled": true,
             "name": "PRECIOUS UNIVERSAL CELEBRATE STAMP",
             "desc": "Stamp select event where you can unlock 9 songs in any order.",
-            "info": "Toggle this on to enable this stamp event."
+            "info": "Toggle this on to enable/disable this stamp event."
         },
         {
             "id": "2025stamp",
@@ -343,7 +343,7 @@
             "enabled": true,
             "name": "2025 U,R,B,R,,, YE-AR---!!!ｷｬ----!!!!!! スタンプボーナス | New Year 2025 Stamp Event",
             "desc": "Stamp event to unlock the 2025 appeal card, plus PCB for the remaining 9 steps.",
-            "info": "Toggle this option to enable this stamp event."
+            "info": "Toggle this option to enable/disable this stamp event."
         },
         {
             "id": "13thannivap",
@@ -359,7 +359,49 @@
             "enabled": true,
             "name": "PCBおかわりスタンプイベント | 13th Anniversary PCB Refill Stamp Event",
             "desc": "Stamp event to earn PCB. Once the stamp goal is complete, it will start over and you can earn more PCB.",
-            "info": "Toggle this on to enable this stamp event."
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hololiveexpo",
+            "type": "stamp",
+            "enabled": true,
+            "name": "hololive SUPER EXPO 2025出展記念!コラボスタンプ",
+            "desc": "Stamp events to get hololive appeal cards and appeal titles. Play songs by Shirakami Fubuki, Nekomata Okayu, Tsunomaki Watame, Houshou Marine and Usada Pekora to earn stamps.",
+            "info": "Toggle this on to enable the stamp events."
+        },
+        {
+            "id": "vgate1",
+            "type": "variant",
+            "enabled": true,
+            "name": "VARIANT GATE",
+            "desc": "Accumulate VARIANT POWER to make a special song folder appear in EXTRACK, clear the songs at a certain difficulty to obtain keys. Get all keys to play OVER TRACK.",
+            "info": "Toggle this on to enable/disable this event.",
+            "settings": [
+                {
+                    "id": "minSealDiff",
+                    "title": "OVER TRACK difficulty",
+                    "desc": "Set the lowest difficulty available for OVER TRACK. You can also only get the seals for OVER TRACK by clearing the song on this difficulty, or higher (default: Maximum)",
+                    "val": [[3, "Choose difficulty"], [0, "Novice"], [1, "Advanced"], [2, "Exhaust"], [3, "Maximum"]]
+                },
+                {
+                    "id": "minOverTrackRank",
+                    "title": "OVER TRACK gauge rank",
+                    "desc": "Set the lowest VARIATIVE RATE gauge rank available for OVER TRACK (default: Rank V)",
+                    "val": [[5, "Choose rank"], [1, "Rank I"], [2, "Rank II"], [3, "Rank III"], [4, "Rank IV"], [5, "Rank V"]]
+                }
+            ]
+        },
+        {
+            "id": "crossresonance",
+            "type": "cross_online",
+            "enabled": true,
+            "name": "ぼる×りこ Cross Resonance",
+            "desc": "Crossover event between SOUND VOLTEX and Polaris Chord<br>Since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding songs' option below to automatically unlock them on your next login.",
+            "info": [
+                "Song 1: 'Crossfade'",
+                "Song 2: '星界のアルペジオ'",
+                "Song 3: 'Ö＜3rf10₩'"
+            ]
         }
     ],
     "flags": [
@@ -377,51 +419,57 @@
         },
         {
             "id": "submonvsync",
-            "key": "SUBMONITOR_VSYNC_ENABLE",
+            "key": "Sub monitor V-Sync",
             "str": "SUBMONITOR_VSYNC_ENABLE",
             "explain": "Enables vertical sync for secondary display."
         },
         {
             "id": "demoloopinfo",
             "key": "DEMOLOOP_INFORMATION",
-            "str": "DEMOLOOP_INFORMATION\tdemo_info/240604_bpls4iidx_demo.png",
-            "explain": "Enables display of available information in attract mode."
+            "str": "DEMOLOOP_INFORMATION\tdemo_info/250220_generator_pekora_demo.png",
+            "explain": "Enables display of information in attract mode."
         },
         {
             "id": "konami50",
-            "key": "KONAMI_50TH_LOGO",
+            "key": "Konami 50th Anniversary logo",
             "str": "KONAMI_50TH_LOGO",
-            "explain": "Enables the 50th anniversary KONAMI logo."
+            "explain": "Enables the 50th anniversary KONAMI logo on game startup."
         },
         {
             "id": "christmas2023",
-            "key": "MERRY_CHRISTMAS_2023",
+            "key": "Christmas login greeting",
             "str": "MERRY_CHRISTMAS_2023",
             "explain": "Enables Navigator Christmas greeting (only use one of the greeting flags at a time)"
         },
         {
             "id": "valentines2024",
-            "key": "VALENTINES_DAY_2024",
+            "key": "Valentines Day login greeting",
             "str": "VALENTINES_DAY_2024",
             "explain": "Enables Navigator Valentines Day greeting (only use one of the greeting flags at a time)"
         },
         {
             "id": "whiteday2024",
-            "key": "WHITE_DAY_2024",
+            "key": "White Day login greeting",
             "str": "WHITE_DAY_2024",
             "explain": "Enables Navigator White Day greeting (only use one of the greeting flags at a time)"
         },
         {
             "id": "halloween",
-            "key": "HALLOWEEN_EVENT",
+            "key": "Halloween login greeting",
             "str": "HALLOWEEN_EVENT",
             "explain": "Enables Navigator Halloween greeting (only use one of the greeting flags at a time)"
         },
         {
             "id": "aprilrainbowline",
-            "key": "APRIL_RAINBOW_LINE_ACTIVE",
+            "key": "V-RAN (april fools 2024)",
             "str": "APRIL_RAINBOW_LINE_ACTIVE",
             "explain": "Enables April Fools 2024 Effect: rainbow lasers. Type V-RAN on song search bar to enable."
+        },
+        {
+            "id": "aprilyukkuri",
+            "key": "ゆっくりしていってね！！！",
+            "str": ["YUKKURI_RASIS_CREW_ENABLE", "YUKKURI_RASIS_TITLE_ENABLE"],
+            "explain": "Enables April Fools 2025 Effect: title screen with Yukkuri SOUND VOLTEX characters, and Yukkuri Rasis navigator."
         }
     ]
 }

@@ -2,7 +2,6 @@ import { Profile } from '../models/profile';
 import { MusicRecord } from '../models/music_record';
 import { Matchmaker } from '../models/matchmaker';
 import { getVersion, IDToCode, GetCounter } from '../utils';
-import { Mix } from '../models/mix';
 import { Rival } from '../models/rival';
 
 export const hiscore: EPR = async (info, data, send) => {
@@ -14,33 +13,6 @@ export const hiscore: EPR = async (info, data, send) => {
     await DB.Find<Profile>(null, { collection: 'profile' }),
     '__refid'
   );
-
-  if (version === 1) {
-    return send.object({
-      hiscore: K.ATTR({ type: "1" }, {
-        music: _.map(
-          _.groupBy(records, r => {
-            return `${r.mid}:${r.type}`;
-          }),
-          r => _.maxBy(r, 'score')
-        ).map(r => (K.ATTR({ id: String(r.mid) }, {
-          note: (() => {
-            const notes = [];
-
-            for (let i = 1; i <= 3; i++) {
-              if (r.type !== i) continue;
-              notes.push(K.ATTR({ type: String(r.type) }, {
-                name: K.ITEM('str', profiles[r.__refid][0].name),
-                score: K.ITEM('u32', r.score)
-              }))
-            }
-
-            return notes;
-          })()
-        }))),
-      })
-    })
-  }
 
   return send.object({
     sc: {
@@ -82,78 +54,12 @@ export const rival: EPR = async (info, data, send) => {
           music: (
             await DB.Find<MusicRecord>(p.refid, { collection: 'music' })
           ).map(r => ({
-            // Changes were somehow made in the order of the field for the version 2023042500
+            // Version 2023042500 added exscore to rival data.
             param: K.ARRAY('u32', version < 2023042500 ? [r.mid, r.type, r.score, r.clear, r.grade] : [r.mid, r.type, r.score, r.exscore, r.clear, r.grade]),
           })),
         };
       })
     ),
-  });
-};
-
-export const saveMix: EPR = async (info, data, send) => {
-  const refid = $(data).str('ref_id');
-  if (!refid) return send.deny();
-
-  const profile = await DB.FindOne<Profile>(refid, { collection: 'profile' });
-  if (!profile) return send.deny();
-
-  const mix = $(data).element('automation');
-
-  const id = await GetCounter('mix');
-  let code = _.padStart(_.random(0, 999999999999).toString(), 12, '0');
-  while (await DB.FindOne<Mix>({ collection: 'mix', code })) {
-    code = _.padStart(_.random(0, 999999999999).toString(), 12, '0');
-  }
-
-  const doc = await DB.Insert<Mix>({
-    collection: 'mix',
-    id,
-    code,
-    name: mix.str('mix_name'),
-    creator: profile.name,
-    param: mix.str('generate_param'),
-    tag: mix.number('tag_bit'),
-    jacket: mix.number('jacket_id'),
-  });
-
-  return send.object({
-    automation: {
-      mix_id: K.ITEM('s32', id),
-      mix_code: K.ITEM('str', doc.code),
-      seq: K.ITEM('str', doc.code),
-      mix_name: K.ITEM('str', doc.name),
-      player_name: K.ITEM('str', doc.creator),
-      generate_param: K.ITEM('str', doc.param),
-      distribution_date: K.ITEM('u32', 19990101),
-      jacket_id: K.ITEM('s32', doc.jacket),
-      tag_bit: K.ITEM('s32', doc.tag),
-      like_flg: K.ITEM('bool', 0),
-    },
-  });
-};
-
-export const loadMix: EPR = async (info, data, send) => {
-  const code = $(data).str('mix_code');
-
-  const mix = await DB.FindOne<Mix>({ collection: 'mix', code });
-  if (!mix) {
-    return send.object({ result: K.ITEM('s32', 1) });
-  }
-
-  return send.object({
-    automation: {
-      mix_id: K.ITEM('s32', mix.id),
-      mix_code: K.ITEM('str', mix.code),
-      seq: K.ITEM('str', mix.code),
-      mix_name: K.ITEM('str', mix.name),
-      player_name: K.ITEM('str', mix.creator),
-      generate_param: K.ITEM('str', mix.param),
-      distribution_date: K.ITEM('u32', 19990101),
-      jacket_id: K.ITEM('s32', mix.jacket),
-      tag_bit: K.ITEM('s32', mix.tag),
-      like_flg: K.ITEM('bool', 0),
-    },
   });
 };
 

@@ -73,6 +73,8 @@ function getMedal(clear) {
             return 1.0;
         case 3:
             return 1.02;
+        case 6:
+            return 1.04
         case 4:
             return 1.05;
         case 5:
@@ -226,11 +228,15 @@ function preSetTableMark(type) {
                 )
             ).append(
                 $('<th>').append(
-                    "Clear"
+                    "EFFECTIVE CLEAR"
                 )
             ).append(
                 $('<th>').append(
-                    "Hard Clear"
+                    "EXCESSIVE CLEAR"
+                )
+            ).append(
+                $('<th>').append(
+                    "MAXXIVE CLEAR"
                 )
             ).append(
                 $('<th>').append(
@@ -428,8 +434,8 @@ function setUpStatistics() {
     baseTBodyGpD = $('<tbody>');
     baseTBodyASpL = $('<tbody>');
 
-    var CMpDArray = createArray(5, 5);
-    var CMpLArray = createArray(20, 5);
+    var CMpDArray = createArray(5, 6);
+    var CMpLArray = createArray(20, 6);
     var GpDArray = createArray(5, 10);
     var GpLArray = createArray(20, 10);
     var ASpLArray = createArray(20, 2);
@@ -469,6 +475,10 @@ function setUpStatistics() {
                 )
             ).append(
                 $('<td>').append(
+                    CMpDArray[diff][5]
+                )
+            ).append(
+                $('<td>').append(
                     CMpDArray[diff][3]
                 )
             ).append(
@@ -495,6 +505,10 @@ function setUpStatistics() {
             ).append(
                 $('<td>').append(
                     CMpLArray[lv - 1][2]
+                )
+            ).append(
+                $('<td>').append(
+                    CMpLArray[lv - 1][5]
                 )
             ).append(
                 $('<td>').append(
@@ -872,7 +886,7 @@ $(document).ready(function() {
                                 ).append(
                                     $('<div>').append(profile_data["name"]).css('font-size', "35px")
                                 ).append(
-                                    $('<div>').append("Akaname:").css('font-size', '15')
+                                    $('<div>').append("Appeal Title:").css('font-size', '15')
                                 ).append(
                                     $('<div>').append(getAkaname(profile_data["akaname"])).css('font-size', "35px")
                                 )

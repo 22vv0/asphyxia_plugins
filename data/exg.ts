@@ -22,7 +22,7 @@ export const EVENT6 = [
   'PLAYERJUDGEADJ_ENABLE',
   'MIXID_INPUT_ENABLE',
   'DISP_PASELI_BANNER',
-  'CHARACTER_IGNORE_DISABLE\t122,123,131,139,140,143,149,160,162,163,164',
+  'CHARACTER_IGNORE_DISABLE\t122,123,131,139,140,143,149,160,162,163,164,167,170',
   'STAMP_IGNORE_DISABLE\t69~78,194~205,249~278,312~321,368~377,397~418',
   'SUBBG_IGNORE_DISABLE\t166~185,281~346,369~381,419~438,464~482,515~552',
   'OMEGA_ENABLE\t1,2,3,4,5,6,7,8,9',
@@ -47,7 +47,8 @@ export const EVENT6 = [
   'VALGENE_ENABLE',
   'PLAYER_RADAR_ENABLE',
   'S_PUC_EFFECT_ENABLE',
-  'FAVORITE_CREW_ENABLE'
+  'FAVORITE_CREW_ENABLE',
+  'TAMAADV_VALGENE_BONUS_ENABLE'
 ];
 
 export const INFORMATION6 = {
@@ -74,10 +75,10 @@ export const LICENSED_SONGS6 = [
   '2069', '2070', '2071', '2072', '2073', '2074', '2075', '2076', '2066', '2067', 
   '2068', '2165', '2166', '2167', '2172', '2173', '2174', '2175', '2184', '2193', 
   '2194', '2195', '2196', '2197', '2210', '2211', '2212', '2213', '2214', '2215',
-  '2216'
+  '2216', '2217', '2218', '2219', '2205', '2206', '2207', '2208', '2224'
 ]
 
-export const STAMP_EVENTS6 = {
+export const UNLOCK_EVENTS6 = {
   'refillStamps': {
     '9': 5,
     '28': 10,
@@ -454,7 +455,7 @@ export const STAMP_EVENTS6 = {
     'type': 'tama',
     'info': {
       'id': 39,
-      'list': '0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29'
+      'list': '0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40'
     }
   },
   'reflecstamp2': {
@@ -562,6 +563,47 @@ export const STAMP_EVENTS6 = {
       ]
     }
   },
+  'hololiveexpo': {
+    'type': 'main',
+    'info': {
+      'id': 0,
+      'stmpHd': '[sz:22]SPECIAL STAMP BONUS',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 2/20～3/23',
+      'data': [
+        {
+          'stmpid': 52,
+          'stps': 10,
+          'stprwrd': '1:a:5541 3:n:40245 6:n:40246 10:n:40247 req:musicid:2069,2070,2071,2072,2073 imgbg:bg_stamp_fubuki'
+        },
+        {
+          'stmpid': 53,
+          'stps': 10,
+          'stprwrd': '1:a:5542 3:n:40248 6:n:40249 10:n:40250 req:musicid:2165,2166,2167 imgbg:bg_stamp_okayu'
+        },
+        {
+          'stmpid': 54,
+          'stps': 10,
+          'stprwrd': '1:a:5543 3:n:40251 6:n:40252 10:n:40253 req:musicid:2172,2173,2174,2175 imgbg:bg_stamp_watame'
+        },
+        {
+          'stmpid': 55,
+          'stps': 10,
+          'stprwrd': '1:a:5544 3:n:40254 6:n:40255 10:n:40256 req:musicid:1753,1754,1755,1756,1757,1758,2071,2194,2195,2196,2197 imgbg:bg_stamp_marine'
+        },
+        {
+          'stmpid': 56,
+          'stps': 10,
+          'stprwrd': '1:a:5545 3:n:40257 6:n:40258 10:n:40259 req:musicid:1755,2205,2206,2207,2208 imgbg:bg_stamp_pekora'
+        }
+      ]
+    }
+  },
+  'vgate1': {
+    'info': {
+      'id': 57,
+      'setid': 1
+    }
+  }
 }
 
 export const EVENT_ITEMS6 = {
@@ -648,7 +690,10 @@ export const EVENT_ITEMS6 = {
   "bpls4tripletribe_2": ['2190'],
   "bpls4tripletribe_3": ['2191'],
   // 13th anniversary appeal stamp
-  "13thannivap": ['5540']
+  "13thannivap": ['5540'],
+  "crossresonance_1": ['2231'],
+  "crossresonance_2": ['2232'],
+  "crossresonance_3": ['2233']
 }
 
 export const APRILFOOLSSONGS = [
@@ -656,9 +701,8 @@ export const APRILFOOLSSONGS = [
 ]
 
 export const VALKYRIE_SONGS = [
-  '1744', '1672', '2063', '2064', '2065', '2162', '2163', '2164', // Valk exclusives 
-  '1855', '1742', '1743', '1745', '1846',  // Arena station songs
-  '1736', '1737', '1738', '1847', '1848', '1849', '1980', '1978', '1979' // X-record
+  '2162', '2163', '2164', '2189', '2190', '2191', // Valk exclusives 
+  '1745', '1846' // Arena station songs
 ]
 
 /*
@@ -993,182 +1037,28 @@ export const ARENA = {
       is_shop: 1
     },
     arena_items: [
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 2000,
-        item_type: 0,
-        item_id: 85,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 4000,
-        item_type: 0,
-        item_id: 389,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 8000,
-        item_type: 0,
-        item_id: 635,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 8000,
-        item_type: 0,
-        item_id: 2171,
-        param: 23,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 4000,
-        item_type: 0,
-        item_id: 786,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 4000,
-        item_type: 0,
-        item_id: 787,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 4000,
-        item_type: 0,
-        item_id: 788,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 8000,
-        item_type: 0,
-        item_id: 789,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 8000,
-        item_type: 0,
-        item_id: 790,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 8000,
-        item_type: 0,
-        item_id: 610,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 5000,
-        item_type: 0,
-        item_id: 2077,
-        param: 23,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 5000,
-        item_type: 0,
-        item_id: 2078,
-        param: 23,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 15000,
-        item_type: 0,
-        item_id: 1902,
-        param: 23,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 8000,
-        item_type: 0,
-        item_id: 1855,
-        param: 23,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 8000,
-        item_type: 0,
-        item_id: 381,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 8000,
-        item_type: 0,
-        item_id: 633,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 4000,
-        item_type: 0,
-        item_id: 332,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 4000,
-        item_type: 0,
-        item_id: 711,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 4000,
-        item_type: 0,
-        item_id: 871,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 2000,
-        item_type: 0,
-        item_id: 872,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 2000,
-        item_type: 0,
-        item_id: 64,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 2000,
-        item_type: 0,
-        item_id: 88,
-        param: 8,
-      }
+      [1, 1, 2000, 0, 85, 8],
+      [1, 1, 4000, 0, 389, 8],
+      [1, 1, 8000, 0, 635, 8],
+      [1, 1, 8000, 0, 2171, 23],
+      [1, 1, 4000, 0, 786, 8],
+      [1, 1, 4000, 0, 787, 8],
+      [1, 1, 4000, 0, 788, 8],
+      [1, 1, 8000, 0, 789, 8],
+      [1, 1, 8000, 0, 790, 8],
+      [1, 1, 8000, 0, 610, 8],
+      [1, 1, 5000, 0, 2077, 23],
+      [1, 1, 5000, 0, 2078, 23],
+      [1, 1, 15000, 0, 1902, 23],
+      [1, 1, 8000, 0, 1855, 23],
+      [1, 1, 8000, 0, 381, 8],
+      [1, 1, 8000, 0, 633, 8],
+      [1, 1, 4000, 0, 332, 8],
+      [1, 1, 4000, 0, 711, 8],
+      [1, 1, 4000, 0, 871, 8],
+      [1, 1, 2000, 0, 872, 8],
+      [1, 1, 2000, 0, 64, 8],
+      [1, 1, 2000, 0, 88, 8]
     ]
   },
   'Season 14 (MEGAMIX BATTLE 2024/07/11～2024/08/13)': {
@@ -1341,7 +1231,51 @@ export const ARENA = {
       [1, 1, 1000, 0, 323, 8],
       [1, 1, 2000, 0, 281, 8]
     ]
-  }
+  },
+  'Season 18 (MEGAMIX BATTLE 2024/10/31～2024/11/25)': {
+    details: {
+      season: 18,
+      rule: 0,
+      rank_match_target: 2,
+      time_start: BigInt(Date.parse('13 Mar 2025 00:00:00 GMT')),
+      time_end: BigInt(Date.parse('7 Apr 2025 23:59:59 GMT')),
+      shop_start: BigInt(Date.parse('7 Apr 2025 00:00:00 GMT')),
+      shop_end: BigInt(Date.parse('7 Apr 2025 23:59:59 GMT')),
+      is_open: 1,
+      is_shop: 1
+    },
+    arena_items: [
+      [1, 1, 4000, 0, 1855, 23],
+      [1, 1, 4000, 0, 1742, 23],
+      [1, 1, 4000, 0, 1743, 23],
+      [1, 1, 4000, 0, 1745, 23],
+      [1, 1, 4000, 0, 1846, 23],
+      [1, 1, 15000, 0, 1902, 23],
+      [1, 1, 5000, 0, 2077, 23],
+      [1, 1, 5000, 0, 2078, 23],
+      [1, 1, 4000, 0, 381, 8],
+      [1, 1, 4000, 0, 633, 8],
+      [1, 1, 4000, 0, 632, 8],
+      [1, 1, 4000, 0, 342, 8],
+      [1, 1, 8000, 0, 634, 8],
+      [1, 1, 2000, 0, 332, 8],
+      [1, 1, 2000, 0, 711, 8],
+      [1, 1, 2000, 0, 871, 8],
+      [1, 1, 2000, 0, 37, 8],
+      [1, 1, 2000, 0, 239, 8],
+      [1, 1, 2000, 0, 131, 8],
+      [1, 1, 2000, 0, 612, 8],
+      [1, 1, 4000, 0, 348, 8],
+      [1, 1, 1000, 0, 872, 8],
+      [1, 1, 1000, 0, 64, 8],
+      [1, 1, 1000, 0, 88, 8],
+      [1, 1, 1000, 0, 111, 8],
+      [1, 1, 1000, 0, 132, 8],
+      [1, 1, 1000, 0, 8, 8],
+      [1, 1, 1000, 0, 323, 8],
+      [1, 1, 2000, 0, 165, 8]
+    ]
+  },
 }
 
 export const VALGENE = {
@@ -1425,6 +1359,11 @@ export const VALGENE = {
       valgene_name: "ヴァルキリージェネレーター 第15弾",
       valgene_name_english: "Valkyrie Generator Vol. 15",
       valgene_id: 16
+    },
+    {
+      valgene_name: "ヴァルキリージェネレーター 第16弾",
+      valgene_name_english: "Valkyrie Generator Vol. 16",
+      valgene_id: 17
     }
   ],
   rarity: {
@@ -1803,6 +1742,23 @@ export const VALGENE = {
         }
       ]
     },
+    {
+      volume: 17,
+      items: [
+        {
+          type: 11,
+          item_ids: [168, 169]
+        },
+        {
+          type: 18,
+          item_ids: [617, 618, 619, 620, 621, 622, 623, 624, 625, 626, 627, 628, 629, 630, 631, 632, 633, 634, 635, 636, 637, 638, 639, 640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 650, 651, 652, 653, 654, 655, 656, 657, 658, 659]
+        },
+        {
+          type: 19,
+          item_ids: [88, 89, 90, 91, 92]
+        }
+      ]
+    }
   ]
 }
 
@@ -1933,6 +1889,42 @@ export const PREGENE = [
       "crew": [164],
       "stamp": [409, 410, 411, 412, 413, 414, 415, 416, 417, 418],
       "subbg": [532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545, 546, 547, 548, 549, 550, 551, 552]
+    },
+    probability: [0.05, 0.39, 0.6]
+  },
+  {
+    id: 15,
+    items: {
+      "crew": [166],
+      "stamp": [425, 426, 427, 428, 429, 430, 431, 432, 433, 434],
+      "subbg": [575, 576, 577, 578, 579, 580, 581, 582, 583, 584, 585, 586, 587, 588, 589, 590, 591, 592, 593, 594]
+    },
+    probability: [0.05, 0.39, 0.6]
+  },
+  {
+    id: 16,
+    items: {
+      "crew": [167],
+      "stamp": [435, 436, 437, 438, 439, 440, 441, 442, 443, 444],
+      "subbg": [595, 596, 597, 598, 599, 600, 601, 602, 603, 604, 605, 606, 607, 608, 609, 610, 611, 612, 613, 614, 615, 616]
+    },
+    probability: [0.05, 0.39, 0.6]
+  },
+  {
+    id: 17,
+    items: {
+      "crew": [170],
+      "stamp": [445, 446, 447, 448, 449, 450, 451, 452, 453, 454],
+      "subbg": [660, 661, 662, 663, 664, 665, 666, 667, 668, 669, 670, 671, 672, 673]
+    },
+    probability: [0.05, 0.39, 0.6]
+  },
+  {
+    id: 18,
+    items: {
+      "crew": [172],
+      "stamp": [455, 456, 457, 458, 459, 460, 461, 462, 463, 464],
+      "subbg": [674, 675, 676, 677, 678, 679, 680, 681, 682, 683, 684, 685, 686, 687, 688, 689, 690, 691, 692, 693, 694]
     },
     probability: [0.05, 0.39, 0.6]
   }

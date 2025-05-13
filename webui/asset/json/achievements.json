@@ -5523,6 +5523,111 @@
             "rtype": "aptitle",
             "rid": 10351,
             "troptype": 3
+        },
+        {
+            "id": 790,
+            "title": "MAXXIVEメダル を 初めて獲得",
+            "rtype": "pcb",
+            "rid": 100,
+            "troptype": 1
+        },
+        {
+            "id": 791,
+            "title": "MAXXIVEメダル を 5個獲得",
+            "rtype": "pcb",
+            "rid": 100,
+            "troptype": 1
+        },
+        {
+            "id": 792,
+            "title": "MAXXIVEメダル を 10個獲得",
+            "rtype": "aptitle",
+            "rid": 10352,
+            "troptype": 1
+        },
+        {
+            "id": 793,
+            "title": "MAXXIVEメダル を 30個獲得",
+            "rtype": "pcb",
+            "rid": 100,
+            "troptype": 1
+        },
+        {
+            "id": 794,
+            "title": "MAXXIVEメダル を 50個獲得",
+            "rtype": "pcb",
+            "rid": 100,
+            "troptype": 1
+        },
+        {
+            "id": 795,
+            "title": "MAXXIVEメダル を 100個獲得",
+            "rtype": "aptitle",
+            "rid": 10353,
+            "troptype": 1
+        },
+        {
+            "id": 796,
+            "title": "MAXXIVEメダル を 200個獲得",
+            "rtype": "aptitle",
+            "rid": 10354,
+            "troptype": 1
+        },
+        {
+            "id": 797,
+            "title": "MAXXIVEメダル を 300個獲得",
+            "rtype": "pcb",
+            "rid": 100,
+            "troptype": 1
+        },
+        {
+            "id": 798,
+            "title": "MAXXIVEメダル を 400個獲得",
+            "rtype": "aptitle",
+            "rid": 10355,
+            "troptype": 1
+        },
+        {
+            "id": 799,
+            "title": "MAXXIVEメダル を 500個獲得",
+            "rtype": "pcb",
+            "rid": 300,
+            "troptype": 2
+        },
+        {
+            "id": 800,
+            "title": "MAXXIVEメダル を 600個獲得",
+            "rtype": "aptitle",
+            "rid": 10356,
+            "troptype": 2
+        },
+        {
+            "id": 801,
+            "title": "MAXXIVEメダル を 700個獲得",
+            "rtype": "pcb",
+            "rid": 300,
+            "troptype": 2
+        },
+        {
+            "id": 802,
+            "title": "MAXXIVEメダル を 800個獲得",
+            "rtype": "aptitle",
+            "rid": 10357,
+            "troptype": 2
+        },
+        {
+            "id": 803,
+            "title": "MAXXIVEメダル を 900個獲得",
+            "rtype": "pcb",
+            "rid": 300,
+            "troptype": 2
+        },
+        {
+            "id": 804,
+            "title": "MAXXIVEメダル を 1000個獲得",
+            "rtype": "aptitle",
+            "rid": 10358,
+            "troptype": 3
         }
     ]
 }
