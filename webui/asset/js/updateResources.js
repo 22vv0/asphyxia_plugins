@@ -10,118 +10,111 @@ $(document).ready(async function() {
     })
     
     $( "#updateResources" ).click(async function() {
-        answer = confirm("Clicking OK would mean that you have already updated the datacode in your ea3-config.xml file. Would you like to proceed?");
-        if (answer == true) {
-            document.getElementById("logtextarea").textContent = ''
-            document.getElementById("logtextarea").textContent = 'Running....\n'
-            await emit("copyResourcesFromGame").then(
-                function(response){
-                    document.getElementById("logtextarea").textContent = 'Done.\n\n'
-                    document.getElementById("logtextarea").textContent += 'NOTE:\n- labels for these new files (nemsys, bgm, submonitor bg, chat stamps) in the asset/json/data.json file needs to be updated.\n'
-                    document.getElementById("logtextarea").textContent += '- for converting s3p files to mp3, check guide in the notes section above.\n\n'
+        document.getElementById("logtextarea").textContent = ''
+        
+        document.getElementById("logtextarea").textContent += 'NOTE:\n- For converting s3p files to mp3, check guide in the notes section above.\n'
+        document.getElementById("logtextarea").textContent += '- When running asphyxia in dev mode, you should see copy logs and/or errors on the console in realtime.\n\n'
 
-                    if(response['data']['errors'].length > 0) {
-                        document.getElementById("logtextarea").textContent += 'Errors: \n'
-                        $.each(response['data']['errors'], function(key, val) {
-                            document.getElementById("logtextarea").textContent += "- " + val + '\n'
-                        })
-                        document.getElementById("logtextarea").textContent += '\n\n'
-                    }
-
-                    if(response['data']['course']) {
-                        document.getElementById("logtextarea").textContent += "Updated course_data.json from data/exg.ts!"
-                    }
-                    document.getElementById("logtextarea").textContent += '\n\n\n'
-
-                    if(response['data']['versionSongs'].length > 0) {
-                        document.getElementById("logtextarea").textContent += 'New songs in latest version data: \n'
-                        $.each(response['data']['versionSongs'], function(key, val) {
-                            document.getElementById("logtextarea").textContent += "- " +  val[1] + '\n'
-                        })
-                        document.getElementById("logtextarea").textContent += '\n\n'
-                    }
-
-
-                    if(response['data']['jsonSongs'].length > 0) {
-                        document.getElementById("logtextarea").textContent += 'New songs added to mdb asset: \n'
-                        $.each(response['data']['jsonSongs'], function(key, val) {
-                            document.getElementById("logtextarea").textContent += "- " +  val[1] + '\n'
-                        })
-                        document.getElementById("logtextarea").textContent += '\n\n'
-                    }
-
-                    if(response['data']['xcdSongs'].length > 0) {
-                        document.getElementById("logtextarea").textContent += 'XCD songs: \n'
-                        $.each(response['data']['xcdSongs'], function(key, val) {
-                            document.getElementById("logtextarea").textContent += "- " +  val[1] + '\n'
-                        })
-                        document.getElementById("logtextarea").textContent += '\n\n'
-                    }
-
-                    if(response['data']['nemsys'].length > 0) {
-                        document.getElementById("logtextarea").textContent += 'New nemsys: \n'
-                        $.each(response['data']['nemsys'], function(key, val) {
-                            document.getElementById("logtextarea").textContent += "- " + val + '\n'
-                        })
-                        document.getElementById("logtextarea").textContent += '\n\n'
-                    }
-
-                    if(response['data']['bgm'].length > 0) {
-                        document.getElementById("logtextarea").textContent += 'New bgm: \n'
-                        $.each(response['data']['bgm'], function(key, val) {
-                            document.getElementById("logtextarea").textContent += "- " +  val + '\n'
-                        })
-                        document.getElementById("logtextarea").textContent += '\n\n'
-                    }
-
-                    if(response['data']['apCard'].length > 0) {
-                        document.getElementById("logtextarea").textContent += 'New appeal cards: \n'
-                        $.each(response['data']['apCard'], function(key, val) {
-                            document.getElementById("logtextarea").textContent += "- " +  val + '\n'
-                        })
-                        document.getElementById("logtextarea").textContent += '\n\n'
-                    }
-
-                    if(response['data']['subbg'].length > 0) {                        
-                        document.getElementById("logtextarea").textContent += 'New submonitor backgrounds: \n'
-                        $.each(response['data']['subbg'], function(key, val) {
-                            document.getElementById("logtextarea").textContent += "- " +  val + '\n'
-                        })
-                        document.getElementById("logtextarea").textContent += '\n\n'
-                    }
-
-
-                    if(response['data']['chatStamp'].length > 0) {
-                        document.getElementById("logtextarea").textContent += 'New chat stamps: \n'
-                        $.each(response['data']['chatStamp'], function(key, val) {
-                            document.getElementById("logtextarea").textContent += "- " +  val + '\n'
-                        })
-                        document.getElementById("logtextarea").textContent += '\n\n'
-                    }
-
-
-                    if(response['data']['valgeneItemFiles'].length > 0) {
-                        document.getElementById("logtextarea").textContent += 'New valgene_item files: \n'
-                        $.each(response['data']['valgeneItemFiles'], function(key, val) {
-                            document.getElementById("logtextarea").textContent += "- " +  val + '\n'
-                        })
-                        document.getElementById("logtextarea").textContent += '\n\n'
-                    }
-
-                    if(response['data']['akaname'].length > 0) {
-                        document.getElementById("logtextarea").textContent += 'New akanames: \n'
-                        $.each(response['data']['akaname'], function(key, val) {
-                            document.getElementById("logtextarea").textContent += "- " +  val + '\n'
-                        })
-                        document.getElementById("logtextarea").textContent += '\n\n'
-                    }
-
-                    if(response['data']['ifs'].length > 0) {
-                        document.getElementById("logtextarea").textContent += 'Successfully extracted textures from IFS files. \n'
-                        document.getElementById("logtextarea").textContent += '\n\n'
-                    }
+        document.getElementById("logtextarea").textContent += 'Running....\n\n'
+        await emit("copyResourcesFromGame").then(
+            function(response){                    
+                if(response['data']['errors'].length > 0) {
+                    document.getElementById("logtextarea").textContent += "[Errors]" + '\n'
+                    $.each(response['data']['errors'], function(key, val) {
+                        document.getElementById("logtextarea").textContent += val + '\n'
+                    })
+                    document.getElementById("logtextarea").textContent += '\nIf you\'re getting "error reading" logs, check if you\'ve configured "Exceed Gear Data Directory" properly in the plugin settings.\n'
+                    document.getElementById("logtextarea").textContent += '\n\n'
                 }
-            )
-        }
+
+                if(response['data']['course']) {
+                    document.getElementById("logtextarea").textContent += "[Skill Analyzer courses]" + '\n'
+                    document.getElementById("logtextarea").textContent += "Updated course_data.json from data/exg.ts!"
+                }
+                document.getElementById("logtextarea").textContent += '\n\n\n'
+
+                if(response['data']['jsonSongs'].length > 0) {
+                    document.getElementById("logtextarea").textContent += "[Songs]" + '\n'
+                    $.each(response['data']['jsonSongs'], function(key, val) {
+                        document.getElementById("logtextarea").textContent += "- " +  val[1] + '\n'
+                    })
+                    document.getElementById("logtextarea").textContent += '\n\n'
+                }
+
+                if(response['data']['xcdSongs'].length > 0) {
+                    document.getElementById("logtextarea").textContent += "[XCD charts]" + '\n'
+                    $.each(response['data']['xcdSongs'], function(key, val) {
+                        document.getElementById("logtextarea").textContent += "- " +  val[1] + '\n'
+                    })
+                    document.getElementById("logtextarea").textContent += '\n\n'
+                }
+
+                if(response['data']['nemsys'].length > 0) {
+                    document.getElementById("logtextarea").textContent += "[NEMSYS]" + '\n'
+                    $.each(response['data']['nemsys'], function(key, val) {
+                        document.getElementById("logtextarea").textContent += "- " + val + '\n'
+                    })
+                    document.getElementById("logtextarea").textContent += '\n\n'
+                }
+
+                if(response['data']['bgm'].length > 0) {
+                    document.getElementById("logtextarea").textContent += "[BGM]" + '\n'
+                    $.each(response['data']['bgm'], function(key, val) {
+                        document.getElementById("logtextarea").textContent += "- " +  val + '\n'
+                    })
+                    document.getElementById("logtextarea").textContent += '\n\n'
+                }
+
+                if(response['data']['apCard'].length > 0) {
+                    document.getElementById("logtextarea").textContent += "[Appeal cards]" + '\n'
+                    $.each(response['data']['apCard'], function(key, val) {
+                        document.getElementById("logtextarea").textContent += "- " +  val + '\n'
+                    })
+                    document.getElementById("logtextarea").textContent += '\n\n'
+                }
+
+                if(response['data']['subbg'].length > 0) {                        
+                    document.getElementById("logtextarea").textContent += "[Submonitor BGs]" + '\n'
+                    $.each(response['data']['subbg'], function(key, val) {
+                        document.getElementById("logtextarea").textContent += "- " +  val + '\n'
+                    })
+                    document.getElementById("logtextarea").textContent += '\n\n'
+                }
+
+
+                if(response['data']['chatStamp'].length > 0) {
+                    document.getElementById("logtextarea").textContent += "[Appeal Stamps]" + '\n'
+                    $.each(response['data']['chatStamp'], function(key, val) {
+                        document.getElementById("logtextarea").textContent += "- " +  val + '\n'
+                    })
+                    document.getElementById("logtextarea").textContent += '\n\n'
+                }
+
+
+                if(response['data']['valgeneItemFiles'].length > 0) {
+                    document.getElementById("logtextarea").textContent += "[valgene_item]" + '\n'
+                    $.each(response['data']['valgeneItemFiles'], function(key, val) {
+                        document.getElementById("logtextarea").textContent += "- " +  val + '\n'
+                    })
+                    document.getElementById("logtextarea").textContent += '\n\n'
+                }
+
+                if(response['data']['akaname'].length > 0) {
+                    document.getElementById("logtextarea").textContent += "[Appeal titles]" + '\n'
+                    $.each(response['data']['akaname'], function(key, val) {
+                        document.getElementById("logtextarea").textContent += "- " +  val + '\n'
+                    })
+                    document.getElementById("logtextarea").textContent += '\n\n'
+                }
+
+                if(response['data']['ifs'].length > 0) {
+                    document.getElementById("logtextarea").textContent += "[IFS textures]" + '\n'
+                    $.each(response['data']['ifs'], function(key, val) {
+                        document.getElementById("logtextarea").textContent += "- " +  val + '\n'
+                    })
+                    document.getElementById("logtextarea").textContent += '\n\n'
+                }
+            }
+        )
     });
 })

@@ -74,7 +74,7 @@ export const common: EPR = async (info, data, send) => {
               limitedNo = 2;
               
               // if song is released during exceed gear
-              if(songData.info.version['#text'] === '6') { 
+              if(songData.info.version['#text'] === '6') {
                 // Licensed songs released in Exceed Gear needs limited=3 to appear
                 if(LICENSED_SONGS6.includes(i.toString())) limitedNo += 1;
                 else if(VALKYRIE_SONGS.includes(i.toString()) && info.model.split(":")[2].match(/^(G|H)$/g) == null) limitedNo -= 1;

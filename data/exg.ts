@@ -49,19 +49,7 @@ export const EVENT6 = [
   'S_PUC_EFFECT_ENABLE',
   'FAVORITE_CREW_ENABLE',
   'TAMAADV_VALGENE_BONUS_ENABLE'
-];
-
-export const INFORMATION6 = {
-  '2022021400': ['[img:ver06/info_psd.ifs:hexa_diver_220215]'],
-  '2022030800': ['[img:ver06/info_psd.ifs:hexa_diver_220310]'],
-  '2022042500': ['[img:ver06/info_psd.ifs:hexa_diver_220215]', '[img:ver06/info_psd.ifs:hexa_diver_220310]'],
-  '2022071200': ['[img:ver06/info_psd.ifs:hexa_diver_220714]'],
-  '2022081600': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]'],
-  '2022083000': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
-  '2022101800': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
-  '2022122001': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
-  '2023091200': ['[img:ver06/info_psd.ifs:230831_info_generator]', '[img:ver06/info_psd.ifs:230914_hexadiver]']
-}
+]
 
 export const LICENSED_SONGS6 = [
   '158', '940', '1056', '1057', '1337', '1338', '1339', '1340', '1341', '1342', 
@@ -76,6 +64,16 @@ export const LICENSED_SONGS6 = [
   '2068', '2165', '2166', '2167', '2172', '2173', '2174', '2175', '2184', '2193', 
   '2194', '2195', '2196', '2197', '2210', '2211', '2212', '2213', '2214', '2215',
   '2216', '2217', '2218', '2219', '2205', '2206', '2207', '2208', '2224'
+]
+
+export const VALKYRIE_SONGS = [
+  '2162', '2163', '2164', '2189', '2190', '2191', // triple tribe
+  '1745', '1846', // Arena station songs
+  '2225', '2226', '2227', '2199' // variant gate -- need to confirm if valk exc
+]
+
+export const APRILFOOLSSONGS = [
+  '840', '1219', '1751'
 ]
 
 export const UNLOCK_EVENTS6 = {
@@ -696,15 +694,6 @@ export const EVENT_ITEMS6 = {
   "crossresonance_3": ['2233']
 }
 
-export const APRILFOOLSSONGS = [
-  '840', '1219', '1751'
-]
-
-export const VALKYRIE_SONGS = [
-  '2162', '2163', '2164', '2189', '2190', '2191', // Valk exclusives 
-  '1745', '1846' // Arena station songs
-]
-
 /*
   Arena
     arena_items: catalog_id, catalog_type, price, item_type, item_id, param 
@@ -1232,7 +1221,7 @@ export const ARENA = {
       [1, 1, 2000, 0, 281, 8]
     ]
   },
-  'Season 18 (MEGAMIX BATTLE 2024/10/31～2024/11/25)': {
+  'Season 18 (MEGAMIX BATTLE 2025/03/13～2025/04/07)': {
     details: {
       season: 18,
       rule: 0,
@@ -6479,9 +6468,21 @@ export const COURSES6 = [
       },
     ]
   }
-];
+]
 
-export const SDVX_AUTOMATION_SONGS = [
+export const INFORMATION6 = {
+  '2022021400': ['[img:ver06/info_psd.ifs:hexa_diver_220215]'],
+  '2022030800': ['[img:ver06/info_psd.ifs:hexa_diver_220310]'],
+  '2022042500': ['[img:ver06/info_psd.ifs:hexa_diver_220215]', '[img:ver06/info_psd.ifs:hexa_diver_220310]'],
+  '2022071200': ['[img:ver06/info_psd.ifs:hexa_diver_220714]'],
+  '2022081600': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]'],
+  '2022083000': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
+  '2022101800': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
+  '2022122001': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
+  '2023091200': ['[img:ver06/info_psd.ifs:230831_info_generator]', '[img:ver06/info_psd.ifs:230914_hexadiver]']
+}
+
+export const MEGAMIX_SONGS = [
   6, 75, 86, 87, 94, 115, 116, 117, 118, 120, 121, 122, 123, 124, 125, 126, 128, 134, 251, 253, 258, 259, 
   271, 272, 304, 344, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 372, 373, 374, 
   75, 376, 377, 381, 437, 479, 495, 538, 542, 543, 546, 553, 581, 607, 625, 626, 632, 633, 634, 635, 636, 
@@ -6494,9 +6495,9 @@ export const SDVX_AUTOMATION_SONGS = [
   1099, 1100, 1101, 1102, 1103, 1104, 1105, 1106, 1107, 1108, 1117, 1140, 1141, 1142, 1143, 1144, 1145, 1146,
   1147, 1148, 1176, 1177, 1178, 1179, 1180, 1181, 1183, 1184, 1185, 1186, 1187, 1188, 1189, 1190, 1191, 1192, 
   1193, 1194, 1195, 1196, 1197, 1198, 1199, 1200, 1201, 1202, 1203, 1204, 1205, 1206, 1207, 1208
-];
+]
 
-export const SDVX_AUTOMATION_SONGS_2 = [
+export const MEGAMIX_SONGS_2 = [
   1209, 1210, 1211, 1212, 1213, 1214, 1215, 1216, 1217, 1218, 1220, 1221, 1260, 1269, 1270, 1271, 1272, 1273,
   1274, 1275, 1276, 1277, 1278, 1279, 1280, 1281, 1282, 1300, 1301, 1302, 1329, 1345, 1346, 1347, 1348, 1361,
   1362, 1363, 1364, 1365, 1366, 1367, 1368, 1369, 1370, 1371, 1372, 1373, 1374, 1375, 1376, 1377, 1378, 1379,
@@ -6509,9 +6510,9 @@ export const SDVX_AUTOMATION_SONGS_2 = [
   151, 165, 166, 180, 183, 198, 208, 211, 213, 214, 216, 220, 221, 223, 228, 229, 239, 247, 250, 252, 255, 
   256, 267, 269, 282, 289, 295, 299, 324, 332, 333, 339, 341, 342, 348, 393, 398, 408, 413, 414, 418, 420, 
   432, 444, 459, 499, 506, 507, 508, 510, 522, 525, 529
-];
+]
 
-export const SDVX_AUTOMATION_SONGS_3 = [
+export const MEGAMIX_SONGS_3 = [
   532, 535, 537, 540, 547, 548, 550, 551, 583, 587, 597, 598, 600, 606, 610, 615, 623, 629, 680, 681, 
   689, 717, 720, 722, 725, 730, 731, 733, 735, 740, 741, 743, 746, 783, 784, 785, 819, 837, 883, 888, 
   889, 895, 925, 939, 961, 963, 964, 965, 966, 967, 968, 969, 970, 971, 977, 978, 982, 983, 985, 986, 
@@ -6524,16 +6525,16 @@ export const SDVX_AUTOMATION_SONGS_3 = [
   1892, 1893, 1894, 1895, 1896, 1897, 1898, 1899, 1900, 1901, 1919, 1920, 1921, 1922, 1923, 1924, 1925, 
   1926, 1927, 1928, 1929, 1930, 1931, 1932, 1933, 1934, 1935, 1936, 1937, 1938, 1939, 1940, 1941, 1942, 
   1943, 1944, 1945, 1946, 1947, 1948, 1949, 1950, 1951, 1952, 1953, 1954, 1955, 1956, 1957, 1958
-];
+]
 
-export const SDVX_AUTOMATION_SONGS_4 = [
+export const MEGAMIX_SONGS_4 = [
   59, 61, 62, 64, 68, 69, 70, 496, 497, 498, 500, 501, 502, 503, 504, 505, 509, 511, 512, 513, 
   514, 515, 516, 517, 518, 519, 975, 976, 1123, 1124, 1125, 1126, 1127, 1128, 2037, 2038, 2039,
   2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048, 2049, 2050, 2121, 2122, 2123, 2124, 2125,
   2126, 2127, 2128, 2129, 2130, 2131, 2132, 2133, 2134, 2135, 2136, 2137, 2138, 2139, 2140, 2141,
   2142, 2143, 2144, 2145, 2146, 2147, 2148, 2149, 2150, 2151, 2152, 2153, 2154, 2155, 2156, 2157,
   2158, 2159, 2160, 2161
-];
+]
 
 export const EXTENDS6 = [
   {
@@ -6565,19 +6566,19 @@ export const EXTENDS6 = [
     type: 17,
     params: [
       0, 0, 0, 0, 0,
-      SDVX_AUTOMATION_SONGS.join(','),
+      MEGAMIX_SONGS.join(','),
       '',
       '',
       '',
       '',
     ],
   },
-	{
+  {
     id: 92,
     type: 17,
     params: [
       0, 0, 0, 0, 0,
-      SDVX_AUTOMATION_SONGS_2.join(','),
+      MEGAMIX_SONGS_2.join(','),
       '',
       '',
       '',
@@ -6589,7 +6590,7 @@ export const EXTENDS6 = [
     type: 17,
     params: [
       0, 0, 0, 0, 0,
-      SDVX_AUTOMATION_SONGS_3.join(','),
+      MEGAMIX_SONGS_3.join(','),
       '',
       '',
       '',
@@ -6601,12 +6602,11 @@ export const EXTENDS6 = [
     type: 17,
     params: [
       0, 0, 0, 0, 0,
-      SDVX_AUTOMATION_SONGS_4.join(','),
+      MEGAMIX_SONGS_4.join(','),
       '',
       '',
       '',
       '',
     ],
   }
-];
-
+]
