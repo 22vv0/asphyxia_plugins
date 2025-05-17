@@ -1,6 +1,6 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.1.0
+**Plugin Version:** fork-6.1.0a
 
 **Supported game versions:** EXCEED GEAR (2025042202)
 
@@ -39,6 +39,23 @@ Add an issue to the GitHub repository and make sure to provide the logs from Asp
 Changelog
 ===========
 ## fork-6.1.0
+
+
+### Fixes (6.1.0a)
+- handlers/profiles.ts
+	- Fixed MAXXIVE clear lamp overwriting UC and PUC clear lamps.
+- data/exg.ts
+	- Updated Valkyrie exclusive songs list:
+		- VARIANT GATE songs added (need to confirm if they are not playable on Nemsys after Valk unlock, but for now they are, because they probably are)
+	- Updated error in ARENA season title
+		- "Season 18 (MEGAMIX BATTLE 2024/10/31～2024/11/25)" -> "Season 18 (MEGAMIX BATTLE 2025/03/13～2025/04/07)"
+		- If running into undefined arena_items error, set your ARENA season setting again.
+	- Renamed MEGAMIX songs list varname
+		- "SDVX_AUTOMATION_SONGS" -> "MEGAMIX_SONGS"
+- handlers/webui.ts, webui/asset/js/updateResources.js
+	- More error handling (some errors should now output to the textarea)
+- webui/question and answer.pug
+	- Removed as it is outdated. Will put back should there be a need to.
 
 ### New:
 - 20250205

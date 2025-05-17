@@ -135,10 +135,12 @@ export const saveScore: EPR = async (info, data, send) => {
         record.exscore = exscore;
       }
 
-      record.clear = Math.max(i.number('clear_type', 0), record.clear);
+      let clearLamp = [0, 1, 2, 3, 6, 4, 5]
+      let oldClear = record.clear
+      let newClear = i.number('clear_type', 0)
+      record.clear = (clearLamp.findIndex(c => c === newClear) > clearLamp.findIndex(c => c === oldClear)) ? newClear : oldClear;
+      
       record.grade = Math.max(i.number('score_grade', 0), record.grade);
-
-
 
       await DB.Upsert<MusicRecord>(
         refid,
@@ -148,8 +150,6 @@ export const saveScore: EPR = async (info, data, send) => {
     }
     return send.success();
   }
-
-
 
   const mid = $(data).number('music_id');
   const type = $(data).number('music_type');
@@ -187,8 +187,6 @@ export const saveScore: EPR = async (info, data, send) => {
 
   record.clear = Math.max($(data).number('clear_type', 0), record.clear);
   record.grade = Math.max($(data).number('score_grade', 0), record.grade);
-
-
 
   await DB.Upsert<MusicRecord>(
     refid,
