@@ -74,7 +74,7 @@ export const LICENSED_SONGS6 = [
   '2069', '2070', '2071', '2072', '2073', '2074', '2075', '2076', '2066', '2067', 
   '2068', '2165', '2166', '2167', '2172', '2173', '2174', '2175', '2184', '2193', 
   '2194', '2195', '2196', '2197', '2210', '2211', '2212', '2213', '2214', '2215',
-  '2216'
+  '2216', '2217', '2218', '2219'
 ]
 
 export const STAMP_EVENTS6 = {
@@ -454,7 +454,7 @@ export const STAMP_EVENTS6 = {
     'type': 'tama',
     'info': {
       'id': 39,
-      'list': '0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29'
+      'list': '0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34'
     }
   },
   'reflecstamp2': {
@@ -656,7 +656,7 @@ export const APRILFOOLSSONGS = [
 ]
 
 export const VALKYRIE_SONGS = [
-  '1744', '1672', '2063', '2064', '2065', '2162', '2163', '2164', // Valk exclusives 
+  '1744', '1672', '2162', '2163', '2164', // Valk exclusives 
   '1855', '1742', '1743', '1745', '1846',  // Arena station songs
   '1736', '1737', '1738', '1847', '1848', '1849', '1980', '1978', '1979' // X-record
 ]
@@ -993,182 +993,28 @@ export const ARENA = {
       is_shop: 1
     },
     arena_items: [
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 2000,
-        item_type: 0,
-        item_id: 85,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 4000,
-        item_type: 0,
-        item_id: 389,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 8000,
-        item_type: 0,
-        item_id: 635,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 8000,
-        item_type: 0,
-        item_id: 2171,
-        param: 23,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 4000,
-        item_type: 0,
-        item_id: 786,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 4000,
-        item_type: 0,
-        item_id: 787,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 4000,
-        item_type: 0,
-        item_id: 788,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 8000,
-        item_type: 0,
-        item_id: 789,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 8000,
-        item_type: 0,
-        item_id: 790,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 8000,
-        item_type: 0,
-        item_id: 610,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 5000,
-        item_type: 0,
-        item_id: 2077,
-        param: 23,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 5000,
-        item_type: 0,
-        item_id: 2078,
-        param: 23,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 15000,
-        item_type: 0,
-        item_id: 1902,
-        param: 23,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 8000,
-        item_type: 0,
-        item_id: 1855,
-        param: 23,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 8000,
-        item_type: 0,
-        item_id: 381,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 8000,
-        item_type: 0,
-        item_id: 633,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 4000,
-        item_type: 0,
-        item_id: 332,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 4000,
-        item_type: 0,
-        item_id: 711,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 4000,
-        item_type: 0,
-        item_id: 871,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 2000,
-        item_type: 0,
-        item_id: 872,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 2000,
-        item_type: 0,
-        item_id: 64,
-        param: 8,
-      },
-      {
-        catalog_id: 1,
-        catalog_type: 1,
-        price: 2000,
-        item_type: 0,
-        item_id: 88,
-        param: 8,
-      }
+      [1, 1, 2000, 0, 85, 8],
+      [1, 1, 4000, 0, 389, 8],
+      [1, 1, 8000, 0, 635, 8],
+      [1, 1, 8000, 0, 2171, 23],
+      [1, 1, 4000, 0, 786, 8],
+      [1, 1, 4000, 0, 787, 8],
+      [1, 1, 4000, 0, 788, 8],
+      [1, 1, 8000, 0, 789, 8],
+      [1, 1, 8000, 0, 790, 8],
+      [1, 1, 8000, 0, 610, 8],
+      [1, 1, 5000, 0, 2077, 23],
+      [1, 1, 5000, 0, 2078, 23],
+      [1, 1, 15000, 0, 1902, 23],
+      [1, 1, 8000, 0, 1855, 23],
+      [1, 1, 8000, 0, 381, 8],
+      [1, 1, 8000, 0, 633, 8],
+      [1, 1, 4000, 0, 332, 8],
+      [1, 1, 4000, 0, 711, 8],
+      [1, 1, 4000, 0, 871, 8],
+      [1, 1, 2000, 0, 872, 8],
+      [1, 1, 2000, 0, 64, 8],
+      [1, 1, 2000, 0, 88, 8]
     ]
   },
   'Season 14 (MEGAMIX BATTLE 2024/07/11～2024/08/13)': {
@@ -1933,6 +1779,15 @@ export const PREGENE = [
       "crew": [164],
       "stamp": [409, 410, 411, 412, 413, 414, 415, 416, 417, 418],
       "subbg": [532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545, 546, 547, 548, 549, 550, 551, 552]
+    },
+    probability: [0.05, 0.39, 0.6]
+  },
+  {
+    id: 15,
+    items: {
+      "crew": [166],
+      "stamp": [425, 426, 427, 428, 429, 430, 431, 432, 433, 434],
+      "subbg": [575, 576, 577, 578, 579, 580, 581, 582, 583, 584, 585, 586, 587, 588, 589, 590, 591, 592, 593, 594]
     },
     probability: [0.05, 0.39, 0.6]
   }

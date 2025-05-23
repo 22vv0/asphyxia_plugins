@@ -33,12 +33,25 @@ Add an issue to the GitHub repository and make sure to provide the logs from Asp
 
 Changelog
 ===========
-## fork-6.0.6
+## fork-6.0.7
+
+- 20250205
+	- Updated TAMANEKO ADVENTURE missions list.
+		- ネメシスメトロポリス / KAC開催決定記念！オリジナル楽曲コンテスト2023 #3
+- 20250212
+	- Added PREMIUM GENERATOR (Meto Meu) data.
+	- Added to licensed songs list:
+		- チョコレートスマイル
+		- じもとっこスイーツ♪
+		- ロマンシングエスケープ
 
 ### Minor additions/fixes:
-- Cleaned up ARENA data in exg.ts to minimize size.
-- Updated Achievements list.
-- Renamed "Unlocking Events" to "Unlock Events"
+- Fixed ARENA S13 arena_items.
+- Updated VALKYRIE_SONGS
+	- removed BPL S3 Triple Tribe part 1 songs.
+
+
+## fork-6.0.6
 
 ### New:
 - Updated TAMANEKO ADVENTURE mission list.
@@ -56,6 +69,10 @@ Changelog
 	- テトリス
 - Added VALKYRIE GENERATOR Vol. 15 data.
 
+### Minor additions/fixes:
+- Cleaned up ARENA data in exg.ts to minimize size.
+- Updated Achievements list.
+- Renamed "Unlocking Events" to "Unlock Events"
 
 ## fork-6.0.5
 
@@ -81,26 +98,6 @@ Changelog
 - Added mini handler for refill stamp sheets.
 - Added WebUI labels to Houshou Marine items.
 - Fixed error in Skill Analyzer data migration.
-
-
-## fork-6.0.4
-
-### New:
-- Added PREMIUM GENERATOR sets
-	- この素晴らしい世界に祝福を！3 (Konosuba 3)
-	- 宝鐘マリン (Houshou Marine)
-- Added HEXADIVER 11 (NEMSYS GAME EXPO)
-- Added BEMANI PRO LEAGUE S4 -Triple Tribe- event.
-	- Toggle on Unlocking Events page -> Cross Events
-- Added ARENA Season 16
-	- Rank match: MEGAMIX BATTLE
-	- Added ARENA STATION set 16
-- Added songs to licensed songs list: Konosuba, Houshou Marine
-- Added a few date-related events (Onigo day, Gott day, etc.)
-- Updated MEGAMIX BATTLE songs list (89 new songs)
-- Updated Achievements list
-- Updated data.json (will add labels for Houshou Marine subbg at a later date)
-
 
 
 ### Todo:
