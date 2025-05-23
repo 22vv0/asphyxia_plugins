@@ -2972,6 +2972,106 @@
             "value": 574,
             "type": "normal",
             "name": "恋するいちばん星"
+        },
+        {
+            "value": 575,
+            "type": "video",
+            "name": "芽兎めうコラボ 1"
+        },
+        {
+            "value": 576,
+            "type": "video",
+            "name": "芽兎めうコラボ 2"
+        },
+        {
+            "value": 577,
+            "type": "video",
+            "name": "芽兎めうコラボ 3"
+        },
+        {
+            "value": 578,
+            "type": "video",
+            "name": "芽兎めうコラボ 4"
+        },
+        {
+            "value": 579,
+            "type": "video",
+            "name": "芽兎めうコラボ 5"
+        },
+        {
+            "value": 580,
+            "type": "video",
+            "name": "芽兎めうコラボ 6"
+        },
+        {
+            "value": 581,
+            "type": "video",
+            "name": "芽兎めうコラボ 7"
+        },
+        {
+            "value": 582,
+            "type": "video",
+            "name": "芽兎めうコラボ 8"
+        },
+        {
+            "value": 583,
+            "type": "video",
+            "name": "芽兎めうコラボ 9"
+        },
+        {
+            "value": 584,
+            "type": "video",
+            "name": "芽兎めうコラボ 10"
+        },
+        {
+            "value": 585,
+            "type": "video",
+            "name": "芽兎めうコラボ 11"
+        },
+        {
+            "value": 586,
+            "type": "video",
+            "name": "芽兎めうコラボ 12"
+        },
+        {
+            "value": 587,
+            "type": "video",
+            "name": "めうめうぺったんたん!! 02"
+        },
+        {
+            "value": 588,
+            "type": "video",
+            "name": "滅亡天使 † にこきゅっぴん 02"
+        },
+        {
+            "value": 589,
+            "type": "video",
+            "name": "地方創生☆チクワクティクス 02"
+        },
+        {
+            "value": 590,
+            "type": "slideshow",
+            "name": "Bitter Sweet Girls !"
+        },
+        {
+            "value": 591,
+            "type": "slideshow",
+            "name": "Chocolate Smile Girls !!"
+        },
+        {
+            "value": 592,
+            "type": "slideshow",
+            "name": "SWEET SMILE PARADE"
+        },
+        {
+            "value": 593,
+            "type": "slideshow",
+            "name": "ひなビタ♪10周年 メモリアル・ブック～Sweet Memories～"
+        },
+        {
+            "value": 594,
+            "type": "slideshow",
+            "name": "ひなビタ♪10周年 メモリアル・ブック～Bitter Memories～"
         }
     ],
     "bgm": [
