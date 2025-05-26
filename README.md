@@ -1,8 +1,8 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.0.6a
+**Plugin Version:** fork-6.0.7
 
-**Supported game versions:** EXCEED GEAR (2025012100)
+**Supported game versions:** EXCEED GEAR (2025021200)
 
 **Unsupported game versions:** Every other game, as they're untested.
 
