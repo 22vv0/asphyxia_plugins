@@ -1,5 +1,5 @@
 import { Profile } from "../models/profile";
-import { ProfileWorld, ScoreWorld, EventWorld, GhostWorld, RivalWorld, HiScoreWorld, LeagueWorld, CustomizeWorld } from "../models/ddrworld";
+import { ProfileWorld, ScoreWorld, EventWorld, GhostWorld, RivalWorld, HiScoreWorld, LeagueWorld, LeagueResultWorld, CustomizeWorld } from "../models/ddrworld";
 import { SONGS_WORLD, SONGS_OVERRIDE_WORLD, EVENTS_WORLD, LEAGUE_WORLD, LOCKED_SONGS } from "../data/world";
 
 function getLastGhostId(ghost: any) {
@@ -360,11 +360,13 @@ export const playerdatasave: EPR = async (info, data, send) => {
         let playCount = leagueData.number("playcount")
         let leagueExist = await DB.FindOne<LeagueWorld>(refid, {collection: 'league3', id: leagueId})
          
-        await DB.Upsert<LeagueWorld>(refid, { collection: "league3", id: leagueId }, {
+        await DB.Upsert<LeagueWorld>(refid, { collection: "league3" }, {
           $set: {
-            class: ((leagueExist.class === 0) ? 1 : leagueExist.class),
+            id: leagueId,
+            class: ((!leagueExist) ? 1 : leagueExist.class),
             score: score,
-            playCount: playCount
+            playCount: playCount,
+            ended: false
           }
         })
       }
@@ -542,116 +544,148 @@ export const playerdataload: EPR = async (info, data, send) => {
       }
     }
 
+    let curLeague = LEAGUE_WORLD.find(lg => lg.id === 6)
+    let prevLeague
     let leagueData = {}
-    let curLeague = LEAGUE_WORLD[1]
-    let league = await DB.FindOne(refid, {collection: 'league3', id: curLeague.id})
-    if(!league) {
-      let leagueClass = 0
-      let prevLeague = await DB.FindOne(refid, {collection: 'league3', id: curLeague.id - 1})
-      if(prevLeague) leagueClass = prevLeague['class']
-      await DB.Upsert<LeagueWorld>(refid, { collection: "league3", id: curLeague.id }, {
-        collection: "league3",
+    let leagueInfo
+    let leagueResult
+    let leagueStatus = 0
+    
+    let rank = 0
+    let score = 0
+    let resultClass = 0
+    let leagueClass = 0
+    let playCount = 0
+    let ended = false
+    let leagueResultPrev
+    let lResult = []
 
-        id: curLeague.id,
-        class: leagueClass,
-        score: 0,
-        playCount: 0,
-        ended: false,
-      })
-    }
-    league = await DB.FindOne(refid, {collection: 'league3', id: curLeague.id})
-    if(league) {
-      let leagueAll = await DB.Find(null, {collection: 'league3', id: curLeague.id, class: league['class']})
-      let joinNum = leagueAll.length
-      let resultClass = league['class']
-      let promoteScore = 0
-      let promoteRank = 0
-      let demoteScore = 0
-      let demoteRank = 0
-      let leagueStatus = 0
-      let leagueScores = leagueAll.map(a => a['score']).sort((a, b) => b - a)
-      if(leagueScores[0] > 0) {
-        if(league['class'] === 1) {
-          promoteScore = Math.round(leagueScores[0] / 2)
-          leagueScores = leagueScores.concat([promoteScore]).sort((a, b) => b - a)
-          promoteRank = leagueScores.findIndex(s => s === promoteScore) + 1
-          joinNum += ((joinNum < 2) ? 2 : 1)
-        } else if(league['class'] === 2) {
-          promoteScore = Math.round(leagueScores[0] - (leagueScores[0] - (35 / 100 * leagueScores[0])))
-          demoteScore = Math.round(leagueScores[0] - (leagueScores[0] - (85 / 100 * leagueScores[0])))
-          leagueScores = leagueScores.concat([promoteScore, demoteScore]).sort((a, b) => b - a)
-          promoteRank = leagueScores.findIndex(s => s === promoteScore) + 1
-          demoteScore = leagueScores.findIndex(s => s === demoteScore) + 1
-          joinNum += 2
-        } else if(league['class'] === 3) {
-          demoteScore = Math.round(leagueScores[0] - (leagueScores[0] - (85 / 100 * leagueScores[0])))
-          leagueScores = leagueScores.concat([demoteScore]).sort((a, b) => b - a)
-          demoteRank = leagueScores.findIndex(s => s === demoteScore) + 1
-          joinNum += ((joinNum < 2) ? 2 : 1)
+    let playerLeague = await DB.Find<LeagueWorld>(refid, {collection: 'league3'})
+    if(playerLeague.length > 0) {
+      leagueInfo = playerLeague[playerLeague.length - 1]
+      // league data cleanup, keep last data and update for every league season
+      if(playerLeague.length > 1) await DB.Remove<LeagueWorld>(refid, {collection: "league3", $not: {id: leagueInfo.id}})
+      
+      rank = leagueInfo.rankNum
+      score = leagueInfo.score
+      leagueClass = leagueInfo.class
+      playCount = leagueInfo.playCount
+      resultClass = leagueInfo.class
+      ended = BigInt(Date.now()) >= curLeague.summary && leagueInfo.ended
+      
+      if(leagueInfo.id !== curLeague.id) {
+        prevLeague = LEAGUE_WORLD.find(lg => lg.id === leagueInfo.id)
+        leagueResultPrev = await DB.FindOne<LeagueResultWorld>({ collection: 'leagueresult3', id: leagueInfo.id, class: leagueClass > 0 ? leagueClass : 1 })
+        
+        if(leagueClass === 1 && leagueInfo.score >= leagueResultPrev.promoteScore) resultClass += 1
+        else if(leagueClass === 2) {
+          if(leagueInfo.score >= leagueResultPrev.promoteScore) resultClass += 1
+          else if(leagueInfo.score < leagueResultPrev.demoteScore) resultClass -= 1
         }
-      }
-      let rank = leagueScores.findIndex(s => s === league['score']) + 1
-      let leagueClass = (league['class'] === 0) ? 1 : league['class']
+        else if(leagueClass === 3 && leagueInfo.score < leagueResultPrev.demoteScore) resultClass -= 1
 
-      if(leagueClass === 1 && league['score'] >= promoteScore) resultClass += 1
+        lResult.push({
+          league_id: K.ITEM("s32", prevLeague.id),
+          league_name: K.ITEM("str", Buffer.from(prevLeague.name, 'utf8').toString('base64')),
+          league_name_eng: K.ITEM("str", Buffer.from(prevLeague.name_eng, 'utf8').toString('base64')),
+          starttime: K.ITEM("u64", prevLeague.start),
+          endtime: K.ITEM("u64", prevLeague.end),
+          summarytime: K.ITEM("u64", prevLeague.summary),
+          league_status: K.ITEM("s32", 1),
+          league_class: K.ITEM("s32", leagueClass),
+          result_league_class: K.ITEM("s32", resultClass),
+          rank: K.ITEM("s32", rank),
+          score: K.ITEM("s32", score),
+          playcount: K.ITEM("s32", playCount),
+          advance_border: K.ITEM("s32", curLeague.advanceBorder[leagueClass > 0 ? leagueClass - 1 : 0]),
+          join_num: K.ITEM("s32", leagueResultPrev.joinNum), 
+          promote_rank: K.ITEM("s32", leagueResultPrev.promoteRank),
+          promote_score: K.ITEM("s32", leagueResultPrev.promoteScore),
+          demote_rank: K.ITEM("s32", leagueResultPrev.demoteRank),
+          demote_score: K.ITEM("s32", leagueResultPrev.demoteScore)
+        })
+
+        rank = 0
+        score = 0
+        playCount = 0
+        await DB.Upsert<LeagueWorld>(refid, {collection: 'league3'}, 
+          {
+            $set: {
+              id: curLeague.id,
+              class: leagueClass,
+              rankNum: rank,
+              score: score,
+              playCount: playCount
+            }
+          }
+        )
+      }
+      
+      if(!ended && BigInt(Date.now()) >= curLeague.summary) await DB.Upsert<LeagueWorld>(refid, {collection: 'league3'}, {$set: {ended: true}})
+    } 
+    leagueResult = await DB.FindOne<LeagueResultWorld>({ collection: 'leagueresult3', id: curLeague.id, class: leagueClass > 0 ? leagueClass : 1 })
+    
+    if(leagueInfo) {
+      if(leagueClass === 1 && leagueInfo.score >= leagueResult.promoteScore) resultClass += 1
       else if(leagueClass === 2) {
-        if(league['score'] >= promoteScore) resultClass += 1
-        else if(league['score'] < demoteScore) resultClass -= 1
+        if(leagueInfo.score >= leagueResult.promoteScore) resultClass += 1
+        else if(leagueInfo.score < leagueResult.demoteScore) resultClass -= 1
       }
-      else if(leagueClass === 3 && league['score'] < demoteScore) resultClass -= 1
+      else if(leagueClass === 3 && leagueInfo.score < leagueResult.demoteScore) resultClass -= 1
+    } else resultClass = 1
 
-      if(BigInt(Date.now()) >= curLeague.start) leagueStatus = 1 
-      if(BigInt(Date.now()) >= curLeague.end) leagueStatus = 2
-      if(BigInt(Date.now()) >= curLeague.summary) {
-        leagueStatus = 0
-        if(!league['ended']) await DB.Upsert<LeagueWorld>(refid, {collection: 'league3', id: curLeague.id}, {$set: {ended: true, class: resultClass}})
-      }
-      leagueData = {
-        league_class: K.ITEM("s32", (BigInt(Date.now()) >= curLeague.summary && !league['ended']) ? resultClass : league['class']),
-        current: {
+    if(BigInt(Date.now()) >= curLeague.start) leagueStatus = 1 
+    if(BigInt(Date.now()) >= curLeague.end) leagueStatus = 2
+    if(BigInt(Date.now()) >= curLeague.summary) {
+      leagueStatus = 0
+      if(!ended) {
+        lResult.push({
           league_id: K.ITEM("s32", curLeague.id),
           league_name: K.ITEM("str", Buffer.from(curLeague.name, 'utf8').toString('base64')),
           league_name_eng: K.ITEM("str", Buffer.from(curLeague.name_eng, 'utf8').toString('base64')),
           starttime: K.ITEM("u64", curLeague.start),
           endtime: K.ITEM("u64", curLeague.end),
           summarytime: K.ITEM("u64", curLeague.summary),
-          league_status: K.ITEM("s32", leagueStatus),
+          league_status: K.ITEM("s32", 1),
           league_class: K.ITEM("s32", leagueClass),
           result_league_class: K.ITEM("s32", resultClass),
           rank: K.ITEM("s32", rank),
-          score: K.ITEM("s32", league['score']),
-          playcount: K.ITEM("s32", league['playCount']),
-          advance_border: K.ITEM("s32", curLeague.advanceBorder[leagueClass - 1]),
-          join_num: K.ITEM("s32", joinNum), 
-          promote_rank: K.ITEM("s32", promoteRank),
-          promote_score: K.ITEM("s32", promoteScore),
-          demote_rank: K.ITEM("s32", demoteRank),
-          demote_score: K.ITEM("s32", demoteScore),
-          ranking_score: K.ITEM("s32", league['score'])
-        },
-        result: (BigInt(Date.now()) >= curLeague.summary && !league['ended']) ? [
-          {
-            league_id: K.ITEM("s32", curLeague.id),
-            league_name: K.ITEM("str", Buffer.from(curLeague.name, 'utf8').toString('base64')),
-            league_name_eng: K.ITEM("str", Buffer.from(curLeague.name_eng, 'utf8').toString('base64')),
-            starttime: K.ITEM("u64", curLeague.start),
-            endtime: K.ITEM("u64", curLeague.end),
-            summarytime: K.ITEM("u64", curLeague.summary),
-            league_status: K.ITEM("s32", 1),
-            league_class: K.ITEM("s32", league['class']),
-            result_league_class: K.ITEM("s32", resultClass),
-            rank: K.ITEM("s32", rank),
-            score: K.ITEM("s32", league['score']),
-            playcount: K.ITEM("s32", league['playCount']),
-            advance_border: K.ITEM("s32", curLeague.advanceBorder[leagueClass - 1]),
-            join_num: K.ITEM("s32", joinNum), 
-            promote_rank: K.ITEM("s32", promoteRank),
-            promote_score: K.ITEM("s32", promoteScore),
-            demote_rank: K.ITEM("s32", demoteRank),
-            demote_score: K.ITEM("s32", demoteScore)
-          }
-        ] : []
+          score: K.ITEM("s32", score),
+          playcount: K.ITEM("s32", playCount),
+          advance_border: K.ITEM("s32", curLeague.advanceBorder[leagueClass > 0 ? leagueClass - 1 : 0]),
+          join_num: K.ITEM("s32", leagueResult.joinNum), 
+          promote_rank: K.ITEM("s32", leagueResult.promoteRank),
+          promote_score: K.ITEM("s32", leagueResult.promoteScore),
+          demote_rank: K.ITEM("s32", leagueResult.demoteRank),
+          demote_score: K.ITEM("s32", leagueResult.demoteScore)
+        })
       }
+    }
+
+    leagueData = {
+      league_class: K.ITEM("s32", (BigInt(Date.now()) >= curLeague.summary) ? resultClass : leagueClass),
+      current: (BigInt(Date.now()) >= curLeague.summary) ? {} : {
+        league_id: K.ITEM("s32", curLeague.id),
+        league_name: K.ITEM("str", Buffer.from(curLeague.name, 'utf8').toString('base64')),
+        league_name_eng: K.ITEM("str", Buffer.from(curLeague.name_eng, 'utf8').toString('base64')),
+        starttime: K.ITEM("u64", curLeague.start),
+        endtime: K.ITEM("u64", curLeague.end),
+        summarytime: K.ITEM("u64", curLeague.summary),
+        league_status: K.ITEM("s32", leagueStatus),
+        league_class: K.ITEM("s32", leagueClass === 0 ? leagueClass + 1 : leagueClass),
+        result_league_class: K.ITEM("s32", resultClass),
+        rank: K.ITEM("s32", rank),
+        score: K.ITEM("s32", score),
+        playcount: K.ITEM("s32", playCount),
+        advance_border: K.ITEM("s32", curLeague.advanceBorder[leagueClass > 0 ? leagueClass - 1 : 0]),
+        join_num: K.ITEM("s32", leagueResult.joinNum), 
+        promote_rank: K.ITEM("s32", leagueResult.promoteRank),
+        promote_score: K.ITEM("s32", leagueResult.promoteScore),
+        demote_rank: K.ITEM("s32", leagueResult.demoteRank),
+        demote_score: K.ITEM("s32", leagueResult.demoteScore),
+        ranking_score: K.ITEM("s32", score)
+      },
+      result: lResult
     }
 
     let userCustomize = []

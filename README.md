@@ -1,6 +1,6 @@
 # DanceDanceRevolution
 
-**Plugin Version:** fork-mdx-3.0.3d
+**Plugin Version:** fork-mdx-3.0.3e
 
 **Supported game versions:** WORLD (2024101500)
 
@@ -9,8 +9,7 @@
 **Notes:**
 - This is a WIP plugin for DDR World and things might break so please use this at your own risk.
 - Please be aware that this plugin and the savefile it produces are incompatible with the official plugin, or any other forks. Please be cautious of using other plugins' savefiles with this fork of the plugin, or using this fork's savefile with other plugins.
-- Please back up your save data to prevent unwanted issues, especially while using this experimental plugin.
-- Please please please feel free to open PRs!
+- Please back up your save data to prevent unwanted issues (just in case)
 
 musicdb.xml Usage Guide
 ===========
@@ -26,6 +25,20 @@ musicdb.xml Usage Guide
 
 Changelog
 ===========
+### fork-mdx-3.0.3e
+
+- Added 6th WORLD LEAGUE data
+	- Period: 05/29/25~06/26/25
+	- Advanced Border for Gold class
+	- obviously, no new song benefits will be unlocked.
+- Rewrote WORLD LEAGUE handler 
+	- league status will update every 30 mins.
+	- will start adding World League data regularly.
+- Added song/chart info
+	- Is this dance a Hakken? - League Silver class benefit  
+	- Come Back To Me (CHA)
+
+
 ### fork-mdx-3.0.3d-fix1
 
 - Fixes to music data table sorting.
@@ -78,28 +91,6 @@ Changelog
 	- Fixed "So What" and "Akatsuki" diffLv mix up.
 
 
-### fork-mdx-3.0.1
-
-- Support for 2024091000.
-- Added list of old songs' re-rates in _data/world.ts:SONGS\_OVERRIDE\_WORLD_.
-- Updated events list & event loading code: 
-	- Galaxy Play
-	- EXTRA SAVIOR
-	- MYSTICAL Re:UNION (songs automatically unlocked on login)
-- Attempts to fix ghost data loading:
-	- Added ghost id to score and ghost data
-	- Ghost data gets created when there is no existing \[compatible\] data; and it gets updated when getting a higher or the same score. Side effect of this is when you have set a high score prior to this plugin update, the ghost data won't be updated unless you break or match that high score. 
-	- Unfortunately I could not find a way to match the old scores to their respective ghost data, since the old ghost data only stored the song id and difficulty, and not the style (single/double.)
-- World, Area and Machine #1 high score saving/loading (WIP)
-	- Area high score: uses locationid to search, save and load scores. 
-	- Machine high score: uses locationid and pcbid.
-	- Ghost data also gets created for each new high score (overwritten when high score is broken/matched)
-- WebUI stuff (WIP) - musicdb.xml required for proper score display.
-	- Basic profile info
-	- Flare skill info
-	- Music/score table
-
-
 
 To do:
 ===========
@@ -109,4 +100,4 @@ To do:
 3. More WebUI stuff 
 4. Figure out unknown values in score_str
 5. Rival loading and figure out unknown values in rival record_str
-6. Proper loading of Flare skill in-game (make sure to include only top 30 scores from classic, white and gold)
+6. Continue cleanup work on WORLD LEAGUE

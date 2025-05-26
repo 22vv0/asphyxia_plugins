@@ -4,7 +4,7 @@ import { usergamedata_recv } from "./handlers/usergamedata_recv";
 import { usergamedata_send } from "./handlers/usergamedata_send";
 import { musicdataload, playerdatanew, playerdatasave, playerdataload, rivaldataload, ghostdataload, taboowordcheck, minidump } from "./handlers/ddrworld";
 import { CommonOffset, OptionOffset, Profile } from "./models/profile";
-import { ProfileWorld, CustomizeWorld } from "./models/ddrworld";
+import { ProfileWorld, CustomizeWorld, LeagueWorld, LeagueResultWorld } from "./models/ddrworld";
 import { SONGS_WORLD, SONGS_OVERRIDE_WORLD, LEAGUE_WORLD } from "./data/world"
 
 export function register() {
@@ -43,12 +43,11 @@ export function register() {
 
   const RoutePlayData = (method: string, handler: EPR | boolean) => {
     R.Route(`playdata_3.${method}`, handler);
-
   };
 
   const WordCheck = (method: string, handler: EPR | boolean) => {
     R.Route(`wordcheck_3.${method}`, handler);
-  }
+  };
 
   const RouteSystem = (method: string, handler: EPR | boolean) => {
     R.Route(`system.${method}`, handler);
@@ -72,7 +71,7 @@ export function register() {
   RouteSystem("convcardnumber", convcardnumber);
   RouteSystem("minidump", minidump);
   RouteEventLog("write", eventLog);
-  WordCheck('tabooword_check', taboowordcheck)
+  WordCheck('tabooword_check', taboowordcheck);
 
   R.WebUIEvent("updateName", async ({ refid, name }) => {
     let strdata: Profile | string[] = await DB.FindOne<Profile>(refid, { collection: "profile" });
@@ -259,5 +258,75 @@ export function register() {
       } 
     }
     send.json({mdb: mdbData})
-  })
+  })  
 }
+
+async function updateWorldLeague() {
+  for(const league of LEAGUE_WORLD) {
+    if(BigInt(Date.now()) < league.start) break
+    for(const leagueClass of [1,2,3]) {
+      let curLeagueRes = await DB.FindOne<LeagueResultWorld>({collection: 'leagueresult3', id: league.id, class: leagueClass })
+      let ended = (curLeagueRes) ? curLeagueRes.ended : false
+      if(!ended) {
+        let leagueAll = await DB.Find<LeagueWorld>(null, { collection: 'league3', id: league.id, class: leagueClass })
+        let joinNum = leagueAll.length
+        let promoteScore = 0
+        let promoteRank = 0
+        let demoteScore = 0
+        let demoteRank = 0
+        let leagueSorted = leagueAll.sort((a, b) => b.score - a.score)
+        let leagueScores = leagueSorted.map(a => a.score)
+        if(leagueScores[0] > 0) {
+          if(leagueClass === 1) {
+            promoteScore = Math.round(leagueScores[0] / 2)
+            leagueScores = leagueScores.concat([promoteScore]).sort((a, b) => b - a)
+            promoteRank = leagueScores.findIndex(s => s === promoteScore) + 1
+            joinNum += ((joinNum < 2) ? 2 : 1)
+          } else if(leagueClass === 2) {
+            promoteScore = Math.round(leagueScores[0] - (leagueScores[0] - (35 / 100 * leagueScores[0])))
+            demoteScore = Math.round(leagueScores[0] - (leagueScores[0] - (85 / 100 * leagueScores[0])))
+            leagueScores = leagueScores.concat([promoteScore, demoteScore]).sort((a, b) => b - a)
+            promoteRank = leagueScores.findIndex(s => s === promoteScore) + 1
+            demoteScore = leagueScores.findIndex(s => s === demoteScore) + 1
+            joinNum += 2
+          } else if(leagueClass === 3) {
+            demoteScore = Math.round(leagueScores[0] - (leagueScores[0] - (85 / 100 * leagueScores[0])))
+            leagueScores = leagueScores.concat([demoteScore]).sort((a, b) => b - a)
+            demoteRank = leagueScores.findIndex(s => s === demoteScore) + 1
+            joinNum += ((joinNum < 2) ? 2 : 1)
+          }
+        }
+
+        await DB.Upsert<LeagueResultWorld>({collection: 'leagueresult3', id: league.id, class: leagueClass }, 
+        {
+          $set: {
+            promoteRank: promoteRank,
+            promoteScore: promoteScore,
+            demoteRank: demoteRank,
+            demoteScore: demoteScore,
+            joinNum: joinNum,
+            ended: BigInt(Date.now()) >= league.summary
+          }
+        })
+
+        // console.log("       class " + leagueClass)
+        // console.log("promoteScore " + promoteScore)
+        // console.log(" promoteRank " + promoteRank)
+        // console.log(" demoteScore " + demoteScore)
+        // console.log("  demoteRank " + demoteRank)
+        // console.log("     joinNum " + joinNum)
+        // console.log("")
+
+        for(const lctr in leagueSorted) {
+          await DB.Upsert<LeagueWorld>(leagueSorted[lctr]['__refid'], { collection: 'league3', id: league.id, class: leagueClass }, {$set: { rankNum: parseInt(lctr)+1 }})
+          // console.log(leagueSorted[lctr]['__refid'] + ": " + (parseInt(lctr)+1) + " " + leagueSorted[lctr]['score'])
+        }
+        console.log(" ")
+      }
+      else break
+    }
+  }
+}
+
+updateWorldLeague()
+setInterval(updateWorldLeague, 1800000)

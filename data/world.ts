@@ -58,9 +58,7 @@ export const SONGS_WORLD = [
 	{ mcode: 38622, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [2, 7, 12, 15, 0, 0, 7, 12, 15, 0] },
 	{ mcode: 38760, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 8, 13, 16, 18, 0, 8, 13, 16, 18] },
 	{ mcode: 38761, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 8, 12, 15, 0, 0, 8, 12, 15, 0] },
-	
-	// songs that have yet to release. unknown difficulty lvls.
-	// { mcode: 38629, limited_ary: [13, 13, 13, 13, -1, -1 13, 13 13, -1], diffLv: [] } // hakken
+	{ mcode: 38629, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [3, 7, 12, 16, 0, 0, 7, 12, 16, 0] }
 ]
 
 export const SONGS_OVERRIDE_WORLD = [
@@ -222,10 +220,8 @@ export const SONGS_OVERRIDE_WORLD = [
 	{ mcode: 38436, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 7, 11, 14, 17, 0, 7, 11, 14, 17] },
 	{ mcode: 38407, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 9, 12, 16, 17, 0, 9, 12, 16, 17] },
 	{ mcode: 38428, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 8, 12, 16, 18, 0, 8, 12, 16, 18] },
-	{ mcode: 38424, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 8, 11, 14, 17, 0, 8, 11, 14, 17] }
-
-	// new charts
-	// { mcode: 38339, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 7, 11, 14, ?, 0, 7, 11, 14, ?] }, cbme
+	{ mcode: 38424, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 8, 11, 14, 17, 0, 8, 11, 14, 17] },
+	{ mcode: 38339, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 7, 11, 14, 16, 0, 7, 11, 14, 16] }
 ]
 
 export const EVENTS_WORLD = [
@@ -311,33 +307,16 @@ export const LEAGUE_WORLD = [
 		end: BigInt(Date.parse('11 Dec 2024 08:00:00 GMT')),
 		summary: BigInt(Date.parse('11 Dec 2024 09:00:00 GMT')),
 		advanceBorder: [0, 0, 0]
+	},
+	{
+		id: 6,
+		name: "第6回 WORLD LEAGUE",
+		name_eng: "The 6th WORLD LEAGUE",
+		start: BigInt(Date.parse('29 May 2025 01:00:00 GMT')),
+		end: BigInt(Date.parse('26 Jun 2025 08:00:00 GMT')),
+		summary: BigInt(Date.parse('26 Jun 2025 09:00:00 GMT')),
+		advanceBorder: [0, 0, 500000]
 	}
 ]
 
-export const LOCKED_SONGS = [
-	{
-		unlock_date: BigInt(Date.parse("1 Jul 2024 01:00:00 GMT")),
-		ids: [38583],
-		ids_cha: []
-	},
-	{
-		unlock_date: BigInt(Date.parse("31 Jul 2024 01:00:00 GMT")),
-		ids: [38591, 38593, 38597, 38592, 38598, 38595, 38596, 38594, 38599],
-		ids_cha: [38591]
-	},
-	{
-		unlock_date: BigInt(Date.parse("30 Aug 2024 01:00:00 GMT")),
-		ids: [],
-		ids_cha: [38625, 38626, 38627]
-	},
-	{
-		unlock_date: BigInt(Date.parse("29 Nov 2024 01:00:00 GMT")),
-		ids: [38632, 38618, 38619, 38637, 38639, 38638],
-		ids_cha: [38102, 38517]
-	},
-	{
-		unlock_date: BigInt(Date.parse("27 Dec 2024 01:00:00 GMT")),
-		ids: [38644, 38647, 38645, 38651, 38648, 38650, 38646, 38649],
-		ids_cha: [38138, 38017]
-	}
-];
+export const LOCKED_SONGS = [];

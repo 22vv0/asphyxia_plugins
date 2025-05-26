@@ -62,11 +62,25 @@ export interface EventWorld {
 export interface LeagueWorld {
   collection: "league3";
 
-  id: number,
-  class: number,
-  score: number,
-  playCount: number,
-  ended: boolean
+  id: number;
+  class: number;
+  score: number;
+  rankNum: number;
+  playCount: number;
+  ended: boolean;
+}
+
+export interface LeagueResultWorld {
+  collection: "leagueresult3";
+
+  id: number;
+  class: number;
+  promoteRank: number;
+  promoteScore: number;
+  demoteRank: number;
+  demoteScore: number;
+  joinNum: number;
+  ended: boolean;
 }
 
 export interface CustomizeWorld {
