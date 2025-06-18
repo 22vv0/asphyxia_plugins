@@ -55,7 +55,7 @@ export const SONGS_WORLD = [
 	{ mcode: 38758, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [5, 10, 13, 17, 0, 0, 10, 13, 17, 0] },
 	{ mcode: 38759, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 6, 13, 15, 0, 0, 7, 13, 15, 0] },
 	{ mcode: 38757, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 5, 8, 13, 0, 0, 5, 8, 13, 0] },
-	{ mcode: 38622, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [2, 7, 12, 15, 0, 0, 7, 12, 15, 0] },
+	{ mcode: 38622, limited_ary: [11, 11, 11, 11, -1, -1, 11, 11, 11, -1], diffLv: [2, 7, 12, 15, 0, 0, 7, 12, 15, 0] },
 	{ mcode: 38760, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 8, 13, 16, 18, 0, 8, 13, 16, 18] },
 	{ mcode: 38761, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 8, 12, 15, 0, 0, 8, 12, 15, 0] },
 	{ mcode: 38629, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [3, 7, 12, 16, 0, 0, 7, 12, 16, 0] }
@@ -315,6 +315,15 @@ export const LEAGUE_WORLD = [
 		start: BigInt(Date.parse('29 May 2025 01:00:00 GMT')),
 		end: BigInt(Date.parse('26 Jun 2025 08:00:00 GMT')),
 		summary: BigInt(Date.parse('26 Jun 2025 09:00:00 GMT')),
+		advanceBorder: [0, 0, 500000]
+	},
+	{
+		id: 7,
+		name: "第7回 WORLD LEAGUE",
+		name_eng: "The 7th WORLD LEAGUE",
+		start: BigInt(Date.parse('19 Jun 2025 01:00:00 GMT')),
+		end: BigInt(Date.parse('16 Jul 2025 08:00:00 GMT')),
+		summary: BigInt(Date.parse('16 Jul 2025 09:00:00 GMT')),
 		advanceBorder: [0, 0, 500000]
 	}
 ]

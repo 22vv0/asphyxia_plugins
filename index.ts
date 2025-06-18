@@ -321,7 +321,6 @@ async function updateWorldLeague() {
           await DB.Upsert<LeagueWorld>(leagueSorted[lctr]['__refid'], { collection: 'league3', id: league.id, class: leagueClass }, {$set: { rankNum: parseInt(lctr)+1 }})
           // console.log(leagueSorted[lctr]['__refid'] + ": " + (parseInt(lctr)+1) + " " + leagueSorted[lctr]['score'])
         }
-        console.log(" ")
       }
       else break
     }
