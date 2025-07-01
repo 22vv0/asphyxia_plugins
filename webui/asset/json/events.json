@@ -424,12 +424,6 @@
             "explain": "Enables vertical sync for secondary display."
         },
         {
-            "id": "demoloopinfo",
-            "key": "DEMOLOOP_INFORMATION",
-            "str": "DEMOLOOP_INFORMATION\tdemo_info/250220_generator_pekora_demo.png",
-            "explain": "Enables display of information in attract mode."
-        },
-        {
             "id": "konami50",
             "key": "Konami 50th Anniversary logo",
             "str": "KONAMI_50TH_LOGO",

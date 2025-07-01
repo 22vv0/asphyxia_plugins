@@ -780,8 +780,9 @@ export const addWeekly = async(data: { mid: number }) => {
     newEndDate.setDate(newEndDate.getDate() + 7)
 
     if(newStartDate <= curWeekMonday) {
-      newStartDate = curWeekMonday
-      newEndDate.setDate(newStartDate.getDate() + 7)
+      newStartDate = new Date(curWeekMonday)
+      newEndDate = new Date(curWeekMonday)
+      newEndDate.setDate(newEndDate.getDate() + 7)
       newEndDate.setUTCHours(0, 59, 59)
     }
     weekly.push({
@@ -792,8 +793,7 @@ export const addWeekly = async(data: { mid: number }) => {
     })
   } else {
     let newEndDate = new Date(curWeekMonday)
-    console.log(curWeekMonday.getDate())
-    newEndDate.setDate(curWeekMonday.getDate() + 7)
+    newEndDate.setDate(newEndDate.getDate() + 7)
     newEndDate.setUTCHours(0, 59, 59)
     weekly.push({
       weekId: 1,

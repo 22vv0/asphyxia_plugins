@@ -1,6 +1,6 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.1.0a
+**Plugin Version:** fork-6.1.0b
 
 **Supported game versions:** EXCEED GEAR (2025042202)
 
@@ -36,12 +36,29 @@ Report issues:
 #### Create Github Issue
 Add an issue to the GitHub repository and make sure to provide the logs from Asphyxia dev mode so I could have a better idea on where to check for bugs and issues.
 
+#### RE: Standard Start issue on 2025042202
+This is not a plugin issue but I feel it is necessary to share. I did notice this while testing VARIANT GATE but I forgot to mention it so I apologize. As mentioned in issue [#34](https://github.com/22vv0/asphyxia_plugins/issues/34), if you're having trouble playing Standard Start, what fixed it for me was adding these lines to your ea3-config.xml file, in ea3->pos->coin. I personally put it just under _kfc\_game\_s\_standard_:
+```xml
+      <kfc_game_s_standard_plus>
+        <type __type="str">consume</type>
+        <event __type="str">KFC.game.s.standard_plus</event>
+        <player_ref __type="str">/coin/player1/ref_slotid</player_ref>
+        <credit_ref __type="str">/coin/event</credit_ref>
+      </kfc_game_s_standard_plus>
+```
+Then [re]start your game. Saving your data and starting a new Standard Start credit should now work fine. Also it looks like playing Standard Start in Skill Analyzer will cause the same problem to occur. In that case, doing the ea3-config fix above (or something similar) should be enough to resolve this problem as well.
+
 Changelog
 ===========
-## fork-6.1.0
+### 6.1.0b
+- Added attract mode demo video (/data/movie/demo/250225\_pekora\_demo)
+	- Fixed how demo videos extend data are handled.
+- Reimplemented Card Entry Information popups (will spam but they will show up only once, sorry!)
+- Removed DEMOLOOP_INFORMATION on Startup Flags settings and re-added it to EVENT6.
+- Removed VARIANT GATE song IDs from VALKYRIE_SONGS.
+- Fixes to setting of weekly song date periods.
 
-
-### Fixes (6.1.0a)
+### 6.1.0a
 - handlers/profiles.ts
 	- Fixed MAXXIVE clear lamp overwriting UC and PUC clear lamps.
 - data/exg.ts
@@ -57,7 +74,7 @@ Changelog
 - webui/question and answer.pug
 	- Removed as it is outdated. Will put back should there be a need to.
 
-### New:
+### 6.1.0
 - 20250205
 	- Updated TAMANEKO ADVENTURE missions list.
 		- ネメシスメトロポリス / KAC開催決定記念！オリジナル楽曲コンテスト2023 #3
@@ -101,7 +118,7 @@ Changelog
 	- These are attributes removed in the 0422 update: this caused save func issues.
 - data/exg.ts: 
 	- added ids 167 and 170 to CHARACTER\_IGNORE\_DISABLE.
-	- changed STAMP_EVENTS6 to UNLOCK_EVENTS6
+	- changed STAMP\_EVENTS6 to UNLOCK\_EVENTS6
 	- Remove songs from VALKYRIE_SONGS. Multiple songs have since become available for NEMSYS mode as well.
 - data/webui.ts:
 	- Updated psd_level.ifs texture offsets.
@@ -115,59 +132,7 @@ Changelog
 		- Moved TAMANEKO ADVENTURE to new "Unlock Events" dropdown menu, alongside VARIANT GATE.
 
 
-## fork-6.0.6
-
-### Minor changes/fixes:
-- Cleaned up ARENA data in exg.ts to minimize size.
-- Updated Achievements list.
-- Renamed "Unlocking Events" page to "Unlock Events"
-
-### New:
-- Updated TAMANEKO ADVENTURE mission list.
-	- ネメシスメトロポリス / KAC開催決定記念！オリジナル楽曲コンテスト2023 #2
-- Added ARENA Season 17 data - rank match: ARENA BATTLE (point system)
-	- Added ARENA STATION set 17
-- Added unlock events:
-	- 2025 U,R,B,R,,, YE-AR---!!!ｷｬ----!!!!!! スタンプボーナス
-	- 13th Anniversary PCB Refill Stamp Event
-	- 13th anniversary Tsubaki-chan appeal card gift
-- Added songs to licensed songs list:
-	- 強風オールバック
-	- 人マニア	
-	- メズマライザー
-	- テトリス
-- Added VALKYRIE GENERATOR Vol. 15 data.
-
-
-## fork-6.0.5
-
-### Minor additions/fixes:
-- Added SKILL ANALYZER 9 course data.
-
-### New:
-- Weekly Score Attack feature
-	- See Weekly Score Attack page in WebUI (queue your own weekly song challenges, added via Song ID)
-	- Line up weekly songs in advance via song ID. Weekly song will start every Monday 01:00 UTC.
-	- Check current rankings by clicking on the difficulty icons.
-	- Check rankings from the past 3 completed weeks.
-- Added 3 songs to licensed songs list (nora2r songs).
-- Updated TAMANEKO ADVENTURE mission list.
-	- Removed TRACK LIBERATION plugin setting, it should work as intended in TAMANEKO ADVENTURE.
-- Added PRECIOUS UNIVERSAL CELEBRATE stamp event.
-	- Toggle on Unlocking Events -> Stamp Events
-- Added ability to select favorite crews (FAVORITE\_CREW\_ENABLE)
-- Added region unlock for chat stamps and submonitor BGs for select Premium Generator sets (SUBBG\_IGNORE\_DISABLE, STAMP\_IGNORE\_DISABLE)
-- Updated max songNum to 2300. (for use with "Unlock all songs")
-- Added force lock to 幸せになれる隠しコマンドがあるらしい (XCD.) Unlock via the Konami code.
-- Added ability to display attract mode video (currently set to Houshou Marine demo video -- /data/movie/538/)
-- Added mini handler for refill stamp sheets.
-- Added WebUI labels to Houshou Marine items.
-- Fixed error in Skill Analyzer data migration.
-
-
-
 ### Todo:
 
 1. Proper handling of appeal title customization.
-2. Figure out how to use image (png) files to appear in information/news popup.
-3. More work on online matchmaking (idk if this is possible)
+2. More work on online matchmaking (idk if this is possible)

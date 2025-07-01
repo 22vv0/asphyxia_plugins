@@ -104,13 +104,13 @@ export const globalMatch: EPR = async (info, data, send) => {
   let expCnt = await DB.Remove({collection: 'matchmaker', timestamp: {$lt: Date.now() - 100000}})
   console.log("[" + loglip + " | " + loggip + "] Removed " + expCnt + " expired match data.")
 
-  if(await DB.Count({collection: 'matchmaker', gip: entryData.gip}) === 0) {
+  if(await DB.Count({collection: 'matchmaker', c_ver: entryData.c_ver, filter: entryData.filter, claim: entryData.claim, entry_id: entryData.entry_id}) === 0) {
     console.log("[" + loglip + " | " + loggip + "] Adding your info.")
     await DB.Upsert<Matchmaker>(
       { collection: 'matchmaker', gip: entryData.gip, lip: entryData.lip},
       entryData
     )
-  } else {
+  } else if(await DB.Count({collection: 'matchmaker', c_ver: entryData.c_ver, filter: entryData.filter, claim: entryData.claim, entry_id: entryData.entry_id, lip: entryData.lip}) > 0) {
     console.log("[" + loglip + " | " + loggip + "] Updating info.")
     await DB.Upsert<Matchmaker>(
       { collection: 'matchmaker', gip: entryData.gip, lip: entryData.lip},
@@ -121,7 +121,8 @@ export const globalMatch: EPR = async (info, data, send) => {
           filter: entryData.filter,
           mid: entryData.mid,
           sec: entryData.sec,
-          claim: entryData.claim
+          claim: entryData.claim,
+          entry_id: entryData.entry_id
         }
       }
     )
@@ -129,22 +130,22 @@ export const globalMatch: EPR = async (info, data, send) => {
   
   if(entryData.p_rest < 1) {
     console.log("[" + loglip + " | " + loggip + "] Room is full. Halting.")
-    return send.deny();
+    return send.success();
   }
 
   console.log("[" + loglip + " | " + loggip + "] Searching...")
 
-  let opData = await DB.Find<Matchmaker>({collection: 'matchmaker', c_ver: entryData.c_ver, filter: entryData.filter, mid: entryData.mid, claim: entryData.claim, entry_id: entryData.entry_id, $not: {lip: entryData.lip}})
+  let opData = await DB.Find<Matchmaker>({collection: 'matchmaker', c_ver: entryData.c_ver, filter: entryData.filter, claim: entryData.claim, entry_id: entryData.entry_id})
   let opponents = {
     entry_id: K.ITEM('u32', entryData.entry_id),
-    entry: opData.map(e => ({
+    entry: opData.length > 0 ? opData.map(e => ({
       port: K.ITEM('u16', e.port),
       gip: K.ITEM('4u8', e.gip),
       lip: K.ITEM('4u8', e.lip)
-    }))
+    })) : []
   }
   console.log("[" + loglip + " | " + loggip + "] Opponents: " + opponents.entry.length)
-  if(opponents.entry.length === 0) send.deny()
+  if(opponents.entry.length === 0) send.success()
   else send.object(opponents)
 }
 

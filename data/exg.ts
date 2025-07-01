@@ -48,7 +48,8 @@ export const EVENT6 = [
   'PLAYER_RADAR_ENABLE',
   'S_PUC_EFFECT_ENABLE',
   'FAVORITE_CREW_ENABLE',
-  'TAMAADV_VALGENE_BONUS_ENABLE'
+  'TAMAADV_VALGENE_BONUS_ENABLE',
+  'DEMOLOOP_INFORMATION\tdemo_info/250220_generator_pekora_demo.png'
 ]
 
 export const LICENSED_SONGS6 = [
@@ -69,7 +70,6 @@ export const LICENSED_SONGS6 = [
 export const VALKYRIE_SONGS = [
   '2162', '2163', '2164', '2189', '2190', '2191', // triple tribe
   '1745', '1846', // Arena station songs
-  '2225', '2226', '2227', '2199' // variant gate -- need to confirm if valk exc
 ]
 
 export const APRILFOOLSSONGS = [
@@ -6470,17 +6470,28 @@ export const COURSES6 = [
   }
 ]
 
-export const INFORMATION6 = {
-  '2022021400': ['[img:ver06/info_psd.ifs:hexa_diver_220215]'],
-  '2022030800': ['[img:ver06/info_psd.ifs:hexa_diver_220310]'],
-  '2022042500': ['[img:ver06/info_psd.ifs:hexa_diver_220215]', '[img:ver06/info_psd.ifs:hexa_diver_220310]'],
-  '2022071200': ['[img:ver06/info_psd.ifs:hexa_diver_220714]'],
-  '2022081600': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]'],
-  '2022083000': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
-  '2022101800': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
-  '2022122001': ['[img:ver06/info_psd.ifs:hexa_diver_220714]', '[img:ver06/info_psd.ifs:hexa_diver_220818]', '[img:ver06/info_psd.ifs:paseli_present_220901]'],
-  '2023091200': ['[img:ver06/info_psd.ifs:230831_info_generator]', '[img:ver06/info_psd.ifs:230914_hexadiver]']
-}
+export const INFORMATION6 = [
+  { id: 18, str: '[img:info/231122_paseli_festival.png:]'},
+  { id: 19, str: '[img:info/231207_hexadiver.png:]'},
+  { id: 20, str: '[img:info/231221_generator.png: 94, 0]'},
+  { id: 21, str: '[img:info/240118_voltefactory.png:]'},
+  { id: 22, str: '[img:info/240301_paseli14th.png:]'},
+  { id: 23, str: '[img:info/240321_info_generator4.png:]'},
+  { id: 24, str: '[img:info/240606_watame.png:]'},
+  { id: 25, str: '[img:info/240807_toho2024.png:]'},
+  { id: 26, str: '[img:info/240829_info_generator5.png:]'},
+  { id: 27, str: '[img:info/240926_generator.png: 106, 0]'},
+  { id: 28, str: '[img:info/240926_re_generator.png: 106, 0]'},
+  { id: 29, str: '[img:info/241010_hexadiver.png:]'},
+  { id: 30, str: '[img:info/241108_paseli.png:]'},
+  { id: 31, str: '[img:info/241107_marine_info.png:]'},
+  { id: 32, str: '[img:info/250214_hinabita_meu.jpg:]'},
+  { id: 33, str: '[img:info/250220_generator_pekora.jpg:]'},
+  { id: 34, str: '[img:info/250303_paseli.png:]'},
+  { id: 35, str: '[img:info/250326_noah.jpg:]'},
+  { id: 36, str: '[img:info/250422_info_ichika.png:]'},
+  { id: 37, str: '[img:info/250501_info_cross_resonance.png:]'}
+] 
 
 export const MEGAMIX_SONGS = [
   6, 75, 86, 87, 94, 115, 116, 117, 118, 120, 121, 122, 123, 124, 125, 126, 128, 134, 251, 253, 258, 259, 
@@ -6551,11 +6562,23 @@ export const EXTENDS6 = [
   },
   {
     "type": 21,
-    "id": 538,
+    "id": 0,
     "params": [
       0, 0, 0, 0, 0,
-      "241107_marine_demo.mp4",
-      "241107_marine_demo.s3v",
+      "demo/250225_pekora_demo.mp4",
+      "demo/250225_pekora_demo.s3v",
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "type": 21,
+    "id": 0,
+    "params": [
+      0, 0, 0, 0, 0,
+      "538/241107_marine_demo.mp4",
+      "538/241107_marine_demo.s3v",
       "",
       "",
       ""

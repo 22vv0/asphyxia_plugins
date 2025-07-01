@@ -118,23 +118,21 @@ export const common: EPR = async (info, data, send) => {
       }
     }
 
-    if(INFORMATION6[version.toString()] != undefined) {
-      console.log("Sending server information");
-      let time = new Date();
-      let tempDate = time.getDate();
-      const currentTime = parseInt((time.getTime()/100000) as unknown as string)*100;
-      for(const keyIter in INFORMATION6[version.toString()]) {
+    if(INFORMATION6.length > 0) {
+      let time = new Date()
+      let currentTime = parseInt((time.getTime()/100000) as unknown as string) * 100
+      for(const info of INFORMATION6) {
         extend.push({
-          id: parseInt(keyIter) + 1,
+          id: info['id'],
           type: 1,
           params: [
             1,
             currentTime,
             0,
             0,
-            31,
+            0,
             '[f:0]SERVER INFORMATION',
-            INFORMATION6[version.toString()][keyIter],
+            info['str'],
             '',
             '',
             '',
@@ -240,6 +238,7 @@ export const common: EPR = async (info, data, send) => {
       }
     }
 
+    // For testing extend data.
     if(IO.Exists('handlers/extend.json')) {
       let bufTest = await IO.ReadFile('handlers/extend.json')
       let extendTest = JSON.parse(bufTest.toString())
