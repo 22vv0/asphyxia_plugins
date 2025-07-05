@@ -1,0 +1,36 @@
+{
+	"appealBoard" : [
+		{
+			"id": 0,
+			"name": "Default"
+		},
+		{
+			"id": 100001,
+			"name": "APINA VRAMeS"
+		},
+		{
+			"id": 100002,
+			"name": "GiGO"
+		},
+		{
+			"id": 100003,
+			"name": "GamePanic"
+		},
+		{
+			"id": 100004,
+			"name": "Silk Hat"
+		},
+		{
+			"id": 100005,
+			"name": "TAITO STATION Tradz"
+		},
+		{
+			"id": 100006,
+			"name": "ROUND1"
+		},
+		{
+			"id": 100007,
+			"name": "Leisureland"
+		}
+	]
+}

@@ -1,6 +1,6 @@
 import { Profile } from "../models/profile";
 import { ProfileWorld, ScoreWorld, EventWorld, GhostWorld, RivalWorld, HiScoreWorld, LeagueWorld, LeagueResultWorld, CustomizeWorld } from "../models/ddrworld";
-import { SONGS_WORLD, SONGS_OVERRIDE_WORLD, EVENTS_WORLD, LEAGUE_WORLD, LOCKED_SONGS } from "../data/world";
+import { SONGS_WORLD, SONGS_OVERRIDE_WORLD, EVENTS_WORLD, EVENTS_GUEST_WORLD, LEAGUE_WORLD, LOCKED_SONGS } from "../data/world";
 
 function getLastGhostId(ghost: any) {
   let ghostFiltered = ghost.filter(a => (a.ghostId !== undefined))
@@ -483,9 +483,9 @@ export const playerdataload: EPR = async (info, data, send) => {
           }
         }
       ],
-      event: {
-        event_str: K.ITEM("str", "")
-      }
+      event: EVENTS_GUEST_WORLD.map(e => ({
+        event_str: K.ITEM("str", e.id + "," + e.type + "," + e.no + "," + e.cond + "," + e.rwrd + ",0,0")
+      }))
     })
   }
   else {
@@ -525,21 +525,31 @@ export const playerdataload: EPR = async (info, data, send) => {
       let eData = eventData.find(e => e.eventId === event.id)
       let condmet = true
       let compTime = 0
+      let saveData = 0
       if(event.dep) {
         event.dep.forEach(dep => {
-          let eData = eventData.find(e => e.eventId === dep)
-          if(eData === undefined) condmet = false
-          else if(eData.compTime === 0) condmet = false
+          if(eventData.find(e => e.eventId === dep) === undefined) condmet = false
         })
+      } 
+      if(event.type === 201) {
+        if(eData && eData.compTime !== 0) condmet = false
+        compTime = 0
+        saveData = 1
+      } 
+      else if([17, 43].includes(event.type)) {
+        if(eData && eData.compTime !== 0) {
+          compTime = 0
+          saveData = 1
+        } else {
+          compTime = 1
+          saveData = 1
+        }
       }
+      
       // id,type,no,condition,reward,comptime,savedata
       if(condmet) {
-        if([17, 43].includes(event.type)) {
-          if (eData) eData.compTime = eData.compTime ? 0 : 1 
-          compTime = event.comp ? 0 : 1
-        }
         eventFin.push({
-          event_str: K.ITEM('str', event.id + ',' + event.type + ',' + event.no + ',' + event.cond + ',' + event.rwrd + ',' + (eData ? BigInt(eData.compTime) : compTime) + ',' + ((eData) ? eData.saveData : ((event.save !== undefined) ? event.save : '0')))
+          event_str: K.ITEM('str', event.id + ',' + event.type + ',' + event.no + ',' + event.cond + ',' + event.rwrd + ',' + compTime + ',' + ((eData) ? eData.saveData : saveData))
         })  
       }
     }

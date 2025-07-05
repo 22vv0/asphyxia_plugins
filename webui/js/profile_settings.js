@@ -69,9 +69,26 @@ $('#change-display-calories3').on('click', () => {
   emit('updateDisplayCalories3', { refid, selected }).then(() => location.reload());
 });
 
-$('#change-bpl-appeal').on('click', () => {
+$('#customsave').on('click', () => {
   const customize = "appeal"
-  const selected = parseInt($('#bpl-appeal option:selected').val())
+  const selected = parseInt($('#appeal option:selected').val())
 
   emit('playerCustomize', { customize, refid, selected }).then(() => location.reload());
 });
+
+var customJson
+var customizeData = document.getElementById("customize-data") !== null ? JSON.parse(document.getElementById("customize-data").innerText) : [];
+
+$(document).ready(function(){
+  $.when(
+    $.getJSON("static/json/customize.json", function(json) {
+      customJson = json;
+    }),
+  ).then(function() {
+    let apBoardInd = customizeData.findIndex(c => c.category === 1)
+    console.log(apBoardInd)
+    for(const ap of customJson['appealBoard']) {
+      $('#appeal').append('<option value=' + ap.id + ((apBoardInd >= 0 && ap.id === customizeData[apBoardInd].key) ? " selected" : " ") + ">" + ap.name + "</option>")
+    }
+  })
+})

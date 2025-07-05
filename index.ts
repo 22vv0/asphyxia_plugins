@@ -328,4 +328,4 @@ async function updateWorldLeague() {
 }
 
 updateWorldLeague()
-setInterval(updateWorldLeague, 1800000)
+setInterval(updateWorldLeague, 60000)

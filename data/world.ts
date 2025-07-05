@@ -58,7 +58,19 @@ export const SONGS_WORLD = [
 	{ mcode: 38622, limited_ary: [11, 11, 11, 11, -1, -1, 11, 11, 11, -1], diffLv: [2, 7, 12, 15, 0, 0, 7, 12, 15, 0] },
 	{ mcode: 38760, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 8, 13, 16, 18, 0, 8, 13, 16, 18] },
 	{ mcode: 38761, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 8, 12, 15, 0, 0, 8, 12, 15, 0] },
-	{ mcode: 38629, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [3, 7, 12, 16, 0, 0, 7, 12, 16, 0] }
+	{ mcode: 38629, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [3, 7, 12, 16, 0, 0, 7, 12, 16, 0] },
+	{ mcode: 38600, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [4, 9, 12, 15, 0, 0, 9, 12, 15, 0] },
+	{ mcode: 38765, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [2, 4, 9, 12, 15, 0, 4, 9, 12, 15] },
+	{ mcode: 38712, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 5, 10, 13, 0, 0, 5, 10, 13, 0] },
+	{ mcode: 38718, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [3, 6, 10, 14, 17, 0, 6, 10, 14, 17] },
+	{ mcode: 38714, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [2, 4, 9, 12, 0, 0, 4, 9, 13, 0] },
+	{ mcode: 38711, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [3, 7, 11, 15, 16, 0, 6, 11, 15, 17] },
+	{ mcode: 38719, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [2, 5, 9, 11, 0, 0, 5, 9, 11, 0] },
+	{ mcode: 38717, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [3, 8, 13, 16, 18, 0, 8, 13, 16, 18] },
+	{ mcode: 38715, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 9, 13, 15, 18, 0, 9, 13, 15, 18] },
+	{ mcode: 38716, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [2, 7, 12, 17, 0, 0, 7, 12, 17, 0] },
+	{ mcode: 38710, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 9, 13, 16, 0, 0, 9, 13, 16, 0] },
+	{ mcode: 38713, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 9, 13, 16, 18, 0, 9, 13, 16, 18] }
 ]
 
 export const SONGS_OVERRIDE_WORLD = [
@@ -76,7 +88,6 @@ export const SONGS_OVERRIDE_WORLD = [
 	{ mcode: 155, limited_ary: [], diffLv: [3, 5, 7, 11, 0, 0, 5, 7, 12, 0] },
 	{ mcode: 221, limited_ary: [], diffLv: [3, 6, 8, 11, 0, 0, 7, 8, 10, 0] },
 	{ mcode: 159, limited_ary: [], diffLv: [5, 7, 8, 11, 0, 0, 4, 8, 10, 0] },
-	{ mcode: 160, limited_ary: [], diffLv: [5, 9, 10, 12, 0, 0, 7, 10, 13, 0] },
 	{ mcode: 257, limited_ary: [], diffLv: [3, 5, 7, 10, 0, 0, 6, 8, 11, 0] },
 	{ mcode: 267, limited_ary: [], diffLv: [4, 7, 9, 12, 0, 0, 8, 9, 13, 0] },
 	{ mcode: 238, limited_ary: [], diffLv: [5, 6, 9, 12, 0, 0, 7, 9, 12, 0] },
@@ -97,7 +108,6 @@ export const SONGS_OVERRIDE_WORLD = [
 	{ mcode: 33048, limited_ary: [], diffLv: [3, 6, 7, 11, 0, 0, 5, 7, 8, 0] },
 	{ mcode: 36931, limited_ary: [], diffLv: [4, 4, 8, 10, 0, 0, 4, 8, 10, 0] },
 	{ mcode: 36873, limited_ary: [], diffLv: [5, 5, 9, 11, 0, 0, 4, 9, 11, 0] },
-	{ mcode: 36935, limited_ary: [], diffLv: [3, 6, 8, 11, 0, 0, 5, 8, 11, 0] },
 	{ mcode: 36878, limited_ary: [], diffLv: [3, 4, 7, 9, 0, 0, 4, 7, 9, 0] },
 	{ mcode: 37267, limited_ary: [], diffLv: [3, 4, 7, 10, 0, 0, 5, 7, 11, 0] },
 	{ mcode: 37190, limited_ary: [], diffLv: [3, 5, 7, 9, 11, 0, 5, 7, 9, 12] },
@@ -221,7 +231,18 @@ export const SONGS_OVERRIDE_WORLD = [
 	{ mcode: 38407, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 9, 12, 16, 17, 0, 9, 12, 16, 17] },
 	{ mcode: 38428, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 8, 12, 16, 18, 0, 8, 12, 16, 18] },
 	{ mcode: 38424, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 8, 11, 14, 17, 0, 8, 11, 14, 17] },
-	{ mcode: 38339, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 7, 11, 14, 16, 0, 7, 11, 14, 16] }
+	{ mcode: 38339, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 7, 11, 14, 16, 0, 7, 11, 14, 16] },
+	{ mcode: 38404, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 9, 13, 16, 18, 0, 8, 13, 16, 18] },
+	{ mcode: 445, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 5, 9, 12, 15, 0, 5, 10, 12, 15] },
+	{ mcode: 197, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 7, 9, 11, 15, 0, 7, 8, 11, 15] },
+	{ mcode: 36935, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 6, 8, 11, 14, 0, 5, 8, 11, 14] },
+	{ mcode: 160, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [5, 9, 10, 12, 18, 0, 7, 10, 13, 18] },
+	{ mcode: 37269, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 6, 8, 13, 18, 0, 5, 8, 14, 18] },
+	{ mcode: 38102, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 6, 9, 12, 16, 0, 5, 10, 13, 16] }
+]
+
+export const EVENTS_GUEST_WORLD = [
+	{ id: 1, no: 0, cond: 0, rwrd: 14, type: 101 }
 ]
 
 export const EVENTS_WORLD = [
@@ -229,35 +250,118 @@ export const EVENTS_WORLD = [
 	{ id: 96, no: 0, cond: 0, rwrd: 0, type: 9999 },
 	{ id: 101, no: 0, cond: 0, rwrd: 0, type: 9999 },
 
-	{ id: 1, no: 1, cond: 1, rwrd: 38667, type: 70 }, { id: 2, no: 1, cond: 1, rwrd: 38667, type: 71 }, { id: 3, no: 1, cond: 1, rwrd: 38667, type: 72 }, { id: 4, no: 1, cond: 1, rwrd: 38667, type: 73 },
-	{ id: 5, no: 1, cond: 1, rwrd: 38661, type: 70 }, { id: 6, no: 1, cond: 1, rwrd: 38661, type: 71 },	{ id: 7, no: 1, cond: 1, rwrd: 38661, type: 72 }, { id: 8, no: 1, cond: 1, rwrd: 38661, type: 73 },
-	{ id: 9, no: 1, cond: 1, rwrd: 38668, type: 70 }, { id: 10, no: 1, cond: 1, rwrd: 38668, type: 71 }, { id: 11, no: 1, cond: 1, rwrd: 38668, type: 72 }, { id: 12, no: 1, cond: 1, rwrd: 38668, type: 73 },
-	{ id: 13, no: 1, cond: 1, rwrd: 38665, type: 70 }, { id: 14, no: 1, cond: 1, rwrd: 38665, type: 71 }, { id: 15, no: 1, cond: 1, rwrd: 38665, type: 72 }, { id: 16, no: 1, cond: 1, rwrd: 38665, type: 73 }, { id: 17, no: 1, cond: 1, rwrd: 38665, type: 74 }, 
-	{ id: 18, no: 1, cond: 1, rwrd: 38669, type: 70 }, { id: 19, no: 1, cond: 1, rwrd: 38669, type: 71 }, { id: 20, no: 1, cond: 1, rwrd: 38669, type: 72 }, { id: 21, no: 1, cond: 1, rwrd: 38669, type: 73 }, { id: 22, no: 1, cond: 1, rwrd: 38669, type: 74 }, 
-	{ id: 23, no: 1, cond: 1, rwrd: 38659, type: 70 }, { id: 24, no: 1, cond: 1, rwrd: 38659, type: 71 }, { id: 25, no: 1, cond: 1, rwrd: 38659, type: 72 }, { id: 26, no: 1, cond: 1, rwrd: 38659, type: 73 }, { id: 27, no: 1, cond: 1, rwrd: 38659, type: 74 }, 
-	{ id: 28, no: 1, cond: 1, rwrd: 38667, type: 81 }, { id: 29, no: 1, cond: 1, rwrd: 38667, type: 82 }, { id: 30, no: 1, cond: 1, rwrd: 38667, type: 83 }, 
-	{ id: 31, no: 1, cond: 1, rwrd: 38661, type: 81 }, { id: 32, no: 1, cond: 1, rwrd: 38661, type: 82 }, { id: 33, no: 1, cond: 1, rwrd: 38661, type: 83 }, 
-	{ id: 34, no: 1, cond: 1, rwrd: 38668, type: 81 }, { id: 35, no: 1, cond: 1, rwrd: 38668, type: 82 }, { id: 36, no: 1, cond: 1, rwrd: 38668, type: 83 },
-	{ id: 37, no: 1, cond: 1, rwrd: 38665, type: 81 }, { id: 38, no: 1, cond: 1, rwrd: 38665, type: 82 }, { id: 39, no: 1, cond: 1, rwrd: 38665, type: 83 }, { id: 40, no: 1, cond: 1, rwrd: 38665, type: 84 }, 
-	{ id: 41, no: 1, cond: 1, rwrd: 38669, type: 81 }, { id: 42, no: 1, cond: 1, rwrd: 38669, type: 82 }, { id: 43, no: 1, cond: 1, rwrd: 38669, type: 83 }, { id: 44, no: 1, cond: 1, rwrd: 38669, type: 84 }, 
-	{ id: 45, no: 1, cond: 1, rwrd: 38659, type: 81 }, { id: 46, no: 1, cond: 1, rwrd: 38659, type: 82 }, { id: 47, no: 1, cond: 1, rwrd: 38659, type: 83 }, { id: 48, no: 1, cond: 1, rwrd: 38659, type: 84 },
-	{ id: 49, no: 0, cond: 2, rwrd: 38736, type: 27 }, { id: 50, no: 0, cond: 2, rwrd: 38735, type: 27 }, { id: 51, no: 0, cond: 2, rwrd: 38728, type: 27 },
-	{ id: 52, no: 0, cond: 1, rwrd: 38624, type: 27 }, { id: 53, no: 0, cond: 1, rwrd: 38623, type: 27 }, { id: 54, no: 0, cond: 1, rwrd: 38628, type: 27 },
-	{ id: 55, no: 0, cond: 1, rwrd: 38736, type: 25 }, { id: 56, no: 1, cond: 1, rwrd: 38736, type: 25 }, { id: 57, no: 2, cond: 1, rwrd: 38736, type: 25 }, { id: 58, no: 3, cond: 1, rwrd: 38736, type: 25 }, 
-	{ id: 59, no: 0, cond: 1, rwrd: 38735, type: 25 }, { id: 60, no: 1, cond: 1, rwrd: 38735, type: 25 }, { id: 61, no: 2, cond: 1, rwrd: 38735, type: 25 }, { id: 62, no: 3, cond: 1, rwrd: 38735, type: 25 }, 
-	{ id: 63, no: 0, cond: 1, rwrd: 38728, type: 25 }, { id: 64, no: 1, cond: 1, rwrd: 38728, type: 25 }, { id: 65, no: 2, cond: 1, rwrd: 38728, type: 25 }, { id: 66, no: 3, cond: 1, rwrd: 38728, type: 25 }, 
-	{ id: 67, no: 0, cond: 1, rwrd: 38624, type: 25 }, { id: 68, no: 1, cond: 1, rwrd: 38624, type: 25 }, { id: 69, no: 2, cond: 1, rwrd: 38624, type: 25 }, { id: 70, no: 3, cond: 1, rwrd: 38624, type: 25 }, { id: 71, no: 4, cond: 1, rwrd: 38624, type: 25, dep: [67, 68, 69, 70, 72, 73, 74, 75, 77, 78, 79, 80] }, 
-	{ id: 72, no: 0, cond: 1, rwrd: 38623, type: 25 }, { id: 73, no: 1, cond: 1, rwrd: 38623, type: 25 }, { id: 74, no: 2, cond: 1, rwrd: 38623, type: 25 }, { id: 75, no: 3, cond: 1, rwrd: 38623, type: 25 }, { id: 76, no: 4, cond: 1, rwrd: 38623, type: 25, dep: [67, 68, 69, 70, 71, 72, 73, 74, 75, 77, 78, 79, 80] }, 
-	{ id: 77, no: 0, cond: 1, rwrd: 38628, type: 25 }, { id: 78, no: 1, cond: 1, rwrd: 38628, type: 25 }, { id: 79, no: 2, cond: 1, rwrd: 38628, type: 25 }, { id: 80, no: 3, cond: 1, rwrd: 38628, type: 25 }, 
-	{ id: 81, no: 0, cond: 1, rwrd: 1185, type: 201, save: 1, dep: [67, 68, 69, 70, 72, 73, 74, 75, 77, 78, 79, 80] },
-	{ id: 82, no: 0, cond: 1, rwrd: 1186, type: 201, save: 1, dep: [67, 68, 69, 70, 71, 72, 73, 74, 75, 77, 78, 79, 80] },
-	{ id: 83, no: 0, cond: 1, rwrd: 38746, type: 17, comp: 0, save: 1 },
-	{ id: 84, no: 0, cond: 1, rwrd: 38745, type: 17, comp: 0, save: 1 },
-	{ id: 85, no: 0, cond: 1, rwrd: 38744, type: 17, comp: 0, save: 1 },
-	{ id: 86, no: 0, cond: 1, rwrd: 38747, type: 17, comp: 0, save: 1 },
-	{ id: 87, no: 0, cond: 1, rwrd: 38748, type: 17, comp: 0, save: 1 },
-	{ id: 88, no: 0, cond: 1, rwrd: 1189, type: 201, save: 1 },
-	{ id: 89, no: 0, cond: 1, rwrd: 1188, type: 201, save: 1 },
+	{ id: 1, no: 1, cond: 1, rwrd: 38667, type: 70 },
+	{ id: 2, no: 1, cond: 1, rwrd: 38667, type: 71 },
+	{ id: 3, no: 1, cond: 1, rwrd: 38667, type: 72 },
+	{ id: 4, no: 1, cond: 1, rwrd: 38667, type: 73 },
+
+	{ id: 5, no: 1, cond: 1, rwrd: 38661, type: 70 },
+	{ id: 6, no: 1, cond: 1, rwrd: 38661, type: 71 },
+	{ id: 7, no: 1, cond: 1, rwrd: 38661, type: 72 },
+	{ id: 8, no: 1, cond: 1, rwrd: 38661, type: 73 },
+
+	{ id: 9, no: 1, cond: 1, rwrd: 38668, type: 70 },
+	{ id: 10, no: 1, cond: 1, rwrd: 38668, type: 71 },
+	{ id: 11, no: 1, cond: 1, rwrd: 38668, type: 72 },
+	{ id: 12, no: 1, cond: 1, rwrd: 38668, type: 73 },
+
+	{ id: 13, no: 1, cond: 1, rwrd: 38665, type: 70 },
+	{ id: 14, no: 1, cond: 1, rwrd: 38665, type: 71 },
+	{ id: 15, no: 1, cond: 1, rwrd: 38665, type: 72 },
+	{ id: 16, no: 1, cond: 1, rwrd: 38665, type: 73 },
+	{ id: 17, no: 1, cond: 1, rwrd: 38665, type: 74 },
+
+	{ id: 18, no: 1, cond: 1, rwrd: 38669, type: 70 },
+	{ id: 19, no: 1, cond: 1, rwrd: 38669, type: 71 },
+	{ id: 20, no: 1, cond: 1, rwrd: 38669, type: 72 },
+	{ id: 21, no: 1, cond: 1, rwrd: 38669, type: 73 },
+	{ id: 22, no: 1, cond: 1, rwrd: 38669, type: 74 },
+
+	{ id: 23, no: 1, cond: 1, rwrd: 38659, type: 70 },
+	{ id: 24, no: 1, cond: 1, rwrd: 38659, type: 71 },
+	{ id: 25, no: 1, cond: 1, rwrd: 38659, type: 72 },
+	{ id: 26, no: 1, cond: 1, rwrd: 38659, type: 73 },
+	{ id: 27, no: 1, cond: 1, rwrd: 38659, type: 74 },
+
+	{ id: 28, no: 1, cond: 1, rwrd: 38667, type: 81 },
+	{ id: 29, no: 1, cond: 1, rwrd: 38667, type: 82 },
+	{ id: 30, no: 1, cond: 1, rwrd: 38667, type: 83 },
+
+	{ id: 31, no: 1, cond: 1, rwrd: 38661, type: 81 },
+	{ id: 32, no: 1, cond: 1, rwrd: 38661, type: 82 },
+	{ id: 33, no: 1, cond: 1, rwrd: 38661, type: 83 },
+
+	{ id: 34, no: 1, cond: 1, rwrd: 38668, type: 81 },
+	{ id: 35, no: 1, cond: 1, rwrd: 38668, type: 82 },
+	{ id: 36, no: 1, cond: 1, rwrd: 38668, type: 83 },
+
+	{ id: 37, no: 1, cond: 1, rwrd: 38665, type: 81 },
+	{ id: 38, no: 1, cond: 1, rwrd: 38665, type: 82 },
+	{ id: 39, no: 1, cond: 1, rwrd: 38665, type: 83 },
+	{ id: 40, no: 1, cond: 1, rwrd: 38665, type: 84 },
+
+	{ id: 41, no: 1, cond: 1, rwrd: 38669, type: 81 },
+	{ id: 42, no: 1, cond: 1, rwrd: 38669, type: 82 },
+	{ id: 43, no: 1, cond: 1, rwrd: 38669, type: 83 },
+	{ id: 44, no: 1, cond: 1, rwrd: 38669, type: 84 },
+
+	{ id: 45, no: 1, cond: 1, rwrd: 38659, type: 81 },
+	{ id: 46, no: 1, cond: 1, rwrd: 38659, type: 82 },
+	{ id: 47, no: 1, cond: 1, rwrd: 38659, type: 83 },
+	{ id: 48, no: 1, cond: 1, rwrd: 38659, type: 84 },
+
+	{ id: 49, no: 0, cond: 2, rwrd: 38736, type: 27 },
+	{ id: 50, no: 0, cond: 2, rwrd: 38735, type: 27 },
+	{ id: 51, no: 0, cond: 2, rwrd: 38728, type: 27 },
+
+	{ id: 52, no: 0, cond: 1, rwrd: 38624, type: 27 },
+	{ id: 53, no: 0, cond: 1, rwrd: 38623, type: 27 },
+	{ id: 54, no: 0, cond: 1, rwrd: 38628, type: 27 },
+
+	{ id: 55, no: 0, cond: 1, rwrd: 38736, type: 25 },
+	{ id: 56, no: 1, cond: 1, rwrd: 38736, type: 25 },
+	{ id: 57, no: 2, cond: 1, rwrd: 38736, type: 25 },
+	{ id: 58, no: 3, cond: 1, rwrd: 38736, type: 25 },
+
+	{ id: 59, no: 0, cond: 1, rwrd: 38735, type: 25 },
+	{ id: 60, no: 1, cond: 1, rwrd: 38735, type: 25 },
+	{ id: 61, no: 2, cond: 1, rwrd: 38735, type: 25 },
+	{ id: 62, no: 3, cond: 1, rwrd: 38735, type: 25 },
+
+	{ id: 63, no: 0, cond: 1, rwrd: 38728, type: 25 },
+	{ id: 64, no: 1, cond: 1, rwrd: 38728, type: 25 },
+	{ id: 65, no: 2, cond: 1, rwrd: 38728, type: 25 },
+	{ id: 66, no: 3, cond: 1, rwrd: 38728, type: 25 },
+
+	{ id: 67, no: 0, cond: 1, rwrd: 38624, type: 25 },
+	{ id: 68, no: 1, cond: 1, rwrd: 38624, type: 25 },
+	{ id: 69, no: 2, cond: 1, rwrd: 38624, type: 25 },
+	{ id: 70, no: 3, cond: 1, rwrd: 38624, type: 25 },
+	{ id: 71, no: 4, cond: 1, rwrd: 38624, type: 25, dep: [67, 68, 69, 70, 72, 73, 74, 75, 77, 78, 79, 80] },
+
+	{ id: 72, no: 0, cond: 1, rwrd: 38623, type: 25 },
+	{ id: 73, no: 1, cond: 1, rwrd: 38623, type: 25 },
+	{ id: 74, no: 2, cond: 1, rwrd: 38623, type: 25 },
+	{ id: 75, no: 3, cond: 1, rwrd: 38623, type: 25 },
+	{ id: 76, no: 4, cond: 1, rwrd: 38623, type: 25, dep: [67, 68, 69, 70, 71, 72, 73, 74, 75, 77, 78, 79, 80] },
+
+	{ id: 77, no: 0, cond: 1, rwrd: 38628, type: 25 },
+	{ id: 78, no: 1, cond: 1, rwrd: 38628, type: 25 },
+	{ id: 79, no: 2, cond: 1, rwrd: 38628, type: 25 },
+	{ id: 80, no: 3, cond: 1, rwrd: 38628, type: 25 },
+
+	{ id: 81, no: 0, cond: 1, rwrd: 1185, type: 201, dep: [67, 68, 69, 70, 72, 73, 74, 75, 77, 78, 79, 80] },
+	{ id: 82, no: 0, cond: 1, rwrd: 1186, type: 201, dep: [67, 68, 69, 70, 71, 72, 73, 74, 75, 77, 78, 79, 80] },
+
+	{ id: 83, no: 0, cond: 1, rwrd: 38746, type: 17 },
+	{ id: 84, no: 0, cond: 1, rwrd: 38745, type: 17 },
+	{ id: 85, no: 0, cond: 1, rwrd: 38744, type: 17 },
+	{ id: 86, no: 0, cond: 1, rwrd: 38747, type: 17 },
+	{ id: 87, no: 0, cond: 1, rwrd: 38748, type: 17 },
+
+	{ id: 88, no: 0, cond: 1, rwrd: 1189, type: 201 },
+	{ id: 89, no: 0, cond: 1, rwrd: 1188, type: 201 },
+
 	{ id: 90, no: 0, cond: 1, rwrd: 38737, type: 50 },
 	{ id: 91, no: 0, cond: 1, rwrd: 38737, type: 52 },
 	{ id: 92, no: 0, cond: 1, rwrd: 38738, type: 50 },
@@ -277,16 +381,105 @@ export const EVENTS_WORLD = [
 	{ id: 106, no: 0, cond: 1, rwrd: 37234, type: 50 },
 	{ id: 107, no: 0, cond: 1, rwrd: 37363, type: 50 },
 	{ id: 108, no: 0, cond: 1, rwrd: 38436, type: 52 },
-	{ id: 109, no: 0, cond: 1, rwrd: 1197, type: 201, save: 1 },
-	{ id: 110, no: 0, cond: 1, rwrd: 38759, type: 43, comp: 0, save: 1 },
-	{ id: 111, no: 0, cond: 1, rwrd: 38758, type: 43, comp: 0, save: 1 },
-	{ id: 112, no: 0, cond: 1, rwrd: 38756, type: 43, comp: 0, save: 1 },
-	{ id: 113, no: 0, cond: 1, rwrd: 1201, type: 201, save: 1 },
+
+	{ id: 109, no: 0, cond: 1, rwrd: 1197, type: 201 },
+
+	{ id: 110, no: 0, cond: 1, rwrd: 38759, type: 43 },
+	{ id: 111, no: 0, cond: 1, rwrd: 38758, type: 43 },
+	{ id: 112, no: 0, cond: 1, rwrd: 38756, type: 43 },
+
+	{ id: 113, no: 0, cond: 1, rwrd: 1201, type: 201 },
+
 	{ id: 114, no: 0, cond: 1, rwrd: 38760, type: 50 },
 	{ id: 115, no: 0, cond: 1, rwrd: 38760, type: 52 },
 	{ id: 116, no: 0, cond: 1, rwrd: 38761, type: 50 },
 	{ id: 117, no: 0, cond: 1, rwrd: 38428, type: 52 },
-	{ id: 118, no: 0, cond: 1, rwrd: 38424, type: 52 }
+	{ id: 118, no: 0, cond: 1, rwrd: 38424, type: 52 },
+
+	{ id: 119, no: 0, cond: 3, rwrd: 38712, type: 27 },
+	{ id: 120, no: 0, cond: 3, rwrd: 38718, type: 27 },
+	{ id: 121, no: 0, cond: 3, rwrd: 38714, type: 27 },
+	{ id: 122, no: 0, cond: 3, rwrd: 38711, type: 27 },
+	{ id: 123, no: 0, cond: 3, rwrd: 38719, type: 27 }, 
+
+	{ id: 124, no: 0, cond: 3, rwrd: 38717, type: 27 },
+	{ id: 125, no: 0, cond: 3, rwrd: 38715, type: 27 },
+	{ id: 126, no: 0, cond: 3, rwrd: 38716, type: 27 },
+	{ id: 127, no: 0, cond: 3, rwrd: 38710, type: 27 },
+	{ id: 128, no: 0, cond: 3, rwrd: 38713, type: 27 }, 
+
+	{ id: 129, no: 0, cond: 4, rwrd: 445, type: 27 },
+	{ id: 130, no: 0, cond: 4, rwrd: 197, type: 27 },
+	{ id: 131, no: 0, cond: 4, rwrd: 36935, type: 27 },
+	{ id: 132, no: 0, cond: 4, rwrd: 160, type: 27 },
+	{ id: 133, no: 0, cond: 4, rwrd: 37269, type: 27 },
+
+	{ id: 134, no: 0, cond: 1, rwrd: 38712, type: 25 },
+	{ id: 135, no: 1, cond: 1, rwrd: 38712, type: 25 },
+	{ id: 136, no: 2, cond: 1, rwrd: 38712, type: 25 },
+	{ id: 137, no: 3, cond: 1, rwrd: 38712, type: 25 }, 
+
+	{ id: 138, no: 0, cond: 1, rwrd: 38718, type: 25 },
+	{ id: 139, no: 1, cond: 1, rwrd: 38718, type: 25 },
+	{ id: 140, no: 2, cond: 1, rwrd: 38718, type: 25 },
+	{ id: 141, no: 3, cond: 1, rwrd: 38718, type: 25 },
+	{ id: 142, no: 4, cond: 1, rwrd: 38718, type: 25, dep: [156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177] },
+
+	{ id: 143, no: 0, cond: 1, rwrd: 38714, type: 25 },
+	{ id: 144, no: 1, cond: 1, rwrd: 38714, type: 25 },
+	{ id: 145, no: 2, cond: 1, rwrd: 38714, type: 25 },
+	{ id: 146, no: 3, cond: 1, rwrd: 38714, type: 25 },
+
+	{ id: 147, no: 0, cond: 1, rwrd: 38711, type: 25 },
+	{ id: 148, no: 1, cond: 1, rwrd: 38711, type: 25 },
+	{ id: 149, no: 2, cond: 1, rwrd: 38711, type: 25 },
+	{ id: 150, no: 3, cond: 1, rwrd: 38711, type: 25 },
+	{ id: 151, no: 4, cond: 1, rwrd: 38711, type: 25, dep: [156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177] },
+
+	{ id: 152, no: 0, cond: 1, rwrd: 38719, type: 25 },
+	{ id: 153, no: 1, cond: 1, rwrd: 38719, type: 25 },
+	{ id: 154, no: 2, cond: 1, rwrd: 38719, type: 25 },
+	{ id: 155, no: 3, cond: 1, rwrd: 38719, type: 25 }, 
+
+	{ id: 156, no: 0, cond: 1, rwrd: 38717, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+	{ id: 157, no: 1, cond: 1, rwrd: 38717, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+	{ id: 158, no: 2, cond: 1, rwrd: 38717, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+	{ id: 159, no: 3, cond: 1, rwrd: 38717, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+	{ id: 160, no: 4, cond: 1, rwrd: 38717, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+
+	{ id: 161, no: 0, cond: 1, rwrd: 38715, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+	{ id: 162, no: 1, cond: 1, rwrd: 38715, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+	{ id: 163, no: 2, cond: 1, rwrd: 38715, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+	{ id: 164, no: 3, cond: 1, rwrd: 38715, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+	{ id: 165, no: 4, cond: 1, rwrd: 38715, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+
+	{ id: 166, no: 0, cond: 1, rwrd: 38716, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+	{ id: 167, no: 1, cond: 1, rwrd: 38716, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+	{ id: 168, no: 2, cond: 1, rwrd: 38716, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+	{ id: 169, no: 3, cond: 1, rwrd: 38716, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+
+	{ id: 170, no: 0, cond: 1, rwrd: 38710, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+	{ id: 171, no: 1, cond: 1, rwrd: 38710, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+	{ id: 172, no: 2, cond: 1, rwrd: 38710, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+	{ id: 173, no: 3, cond: 1, rwrd: 38710, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+
+	{ id: 174, no: 0, cond: 1, rwrd: 38713, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+	{ id: 175, no: 1, cond: 1, rwrd: 38713, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+	{ id: 176, no: 2, cond: 1, rwrd: 38713, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+	{ id: 177, no: 3, cond: 1, rwrd: 38713, type: 25, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+	{ id: 178, no: 4, cond: 1, rwrd: 38713, type: 25, dep: [156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177] },
+
+	{ id: 179, no: 0, cond: 1, rwrd: 1203, type: 201, dep: [134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 152, 153, 154, 155] },
+	{ id: 180, no: 0, cond: 1, rwrd: 1204, type: 201, dep: [156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177] },
+
+	{ id: 181, no: 4, cond: 1, rwrd: 445, type: 25 },
+	{ id: 182, no: 4, cond: 1, rwrd: 197, type: 25 },
+	{ id: 183, no: 4, cond: 1, rwrd: 36935, type: 25 },
+	{ id: 184, no: 4, cond: 1, rwrd: 160, type: 25, dep: [181, 182, 183] },
+	{ id: 185, no: 4, cond: 1, rwrd: 37269, type: 25, dep: [184] },
+
+	{ id: 186, no: 0, cond: 1, rwrd: 1205, type: 201, dep: [181, 182, 183] },
+	{ id: 187, no: 0, cond: 1, rwrd: 1206, type: 201, dep: [184] }
 ]
 
 export const LEAGUE_WORLD = [
