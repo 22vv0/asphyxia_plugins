@@ -373,14 +373,14 @@
             "id": "vgate1",
             "type": "variant",
             "enabled": true,
-            "name": "VARIANT GATE",
-            "desc": "Accumulate VARIANT POWER to make a special song folder appear in EXTRACK, clear the songs at a certain difficulty to obtain keys. Get all keys to play OVER TRACK.",
+            "name": "VARIANT GATE 「月輪の紋様」",
+            "desc": "1st set of VARIANT GATE. Accumulate VARIANT POWER to make a special song folder appear in EXTRACK, clear the songs at a certain difficulty to obtain keys. Get all keys to play OVER TRACK.",
             "info": "Toggle this on to enable/disable this event.",
             "settings": [
                 {
                     "id": "minSealDiff",
                     "title": "OVER TRACK difficulty",
-                    "desc": "Set the lowest difficulty available for OVER TRACK. You can also only get the seals for OVER TRACK by clearing the song on this difficulty, or higher (default: Maximum)",
+                    "desc": "Set the lowest difficulty available for OVER TRACK (default: Maximum)",
                     "val": [[3, "Choose difficulty"], [0, "Novice"], [1, "Advanced"], [2, "Exhaust"], [3, "Maximum"]]
                 },
                 {
@@ -402,6 +402,14 @@
                 "Song 2: '星界のアルペジオ'",
                 "Song 3: 'Ö＜3rf10₩'"
             ]
+        },
+        {
+            "id": "reflecstamp3",
+            "type": "stamp",
+            "enabled": true,
+            "name": "REFLEC BEAT Song Stamp Event (2025)",
+            "desc": "Stamp event to unlock 5 more songs originally from the REFLEC BEAT game series.",
+            "info": "Toggle this on to enable/disable this stamp event."
         }
     ],
     "flags": [

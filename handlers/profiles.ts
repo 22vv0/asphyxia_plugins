@@ -10,7 +10,7 @@ import { WeeklyMusicScore } from '../models/weeklymusic'
 import { VariantPower } from '../models/variant'
 import { getVersion, IDToCode } from '../utils'
 import { Mix } from '../models/mix'
-import { ARENA, EVENT_ITEMS6, UNLOCK_EVENTS6 } from '../data/exg'
+import { CURRENT_ARENA, EVENT_ITEMS6, UNLOCK_EVENTS6 } from '../data/exg'
 import { getRankListDB } from './webui'
 
 function unlockNavigators(items: Partial<Item>[]) {
@@ -550,10 +550,12 @@ export const load: EPR = async (info, data, send) => {
     }
   }
 
+  let arenaOpen = U.GetConfig('arena_no_endtime') || BigInt(date) < CURRENT_ARENA.time_end
+
   const items = await DB.Find<Item>(refid, { collection: 'item' });
   const courses = await DB.Find<CourseRecord>(refid, { collection: 'course', version });
   const params = await DB.Find<Param>(refid, { collection: 'param' });
-  const arena = await DB.FindOne<Arena>(refid, { collection: 'arena', season: (U.GetConfig('arena_szn') !== "None") ? ARENA[U.GetConfig('arena_szn')]['details']['season'] : 0 });
+  const arena = await DB.FindOne<Arena>(refid, { collection: 'arena', season: arenaOpen ? CURRENT_ARENA['season'] : 0 });
   const valgeneTicket = await DB.FindOne<ValgeneTicket>(refid, { collection: 'valgene_ticket' })
   const variant = await DB.FindOne<VariantPower>(refid, { collection: 'variantpower' })
   let weeklyMusic = []

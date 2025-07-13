@@ -20,7 +20,7 @@ async function generateNewFlagsConfigFile(eventData) {
     let flagConfig = {}
     for(const flagIter in eventData['flags']) {
         flagConfig[eventData['flags'][flagIter]['id']] = {
-            'toggle': true,
+            'toggle': false,
             'str': eventData['flags'][flagIter]['str']
         }
     }

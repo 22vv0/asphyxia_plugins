@@ -1,5 +1,5 @@
 import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIE_SONGS,
-          LICENSED_SONGS6, ARENA, VALGENE, INFORMATION6, UNLOCK_EVENTS6
+          LICENSED_SONGS6, CURRENT_ARENA, ARENA_STATION_ITEMS, VALGENE, INFORMATION6, UNLOCK_EVENTS6
 } from '../data/exg';
 import {getVersion, getRandomIntInclusive} from '../utils';
 
@@ -76,8 +76,8 @@ export const common: EPR = async (info, data, send) => {
               // if song is released during exceed gear
               if(songData.info.version['#text'] === '6') {
                 // Licensed songs released in Exceed Gear needs limited=3 to appear
-                if(LICENSED_SONGS6.includes(i.toString())) limitedNo += 1;
-                else if(VALKYRIE_SONGS.includes(i.toString()) && info.model.split(":")[2].match(/^(G|H)$/g) == null) limitedNo -= 1;
+                if(LICENSED_SONGS6.includes(i)) limitedNo += 1;
+                else if(VALKYRIE_SONGS.includes(i) && info.model.split(":")[2].match(/^(G|H)$/g) == null) limitedNo -= 1;
                 
                 // manual lock songs
                 if(i === 2034) limitedNo = 2;
@@ -103,7 +103,7 @@ export const common: EPR = async (info, data, send) => {
               }
 
               // Licensed songs released pre-exceed gear
-              else if (LICENSED_SONGS6.includes(i.toString())) {
+              else if (LICENSED_SONGS6.includes(i)) {
                 for(let j = 0; j < 5; j++) {
                   songs.push({
                     music_id: K.ITEM('s32', i),
@@ -251,18 +251,30 @@ export const common: EPR = async (info, data, send) => {
       }
     }
 
-    let arena_szn = U.GetConfig('arena_szn')  
-    let arena_catalog_items = []
+    let arenaOpen = U.GetConfig('arena_no_endtime') || BigInt(date) < CURRENT_ARENA.time_end
+    let shopOpen = arenaOpen && U.GetConfig('arena_station') !== 'None'
+    let arenaData = {}
 
-    if(arena_szn !== 'None') {
-      arena_catalog_items = ARENA[arena_szn].arena_items.map(item => ({
-        catalog_id: K.ITEM('s32', item[0]),
-        catalog_type: K.ITEM('s32', item[1]),
-        price: K.ITEM('s32', item[2]),
-        item_type: K.ITEM('s32', item[3]),
-        item_id: K.ITEM('s32', item[4]),
-        param: K.ITEM('s32', item[5]),
-      }))
+    if(arenaOpen) {
+      arenaData = {
+        season: K.ITEM('s32', CURRENT_ARENA.season),
+        rule: K.ITEM('s32', CURRENT_ARENA.rule),
+        rank_match_target: K.ITEM('s32', CURRENT_ARENA.rank_match_target),
+        time_start: K.ITEM('u64', CURRENT_ARENA.time_start),
+        time_end: K.ITEM('u64', CURRENT_ARENA.time_end),
+        shop_start: K.ITEM('u64', CURRENT_ARENA.shop_start),
+        shop_end: K.ITEM('u64', CURRENT_ARENA.shop_end),
+        is_open: K.ITEM('bool', arenaOpen),
+        is_shop: K.ITEM('bool', shopOpen),
+        catalog: (shopOpen && U.GetConfig('arena_station') !== 'None') ? ARENA_STATION_ITEMS[U.GetConfig('arena_station')].map(item => ({
+          catalog_id: K.ITEM('s32', item[0]),
+          catalog_type: K.ITEM('s32', item[1]),
+          price: K.ITEM('s32', item[2]),
+          item_type: K.ITEM('s32', item[3]),
+          item_id: K.ITEM('s32', item[4]),
+          param: K.ITEM('s32', item[5]),
+        })) : []
+      }
     }
 
     let valgene_info = []
@@ -299,7 +311,7 @@ export const common: EPR = async (info, data, send) => {
       for (const afsong in APRILFOOLSSONGS) {
         for (let j = 0; j < 5; ++j) {
           songs.push({
-            music_id: K.ITEM('s32', parseInt(APRILFOOLSSONGS[afsong])),
+            music_id: K.ITEM('s32', APRILFOOLSSONGS[afsong]),
             music_type: K.ITEM('u8', j),
             limited: K.ITEM('u8', 3),
           });
@@ -336,18 +348,7 @@ export const common: EPR = async (info, data, send) => {
           info: valgene_info,
           catalog: valgene_items
         },
-        arena: (arena_szn !== 'None') ? {
-          season: K.ITEM('s32', ARENA[arena_szn].details.season),
-          rule: K.ITEM('s32', ARENA[arena_szn].details.rule),
-          rank_match_target: K.ITEM('s32', ARENA[arena_szn].details.rank_match_target),
-          time_start: K.ITEM('u64', ARENA[arena_szn].details.time_start),
-          time_end: K.ITEM('u64', ARENA[arena_szn].details.time_end),
-          shop_start: K.ITEM('u64', ARENA[arena_szn].details.shop_start),
-          shop_end: K.ITEM('u64', ARENA[arena_szn].details.shop_end),
-          is_open: K.ITEM('bool', ARENA[arena_szn].details.is_open),
-          is_shop: K.ITEM('bool', ARENA[arena_szn].details.is_shop),
-          catalog: arena_catalog_items
-        } : {},
+        arena: arenaData,
         event: {
           info: events.map(e => ({
             event_id: K.ITEM('str', e),

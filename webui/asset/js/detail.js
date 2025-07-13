@@ -636,24 +636,6 @@ function setUpStatistics() {
     }
 }
 
-// $('cmpd').on('click', function(e) {
-//     //setCMpD();
-//     $('cmpdli').addClass('is-active');
-// })
-
-// $('cmpl').on('click', function(e) {
-//     //setCMpD();
-//     $('cmplli').addClass('is-active');
-// })
-// $('gpd').on('click', function(e) {
-//     //setCMpD();
-//     $('gpdli').addClass('is-active');
-// })
-// $('gpl').on('click', function(e) {
-//     //setCMpD();
-//     $('gplli').addClass('is-active');
-// })
-
 $('#version_select').change(function() {
     $('#skillLV').fadeOut(200, () => {
         console.log("change version select");
@@ -717,7 +699,6 @@ function displayArenaSeasonData(season) {
                     $('<img>', {
                         src: 'static/asset/arena_rank/' + rankInfo[0] + ".png"
                     })
-                    // $('<h1 style="font-size:100px">' + ((rankInfo[0] === 'none') ? 'n/a' : rankInfo[0].toUpperCase()) + "</h1>")
                 )
             )
         ).append(
@@ -725,6 +706,12 @@ function displayArenaSeasonData(season) {
                 $('<article class="tile is-child arena-details-child-right">').append(
                     $('<p class="title" style="font-family: testfont">Arena Power</p>').append(
                         $('<div class="content">' + sznData.shopPoint + ' AP </div>')
+                    )
+                ).append(
+                    (sznData.megamixRate !== (0 || undefined)) ? $('<p class="title" style="font-family: testfont">Ultimate Rate</p>').append(
+                        $('<div class="content">' + sznData.ultimateRate + ' </div>')
+                    ) : $('<p class="title" style="font-family: testfont">Megamix Rate</p>').append(
+                        $('<div class="content">' + sznData.megamixRate + ' <img style="width:20px" src="static/asset/arena_rank/mixstar.png"></p></div>')
                     )
                 )
             )
@@ -742,14 +729,8 @@ function displayArenaSeasonData(season) {
             $('.arena-details-child-left').append(
                 $('<meter id="rank-point-mtr" style="width:80%" min="' + rankInfo[1] + '"max="' + ((rankInfo[2] !== undefined) ? rankInfo[2].point : rankInfo[1]) + '" value="' + sznData.rankPoint + '"></meter>')
             ).append(
-                $('<h5 style="font-family: testfont">' + sznData.rankPoint + ' pts (' + (rankInfo[2].point - sznData.rankPoint) + ' pts to ' + rankInfo[2].rank.toUpperCase() + ')</h5>')
-            ).append(
-                (sznData.megamixRate !== (0 || undefined)) ? $('<h5 style="font-family: testfont">Megamix rate: ' + sznData.megamixRate + ' <img style="width:20px" src="static/asset/arena_rank/mixstar.png"></p></div></h5>') : $('<h5>')
-            )
-        } else if(rankInfo[0] !== 'none'){
-            $('.arena-details-child-left').append(
-                (sznData.megamixRate !== (0 || undefined)) ? $('<h5 style="font-family: testfont">Megamix rate: ' + sznData.megamixRate + ' <img style="width:20px" src="static/asset/arena_rank/mixstar.png"></p></div></h5>') : $('<h5 style="font-family:testfont">Ultimate rate: ' + sznData.ultimateRate + '</h5>')
-            )
+                    $('<h5 style="font-family: testfont">' + sznData.rankPoint + ' points <br>(' + (rankInfo[2].point - sznData.rankPoint) + ' points to ' + rankInfo[2].rank.toUpperCase() + ')</h5>')
+                )
         }
     }
 }
@@ -1063,11 +1044,11 @@ $(document).ready(function() {
             )
             $('#arena-szn-sel').attr('disabled', 'disabled')
         } else {
-            arena_data.forEach(are => {
+            arena_data.sort((a,b) => b.season - a.season).forEach(are => {
                 $('#arena-szn-sel').append(
                     $('<option>', {
                         value: are['season'],
-                        text: 'Season: ' + are['season'],
+                        text: 'Season ' + are['season'],
                     })
                 )
             })
