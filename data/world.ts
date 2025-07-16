@@ -482,6 +482,7 @@ export const EVENTS_WORLD = [
 	{ id: 187, no: 0, cond: 1, rwrd: 1206, type: 201, dep: [184] }
 ]
 
+export const LEAGUE_SEASON = 7
 export const LEAGUE_WORLD = [
 	{
 		id: 1,

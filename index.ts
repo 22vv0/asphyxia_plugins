@@ -263,7 +263,6 @@ export function register() {
 
 async function updateWorldLeague() {
   for(const league of LEAGUE_WORLD) {
-    if(BigInt(Date.now()) < league.start) break
     for(const leagueClass of [1,2,3]) {
       let curLeagueRes = await DB.FindOne<LeagueResultWorld>({collection: 'leagueresult3', id: league.id, class: leagueClass })
       let ended = (curLeagueRes) ? curLeagueRes.ended : false
