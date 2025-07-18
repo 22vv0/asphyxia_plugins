@@ -1,6 +1,6 @@
 # DanceDanceRevolution
 
-**Plugin Version:** fork-3.0.4a
+**Plugin Version:** fork-3.0.4b
 
 **Supported game versions:** WORLD (2024112700)
 
@@ -12,6 +12,14 @@
 
 Changelog
 ===========
+### fork-3.0.4b
+
+- Fixes:
+	- Event data handling
+		- Issue where EXTRA SAVIOR WORLD charts will immediately unlock when playing in Premium Play.
+			- Unlock conditions should now be fixed (500k/1m/2m/3m total points for BAS/DIF/EXP/CHA respectively.) Existing player event data should automatically update to reflect these changes.
+		- Issue where Flare unlocks pop up everytime player logs out with increased Flare Skill.
+
 ### fork-3.0.4a
 
 - Fixes:

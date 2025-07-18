@@ -535,15 +535,19 @@ export const playerdataload: EPR = async (info, data, send) => {
         if(eData && eData.compTime !== 0) condmet = false
         compTime = 0
         saveData = 1
-      } 
-      else if([17, 43].includes(event.type)) {
-        if(eData && eData.compTime !== 0) {
-          compTime = 0
-          saveData = 1
-        } else {
-          compTime = 1
-          saveData = 1
+      }
+      else if([70, 71, 72, 73, 74, 81, 82, 83, 84].includes(event.type)) compTime = (eData && eData.compTime !== 0) ? eData.compTime : 0
+      else if(event.type === 25) {
+        compTime = (!eData || eData.compTime !== 0) ? 0 : eData.compTime
+        // extra savior fix (071925)
+        if(event.no !== 0 && eData && (eData.compTime === 1 && eData.saveData === 1)) {
+          await DB.Upsert(refid, {collection: "event3", eventId: eData.eventId}, {$set: {saveData: event.cond}})
+          saveData = event.cond
         }
+      }
+      else if([17, 43].includes(event.type)) {
+        if(!eData) compTime = 1
+        saveData = 1
       }
       
       // id,type,no,condition,reward,comptime,savedata
