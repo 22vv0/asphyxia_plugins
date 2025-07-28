@@ -1,6 +1,6 @@
 # DanceDanceRevolution
 
-**Plugin Version:** fork-3.0.4b
+**Plugin Version:** fork-3.0.4c
 
 **Supported game versions:** WORLD (2024112700)
 
@@ -12,6 +12,12 @@
 
 Changelog
 ===========
+### fork-3.0.4c
+
+- Fixes:
+	- Issue where the game won't load if there is no WORLD LEAGUE data found.
+
+
 ### fork-3.0.4b
 
 - Fixes:

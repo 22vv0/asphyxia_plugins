@@ -645,14 +645,15 @@ export const playerdataload: EPR = async (info, data, send) => {
         else if(leagueInfo.score < leagueResult.demoteScore) resultClass -= 1
       }
       else if(leagueClass === 3 && leagueInfo.score < leagueResult.demoteScore) resultClass -= 1
-    } else resultClass = 1
+      ended = (leagueInfo.ended !== undefined) ? leagueInfo.ended : false
+    }
 
-    ended = (leagueInfo.ended !== undefined) ? leagueInfo.ended : false
+    
     if(BigInt(Date.now()) >= curLeague.start) leagueStatus = 1 
     if(BigInt(Date.now()) >= curLeague.end) leagueStatus = 2
     if(BigInt(Date.now()) >= curLeague.summary) {
       leagueStatus = 0
-      if(!ended) {
+      if(leagueInfo && !ended) {
         lResult.push({
           league_id: K.ITEM("s32", curLeague.id),
           league_name: K.ITEM("str", Buffer.from(curLeague.name, 'utf8').toString('base64')),
