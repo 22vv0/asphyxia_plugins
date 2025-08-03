@@ -1,20 +1,20 @@
-## Asphyxia Plugins
+# pop'n music
 
-### Plugins included
+**Plugin Version:** 0.1
 
-1. [SOUND VOLTEX (KFC)](https://github.com/22vv0/asphyxia_plugins/tree/kfc)
-2. [DanceDanceRevolution (MDX)](https://github.com/22vv0/asphyxia_plugins/tree/mdx)
+**Supported game versions:** Jam&Fizz (2024092500)
 
-### Usage
+**Required Asphyxia Core version** [1.50c](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50)
 
-1. Download the Asphyxia plugin of your choosing:
-    - Go to the [Releases](https://github.com/22vv0/asphyxia_plugins/releases) page. Filter game plugins by using the "Find a release" search bar at the top (search for SDVX or DDR)
-    - Find the latest version release of the plugin for your specific game and version, indicated again by their codenames.
-    - Click the attached plugin archive if there is one or click "Source code (zip)" to start downloading.
-3. Once downloaded, open and extract the files inside the zip to your specific game plugin folder, overwriting any files. 
-    - If you're starting fresh, extract the files to a new folder named ddr@asphyxia or sdvx@asphyxia, depending on the plugin you've downloaded.
-        - Do note that you can replace the "asphyxia" in the folder name with whatever alphabetic name you like. Make sure to rename the savedata db file the same name as well.
+**Notes:**
+- This current version of the plugin is highly experimental and is not intended as a daily driver. A lot of this is either work in progress, or 100% not implemented. Use at your own risk. 
+- Please be aware that this plugin and the savefile it produces are incompatible with the official plugin, or any other forks. Please be cautious of using other plugins' savefiles with this fork of the plugin, or using this fork's savefile with other plugins.
+- Please back up your save data to prevent unwanted issues (just in case)
 
-### Special thanks
+Changelog
+===========
+### 0.1
 
-1. Team Asphyxia for providing the plugins repo that I used as a starting point for this 'project' I started for fun.
+- Features implemented:
+	- Profile creation, save and load.
+	- Song chart score and option data save and load.
