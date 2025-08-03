@@ -216,7 +216,7 @@ export const read: EPR = async (info, data, send) => {
             relation: K.ITEM('s8', -1),
         },
         info: {
-            ep: K.ITEM('u16', 5)
+            ep: K.ITEM('u16', profile.extraPlay)
         },
         config: {
             mode: K.ITEM('u8', config.mode),
