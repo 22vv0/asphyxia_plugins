@@ -1,8 +1,8 @@
 # DanceDanceRevolution
 
-**Plugin Version:** fork-3.0.4c
+**Plugin Version:** fork-3.0.5
 
-**Supported game versions:** WORLD (2024112700)
+**Supported game versions:** WORLD (2024122300)
 
 **Required Asphyxia Core version** [1.50c](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50)
 
@@ -12,60 +12,40 @@
 
 Changelog
 ===========
-### fork-3.0.4c
+### fork-3.0.5
 
-- Fixes:
-	- Issue where the game won't load if there is no WORLD LEAGUE data found.
+- Added WebUI customization options: located in profile settings.
+	- Character (P1/P2)
+	- Lane Background (SINGLE/DOUBLE)
+	- Lane Cover (SINGLE/DOUBLE)
+	- Game Background (Song select/during play)
+	- Background video display (ON/OFF/FULL SCREEN)
 
+- Added customization data
+	- Base customization items
+	- PREMIUM CUSTOMIZER 1
 
-### fork-3.0.4b
-
-- Fixes:
-	- Event data handling
-		- Issue where EXTRA SAVIOR WORLD charts will immediately unlock when playing in Premium Play.
-			- Unlock conditions should now be fixed (500k/1m/2m/3m total points for BAS/DIF/EXP/CHA respectively.) Existing player event data should automatically update to reflect these changes.
-		- Issue where Flare unlocks pop up everytime player logs out with increased Flare Skill.
-
-### fork-3.0.4a
-
-- Fixes:
-	- Issue where ended WORLD LEAGUE causes game to not load data.
-
-### fork-3.0.4
-
-- Notes:
-	- Looks like the 241127 update was preloaded with the PREMIUM CUSTOMIZER set 1 assets but as far as I'm able to check, there seems to be no way to use them yet. Will continue checking further.
 - Added song/chart info:
-	- WORLD LEAGUE
-		- access super \[hyper\] focus (Silver class benefit)
 	- EXTRA SAVIOR WORLD
-		- Beyond The Earth
-		- Red. by Full Metal Jacket
-		- TYCOON
-		- 雪上断火
-		- 罪と罰
-		- DIAVOLO
-		- Fly Like You
-		- quaver♪
-		- 蛇神
-		- 逆月
-		- BE LOVIN (CHALLENGE)
-		- Holic (CHALLENGE)
-		- 華爛漫 -Flowers- (CHALLENGE)
-		- PARANOIA EVOLUTION (CHALLENGE)
-		- Übertreffen (CHALLENGE)
-	- Misc:
-		- 我ら完全無敵のアイドル!!
-		- actualization of self (weaponized) (CHALLENGE)
+		- Amazing Bomberman
+		- Funky Flux Fusion
+		- No More Love
+		- 愛氏AIされ
+	- Misc
+		- Dance and Death
+		- 白日と幻月
+		- おひさし中華街！
+		- イガク
+		- メズマライザー
+		- ラビットホール
+		- Dance With Me
+		- Hopeful (CHALLENGE)
+		- Thank You Merry Christmas (CHALLENGE)
+
 - Added event data:
 	- EXTRA SAVIOR WORLD
-		- BEMANI SELECTION vol.1
-		- The 1st CLASSIC CHALLENGE
-	- Misc:
-		- 我ら完全無敵のアイドル!! demo banner during attract mode.
-- Fixes:
-	- Fixed issue in event data handling where only 64 entries are being loaded and saved.
-	- Changed WORLD LEAGUE update interval from 30m -> 1m.
+		- BOMBERMAN
+		- The 1st MUSIC CREATOR AUDITION
 
 
 musicdb.xml Usage Guide
@@ -88,4 +68,5 @@ To do:
 3. More WebUI stuff 
 4. Figure out unknown values in score_str
 5. Rival loading and figure out unknown values in rival record_str
+6. Refactor WORLD LEAGUE
 

@@ -1,8 +1,24 @@
 {
 	"appealBoard" : [
 		{
-			"id": 0,
-			"name": "Default"
+			"id": 1,
+			"name": "プレーン (パターン1)"
+		},
+		{
+			"id": 2,
+			"name": "プレーン (パターン2)"
+		},
+		{
+			"id": 3,
+			"name": "プレーン (パターン3)"
+		},
+		{
+			"id": 4,
+			"name": "EMI"
+		},
+		{
+			"id": 5,
+			"name": "RAGE"
 		},
 		{
 			"id": 100001,
@@ -31,6 +47,236 @@
 		{
 			"id": 100007,
 			"name": "Leisureland"
+		},
+		{
+			"id": 6,
+			"name": "ALICE"
+		},
+		{
+			"id": 7,
+			"name": "BABY-LON"
+		},
+		{
+			"id": 8,
+			"name": "みゅ、みゅ、Müllる"
+		},
+		{
+			"id": 9,
+			"name": "Astrogazer"
+		},
+		{
+			"id": 10,
+			"name": "Don't Stop The HYPERCORE"
+		}
+	],
+	"character" : [
+		{
+			"id": 1,
+			"name": "EMI" 
+		},
+		{
+			"id": 2,
+			"name": "RAGE"
+		},
+		{
+			"id": 3,
+			"name": "ALICE"
+		},
+		{
+			"id": 4,
+			"name": "BABY-LON"
+		}
+	],
+	"laneBgSingle" : [
+		{
+			"id": 1,
+			"name": "EMI" 
+		},
+		{
+			"id": 2,
+			"name": "RAGE"
+		},
+		{
+			"id": 3,
+			"name": "ROCKET"
+		},
+		{
+			"id": 4,
+			"name": "ALICE"
+		},
+		{
+			"id": 5,
+			"name": "BABY-LON"
+		},
+		{
+			"id": 6,
+			"name": "GRID"
+		}
+	],
+	"laneBgDouble": [
+		{
+			"id": 1,
+			"name": "EMI&RAGE" 
+		},
+		{
+			"id": 2,
+			"name": "EMI"
+		},
+		{
+			"id": 3,
+			"name": "RAGE"
+		},
+		{
+			"id": 4,
+			"name": "ROCKET"
+		},
+		{
+			"id": 5,
+			"name": "ALICE"
+		},
+		{
+			"id": 6,
+			"name": "BABY-LON"
+		},
+		{
+			"id": 7,
+			"name": "ALICE&EMI"
+		},
+		{
+			"id": 8,
+			"name": "GRID"
+		}
+	],
+	"laneCoverSingle": [
+		{
+			"id": 1,
+			"name": "WORLD" 
+		},
+		{
+			"id": 2,
+			"name": "EMI" 
+		},
+		{
+			"id": 3,
+			"name": "RAGE"
+		},
+		{
+			"id": 4,
+			"name": "ROCKET"
+		},
+		{
+			"id": 5,
+			"name": "ALICE"
+		},
+		{
+			"id": 6,
+			"name": "BABY-LON"
+		},
+		{
+			"id": 7,
+			"name": "みゅ、みゅ、Müllる"
+		},
+		{
+			"id": 8,
+			"name": "Astrogazer"
+		},
+		{
+			"id": 9,
+			"name": "Don't Stop The HYPERCORE"
+		}
+	],
+	"laneCoverDouble": [
+		{
+			"id": 1,
+			"name": "WORLD" 
+		},
+		{
+			"id": 2,
+			"name": "EMI" 
+		},
+		{
+			"id": 3,
+			"name": "RAGE"
+		},
+		{
+			"id": 4,
+			"name": "EMI&RAGE" 
+		},
+		{
+			"id": 5,
+			"name": "ROCKET"
+		},
+		{
+			"id": 6,
+			"name": "ALICE"
+		},
+		{
+			"id": 7,
+			"name": "BABY-LON"
+		},
+		{
+			"id": 8,
+			"name": "ALICE&EMI"
+		},
+		{
+			"id": 9,
+			"name": "みゅ、みゅ、Müllる"
+		},
+		{
+			"id": 10,
+			"name": "Astrogazer"
+		},
+		{
+			"id": 11,
+			"name": "Don't Stop The HYPERCORE"
+		}
+	],
+	"gameBG": [
+		{
+			"id": 1,
+			"name": "WORLD (パターン1)" 
+		},
+		{
+			"id": 2,
+			"name": "WORLD (パターン2)" 
+		},
+		{
+			"id": 3,
+			"name": "WORLD (パターン3)"
+		},
+		{
+			"id": 4,
+			"name": "ヘキサグラム (パターン1)" 
+		},
+		{
+			"id": 5,
+			"name": "ヘキサグラム (パターン2)"
+		},
+		{
+			"id": 6,
+			"name": "ヘキサグラム (パターン3)"
+		},
+		{
+			"id": 7,
+			"name": "ヘキサグラム (パターン4)"
+		},
+		{
+			"id": 8,
+			"name": "ヘキサグラム (パターン5)"
+		}
+	],
+	"songVid": [
+		{
+			"id": 1,
+			"name" : "FULL SCREEN"
+		},
+		{
+			"id": 2,
+			"name" : "ON"
+		},
+		{
+			"id": 3,
+			"name" : "OFF"
 		}
 	]
 }

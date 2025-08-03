@@ -209,15 +209,14 @@ export function register() {
     });
   });
 
-  R.WebUIEvent("playerCustomize", async ({ customize, refid, selected }) => {
-    const catPat = {'appeal': [1, 1]}
-    if(selected === 0) await DB.Remove<CustomizeWorld>(refid, { collection: "customize3", category: catPat[customize][0], pattern: catPat[customize][1] })
-    else await DB.Upsert<CustomizeWorld>(refid, { collection: "customize3", category: catPat[customize][0] }, { 
-      $set: { 
-        key: selected, 
-        pattern: catPat[customize][1] 
-      }
-    });
+  R.WebUIEvent("playerCustomize", async ({ refid, selected }) => {
+    for(const sel of selected) {
+      await DB.Upsert<CustomizeWorld>(refid, { collection: "customize3", category: sel[0], pattern: sel[2] }, { 
+        $set: { 
+          key: sel[1],
+        }
+      });
+    }
   });
 
   R.WebUIEvent("getMDB", async (data: {}, send: WebUISend) => {

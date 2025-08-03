@@ -203,9 +203,25 @@ else if profile3
         p.card-header-title
           span.icon
             i.mdi.mdi-brush
-          | Customize
-      
-      .card-content
+          | Customization
+
+      .card-content 
+        .field.is-horizontal.has-addons
+          .field-label.is-normal
+            label.label Character (P1 side)
+          .field-body
+            p.control
+              .select
+                select#character-left
+
+        .field.is-horizontal.has-addons
+          .field-label.is-normal
+            label.label Character (P2 side)
+          .field-body
+            p.control
+              .select
+                select#character-right
+
         .field.is-horizontal.has-addons
           .field-label.is-normal
             label.label Appeal Board
@@ -213,6 +229,62 @@ else if profile3
             p.control
               .select
                 select#appeal
+
+        .field.is-horizontal.has-addons
+          .field-label.is-normal
+            label.label Lane Background (SINGLE)
+          .field-body
+            p.control
+              .select
+                select#lanebg-s
+
+        .field.is-horizontal.has-addons
+          .field-label.is-normal
+            label.label Lane Background (DOUBLE)
+          .field-body
+            p.control
+              .select
+                select#lanebg-d
+
+        .field.is-horizontal.has-addons
+          .field-label.is-normal
+            label.label Lane Cover (SINGLE)
+          .field-body
+            p.control
+              .select
+                select#lanecv-s
+
+        .field.is-horizontal.has-addons
+          .field-label.is-normal
+            label.label Lane Cover (DOUBLE)
+          .field-body
+            p.control
+              .select
+                select#lanecv-d
+
+        .field.is-horizontal.has-addons
+          .field-label.is-normal
+            label.label Game Background (System)
+          .field-body
+            p.control
+              .select
+                select#bg-system
+
+        .field.is-horizontal.has-addons
+          .field-label.is-normal
+            label.label Game Background (During Play)
+          .field-body
+            p.control
+              .select
+                select#bg-play
+
+        .field.is-horizontal.has-addons
+          .field-label.is-normal
+            label.label Background Video Display
+          .field-body
+            p.control
+              .select
+                select#bg-vid
 
         p.control
           a.button.is-primary#customsave Change

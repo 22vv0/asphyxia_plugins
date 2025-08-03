@@ -70,7 +70,19 @@ export const SONGS_WORLD = [
 	{ mcode: 38715, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 9, 13, 15, 18, 0, 9, 13, 15, 18] },
 	{ mcode: 38716, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [2, 7, 12, 17, 0, 0, 7, 12, 17, 0] },
 	{ mcode: 38710, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 9, 13, 16, 0, 0, 9, 13, 16, 0] },
-	{ mcode: 38713, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 9, 13, 16, 18, 0, 9, 13, 16, 18] }
+	{ mcode: 38713, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 9, 13, 16, 18, 0, 9, 13, 16, 18] },
+	{ mcode: 38682, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [1, 7, 10, 13, 0, 0, 7, 10, 13, 0] },
+	{ mcode: 38673, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [1, 4, 7, 10, 0, 0, 4, 7, 10, 0] },
+	{ mcode: 38683, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [1, 4, 9, 12, 0, 0, 4, 9, 12, 0] },
+	{ mcode: 38767, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 6, 9, 13, 0, 0, 6, 9, 14, 0] },
+	{ mcode: 38776, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 6, 11, 15, 0, 0, 6, 11, 15, 0] },
+	{ mcode: 38775, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 6, 10, 15, 0, 0, 6, 10, 15, 0] },
+	{ mcode: 38763, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [2, 5, 10, 14, 0, 0, 4, 9, 14, 0] },
+	{ mcode: 38764, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 4, 9, 13, 0, 0, 4, 9, 12, 0] },
+	{ mcode: 38674, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 7, 12, 15, 0, 0, 7, 12, 15, 0] },
+	{ mcode: 38679, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 7, 10, 16, 0, 0, 6, 10, 16, 0] },
+	{ mcode: 38687, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 6, 11, 15, 0, 0, 7, 11, 15, 0] }
+	
 ]
 
 export const SONGS_OVERRIDE_WORLD = [
@@ -238,7 +250,9 @@ export const SONGS_OVERRIDE_WORLD = [
 	{ mcode: 36935, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 6, 8, 11, 14, 0, 5, 8, 11, 14] },
 	{ mcode: 160, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [5, 9, 10, 12, 18, 0, 7, 10, 13, 18] },
 	{ mcode: 37269, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 6, 8, 13, 18, 0, 5, 8, 14, 18] },
-	{ mcode: 38102, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 6, 9, 12, 16, 0, 5, 10, 13, 16] }
+	{ mcode: 38102, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 6, 9, 12, 16, 0, 5, 10, 13, 16] },
+	{ mcode: 38017, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 5, 9, 12, 16, 0, 5, 9, 13, 16] },
+	{ mcode: 38138, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [2, 5, 10, 13, 15, 0, 5, 10, 13, 15] }
 ]
 
 export const EVENTS_GUEST_WORLD = [
@@ -479,7 +493,33 @@ export const EVENTS_WORLD = [
 	{ id: 185, no: 4, cond: 3000000, rwrd: 37269, type: 25, dep: [184] },
 
 	{ id: 186, no: 0, cond: 1, rwrd: 1205, type: 201, dep: [181, 182, 183] },
-	{ id: 187, no: 0, cond: 1, rwrd: 1206, type: 201, dep: [184] }
+	{ id: 187, no: 0, cond: 1, rwrd: 1206, type: 201, dep: [184] },
+
+	{ id: 188, no: 0, cond: 5, rwrd: 38763, type: 27 },
+	
+	{ id: 189, no: 0, cond: 1, rwrd: 38763, type: 25 },
+	{ id: 190, no: 1, cond: 500000, rwrd: 38763, type: 25 },
+	{ id: 191, no: 2, cond: 1000000, rwrd: 38763, type: 25 },
+	{ id: 192, no: 3, cond: 2000000, rwrd: 38763, type: 25 },
+
+	{ id: 193, no: 0, cond: 6, rwrd: 38674, type: 27 },
+	{ id: 194, no: 0, cond: 6, rwrd: 38679, type: 27 },
+	{ id: 195, no: 0, cond: 6, rwrd: 38687, type: 27 },
+
+	{ id: 196, no: 0, cond: 1, rwrd: 38674, type: 25 },
+	{ id: 197, no: 1, cond: 500000, rwrd: 38674, type: 25 },
+	{ id: 198, no: 2, cond: 1000000, rwrd: 38674, type: 25 },
+	{ id: 199, no: 3, cond: 2000000, rwrd: 38674, type: 25 },
+
+	{ id: 200, no: 0, cond: 1, rwrd: 38679, type: 25 },
+	{ id: 201, no: 1, cond: 500000, rwrd: 38679, type: 25 },
+	{ id: 202, no: 2, cond: 1000000, rwrd: 38679, type: 25 },
+	{ id: 203, no: 3, cond: 2000000, rwrd: 38679, type: 25 },
+
+	{ id: 204, no: 0, cond: 1, rwrd: 38687, type: 25 },
+	{ id: 205, no: 1, cond: 500000, rwrd: 38687, type: 25 },
+	{ id: 206, no: 2, cond: 1000000, rwrd: 38687, type: 25 },
+	{ id: 207, no: 3, cond: 2000000, rwrd: 38687, type: 25 }
 ]
 
 export const LEAGUE_SEASON = 7
