@@ -81,8 +81,23 @@ export const SONGS_WORLD = [
 	{ mcode: 38764, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 4, 9, 13, 0, 0, 4, 9, 12, 0] },
 	{ mcode: 38674, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 7, 12, 15, 0, 0, 7, 12, 15, 0] },
 	{ mcode: 38679, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 7, 10, 16, 0, 0, 6, 10, 16, 0] },
-	{ mcode: 38687, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 6, 11, 15, 0, 0, 7, 11, 15, 0] }
-	
+	{ mcode: 38687, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 6, 11, 15, 0, 0, 7, 11, 15, 0] },
+	{ mcode: 38771, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 6, 11, 15, 0, 0, 6, 12, 15, 0] },
+	{ mcode: 38773, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 7, 13, 16, 0, 0, 7, 13, 16, 0] },
+	{ mcode: 38772, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [2, 7, 12, 16, 0, 0, 7, 12, 16, 0] },
+	{ mcode: 38774, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 8, 12, 15, 0, 0, 8, 12, 15, 0] },
+	{ mcode: 38762, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 8, 15, 17, 19, 0, 7, 16, 17, 19] },
+	{ mcode: 38770, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 6, 12, 16, 0, 0, 5, 12, 16, 0] },
+	{ mcode: 38769, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 7, 10, 15, 0, 0, 7, 11, 15, 0] },
+	{ mcode: 38768, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [2, 7, 12, 16, 0, 0, 7, 12, 16, 0] },
+	{ mcode: 38642, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 8, 12, 15, 17, 0, 8, 12, 15, 17] },
+	{ mcode: 38726, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [5, 10, 13, 16, 18, 0, 10, 13, 16, 18] },
+	{ mcode: 38779, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 8, 13, 16, 0, 0, 8, 13, 17, 0] },
+	{ mcode: 38780, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 9, 12, 16, 0, 0, 8, 12, 16, 0] },
+	{ mcode: 38781, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 7, 10, 13, 0, 0, 6, 10, 13, 0] },
+	{ mcode: 38778, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 7, 11, 15, 0, 0, 7, 11, 15, 0] },
+	{ mcode: 38782, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 6, 9, 12, 0, 0, 5, 9, 12, 0] }
+
 ]
 
 export const SONGS_OVERRIDE_WORLD = [
@@ -252,7 +267,13 @@ export const SONGS_OVERRIDE_WORLD = [
 	{ mcode: 37269, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 6, 8, 13, 18, 0, 5, 8, 14, 18] },
 	{ mcode: 38102, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 6, 9, 12, 16, 0, 5, 10, 13, 16] },
 	{ mcode: 38017, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 5, 9, 12, 16, 0, 5, 9, 13, 16] },
-	{ mcode: 38138, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [2, 5, 10, 13, 15, 0, 5, 10, 13, 15] }
+	{ mcode: 38138, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [2, 5, 10, 13, 15, 0, 5, 10, 13, 15] },
+	{ mcode: 38426, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 8, 12, 15, 16, 0, 7, 12, 15, 17] },
+	{ mcode: 38523, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 8, 13, 16, 18, 0, 8, 13, 16, 18] },
+	{ mcode: 38153, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 6, 10, 12, 15, 0, 6, 10, 12, 15] },
+	{ mcode: 38702, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [3, 4, 10, 15, 17, 0, 5, 10, 15, 17] },
+	{ mcode: 38701, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 9, 14, 17, 18, 0, 9, 14, 17, 18] },
+	{ mcode: 38703, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [5, 10, 15, 18, 0, 0, 10, 15, 18, 0] },
 ]
 
 export const EVENTS_GUEST_WORLD = [
@@ -496,7 +517,7 @@ export const EVENTS_WORLD = [
 	{ id: 187, no: 0, cond: 1, rwrd: 1206, type: 201, dep: [184] },
 
 	{ id: 188, no: 0, cond: 5, rwrd: 38763, type: 27 },
-	
+
 	{ id: 189, no: 0, cond: 1, rwrd: 38763, type: 25 },
 	{ id: 190, no: 1, cond: 500000, rwrd: 38763, type: 25 },
 	{ id: 191, no: 2, cond: 1000000, rwrd: 38763, type: 25 },
@@ -519,7 +540,62 @@ export const EVENTS_WORLD = [
 	{ id: 204, no: 0, cond: 1, rwrd: 38687, type: 25 },
 	{ id: 205, no: 1, cond: 500000, rwrd: 38687, type: 25 },
 	{ id: 206, no: 2, cond: 1000000, rwrd: 38687, type: 25 },
-	{ id: 207, no: 3, cond: 2000000, rwrd: 38687, type: 25 }
+	{ id: 207, no: 3, cond: 2000000, rwrd: 38687, type: 25 },
+
+	{ id: 208, no: 0, cond: 1, rwrd: 38771, type: 50 },
+	{ id: 209, no: 0, cond: 1, rwrd: 38773, type: 50 },
+	{ id: 210, no: 0, cond: 1, rwrd: 38772, type: 50 },
+	{ id: 211, no: 0, cond: 1, rwrd: 38774, type: 50 },
+	{ id: 212, no: 0, cond: 1, rwrd: 38762, type: 50 },
+	{ id: 213, no: 0, cond: 1, rwrd: 38762, type: 52 },
+	{ id: 214, no: 0, cond: 1, rwrd: 38770, type: 50 },
+	{ id: 215, no: 0, cond: 1, rwrd: 38769, type: 50 },
+	{ id: 216, no: 0, cond: 1, rwrd: 38768, type: 50 },
+
+	{ id: 217, no: 0, cond: 1, rwrd: 38642, type: 90 },
+	{ id: 218, no: 1, cond: 1, rwrd: 38642, type: 90 },
+	{ id: 219, no: 2, cond: 1, rwrd: 38642, type: 90 },
+	{ id: 220, no: 3, cond: 1, rwrd: 38642, type: 90 },
+	{ id: 221, no: 4, cond: 1, rwrd: 38642, type: 90 },
+
+	{ id: 222, no: 0, cond: 1, rwrd: 38726, type: 90 },
+	{ id: 223, no: 1, cond: 1, rwrd: 38726, type: 90 },
+	{ id: 224, no: 2, cond: 1, rwrd: 38726, type: 90 },
+	{ id: 225, no: 3, cond: 1, rwrd: 38726, type: 90 },
+	{ id: 226, no: 4, cond: 1, rwrd: 38726, type: 90 },
+
+	{ id: 227, no: 0, cond: 1, rwrd: 38779, type: 50 },
+	{ id: 228, no: 0, cond: 1, rwrd: 38780, type: 50 },
+	{ id: 229, no: 0, cond: 1, rwrd: 38523, type: 52 },
+
+	{ id: 230, no: 0, cond: 1, rwrd: 38781, type: 50 },
+	{ id: 231, no: 0, cond: 1, rwrd: 38778, type: 50 },
+	{ id: 232, no: 0, cond: 1, rwrd: 38153, type: 52 },
+
+	{ id: 233, no: 0, cond: 7, rwrd: 38702, type: 27 },
+	{ id: 234, no: 0, cond: 7, rwrd: 38701, type: 27 },
+	{ id: 235, no: 0, cond: 7, rwrd: 38703, type: 27 },
+
+	{ id: 236, no: 0, cond: 1, rwrd: 38703, type: 25 },
+	{ id: 237, no: 1, cond: 500000, rwrd: 38703, type: 25 },
+	{ id: 238, no: 2, cond: 1000000, rwrd: 38703, type: 25 },
+	{ id: 239, no: 3, cond: 2000000, rwrd: 38703, type: 25 },
+
+	{ id: 240, no: 0, cond: 1, rwrd: 38701, type: 25 },
+	{ id: 241, no: 1, cond: 500000, rwrd: 38701, type: 25 },
+	{ id: 242, no: 2, cond: 1000000, rwrd: 38701, type: 25 },
+	{ id: 243, no: 3, cond: 2000000, rwrd: 38701, type: 25 },
+	{ id: 244, no: 4, cond: 3000000, rwrd: 38701, type: 25, dep: [249] },
+
+	{ id: 245, no: 0, cond: 1, rwrd: 38702, type: 25 },
+	{ id: 246, no: 1, cond: 500000, rwrd: 38702, type: 25 },
+	{ id: 247, no: 2, cond: 1000000, rwrd: 38702, type: 25 },
+	{ id: 248, no: 3, cond: 2000000, rwrd: 38702, type: 25 },
+	{ id: 249, no: 4, cond: 3000000, rwrd: 38702, type: 25, dep: [239, 243, 248] },
+
+	{ id: 250, no: 0, cond: 1, rwrd: 1207, type: 201, dep: [239, 243, 248] },
+	{ id: 251, no: 0, cond: 1, rwrd: 1208, type: 201, dep: [249] }
+
 ]
 
 export const LEAGUE_SEASON = 7
@@ -562,4 +638,85 @@ export const LEAGUE_WORLD = [
 	}
 ]
 
-export const LOCKED_SONGS = [];
+export const GALAXY_BRAVE = [
+	{
+		id: 1,
+		trials: [
+			{
+				pointer: 0,
+				pointerType: 1,
+				mcode: 37914,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 1,
+				pointerType: 1,
+				mcode: 37935,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 2,
+				pointerType: 1,
+				mcode: 38382,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 3,
+				pointerType: 2,
+				mcode: 38642,
+				defaultFlare: 5,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 4,
+				pointerType: 3,
+				mcode: 38642,
+				defaultFlare: 5,
+				difficultyTarget: [0, 0, 0, 0, 1]
+			}
+		]
+	},
+	{
+		id: 2,
+		trials: [
+			{
+				pointer: 0,
+				pointerType: 1,
+				mcode: 154,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 1,
+				pointerType: 1,
+				mcode: 38128,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 2,
+				pointerType: 1,
+				mcode: 37779,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 3,
+				pointerType: 2,
+				mcode: 38726,
+				defaultFlare: 5,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 4,
+				pointerType: 3,
+				mcode: 38726,
+				defaultFlare: 5,
+				difficultyTarget: [0, 0, 0, 0, 1]
+			}
+		]
+	}
+]

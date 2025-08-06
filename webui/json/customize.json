@@ -67,6 +67,82 @@
 		{
 			"id": 10,
 			"name": "Don't Stop The HYPERCORE"
+		},
+		{
+			"id": 11,
+			"name": "Steps for Victory"
+		},
+		{
+			"id": 12,
+			"name": "メテオラ-meteor"
+		},
+		{
+			"id": 13,
+			"name": "Wizards!"
+		},
+		{
+			"id": 14,
+			"name": "THUNDERSTRIKE"
+		},
+		{
+			"id": 15,
+			"name": "blue anthem"
+		},
+		{
+			"id": 16,
+			"name": "Get Into The Groove feat.WaMi"
+		},
+		{
+			"id": 17,
+			"name": "ESPRIT ONE"
+		},
+		{
+			"id": 18,
+			"name": "Mighty Beat Monsterz"
+		},
+		{
+			"id": 19,
+			"name": "ひなビタ♪"
+		},
+		{
+			"id": 20,
+			"name": "ここなつ"
+		},
+		{
+			"id": 21,
+			"name": "山形まり花"
+		},
+		{
+			"id": 22,
+			"name": "和泉一舞"
+		},
+		{
+			"id": 23,
+			"name": "春日咲子"
+		},
+		{
+			"id": 24,
+			"name": "芽兎めう"
+		},
+		{
+			"id": 25,
+			"name": "霜月凛"
+		},
+		{
+			"id": 26,
+			"name": "東雲夏陽"
+		},
+		{
+			"id": 27,
+			"name": "東雲心菜"
+		},
+		{
+			"id": 28,
+			"name": "久領堤纒"
+		},
+		{
+			"id": 29,
+			"name": "星見日向"
 		}
 	],
 	"character" : [
@@ -85,6 +161,42 @@
 		{
 			"id": 4,
 			"name": "BABY-LON"
+		},
+		{
+			"id": 5,
+			"name": "EMI (BPL S4)"
+		},
+		{
+			"id": 6,
+			"name": "RAGE (BPL S4)"
+		},
+		{
+			"id": 7,
+			"name": "山形まり花"
+		},
+		{
+			"id": 8,
+			"name": "和泉一舞"
+		},
+		{
+			"id": 9,
+			"name": "春日咲子"
+		},
+		{
+			"id": 10,
+			"name": "芽兎めう"
+		},
+		{
+			"id": 11,
+			"name": "霜月凛"
+		},
+		{
+			"id": 12,
+			"name": "東雲夏陽"
+		},
+		{
+			"id": 13,
+			"name": "東雲心菜"
 		}
 	],
 	"laneBgSingle" : [
@@ -111,6 +223,50 @@
 		{
 			"id": 6,
 			"name": "GRID"
+		},
+		{
+			"id": 7,
+			"name": "BPL S2"
+		},
+		{
+			"id": 8,
+			"name": "BPL S4"
+		},
+		{
+			"id": 9,
+			"name": "EMI (BPL S4)"
+		},
+		{
+			"id": 10,
+			"name": "RAGE (BPL S4)"
+		},
+		{
+			"id": 11,
+			"name": "山形まり花"
+		},
+		{
+			"id": 12,
+			"name": "和泉一舞"
+		},
+		{
+			"id": 13,
+			"name": "春日咲子"
+		},
+		{
+			"id": 14,
+			"name": "芽兎めう"
+		},
+		{
+			"id": 15,
+			"name": "霜月凛"
+		},
+		{
+			"id": 16,
+			"name": "東雲夏陽"
+		},
+		{
+			"id": 17,
+			"name": "東雲心菜"
 		}
 	],
 	"laneBgDouble": [
@@ -145,6 +301,54 @@
 		{
 			"id": 8,
 			"name": "GRID"
+		},
+		{
+			"id": 9,
+			"name": "BPL S2"
+		},
+		{
+			"id": 10,
+			"name": "BPL S4"
+		},
+		{
+			"id": 11,
+			"name": "EMI (BPL S4)"
+		},
+		{
+			"id": 12,
+			"name": "RAGE (BPL S4)"
+		},
+		{
+			"id": 13,
+			"name": "EMI & RAGE (BPL S4)"
+		},
+		{
+			"id": 14,
+			"name": "ナナイロライト"
+		},
+		{
+			"id": 15,
+			"name": "じもとっこスイーツ♪"
+		},
+		{
+			"id": 16,
+			"name": "ハレ トキドキ メランコリック"
+		},
+		{
+			"id": 17,
+			"name": "ひなビタ♪ お花見ライブ"
+		},
+		{
+			"id": 18,
+			"name": "ひなビタ♪ 肝試し"
+		},
+		{
+			"id": 19,
+			"name": "滅びに至るエランプシス"
+		},
+		{
+			"id": 20,
+			"name": "カタルシスの月"
 		}
 	],
 	"laneCoverSingle": [
@@ -183,6 +387,50 @@
 		{
 			"id": 9,
 			"name": "Don't Stop The HYPERCORE"
+		},
+		{
+			"id": 10,
+			"name": "BPL S2"
+		},
+		{
+			"id": 11,
+			"name": "BPL S4"
+		},
+		{
+			"id": 12,
+			"name": "EMI (BPL S4)"
+		},
+		{
+			"id": 13,
+			"name": "RAGE (BPL S4)"
+		},
+		{
+			"id": 14,
+			"name": "ひなビタ♪ Chocolate Smile Girls!!"
+		},
+		{
+			"id": 15,
+			"name": "ヒカリユリイカ"
+		},
+		{
+			"id": 16,
+			"name": "ここなつ シンクロノーツ"
+		},
+		{
+			"id": 17,
+			"name": "革命パッショネイト"
+		},
+		{
+			"id": 18,
+			"name": "ひなビタ♪ SWEET SMILE PARADE"
+		},
+		{
+			"id": 19,
+			"name": "ホーンテッド★メイドランチ (一舞＆咲子ver.)"
+		},
+		{
+			"id": 20,
+			"name": "滅亡天使 † にこきゅっぴん"
 		}
 	],
 	"laneCoverDouble": [
@@ -229,6 +477,54 @@
 		{
 			"id": 11,
 			"name": "Don't Stop The HYPERCORE"
+		},
+		{
+			"id": 12,
+			"name": "BPL S2"
+		},
+		{
+			"id": 13,
+			"name": "BPL S4"
+		},
+		{
+			"id": 14,
+			"name": "EMI & RAGE (BPL S4 パターン1)"
+		},
+		{
+			"id": 15,
+			"name": "EMI & RAGE (BPL S4 パターン2)"
+		},
+		{
+			"id": 16,
+			"name": "EMIまみれ (BPL S4)"
+		},
+		{
+			"id": 17,
+			"name": "ナナイロライト"
+		},
+		{
+			"id": 18,
+			"name": "じもとっこスイーツ♪"
+		},
+		{
+			"id": 19,
+			"name": "ハレ トキドキ メランコリック"
+		},
+		{
+			"id": 20,
+			"name": "ひなビタ♪ お花見ライブ"
+		},
+		{
+			"id": 21,
+			"name": "ひなビタ♪ 肝試し"
+		},
+		{
+			"id": 22,
+			"name": "滅びに至るエランプシス"
+		},
+		{
+			"id": 23,
+			"name": "カタルシスの月"
 		}
 	],
 	"gameBG": [
@@ -263,6 +559,30 @@
 		{
 			"id": 8,
 			"name": "ヘキサグラム (パターン5)"
+		},
+		{
+			"id": 9,
+			"name": "BPL S2"
+		},
+		{
+			"id": 10,
+			"name": "BPL S4"
+		},
+		{
+			"id": 11,
+			"name": "ちくわまつり2023"
+		},
+		{
+			"id": 12,
+			"name": "ちくわまつり2025"
+		},
+		{
+			"id": 13,
+			"name": "ひなビタ♪＆ここなつ ミニキャラ大集合"
+		},
+		{
+			"id": 14,
+			"name": "ひなビタ♪＆ここなつ スライドショー"
 		}
 	],
 	"songVid": [

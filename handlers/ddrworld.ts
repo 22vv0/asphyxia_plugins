@@ -1,6 +1,6 @@
 import { Profile } from "../models/profile";
-import { ProfileWorld, ScoreWorld, EventWorld, GhostWorld, RivalWorld, HiScoreWorld, LeagueWorld, LeagueResultWorld, CustomizeWorld } from "../models/ddrworld";
-import { SONGS_WORLD, SONGS_OVERRIDE_WORLD, EVENTS_WORLD, EVENTS_GUEST_WORLD, LEAGUE_WORLD, LEAGUE_SEASON, LOCKED_SONGS } from "../data/world";
+import { ProfileWorld, ScoreWorld, EventWorld, GhostWorld, RivalWorld, HiScoreWorld, LeagueWorld, LeagueResultWorld, CustomizeWorld, GalaxyBrave } from "../models/ddrworld";
+import { SONGS_WORLD, SONGS_OVERRIDE_WORLD, EVENTS_WORLD, EVENTS_GUEST_WORLD, LEAGUE_WORLD, LEAGUE_SEASON, GALAXY_BRAVE } from "../data/world";
 
 function getLastGhostId(ghost: any) {
   let ghostFiltered = ghost.filter(a => (a.ghostId !== undefined))
@@ -17,12 +17,6 @@ async function saveScores(refid: string, hiScoreInfo: any, songId: number, style
   if(lastGhostId === 0) {
     ghostId = 1
   } else ghostId = lastGhostId += 1
-  /*
-    Ghost data gets created when there is no existing data and it gets updated when getting a higher or the same score
-    Side effect of this is when you have set a high score prior to this update, the ghost data wouldn't be updated unless you break or match that high score.
-    Unfortunately I could not find a way to match the old scores to their respective ghost data, since the old ghost data only stored the song id and difficulty, and not the style (single/double.) Stupid me.
-    Still needs more work.
-  */
   if(stepScore) {
     ghostId = (stepScore.ghostId) ? stepScore.ghostId : ghostId
     let stepGhost = await DB.FindOne<GhostWorld>(null, {collection: "ghost3", ghostId: ghostId })
@@ -370,6 +364,24 @@ export const playerdatasave: EPR = async (info, data, send) => {
           }
         })
       }
+
+      let braveData = $(data).element('data.brave')
+      if(braveData) {
+        await DB.Upsert<ProfileWorld>(refid, { collection: "profile3" }, {$set: {
+          brLastBraveId: braveData.number('last_braveid'),
+          brLastWindowBtn: braveData.number('last_window_btn')
+        }})
+
+        for(const det of braveData.elements('detail')) {
+          // unset last play
+          await DB.Update<GalaxyBrave>(refid, { collection: "galaxybrave", braveId: det.number('braveid'), lastPlay: true }, { $set: { lastPlay: false } })
+          await DB.Upsert<GalaxyBrave>(refid, { collection: "galaxybrave", braveId: det.number('braveid'), pointer: det.number('pointer') }, {$set: {
+            flareForce: det.number('flare_force'),
+            breakDifficulty: det.number('break_difficulty'),
+            lastPlay: det.bool('is_play'),
+          }})
+        }
+      }
     }
 
     return send.object({
@@ -537,10 +549,10 @@ export const playerdataload: EPR = async (info, data, send) => {
         saveData = 1
       }
       else if([70, 71, 72, 73, 74, 81, 82, 83, 84].includes(event.type)) compTime = (eData && eData.compTime !== 0) ? eData.compTime : 0
-      else if(event.type === 25) {
+      else if([25, 90].includes(event.type)) {
         compTime = (!eData || eData.compTime !== 0) ? 0 : eData.compTime
         // extra savior fix (071925)
-        if(event.no !== 0 && eData && (eData.compTime === 1 && eData.saveData === 1)) {
+        if(event.type === 25 && event.no !== 0 && eData && (eData.compTime === 1 && eData.saveData === 1)) {
           await DB.Upsert(refid, {collection: "event3", eventId: eData.eventId}, {$set: {saveData: event.cond}})
           saveData = event.cond
         }
@@ -714,6 +726,35 @@ export const playerdataload: EPR = async (info, data, send) => {
       })
     })
 
+    let galaxyBrave = {
+      last_braveid: K.ITEM("s32", (profile.brLastBraveId) ? profile.brLastBraveId : 1),
+      last_window_btn: K.ITEM("s32", (profile.brLastWindowBtn) ? profile.brLastWindowBtn : 1),
+      detail: []
+    }
+    let playerBraveData = await DB.Find<GalaxyBrave>(refid, {collection: 'galaxybrave'})
+    for(const brave of GALAXY_BRAVE) {
+      let lastPlayInd = playerBraveData.findIndex((b) => b.braveId === brave.id && b.lastPlay === true)
+      let setDetail = {
+        braveid: K.ITEM("s32", brave.id),
+        last_pointer: K.ITEM("s32", (lastPlayInd >= 0) ? playerBraveData[lastPlayInd].pointer : 0),
+        pointer_ary: []
+      }
+
+      for(const trial of brave.trials) {
+        let ptrInd = playerBraveData.findIndex((b) => b.braveId === brave.id && b.pointer === trial.pointer)
+        setDetail.pointer_ary.push({
+          pointer: K.ITEM("s32", trial.pointer),
+          pointer_type: K.ITEM("s32", trial.pointerType),
+          mcode: K.ITEM("s32", trial.mcode),
+          default_flare: K.ITEM("s32", trial.defaultFlare),
+          player_flare: K.ITEM("s32", (ptrInd >= 0) ? playerBraveData[ptrInd].flareForce : trial.defaultFlare),
+          difficulty_target: K.ARRAY("bool", trial.difficultyTarget),
+          difficulty_broken: K.ARRAY("bool", [0,0,0,0,0].fill(1, (trial.pointerType === 3) ? 4 : 0, (ptrInd >= 0) ? playerBraveData[ptrInd].breakDifficulty + 1 : 0))
+        })
+      }
+      galaxyBrave.detail.push(setDetail)
+    }
+
     // test
     if(IO.Exists('data/test.json')) {
       let bufTest = await IO.ReadFile('data/test.json')
@@ -792,7 +833,7 @@ export const playerdataload: EPR = async (info, data, send) => {
         rival_flare_skill: K.ITEM("u64", BigInt(profile.fsRivalFlareSkill)),
         rival_score_rank: K.ITEM("u64", BigInt(profile.fsRivalScoreRank)),
         sort_type: K.ITEM("u64", BigInt(profile.fsSortType)),
-        order_type: K.ITEM("s32", profile.fsOrderType),
+        order_type: K.ITEM("s32", profile.fsOrderType)
       },
       checkguide: {
         tips_basic: K.ITEM("u64", BigInt(profile.cgTipsBasic)),
@@ -806,7 +847,8 @@ export const playerdataload: EPR = async (info, data, send) => {
       score: scoreFin,
       event: eventFin,
       league: leagueData,
-      customize: userCustomize
+      customize: userCustomize,
+      brave: galaxyBrave
     });
   }
 };
@@ -833,23 +875,6 @@ export const musicdataload: EPR = async (info, data, send) => {
         for(const [index, diff] of difficultyArr.entries()) {
           limited = ((index % 5 === 4) && limitedCha) ? limitedCha : limited
           limited = (limitedAry.length > 0) ? limitedAry[index] : limited
-          
-          if($(music).number('series') === 20 && overrideIndex === -1) {
-            limited = 0
-            for(const ls in LOCKED_SONGS) {
-              if(index % 5 < 4) {
-                if(LOCKED_SONGS[ls].ids.includes($(music).number('mcode')) && BigInt(Date.now()) < LOCKED_SONGS[ls].unlock_date) {
-                  limited = 1
-                  break
-                }
-              } else if(index % 5 === 4) {
-                if(LOCKED_SONGS[ls].ids_cha.includes($(music).number('mcode')) && BigInt(Date.now()) < LOCKED_SONGS[ls].unlock_date) {
-                  limited = 1
-                  break
-                }
-              }
-            }
-          }
           
           musicList.push({
             music_str: K.ITEM('str', $(music).number('mcode') + ',' + ((index > 4) ? '1,' : '0,') + (index % 5) + ',' + (U.GetConfig('song_unlock') && limited != -1 ? '0' : limited) + ',' + diff)

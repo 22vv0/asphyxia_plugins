@@ -91,6 +91,16 @@ export interface CustomizeWorld {
   pattern: number;
 }
 
+export interface GalaxyBrave {
+  collection: "galaxybrave";
+
+  braveId: number;
+  pointer: number;
+  lastPlay: boolean;
+  flareForce: number;
+  breakDifficulty: number;
+}
+
 export interface ProfileWorld {
   collection: "profile3";
 
@@ -158,4 +168,7 @@ export interface ProfileWorld {
   cgTipsGimmick: number;
   cgTipsAdvance: number;
   cgGuideScene: number;
+
+  brLastBraveId: number;
+  brLastWindowBtn: number;
 }

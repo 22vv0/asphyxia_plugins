@@ -1,8 +1,8 @@
 # DanceDanceRevolution
 
-**Plugin Version:** fork-3.0.5
+**Plugin Version:** fork-3.0.6
 
-**Supported game versions:** WORLD (2024122300)
+**Supported game versions:** WORLD (2025012803)
 
 **Required Asphyxia Core version** [1.50c](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50)
 
@@ -12,40 +12,58 @@
 
 Changelog
 ===========
-### fork-3.0.5
-
-- Added WebUI customization options: located in profile settings.
-	- Character (P1/P2)
-	- Lane Background (SINGLE/DOUBLE)
-	- Lane Cover (SINGLE/DOUBLE)
-	- Game Background (Song select/during play)
-	- Background video display (ON/OFF/FULL SCREEN)
+### fork-3.0.6
 
 - Added customization data
-	- Base customization items
-	- PREMIUM CUSTOMIZER 1
+	- PREMIUM CUSTOMIZER (BPL -SEASON 4- DanceDanceRevolution set)
+	- PREMIUM CUSTOMIZER (ひなビタ♪ / Hinabitter♪ 1st edition)
+
+- Added handler for GALAXY BRAVE
+
+- Added GALAXY BRAVE data
+	- WEATHER folder
+	- DESPAIR folder
 
 - Added song/chart info:
+	- Advance Play
+		- BPL S4 music pack
+			- blue anthem
+			- ESPRIT ONE
+			- Get Into The Groove feat.WaMi
+			- Mighty Beat Monsterz
+			- Steps for Victory
+			- THUNDERSTRIKE
+			- Wizards!
+			- メテオラ-meteor-
+		- SPECIAL music pack feat.REFLEC BEAT vol.3
+			- Gale Rider
+			- Hollywood Galaxy
+			- リリーゼと炎龍レーヴァテイン (CHALLENGE)
+		- SPECIAL music pack feat.HinaBitter♪ vol.3 purchased
+			- カタルシスの月
+			- ムラサキグルマ
+			- ロンロンへ　ライライライ！ (CHALLENGE)
+	- GALAXY BRAVE
+		- Blizzard of Arrows
+		- Meteor
 	- EXTRA SAVIOR WORLD
-		- Amazing Bomberman
-		- Funky Flux Fusion
-		- No More Love
-		- 愛氏AIされ
+		- コメット⇒スケイター
+		- 3y3s
+		- Ambivalent Vermilia
 	- Misc
-		- Dance and Death
-		- 白日と幻月
-		- おひさし中華街！
-		- イガク
-		- メズマライザー
-		- ラビットホール
-		- Dance With Me
-		- Hopeful (CHALLENGE)
-		- Thank You Merry Christmas (CHALLENGE)
+		- Better Than Me (CHALLENGE)
+		- ロマンシングエスケープ
 
 - Added event data:
+	- GALAXY BRAVE data
+		- WEATHER - Blizzard of Arrows
+		- DESPAIR - Meteor
 	- EXTRA SAVIOR WORLD
-		- BOMBERMAN
-		- The 1st MUSIC CREATOR AUDITION
+		- 第2回 BEMANI PRO LEAGUE -SEASON 3- Triple Tribe
+	- Advance Play
+		- BPL S4 music pack
+		- SPECIAL music pack feat.REFLEC BEAT vol.3
+		- SPECIAL music pack feat.HinaBitter♪ vol.3
 
 
 musicdb.xml Usage Guide
