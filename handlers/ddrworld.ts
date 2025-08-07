@@ -872,8 +872,9 @@ export const musicdataload: EPR = async (info, data, send) => {
           difficultyArr = SONGS_OVERRIDE_WORLD[overrideIndex]['diffLv']
         }
         
+        let inLim = limited
         for(const [index, diff] of difficultyArr.entries()) {
-          limited = ((index % 5 === 4) && limitedCha) ? limitedCha : limited
+          limited = ((index % 5 === 4) && limitedCha) ? limitedCha : inLim
           limited = (limitedAry.length > 0) ? limitedAry[index] : limited
           
           musicList.push({

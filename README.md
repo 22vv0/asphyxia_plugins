@@ -1,6 +1,6 @@
 # DanceDanceRevolution
 
-**Plugin Version:** fork-3.0.6
+**Plugin Version:** fork-3.0.6a
 
 **Supported game versions:** WORLD (2025012803)
 
@@ -12,6 +12,13 @@
 
 Changelog
 ===========
+### fork-3.0.6a
+
+- Fixed (some) Double charts being locked.
+	- Also fixes GALAXY BRAVE crashes when switching to Double style.
+	- Results may vary depending on what musicdb file you are using. I advice using DDR A3 2024040200 musicdb for musicdata_load, and the latest DDR WORLD musicdb for WebUI.
+- Sorted music data on data/world.ts for my sanity.
+
 ### fork-3.0.6
 
 - Added customization data

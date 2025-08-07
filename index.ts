@@ -26,13 +26,13 @@ export function register() {
   });
   R.Config("mdb_limited", {
     name: "musicdb.xml for musicdata_load",
-    desc: "musicdb.xml file to use for importing limited and diffLv info. Put this xml file in the 'data' directory of the plugin.",
+    desc: "musicdb.xml file to use for importing unlock and difficulty level info. Put this xml file in the 'data' directory of the plugin. (If not using modified musicdb, I advice using the musicdb file from DDR A3 2024040200.)",
     type: "string",
     default: ""
   });
   R.Config("mdb_title", {
     name: "musicdb.xml for WebUI",
-    desc: "musicdb.xml file to retrieve song titles from, for use in WebUI. Put this xml file in the 'data' directory of the plugin, or keep this blank if you want to use the same file as above.",
+    desc: "musicdb.xml file to retrieve song titles from, for use in WebUI. Put this xml file in the 'data' directory of the plugin, or keep this blank if you want to use the same file as above. (I advice using the latest DDR WORLD musicdb.)",
     type: "string",
     default: ""
   });
