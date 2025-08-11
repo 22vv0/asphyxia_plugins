@@ -1,8 +1,8 @@
 # DanceDanceRevolution
 
-**Plugin Version:** fork-3.0.6a
+**Plugin Version:** fork-3.0.7
 
-**Supported game versions:** WORLD (2025012803)
+**Supported game versions:** WORLD (2025031101)
 
 **Required Asphyxia Core version** [1.50c](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50)
 
@@ -12,66 +12,52 @@
 
 Changelog
 ===========
-### fork-3.0.6a
-
-- Fixed (some) Double charts being locked.
-	- Also fixes GALAXY BRAVE crashes when switching to Double style.
-	- Results may vary depending on what musicdb file you are using. I advice using DDR A3 2024040200 musicdb for musicdata_load, and the latest DDR WORLD musicdb for WebUI.
-- Sorted music data on data/world.ts for my sanity.
-
-### fork-3.0.6
+### fork-3.0.7
 
 - Added customization data
-	- PREMIUM CUSTOMIZER (BPL -SEASON 4- DanceDanceRevolution set)
-	- PREMIUM CUSTOMIZER (ひなビタ♪ / Hinabitter♪ 1st edition)
-
-- Added handler for GALAXY BRAVE
+	- PREMIUM CUSTOMIZER 第2弾 (set 2)
 
 - Added GALAXY BRAVE data
-	- WEATHER folder
-	- DESPAIR folder
+	- MOUNTAIN folder
 
 - Added song/chart info:
 	- Advance Play
-		- BPL S4 music pack
-			- blue anthem
-			- ESPRIT ONE
-			- Get Into The Groove feat.WaMi
-			- Mighty Beat Monsterz
-			- Steps for Victory
-			- THUNDERSTRIKE
-			- Wizards!
-			- メテオラ-meteor-
-		- SPECIAL music pack feat.REFLEC BEAT vol.3
-			- Gale Rider
-			- Hollywood Galaxy
-			- リリーゼと炎龍レーヴァテイン (CHALLENGE)
-		- SPECIAL music pack feat.HinaBitter♪ vol.3 purchased
-			- カタルシスの月
-			- ムラサキグルマ
-			- ロンロンへ　ライライライ！ (CHALLENGE)
+		- BEMANI SELECTION music pack vol.3
+			- Get Back Up! (CHALLENGE)
+			- Riot of Color (CHALLENGE)
+			- 勇猛無比 (CHALLENGE)
+
 	- GALAXY BRAVE
-		- Blizzard of Arrows
-		- Meteor
-	- EXTRA SAVIOR WORLD
-		- コメット⇒スケイター
-		- 3y3s
-		- Ambivalent Vermilia
+		- 晴天Bon Voyage
+		- Sweet Rain
+		- 梅雪夜
+		- DROP OUT
+		- Cytokinesis
+		- NEPHILIM DELTA
+		- volcano
+		- Valanga
+		- Environ \[De-SYNC\] (feat. lythe)
+		- Eira
+
+	- WORLD LEAGUE
+		- STOMP!! (Silver class benefit)
+		- まにぃまにあ×× (Silver class benefit)
+
 	- Misc
-		- Better Than Me (CHALLENGE)
-		- ロマンシングエスケープ
+		- Dance wiz the Rhythm
+		- Dense Flyer
+		- Robot Footwork
 
-- Added event data:
-	- GALAXY BRAVE data
-		- WEATHER - Blizzard of Arrows
-		- DESPAIR - Meteor
-	- EXTRA SAVIOR WORLD
-		- 第2回 BEMANI PRO LEAGUE -SEASON 3- Triple Tribe
+- Added event data
 	- Advance Play
-		- BPL S4 music pack
-		- SPECIAL music pack feat.REFLEC BEAT vol.3
-		- SPECIAL music pack feat.HinaBitter♪ vol.3
+		- BEMANI SELECTION music pack vol.3
+		
+	- GALAXY BRAVE data
+		- MOUNTAIN - Eira
+	
+- Add saving of filter mode (simple/normal)
 
+- Fixed customization item data (some items were missing)
 
 musicdb.xml Usage Guide
 ===========

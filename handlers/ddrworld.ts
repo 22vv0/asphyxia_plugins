@@ -223,6 +223,7 @@ export const playerdatasave: EPR = async (info, data, send) => {
         fsRivalScoreRank: $(data).number('data.filtersort.rival_score_rank'),
         fsSortType: $(data).number('data.filtersort.sort_type'),
         fsOrderType: $(data).number('data.filtersort.order_type'),
+        fsQuickmode: $(data).bool('data.filtersort.is_quickmode'),
         
         cgTipsBasic: $(data).number('data.checkguide.tips_basic'),
         cgTipsOption: $(data).number('data.checkguide.tips_option'),
@@ -318,6 +319,7 @@ export const playerdatasave: EPR = async (info, data, send) => {
         fsRivalScoreRank: $(data).number('data.filtersort.rival_score_rank'),
         fsSortType: $(data).number('data.filtersort.sort_type'),
         fsOrderType: $(data).number('data.filtersort.order_type'),
+        fsQuickmode: $(data).bool('data.filtersort.is_quickmode'),
         
         cgTipsBasic: $(data).number('data.checkguide.tips_basic'),
         cgTipsOption: $(data).number('data.checkguide.tips_option'),
@@ -396,7 +398,7 @@ export const playerdatasave: EPR = async (info, data, send) => {
 
 export const playerdataload: EPR = async (info, data, send) => {
   const refid = $(data).str("data.refid");
-  const profile = await DB.FindOne<ProfileWorld>(refid, { collection: "profile3" });
+  let profile = await DB.FindOne<ProfileWorld>(refid, { collection: "profile3" });
 
   if (!profile || !profile.dancerName || refid.startsWith("X000"))  {
     return send.object({
@@ -469,6 +471,7 @@ export const playerdataload: EPR = async (info, data, send) => {
         rival_score_rank: K.ITEM("u64", BigInt(0)),
         sort_type: K.ITEM("u64", BigInt(0)),
         order_type: K.ITEM("s32", 0),
+        is_quickmode: K.ITEM("bool", false)
       },
       checkguide: {
         tips_basic: K.ITEM("u64", BigInt(0)),
@@ -553,7 +556,7 @@ export const playerdataload: EPR = async (info, data, send) => {
         compTime = (!eData || eData.compTime !== 0) ? 0 : eData.compTime
         // extra savior fix (071925)
         if(event.type === 25 && event.no !== 0 && eData && (eData.compTime === 1 && eData.saveData === 1)) {
-          await DB.Upsert(refid, {collection: "event3", eventId: eData.eventId}, {$set: {saveData: event.cond}})
+          await DB.Upsert<EventWorld>(refid, {collection: "event3", eventId: eData.eventId}, {$set: {saveData: event.cond}})
           saveData = event.cond
         }
       }
@@ -764,6 +767,8 @@ export const playerdataload: EPR = async (info, data, send) => {
       }
     }
 
+    if(profile.fsQuickmode === undefined) profile.fsQuickmode = false
+
     return send.object({
       result: K.ITEM("s32", 0),
       refid: K.ITEM("str", refid),
@@ -833,7 +838,8 @@ export const playerdataload: EPR = async (info, data, send) => {
         rival_flare_skill: K.ITEM("u64", BigInt(profile.fsRivalFlareSkill)),
         rival_score_rank: K.ITEM("u64", BigInt(profile.fsRivalScoreRank)),
         sort_type: K.ITEM("u64", BigInt(profile.fsSortType)),
-        order_type: K.ITEM("s32", profile.fsOrderType)
+        order_type: K.ITEM("s32", profile.fsOrderType),
+        is_quickmode: K.ITEM("bool", profile.fsQuickmode)
       },
       checkguide: {
         tips_basic: K.ITEM("u64", BigInt(profile.cgTipsBasic)),

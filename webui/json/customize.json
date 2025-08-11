@@ -143,6 +143,30 @@
 		{
 			"id": 29,
 			"name": "星見日向"
+		},
+		{
+			"id": 30,
+			"name": "YUNI"
+		},
+		{
+			"id": 31,
+			"name": "AKIRA"
+		},
+		{
+			"id": 32,
+			"name": "Destination"
+		},
+		{
+			"id": 33,
+			"name": "HyperTwist"
+		},
+		{
+			"id": 34,
+			"name": "Cosy Catastrophe"
+		},
+		{
+			"id": 35,
+			"name": "New York EVOLVED"
 		}
 	],
 	"character" : [
@@ -197,6 +221,14 @@
 		{
 			"id": 13,
 			"name": "東雲心菜"
+		},
+		{
+			"id": 14,
+			"name": "YUNI"
+		},
+		{
+			"id": 15,
+			"name": "AKIRA"
 		}
 	],
 	"laneBgSingle" : [
@@ -267,6 +299,22 @@
 		{
 			"id": 17,
 			"name": "東雲心菜"
+		},
+		{
+			"id": 18,
+			"name": "YUNI"
+		},
+		{
+			"id": 19,
+			"name": "AKIRA"
+		},
+		{
+			"id": 20,
+			"name": "HONEYCOMB"
+		},
+		{
+			"id": 21,
+			"name": "bag (EXPERT譜面 x0.25 WAVE)"
 		}
 	],
 	"laneBgDouble": [
@@ -349,6 +397,30 @@
 		{
 			"id": 20,
 			"name": "カタルシスの月"
+		},
+		{
+			"id": 21,
+			"name": "YUNI"
+		},
+		{
+			"id": 22,
+			"name": "AKIRA"
+		},
+		{
+			"id": 23,
+			"name": "HONEYCOMB"
+		},
+		{
+			"id": 24,
+			"name": "bag (EXPERT譜面 x0.25 WAVE)"
+		},
+		{
+			"id": 25,
+			"name": "YUNI & AKIRA"
+		},
+		{
+			"id": 26,
+			"name": "ALICE & YUNI"
 		}
 	],
 	"laneCoverSingle": [
@@ -431,6 +503,34 @@
 		{
 			"id": 20,
 			"name": "滅亡天使 † にこきゅっぴん"
+		},
+		{
+			"id": 21,
+			"name": "YUNI"
+		},
+		{
+			"id": 22,
+			"name": "AKIRA"
+		},
+		{
+			"id": 23,
+			"name": "Destination"
+		},
+		{
+			"id": 24,
+			"name": "HyperTwist"
+		},
+		{
+			"id": 25,
+			"name": "Cosy Catastrophe"
+		},
+		{
+			"id": 26,
+			"name": "New York EVOLVED"
+		},
+		{
+			"id": 27,
+			"name": "bag (EXPERT譜面 x0.25 WAVE)"
 		}
 	],
 	"laneCoverDouble": [
@@ -525,6 +625,42 @@
 		{
 			"id": 23,
 			"name": "カタルシスの月"
+		},
+		{
+			"id": 24,
+			"name": "YUNI"
+		},
+		{
+			"id": 25,
+			"name": "AKIRA"
+		},
+		{
+			"id": 26,
+			"name": "Destination"
+		},
+		{
+			"id": 27,
+			"name": "HyperTwist"
+		},
+		{
+			"id": 28,
+			"name": "Cosy Catastrophe"
+		},
+		{
+			"id": 29,
+			"name": "New York EVOLVED"
+		},
+		{
+			"id": 30,
+			"name": "bag (EXPERT譜面 x0.25 WAVE)"
+		},
+		{
+			"id": 31,
+			"name": "YUNI & AKIRA"
+		},
+		{
+			"id": 32,
+			"name": "ALICE & YUNI"
 		}
 	],
 	"gameBG": [
@@ -570,19 +706,47 @@
 		},
 		{
 			"id": 11,
-			"name": "ちくわまつり2023"
+			"name": "EMIまみれ (BPL S4)"
 		},
 		{
 			"id": 12,
-			"name": "ちくわまつり2025"
+			"name": "ちくわまつり2023"
 		},
 		{
 			"id": 13,
-			"name": "ひなビタ♪＆ここなつ ミニキャラ大集合"
+			"name": "ちくわまつり2025"
 		},
 		{
 			"id": 14,
+			"name": "ひなビタ♪＆ここなつ ミニキャラ大集合"
+		},
+		{
+			"id": 15,
 			"name": "ひなビタ♪＆ここなつ スライドショー"
+		},
+		{
+			"id": 16,
+			"name": "ARROW (パターン1)"
+		},
+		{
+			"id": 17,
+			"name": "ARROW (パターン2)"
+		},
+		{
+			"id": 18,
+			"name": "ARROW (パターン3)"
+		},
+		{
+			"id": 19,
+			"name": "ARROW (パターン4)"
+		},
+		{
+			"id": 20,
+			"name": "ARROW (パターン5)"
+		},
+		{
+			"id": 21,
+			"name": "WORLD (パターン4)"
 		}
 	],
 	"songVid": [

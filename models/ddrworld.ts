@@ -161,6 +161,7 @@ export interface ProfileWorld {
   fsRivalScoreRank: number;
   fsSortType: number;
   fsOrderType: number;
+  fsQuickmode: boolean;
   
   cgTipsBasic: number;
   cgTipsOption: number;

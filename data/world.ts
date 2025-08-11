@@ -29,11 +29,14 @@ export const SONGS_WORLD = [
 	// galaxy brave
 	{ mcode: 38642, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 8, 12, 15, 17, 0, 8, 12, 15, 17] },
 	{ mcode: 38726, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [5, 10, 13, 16, 18, 0, 10, 13, 16, 18] },
+	{ mcode: 38700, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 8, 11, 16, 17, 0, 8, 10, 16, 17] },
 	
 	// world league
 	{ mcode: 38622, limited_ary: [11, 11, 11, 11, -1, -1, 11, 11, 11, -1], diffLv: [2, 7, 12, 15, 0, 0, 7, 12, 15, 0] },
 	{ mcode: 38629, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [3, 7, 12, 16, 0, 0, 7, 12, 16, 0] },
 	{ mcode: 38600, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [4, 9, 12, 15, 0, 0, 9, 12, 15, 0] },
+	{ mcode: 38630, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [3, 6, 12, 15, 0, 0, 6, 11, 15, 0] },
+	{ mcode: 38732, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [3, 7, 10, 14, 0, 0, 6, 10, 14, 0] },
 	
 	// mystical reunion
 	{ mcode: 38746, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 8, 14, 16, 0, 0, 8, 14, 16, 0] },
@@ -113,6 +116,10 @@ export const SONGS_WORLD = [
 	{ mcode: 38764, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 4, 9, 13, 0, 0, 4, 9, 12, 0] },
 	{ mcode: 38782, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 6, 9, 12, 0, 0, 5, 9, 12, 0] },
 
+	{ mcode: 38681, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [4, 7, 11, 14, 0, 0, 7, 11, 14, 0] },
+	{ mcode: 38676, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 6, 10, 14, 0, 0, 6, 10, 14, 0] },
+	{ mcode: 38675, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 8, 12, 14, 0, 0, 8, 12, 14, 0] },
+	
 ]
 
 export const SONGS_OVERRIDE_WORLD = [
@@ -128,7 +135,10 @@ export const SONGS_OVERRIDE_WORLD = [
 	{ mcode: 38442, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 8, 13, 16, 18, 0, 8, 13, 16, 18] },
 	{ mcode: 38523, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 8, 13, 16, 18, 0, 8, 13, 16, 18] },
 	{ mcode: 38153, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 6, 10, 12, 15, 0, 6, 10, 12, 15] },
-	
+	{ mcode: 37600, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [2, 7, 9, 12, 15, 0, 7, 10, 12, 15] },
+	{ mcode: 38360, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 8, 12, 16, 17, 0, 8, 12, 16, 17] },
+	{ mcode: 38429, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 8, 11, 14, 18, 0, 8, 11, 14, 18] },
+
 	// Extra Savior
 	{ mcode: 38624, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [2, 5, 10, 15, 17, 0, 5, 10, 15, 17] },
 	{ mcode: 38623, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [3, 11, 15, 17, 18, 0, 11, 14, 17, 18] },
@@ -141,6 +151,17 @@ export const SONGS_OVERRIDE_WORLD = [
 	{ mcode: 38702, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [3, 4, 10, 15, 17, 0, 5, 10, 15, 17] },
 	{ mcode: 38701, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 9, 14, 17, 18, 0, 9, 14, 17, 18] },
 	{ mcode: 38703, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [5, 10, 15, 18, 0, 0, 10, 15, 18, 0] },
+
+	// galaxy brave 
+	{ mcode: 37914, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [4, 7, 9, 12, 0, 0, 7, 9, 11, 0] },
+	{ mcode: 37935, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 6, 9, 12, 0, 0, 6, 9, 12, 0] },
+	{ mcode: 38382, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 7, 11, 14, 0, 0, 7, 11, 14, 0] },
+	{ mcode: 154, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [4, 8, 10, 13, 0, 0, 6, 9, 13, 0] },
+	{ mcode: 38128	, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [4, 8, 10, 14, 0, 0, 8, 10, 14, 0] },
+	{ mcode: 37779, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [4, 8, 12, 14, 0, 0, 8, 12, 14, 0] },
+	{ mcode: 37277, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [4, 5, 8, 13, 0, 0, 5, 8, 13, 0] },
+	{ mcode: 38605, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 7, 11, 15, 18, 0, 7, 11, 15, 17] },
+	{ mcode: 38468, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [4, 9, 12, 15, 0, 0, 9, 12, 15, 0] },
 	
 	// Removed songs
 	{ mcode: 38273, limited_ary: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1], diffLv: [3, 5, 9, 12, 0, 0, 5, 9, 11, 0] },
@@ -615,7 +636,11 @@ export const EVENTS_WORLD = [
 	{ id: 249, no: 4, cond: 3000000, rwrd: 38702, type: 25, dep: [239, 243, 248] },
 
 	{ id: 250, no: 0, cond: 1, rwrd: 1207, type: 201, dep: [239, 243, 248] },
-	{ id: 251, no: 0, cond: 1, rwrd: 1208, type: 201, dep: [249] }
+	{ id: 251, no: 0, cond: 1, rwrd: 1208, type: 201, dep: [249] },
+
+	{ id: 252, no: 0, cond: 1, rwrd: 37600, type: 52 },
+	{ id: 253, no: 0, cond: 1, rwrd: 38429, type: 52 },
+	{ id: 254, no: 0, cond: 1, rwrd: 38360, type: 52 }
 
 ]
 
@@ -735,6 +760,46 @@ export const GALAXY_BRAVE = [
 				pointer: 4,
 				pointerType: 3,
 				mcode: 38726,
+				defaultFlare: 5,
+				difficultyTarget: [0, 0, 0, 0, 1]
+			}
+		]
+	},
+	{
+		id: 3,
+		trials: [
+			{
+				pointer: 0,
+				pointerType: 1,
+				mcode: 37277,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 1,
+				pointerType: 1,
+				mcode: 38605,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 2,
+				pointerType: 1,
+				mcode: 38468,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 3,
+				pointerType: 2,
+				mcode: 38700,
+				defaultFlare: 5,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 4,
+				pointerType: 3,
+				mcode: 38700,
 				defaultFlare: 5,
 				difficultyTarget: [0, 0, 0, 0, 1]
 			}
