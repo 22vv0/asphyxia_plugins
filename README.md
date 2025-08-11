@@ -1,8 +1,8 @@
 # DanceDanceRevolution
 
-**Plugin Version:** fork-3.0.8
+**Plugin Version:** fork-3.0.9
 
-**Supported game versions:** WORLD (2025033101)
+**Supported game versions:** WORLD (2025042200)
 
 **Required Asphyxia Core version** [1.50c](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50)
 
@@ -12,34 +12,47 @@
 
 Changelog
 ===========
-### fork-3.0.8
+### fork-3.0.9
 
-- Added song/chart info:
-	- Advance Play
-		- GRAND PRIX music pack vol.35
-			- Couleur=Blanche
-			- \[ \]DENTITY (CHALLENGE)
-			- Lose Your Sense (CHALLENGE)
+- Added GALAXY BRAVE data
+	- CUTE folder
+
+- Added song/chart info
+	- GALAXY BRAVE
+		- smooooch・∀・
+		- からふるぱすてる
+		- ベィスドロップ・フリークス
+		- Komainu Adventure!
+		
+	- WORLD LEAGUE
+		- S.O.D. (Gold class benefit)
+
 	- EXTRA SAVIOR WORLD
-		- BEMANI SELECTION vol.2
-			- Chocolate Planet
-			- Four Leaves
-			- Ganymede -re:born-
-			- 童話回廊
-			- リメンバーリメンバー
-			- Bad Maniacs
-			- Timepiece phase Ⅱ
-			- 恋歌疾風！かるたクイーンいろは
+		- fluctus
+		- HYPER OVERR DANCEFLOORRR
+		- Love You
+		- ドーパミン (STARDOM Remix)
+		- 量子の海のリントヴルム (STARDOM Remix)
+		
 	- Misc
-		- FUNKY SUMMER BEACH (CHALLENGE)
-		- Plan 8 (CHALLENGE)
-		- 海神 (CHALLENGE)
+		- Cheerleader
+		- Knock Yourself Out XD
+
+	- Removed from Advance Play
+		- Drop The Bounce
+		- ミッドナイト☆WAR
+		- THE SAFARI (STARDOM Remix)
+		- 音楽 (STARDOM Remix)
+		
 
 - Added event data
-	- Advance Play
-		- GRAND PRIX music pack vol.35
+	- GALAXY BRAVE
+		- CUTE - Komainu Adventure!
+		
 	- EXTRA SAVIOR WORLD
-		- BEMANI SELECTION vol.2
+		- The 2nd MUSIC CREATOR AUDITION
+		- The 1st DANCERUSH STARDOM
+		
 
 musicdb.xml Usage Guide
 ===========
