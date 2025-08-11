@@ -1,8 +1,8 @@
 # DanceDanceRevolution
 
-**Plugin Version:** fork-3.0.7
+**Plugin Version:** fork-3.0.8
 
-**Supported game versions:** WORLD (2025031101)
+**Supported game versions:** WORLD (2025033101)
 
 **Required Asphyxia Core version** [1.50c](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50)
 
@@ -12,52 +12,34 @@
 
 Changelog
 ===========
-### fork-3.0.7
-
-- Added customization data
-	- PREMIUM CUSTOMIZER 第2弾 (set 2)
-
-- Added GALAXY BRAVE data
-	- MOUNTAIN folder
+### fork-3.0.8
 
 - Added song/chart info:
 	- Advance Play
-		- BEMANI SELECTION music pack vol.3
-			- Get Back Up! (CHALLENGE)
-			- Riot of Color (CHALLENGE)
-			- 勇猛無比 (CHALLENGE)
-
-	- GALAXY BRAVE
-		- 晴天Bon Voyage
-		- Sweet Rain
-		- 梅雪夜
-		- DROP OUT
-		- Cytokinesis
-		- NEPHILIM DELTA
-		- volcano
-		- Valanga
-		- Environ \[De-SYNC\] (feat. lythe)
-		- Eira
-
-	- WORLD LEAGUE
-		- STOMP!! (Silver class benefit)
-		- まにぃまにあ×× (Silver class benefit)
-
+		- GRAND PRIX music pack vol.35
+			- Couleur=Blanche
+			- \[ \]DENTITY (CHALLENGE)
+			- Lose Your Sense (CHALLENGE)
+	- EXTRA SAVIOR WORLD
+		- BEMANI SELECTION vol.2
+			- Chocolate Planet
+			- Four Leaves
+			- Ganymede -re:born-
+			- 童話回廊
+			- リメンバーリメンバー
+			- Bad Maniacs
+			- Timepiece phase Ⅱ
+			- 恋歌疾風！かるたクイーンいろは
 	- Misc
-		- Dance wiz the Rhythm
-		- Dense Flyer
-		- Robot Footwork
+		- FUNKY SUMMER BEACH (CHALLENGE)
+		- Plan 8 (CHALLENGE)
+		- 海神 (CHALLENGE)
 
 - Added event data
 	- Advance Play
-		- BEMANI SELECTION music pack vol.3
-		
-	- GALAXY BRAVE data
-		- MOUNTAIN - Eira
-	
-- Add saving of filter mode (simple/normal)
-
-- Fixed customization item data (some items were missing)
+		- GRAND PRIX music pack vol.35
+	- EXTRA SAVIOR WORLD
+		- BEMANI SELECTION vol.2
 
 musicdb.xml Usage Guide
 ===========

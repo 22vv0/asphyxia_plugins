@@ -25,6 +25,14 @@ export const SONGS_WORLD = [
 	{ mcode: 38674, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 7, 12, 15, 0, 0, 7, 12, 15, 0] },
 	{ mcode: 38679, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 7, 10, 16, 0, 0, 6, 10, 16, 0] },
 	{ mcode: 38687, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 6, 11, 15, 0, 0, 7, 11, 15, 0] },
+	{ mcode: 38755, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [3, 8, 12, 16, 17, 0, 8, 12, 16, 17] },
+	{ mcode: 38754, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [3, 7, 9, 13, 15, 0, 7, 9, 13, 15] },
+	{ mcode: 38752, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [2, 5, 11, 14, 17, 0, 5, 11, 14, 17] },
+	{ mcode: 38743, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 7, 12, 15, 0, 0, 7, 12, 14, 0] },
+	{ mcode: 38750, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 6, 8, 11, 0, 0, 6, 9, 12, 0] },
+	{ mcode: 38753, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 11, 13, 16, 18, 0, 11, 13, 16, 18] },
+	{ mcode: 38742, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [3, 6, 11, 15, 18, 0, 6, 11, 15, 18] },
+	{ mcode: 38751, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [3, 7, 12, 15, 17, 0, 7, 12, 15, 17] },
 	
 	// galaxy brave
 	{ mcode: 38642, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 8, 12, 15, 17, 0, 8, 12, 15, 17] },
@@ -72,7 +80,8 @@ export const SONGS_WORLD = [
 	{ mcode: 38780, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 9, 12, 16, 0, 0, 8, 12, 16, 0] },
 	{ mcode: 38781, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 7, 10, 13, 0, 0, 6, 10, 13, 0] },
 	{ mcode: 38778, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 7, 11, 15, 0, 0, 7, 11, 15, 0] },
-
+	{ mcode: 38808, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 7, 12, 16, 0, 0, 7, 13, 16, 0] },
+	
 	// default songs (+ misc)
 	{ mcode: 38707, limited_ary: [0, -1, -1, -1, -1, -1, -1, -1, -1, -1], diffLv: [6, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
 	{ mcode: 38663, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 7, 10, 13, 0, 0, 7, 10, 13, 0] },
@@ -138,6 +147,8 @@ export const SONGS_OVERRIDE_WORLD = [
 	{ mcode: 37600, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [2, 7, 9, 12, 15, 0, 7, 10, 12, 15] },
 	{ mcode: 38360, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 8, 12, 16, 17, 0, 8, 12, 16, 17] },
 	{ mcode: 38429, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 8, 11, 14, 18, 0, 8, 11, 14, 18] },
+	{ mcode: 38653, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 8, 14, 17, 18, 0, 8, 14, 17, 18] },
+	{ mcode: 38528, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [6, 9, 13, 17, 18, 0, 9, 13, 17, 18] },
 
 	// Extra Savior
 	{ mcode: 38624, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [2, 5, 10, 15, 17, 0, 5, 10, 15, 17] },
@@ -316,6 +327,9 @@ export const SONGS_OVERRIDE_WORLD = [
 	{ mcode: 38017, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 5, 9, 12, 16, 0, 5, 9, 13, 16] },
 	{ mcode: 38138, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [2, 5, 10, 13, 15, 0, 5, 10, 13, 15] },
 	{ mcode: 38426, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 8, 12, 15, 16, 0, 7, 12, 15, 17] },
+	{ mcode: 38021, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 6, 10, 14, 17, 0, 6, 10, 14, 17] },
+	{ mcode: 38018, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 8, 11, 14, 18, 0, 8, 11, 14, 18] },
+	{ mcode: 38020, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 8, 12, 16, 18, 0, 7, 12, 16, 18] },
 ]
 
 export const EVENTS_GUEST_WORLD = [
@@ -640,7 +654,69 @@ export const EVENTS_WORLD = [
 
 	{ id: 252, no: 0, cond: 1, rwrd: 37600, type: 52 },
 	{ id: 253, no: 0, cond: 1, rwrd: 38429, type: 52 },
-	{ id: 254, no: 0, cond: 1, rwrd: 38360, type: 52 }
+	{ id: 254, no: 0, cond: 1, rwrd: 38360, type: 52 },
+	
+	{ id: 255, no: 0, cond: 1, rwrd: 38808, type: 50 },
+	{ id: 256, no: 0, cond: 1, rwrd: 38653, type: 52 },
+	{ id: 257, no: 0, cond: 1, rwrd: 38528, type: 52 },
+
+	{ id: 258, no: 0, cond: 8, rwrd: 38755, type: 27 },
+	{ id: 259, no: 0, cond: 8, rwrd: 38754, type: 27 },
+	{ id: 260, no: 0, cond: 8, rwrd: 38752, type: 27 },
+	{ id: 261, no: 0, cond: 8, rwrd: 38743, type: 27 },
+	{ id: 262, no: 0, cond: 8, rwrd: 38750, type: 27 },
+	{ id: 263, no: 0, cond: 8, rwrd: 38753, type: 27 },
+	{ id: 264, no: 0, cond: 8, rwrd: 38742, type: 27 },
+	{ id: 265, no: 0, cond: 8, rwrd: 38751, type: 27 },
+
+	{ id: 266, no: 0, cond: 1, rwrd: 38755, type: 25 },
+	{ id: 267, no: 1, cond: 500000, rwrd: 38755, type: 25 },
+	{ id: 268, no: 2, cond: 1000000, rwrd: 38755, type: 25 },
+	{ id: 269, no: 3, cond: 2000000, rwrd: 38755, type: 25 },
+	{ id: 270, no: 4, cond: 3000000, rwrd: 38755, type: 25, dep: [293, 298, 303] },
+
+	{ id: 271, no: 0, cond: 1, rwrd: 38754, type: 25 },
+	{ id: 272, no: 1, cond: 500000, rwrd: 38754, type: 25 },
+	{ id: 273, no: 2, cond: 1000000, rwrd: 38754, type: 25 },
+	{ id: 274, no: 3, cond: 2000000, rwrd: 38754, type: 25 },
+	{ id: 275, no: 4, cond: 3000000, rwrd: 38754, type: 25, dep: [293, 298, 303] },
+
+	{ id: 276, no: 0, cond: 1, rwrd: 38752, type: 25 },
+	{ id: 277, no: 1, cond: 500000, rwrd: 38752, type: 25 },
+	{ id: 278, no: 2, cond: 1000000, rwrd: 38752, type: 25 },
+	{ id: 279, no: 3, cond: 2000000, rwrd: 38752, type: 25 },
+	{ id: 280, no: 4, cond: 3000000, rwrd: 38752, type: 25, dep: [293, 298, 303] },
+
+	{ id: 281, no: 0, cond: 1, rwrd: 38743, type: 25 },
+	{ id: 282, no: 1, cond: 500000, rwrd: 38743, type: 25 },
+	{ id: 283, no: 2, cond: 1000000, rwrd: 38743, type: 25 },
+	{ id: 284, no: 3, cond: 2000000, rwrd: 38743, type: 25 },
+
+	{ id: 285, no: 0, cond: 1, rwrd: 38750, type: 25 },
+	{ id: 286, no: 1, cond: 500000, rwrd: 38750, type: 25 },
+	{ id: 287, no: 2, cond: 1000000, rwrd: 38750, type: 25 },
+	{ id: 288, no: 3, cond: 2000000, rwrd: 38750, type: 25 },
+
+	{ id: 289, no: 0, cond: 1, rwrd: 38753, type: 25, dep: [269, 274, 279, 284, 288]  },
+	{ id: 290, no: 1, cond: 500000, rwrd: 38753, type: 25, dep: [269, 274, 279, 284, 288]  },
+	{ id: 291, no: 2, cond: 1000000, rwrd: 38753, type: 25, dep: [269, 274, 279, 284, 288]  },
+	{ id: 292, no: 3, cond: 2000000, rwrd: 38753, type: 25, dep: [269, 274, 279, 284, 288]  },
+	{ id: 293, no: 4, cond: 3000000, rwrd: 38753, type: 25, dep: [269, 274, 279, 284, 288] },
+
+	{ id: 294, no: 0, cond: 1, rwrd: 38742, type: 25, dep: [269, 274, 279, 284, 288]  },
+	{ id: 295, no: 1, cond: 500000, rwrd: 38742, type: 25, dep: [269, 274, 279, 284, 288]  },
+	{ id: 296, no: 2, cond: 1000000, rwrd: 38742, type: 25, dep: [269, 274, 279, 284, 288]  },
+	{ id: 297, no: 3, cond: 2000000, rwrd: 38742, type: 25, dep: [269, 274, 279, 284, 288]  },
+	{ id: 298, no: 4, cond: 3000000, rwrd: 38742, type: 25, dep: [269, 274, 279, 284, 288] },
+
+	{ id: 299, no: 0, cond: 1, rwrd: 38751, type: 25, dep: [269, 274, 279, 284, 288]  },
+	{ id: 300, no: 1, cond: 500000, rwrd: 38751, type: 25, dep: [269, 274, 279, 284, 288]  },
+	{ id: 301, no: 2, cond: 1000000, rwrd: 38751, type: 25, dep: [269, 274, 279, 284, 288]  },
+	{ id: 302, no: 3, cond: 2000000, rwrd: 38751, type: 25, dep: [269, 274, 279, 284, 288]  },
+	{ id: 303, no: 4, cond: 3000000, rwrd: 38751, type: 25, dep: [269, 274, 279, 284, 288] },
+
+	{ id: 304, no: 0, cond: 1, rwrd: 1212, type: 201, dep: [269, 274, 279, 284, 288] },
+	{ id: 305, no: 0, cond: 1, rwrd: 1213, type: 201, dep: [293, 298, 303] },
 
 ]
 
