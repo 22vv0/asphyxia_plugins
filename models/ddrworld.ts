@@ -113,6 +113,9 @@ export interface ProfileWorld {
   todayCal: number;
   isDispWeight: boolean;
   prePlayableNum: number;
+  subscribed: boolean;
+  subscribePopupEnable: boolean;
+  subscribePopupDisable: boolean;
 
   opHispeed: number;
   opGauge: number;
@@ -136,6 +139,12 @@ export interface ProfileWorld {
   opCutTiming: number;
   opCutFreeze: number;
   opCutJump: number;
+  opSpeedType: number;
+  opRealSpeed: number;
+  opLanePreview: number;
+  opComboPriority: number;
+  opJudgePriority: number;
+  opJudgePosition: number;
   
   lpMode: number;
   lpFolder: number;
@@ -147,6 +156,10 @@ export interface ProfileWorld {
   lpTarget: number;
   lpTabMain: number;
   lpTabSub: number;
+  lpTabMainGraphType: number;
+  lpTabMainGraphDisp: number;
+  lpTabSubGraphType: number;
+  lpTabSubGraphDisp: number;
   
   fsTitle: number;
   fsVersion: number;
@@ -162,6 +175,8 @@ export interface ProfileWorld {
   fsSortType: number;
   fsOrderType: number;
   fsQuickmode: boolean;
+  fsClearType: number;
+  fsDifficulty: number;
   
   cgTipsBasic: number;
   cgTipsOption: number;

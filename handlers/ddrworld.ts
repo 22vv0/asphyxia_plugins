@@ -1,6 +1,6 @@
 import { Profile } from "../models/profile";
 import { ProfileWorld, ScoreWorld, EventWorld, GhostWorld, RivalWorld, HiScoreWorld, LeagueWorld, LeagueResultWorld, CustomizeWorld, GalaxyBrave } from "../models/ddrworld";
-import { SONGS_WORLD, SONGS_OVERRIDE_WORLD, EVENTS_WORLD, EVENTS_GUEST_WORLD, LEAGUE_WORLD, LEAGUE_SEASON, GALAXY_BRAVE } from "../data/world";
+import { SONGS_WORLD, SONGS_OVERRIDE_WORLD, EVENTS_WORLD, EVENTS_GUEST_WORLD, LEAGUE_WORLD, LEAGUE_SEASON, LEAGUE_GOLD_BORDER_MCODE, GALAXY_BRAVE } from "../data/world";
 
 function getLastGhostId(ghost: any) {
   let ghostFiltered = ghost.filter(a => (a.ghostId !== undefined))
@@ -175,6 +175,9 @@ export const playerdatasave: EPR = async (info, data, send) => {
         todayCal: $(data).number('data.common.today_cal'),
         isDispWeight: true,
         prePlayableNum: 0,
+        subscribed: $(data).bool('data.common.is_subscribed'),
+        subscribePopupEnable: $(data).bool('data.common.popup_subscribe_enable'),
+        subscribePopupDisable: $(data).bool('data.common.popup_subscribe_disable'),
 
         opHispeed: $(data).number('data.option.hispeed'),
         opGauge: $(data).number('data.option.gauge'),
@@ -198,6 +201,12 @@ export const playerdatasave: EPR = async (info, data, send) => {
         opCutTiming: $(data).number('data.option.cut_timing'),
         opCutFreeze: $(data).number('data.option.cut_freeze'),
         opCutJump: $(data).number('data.option.cut_jump'),
+        opSpeedType: $(data).number('data.option.speed_type'),
+        opRealSpeed: $(data).number('data.option.real_speed'),
+        opLanePreview: $(data).number('data.option.lane_preview'),
+        opComboPriority: $(data).number('data.option.combo_priority'),
+        opJudgePriority: $(data).number('data.option.judge_priority'),
+        opJudgePosition: $(data).number('data.option.judge_position'),
         
         lpMode: $(data).number('data.lastplay.mode'),
         lpFolder: $(data).number('data.lastplay.folder'),
@@ -209,6 +218,10 @@ export const playerdatasave: EPR = async (info, data, send) => {
         lpTarget: $(data).number('data.lastplay.target'),
         lpTabMain: $(data).number('data.lastplay.tab_main'),
         lpTabSub: $(data).number('data.lastplay.tab_sub'),
+        lpTabMainGraphType: $(data).number('data.lastplay.tab_main_graph_type'),
+        lpTabMainGraphDisp: $(data).number('data.lastplay.tab_main_graph_disp'),
+        lpTabSubGraphType: $(data).number('data.lastplay.tab_sub_graph_type'),
+        lpTabSubGraphDisp: $(data).number('data.lastplay.tab_sub_graph_disp'),
         
         fsTitle: $(data).number('data.filtersort.title'),
         fsVersion: $(data).number('data.filtersort.version'),
@@ -224,6 +237,8 @@ export const playerdatasave: EPR = async (info, data, send) => {
         fsSortType: $(data).number('data.filtersort.sort_type'),
         fsOrderType: $(data).number('data.filtersort.order_type'),
         fsQuickmode: $(data).bool('data.filtersort.is_quickmode'),
+        fsClearType: $(data).number('data.filtersort.cleartype'),
+        fsDifficulty: $(data).number('data.filtersort.difficulty'),
         
         cgTipsBasic: $(data).number('data.checkguide.tips_basic'),
         cgTipsOption: $(data).number('data.checkguide.tips_option'),
@@ -271,6 +286,9 @@ export const playerdatasave: EPR = async (info, data, send) => {
         todayCal: $(data).number('data.common.today_cal'),
         isDispWeight: true,
         prePlayableNum: 0,
+        subscribed: $(data).bool('data.common.is_subscribed'),
+        subscribePopupEnable: false,
+        subscribePopupDisable: false,
 
         opHispeed: $(data).number('data.option.hispeed'),
         opGauge: $(data).number('data.option.gauge'),
@@ -294,6 +312,12 @@ export const playerdatasave: EPR = async (info, data, send) => {
         opCutTiming: $(data).number('data.option.cut_timing'),
         opCutFreeze: $(data).number('data.option.cut_freeze'),
         opCutJump: $(data).number('data.option.cut_jump'),
+        opSpeedType: $(data).number('data.option.speed_type'),
+        opRealSpeed: $(data).number('data.option.real_speed'),
+        opLanePreview: $(data).number('data.option.lane_preview'),
+        opComboPriority: $(data).number('data.option.combo_priority'),
+        opJudgePriority: $(data).number('data.option.judge_priority'),
+        opJudgePosition: $(data).number('data.option.judge_position'),
         
         lpMode: $(data).number('data.lastplay.mode'),
         lpFolder: $(data).number('data.lastplay.folder'),
@@ -305,6 +329,10 @@ export const playerdatasave: EPR = async (info, data, send) => {
         lpTarget: $(data).number('data.lastplay.target'),
         lpTabMain: $(data).number('data.lastplay.tab_main'),
         lpTabSub: $(data).number('data.lastplay.tab_sub'),
+        lpTabMainGraphType: $(data).number('data.lastplay.tab_main_graph_type'),
+        lpTabMainGraphDisp: $(data).number('data.lastplay.tab_main_graph_disp'),
+        lpTabSubGraphType: $(data).number('data.lastplay.tab_sub_graph_type'),
+        lpTabSubGraphDisp: $(data).number('data.lastplay.tab_sub_graph_disp'),
         
         fsTitle: $(data).number('data.filtersort.title'),
         fsVersion: $(data).number('data.filtersort.version'),
@@ -320,6 +348,8 @@ export const playerdatasave: EPR = async (info, data, send) => {
         fsSortType: $(data).number('data.filtersort.sort_type'),
         fsOrderType: $(data).number('data.filtersort.order_type'),
         fsQuickmode: $(data).bool('data.filtersort.is_quickmode'),
+        fsClearType: $(data).number('data.filtersort.cleartype'),
+        fsDifficulty: $(data).number('data.filtersort.difficulty'),
         
         cgTipsBasic: $(data).number('data.checkguide.tips_basic'),
         cgTipsOption: $(data).number('data.checkguide.tips_option'),
@@ -419,7 +449,10 @@ export const playerdataload: EPR = async (info, data, send) => {
         weight: K.ITEM("s32", 0),
         today_cal: K.ITEM("u64", BigInt(0)),
         is_disp_weight: K.ITEM("bool", false),
-        pre_playable_num: K.ITEM("s32", 0)
+        pre_playable_num: K.ITEM("s32", 0),
+        is_subscribed: K.ITEM("bool", false),
+        popup_subscribe_enable: K.ITEM("bool", false),
+        popup_subscribe_disable: K.ITEM("bool", false)
       },
       option: {
         hispeed: K.ITEM("s32", 0),
@@ -443,7 +476,13 @@ export const playerdataload: EPR = async (info, data, send) => {
         arrow_design: K.ITEM("s32", 0),
         cut_timing: K.ITEM("s32", 0),
         cut_freeze: K.ITEM("s32", 0),
-        cut_jump: K.ITEM("s32", 0)
+        cut_jump: K.ITEM("s32", 0),
+        real_speed: K.ITEM("s32", 0),
+        speed_type: K.ITEM("s32", 0),
+        lane_preview: K.ITEM("s32", 0),
+        combo_priority: K.ITEM("s32", 0),
+        judge_priority: K.ITEM("s32", 0),
+        judge_position: K.ITEM("s32", 0)
       },
       lastplay: {
         mode: K.ITEM("s32", 0),
@@ -455,7 +494,11 @@ export const playerdataload: EPR = async (info, data, send) => {
         window_sub: K.ITEM("s32", 0),
         target: K.ITEM("s32", 0),
         tab_main: K.ITEM("s32", 0),
-        tab_sub: K.ITEM("s32", 0)
+        tab_sub: K.ITEM("s32", 0),
+        tab_main_graph_type: K.ITEM("s32", 0),
+        tab_main_graph_disp: K.ITEM("s32", 0),
+        tab_sub_graph_type: K.ITEM("s32", 0),
+        tab_sub_graph_disp: K.ITEM("s32", 0)
       },
       filtersort: {
         title: K.ITEM("u64", BigInt(0)),
@@ -471,7 +514,9 @@ export const playerdataload: EPR = async (info, data, send) => {
         rival_score_rank: K.ITEM("u64", BigInt(0)),
         sort_type: K.ITEM("u64", BigInt(0)),
         order_type: K.ITEM("s32", 0),
-        is_quickmode: K.ITEM("bool", false)
+        is_quickmode: K.ITEM("bool", false),
+        cleartype: K.ITEM("u64", BigInt(0)),
+        difficulty: K.ITEM("u64", BigInt(0))
       },
       checkguide: {
         tips_basic: K.ITEM("u64", BigInt(0)),
@@ -616,7 +661,7 @@ export const playerdataload: EPR = async (info, data, send) => {
           lResult.push({
             league_id: K.ITEM("s32", prevLeague.id),
             league_name: K.ITEM("str", Buffer.from(prevLeague.name, 'utf8').toString('base64')),
-            league_name_eng: K.ITEM("str", Buffer.from(prevLeague.name_eng, 'utf8').toString('base64')),
+            league_name_eng: K.ITEM("str", Buffer.from(prevLeague.nameEng, 'utf8').toString('base64')),
             starttime: K.ITEM("u64", prevLeague.start),
             endtime: K.ITEM("u64", prevLeague.end),
             summarytime: K.ITEM("u64", prevLeague.summary),
@@ -672,7 +717,7 @@ export const playerdataload: EPR = async (info, data, send) => {
         lResult.push({
           league_id: K.ITEM("s32", curLeague.id),
           league_name: K.ITEM("str", Buffer.from(curLeague.name, 'utf8').toString('base64')),
-          league_name_eng: K.ITEM("str", Buffer.from(curLeague.name_eng, 'utf8').toString('base64')),
+          league_name_eng: K.ITEM("str", Buffer.from(curLeague.nameEng, 'utf8').toString('base64')),
           starttime: K.ITEM("u64", curLeague.start),
           endtime: K.ITEM("u64", curLeague.end),
           summarytime: K.ITEM("u64", curLeague.summary),
@@ -698,7 +743,7 @@ export const playerdataload: EPR = async (info, data, send) => {
       current: {
         league_id: K.ITEM("s32", curLeague.id),
         league_name: K.ITEM("str", Buffer.from(curLeague.name, 'utf8').toString('base64')),
-        league_name_eng: K.ITEM("str", Buffer.from(curLeague.name_eng, 'utf8').toString('base64')),
+        league_name_eng: K.ITEM("str", Buffer.from(curLeague.nameEng, 'utf8').toString('base64')),
         starttime: K.ITEM("u64", curLeague.start),
         endtime: K.ITEM("u64", curLeague.end),
         summarytime: K.ITEM("u64", curLeague.summary),
@@ -767,7 +812,23 @@ export const playerdataload: EPR = async (info, data, send) => {
       }
     }
 
+    // add new properties
     if(profile.fsQuickmode === undefined) profile.fsQuickmode = false
+    if(profile.subscribed === undefined) profile.subscribed = false
+    if(profile.subscribePopupEnable === undefined) profile.subscribePopupEnable = false
+    if(profile.subscribePopupDisable === undefined) profile.subscribePopupDisable = false
+    if(profile.opSpeedType === undefined) profile.opSpeedType = 0
+    if(profile.opRealSpeed === undefined) profile.opRealSpeed = 0
+    if(profile.opLanePreview === undefined) profile.opLanePreview = 0
+    if(profile.opComboPriority === undefined) profile.opComboPriority = 0
+    if(profile.opJudgePriority === undefined) profile.opJudgePriority = 0
+    if(profile.opJudgePosition === undefined) profile.opJudgePosition = 0
+    if(profile.lpTabMainGraphType === undefined) profile.lpTabMainGraphType = 0
+    if(profile.lpTabMainGraphDisp === undefined) profile.lpTabMainGraphDisp = 0
+    if(profile.lpTabSubGraphType === undefined) profile.lpTabSubGraphType = 0
+    if(profile.lpTabSubGraphDisp === undefined) profile.lpTabSubGraphDisp = 0
+    if(profile.fsClearType === undefined) profile.fsClearType = 0
+    if(profile.fsDifficulty === undefined) profile.fsDifficulty = 0
 
     return send.object({
       result: K.ITEM("s32", 0),
@@ -787,7 +848,10 @@ export const playerdataload: EPR = async (info, data, send) => {
         weight: K.ITEM("s32", profile.weight),
         today_cal: K.ITEM("u64", BigInt(profile.todayCal)),
         is_disp_weight: K.ITEM("bool", profile.isDispWeight),
-        pre_playable_num: K.ITEM("s32", profile.prePlayableNum)
+        pre_playable_num: K.ITEM("s32", profile.prePlayableNum),
+        is_subscribed: K.ITEM("bool", profile.subscribed),
+        popup_subscribe_enable: K.ITEM("bool", profile.subscribePopupEnable),
+        popup_subscribe_disable: K.ITEM("bool", profile.subscribePopupDisable),
       },
       option: {
         hispeed: K.ITEM("s32", profile.opHispeed),
@@ -811,7 +875,13 @@ export const playerdataload: EPR = async (info, data, send) => {
         arrow_design: K.ITEM("s32", profile.opArrowDesign),
         cut_timing: K.ITEM("s32", profile.opCutTiming),
         cut_freeze: K.ITEM("s32", profile.opCutFreeze),
-        cut_jump: K.ITEM("s32", profile.opCutJump)
+        cut_jump: K.ITEM("s32", profile.opCutJump),
+        real_speed: K.ITEM("s32", profile.opRealSpeed),
+        speed_type: K.ITEM("s32", profile.opSpeedType),
+        lane_preview: K.ITEM("s32", profile.opLanePreview),
+        combo_priority: K.ITEM("s32", profile.opComboPriority),
+        judge_priority: K.ITEM("s32", profile.opJudgePriority),
+        judge_position: K.ITEM("s32", profile.opJudgePosition)
       },
       lastplay: {
         mode: K.ITEM("s32", profile.lpMode),
@@ -823,7 +893,11 @@ export const playerdataload: EPR = async (info, data, send) => {
         window_sub: K.ITEM("s32", profile.lpWindowSub),
         target: K.ITEM("s32", profile.lpTarget),
         tab_main: K.ITEM("s32", profile.lpTabMain),
-        tab_sub: K.ITEM("s32", profile.lpTabSub)
+        tab_sub: K.ITEM("s32", profile.lpTabSub),
+        tab_main_graph_type: K.ITEM("s32", profile.lpTabMainGraphType),
+        tab_main_graph_disp: K.ITEM("s32", profile.lpTabMainGraphDisp),
+        tab_sub_graph_type: K.ITEM("s32", profile.lpTabSubGraphType),
+        tab_sub_graph_disp: K.ITEM("s32", profile.lpTabSubGraphDisp)
       },
       filtersort: {
         title: K.ITEM("u64", BigInt(profile.fsTitle)),
@@ -839,7 +913,9 @@ export const playerdataload: EPR = async (info, data, send) => {
         rival_score_rank: K.ITEM("u64", BigInt(profile.fsRivalScoreRank)),
         sort_type: K.ITEM("u64", BigInt(profile.fsSortType)),
         order_type: K.ITEM("s32", profile.fsOrderType),
-        is_quickmode: K.ITEM("bool", profile.fsQuickmode)
+        is_quickmode: K.ITEM("bool", profile.fsQuickmode),
+        cleartype: K.ITEM("u64", BigInt(profile.fsClearType)),
+        difficulty: K.ITEM("u64", BigInt(profile.fsDifficulty))
       },
       checkguide: {
         tips_basic: K.ITEM("u64", BigInt(profile.cgTipsBasic)),
@@ -872,6 +948,11 @@ export const musicdataload: EPR = async (info, data, send) => {
         let limitedCha = ($(music).number('limited_cha')) ? $(music).number('limited_cha') : 0
         let limitedAry = ($(music).numbers('limited_ary')) ? $(music).numbers('limited_ary') : []
 
+        if($(music).number('series') === 20) {
+          limited = 0
+          limitedCha = 0
+        }
+
         let overrideIndex = SONGS_OVERRIDE_WORLD.findIndex(s => s.mcode === $(music).number('mcode'))
         if(overrideIndex > -1) {
           limitedAry = (SONGS_OVERRIDE_WORLD[overrideIndex]['limited_ary'] !== [] ? SONGS_OVERRIDE_WORLD[overrideIndex]['limited_ary'] : limitedAry)
@@ -892,10 +973,15 @@ export const musicdataload: EPR = async (info, data, send) => {
   }
 
   for(const music of SONGS_WORLD) {
+    let limArr = music.limited_ary
+    if(music.mcode === LEAGUE_GOLD_BORDER_MCODE && BigInt(new Date()) >= LEAGUE_WORLD.find(lg => lg.id === LEAGUE_SEASON)['summary']) {
+      for(let i in limArr)
+        if(limArr[i] === 14) limArr[i] = limArr[i] - 1
+    }
     for(const [index, diff] of music.diffLv.entries()) {
-      if(music.limited_ary[index] != -1) {
+      if(limArr[index] != -1) {
         musicList.push({
-          music_str: K.ITEM('str', music.mcode + ',' + ((index > 4) ? '1,' : '0,') + (index % 5) + ',' + (U.GetConfig('song_unlock') && music.limited_ary[index] != -1 ? '0' : music.limited_ary[index]) + ',' + diff)
+          music_str: K.ITEM('str', music.mcode + ',' + ((index > 4) ? '1,' : '0,') + (index % 5) + ',' + (U.GetConfig('song_unlock') && limArr[index] != -1 ? '0' : limArr[index]) + ',' + diff)
         })
       }
     }

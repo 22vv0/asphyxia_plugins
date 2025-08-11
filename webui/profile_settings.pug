@@ -196,6 +196,22 @@ else if profile3
                     option(value=1) On
             p.control
               a.button.is-primary#change-display-calories3 Change
+
+        .field.is-horizontal.has-addons
+          .field-label.is-normal
+            label.label Platinum Pass
+          .field-body
+            p.control
+              .select
+                select#platinum
+                  if (profile3.subscribed)
+                    option(value=0) Off
+                    option(value=1, selected) On
+                  else
+                    option(value=0, selected) Off
+                    option(value=1) On
+            p.control
+              a.button.is-primary#change-platinum Change
   br
   div
     .card
@@ -291,4 +307,5 @@ else if profile3
 
 
 div(hidden id='customize-data') !{JSON.stringify(customize)}
+div(hidden id='platinum-data') !{profile3.subscribed !== undefined ? profile3.subscribed : false}
 script(src="static/js/profile_settings.js")

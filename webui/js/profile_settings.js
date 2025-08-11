@@ -69,6 +69,13 @@ $('#change-display-calories3').on('click', () => {
   emit('updateDisplayCalories3', { refid, selected }).then(() => location.reload());
 });
 
+$('#change-platinum').on('click', () => {
+  const selected = parseInt($('#platinum option:selected').val()) !== 0
+  let currentSub = document.getElementById("platinum-data").innerText === "true"
+
+  emit('updatePlatinum', { refid, selected, currentSub }).then(() => location.reload());
+});
+
 $('#customsave').on('click', () => {
   let selected = [
     [1, parseInt($('#appeal option:selected').val()), 1],

@@ -167,7 +167,27 @@
 		{
 			"id": 35,
 			"name": "New York EVOLVED"
-		}
+		},
+		{
+	        "id": 36,
+	        "name": "小舞桜 (Amado Kon)"
+	    },
+	    {
+	        "id": 37,
+	        "name": "小舞桜 (Komai Sakura)"
+	    },
+	    {
+	        "id": 38,
+	        "name": "Deep tenDon Reflex"
+	    },
+	    {
+	        "id": 39,
+	        "name": "ROCK THE PARTY"
+	    },
+	    {
+	        "id": 40,
+	        "name": "エンドルフィン"
+	    }
 	],
 	"character" : [
 		{
@@ -196,31 +216,31 @@
 		},
 		{
 			"id": 7,
-			"name": "山形まり花"
+			"name": "山形まり花 (Marika Yamagata)"
 		},
 		{
 			"id": 8,
-			"name": "和泉一舞"
+			"name": "和泉一舞 (Izumi Ibuki)"
 		},
 		{
 			"id": 9,
-			"name": "春日咲子"
+			"name": "春日咲子 (Sakiko Kasuga)"
 		},
 		{
 			"id": 10,
-			"name": "芽兎めう"
+			"name": "芽兎めう (Meto Meu)"
 		},
 		{
 			"id": 11,
-			"name": "霜月凛"
+			"name": "霜月凛 (Rin Shimotsuki)"
 		},
 		{
 			"id": 12,
-			"name": "東雲夏陽"
+			"name": "東雲夏陽 (Shinonome Natsuhi)"
 		},
 		{
 			"id": 13,
-			"name": "東雲心菜"
+			"name": "東雲心菜 (Shinonome Cocona)"
 		},
 		{
 			"id": 14,
@@ -229,6 +249,14 @@
 		{
 			"id": 15,
 			"name": "AKIRA"
+		},
+		{
+		    "id": 16,
+		    "name": "天戸紺 (Amado Kon)"
+		},
+		{
+		    "id": 17,
+		    "name": "小舞桜 (Komai Sakura)"
 		}
 	],
 	"laneBgSingle" : [
@@ -274,31 +302,31 @@
 		},
 		{
 			"id": 11,
-			"name": "山形まり花"
+			"name": "山形まり花 (Marika Yamagata)"
 		},
 		{
 			"id": 12,
-			"name": "和泉一舞"
+			"name": "和泉一舞 (Izumi Ibuki)"
 		},
 		{
 			"id": 13,
-			"name": "春日咲子"
+			"name": "春日咲子 (Sakiko Kasuga)"
 		},
 		{
 			"id": 14,
-			"name": "芽兎めう"
+			"name": "芽兎めう (Meto Meu)"
 		},
 		{
 			"id": 15,
-			"name": "霜月凛"
+			"name": "霜月凛 (Rin Shimotsuki)"
 		},
 		{
 			"id": 16,
-			"name": "東雲夏陽"
+			"name": "東雲夏陽 (Shinonome Natsuhi)"
 		},
 		{
 			"id": 17,
-			"name": "東雲心菜"
+			"name": "東雲心菜 (Shinonome Cocona)"
 		},
 		{
 			"id": 18,
@@ -315,7 +343,20 @@
 		{
 			"id": 21,
 			"name": "bag (EXPERT譜面 x0.25 WAVE)"
-		}
+		},
+		{
+	        "id": 22,
+	        "name": "天戸紺 (Amado Kon)"
+	    },
+	    {
+	        "id": 23,
+	        "name": "小舞桜 (Komai Sakura)"
+	    },
+	    {
+	        "id": 24,
+	        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
+	    }
+
 	],
 	"laneBgDouble": [
 		{
@@ -421,7 +462,24 @@
 		{
 			"id": 26,
 			"name": "ALICE & YUNI"
-		}
+		},
+		{
+	        "id": 27,
+	        "name": "天戸紺 (Amado Kon)"
+	    },
+	    {
+	        "id": 28,
+	        "name": "小舞桜 (Komai Sakura)"
+	    },
+	    {
+	        "id": 29,
+	        "name": "天戸紺 & 小舞桜 (Amado Kon & Komai Sakura)"
+	    },
+	    {
+	        "id": 30,
+	        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
+	    }
+
 	],
 	"laneCoverSingle": [
 		{
@@ -531,7 +589,32 @@
 		{
 			"id": 27,
 			"name": "bag (EXPERT譜面 x0.25 WAVE)"
-		}
+		},
+	    {
+	        "id": 28,
+	        "name": "天戸紺 (Amado Kon)"
+	    },
+	    {
+	        "id": 29,
+	        "name": "小舞桜 (Komai Sakura)"
+	    },
+	    {
+	        "id": 30,
+	        "name": "Deep tenDon Reflex"
+	    },
+	    {
+	        "id": 31,
+	        "name": "ROCK THE PARTY"
+	    },
+	    {
+	        "id": 32,
+	        "name": "エンドルフィン"
+	    },
+	    {
+	        "id": 33,
+	        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
+	    }
+
 	],
 	"laneCoverDouble": [
 		{
@@ -661,7 +744,35 @@
 		{
 			"id": 32,
 			"name": "ALICE & YUNI"
-		}
+		},
+	    {
+	        "id": 33,
+	        "name": "天戸紺 (Amado Kon)"
+	    },
+	    {
+	        "id": 34,
+	        "name": "小舞桜 (Komai Sakura)"
+	    },
+	    {
+	        "id": 35,
+	        "name": "天戸紺 & 小舞桜 (Amado Kon & Komai Sakura)"
+	    },
+	    {
+	        "id": 36,
+	        "name": "Deep tenDon Reflex"
+	    },
+	    {
+	        "id": 37,
+	        "name": "ROCK THE PARTY"
+	    },
+	    {
+	        "id": 38,
+	        "name": "エンドルフィン"
+	    },
+	    {
+	        "id": 39,
+	        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
+	    }
 	],
 	"gameBG": [
 		{
@@ -747,7 +858,20 @@
 		{
 			"id": 21,
 			"name": "WORLD (パターン4)"
-		}
+		},
+	    {
+	        "id": 22,
+	        "name": "ARROW (パターン6)"
+	    },
+	    {
+	        "id": 23,
+	        "name": "ヘキサグラム (パターン6)"
+	    },
+	    {
+	        "id": 24,
+	        "name": "WORLD (パターン5)"
+	    }
+
 	],
 	"songVid": [
 		{

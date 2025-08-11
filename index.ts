@@ -209,6 +209,16 @@ export function register() {
     });
   });
 
+  R.WebUIEvent("updatePlatinum", async ({ refid, selected, currentSub }) => {
+    await DB.Update<ProfileWorld>(refid, { collection: "profile3" }, {
+      $set: {
+        subscribed: selected,
+        subscribePopupEnable: selected && selected !== currentSub,
+        subscribePopupDisable: !selected && selected !== currentSub
+      }
+    });
+  });
+
   R.WebUIEvent("playerCustomize", async ({ refid, selected }) => {
     for(const sel of selected) {
       await DB.Upsert<CustomizeWorld>(refid, { collection: "customize3", category: sel[0], pattern: sel[2] }, { 

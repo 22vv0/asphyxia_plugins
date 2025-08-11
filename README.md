@@ -1,8 +1,8 @@
 # DanceDanceRevolution
 
-**Plugin Version:** fork-3.0.9
+**Plugin Version:** fork-3.1.0
 
-**Supported game versions:** WORLD (2025042200)
+**Supported game versions:** WORLD (2025061000)
 
 **Required Asphyxia Core version** [1.50c](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50)
 
@@ -12,47 +12,57 @@
 
 Changelog
 ===========
-### fork-3.0.9
+### fork-3.1.0
+
+- Added customization item data
+	- PREMIUM CUSTOMIZER 第3弾 (set 3)
 
 - Added GALAXY BRAVE data
-	- CUTE folder
+	- STORM folder
 
 - Added song/chart info
 	- GALAXY BRAVE
-		- smooooch・∀・
-		- からふるぱすてる
-		- ベィスドロップ・フリークス
-		- Komainu Adventure!
+		- sakura storm
+		- Cosmic Hurricane
+		- The Wind of Gold
+		- Thunderstorm
 		
 	- WORLD LEAGUE
-		- S.O.D. (Gold class benefit)
+		- Florence (Gold class benefit)
 
-	- EXTRA SAVIOR WORLD
-		- fluctus
-		- HYPER OVERR DANCEFLOORRR
-		- Love You
-		- ドーパミン (STARDOM Remix)
-		- 量子の海のリントヴルム (STARDOM Remix)
+	- Platinum Pass songs
+		- Monsters Den
+		- Stand Alone Beat Masta
 		
 	- Misc
-		- Cheerleader
-		- Knock Yourself Out XD
+		- 唱
+		- トラウマ催眠少女さとり！
+		- 勇者
+		- あおばの足音
+		- ギャ・ギャ・ギャ・ギャラクシー！
+		- 悲報！ワイ！ニート！
 
-	- Removed from Advance Play
-		- Drop The Bounce
-		- ミッドナイト☆WAR
-		- THE SAFARI (STARDOM Remix)
-		- 音楽 (STARDOM Remix)
-		
+	- Advance Play
+		- GRAND PRIX music pack vol.36
+			- ARACHNE
+			- EBONY & IVORY
+			- Liar×Girl
+			- 絶対零度
 
 - Added event data
 	- GALAXY BRAVE
-		- CUTE - Komainu Adventure!
+		- STORM - Thunderstorm
 		
-	- EXTRA SAVIOR WORLD
-		- The 2nd MUSIC CREATOR AUDITION
-		- The 1st DANCERUSH STARDOM
+	- Advance Play
+		- GRAND PRIX music pack vol.36
 		
+- Implemented saving of newly added options and filter categories.
+
+- Added Platinum Pass toggle in Profile settings.
+
+- Set all A3 songs to be unlocked by default unless overridden.
+
+- Added handler for Gold Advanced Border songs after WORLD LEAGUE period. 
 
 musicdb.xml Usage Guide
 ===========
