@@ -160,9 +160,9 @@ export const common: EPR = async (info, data, send) => {
                 0, 
                 (stmpEvntInfo['info']['data'][stmpDataIter]['stmpid'].toString() in UNLOCK_EVENTS6['refillStamps']) ? 12 : stmpEvntInfo['info']['data'][stmpDataIter]['stps'], 
                 0,
-                '',
                 stmpEvntInfo['info']['stmpHd'],
-                '',
+                stmpEvntInfo['info']['stmpHd'],
+                stmpEvntInfo['info']['stmpFt'],
                 stmpEvntInfo['info']['stmpFt'],
                 stmpEvntInfo['info']['data'][stmpDataIter]['stprwrd']
               ]

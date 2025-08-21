@@ -649,7 +649,7 @@ export const create: EPR = async (info, data, send) => {
   console.log("DataID" + refid);
   const name = $(data).str('name', $(data).attr().name ? $(data).attr().name : 'GUEST');
   let id = _.random(0, 99999999);
-  while (await DB.FindOne<Profile>(null, { collecttion: 'profile', id })) {
+  while (await DB.FindOne<Profile>(null, { collection: 'profile', id })) {
     id = _.random(0, 99999999);
   }
 

@@ -715,13 +715,13 @@ export const EVENT_ITEMS6 = {
 // rule: 0 score 1 point 2 vote
 // rank_match_target: 0 arena 1 single 2 mega
 export const CURRENT_ARENA = {
-  season: 19,
+  season: 20,
   rule: 0,
-  rank_match_target: 1,
-  time_start: BigInt(Date.parse('15 May 2025 00:00:00 GMT')),
-  time_end: BigInt(Date.parse('09 Jun 2025 23:59:59 GMT')),
-  shop_start: BigInt(Date.parse('15 May 2025 00:00:00 GMT')),
-  shop_end: BigInt(Date.parse('09 Jun 2025 23:59:59 GMT'))
+  rank_match_target: 2,
+  time_start: BigInt(Date.parse('21 Aug 2025 00:00:00 GMT')),
+  time_end: BigInt(Date.parse('16 Sep 2025 23:59:59 GMT')),
+  shop_start: BigInt(Date.parse('21 Aug 2025 00:00:00 GMT')),
+  shop_end: BigInt(Date.parse('16 Sep 2025 23:59:59 GMT'))
 }
 
 // catalog_id, catalog_type, price, item_type, item_id, param 

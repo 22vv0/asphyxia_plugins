@@ -1,6 +1,6 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-6.1.1
+**Plugin Version:** 6.1.1a
 
 **Supported game versions:** EXCEED GEAR (2025052700)
 
@@ -13,21 +13,13 @@
 
 Changelog
 ===========
-### 6.1.1
-- Added to licensed songs list:
-	- CO5M1C R4ILR0AD
-	- ヒュブリスの頂に聳えるのは
-- Added stamp event:
-	- REFLEC BEATスタンプ(2025)
-- Added ARENA season 19 (SINGLE BATTLE) and ARENA STATION season 19 items list.
-- Enabled ULTIMATE MATCH (and ULTIMATE RANK MATCH for ranked matches)
+### 6.1.1a	
+- Added ARENA season 20.
+	- ARENA STATION shop list to be added in the future.
 
 ### Other changes:
-- Changed the way ARENA data is set:
-	- ARENA will now occur at the specified duration (start and end date.) You can override this by toggling the **Keep ARENA running** option in the plugin settings; choose whether to keep the latest ARENA season running past the end date.
-	- You can now select which specific set of ARENA STATION items will be available for purchase using the **ARENA STATION set** option in the plugin settings.
-- Minor changes to the ARENA data section of the profile details WebUI.
-- Switched startup flag toggle value to false when generating new flags.json config file. ([#35](https://github.com/22vv0/asphyxia_plugins/issues/35))
+- Fixed stamp events not displaying text when game is set to JP or KR.
+- Fixed misspelling of 'collection' in DB query in profile creation.
 
 Report issues
 ===========
