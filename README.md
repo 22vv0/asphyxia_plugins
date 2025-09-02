@@ -1,6 +1,6 @@
 # DanceDanceRevolution
 
-**Plugin Version:** fork-3.1.0
+**Plugin Version:** 3.1.0a
 
 **Supported game versions:** WORLD (2025061000)
 
@@ -12,57 +12,16 @@
 
 Changelog
 ===========
-### fork-3.1.0
+### 3.1.0a
 
-- Added customization item data
-	- PREMIUM CUSTOMIZER 第3弾 (set 3)
+- Added WORLD LEAGUE 8
+	- Period: 09/04 - 10/01
+	- Advance border for bronze/silver added.
 
-- Added GALAXY BRAVE data
-	- STORM folder
+- Updated song/chart unlock info
+	- Florence (Gold advance border benefit -> gold class benefit)
 
-- Added song/chart info
-	- GALAXY BRAVE
-		- sakura storm
-		- Cosmic Hurricane
-		- The Wind of Gold
-		- Thunderstorm
-		
-	- WORLD LEAGUE
-		- Florence (Gold class benefit)
-
-	- Platinum Pass songs
-		- Monsters Den
-		- Stand Alone Beat Masta
-		
-	- Misc
-		- 唱
-		- トラウマ催眠少女さとり！
-		- 勇者
-		- あおばの足音
-		- ギャ・ギャ・ギャ・ギャラクシー！
-		- 悲報！ワイ！ニート！
-
-	- Advance Play
-		- GRAND PRIX music pack vol.36
-			- ARACHNE
-			- EBONY & IVORY
-			- Liar×Girl
-			- 絶対零度
-
-- Added event data
-	- GALAXY BRAVE
-		- STORM - Thunderstorm
-		
-	- Advance Play
-		- GRAND PRIX music pack vol.36
-		
-- Implemented saving of newly added options and filter categories.
-
-- Added Platinum Pass toggle in Profile settings.
-
-- Set all A3 songs to be unlocked by default unless overridden.
-
-- Added handler for Gold Advanced Border songs after WORLD LEAGUE period. 
+- Added optgroups for customization dropdown. 
 
 musicdb.xml Usage Guide
 ===========

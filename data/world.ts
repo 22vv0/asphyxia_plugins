@@ -53,7 +53,7 @@ export const SONGS_WORLD = [
 	{ mcode: 38630, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [3, 6, 12, 15, 0, 0, 6, 11, 15, 0] },
 	{ mcode: 38732, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [3, 7, 10, 14, 0, 0, 6, 10, 14, 0] },
 	{ mcode: 38631, limited_ary: [13, 13, 13, 13, -1, -1, 13, 13, 13, -1], diffLv: [3, 6, 12, 14, 0, 0, 6, 12, 14, 0] },
-	{ mcode: 38725, limited_ary: [14, 14, 14, 14, -1, -1, 14, 14, 14, -1], diffLv: [2, 5, 11, 16, 0, 0, 5, 11, 17, 0] },
+	{ mcode: 38725, limited_ary: [13, 13, 13, 13, -1, -1, 13, 13, 13, -1], diffLv: [2, 5, 11, 16, 0, 0, 5, 11, 17, 0] },
 	
 	// mystical reunion
 	{ mcode: 38746, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 8, 14, 16, 0, 0, 8, 14, 16, 0] },
@@ -839,7 +839,7 @@ export const EVENTS_WORLD = [
 	
 ]
 
-export const LEAGUE_SEASON = 7
+export const LEAGUE_SEASON = 8
 export const LEAGUE_GOLD_BORDER_MCODE = 38725
 export const LEAGUE_WORLD = [
 	{
@@ -877,6 +877,15 @@ export const LEAGUE_WORLD = [
 		end: BigInt(Date.parse('16 Jul 2025 08:00:00 GMT')),
 		summary: BigInt(Date.parse('16 Jul 2025 09:00:00 GMT')),
 		advanceBorder: [0, 0, 500000]
+	},
+	{
+		id: 8,
+		name: "第8回 WORLD LEAGUE",
+		nameEng: "The 8th WORLD LEAGUE",
+		start: BigInt(Date.parse('4 Sep 2025 01:00:00 GMT')),
+		end: BigInt(Date.parse('1 Oct 2025 08:00:00 GMT')),
+		summary: BigInt(Date.parse('1 Oct 2025 09:00:00 GMT')),
+		advanceBorder: [150000, 175000, 500000]
 	}
 ]
 

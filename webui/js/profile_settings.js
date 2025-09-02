@@ -105,41 +105,61 @@ $(document).ready(function(){
     let custInd, custInd2
     custInd = customizeData.findIndex(c => c.category === 1)
     for(const ap of customJson['appealBoard']) {
-      $('#appeal').append('<option value=' + ap.id + ((custInd >= 0 && ap.id === customizeData[custInd].key) ? " selected" : " ") + ">" + ap.name + "</option>")
+      $('#appeal').append('<optgroup label="' + customJson['optgroup'][ap['optgroup']] + '">')
+      for(const item of ap['items'])
+        $('#appeal').append('<option value=' + item.id + ((custInd >= 0 && item.id === customizeData[custInd].key) ? " selected" : " ") + ">" + item.name + "</option>")
     }
 
     custInd = customizeData.findIndex(c => c.category === 2 && c.pattern === 1)
     custInd2 = customizeData.findIndex(c => c.category === 2 && c.pattern === 2)
     for(const ch of customJson['character']) {
-      $('#character-left').append('<option value=' + ch.id + ((custInd >= 0 && ch.id === customizeData[custInd].key) ? " selected" : " ") + ">" + ch.name + "</option>")
-      $('#character-right').append('<option value=' + ch.id + ((custInd2 >= 0 && ch.id === customizeData[custInd2].key) ? " selected" : " ") + ">" + ch.name + "</option>")
+      $('#character-left').append('<optgroup label="' + customJson['optgroup'][ch['optgroup']] + '">')
+      for(const item of ch['items'])
+        $('#character-left').append('<option value=' + item.id + ((custInd >= 0 && item.id === customizeData[custInd].key) ? " selected" : " ") + ">" + item.name + "</option>")
+      
+      $('#character-right').append('<optgroup label="' + customJson['optgroup'][ch['optgroup']] + '">')
+      for(const item of ch['items'])
+        $('#character-right').append('<option value=' + item.id + ((custInd2 >= 0 && item.id === customizeData[custInd2].key) ? " selected" : " ") + ">" + item.name + "</option>")
     }
 
     custInd = customizeData.findIndex(c => c.category === 3 && c.pattern === 1)
     custInd2 = customizeData.findIndex(c => c.category === 3 && c.pattern === 2)
     for(const bg of customJson['gameBG']) {
-      $('#bg-system').append('<option value=' + bg.id + ((custInd >= 0 && bg.id === customizeData[custInd].key) ? " selected" : " ") + ">" + bg.name + "</option>")
-      $('#bg-play').append('<option value=' + bg.id + ((custInd2 >= 0 && bg.id === customizeData[custInd2].key) ? " selected" : " ") + ">" + bg.name + "</option>")
+      $('#bg-system').append('<optgroup label="' + customJson['optgroup'][bg['optgroup']] + '">')
+      for(const item of bg['items'])
+        $('#bg-system').append('<option value=' + item.id + ((custInd >= 0 && item.id === customizeData[custInd].key) ? " selected" : " ") + ">" + item.name + "</option>")
+      
+      $('#bg-play').append('<optgroup label="' + customJson['optgroup'][bg['optgroup']] + '">')
+      for(const item of bg['items'])
+        $('#bg-play').append('<option value=' + item.id + ((custInd2 >= 0 && item.id === customizeData[custInd2].key) ? " selected" : " ") + ">" + item.name + "</option>")
     }
 
     custInd = customizeData.findIndex(c => c.category === 4)
     for(const lbg of customJson['laneBgSingle']) {
-      $('#lanebg-s').append('<option value=' + lbg.id + ((custInd >= 0 && lbg.id === customizeData[custInd].key) ? " selected" : " ") + ">" + lbg.name + "</option>")
+      $('#lanebg-s').append('<optgroup label="' + customJson['optgroup'][lbg['optgroup']] + '">')
+      for(const item of lbg['items'])
+        $('#lanebg-s').append('<option value=' + item.id + ((custInd >= 0 && item.id === customizeData[custInd].key) ? " selected" : " ") + ">" + item.name + "</option>")
     }
 
     custInd = customizeData.findIndex(c => c.category === 5)
     for(const lbg of customJson['laneBgDouble']) {
-      $('#lanebg-d').append('<option value=' + lbg.id + ((custInd >= 0 && lbg.id === customizeData[custInd].key) ? " selected" : " ") + ">" + lbg.name + "</option>")
+      $('#lanebg-d').append('<optgroup label="' + customJson['optgroup'][lbg['optgroup']] + '">')
+      for(const item of lbg['items'])
+        $('#lanebg-d').append('<option value=' + item.id + ((custInd >= 0 && item.id === customizeData[custInd].key) ? " selected" : " ") + ">" + item.name + "</option>")
     }
 
     custInd = customizeData.findIndex(c => c.category === 6)
     for(const lcv of customJson['laneCoverSingle']) {
-      $('#lanecv-s').append('<option value=' + lcv.id + ((custInd >= 0 && lcv.id === customizeData[custInd].key) ? " selected" : " ") + ">" + lcv.name + "</option>")
+      $('#lanecv-s').append('<optgroup label="' + customJson['optgroup'][lcv['optgroup']] + '">')
+      for(const item of lcv['items'])
+        $('#lanecv-s').append('<option value=' + item.id + ((custInd >= 0 && item.id === customizeData[custInd].key) ? " selected" : " ") + ">" + item.name + "</option>")
     }
     
     custInd = customizeData.findIndex(c => c.category === 7)
     for(const lcv of customJson['laneCoverDouble']) {
-      $('#lanecv-d').append('<option value=' + lcv.id + ((custInd >= 0 && lcv.id === customizeData[custInd].key) ? " selected" : " ") + ">" + lcv.name + "</option>")
+      $('#lanecv-d').append('<optgroup label="' + customJson['optgroup'][lcv['optgroup']] + '">')
+      for(const item of lcv['items'])
+        $('#lanecv-d').append('<option value=' + item.id + ((custInd >= 0 && item.id === customizeData[custInd].key) ? " selected" : " ") + ">" + item.name + "</option>")
     }
 
     custInd = customizeData.findIndex(c => c.category === 8)

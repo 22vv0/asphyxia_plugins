@@ -1,877 +1,1097 @@
 {
+	"optgroup": [
+		"--- Default items ---",		
+		"--- 「みんなで応援！BPLプロ選手サポーターズ -SEASON 4-」 チーム特典AAランク ---",
+		"--- 第1弾 ---",
+		"--- 「BPL -SEASON 4- DanceDanceRevolution」 ---",
+		"--- 「ひなビタ♪」 第1弾 ---",
+		"--- 第2弾 ---",
+		"--- 第3弾 ---"
+	],
 	"appealBoard" : [
 		{
-			"id": 1,
-			"name": "プレーン (パターン1)"
+			"optgroup": 0,
+			"items": [
+				{
+					"id": 1,
+					"name": "プレーン (パターン1)"
+				},
+				{
+					"id": 2,
+					"name": "プレーン (パターン2)"
+				},
+				{
+					"id": 3,
+					"name": "プレーン (パターン3)"
+				},
+				{
+					"id": 4,
+					"name": "EMI"
+				},
+				{
+					"id": 5,
+					"name": "RAGE"
+				}
+			]
 		},
 		{
-			"id": 2,
-			"name": "プレーン (パターン2)"
+			"optgroup": 1,
+			"items": [
+				{
+					"id": 100001,
+					"name": "APINA VRAMeS"
+				},
+				{
+					"id": 100002,
+					"name": "GiGO"
+				},
+				{
+					"id": 100003,
+					"name": "GamePanic"
+				},
+				{
+					"id": 100004,
+					"name": "Silk Hat"
+				},
+				{
+					"id": 100005,
+					"name": "TAITO STATION Tradz"
+				},
+				{
+					"id": 100006,
+					"name": "ROUND1"
+				},
+				{
+					"id": 100007,
+					"name": "Leisureland"
+				}
+			]
 		},
 		{
-			"id": 3,
-			"name": "プレーン (パターン3)"
+			"optgroup": 2,
+			"items": [ 
+				{
+					"id": 6,
+					"name": "ALICE"
+				},
+				{
+					"id": 7,
+					"name": "BABY-LON"
+				},
+				{
+					"id": 8,
+					"name": "みゅ、みゅ、Müllる"
+				},
+				{
+					"id": 9,
+					"name": "Astrogazer"
+				},
+				{
+					"id": 10,
+					"name": "Don't Stop The HYPERCORE"
+				}
+			]
 		},
 		{
-			"id": 4,
-			"name": "EMI"
+			"optgroup": 3,
+			"items": [
+				{
+					"id": 11,
+					"name": "Steps for Victory"
+				},
+				{
+					"id": 12,
+					"name": "メテオラ-meteor"
+				},
+				{
+					"id": 13,
+					"name": "Wizards!"
+				},
+				{
+					"id": 14,
+					"name": "THUNDERSTRIKE"
+				},
+				{
+					"id": 15,
+					"name": "blue anthem"
+				},
+				{
+					"id": 16,
+					"name": "Get Into The Groove feat.WaMi"
+				},
+				{
+					"id": 17,
+					"name": "ESPRIT ONE"
+				},
+				{
+					"id": 18,
+					"name": "Mighty Beat Monsterz"
+				}				
+			]
 		},
 		{
-			"id": 5,
-			"name": "RAGE"
+			"optgroup": 4,
+			"items": [
+				{
+					"id": 19,
+					"name": "ひなビタ♪"
+				},
+				{
+					"id": 20,
+					"name": "ここなつ"
+				},
+				{
+					"id": 21,
+					"name": "山形まり花"
+				},
+				{
+					"id": 22,
+					"name": "和泉一舞"
+				},
+				{
+					"id": 23,
+					"name": "春日咲子"
+				},
+				{
+					"id": 24,
+					"name": "芽兎めう"
+				},
+				{
+					"id": 25,
+					"name": "霜月凛"
+				},
+				{
+					"id": 26,
+					"name": "東雲夏陽"
+				},
+				{
+					"id": 27,
+					"name": "東雲心菜"
+				},
+				{
+					"id": 28,
+					"name": "久領堤纒"
+				},
+				{
+					"id": 29,
+					"name": "星見日向"
+				}
+			]
 		},
 		{
-			"id": 100001,
-			"name": "APINA VRAMeS"
+			"optgroup": 5,
+			"items": [
+				{
+					"id": 30,
+					"name": "YUNI"
+				},
+				{
+					"id": 31,
+					"name": "AKIRA"
+				},
+				{
+					"id": 32,
+					"name": "Destination"
+				},
+				{
+					"id": 33,
+					"name": "HyperTwist"
+				},
+				{
+					"id": 34,
+					"name": "Cosy Catastrophe"
+				},
+				{
+					"id": 35,
+					"name": "New York EVOLVED"
+				}
+			]
 		},
 		{
-			"id": 100002,
-			"name": "GiGO"
-		},
-		{
-			"id": 100003,
-			"name": "GamePanic"
-		},
-		{
-			"id": 100004,
-			"name": "Silk Hat"
-		},
-		{
-			"id": 100005,
-			"name": "TAITO STATION Tradz"
-		},
-		{
-			"id": 100006,
-			"name": "ROUND1"
-		},
-		{
-			"id": 100007,
-			"name": "Leisureland"
-		},
-		{
-			"id": 6,
-			"name": "ALICE"
-		},
-		{
-			"id": 7,
-			"name": "BABY-LON"
-		},
-		{
-			"id": 8,
-			"name": "みゅ、みゅ、Müllる"
-		},
-		{
-			"id": 9,
-			"name": "Astrogazer"
-		},
-		{
-			"id": 10,
-			"name": "Don't Stop The HYPERCORE"
-		},
-		{
-			"id": 11,
-			"name": "Steps for Victory"
-		},
-		{
-			"id": 12,
-			"name": "メテオラ-meteor"
-		},
-		{
-			"id": 13,
-			"name": "Wizards!"
-		},
-		{
-			"id": 14,
-			"name": "THUNDERSTRIKE"
-		},
-		{
-			"id": 15,
-			"name": "blue anthem"
-		},
-		{
-			"id": 16,
-			"name": "Get Into The Groove feat.WaMi"
-		},
-		{
-			"id": 17,
-			"name": "ESPRIT ONE"
-		},
-		{
-			"id": 18,
-			"name": "Mighty Beat Monsterz"
-		},
-		{
-			"id": 19,
-			"name": "ひなビタ♪"
-		},
-		{
-			"id": 20,
-			"name": "ここなつ"
-		},
-		{
-			"id": 21,
-			"name": "山形まり花"
-		},
-		{
-			"id": 22,
-			"name": "和泉一舞"
-		},
-		{
-			"id": 23,
-			"name": "春日咲子"
-		},
-		{
-			"id": 24,
-			"name": "芽兎めう"
-		},
-		{
-			"id": 25,
-			"name": "霜月凛"
-		},
-		{
-			"id": 26,
-			"name": "東雲夏陽"
-		},
-		{
-			"id": 27,
-			"name": "東雲心菜"
-		},
-		{
-			"id": 28,
-			"name": "久領堤纒"
-		},
-		{
-			"id": 29,
-			"name": "星見日向"
-		},
-		{
-			"id": 30,
-			"name": "YUNI"
-		},
-		{
-			"id": 31,
-			"name": "AKIRA"
-		},
-		{
-			"id": 32,
-			"name": "Destination"
-		},
-		{
-			"id": 33,
-			"name": "HyperTwist"
-		},
-		{
-			"id": 34,
-			"name": "Cosy Catastrophe"
-		},
-		{
-			"id": 35,
-			"name": "New York EVOLVED"
-		},
-		{
-	        "id": 36,
-	        "name": "小舞桜 (Amado Kon)"
-	    },
-	    {
-	        "id": 37,
-	        "name": "小舞桜 (Komai Sakura)"
-	    },
-	    {
-	        "id": 38,
-	        "name": "Deep tenDon Reflex"
-	    },
-	    {
-	        "id": 39,
-	        "name": "ROCK THE PARTY"
-	    },
-	    {
-	        "id": 40,
-	        "name": "エンドルフィン"
-	    }
+			"optgroup": 6,
+			"items": [
+				{
+			        "id": 36,
+			        "name": "小舞桜 (Amado Kon)"
+			    },
+			    {
+			        "id": 37,
+			        "name": "小舞桜 (Komai Sakura)"
+			    },
+			    {
+			        "id": 38,
+			        "name": "Deep tenDon Reflex"
+			    },
+			    {
+			        "id": 39,
+			        "name": "ROCK THE PARTY"
+			    },
+			    {
+			        "id": 40,
+			        "name": "エンドルフィン"
+			    }
+			]
+		}
 	],
 	"character" : [
 		{
-			"id": 1,
-			"name": "EMI" 
+			"optgroup": 0,
+			"items": [
+				{
+					"id": 1,
+					"name": "EMI" 
+				},
+				{
+					"id": 2,
+					"name": "RAGE"
+				}
+			]
 		},
 		{
-			"id": 2,
-			"name": "RAGE"
+			"optgroup": 2,
+			"items": [
+				{
+					"id": 3,
+					"name": "ALICE"
+				},
+				{
+					"id": 4,
+					"name": "BABY-LON"
+				}
+			]
 		},
 		{
-			"id": 3,
-			"name": "ALICE"
+			"optgroup": 3,
+			"items": [
+				{
+					"id": 5,
+					"name": "EMI (BPL S4)"
+				},
+				{
+					"id": 6,
+					"name": "RAGE (BPL S4)"
+				}
+			]
 		},
 		{
-			"id": 4,
-			"name": "BABY-LON"
+			"optgroup": 4,
+			"items": [
+				{
+					"id": 7,
+					"name": "山形まり花 (Marika Yamagata)"
+				},
+				{
+					"id": 8,
+					"name": "和泉一舞 (Izumi Ibuki)"
+				},
+				{
+					"id": 9,
+					"name": "春日咲子 (Sakiko Kasuga)"
+				},
+				{
+					"id": 10,
+					"name": "芽兎めう (Meto Meu)"
+				},
+				{
+					"id": 11,
+					"name": "霜月凛 (Rin Shimotsuki)"
+				},
+				{
+					"id": 12,
+					"name": "東雲夏陽 (Shinonome Natsuhi)"
+				},
+				{
+					"id": 13,
+					"name": "東雲心菜 (Shinonome Cocona)"
+				}
+			]
 		},
 		{
-			"id": 5,
-			"name": "EMI (BPL S4)"
+			"optgroup": 5,
+			"items": [
+				{
+					"id": 14,
+					"name": "YUNI"
+				},
+				{
+					"id": 15,
+					"name": "AKIRA"
+				}
+			]
 		},
 		{
-			"id": 6,
-			"name": "RAGE (BPL S4)"
-		},
-		{
-			"id": 7,
-			"name": "山形まり花 (Marika Yamagata)"
-		},
-		{
-			"id": 8,
-			"name": "和泉一舞 (Izumi Ibuki)"
-		},
-		{
-			"id": 9,
-			"name": "春日咲子 (Sakiko Kasuga)"
-		},
-		{
-			"id": 10,
-			"name": "芽兎めう (Meto Meu)"
-		},
-		{
-			"id": 11,
-			"name": "霜月凛 (Rin Shimotsuki)"
-		},
-		{
-			"id": 12,
-			"name": "東雲夏陽 (Shinonome Natsuhi)"
-		},
-		{
-			"id": 13,
-			"name": "東雲心菜 (Shinonome Cocona)"
-		},
-		{
-			"id": 14,
-			"name": "YUNI"
-		},
-		{
-			"id": 15,
-			"name": "AKIRA"
-		},
-		{
-		    "id": 16,
-		    "name": "天戸紺 (Amado Kon)"
-		},
-		{
-		    "id": 17,
-		    "name": "小舞桜 (Komai Sakura)"
+			"optgroup": 6,
+			"items": [
+				{
+				    "id": 16,
+				    "name": "天戸紺 (Amado Kon)"
+				},
+				{
+				    "id": 17,
+				    "name": "小舞桜 (Komai Sakura)"
+				}
+			]
 		}
 	],
 	"laneBgSingle" : [
 		{
-			"id": 1,
-			"name": "EMI" 
+			"optgroup": 0,
+			"items": [
+				{
+					"id": 1,
+					"name": "EMI" 
+				},
+				{
+					"id": 2,
+					"name": "RAGE"
+				},
+				{
+					"id": 3,
+					"name": "ROCKET"
+				}
+			]
 		},
 		{
-			"id": 2,
-			"name": "RAGE"
+			"optgroup": 2,
+			"items": [
+				{
+					"id": 4,
+					"name": "ALICE"
+				},
+				{
+					"id": 5,
+					"name": "BABY-LON"
+				},
+				{
+					"id": 6,
+					"name": "GRID"
+				}
+			]
 		},
 		{
-			"id": 3,
-			"name": "ROCKET"
+			"optgroup": 3,
+			"items": [
+				{
+					"id": 7,
+					"name": "BPL S2"
+				},
+				{
+					"id": 8,
+					"name": "BPL S4"
+				},
+				{
+					"id": 9,
+					"name": "EMI (BPL S4)"
+				},
+				{
+					"id": 10,
+					"name": "RAGE (BPL S4)"
+				}
+			]
 		},
 		{
-			"id": 4,
-			"name": "ALICE"
+			"optgroup": 4,
+			"items": [
+				{
+					"id": 11,
+					"name": "山形まり花 (Marika Yamagata)"
+				},
+				{
+					"id": 12,
+					"name": "和泉一舞 (Izumi Ibuki)"
+				},
+				{
+					"id": 13,
+					"name": "春日咲子 (Sakiko Kasuga)"
+				},
+				{
+					"id": 14,
+					"name": "芽兎めう (Meto Meu)"
+				},
+				{
+					"id": 15,
+					"name": "霜月凛 (Rin Shimotsuki)"
+				},
+				{
+					"id": 16,
+					"name": "東雲夏陽 (Shinonome Natsuhi)"
+				},
+				{
+					"id": 17,
+					"name": "東雲心菜 (Shinonome Cocona)"
+				}
+			]
 		},
 		{
-			"id": 5,
-			"name": "BABY-LON"
+			"optgroup": 5,
+			"items": [
+				{
+					"id": 18,
+					"name": "YUNI"
+				},
+				{
+					"id": 19,
+					"name": "AKIRA"
+				},
+				{
+					"id": 20,
+					"name": "HONEYCOMB"
+				},
+				{
+					"id": 21,
+					"name": "bag (EXPERT譜面 x0.25 WAVE)"
+				}
+			]
 		},
 		{
-			"id": 6,
-			"name": "GRID"
-		},
-		{
-			"id": 7,
-			"name": "BPL S2"
-		},
-		{
-			"id": 8,
-			"name": "BPL S4"
-		},
-		{
-			"id": 9,
-			"name": "EMI (BPL S4)"
-		},
-		{
-			"id": 10,
-			"name": "RAGE (BPL S4)"
-		},
-		{
-			"id": 11,
-			"name": "山形まり花 (Marika Yamagata)"
-		},
-		{
-			"id": 12,
-			"name": "和泉一舞 (Izumi Ibuki)"
-		},
-		{
-			"id": 13,
-			"name": "春日咲子 (Sakiko Kasuga)"
-		},
-		{
-			"id": 14,
-			"name": "芽兎めう (Meto Meu)"
-		},
-		{
-			"id": 15,
-			"name": "霜月凛 (Rin Shimotsuki)"
-		},
-		{
-			"id": 16,
-			"name": "東雲夏陽 (Shinonome Natsuhi)"
-		},
-		{
-			"id": 17,
-			"name": "東雲心菜 (Shinonome Cocona)"
-		},
-		{
-			"id": 18,
-			"name": "YUNI"
-		},
-		{
-			"id": 19,
-			"name": "AKIRA"
-		},
-		{
-			"id": 20,
-			"name": "HONEYCOMB"
-		},
-		{
-			"id": 21,
-			"name": "bag (EXPERT譜面 x0.25 WAVE)"
-		},
-		{
-	        "id": 22,
-	        "name": "天戸紺 (Amado Kon)"
-	    },
-	    {
-	        "id": 23,
-	        "name": "小舞桜 (Komai Sakura)"
-	    },
-	    {
-	        "id": 24,
-	        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
-	    }
-
+			"optgroup": 6,
+			"items": [
+				{
+			        "id": 22,
+			        "name": "天戸紺 (Amado Kon)"
+			    },
+			    {
+			        "id": 23,
+			        "name": "小舞桜 (Komai Sakura)"
+			    },
+			    {
+			        "id": 24,
+			        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
+			    }
+			]
+		}
 	],
 	"laneBgDouble": [
 		{
-			"id": 1,
-			"name": "EMI&RAGE" 
+			"optgroup": 0,
+			"items": [
+				{
+					"id": 1,
+					"name": "EMI&RAGE" 
+				},
+				{
+					"id": 2,
+					"name": "EMI"
+				},
+				{
+					"id": 3,
+					"name": "RAGE"
+				},
+				{
+					"id": 4,
+					"name": "ROCKET"
+				}
+			]
 		},
 		{
-			"id": 2,
-			"name": "EMI"
+			"optgroup": 2,
+			"items": [
+				{
+					"id": 5,
+					"name": "ALICE"
+				},
+				{
+					"id": 6,
+					"name": "BABY-LON"
+				},
+				{
+					"id": 7,
+					"name": "ALICE&EMI"
+				},
+				{
+					"id": 8,
+					"name": "GRID"
+				}
+			]
 		},
 		{
-			"id": 3,
-			"name": "RAGE"
+			"optgroup": 3,
+			"items": [
+				{
+					"id": 9,
+					"name": "BPL S2"
+				},
+				{
+					"id": 10,
+					"name": "BPL S4"
+				},
+				{
+					"id": 11,
+					"name": "EMI (BPL S4)"
+				},
+				{
+					"id": 12,
+					"name": "RAGE (BPL S4)"
+				},
+				{
+					"id": 13,
+					"name": "EMI & RAGE (BPL S4)"
+				}
+			]
 		},
 		{
-			"id": 4,
-			"name": "ROCKET"
+			"optgroup": 4,
+			"items": [
+				{
+					"id": 14,
+					"name": "ナナイロライト"
+				},
+				{
+					"id": 15,
+					"name": "じもとっこスイーツ♪"
+				},
+				{
+					"id": 16,
+					"name": "ハレ トキドキ メランコリック"
+				},
+				{
+					"id": 17,
+					"name": "ひなビタ♪ お花見ライブ"
+				},
+				{
+					"id": 18,
+					"name": "ひなビタ♪ 肝試し"
+				},
+				{
+					"id": 19,
+					"name": "滅びに至るエランプシス"
+				},
+				{
+					"id": 20,
+					"name": "カタルシスの月"
+				}
+			]
 		},
 		{
-			"id": 5,
-			"name": "ALICE"
+			"optgroup": 5,
+			"items": [
+				{
+					"id": 21,
+					"name": "YUNI"
+				},
+				{
+					"id": 22,
+					"name": "AKIRA"
+				},
+				{
+					"id": 23,
+					"name": "HONEYCOMB"
+				},
+				{
+					"id": 24,
+					"name": "bag (EXPERT譜面 x0.25 WAVE)"
+				},
+				{
+					"id": 25,
+					"name": "YUNI & AKIRA"
+				},
+				{
+					"id": 26,
+					"name": "ALICE & YUNI"
+				}
+			]
 		},
 		{
-			"id": 6,
-			"name": "BABY-LON"
-		},
-		{
-			"id": 7,
-			"name": "ALICE&EMI"
-		},
-		{
-			"id": 8,
-			"name": "GRID"
-		},
-		{
-			"id": 9,
-			"name": "BPL S2"
-		},
-		{
-			"id": 10,
-			"name": "BPL S4"
-		},
-		{
-			"id": 11,
-			"name": "EMI (BPL S4)"
-		},
-		{
-			"id": 12,
-			"name": "RAGE (BPL S4)"
-		},
-		{
-			"id": 13,
-			"name": "EMI & RAGE (BPL S4)"
-		},
-		{
-			"id": 14,
-			"name": "ナナイロライト"
-		},
-		{
-			"id": 15,
-			"name": "じもとっこスイーツ♪"
-		},
-		{
-			"id": 16,
-			"name": "ハレ トキドキ メランコリック"
-		},
-		{
-			"id": 17,
-			"name": "ひなビタ♪ お花見ライブ"
-		},
-		{
-			"id": 18,
-			"name": "ひなビタ♪ 肝試し"
-		},
-		{
-			"id": 19,
-			"name": "滅びに至るエランプシス"
-		},
-		{
-			"id": 20,
-			"name": "カタルシスの月"
-		},
-		{
-			"id": 21,
-			"name": "YUNI"
-		},
-		{
-			"id": 22,
-			"name": "AKIRA"
-		},
-		{
-			"id": 23,
-			"name": "HONEYCOMB"
-		},
-		{
-			"id": 24,
-			"name": "bag (EXPERT譜面 x0.25 WAVE)"
-		},
-		{
-			"id": 25,
-			"name": "YUNI & AKIRA"
-		},
-		{
-			"id": 26,
-			"name": "ALICE & YUNI"
-		},
-		{
-	        "id": 27,
-	        "name": "天戸紺 (Amado Kon)"
-	    },
-	    {
-	        "id": 28,
-	        "name": "小舞桜 (Komai Sakura)"
-	    },
-	    {
-	        "id": 29,
-	        "name": "天戸紺 & 小舞桜 (Amado Kon & Komai Sakura)"
-	    },
-	    {
-	        "id": 30,
-	        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
-	    }
-
+			"optgroup": 6,
+			"items": [
+				{
+			        "id": 27,
+			        "name": "天戸紺 (Amado Kon)"
+			    },
+			    {
+			        "id": 28,
+			        "name": "小舞桜 (Komai Sakura)"
+			    },
+			    {
+			        "id": 29,
+			        "name": "天戸紺 & 小舞桜 (Amado Kon & Komai Sakura)"
+			    },
+			    {
+			        "id": 30,
+			        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
+			    }
+			]
+		}
 	],
 	"laneCoverSingle": [
 		{
-			"id": 1,
-			"name": "WORLD" 
+			"optgroup": 0,
+			"items": [
+				{
+					"id": 1,
+					"name": "WORLD" 
+				},
+				{
+					"id": 2,
+					"name": "EMI" 
+				},
+				{
+					"id": 3,
+					"name": "RAGE"
+				},
+				{
+					"id": 4,
+					"name": "ROCKET"
+				}
+			]
 		},
 		{
-			"id": 2,
-			"name": "EMI" 
+			"optgroup": 2,
+			"items": [
+				{
+					"id": 5,
+					"name": "ALICE"
+				},
+				{
+					"id": 6,
+					"name": "BABY-LON"
+				},
+				{
+					"id": 7,
+					"name": "みゅ、みゅ、Müllる"
+				},
+				{
+					"id": 8,
+					"name": "Astrogazer"
+				},
+				{
+					"id": 9,
+					"name": "Don't Stop The HYPERCORE"
+				}
+			]
 		},
 		{
-			"id": 3,
-			"name": "RAGE"
+			"optgroup": 3,
+			"items": [
+				{
+					"id": 10,
+					"name": "BPL S2"
+				},
+				{
+					"id": 11,
+					"name": "BPL S4"
+				},
+				{
+					"id": 12,
+					"name": "EMI (BPL S4)"
+				},
+				{
+					"id": 13,
+					"name": "RAGE (BPL S4)"
+				}
+			]
 		},
 		{
-			"id": 4,
-			"name": "ROCKET"
+			"optgroup": 4,
+			"items": [
+				{
+					"id": 14,
+					"name": "ひなビタ♪ Chocolate Smile Girls!!"
+				},
+				{
+					"id": 15,
+					"name": "ヒカリユリイカ"
+				},
+				{
+					"id": 16,
+					"name": "ここなつ シンクロノーツ"
+				},
+				{
+					"id": 17,
+					"name": "革命パッショネイト"
+				},
+				{
+					"id": 18,
+					"name": "ひなビタ♪ SWEET SMILE PARADE"
+				},
+				{
+					"id": 19,
+					"name": "ホーンテッド★メイドランチ (一舞＆咲子ver.)"
+				},
+				{
+					"id": 20,
+					"name": "滅亡天使 † にこきゅっぴん"
+				}
+			]
 		},
 		{
-			"id": 5,
-			"name": "ALICE"
+			"optgroup": 5,
+			"items": [
+				{
+					"id": 21,
+					"name": "YUNI"
+				},
+				{
+					"id": 22,
+					"name": "AKIRA"
+				},
+				{
+					"id": 23,
+					"name": "Destination"
+				},
+				{
+					"id": 24,
+					"name": "HyperTwist"
+				},
+				{
+					"id": 25,
+					"name": "Cosy Catastrophe"
+				},
+				{
+					"id": 26,
+					"name": "New York EVOLVED"
+				},
+				{
+					"id": 27,
+					"name": "bag (EXPERT譜面 x0.25 WAVE)"
+				}
+			]
 		},
 		{
-			"id": 6,
-			"name": "BABY-LON"
-		},
-		{
-			"id": 7,
-			"name": "みゅ、みゅ、Müllる"
-		},
-		{
-			"id": 8,
-			"name": "Astrogazer"
-		},
-		{
-			"id": 9,
-			"name": "Don't Stop The HYPERCORE"
-		},
-		{
-			"id": 10,
-			"name": "BPL S2"
-		},
-		{
-			"id": 11,
-			"name": "BPL S4"
-		},
-		{
-			"id": 12,
-			"name": "EMI (BPL S4)"
-		},
-		{
-			"id": 13,
-			"name": "RAGE (BPL S4)"
-		},
-		{
-			"id": 14,
-			"name": "ひなビタ♪ Chocolate Smile Girls!!"
-		},
-		{
-			"id": 15,
-			"name": "ヒカリユリイカ"
-		},
-		{
-			"id": 16,
-			"name": "ここなつ シンクロノーツ"
-		},
-		{
-			"id": 17,
-			"name": "革命パッショネイト"
-		},
-		{
-			"id": 18,
-			"name": "ひなビタ♪ SWEET SMILE PARADE"
-		},
-		{
-			"id": 19,
-			"name": "ホーンテッド★メイドランチ (一舞＆咲子ver.)"
-		},
-		{
-			"id": 20,
-			"name": "滅亡天使 † にこきゅっぴん"
-		},
-		{
-			"id": 21,
-			"name": "YUNI"
-		},
-		{
-			"id": 22,
-			"name": "AKIRA"
-		},
-		{
-			"id": 23,
-			"name": "Destination"
-		},
-		{
-			"id": 24,
-			"name": "HyperTwist"
-		},
-		{
-			"id": 25,
-			"name": "Cosy Catastrophe"
-		},
-		{
-			"id": 26,
-			"name": "New York EVOLVED"
-		},
-		{
-			"id": 27,
-			"name": "bag (EXPERT譜面 x0.25 WAVE)"
-		},
-	    {
-	        "id": 28,
-	        "name": "天戸紺 (Amado Kon)"
-	    },
-	    {
-	        "id": 29,
-	        "name": "小舞桜 (Komai Sakura)"
-	    },
-	    {
-	        "id": 30,
-	        "name": "Deep tenDon Reflex"
-	    },
-	    {
-	        "id": 31,
-	        "name": "ROCK THE PARTY"
-	    },
-	    {
-	        "id": 32,
-	        "name": "エンドルフィン"
-	    },
-	    {
-	        "id": 33,
-	        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
-	    }
-
+			"optgroup": 6,
+			"items": [
+				{
+			        "id": 28,
+			        "name": "天戸紺 (Amado Kon)"
+			    },
+			    {
+			        "id": 29,
+			        "name": "小舞桜 (Komai Sakura)"
+			    },
+			    {
+			        "id": 30,
+			        "name": "Deep tenDon Reflex"
+			    },
+			    {
+			        "id": 31,
+			        "name": "ROCK THE PARTY"
+			    },
+			    {
+			        "id": 32,
+			        "name": "エンドルフィン"
+			    },
+			    {
+			        "id": 33,
+			        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
+			    }
+			]
+		}
 	],
 	"laneCoverDouble": [
 		{
-			"id": 1,
-			"name": "WORLD" 
+			"optgroup": 0,
+			"items": [
+				{
+					"id": 1,
+					"name": "WORLD" 
+				},
+				{
+					"id": 2,
+					"name": "EMI" 
+				},
+				{
+					"id": 3,
+					"name": "RAGE"
+				},
+				{
+					"id": 4,
+					"name": "EMI&RAGE" 
+				},
+				{
+					"id": 5,
+					"name": "ROCKET"
+				}
+			]
 		},
 		{
-			"id": 2,
-			"name": "EMI" 
+			"optgroup": 2,
+			"items": [
+				{
+					"id": 6,
+					"name": "ALICE"
+				},
+				{
+					"id": 7,
+					"name": "BABY-LON"
+				},
+				{
+					"id": 8,
+					"name": "ALICE&EMI"
+				},
+				{
+					"id": 9,
+					"name": "みゅ、みゅ、Müllる"
+				},
+				{
+					"id": 10,
+					"name": "Astrogazer"
+				},
+				{
+					"id": 11,
+					"name": "Don't Stop The HYPERCORE"
+				}
+			]
 		},
 		{
-			"id": 3,
-			"name": "RAGE"
+			"optgroup": 3,
+			"items": [
+				{
+					"id": 12,
+					"name": "BPL S2"
+				},
+				{
+					"id": 13,
+					"name": "BPL S4"
+				},
+				{
+					"id": 14,
+					"name": "EMI & RAGE (BPL S4 パターン1)"
+				},
+				{
+					"id": 15,
+					"name": "EMI & RAGE (BPL S4 パターン2)"
+				},
+				{
+					"id": 16,
+					"name": "EMIまみれ (BPL S4)"
+				}
+			]
 		},
 		{
-			"id": 4,
-			"name": "EMI&RAGE" 
+			"optgroup": 4,
+			"items": [
+				{
+					"id": 17,
+					"name": "ナナイロライト"
+				},
+				{
+					"id": 18,
+					"name": "じもとっこスイーツ♪"
+				},
+				{
+					"id": 19,
+					"name": "ハレ トキドキ メランコリック"
+				},
+				{
+					"id": 20,
+					"name": "ひなビタ♪ お花見ライブ"
+				},
+				{
+					"id": 21,
+					"name": "ひなビタ♪ 肝試し"
+				},
+				{
+					"id": 22,
+					"name": "滅びに至るエランプシス"
+				},
+				{
+					"id": 23,
+					"name": "カタルシスの月"
+				}
+			]
 		},
 		{
-			"id": 5,
-			"name": "ROCKET"
+			"optgroup": 5,
+			"items": [
+				{
+					"id": 24,
+					"name": "YUNI"
+				},
+				{
+					"id": 25,
+					"name": "AKIRA"
+				},
+				{
+					"id": 26,
+					"name": "Destination"
+				},
+				{
+					"id": 27,
+					"name": "HyperTwist"
+				},
+				{
+					"id": 28,
+					"name": "Cosy Catastrophe"
+				},
+				{
+					"id": 29,
+					"name": "New York EVOLVED"
+				},
+				{
+					"id": 30,
+					"name": "bag (EXPERT譜面 x0.25 WAVE)"
+				},
+				{
+					"id": 31,
+					"name": "YUNI & AKIRA"
+				},
+				{
+					"id": 32,
+					"name": "ALICE & YUNI"
+				}
+			]
 		},
 		{
-			"id": 6,
-			"name": "ALICE"
-		},
-		{
-			"id": 7,
-			"name": "BABY-LON"
-		},
-		{
-			"id": 8,
-			"name": "ALICE&EMI"
-		},
-		{
-			"id": 9,
-			"name": "みゅ、みゅ、Müllる"
-		},
-		{
-			"id": 10,
-			"name": "Astrogazer"
-		},
-		{
-			"id": 11,
-			"name": "Don't Stop The HYPERCORE"
-		},
-		{
-			"id": 12,
-			"name": "BPL S2"
-		},
-		{
-			"id": 13,
-			"name": "BPL S4"
-		},
-		{
-			"id": 14,
-			"name": "EMI & RAGE (BPL S4 パターン1)"
-		},
-		{
-			"id": 15,
-			"name": "EMI & RAGE (BPL S4 パターン2)"
-		},
-		{
-			"id": 16,
-			"name": "EMIまみれ (BPL S4)"
-		},
-		{
-			"id": 17,
-			"name": "ナナイロライト"
-		},
-		{
-			"id": 18,
-			"name": "じもとっこスイーツ♪"
-		},
-		{
-			"id": 19,
-			"name": "ハレ トキドキ メランコリック"
-		},
-		{
-			"id": 20,
-			"name": "ひなビタ♪ お花見ライブ"
-		},
-		{
-			"id": 21,
-			"name": "ひなビタ♪ 肝試し"
-		},
-		{
-			"id": 22,
-			"name": "滅びに至るエランプシス"
-		},
-		{
-			"id": 23,
-			"name": "カタルシスの月"
-		},
-		{
-			"id": 24,
-			"name": "YUNI"
-		},
-		{
-			"id": 25,
-			"name": "AKIRA"
-		},
-		{
-			"id": 26,
-			"name": "Destination"
-		},
-		{
-			"id": 27,
-			"name": "HyperTwist"
-		},
-		{
-			"id": 28,
-			"name": "Cosy Catastrophe"
-		},
-		{
-			"id": 29,
-			"name": "New York EVOLVED"
-		},
-		{
-			"id": 30,
-			"name": "bag (EXPERT譜面 x0.25 WAVE)"
-		},
-		{
-			"id": 31,
-			"name": "YUNI & AKIRA"
-		},
-		{
-			"id": 32,
-			"name": "ALICE & YUNI"
-		},
-	    {
-	        "id": 33,
-	        "name": "天戸紺 (Amado Kon)"
-	    },
-	    {
-	        "id": 34,
-	        "name": "小舞桜 (Komai Sakura)"
-	    },
-	    {
-	        "id": 35,
-	        "name": "天戸紺 & 小舞桜 (Amado Kon & Komai Sakura)"
-	    },
-	    {
-	        "id": 36,
-	        "name": "Deep tenDon Reflex"
-	    },
-	    {
-	        "id": 37,
-	        "name": "ROCK THE PARTY"
-	    },
-	    {
-	        "id": 38,
-	        "name": "エンドルフィン"
-	    },
-	    {
-	        "id": 39,
-	        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
-	    }
+			"optgroup": 6,
+			"items": [
+				{
+			        "id": 33,
+			        "name": "天戸紺 (Amado Kon)"
+			    },
+			    {
+			        "id": 34,
+			        "name": "小舞桜 (Komai Sakura)"
+			    },
+			    {
+			        "id": 35,
+			        "name": "天戸紺 & 小舞桜 (Amado Kon & Komai Sakura)"
+			    },
+			    {
+			        "id": 36,
+			        "name": "Deep tenDon Reflex"
+			    },
+			    {
+			        "id": 37,
+			        "name": "ROCK THE PARTY"
+			    },
+			    {
+			        "id": 38,
+			        "name": "エンドルフィン"
+			    },
+			    {
+			        "id": 39,
+			        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
+			    }
+			]
+		}
 	],
 	"gameBG": [
 		{
-			"id": 1,
-			"name": "WORLD (パターン1)" 
+			"optgroup": 0,
+			"items": [
+				{
+					"id": 1,
+					"name": "WORLD (パターン1)" 
+				},
+				{
+					"id": 2,
+					"name": "WORLD (パターン2)" 
+				},
+				{
+					"id": 3,
+					"name": "WORLD (パターン3)"
+				}
+			]
 		},
 		{
-			"id": 2,
-			"name": "WORLD (パターン2)" 
+			"optgroup": 2,
+			"items": [
+				{
+					"id": 4,
+					"name": "ヘキサグラム (パターン1)" 
+				},
+				{
+					"id": 5,
+					"name": "ヘキサグラム (パターン2)"
+				},
+				{
+					"id": 6,
+					"name": "ヘキサグラム (パターン3)"
+				},
+				{
+					"id": 7,
+					"name": "ヘキサグラム (パターン4)"
+				},
+				{
+					"id": 8,
+					"name": "ヘキサグラム (パターン5)"
+				}
+			]
 		},
 		{
-			"id": 3,
-			"name": "WORLD (パターン3)"
+			"optgroup": 3,
+			"items": [
+				{
+					"id": 9,
+					"name": "BPL S2"
+				},
+				{
+					"id": 10,
+					"name": "BPL S4"
+				},
+				{
+					"id": 11,
+					"name": "EMIまみれ (BPL S4)"
+				}
+			]
 		},
 		{
-			"id": 4,
-			"name": "ヘキサグラム (パターン1)" 
+			"optgroup": 4,
+			"items": [
+				{
+					"id": 12,
+					"name": "ちくわまつり2023"
+				},
+				{
+					"id": 13,
+					"name": "ちくわまつり2025"
+				},
+				{
+					"id": 14,
+					"name": "ひなビタ♪＆ここなつ ミニキャラ大集合"
+				},
+				{
+					"id": 15,
+					"name": "ひなビタ♪＆ここなつ スライドショー"
+				}
+			]
 		},
 		{
-			"id": 5,
-			"name": "ヘキサグラム (パターン2)"
+			"optgroup": 5,
+			"items": [
+				{
+					"id": 16,
+					"name": "ARROW (パターン1)"
+				},
+				{
+					"id": 17,
+					"name": "ARROW (パターン2)"
+				},
+				{
+					"id": 18,
+					"name": "ARROW (パターン3)"
+				},
+				{
+					"id": 19,
+					"name": "ARROW (パターン4)"
+				},
+				{
+					"id": 20,
+					"name": "ARROW (パターン5)"
+				},
+				{
+					"id": 21,
+					"name": "WORLD (パターン4)"
+				}
+			]
 		},
 		{
-			"id": 6,
-			"name": "ヘキサグラム (パターン3)"
-		},
-		{
-			"id": 7,
-			"name": "ヘキサグラム (パターン4)"
-		},
-		{
-			"id": 8,
-			"name": "ヘキサグラム (パターン5)"
-		},
-		{
-			"id": 9,
-			"name": "BPL S2"
-		},
-		{
-			"id": 10,
-			"name": "BPL S4"
-		},
-		{
-			"id": 11,
-			"name": "EMIまみれ (BPL S4)"
-		},
-		{
-			"id": 12,
-			"name": "ちくわまつり2023"
-		},
-		{
-			"id": 13,
-			"name": "ちくわまつり2025"
-		},
-		{
-			"id": 14,
-			"name": "ひなビタ♪＆ここなつ ミニキャラ大集合"
-		},
-		{
-			"id": 15,
-			"name": "ひなビタ♪＆ここなつ スライドショー"
-		},
-		{
-			"id": 16,
-			"name": "ARROW (パターン1)"
-		},
-		{
-			"id": 17,
-			"name": "ARROW (パターン2)"
-		},
-		{
-			"id": 18,
-			"name": "ARROW (パターン3)"
-		},
-		{
-			"id": 19,
-			"name": "ARROW (パターン4)"
-		},
-		{
-			"id": 20,
-			"name": "ARROW (パターン5)"
-		},
-		{
-			"id": 21,
-			"name": "WORLD (パターン4)"
-		},
-	    {
-	        "id": 22,
-	        "name": "ARROW (パターン6)"
-	    },
-	    {
-	        "id": 23,
-	        "name": "ヘキサグラム (パターン6)"
-	    },
-	    {
-	        "id": 24,
-	        "name": "WORLD (パターン5)"
-	    }
-
+			"optgroup": 6,
+			"items": [
+				{
+			        "id": 22,
+			        "name": "ARROW (パターン6)"
+			    },
+			    {
+			        "id": 23,
+			        "name": "ヘキサグラム (パターン6)"
+			    },
+			    {
+			        "id": 24,
+			        "name": "WORLD (パターン5)"
+			    }
+			]
+		}
 	],
 	"songVid": [
 		{
