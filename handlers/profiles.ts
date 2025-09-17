@@ -718,6 +718,19 @@ export const create: EPR = async (info, data, send) => {
   };
 
   await DB.Upsert(refid, { collection: 'profile' }, profile);
+  await DB.Upsert<VariantPower>(refid, { collection: 'variantpower'}, {
+    $set: {
+      power: 0,
+      notes: 0,
+      peak: 0,
+      tsumami: 0,
+      tricky: 0,
+      onehand: 0,
+      handtrip: 0,
+      overRadar: [],
+      dbver: DB_VER
+    }
+  })
   return send.object({ result: K.ITEM('u8', 0) });
 };
 

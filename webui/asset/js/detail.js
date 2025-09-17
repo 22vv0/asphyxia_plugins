@@ -262,9 +262,14 @@ function getVFLevel(VF) {
 function getSongInfo(mid) {
     let mss = music_db.mdb.music.find(m => parseInt(m['@id']) === mid)
     
-    return {
-        'id': mss['@id'],
-        'name': mss.info.title_name
+    if(mss != undefined) {
+        return {
+            'id': mss['@id'],
+            'name': mss.info.title_name
+        }
+    } else return {
+        'id': mid,
+        'name': 'Unknown Song'
     }
 }
 
@@ -321,13 +326,15 @@ function getVF50() {
     let top50 = []
     for (var i in score_db) {
         let sinf = getSongInfo(score_db[i].mid)
-        top50.push({
-            'name': sinf.name,
-            'diff': getDifficulty(sinf.id, score_db[i].type) + " " + getDifficultyNum(sinf.id, score_db[i].type),
-            'clear': getMedal(true, score_db[i].clear),
-            'score': score_db[i].score,
-            'vf': parseFloat(toFixed(singleScoreVolforce(score_db[i]), 1))
-        })
+        if(sinf.name !== 'Unknown Song') {
+            top50.push({
+                'name': sinf.name,
+                'diff': getDifficulty(sinf.id, score_db[i].type) + " " + getDifficultyNum(sinf.id, score_db[i].type),
+                'clear': getMedal(true, score_db[i].clear),
+                'score': score_db[i].score,
+                'vf': parseFloat(toFixed(singleScoreVolforce(score_db[i]), 1))
+            })
+        }
     }
     top50.sort(function(a, b) { return b.vf - a.vf });
     if(top50.length > 50) top50 = top50.slice(0, 50)
