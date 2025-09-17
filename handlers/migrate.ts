@@ -1,7 +1,11 @@
 import { COURSES6 } from "../data/exg"
+import { VariantPower } from "../models/variant"
+
+export const DB_VER = 1
 
 export async function dataUpdate() {
 	await updateSkillCourseIds()
+	await updateDB()
 }
 
 async function updateSkillCourseIds() {
@@ -19,5 +23,17 @@ async function updateSkillCourseIds() {
 				})
 			}
 		}
+	})
+}
+
+async function updateDB() {
+	let varPower = await DB.Find<VariantPower>(null, {collection: 'variantpower', dbver: {$exists: false}})
+	varPower.forEach(async vp => {
+		await DB.Upsert<VariantPower>(vp['__refid'], {collection: 'variantpower'}, {
+			$set: {
+				overRadar: [],
+				dbver: 1
+			}
+		})
 	})
 }

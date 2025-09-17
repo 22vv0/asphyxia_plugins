@@ -1,10 +1,10 @@
 # SOUND VOLTEX
 
-**Plugin Version:** 6.1.1a
+**Plugin Version:** 6.2.0
 
-**Supported game versions:** EXCEED GEAR (2025052700)
+**Supported game versions:** EXCEED GEAR (2025062401)
 
-**Required Asphyxia Core version** [1.50c](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50)
+**Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d)
 
 **Notes** 
 - Please be aware that this plugin and the savefile it produces are incompatible with the official plugin, or any other forks. Please be cautious of using other plugins' savefiles with this fork of the plugin, or using this fork's savefile with other plugins.
@@ -13,13 +13,42 @@
 
 Changelog
 ===========
-### 6.1.1a	
-- Added ARENA season 20.
-	- ARENA STATION shop list to be added in the future.
+### 6.2.0
 
-### Other changes:
-- Fixed stamp events not displaying text when game is set to JP or KR.
-- Fixed misspelling of 'collection' in DB query in profile creation.
+- Updated licensed songs list:
+	- あおばの足音
+	- 覚悟せよ！エンタンメ～ン ～より身の切り売り自暴自棄版～
+	- ギャ・ギャ・ギャ・ギャラクシー！
+	- 悲報！ワイ！ニート！
+	- エクスプロウル
+	- アイスクリームマジック
+- Added PREMIUM GENERATOR sets:
+	- Vol. 6 (Yumebuki Grace set)
+	- Kaga Sumire set
+- Added event data: VARIANT GATE (永遠の紋様)
+	- extra note: there may be a bug in version 2025062401 where you could not challenge 神凪 (MXM) in the first VARIANT GATE set. ([Twitter](https://x.com/SOUNDVOLTEX573/status/1938133931607662963))
+- Enabled OVER POWER for VARIANT GATE
+- Updated and fixed STAMP\_IGNORE\_DISABLE and SUBBG\_IGNORE\_DISABLE params.
+- Updates to song unlock info handler in common.ts
+	- changes made to include sending ULTIMATE charts
+	- changes made to reduce unnecessary data being sent (ie. non-existent charts)
+- Updates to profile save/load to include OVER POWER radar data.
+- Updates to WebUI asset update
+	- changes made to include ULTIMATE charts in music_db.json saving
+	- included ULTIMATE charts to log output
+- DB updates
+	- added 'overRadar' key to 'variantgate' collection
+- WebUI updates:
+	- Added new VOLFORCE best 50 list table in main profile page.
+	- Added ULT column to songs list page.
+	- Added ULT to difficulty labels in scores list page.
+	- Added ULT row to score statistics.
+	- Fixed clear medal and score grade sorting in scores list page.
+	- Fixes to Generator page for loading valgene_item stamp image files (they padded an extra 0 in the file name starting from item id 475)
+	- Fixes to VARIANT GATE event config saving where the setting for minimum difficulty and rank applies to both sets instead of individually
+- Updated psd_level.ifs texture extract info.
+- Updated data.json file.
+
 
 Report issues
 ===========
@@ -52,4 +81,4 @@ Then [re]start your game. Saving your data and starting a new Standard Start cre
 Todo:
 ==========
 1. Proper handling of appeal title customization.
-2. More work on online matchmaking (idk if this is possible)
+2. More work on online matchmaking (?)

@@ -24,7 +24,8 @@ function populateSongsList(music_data) {
             { data: 'adv' },
             { data: 'exh' },
             { data: 'mxm' },
-            { data: 'oth' }
+            { data: 'oth' },
+            { data: 'ult' }
         ],
         columnDefs: [
 
@@ -85,11 +86,12 @@ $(document).ready(function() {
             } else {
                 temp_data.releasedate = 'Unknown'
             }
-            temp_data.nov = "";
-            temp_data.adv = "";
-            temp_data.exh = "";
-            temp_data.mxm = "";
-            temp_data.oth = "";
+            temp_data.nov = "-";
+            temp_data.adv = "-";
+            temp_data.exh = "-";
+            temp_data.mxm = "-";
+            temp_data.oth = "-";
+            temp_data.ult = "-";
             if (music_db.mdb.music[mdata]['difficulty']['novice']['difnum']['#text'] != 0) {
                 temp_data.nov = music_db.mdb.music[mdata]['difficulty']['novice']['difnum']['#text'] 
             }
@@ -105,6 +107,11 @@ $(document).ready(function() {
             if ("maximum" in music_db.mdb.music[mdata]['difficulty']) {
                 if (music_db.mdb.music[mdata]['difficulty']['maximum']['difnum']['#text'] != 0) {
                     temp_data.mxm = music_db.mdb.music[mdata]['difficulty']['maximum']['difnum']['#text'] 
+                } 
+            }
+            if ("ultimate" in music_db.mdb.music[mdata]['difficulty']) {
+                if (music_db.mdb.music[mdata]['difficulty']['ultimate']['difnum']['#text'] != 0) {
+                    temp_data.ult = music_db.mdb.music[mdata]['difficulty']['ultimate']['difnum']['#text'] 
                 } 
             }
             music_data.push(temp_data);

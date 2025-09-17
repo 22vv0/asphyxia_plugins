@@ -392,6 +392,28 @@
             ]
         },
         {
+            "id": "vgate2",
+            "type": "variant",
+            "enabled": true,
+            "name": "VARIANT GATE 「永遠の紋様」",
+            "desc": "2nd set of VARIANT GATE. Accumulate VARIANT POWER to make a special song folder appear in EXTRACK, clear the songs at a certain difficulty to obtain keys. Get all keys to play OVER TRACK.",
+            "info": "Toggle this on to enable/disable this event.",
+            "settings": [
+                {
+                    "id": "minSealDiff",
+                    "title": "OVER TRACK difficulty",
+                    "desc": "Set the lowest difficulty available for OVER TRACK (default: Maximum)",
+                    "val": [[3, "Choose difficulty"], [0, "Novice"], [1, "Advanced"], [2, "Exhaust"], [3, "Maximum"]]
+                },
+                {
+                    "id": "minOverTrackRank",
+                    "title": "OVER TRACK gauge rank",
+                    "desc": "Set the lowest VARIATIVE RATE gauge rank available for OVER TRACK (default: Rank V)",
+                    "val": [[5, "Choose rank"], [1, "Rank I"], [2, "Rank II"], [3, "Rank III"], [4, "Rank IV"], [5, "Rank V"]]
+                }
+            ]
+        },
+        {
             "id": "crossresonance",
             "type": "cross_online",
             "enabled": true,

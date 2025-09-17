@@ -31,7 +31,7 @@ function countGeneItems(geneItems, items_crew, items_stamp, items_subbg, items_b
 function loadImages(itemList, itemType, userItems) {
     itemList.forEach(item => {
         let itemBrightness = userItems.find(userItem => userItem.id == ((itemType !== 'stamp') ? item : (item * 4))) != undefined ? 1 : 0.25
-        let imageUrl = 'static/asset/valgene_item/item_' + itemType + '_' + item + '.png'
+        let imageUrl = 'static/asset/valgene_item/item_' + itemType + '_' + ((itemType === 'stamp' && item >= 475) ? ('0' + item) : item) + '.png'
         $.get(imageUrl, function(data, textStatus) {
             if (textStatus == "success") {
                 $('.' + itemType + '-items').append('<img style="width: 350px; padding: 10px; filter: brightness(' + itemBrightness + ')" src=' + imageUrl + '>')

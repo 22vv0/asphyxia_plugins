@@ -49,6 +49,14 @@ $(document).ready(async function() {
                     document.getElementById("logtextarea").textContent += '\n\n'
                 }
 
+                if(response['data']['ultSongs'].length > 0) {
+                    document.getElementById("logtextarea").textContent += "[ULT charts]" + '\n'
+                    $.each(response['data']['ultSongs'], function(key, val) {
+                        document.getElementById("logtextarea").textContent += "- " +  val[1] + '\n'
+                    })
+                    document.getElementById("logtextarea").textContent += '\n\n'
+                }
+
                 if(response['data']['nemsys'].length > 0) {
                     document.getElementById("logtextarea").textContent += "[NEMSYS]" + '\n'
                     $.each(response['data']['nemsys'], function(key, val) {

@@ -36,7 +36,33 @@ function getSkillTitle() {
     return skill_title_db.filter(e => e.id === skill_data[0].name)[0].name
 }
 
-function getGrade(grade) {
+function getGrade(name, grade) {
+    if(name) { 
+        switch (grade) {
+            case 0:
+                return "No Grade";
+            case 1:
+                return "D";
+            case 2:
+                return "C";
+            case 3:
+                return "B";
+            case 4:
+                return "A";
+            case 5:
+                return "A+";
+            case 6:
+                return "AA";
+            case 7:
+                return "AA+";
+            case 8:
+                return "AAA";
+            case 9:
+                return "AAA+";
+            case 10:
+                return "S";
+        }
+    }
     switch (grade) {
         case 0:
             return 0;
@@ -63,7 +89,25 @@ function getGrade(grade) {
     }
 }
 
-function getMedal(clear) {
+function getMedal(name, clear) {
+    if(name) {
+        switch (clear) {
+            case 0:
+                return "No Data";
+            case 1:
+                return "PLAYED";
+            case 2:
+                return "EFFECTIVE CLEAR";
+            case 3:
+                return "EXCESSIVE CLEAR";
+            case 6:
+                return "MAXXIVE CLEAR";
+            case 4:
+                return "UC";
+            case 5:
+                return "PUC";
+        }
+    }
     switch (clear) {
         case 0:
             return 0;
@@ -79,6 +123,59 @@ function getMedal(clear) {
             return 1.05;
         case 5:
             return 1.10;
+    }
+}
+
+function getDifficulty(musicid, type) {
+    var result = music_db["mdb"]["music"].filter(object => object["@id"] == musicid);
+    if (result.length == 0) {
+        return "NOV";
+    }
+    var inf_ver = result[0]["info"]["inf_ver"]["#text"] ? result[0]["info"]["inf_ver"]["#text"] : 5;
+    switch (type) {
+        case 0:
+            return "NOV";
+        case 1:
+            return "ADV";
+        case 2:
+            return "EXH";
+        case 3:
+            {
+                switch (inf_ver) {
+                    case "2":
+                        return "INF";
+                    case "3":
+                        return "GRV";
+                    case "4":
+                        return "HVN";
+                    case "5":
+                        return "VVD";
+                    case "6":
+                        return "XCD"
+                }
+            }
+        case 4:
+            return "MXM";
+        case 5:
+            return "ULT";
+    }
+}
+
+function getDifficultyNum(musicid, type) {
+    var result = music_db["mdb"]["music"].filter(object => object["@id"] == musicid);
+    switch (type) {
+        case 0:
+            return result[0]['difficulty']['novice']['difnum']['#text'];
+        case 1:
+            return result[0]['difficulty']['advanced']['difnum']['#text'];
+        case 2:
+            return result[0]['difficulty']['exhaust']['difnum']['#text'];
+        case 3:
+            return result[0]['difficulty']['infinite']['difnum']['#text'];
+        case 4:
+            return result[0]['difficulty']['maximum']['difnum']['#text'];
+        case 5:
+            return result[0]['difficulty']['ultimate']['difnum']['#text'];
     }
 }
 
@@ -104,27 +201,26 @@ function getSongLevel(musicid, type) {
         case 0:
             if (!(result[0]["difficulty"]["novice"] === undefined))
                 diffnum = result[0]["difficulty"]["novice"]["difnum"]["#text"]
-                // return result[0]["difficulty"]["novice"]["difnum"]["#text"]
             break;
         case 1:
             if (!(result[0]["difficulty"]["advanced"] === undefined))
                 diffnum = result[0]["difficulty"]["advanced"]["difnum"]["#text"]
-                // return result[0]["difficulty"]["advanced"]["difnum"]["#text"]
             break;
         case 2:
             if (!(result[0]["difficulty"]["exhaust"] === undefined))
                 diffnum = result[0]["difficulty"]["exhaust"]["difnum"]["#text"]
-                // return result[0]["difficulty"]["exhaust"]["difnum"]["#text"]
             break;
         case 3:
             if (!(result[0]["difficulty"]["infinite"] === undefined))
                 diffnum = result[0]["difficulty"]["infinite"]["difnum"]["#text"]
-                // return result[0]["difficulty"]["infinite"]["difnum"]["#text"]
             break;
         case 4:
             if (!(result[0]["difficulty"]["maximum"] === undefined))
                 diffnum = result[0]["difficulty"]["maximum"]["difnum"]["#text"]
-                // return result[0]["difficulty"]["maximum"]["difnum"]["#text"]
+            break;
+        case 5:
+            if (!(result[0]["difficulty"]["ultimate"] === undefined))
+                diffnum = result[0]["difficulty"]["ultimate"]["difnum"]["#text"]
             break;
     }
     // console.log(diffnum)
@@ -163,6 +259,15 @@ function getVFLevel(VF) {
     }
 }
 
+function getSongInfo(mid) {
+    let mss = music_db.mdb.music.find(m => parseInt(m['@id']) === mid)
+    
+    return {
+        'id': mss['@id'],
+        'name': mss.info.title_name
+    }
+}
+
 function getAkaname(akaname) {
     //var result = music_db["mdb"]["music"].filter(object => object["@id"] == musicid);
     var result = data_db["akaname"].filter(obj => obj["value"] == akaname)[0];
@@ -179,7 +284,7 @@ function singleScoreVolforce(score) {
     // lv * (score / 10000000) * gradeattr * clearmedalattr * 2
     var level = getSongLevel(score.mid, score.type);
     // console.log(level);
-    var tempVF = parseInt(level) * (parseInt(score.score) / 10000000) * getGrade(score.grade) * getMedal(score.clear) * 2;
+    var tempVF = parseInt(level) * (parseInt(score.score) / 10000000) * getGrade(false, score.grade) * getMedal(false, score.clear) * 2;
     // console.log(tempVF);
     return tempVF;
 }
@@ -212,7 +317,39 @@ function calculateVolforce() {
     return toFixed(VF, 3);
 }
 
-var diffName = ["NOV", "ADV", "EXH", "INF\nGRV\nHVN\nVVD\nXCD", "MXM"];
+function getVF50() {
+    let top50 = []
+    for (var i in score_db) {
+        let sinf = getSongInfo(score_db[i].mid)
+        top50.push({
+            'name': sinf.name,
+            'diff': getDifficulty(sinf.id, score_db[i].type) + " " + getDifficultyNum(sinf.id, score_db[i].type),
+            'clear': getMedal(true, score_db[i].clear),
+            'score': score_db[i].score,
+            'vf': parseFloat(toFixed(singleScoreVolforce(score_db[i]), 1))
+        })
+    }
+    top50.sort(function(a, b) { return b.vf - a.vf });
+    if(top50.length > 50) top50 = top50.slice(0, 50)
+    for(let i in top50) top50[i]['num'] = parseInt(i)+1 
+    $('#volforce50').DataTable({
+        data: top50,
+        order: [],
+        pageLength: 50,
+        searching: false,
+        lengthChange: false,
+        columns: [
+            { data: 'num' },
+            { data: 'name' },
+            { data: 'diff' },
+            { data: 'clear', },
+            { data: 'score' },
+            { data: 'vf' },
+        ]
+    });
+}
+
+var diffName = ["NOV", "ADV", "EXH", "INF\nGRV\nHVN\nVVD\nXCD", "MXM", "ULT"];
 
 function preSetTableMark(type) {
     $('#statistic-table').empty();
@@ -434,9 +571,9 @@ function setUpStatistics() {
     baseTBodyGpD = $('<tbody>');
     baseTBodyASpL = $('<tbody>');
 
-    var CMpDArray = createArray(5, 6);
+    var CMpDArray = createArray(6, 6);
     var CMpLArray = createArray(20, 6);
-    var GpDArray = createArray(5, 10);
+    var GpDArray = createArray(6, 10);
     var GpLArray = createArray(20, 10);
     var ASpLArray = createArray(20, 2);
 
@@ -455,7 +592,7 @@ function setUpStatistics() {
     // console.log(GpDArray);
     // console.log(GpLArray);
     // console.log(ASpLArray);
-    for (var diff = 0; diff < 5; diff++) {
+    for (var diff = 0; diff < 6; diff++) {
         baseTBodyCMpD.append(
             $('<tr>').append(
                 $('<th>').append(
@@ -521,7 +658,7 @@ function setUpStatistics() {
             )
         )
     }
-    for (var diff = 0; diff < 5; diff++) {
+    for (var diff = 0; diff < 6; diff++) {
         baseTBodyGpD.append(
             $('<tr>').append(
                 $('<th>').append(
@@ -818,6 +955,7 @@ $(document).ready(function() {
         }),
     ).then(function() {
         var currentVF = calculateVolforce();
+        getVF50()
         var maxVer = skill_data.length > 0 ? parseInt(skill_data[0]["version"]) : 0
 
         var versionInfo = getVersionSelect();

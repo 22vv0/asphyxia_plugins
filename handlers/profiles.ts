@@ -12,6 +12,7 @@ import { getVersion, IDToCode } from '../utils'
 import { Mix } from '../models/mix'
 import { CURRENT_ARENA, EVENT_ITEMS6, UNLOCK_EVENTS6 } from '../data/exg'
 import { getRankListDB } from './webui'
+import { DB_VER } from './migrate'
 
 function unlockNavigators(items: Partial<Item>[]) {
   for (let i = 0; i < 300; ++i) items.push({ type: 11, id: i, param: 15 });
@@ -405,6 +406,7 @@ export const save: EPR = async (info, data, send) => {
     const earnedTr = vp.number('earned_element.tricky');
     const earnedO = vp.number('earned_element.onehand');
     const earnedH = vp.number('earned_element.handtrip');
+    const overRadar = vp.numbers('over_radar');
     await DB.Upsert<VariantPower>( refid, { collection: 'variantpower' }, { 
         $inc: { 
           power: _.isNil(earnedPwr) ? 0 : earnedPwr,
@@ -414,7 +416,11 @@ export const save: EPR = async (info, data, send) => {
           tricky: _.isNil(earnedTr) ? 0 : earnedTr,
           onehand: _.isNil(earnedO) ? 0 : earnedO,
           handtrip: _.isNil(earnedH) ? 0 : earnedH
-        } 
+        },
+        $set: {
+          overRadar: overRadar,
+          dbver: DB_VER
+        }
       }
     );
   }
@@ -558,6 +564,7 @@ export const load: EPR = async (info, data, send) => {
   const arena = await DB.FindOne<Arena>(refid, { collection: 'arena', season: arenaOpen ? CURRENT_ARENA['season'] : 0 });
   const valgeneTicket = await DB.FindOne<ValgeneTicket>(refid, { collection: 'valgene_ticket' })
   const variant = await DB.FindOne<VariantPower>(refid, { collection: 'variantpower' })
+  
   let weeklyMusic = []
 
   if (curWeekly.length > 0) {

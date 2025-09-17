@@ -162,6 +162,7 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
   let mdbJsonFixFinal;
   let newJsonSongs = [];
   let newXCDSongs = [];
+  let newULTSongs = [];
   let newNemsysData = []
   let newAPCardData = []
   let newSubBGData = []
@@ -193,9 +194,14 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
 
           if(prevAssetMdb['mdb']['music'].find(item => (parseInt(item['@id']) == parseInt(musicValue['@attr'].id) && parseInt(item['info']['inf_ver']['#text']) === 0)) != undefined) {
             if(musicValue.info.inf_ver['@content'] == '6') {
-              console.log("New XCD difficulty song: " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
+              console.log("New chart: [XCD] " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
               newXCDSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
             }
+          } 
+
+          if(prevAssetMdb['mdb']['music'].find(item => (parseInt(item['@id']) == parseInt(musicValue['@attr'].id) && 'ultimate' in item['difficulty'] )) == undefined && 'ultimate' in musicValue.difficulty) {
+            console.log("New chart: [ULT] " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
+            newULTSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
           }
         } else {
           console.log("New song added to json: " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
@@ -252,6 +258,12 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
               'difnum': {
                 '@__type': 'u8',
                 '#text': musicValue.difficulty.infinite != undefined ? musicValue.difficulty.infinite.difnum['@content'][0].toString() : '0'
+              }
+            },
+            'ultimate': {
+              'difnum': {
+                '@__type': 'u8',
+                '#text': musicValue.difficulty.ultimate != undefined ? musicValue.difficulty.ultimate.difnum['@content'][0].toString() : '0'
               }
             }
           }
@@ -619,6 +631,7 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
         valgeneItemFiles: newValgeneItemFiles,
         jsonSongs: newJsonSongs.sort((a, b) => a[0] - b[0]),
         xcdSongs: newXCDSongs.sort((a, b) => a[0] - b[0]),
+        ultSongs: newULTSongs.sort((a, b) => a[0] - b[0]),
         errors: runErrors
       }
     )

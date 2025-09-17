@@ -30,6 +30,24 @@ div
           div 
           div 
       div.is-centered(id="test" style="text-align: center;")
+
+  .card
+    .card-header
+      p.card-header-title
+        span.icon
+          i.mdi.mdi-star
+        | VOLFORCE Best 50
+    .card-content
+      table.table(id="volforce50" style="width:100%")
+        thead
+          tr    
+            th #
+            th Song Name
+            th Difficulty
+            th Clear Mark
+            th Score
+            th FORCE
+        tbody
       
 div(hidden id='data-pass') !{JSON.stringify(profile)}
 div(hidden id='score-pass') !{JSON.stringify(score_data)}
@@ -37,3 +55,4 @@ div(hidden id='skill-pass') !{JSON.stringify(skill_data)}
 div(hidden id='course-pass') !{JSON.stringify(course_data)}
 div(hidden id='arena-pass') !{JSON.stringify(arena_data)}
 script(src="static/asset/js/detail.js") 
+script(src="static/asset/js/datatables.js") 

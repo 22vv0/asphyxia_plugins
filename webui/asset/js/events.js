@@ -157,7 +157,7 @@ $(document).ready(async function() {
             for(const eventIter in eventData['events']) {
                 if(eventData['events'][eventIter]['settings'] !== undefined) {
                     for(const set of eventData['events'][eventIter]['settings']) {
-                        if(set['id'] === $(value).parent().children('select').attr('name')) {
+                        if(eventData['events'][eventIter]['id'] === $('#specevent_select').val() && set['id'] === $(value).parent().children('select').attr('name')) {
                             eventConfig[eventData['events'][eventIter]['id']]['settings'][set['id']] = $(value).parent().children('select').val()
                         }
                     }

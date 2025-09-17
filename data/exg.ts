@@ -22,9 +22,9 @@ export const EVENT6 = [
   'PLAYERJUDGEADJ_ENABLE',
   'MIXID_INPUT_ENABLE',
   'DISP_PASELI_BANNER',
-  'CHARACTER_IGNORE_DISABLE\t122,123,131,139,140,143,149,160,162,163,164,167,170',
-  'STAMP_IGNORE_DISABLE\t69~78,194~205,249~278,312~321,368~377,397~418',
-  'SUBBG_IGNORE_DISABLE\t166~185,281~346,369~381,419~438,464~482,515~552',
+  'CHARACTER_IGNORE_DISABLE\t122,123,131,139,140,143,149,160,162,163,164,167,170,174',
+  'STAMP_IGNORE_DISABLE\t273~312,773~820,993~1032,1245~1284,1469~1508,1585~1632,1633~1672,1737~1776,1777~1816,1897~1936',
+  'SUBBG_IGNORE_DISABLE\t166~185,281~346,369~381,419~438,464~482,515~552,595~616,660~673,714~727',
   'OMEGA_ENABLE\t1,2,3,4,5,6,7,8,9',
   'OMEGA_ARS_ENABLE',
   'HEXA_ENABLE\t1,2,3,4,5,6,7,8,9,10,11',
@@ -50,7 +50,8 @@ export const EVENT6 = [
   'FAVORITE_CREW_ENABLE',
   'TAMAADV_VALGENE_BONUS_ENABLE',
   'DEMOLOOP_INFORMATION\tdemo_info/250220_generator_pekora_demo.png',
-  'ULTIMATE_MATCH_PLAYABLE_ALWAYS'
+  'ULTIMATE_MATCH_PLAYABLE_ALWAYS',
+  'OVER_POWER_ENABLE'
 ]
 
 export const LICENSED_SONGS6 = [
@@ -66,7 +67,7 @@ export const LICENSED_SONGS6 = [
   2068, 2165, 2166, 2167, 2172, 2173, 2174, 2175, 2184, 2193, 
   2194, 2195, 2196, 2197, 2210, 2211, 2212, 2213, 2214, 2215,
   2216, 2217, 2218, 2219, 2205, 2206, 2207, 2208, 2224, 2176,
-  2182
+  2182, 2241, 2244, 2243, 2242, 2240, 2245
 ]
 
 export const VALKYRIE_SONGS = [
@@ -602,6 +603,12 @@ export const UNLOCK_EVENTS6 = {
     'info': {
       'id': 57,
       'setid': 1
+    }
+  },
+  'vgate2': {
+    'info': {
+      'id': 59,
+      'setid': 2
     }
   },
   'reflecstamp3': {
@@ -1745,6 +1752,24 @@ export const PREGENE = [
       "crew": [172],
       "stamp": [455, 456, 457, 458, 459, 460, 461, 462, 463, 464],
       "subbg": [674, 675, 676, 677, 678, 679, 680, 681, 682, 683, 684, 685, 686, 687, 688, 689, 690, 691, 692, 693, 694]
+    },
+    probability: [0.05, 0.39, 0.6]
+  },
+  {
+    id: 19,
+    items: {
+      "crew": [173],
+      "stamp": [465, 466, 467, 468, 469, 470, 471, 472, 473, 474],
+      "subbg": [695, 696, 697, 698, 699, 700, 701, 702, 703, 704, 705, 706, 707, 708, 709, 710, 711, 712, 713]
+    },
+    probability: [0.05, 0.39, 0.6]
+  },
+  {
+    id: 20,
+    items: {
+      "crew": [174],
+      "stamp": [475, 476, 477, 478, 479, 480, 481, 482, 483, 484],
+      "subbg": [714, 715, 716, 717, 718, 719, 720, 721, 722, 723, 724, 725, 726, 727]
     },
     probability: [0.05, 0.39, 0.6]
   }

@@ -43,21 +43,28 @@ export const common: EPR = async (info, data, send) => {
     }
     let songs = [];
     const gameVersion = getVersion(info);
+    let mdb = JSON.parse(music_db.toString());
     let songNum = 2300;
+    let diffName = ['novice', 'advanced', 'exhaust', 'infinite', 'maximum', 'ultimate']
 
     if(U.GetConfig('unlock_all_songs')) {
       console.log("Unlocking songs");
       for (let i = 1; i < songNum; ++i) {
-        for (let j = 0; j < 5; ++j) {
-          songs.push({
-            music_id: K.ITEM('s32', i),
-            music_type: K.ITEM('u8', j),
-            limited: K.ITEM('u8', 3),
-          });
+        var foundSongIndex = mdb.mdb.music.map(function(x) {return x['@id']; }).indexOf(i.toString());
+        if(foundSongIndex != -1) {
+          var songData = mdb.mdb.music[foundSongIndex];
+          for (let j = 0; j < 6; ++j) {
+            if(songData.difficulty[diffName[j]].difnum['#text'] != '0') {
+              songs.push({
+                music_id: K.ITEM('s32', i),
+                music_type: K.ITEM('u8', j),
+                limited: K.ITEM('u8', 3),
+              });
+            }
+          }
         }
       }
     } else {  
-      let mdb = JSON.parse(music_db.toString());
       
       let limitedNo = 2;
       songNum = parseInt(mdb.mdb.music[mdb.mdb.music.length - 1]['@id'])
@@ -82,12 +89,14 @@ export const common: EPR = async (info, data, send) => {
                 // manual lock songs
                 if(i === 2034) limitedNo = 2;
 
-                for(let j = 0; j < 5; j++) {
-                  songs.push({
-                    music_id: K.ITEM('s32', i),
-                    music_type: K.ITEM('u8', j),
-                    limited: K.ITEM('u8', limitedNo),
-                  });
+                for(let j = 0; j < 6; j++) {
+                  if(songData.difficulty[diffName[j]].difnum['#text'] != '0') {
+                    songs.push({
+                      music_id: K.ITEM('s32', i),
+                      music_type: K.ITEM('u8', j),
+                      limited: K.ITEM('u8', limitedNo),
+                    });
+                  }
                 }
               }
 
@@ -104,12 +113,14 @@ export const common: EPR = async (info, data, send) => {
 
               // Licensed songs released pre-exceed gear
               else if (LICENSED_SONGS6.includes(i)) {
-                for(let j = 0; j < 5; j++) {
-                  songs.push({
-                    music_id: K.ITEM('s32', i),
-                    music_type: K.ITEM('u8', j),
-                    limited: K.ITEM('u8', limitedNo),
-                  });
+                for(let j = 0; j < 6; j++) {
+                  if(songData.difficulty[diffName[j]].difnum['#text'] != '0') {
+                    songs.push({
+                      music_id: K.ITEM('s32', i),
+                      music_type: K.ITEM('u8', j),
+                      limited: K.ITEM('u8', limitedNo),
+                    });
+                  }
                 }
               }
             }

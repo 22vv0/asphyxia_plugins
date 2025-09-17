@@ -38,11 +38,13 @@ function getDifficulty(musicid, type) {
                     case "5":
                         return "VVD";
                     case "6":
-                        return "XCD"
+                        return "XCD";
                 }
             }
         case 4:
             return "MXM";
+        case 5:
+            return "ULT";
     }
 }
 
@@ -113,31 +115,35 @@ function difficultySort(d) {
             return 8;
         case "MXM":
             return 9;
+        case "ULT":
+            return 10;
     }
     return 0;
 };
 
 function markSort(d) {
     switch (d) {
-        case "No Grade":
+        case "No Data":
             return 0;
-        case "Played":
+        case "PLAYED":
             return 1;
-        case "Clear":
+        case "EFFECTIVE CLEAR":
             return 2;
-        case "Hard Clear":
+        case "EXCESSIVE CLEAR":
             return 3;
-        case "UC":
+        case "MAXXIVE CLEAR":
             return 4;
-        case "PUC":
+        case "UC":
             return 5;
+        case "PUC":
+            return 6;
     }
     return 0;
 };
 
 function gradeSort(d) {
     switch (d) {
-        case "No Data":
+        case "No Grade":
             return 0;
         case "D":
             return 1;

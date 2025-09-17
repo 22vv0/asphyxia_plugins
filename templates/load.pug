@@ -148,6 +148,7 @@ game
   if variant
     variant_gate
       power(__type="s32") #{variant.power}
+      over_radar(__type="s32", __count=variant.overRadar.length) #{variant.overRadar.join(" ")}
       element
         notes(__type="s32") #{variant.notes}
         peak(__type="s32") #{variant.peak}

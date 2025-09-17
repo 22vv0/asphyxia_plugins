@@ -7,5 +7,6 @@ export interface VariantPower {
   tsumami: number,
   tricky: number,
   onehand: number,
-  handtrip: number
+  handtrip: number,
+  overRadar: numbers
 }
