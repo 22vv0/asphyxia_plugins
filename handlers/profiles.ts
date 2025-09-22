@@ -406,7 +406,7 @@ export const save: EPR = async (info, data, send) => {
     const earnedTr = vp.number('earned_element.tricky');
     const earnedO = vp.number('earned_element.onehand');
     const earnedH = vp.number('earned_element.handtrip');
-    const overRadar = vp.numbers('over_radar');
+    let overRadar = vp.numbers('over_radar');
     await DB.Upsert<VariantPower>( refid, { collection: 'variantpower' }, { 
         $inc: { 
           power: _.isNil(earnedPwr) ? 0 : earnedPwr,
@@ -417,7 +417,9 @@ export const save: EPR = async (info, data, send) => {
           onehand: _.isNil(earnedO) ? 0 : earnedO,
           handtrip: _.isNil(earnedH) ? 0 : earnedH
         },
-        $set: {
+        $set: (!overRadar) ? {
+          dbver: DB_VER
+        } :{
           overRadar: overRadar,
           dbver: DB_VER
         }
@@ -563,8 +565,14 @@ export const load: EPR = async (info, data, send) => {
   const params = await DB.Find<Param>(refid, { collection: 'param' });
   const arena = await DB.FindOne<Arena>(refid, { collection: 'arena', season: arenaOpen ? CURRENT_ARENA['season'] : 0 });
   const valgeneTicket = await DB.FindOne<ValgeneTicket>(refid, { collection: 'valgene_ticket' })
-  const variant = await DB.FindOne<VariantPower>(refid, { collection: 'variantpower' })
-  
+  let variant = await DB.FindOne<VariantPower>(refid, { collection: 'variantpower' })
+  if(!variant) {
+    variant = <VariantPower>{
+      power: 0, notes: 0, peak: 0, handtrip: 0, onehand: 0, tricky: 0, tsumami: 0, overRadar: []
+    }
+  } 
+  else if(!variant.overRadar) variant.overRadar = []
+
   let weeklyMusic = []
 
   if (curWeekly.length > 0) {
@@ -718,19 +726,6 @@ export const create: EPR = async (info, data, send) => {
   };
 
   await DB.Upsert(refid, { collection: 'profile' }, profile);
-  await DB.Upsert<VariantPower>(refid, { collection: 'variantpower'}, {
-    $set: {
-      power: 0,
-      notes: 0,
-      peak: 0,
-      tsumami: 0,
-      tricky: 0,
-      onehand: 0,
-      handtrip: 0,
-      overRadar: [],
-      dbver: DB_VER
-    }
-  })
   return send.object({ result: K.ITEM('u8', 0) });
 };
 

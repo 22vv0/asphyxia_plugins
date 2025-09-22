@@ -27,11 +27,14 @@ async function updateSkillCourseIds() {
 }
 
 async function updateDB() {
-	let varPower = await DB.Find<VariantPower>(null, {collection: 'variantpower', dbver: {$exists: false}})
+	// update collections
+
+	// dbver 1
+	let varPower = await DB.Find<VariantPower>(null, {collection: 'variantpower', $or: [{dbver: 1}, {dbver: {$exists: false}}]})
 	varPower.forEach(async vp => {
 		await DB.Upsert<VariantPower>(vp['__refid'], {collection: 'variantpower'}, {
 			$set: {
-				overRadar: [],
+				overRadar: (!vp['overRadar']) ? [] : vp['overRadar'],
 				dbver: 1
 			}
 		})

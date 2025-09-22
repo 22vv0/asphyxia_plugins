@@ -6327,8 +6327,6 @@ export const COURSES6 = [
 ]
 
 export const INFORMATION6 = [
-  { id: 18, str: '[img:info/231122_paseli_festival.png:]'},
-  { id: 19, str: '[img:info/231207_hexadiver.png:]'},
   { id: 20, str: '[img:info/231221_generator.png: 94, 0]'},
   { id: 21, str: '[img:info/240118_voltefactory.png:]'},
   { id: 22, str: '[img:info/240301_paseli14th.png:]'},
@@ -6346,7 +6344,9 @@ export const INFORMATION6 = [
   { id: 34, str: '[img:info/250303_paseli.png:]'},
   { id: 35, str: '[img:info/250326_noah.jpg:]'},
   { id: 36, str: '[img:info/250422_info_ichika.png:]'},
-  { id: 37, str: '[img:info/250501_info_cross_resonance.png:]'}
+  { id: 37, str: '[img:info/250501_info_cross_resonance.png:]'},
+  { id: 38, str: '[img:info/250626_info_generator6.png:]'},
+  { id: 39, str: '[img:info/250626_info_sumire.png:]'}
 ] 
 
 export const MEGAMIX_SONGS = [

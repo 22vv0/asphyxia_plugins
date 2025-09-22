@@ -1,6 +1,6 @@
 # SOUND VOLTEX
 
-**Plugin Version:** 6.2.0a
+**Plugin Version:** 6.2.0b
 
 **Supported game versions:** EXCEED GEAR (2025062401)
 
@@ -13,7 +13,16 @@
 
 Changelog
 ===========
+### 6.2.0b
+
+- More fixes to OVER POWER problems ([#43](https://github.com/22vv0/asphyxia_plugins/issues/43), [#45](https://github.com/22vv0/asphyxia_plugins/issues/45), [#46](https://github.com/22vv0/asphyxia_plugins/issues/46))
+	- profiles.ts: added fallback initial data for profiles with no/missing variant data and/or missing overRadar data in load()
+	- profiles.ts: added checks to save request data if over_radar exists or not in save().
+	- migrate.ts: rewrote variant data upsert line to further ensure overRadar exists.
+- Updated card entry news/information data.
+
 ### 6.2.0a
+
 - Fixes game crash when loading and creating new profile data.
 	- For some reason the game does not like variant gauge over_radar to be null, will check at a later date.
 - Fixes for main profile page not loading due to VOLFORCE best 50 function issues with certain song IDs not being found in the imported music_db.json (ie. omnimix songs)
