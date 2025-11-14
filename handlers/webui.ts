@@ -617,6 +617,7 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
 
     await IO.WriteFile('webui/asset/json/course_data.json', JSON.stringify(courseData, null, 4))
     
+    console.log("Update complete!")
     send.json(
       {
         status: 'ok',

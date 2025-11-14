@@ -17,7 +17,8 @@ $(document).ready(async function() {
 
         document.getElementById("logtextarea").textContent += 'Running....\n\n'
         await emit("copyResourcesFromGame").then(
-            function(response){                    
+            function(response){
+                document.getElementById("logtextarea").textContent += 'Done.\n\n'
                 if(response['data']['errors'].length > 0) {
                     document.getElementById("logtextarea").textContent += "[Errors]" + '\n'
                     $.each(response['data']['errors'], function(key, val) {

@@ -1,8 +1,8 @@
 # SOUND VOLTEX
 
-**Plugin Version:** 6.2.0b
+**Plugin Version:** 6.2.1
 
-**Supported game versions:** EXCEED GEAR (2025062401)
+**Supported game versions:** EXCEED GEAR (2025100700)
 
 **Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d)
 
@@ -13,56 +13,27 @@
 
 Changelog
 ===========
-### 6.2.0b
+### 6.2.1
 
-- More fixes to OVER POWER problems ([#43](https://github.com/22vv0/asphyxia_plugins/issues/43), [#45](https://github.com/22vv0/asphyxia_plugins/issues/45), [#46](https://github.com/22vv0/asphyxia_plugins/issues/46))
-	- profiles.ts: added fallback initial data for profiles with no/missing variant data and/or missing overRadar data in load()
-	- profiles.ts: added checks to save request data if over_radar exists or not in save().
-	- migrate.ts: rewrote variant data upsert line to further ensure overRadar exists.
-- Updated card entry news/information data.
-
-### 6.2.0a
-
-- Fixes game crash when loading and creating new profile data.
-	- For some reason the game does not like variant gauge over_radar to be null, will check at a later date.
-- Fixes for main profile page not loading due to VOLFORCE best 50 function issues with certain song IDs not being found in the imported music_db.json (ie. omnimix songs)
-	- This will cause omnimix scores to not be included in the best 50 list.
-
-### 6.2.0
-
+- Added event data:
+	- ぼる×りこ Cross Resonance (additional songs)
+	- BEMANI PRO LEAGUE -SEASON 5- Triple Tribe 0
+	- HEXA DIVER (冥府肝試し編～地獄の河もレジャー次第～)
+- Added ARENA STATION set 20
+- Updated MEGAMIX songs list
+- Added VALKYRIE GENERATOR Vol. 17
+- Updated Achievements list
 - Updated licensed songs list:
-	- あおばの足音
-	- 覚悟せよ！エンタンメ～ン ～より身の切り売り自暴自棄版～
-	- ギャ・ギャ・ギャ・ギャラクシー！
-	- 悲報！ワイ！ニート！
-	- エクスプロウル
-	- アイスクリームマジック
-- Added PREMIUM GENERATOR sets:
-	- Vol. 6 (Yumebuki Grace set)
-	- Kaga Sumire set
-- Added event data: VARIANT GATE (永遠の紋様)
-	- extra note: there may be a bug in version 2025062401 where you could not challenge 神凪 (MXM) in the first VARIANT GATE set. ([Twitter](https://x.com/SOUNDVOLTEX573/status/1938133931607662963))
-- Enabled OVER POWER for VARIANT GATE
-- Updated and fixed STAMP\_IGNORE\_DISABLE and SUBBG\_IGNORE\_DISABLE params.
-- Updates to song unlock info handler in common.ts
-	- changes made to include sending ULTIMATE charts
-	- changes made to reduce unnecessary data being sent (ie. non-existent charts)
-- Updates to profile save/load to include OVER POWER radar data.
-- Updates to WebUI asset update
-	- changes made to include ULTIMATE charts in music_db.json saving
-	- included ULTIMATE charts to log output
-- DB updates
-	- added 'overRadar' key to 'variantgate' collection
-- WebUI updates:
-	- Added new VOLFORCE best 50 list table in main profile page.
-	- Added ULT column to songs list page.
-	- Added ULT to difficulty labels in scores list page.
-	- Added ULT row to score statistics.
-	- Fixed clear medal and score grade sorting in scores list page.
-	- Fixes to Generator page for loading valgene_item stamp image files (they padded an extra 0 in the file name starting from item id 475)
-	- Fixes to VARIANT GATE event config saving where the setting for minimum difficulty and rank applies to both sets instead of individually
-- Updated psd_level.ifs texture extract info.
-- Updated data.json file.
+	- オーバーライド
+	- ライアーダンサー
+	- murmur twins (guitar pop ver.)
+	- カジノファイヤーことみちゃん
+	- 朱と碧のランページ
+	- リメンバーリメンバー
+	- Shooting Star
+- Increased songNum from 2300 to 2400 (for 'unlock all songs')
+- Added "complete" message on webui resource update
+- Some migrate code fixes
 
 
 Report issues

@@ -422,7 +422,13 @@
             "info": [
                 "Song 1: 'Crossfade'",
                 "Song 2: '星界のアルペジオ'",
-                "Song 3: 'Ö＜3rf10₩'"
+                "Song 3: 'Ö＜3rf10₩'",
+                "Song 4: 'ぐしゃ'",
+                "Song 5: 'Dear Deer'",
+                "Song 6: 'DISTORDER'",
+                "Song 7: 'HOLOGRAPHY'",
+                "Song 8: 'Like the Starlight'",
+                "Song 9: 'FRENZY HEART'"
             ]
         },
         {
@@ -432,6 +438,20 @@
             "name": "REFLEC BEAT Song Stamp Event (2025)",
             "desc": "Stamp event to unlock 5 more songs originally from the REFLEC BEAT game series.",
             "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "bpls5tripletribe",
+            "type": "cross_online",
+            "enabled": true,
+            "name": "BEMANI PRO LEAGUE -SEASON 5- Triple Tribe 0",
+            "desc": "Crossover event between SOUND VOLTEX, DanceDanceRevolution, and beatmania IIDX where you would earn TD, TB and TS points which can be used to unlock songs through the participating games.<br>However, since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding SOUND VOLTEX songs' option to automatically unlock them on your next login.",
+            "info": [
+                "Song 1: 'Secret Rouge'",
+                "Song 2: 'EROICA'",
+                "Song 3: 'Snow Garland Fairy'",
+                "Song 4: 'Electronic Sports Complex'",
+                "Song 5: 'EYE OF THE HEAVEN'"
+            ]
         }
     ],
     "flags": [

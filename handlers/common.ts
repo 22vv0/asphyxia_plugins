@@ -44,7 +44,7 @@ export const common: EPR = async (info, data, send) => {
     let songs = [];
     const gameVersion = getVersion(info);
     let mdb = JSON.parse(music_db.toString());
-    let songNum = 2300;
+    let songNum = 2400;
     let diffName = ['novice', 'advanced', 'exhaust', 'infinite', 'maximum', 'ultimate']
 
     if(U.GetConfig('unlock_all_songs')) {

@@ -4848,8 +4848,8 @@
         {
             "id": 693,
             "title": "BLASTER TARGET を60曲 撃破",
-            "rtype": "none",
-            "rid": -1,
+            "rtype": "pcb",
+            "rid": 300,
             "troptype": 2
         },
         {
@@ -5051,65 +5051,65 @@
         {
             "id": 722,
             "title": "MEGAMIX BATTLEを 20回 プレー",
-            "rtype": "none",
-            "rid": -1,
+            "rtype": "pcb",
+            "rid": 20,
             "troptype": 1
         },
         {
             "id": 723,
             "title": "MEGAMIX BATTLEを 30回 プレー",
-            "rtype": "none",
-            "rid": -1,
+            "rtype": "pcb",
+            "rid": 100,
             "troptype": 1
         },
         {
             "id": 724,
             "title": "MEGAMIX BATTLEを 40回 プレー",
-            "rtype": "none",
-            "rid": -1,
+            "rtype": "pcb",
+            "rid": 100,
             "troptype": 1
         },
         {
             "id": 725,
             "title": "MEGAMIX BATTLEを 50回 プレー",
-            "rtype": "none",
-            "rid": -1,
-            "troptype": 1
+            "rtype": "aptitle",
+            "rid": 10306,
+            "troptype": 2
         },
         {
             "id": 726,
             "title": "MEGAMIX BATTLEを 60回 プレー",
-            "rtype": "none",
-            "rid": -1,
-            "troptype": 1
+            "rtype": "pcb",
+            "rid": 300,
+            "troptype": 2
         },
         {
             "id": 727,
             "title": "MEGAMIX BATTLEを 70回 プレー",
-            "rtype": "none",
-            "rid": -1,
-            "troptype": 1
+            "rtype": "pcb",
+            "rid": 300,
+            "troptype": 2
         },
         {
             "id": 728,
             "title": "MEGAMIX BATTLEを 80回 プレー",
-            "rtype": "none",
-            "rid": -1,
-            "troptype": 1
+            "rtype": "pcb",
+            "rid": 300,
+            "troptype": 2
         },
         {
             "id": 729,
             "title": "MEGAMIX BATTLEを 90回 プレー",
-            "rtype": "none",
-            "rid": -1,
-            "troptype": 1
+            "rtype": "pcb",
+            "rid": 300,
+            "troptype": 2
         },
         {
             "id": 730,
             "title": "MEGAMIX BATTLEを 100回 プレー",
-            "rtype": "none",
-            "rid": -1,
-            "troptype": 1
+            "rtype": "aptitle",
+            "rid": 10307,
+            "troptype": 3
         },
         {
             "id": 731,
@@ -5128,71 +5128,71 @@
         {
             "id": 733,
             "title": "ARENA BATTLEを 20回 プレー",
-            "rtype": "none",
-            "rid": -1,
+            "rtype": "pcb",
+            "rid": 100,
             "troptype": 1
         },
         {
             "id": 734,
             "title": "ARENA BATTLEを 30回 プレー",
-            "rtype": "none",
-            "rid": -1,
+            "rtype": "pcb",
+            "rid": 100,
             "troptype": 1
         },
         {
             "id": 735,
             "title": "ARENA BATTLEを 40回 プレー",
-            "rtype": "none",
-            "rid": -1,
+            "rtype": "pcb",
+            "rid": 100,
             "troptype": 1
         },
         {
             "id": 736,
             "title": "ARENA BATTLEを 50回 プレー",
-            "rtype": "none",
-            "rid": -1,
-            "troptype": 1
+            "rtype": "aptitle",
+            "rid": 10310,
+            "troptype": 2
         },
         {
             "id": 737,
             "title": "ARENA BATTLEを 60回 プレー",
-            "rtype": "none",
-            "rid": -1,
-            "troptype": 1
+            "rtype": "pcb",
+            "rid": 300,
+            "troptype": 2
         },
         {
             "id": 738,
             "title": "ARENA BATTLEを 70回 プレー",
-            "rtype": "none",
-            "rid": -1,
-            "troptype": 1
+            "rtype": "pcb",
+            "rid": 300,
+            "troptype": 2
         },
         {
             "id": 739,
             "title": "ARENA BATTLEを 80回 プレー",
-            "rtype": "none",
-            "rid": -1,
-            "troptype": 1
+            "rtype": "pcb",
+            "rid": 300,
+            "troptype": 2
         },
         {
             "id": 740,
             "title": "ARENA BATTLEを 90回 プレー",
-            "rtype": "none",
-            "rid": -1,
-            "troptype": 1
+            "rtype": "pcb",
+            "rid": 300,
+            "troptype": 2
         },
         {
             "id": 741,
             "title": "ARENA BATTLEを 100回 プレー",
-            "rtype": "none",
-            "rid": -1,
-            "troptype": 1
+            "rtype": "aptitle",
+            "rid": 10311,
+            "troptype": 3
         },
         {
             "id": 742,
             "title": "『SOUND VOLTEX 10周年記念！FLOOR楽曲リミックスコンテスト』",
-            "rtype": "none",
-            "rid": -1,
+            "rtype": "aptitle",
+            "rid": 10312,
             "troptype": 1
         },
         {
@@ -5627,6 +5627,48 @@
             "title": "MAXXIVEメダル を 1000個獲得",
             "rtype": "aptitle",
             "rid": 10358,
+            "troptype": 3
+        },
+        {
+            "id": 805,
+            "title": "TAMA猫アドベンチャーで『オペレーション・ブルーガーデン』を すべて完走する",
+            "rtype": "aptitle",
+            "rid": 10359,
+            "troptype": 3
+        },
+        {
+            "id": 806,
+            "title": "月輪の紋様を紡いだ ",
+            "rtype": "aptitle",
+            "rid": 10360,
+            "troptype": 3
+        },
+        {
+            "id": 807,
+            "title": "本能の翼を見出した",
+            "rtype": "aptitle",
+            "rid": 10361,
+            "troptype": 3
+        },
+        {
+            "id": 808,
+            "title": "永遠の紋様を紡いだ",
+            "rtype": "aptitle",
+            "rid": 10362,
+            "troptype": 3
+        },
+        {
+            "id": 809,
+            "title": "『東方風神録リミックス楽曲コンテスト』 の楽曲をすべてクリア",
+            "rtype": "none",
+            "rid": -1,
+            "troptype": 0
+        },
+        {
+            "id": 810,
+            "title": "HEXA DIVER Ep：冥府肝試し編～地獄の河もレジャー次第～を全曲獲得",
+            "rtype": "aptitle",
+            "rid": 10364,
             "troptype": 3
         }
     ]
