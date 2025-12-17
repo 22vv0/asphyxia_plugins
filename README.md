@@ -1,6 +1,6 @@
 # DanceDanceRevolution
 
-**Plugin Version:** 3.1.0a
+**Plugin Version:** 3.1.0b
 
 **Supported game versions:** WORLD (2025061000)
 
@@ -12,16 +12,11 @@
 
 Changelog
 ===========
-### 3.1.0a
+### 3.1.0b
 
-- Added WORLD LEAGUE 8
-	- Period: 09/04 - 10/01
-	- Advance border for bronze/silver added.
-
-- Updated song/chart unlock info
-	- Florence (Gold advance border benefit -> gold class benefit)
-
-- Added optgroups for customization dropdown. 
+- Added WORLD LEAGUE 9
+	- Period: 25/12/18 - 26/01/14
+- Moved advance play songs to default unlocked.
 
 musicdb.xml Usage Guide
 ===========
