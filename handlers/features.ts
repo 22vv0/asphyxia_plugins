@@ -37,7 +37,7 @@ export const hiscore: EPR = async (info, data, send) => {
 
 export const rival: EPR = async (info, data, send) => {
   const refid = $(data).str('refid');
-  const version = parseInt(info.model.split(":")[4]);
+  const version = parseInt(info.model.split(":")[4].slice(0, -2));
   if (!refid) return send.deny();
 
   const rivals = (
@@ -55,7 +55,7 @@ export const rival: EPR = async (info, data, send) => {
             await DB.Find<MusicRecord>(p.refid, { collection: 'music' })
           ).map(r => ({
             // Version 2023042500 added exscore to rival data.
-            param: K.ARRAY('u32', version < 2023042500 ? [r.mid, r.type, r.score, r.clear, r.grade] : [r.mid, r.type, r.score, r.exscore, r.clear, r.grade]),
+            param: K.ARRAY('u32', version < 20230425 ? [r.mid, r.type, r.score, r.clear, r.grade] : [r.mid, r.type, r.score, r.exscore, r.clear, r.grade]),
           })),
         };
       })

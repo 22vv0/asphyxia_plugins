@@ -9,13 +9,14 @@ export const common: EPR = async (info, data, send) => {
     let events = [];
     let courses = [];
     let extend = [];
+    let information = [];
     let date = new Date();
     let currentYMDDate = parseInt([date.getFullYear(), ((date.getMonth() + 1) > 9 ? '' : '0') + (date.getMonth() + 1), (date.getDate() > 9 ? '' : '0') + date.getDate()].join(''));
     let currentDate = date.toLocaleDateString()
     console.log('====================================')
     console.log("Calling common function");
     
-    const version = parseInt(info.model.split(":")[4]);
+    const version = parseInt(info.model.split(":")[4].slice(0, -2));
 
     switch (info.method) {
       case 'sv6_common': {
@@ -36,8 +37,9 @@ export const common: EPR = async (info, data, send) => {
             }
           }
         }
-        courses = COURSES6;
-        EXTENDS6.forEach(val => extend.push(Object.assign({}, val)));
+        courses = COURSES6.filter(course => version >= course.version);
+        information = INFORMATION6.filter(info => version >= info.version)
+        EXTENDS6.filter(ex => version >= ex.version).forEach(val => extend.push(Object.assign({}, val)));
         break;
       }
     }
@@ -65,7 +67,6 @@ export const common: EPR = async (info, data, send) => {
         }
       }
     } else {  
-      
       let limitedNo = 2;
       songNum = parseInt(mdb.mdb.music[mdb.mdb.music.length - 1]['@id'])
       console.log("Latest song id in mdb: " + songNum)
@@ -129,12 +130,12 @@ export const common: EPR = async (info, data, send) => {
       }
     }
 
-    if(INFORMATION6.length > 0) {
+    if(information.length > 0) {
       let time = new Date()
       let currentTime = parseInt((time.getTime()/100000) as unknown as string) * 100
-      for(const info of INFORMATION6) {
+      for(const info of information) {
         extend.push({
-          id: info['id'],
+          id: info.id,
           type: 1,
           params: [
             1,
@@ -143,7 +144,7 @@ export const common: EPR = async (info, data, send) => {
             0,
             0,
             '[f:0]SERVER INFORMATION',
-            info['str'],
+            info.str,
             '',
             '',
             '',
@@ -158,93 +159,95 @@ export const common: EPR = async (info, data, send) => {
       let bufEventConfig = await IO.ReadFile('webui/asset/config/events.json')
       let eventData = JSON.parse(bufEventData.toString())
       let eventConfig = JSON.parse(bufEventConfig.toString())
-      for(const eventIter in eventData['events']) {
-        let stmpEvntInfo = UNLOCK_EVENTS6[eventData['events'][eventIter]['id']]
-        if(eventData['events'][eventIter]['type'] === 'stamp' && eventConfig[eventData['events'][eventIter]['id']] !== undefined && eventConfig[eventData['events'][eventIter]['id']]['toggle']) {
-          for(const stmpDataIter in stmpEvntInfo['info']['data']) {
-            extend.push({
-              'type': 3,
-              'id': stmpEvntInfo['info']['data'][stmpDataIter]['stmpid'],
-              'params': [
-                5,
-                stmpEvntInfo['info']['data'][stmpDataIter]['stps'], 
-                0, 
-                (stmpEvntInfo['info']['data'][stmpDataIter]['stmpid'].toString() in UNLOCK_EVENTS6['refillStamps']) ? 12 : stmpEvntInfo['info']['data'][stmpDataIter]['stps'], 
-                0,
-                stmpEvntInfo['info']['stmpHd'],
-                stmpEvntInfo['info']['stmpHd'],
-                stmpEvntInfo['info']['stmpFt'],
-                stmpEvntInfo['info']['stmpFt'],
-                stmpEvntInfo['info']['data'][stmpDataIter]['stprwrd']
-              ]
-            })
-          }
+      for(const eData of eventData.events) {
+        let stmpEvntInfo = UNLOCK_EVENTS6[eData.id]
+        if(version >= eData.version) {
+          if(eData.type === 'stamp' && eventConfig[eData.id] !== undefined && eventConfig[eData.id].toggle) {
+            for(const stmpData of stmpEvntInfo.info.data) {
+              extend.push({
+                'type': 3,
+                'id': stmpData.stmpid,
+                'params': [
+                  5,
+                  stmpData.stps, 
+                  0, 
+                  (stmpData.stmpid.toString() in UNLOCK_EVENTS6.refillStamps) ? 12 : stmpData.stps, 
+                  0,
+                  stmpEvntInfo.info.stmpHd,
+                  stmpEvntInfo.info.stmpHd,
+                  stmpEvntInfo.info.stmpFt,
+                  stmpEvntInfo.info.stmpFt,
+                  stmpData.stprwrd
+                ]
+              })
+            }
 
-          if(stmpEvntInfo['type'] === 'select') {
+            if(stmpEvntInfo.type === 'select') {
+              extend.push({
+                'type': 3,
+                'id': stmpEvntInfo.info.id,
+                'params': [
+                  9,
+                  ((stmpEvntInfo.info.textstampval !== undefined) ? stmpEvntInfo.info.textstampval : 0),
+                  0,
+                  0,
+                  0,
+                  stmpEvntInfo.info.sheet,
+                  '',
+                  stmpEvntInfo.info.stmpSlHd,
+                  stmpEvntInfo.info.stmpSlFt,
+                  stmpEvntInfo.info.stmpBg
+                ]
+              })
+            }
+          }
+          else if(eData.type === 'completestamp' && eventConfig[eData.id] !== undefined && eventConfig[eData.id].toggle) {
             extend.push({
-              'type': 3,
-              'id': stmpEvntInfo['info']['id'],
+              'type': 19,
+              'id': stmpEvntInfo.info.id,
               'params': [
-                9,
-                ((stmpEvntInfo['info']['textstampval'] !== undefined) ? stmpEvntInfo['info']['textstampval'] : 0),
-                0,
-                0,
-                0,
-                stmpEvntInfo['info']['sheet'],
+                0, 0, 0, 0, 0,
+                JSON.stringify(stmpEvntInfo.info.data),
                 '',
-                stmpEvntInfo['info']['stmpSlHd'],
-                stmpEvntInfo['info']['stmpSlFt'],
-                stmpEvntInfo['info']['stmpBg']
+                '',
+                '',
+                ''
               ]
             })
           }
-        }
-        else if(eventData['events'][eventIter]['type'] === 'completestamp' && eventConfig[eventData['events'][eventIter]['id']] !== undefined && eventConfig[eventData['events'][eventIter]['id']]['toggle']) {
-          extend.push({
-            'type': 19,
-            'id': stmpEvntInfo['info']['id'],
-            'params': [
-              0, 0, 0, 0, 0,
-              JSON.stringify(stmpEvntInfo['info']['data']),
-              '',
-              '',
-              '',
-              ''
-            ]
-          })
-        }
-        else if(eventData['events'][eventIter]['type'] === 'tama' && eventConfig[eventData['events'][eventIter]['id']] !== undefined && eventConfig[eventData['events'][eventIter]['id']]['toggle']) {
-          events.push('TAMAADV_ENABLE')
-          extend.push({
-            'type': 20,
-            'id': stmpEvntInfo['info']['id'],
-            'params': [
-              0, 0, 0, 0, 0,
-              stmpEvntInfo['info']['list'],
-              '',
-              '',
-              '',
-              ''
-            ]
-          })
-        }
-        else if(eventData['events'][eventIter]['type'] === 'variant' && eventConfig[eventData['events'][eventIter]['id']] !== undefined && eventConfig[eventData['events'][eventIter]['id']]['toggle']) {
-          extend.push({
-            'type': 22,
-            'id': stmpEvntInfo['info']['id'],
-            'params': [
-              0,
-              stmpEvntInfo['info']['setid'],
-              parseInt(eventConfig[eventData['events'][eventIter]['id']]['settings']['minOverTrackRank']),
-              parseInt(eventConfig[eventData['events'][eventIter]['id']]['settings']['minSealDiff']),
-              0,
-              '',
-              '',
-              '',
-              '',
-              ''
-            ]
-          })
+          else if(eData.type === 'tama' && eventConfig[eData.id] !== undefined && eventConfig[eData.id].toggle) {
+            events.push('TAMAADV_ENABLE')
+            extend.push({
+              'type': 20,
+              'id': stmpEvntInfo.info.id,
+              'params': [
+                0, 0, 0, 0, 0,
+                stmpEvntInfo.info.list,
+                '',
+                '',
+                '',
+                ''
+              ]
+            })
+          }
+          else if(eData.type === 'variant' && eventConfig[eData.id] !== undefined && eventConfig[eData.id].toggle) {
+            extend.push({
+              'type': 22,
+              'id': stmpEvntInfo.info.id,
+              'params': [
+                0,
+                stmpEvntInfo.info.setid,
+                parseInt(eventConfig[eData.id].settings.minOverTrackRank),
+                parseInt(eventConfig[eData.id].settings.minSealDiff),
+                0,
+                '',
+                '',
+                '',
+                '',
+                ''
+              ]
+            })
+          }
         }
       }
     }
@@ -255,9 +258,9 @@ export const common: EPR = async (info, data, send) => {
       let extendTest = JSON.parse(bufTest.toString())
       for(const ex in extendTest) {
         extend.push({
-          'type': extendTest[ex]['type'],
-          'id': extendTest[ex]['id'],
-          'params': extendTest[ex]['params']
+          'type': extendTest[ex].type,
+          'id': extendTest[ex].id,
+          'params': extendTest[ex].params
         })
       }
     }
@@ -266,7 +269,7 @@ export const common: EPR = async (info, data, send) => {
     let shopOpen = arenaOpen && U.GetConfig('arena_station') !== 'None'
     let arenaData = {}
 
-    if(arenaOpen) {
+    if(arenaOpen && version >= 20220425) {
       arenaData = {
         season: K.ITEM('s32', CURRENT_ARENA.season),
         rule: K.ITEM('s32', CURRENT_ARENA.rule),
@@ -277,7 +280,7 @@ export const common: EPR = async (info, data, send) => {
         shop_end: K.ITEM('u64', CURRENT_ARENA.shop_end),
         is_open: K.ITEM('bool', arenaOpen),
         is_shop: K.ITEM('bool', shopOpen),
-        catalog: (shopOpen && U.GetConfig('arena_station') !== 'None') ? ARENA_STATION_ITEMS[U.GetConfig('arena_station')].map(item => ({
+        catalog: (shopOpen && U.GetConfig('arena_station') !== 'None' && version >= ARENA_STATION_ITEMS[U.GetConfig('arena_station')].version) ? ARENA_STATION_ITEMS[U.GetConfig('arena_station')].items.map(item => ({
           catalog_id: K.ITEM('s32', item[0]),
           catalog_type: K.ITEM('s32', item[1]),
           price: K.ITEM('s32', item[2]),
@@ -291,30 +294,31 @@ export const common: EPR = async (info, data, send) => {
     let valgene_info = []
     let valgene_items = []
 
-    valgene_info = VALGENE.info.map(val => ({
+    valgene_info = VALGENE.info.filter(val => version >= val.version).map(val => ({
       valgene_name: K.ITEM('str', val.valgene_name),
       valgene_name_english: K.ITEM('str', val.valgene_name_english),
       valgene_id: K.ITEM('s32', val.valgene_id)
     }))
 
     VALGENE.catalog.forEach((val) => {
-      val.items.forEach((itemVal) => {
-        itemVal.item_ids.forEach((item_id) => {
-          valgene_items.push({
-            valgene_id: K.ITEM('s32', val.volume),
-            rarity: K.ITEM('s32', VALGENE.rarity[itemVal.type.toString()]),
-            item_type: K.ITEM('s32', itemVal.type),
-            item_id: K.ITEM('s32', item_id)
+      if(version >= VALGENE.info.find(v => v.valgene_id === val.volume).version) {
+        val.items.forEach((itemVal) => {
+          itemVal.item_ids.forEach((item_id) => {
+            valgene_items.push({
+              valgene_id: K.ITEM('s32', val.volume),
+              rarity: K.ITEM('s32', VALGENE.rarity[itemVal.type.toString()]),
+              item_type: K.ITEM('s32', itemVal.type),
+              item_id: K.ITEM('s32', item_id)
+            })
           })
         })
-      })
+      }
     })
 
     if(currentDate.substring(0,4) === '2/5/') events.push("EVENTDATE_ONIGO")
     if(currentDate.substring(0,5) === '2/14/') events.push('VALENTINES_DAY_2024')
     if(currentDate.substring(0,5) === '2/15/') events.push('WHITE_DAY_2024')
     if(currentDate.substring(0,4) === '4/1/') {
-      console.log('Using April Fools Event')
       events.push('EVENTDATE_APRILFOOL');
       events.push('YUKKURI_RASIS_CREW_ENABLE')
       events.push('YUKKURI_RASIS_TITLE_ENABLE')
@@ -385,49 +389,51 @@ export const common: EPR = async (info, data, send) => {
         skill_course: {
           info: courses.reduce(
             (acc, s) => {
-              let courseData = s.courses.map(c => ({
-                season_id: K.ITEM('s32', s.id),
-                season_name: K.ITEM('str', s.name),
-                season_new_flg: K.ITEM('bool', s.isNew),
-                course_type: K.ITEM('s16', c.type),
-                course_id: K.ITEM('s16', c.id),
-                course_name: K.ITEM('str', c.name),
-                skill_level: K.ITEM('s16', c.level),
-                skill_type: K.ITEM('s16', 0),
-                skill_name_id: K.ITEM('s16', c.nameID),
-                matching_assist: K.ITEM('bool', c.assist),
-                clear_rate: K.ITEM('s32', 5000),
-                avg_score: K.ITEM('u32', 15000000),
-                track: c.tracks.map(t => ({
-                  track_no: K.ITEM('s16', t.no),
-                  music_id: K.ITEM('s32', t.mid),
-                  music_type: K.ITEM('s8', t.mty),
-                })),
-              }))
-              acc = acc.concat(courseData)
-              if((info.model.split(":")[2] === 'G' || info.model.split(":")[2] === 'H') && s.hasGod !== undefined && s.hasGod === 1) {
-                courseData = courseData.concat(
-                  s.courses.map(c => ({
-                    season_id: K.ITEM('s32', s.id),
-                    season_name: K.ITEM('str', s.name),
-                    season_new_flg: K.ITEM('bool', s.isNew),
-                    course_type: K.ITEM('s16', c.type),
-                    course_id: K.ITEM('s16', c.id),
-                    course_name: K.ITEM('str', c.name),
-                    skill_level: K.ITEM('s16', c.level),
-                    skill_type: K.ITEM('s16', s.hasGod),
-                    skill_name_id: K.ITEM('s16', c.nameID),
-                    matching_assist: K.ITEM('bool', c.assist),
-                    clear_rate: K.ITEM('s32', 5000),
-                    avg_score: K.ITEM('u32', 15000000),
-                    track: c.tracks.map(t => ({
-                      track_no: K.ITEM('s16', t.no),
-                      music_id: K.ITEM('s32', t.mid),
-                      music_type: K.ITEM('s8', t.mty),
-                    })),
-                  }))
-                )
+              if(version >= s.version) {
+                let courseData = s.courses.map(c => ({
+                  season_id: K.ITEM('s32', s.id),
+                  season_name: K.ITEM('str', s.name),
+                  season_new_flg: K.ITEM('bool', s.isNew),
+                  course_type: K.ITEM('s16', c.type),
+                  course_id: K.ITEM('s16', c.id),
+                  course_name: K.ITEM('str', c.name),
+                  skill_level: K.ITEM('s16', c.level),
+                  skill_type: K.ITEM('s16', 0),
+                  skill_name_id: K.ITEM('s16', c.nameID),
+                  matching_assist: K.ITEM('bool', c.assist),
+                  clear_rate: K.ITEM('s32', 5000),
+                  avg_score: K.ITEM('u32', 15000000),
+                  track: c.tracks.map(t => ({
+                    track_no: K.ITEM('s16', t.no),
+                    music_id: K.ITEM('s32', t.mid),
+                    music_type: K.ITEM('s8', t.mty),
+                  })),
+                }))
                 acc = acc.concat(courseData)
+                if((info.model.split(":")[2] === 'G' || info.model.split(":")[2] === 'H') && s.hasGod !== undefined && s.hasGod === 1 && version >= 20230530) {
+                  courseData = courseData.concat(
+                    s.courses.map(c => ({
+                      season_id: K.ITEM('s32', s.id),
+                      season_name: K.ITEM('str', s.name),
+                      season_new_flg: K.ITEM('bool', s.isNew),
+                      course_type: K.ITEM('s16', c.type),
+                      course_id: K.ITEM('s16', c.id),
+                      course_name: K.ITEM('str', c.name),
+                      skill_level: K.ITEM('s16', c.level),
+                      skill_type: K.ITEM('s16', s.hasGod),
+                      skill_name_id: K.ITEM('s16', c.nameID),
+                      matching_assist: K.ITEM('bool', c.assist),
+                      clear_rate: K.ITEM('s32', 5000),
+                      avg_score: K.ITEM('u32', 15000000),
+                      track: c.tracks.map(t => ({
+                        track_no: K.ITEM('s16', t.no),
+                        music_id: K.ITEM('s32', t.mid),
+                        music_type: K.ITEM('s8', t.mty),
+                      })),
+                    }))
+                  )
+                  acc = acc.concat(courseData)
+                }  
               }
               return acc
             },

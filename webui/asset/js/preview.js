@@ -4,10 +4,11 @@ function zeroPad(num, places) {
 }
 
 function getImageFileFormat(assetType, id) {
-    if(assetType == 0) {
-        if (id >= 103) return '.png' 
-        return '.jpg'
-    }
+    // if(assetType == 0) {
+    //     if (id >= 103) return '.png' 
+    //     return '.jpg'
+    // }
+    return '.png'
 }
 
 (function($) {
@@ -235,7 +236,7 @@ $(document).ready(function() {
 
         for (var i in json["skilltitle"]) {
             let foundCourses = courses.filter(c => c.cid === json["skilltitle"][i].id && c.clear >= 2)
-            if(foundCourses.length > 0) {   
+            if(foundCourses.length > 0) {
                 $('[name="skilltitle"]').append($('<option>', {
                     value: json["skilltitle"][i].id,
                     text: json["skilltitle"][i].name + ' (' + json["skilltitle"][i].info + ')',
@@ -321,7 +322,7 @@ $(document).ready(function() {
         for (var i in json["akaname"]) {
             $('[name="akaname"]').append($('<option>', {
                 value: json["akaname"][i].value,
-                text: json["akaname"][i].name,
+                text: json["akaname"][i].value + " - " + json["akaname"][i].name,
             }));
             //console.log(profile_data["akaname"])
         }

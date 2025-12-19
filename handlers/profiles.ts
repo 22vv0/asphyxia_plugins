@@ -214,6 +214,9 @@ export const saveCourse: EPR = async (info, data, send) => {
     refid,
     { collection: 'course', sid, cid, version },
     {
+      $set: {
+        dbver: DB_VER
+      },
       $max: {
         score: $(data).number('sc', 0),
         clear: $(data).number('ct', 0),
@@ -280,7 +283,8 @@ export const save: EPR = async (info, data, send) => {
   }
   
   // New course saving function found in version 20220214
-  // Updated for God mode
+  // Updated for God mode added in version 20230530
+  // kac_id added in version 20230807
   const course = $(data).element('course');
   if(!_.isNil(course)){
       const sid = course.number('ssnid');
@@ -294,7 +298,8 @@ export const save: EPR = async (info, data, send) => {
           { collection: 'course', sid, cid, stype, version },
           {
             $set: {
-              kacId: kacid
+              kacId: kacid,
+              dbver: DB_VER
             },
             $max: {
               score: course.number('sc', 0),
@@ -407,7 +412,7 @@ export const save: EPR = async (info, data, send) => {
     const earnedO = vp.number('earned_element.onehand');
     const earnedH = vp.number('earned_element.handtrip');
     let overRadar = vp.numbers('over_radar');
-    await DB.Upsert<VariantPower>( refid, { collection: 'variantpower' }, { 
+    await DB.Upsert<VariantPower>( refid, { collection: 'variantpower' }, {
         $inc: { 
           power: _.isNil(earnedPwr) ? 0 : earnedPwr,
           notes: _.isNil(earnedN) ? 0 : earnedN,
@@ -436,6 +441,7 @@ export const load: EPR = async (info, data, send) => {
   if (!refid) return send.deny();
 
   const version = Math.abs(getVersion(info));
+  const dVersion = parseInt(info.model.split(":")[4].slice(0, -2));
   console.log("Got version: " + version);
   console.log("DataID: " + refid);
   if (version === 0) return send.deny();
@@ -462,44 +468,44 @@ export const load: EPR = async (info, data, send) => {
       let bufEventConfig = await IO.ReadFile('webui/asset/config/events.json')
       let eventData = JSON.parse(bufEventData.toString())
       let eventConfig = JSON.parse(bufEventConfig.toString())
-      for(const eventIter in eventData['events']) {
+      for(const eData of eventData['events']) {
         let typeIds = {'gift_crew': [11, 1], 'gift_ap': [1, 1], 'gift': [0, 23], 'cross_online': [0, 23]}
-        if(['gift_crew', 'gift_ap', 'gift', 'cross_online'].includes(eventData['events'][eventIter]['type']) && eventConfig[eventData['events'][eventIter]['id']] !== undefined) {
-          if(typeof eventConfig[eventData['events'][eventIter]['id']]['toggle'] === "boolean") {
-            if(eventConfig[eventData['events'][eventIter]['id']]['toggle']) {
-              for(const itemIter in EVENT_ITEMS6[eventData['events'][eventIter]['id']]) {
-                let itemId = parseInt(EVENT_ITEMS6[eventData['events'][eventIter]['id']][itemIter])
-                if(await DB.Count(refid, {collection:'item', type: typeIds[eventData['events'][eventIter]['type']][0], id: itemId}) === 0) {
+        if(['gift_crew', 'gift_ap', 'gift', 'cross_online'].includes(eData.type) && eventConfig[eData.id] !== undefined) {
+          if(typeof eventConfig[eData.id].toggle === "boolean") {
+            if(eventConfig[eData.id].toggle && dVersion >= eData.version) {
+              for(const itemIter in EVENT_ITEMS6[eData.id]) {
+                let itemId = parseInt(EVENT_ITEMS6[eData.id][itemIter])
+                if(await DB.Count(refid, {collection:'item', type: typeIds[eData.type][0], id: itemId}) === 0) {
                   await DB.Upsert(
                     refid, 
-                    {collection: 'item', type: typeIds[eventData['events'][eventIter]['type']][0], id: itemId}, 
-                    {$set: { param: typeIds[eventData['events'][eventIter]['type']][1] }}
+                    {collection: 'item', type: typeIds[eData.type][0], id: itemId}, 
+                    {$set: { param: typeIds[eData.type][1] }}
                   )
 
                   presents.push({
                     id: itemId,
-                    type: typeIds[eventData['events'][eventIter]['type']][0],
-                    param: typeIds[eventData['events'][eventIter]['type']][1]
+                    type: typeIds[eData.type][0],
+                    param: typeIds[eData.type][1]
                   })
                 }
               }
             }
           } else{
-            for(const toggleKeys in Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])) {
-              if(eventConfig[eventData['events'][eventIter]['id']]['toggle'][Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])[toggleKeys]]) {
-                for(const itemIter in EVENT_ITEMS6[Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])[toggleKeys]]) {
-                  let itemId = parseInt(EVENT_ITEMS6[Object.keys(eventConfig[eventData['events'][eventIter]['id']]['toggle'])[toggleKeys]][itemIter])
-                  if(await DB.Count(refid, {collection:'item', type: typeIds[eventData['events'][eventIter]['type']][0], id: itemId}) === 0) {
+            for(const toggleKeys in Object.keys(eventConfig[eData.id].toggle)) {
+              if(eventConfig[eData['id']]['toggle'][Object.keys(eventConfig[eData.id].toggle)[toggleKeys]] && dVersion >= eData.version[toggleKeys]) {
+                for(const itemIter in EVENT_ITEMS6[Object.keys(eventConfig[eData.id].toggle)[toggleKeys]]) {
+                  let itemId = parseInt(EVENT_ITEMS6[Object.keys(eventConfig[eData.id].toggle)[toggleKeys]][itemIter])
+                  if(await DB.Count(refid, {collection:'item', type: typeIds[eData.type][0], id: itemId}) === 0) {
                     await DB.Upsert(
                       refid, 
-                      {collection: 'item', type: typeIds[eventData['events'][eventIter]['type']][0], id: itemId}, 
-                      {$set: { param: typeIds[eventData['events'][eventIter]['type']][1] }}
+                      {collection: 'item', type: typeIds[eData.type][0], id: itemId}, 
+                      {$set: { param: typeIds[eData.type][1] }}
                     )
 
                     presents.push({
                       id: itemId,
-                      type: typeIds[eventData['events'][eventIter]['type']][0],
-                      param: typeIds[eventData['events'][eventIter]['type']][1]
+                      type: typeIds[eData.type][0],
+                      param: typeIds[eData.type][1]
                     })
                   }
                 }
@@ -516,45 +522,48 @@ export const load: EPR = async (info, data, send) => {
       flagConfig = JSON.parse(bufFlagConfig.toString())
     }
 
+    if(dVersion >= 20250324) {
+      let addlPresents = []
+      if('aprilyukkuri' in flagConfig && flagConfig['aprilyukkuri']['toggle'] || currentDate.substring(0,4) === '4/1/') {
+        addlPresents.push([5546, 1, 1])
+        addlPresents.push([10244, 14, 1])
+      }
+      
+      for(const giftIter in addlPresents) {
+        if(await DB.Count(refid, {collection:'item', type: addlPresents[giftIter][1], id: addlPresents[giftIter][0]}) === 0) {
+          await DB.Upsert(
+            refid, 
+            {collection: 'item', type: addlPresents[giftIter][1], id: addlPresents[giftIter][0]}, 
+            {$set: { param: addlPresents[giftIter][2] }}
+          )
 
-    let addlPresents = []
-    if('aprilyukkuri' in flagConfig && flagConfig['aprilyukkuri']['toggle'] || currentDate.substring(0,4) === '4/1/') {
-      addlPresents.push([5546, 1, 1])
-      addlPresents.push([10244, 14, 1])
-    }
-    
-    for(const giftIter in addlPresents) {
-      if(await DB.Count(refid, {collection:'item', type: addlPresents[giftIter][1], id: addlPresents[giftIter][0]}) === 0) {
-        await DB.Upsert(
-          refid, 
-          {collection: 'item', type: addlPresents[giftIter][1], id: addlPresents[giftIter][0]}, 
-          {$set: { param: addlPresents[giftIter][2] }}
-        )
-
-        presents.push({
-          id: addlPresents[giftIter][0],
-          type: addlPresents[giftIter][1],
-          param: addlPresents[giftIter][2]
-        })
+          presents.push({
+            id: addlPresents[giftIter][0],
+            type: addlPresents[giftIter][1],
+            param: addlPresents[giftIter][2]
+          })
+        }
       }
     }
   }
 
   let curWeekly = []
-  if(IO.Exists('webui/asset/config/weeklymusic.json')) {
-    let bufWeeklyMusic = await IO.ReadFile('webui/asset/config/weeklymusic.json')
-    let weeklyMusic = JSON.parse(bufWeeklyMusic.toString())
-    let weekData
-    for(let weekIter in weeklyMusic) {
-      if(Number(date) > weeklyMusic[weekIter].start && Number(date) <= weeklyMusic[weekIter].end) weekData = weeklyMusic[weekIter]
-    }
-    if(weekData != undefined) {
-      curWeekly.push({
-        weekId: weekData.weekId,
-        musicId: weekData.musicId,
-        start: weekData.start,
-        end: weekData.end
-      })
+  if(dVersion >= 20241210) {
+    if(IO.Exists('webui/asset/config/weeklymusic.json')) {
+      let bufWeeklyMusic = await IO.ReadFile('webui/asset/config/weeklymusic.json')
+      let weeklyMusic = JSON.parse(bufWeeklyMusic.toString())
+      let weekData
+      for(let weekIter in weeklyMusic) {
+        if(Number(date) > weeklyMusic[weekIter].start && Number(date) <= weeklyMusic[weekIter].end) weekData = weeklyMusic[weekIter]
+      }
+      if(weekData != undefined) {
+        curWeekly.push({
+          weekId: weekData.weekId,
+          musicId: weekData.musicId,
+          start: weekData.start,
+          end: weekData.end
+        })
+      }
     }
   }
 
@@ -566,24 +575,28 @@ export const load: EPR = async (info, data, send) => {
   const arena = await DB.FindOne<Arena>(refid, { collection: 'arena', season: arenaOpen ? CURRENT_ARENA['season'] : 0 });
   const valgeneTicket = await DB.FindOne<ValgeneTicket>(refid, { collection: 'valgene_ticket' })
   let variant = await DB.FindOne<VariantPower>(refid, { collection: 'variantpower' })
-  if(!variant) {
-    variant = <VariantPower>{
-      power: 0, notes: 0, peak: 0, handtrip: 0, onehand: 0, tricky: 0, tsumami: 0, overRadar: []
-    }
-  } 
-  else if(!variant.overRadar) variant.overRadar = []
+  
+  if(dVersion >= 20250422) {
+    if(!variant) {
+      variant = <VariantPower>{
+        power: 0, notes: 0, peak: 0, handtrip: 0, onehand: 0, tricky: 0, tsumami: 0, overRadar: []
+      }
+    } else if(!variant.overRadar) variant.overRadar = [] 
+  }
 
   let weeklyMusic = []
-
-  if (curWeekly.length > 0) {
-    for(let wCtr = 0; wCtr <= 4; wCtr++) {
-      let jRankResults = await getRankListDB(curWeekly[0].weekId, curWeekly[0].musicId, wCtr)
-      if(jRankResults.length > 0) {
-        jRankResults = jRankResults.filter(e => e.refid === refid)[0]
-        weeklyMusic.push(jRankResults)
+  if(dVersion >= 20241210) {
+    if (curWeekly.length > 0) {
+      for(let wCtr = 0; wCtr <= 4; wCtr++) {
+        let jRankResults = await getRankListDB(curWeekly[0].weekId, curWeekly[0].musicId, wCtr)
+        if(jRankResults.length > 0) {
+          jRankResults = jRankResults.filter(e => e.refid === refid)[0]
+          weeklyMusic.push(jRankResults)
+        }
       }
     }
   }
+
 
   let time = new Date();
   let tempHour = time.getHours();

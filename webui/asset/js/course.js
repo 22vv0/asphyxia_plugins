@@ -192,13 +192,14 @@ function getCourseInfo(sid, cid, version) {
 
 
 
-function setCourseInfo(courseArray) {
+function setCourseInfo(courseArray, skillType) {
     var courseCtx = $('#course_content');
     courseCtx.empty();
     console.log(courseArray);
     for (var i in courseArray) {
         var courseSeason = courseArray[i].sid;
         var cid = courseArray[i].cid;
+        var stype = courseArray[i].stype;
         var version = courseArray[i].version;
         var score = courseArray[i].score;
         var rate = courseArray[i].rate;
@@ -206,104 +207,106 @@ function setCourseInfo(courseArray) {
         var clear_medal = courseArray[i].clear;
         var clear_rate = Math.trunc(courseArray[i].rate / 100);
         //var inner = $('div').append(info)
-        courseCtx.append(
-            $('<div class="card  is-inlineblocked">').append(
-                $('<div class="card-header">').append(
-                    $('<p class="card-header-title">').append(
-                        $('<span class="icon">').append(
-                            $('<i class="mdi mdi-account-edit">')
-                        )
-                    ).append(info.seasonName)
-                )
-            ).append(
-                $('<div class="card-content">').append(
-                    $('<div class="course-content">').append(
-                        $('<table class="is-center">').append(
-                            $('<tr>').append(
-                                $('<td>').append(info.skillName)
+        if(stype === parseInt(skillType)) {
+            courseCtx.append(
+                $('<div class="card  is-inlineblocked">').append(
+                    $('<div class="card-header">').append(
+                        $('<p class="card-header-title">').append(
+                            $('<span class="icon">').append(
+                                $('<i class="mdi mdi-account-edit">')
                             )
-                        )
-                        .append(
-                            $('<tr>').append(
-                                $('<td>').append( //info.level
-                                    $('<img>').attr('src', getSkillAsset(info.level))
-                                ).append(
-                                    $('<img>').attr('src', getMedalAsset(clear_medal))
-                                ).append(
-                                    getRate(clear_rate)
-                                ).attr('style', 'display: inline-flex;align-items: center;width:100%;')
+                        ).append(info.seasonName)
+                    )
+                ).append(
+                    $('<div class="card-content">').append(
+                        $('<div class="course-content">').append(
+                            $('<table class="is-center">').append(
+                                $('<tr>').append(
+                                    $('<td>').append(info.skillName + (stype ? " (God)" : ""))
+                                )
+                            )
+                            .append(
+                                $('<tr>').append(
+                                    $('<td>').append( //info.level
+                                        $('<img>').attr('src', getSkillAsset(info.level))
+                                    ).append(
+                                        $('<img>').attr('src', getMedalAsset(clear_medal))
+                                    ).append(
+                                        getRate(clear_rate)
+                                    ).attr('style', 'display: inline-flex;align-items: center;width:100%;')
+                                )
+                            ).attr('style', "table-color:#00000000")
+                        ).append(
+                            $('<table class="is-borderless">').append(
+                                $('<tr>').append(
+                                    $('<td>').append(
+                                        $('<div style="vertical-align: top;">').append(
+                                            $('<div style="width:80%;display:inline-block;vertical-align: center;font-family:ffff">')
+                                            .append(info.tracks[0].name)
+
+                                        )
+                                        .append(
+                                            $('<div style="width:20%;display:inline-block;vertical-align: center;">')
+                                            .append(getDifficultyAsset(info.tracks[0].type.toLowerCase(), info.tracks[0].level)) //.append(info.tracks[0].level)
+                                            //.css('background-image', 'url(' + "static/asset/difficulty/level_small_" + info.tracks[0].type.toLowerCase() + ".png" + ')')
+                                        )
+                                    ).attr('style', "padding:1em 2em")
+                                )
+                            ).append(
+                                $('<tr>').append(
+                                    $('<td>').append(
+                                        $('<div style="vertical-align: top;">').append(
+                                            $('<div style="width:80%;display:inline-block;vertical-align: center;font-family:ffff">')
+                                            .append(info.tracks[1].name)
+                                        )
+                                        .append(
+                                            $('<div style="width:20%;display:inline-block;vertical-align: center;">')
+                                            .append(getDifficultyAsset(info.tracks[1].type.toLowerCase(), info.tracks[1].level)) //.append(info.tracks[1].level)
+                                            //.css('background-image', 'url(' + "static/asset/difficulty/level_small_" + info.tracks[1].type.toLowerCase() + ".png" + ')')
+                                        )
+                                    ).attr('style', "padding:1em 2em")
+                                )
+                            ).append(
+                                $('<tr>').append(
+                                    $('<td>').append(
+                                        $('<div style="vertical-align: top;">').append(
+                                            $('<div style="width:80%;display:inline-block;vertical-align: center;font-family:ffff">')
+                                            .append(info.tracks[2].name)
+                                        )
+                                        .append(
+                                            $('<div style="width:20%;display:inline-block;vertical-align: center;">')
+                                            .append(getDifficultyAsset(info.tracks[2].type.toLowerCase(), info.tracks[2].level)) //info.tracks[2].level)
+                                            //.css('background-image', 'url(' + "static/asset/difficulty/level_small_" + info.tracks[2].type.toLowerCase() + ".png" + ')')
+                                        )
+                                    ).attr('style', "padding:1em 2em")
+                                )
                             )
                         ).attr('style', "table-color:#00000000")
-                    ).append(
-                        $('<table class="is-borderless">').append(
-                            $('<tr>').append(
-                                $('<td>').append(
-                                    $('<div style="vertical-align: top;">').append(
-                                        $('<div style="width:80%;display:inline-block;vertical-align: center;font-family:ffff">')
-                                        .append(info.tracks[0].name)
-
-                                    )
-                                    .append(
-                                        $('<div style="width:20%;display:inline-block;vertical-align: center;">')
-                                        .append(getDifficultyAsset(info.tracks[0].type.toLowerCase(), info.tracks[0].level)) //.append(info.tracks[0].level)
-                                        //.css('background-image', 'url(' + "static/asset/difficulty/level_small_" + info.tracks[0].type.toLowerCase() + ".png" + ')')
-                                    )
-                                ).attr('style', "padding:1em 2em")
-                            )
-                        ).append(
-                            $('<tr>').append(
-                                $('<td>').append(
-                                    $('<div style="vertical-align: top;">').append(
-                                        $('<div style="width:80%;display:inline-block;vertical-align: center;font-family:ffff">')
-                                        .append(info.tracks[1].name)
-                                    )
-                                    .append(
-                                        $('<div style="width:20%;display:inline-block;vertical-align: center;">')
-                                        .append(getDifficultyAsset(info.tracks[1].type.toLowerCase(), info.tracks[1].level)) //.append(info.tracks[1].level)
-                                        //.css('background-image', 'url(' + "static/asset/difficulty/level_small_" + info.tracks[1].type.toLowerCase() + ".png" + ')')
-                                    )
-                                ).attr('style', "padding:1em 2em")
-                            )
-                        ).append(
-                            $('<tr>').append(
-                                $('<td>').append(
-                                    $('<div style="vertical-align: top;">').append(
-                                        $('<div style="width:80%;display:inline-block;vertical-align: center;font-family:ffff">')
-                                        .append(info.tracks[2].name)
-                                    )
-                                    .append(
-                                        $('<div style="width:20%;display:inline-block;vertical-align: center;">')
-                                        .append(getDifficultyAsset(info.tracks[2].type.toLowerCase(), info.tracks[2].level)) //info.tracks[2].level)
-                                        //.css('background-image', 'url(' + "static/asset/difficulty/level_small_" + info.tracks[2].type.toLowerCase() + ".png" + ')')
-                                    )
-                                ).attr('style', "padding:1em 2em")
-                            )
-                        )
-                    ).attr('style', "table-color:#00000000")
+                    )
                 )
-            )
-        );
-        // $('<div>').append(
-        //     $('<div>').append("Season Name: " + info.seasonName)
-        // ).append(
-        //     $('<div>').append("Course Name: " + info.skillName)
-        // ).append(
-        //     $('<div>').append("Clear Mark: " + clear_medal)
-        // ).append(
-        //     $('<div>').append("Tracks: ").append(
-        //         $('<div>').append('&emsp;' + info.tracks[0].name + info.tracks[0].type + info.tracks[0].level)
-        //     ).append(
-        //         $('<div>').append('&emsp;' + info.tracks[1].name + info.tracks[1].type + info.tracks[1].level)
-        //     ).append(
-        //         $('<div>').append('&emsp;' + info.tracks[2].name + info.tracks[2].type + info.tracks[2].level)
-        //     )
-        // ));
-        //console.log("SET");
+            );
+            // $('<div>').append(
+            //     $('<div>').append("Season Name: " + info.seasonName)
+            // ).append(
+            //     $('<div>').append("Course Name: " + info.skillName)
+            // ).append(
+            //     $('<div>').append("Clear Mark: " + clear_medal)
+            // ).append(
+            //     $('<div>').append("Tracks: ").append(
+            //         $('<div>').append('&emsp;' + info.tracks[0].name + info.tracks[0].type + info.tracks[0].level)
+            //     ).append(
+            //         $('<div>').append('&emsp;' + info.tracks[1].name + info.tracks[1].type + info.tracks[1].level)
+            //     ).append(
+            //         $('<div>').append('&emsp;' + info.tracks[2].name + info.tracks[2].type + info.tracks[2].level)
+            //     )
+            // ));
+            //console.log("SET");
+        }
     }
     //console.log(content);
 }
 
-function setDataSource(dataSource) {
+function setDataSource(dataSource, skillType) {
     //console.log("currentDATA" + dataSource);
     switch (parseInt(dataSource)) {
         case 2:
@@ -319,7 +322,7 @@ function setDataSource(dataSource) {
             setCourseInfo(vw);
             break;
         case 6:
-            setCourseInfo(eg);
+            setCourseInfo(eg, skillType);
             break;
     }
 }
@@ -327,7 +330,15 @@ function setDataSource(dataSource) {
 $('#version_select').change(function() {
     $('#course_content').fadeOut(200, () => {
         console.log("change version select");
-        setDataSource($('#version_select').val());
+        setDataSource($('#version_select').val(), $('#skilltype_select').val());
+    });
+    $('#course_content').fadeIn(200);
+});
+
+$('#skilltype_select').change(function() {
+    $('#course_content').fadeOut(200, () => {
+        console.log("skill type select " + $('#skilltype_select').val());
+        setDataSource($('#version_select').val(), $('#skilltype_select').val());
     });
     $('#course_content').fadeIn(200);
 });
@@ -385,7 +396,8 @@ $(document).ready(function() {
         }
         console.log(arr);
         $('#version_select').val(6);
-        setDataSource($('#version_select').val());
+        $('#skilltype_select').val(0);
+        setDataSource($('#version_select').val(), $('#skilltype_select').val());
     })
 
     // $.getJSON("static/asset/json/music_db.json", function(json) {

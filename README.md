@@ -1,8 +1,9 @@
 # SOUND VOLTEX
 
-**Plugin Version:** 6.2.1
+**Plugin Version:** 6.2.2
 
-**Supported game versions:** EXCEED GEAR (2025100700)
+**Supported game versions:** 
+- EXCEED GEAR (2025100700)
 
 **Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d)
 
@@ -13,28 +14,31 @@
 
 Changelog
 ===========
-### 6.2.1
+### 6.2.2
 
-- Added event data:
-	- ぼる×りこ Cross Resonance (additional songs)
-	- BEMANI PRO LEAGUE -SEASON 5- Triple Tribe 0
-	- HEXA DIVER (冥府肝試し編～地獄の河もレジャー次第～)
-- Added ARENA STATION set 20
-- Updated MEGAMIX songs list
-- Added VALKYRIE GENERATOR Vol. 17
-- Updated Achievements list
-- Updated licensed songs list:
-	- オーバーライド
-	- ライアーダンサー
-	- murmur twins (guitar pop ver.)
-	- カジノファイヤーことみちゃん
-	- 朱と碧のランページ
-	- リメンバーリメンバー
-	- Shooting Star
-- Increased songNum from 2300 to 2400 (for 'unlock all songs')
-- Added "complete" message on webui resource update
-- Some migrate code fixes
+- Updated Valkyrie Model exclusive songs (removed 5 songs)
+- Updated MEGAMIX songs list (added Re:Gloss tracks)
+- Updated ARENA rank match data (Final EG Season: ARENA BATTLE) - apologies for missing szn 21
+- Added filter for Permissive/Divine Rate courses in SKILL ANALYZER profile UI.
+- Updated the SKILL ANALYZER course ids to fix some of them not appearing in older game versions/datecodes.
+	- Plugin will automatically update your course data to reflect these new course IDs.
+	- Re-run the WebUI resource update to fix/update course_data.json.
+- Misc fixes
+	- added version checks to send fewer (if not only) necessary server data for that specific game versions/datecodes.
+	- fix compatibility issues with older versions of EXCEED GEAR (looks fine with 20210831, but will need to continue test for later versions)
 
+
+#### RE: Standard Start issue on version 20250422+
+This is not a plugin issue but I feel it is necessary to share. I did notice this while testing VARIANT GATE but I forgot to mention it so I apologize. As mentioned in issue [#34](https://github.com/22vv0/asphyxia_plugins/issues/34), if you're having trouble carding in after a Standard Start credit, what fixed it for me was adding these lines to your ea3-config.xml file, in ea3->pos->coin. I personally put it just under _kfc\_game\_s\_standard_:
+```xml
+      <kfc_game_s_standard_plus>
+        <type __type="str">consume</type>
+        <event __type="str">KFC.game.s.standard_plus</event>
+        <player_ref __type="str">/coin/player1/ref_slotid</player_ref>
+        <credit_ref __type="str">/coin/event</credit_ref>
+      </kfc_game_s_standard_plus>
+```
+Then [re]start your game. Saving your data and starting a new Standard Start credit should now work fine. Also it looks like playing Standard Start in Skill Analyzer will cause the same problem to occur. In that case, doing the ea3-config fix above (or something similar) should be enough to resolve this problem as well.
 
 Report issues
 ===========
@@ -51,18 +55,6 @@ Report issues
 
 #### Create Github Issue
 [Add an issue](https://github.com/22vv0/asphyxia_plugins/issues) to the GitHub repository and make sure to provide the logs from Asphyxia dev mode so I could have a better idea on where to check for bugs and issues.
-
-#### RE: Standard Start issue on 2025042202
-This is not a plugin issue but I feel it is necessary to share. I did notice this while testing VARIANT GATE but I forgot to mention it so I apologize. As mentioned in issue [#34](https://github.com/22vv0/asphyxia_plugins/issues/34), if you're having trouble playing Standard Start, what fixed it for me was adding these lines to your ea3-config.xml file, in ea3->pos->coin. I personally put it just under _kfc\_game\_s\_standard_:
-```xml
-      <kfc_game_s_standard_plus>
-        <type __type="str">consume</type>
-        <event __type="str">KFC.game.s.standard_plus</event>
-        <player_ref __type="str">/coin/player1/ref_slotid</player_ref>
-        <credit_ref __type="str">/coin/event</credit_ref>
-      </kfc_game_s_standard_plus>
-```
-Then [re]start your game. Saving your data and starting a new Standard Start credit should now work fine. Also it looks like playing Standard Start in Skill Analyzer will cause the same problem to occur. In that case, doing the ea3-config fix above (or something similar) should be enough to resolve this problem as well.
 
 Todo:
 ==========

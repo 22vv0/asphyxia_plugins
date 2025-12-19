@@ -5,6 +5,7 @@
             "type": "cross_online",
             "enabled": true,
             "name": "X-record",
+            "version": 20210406,
             "desc": "Crossover event between SOUND VOLTEX EXCEED GEAR and beatmania IIDX 28 BISTROVER. Crossover songs are unlocked by earning LM and VM points.<br>However, since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding SOUND VOLTEX songs' option to automatically unlock them on your next login.",
             "info": [
                 "Song 1: Chewingood!!! -- from beatmania IIDX 28 BISTROVER",
@@ -17,6 +18,7 @@
             "type": "cross_online",
             "enabled": true,
             "name": "X-record 第二弾",
+            "version": 20220125,
             "desc": "Crossover event between SOUND VOLTEX EXCEED GEAR and beatmania IIDX 29 CastHour. Crossover songs are unlocked by earning LM and VM points.<br>However, since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding SOUND VOLTEX songs' option to automatically unlock them on your next login.",
             "info": [
                 "Song 1: Fegrix -- from beatmania IIDX 29 CastHour",
@@ -29,6 +31,7 @@
             "type": "cross_online",
             "enabled": true,
             "name": "X-record 第三弾",
+            "version": 20230131,
             "desc": "Crossover event between SOUND VOLTEX EXCEED GEAR and beatmania IIDX 30 RESIDENT. Crossover songs are unlocked by earning LM and VM points.<br>However, since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding SOUND VOLTEX songs' option to automatically unlock them on your next login.",
             "info": [
                 "Song 1: 儚キ戀ノ幻想譚 -- from beatmania IIDX 30 RESIDENT",
@@ -41,6 +44,13 @@
             "type": "gift",
             "enabled": true,
             "name": "グレイスからの挑戦状!! (GRACE kara no chousenjou!!)",
+            "version": [
+              20210608,
+              20210629,
+              20210803,
+              20210831,
+              20211005  
+            ],
             "desc": "Songs that are originally unlocked by having played it first on the コナステ (Konasute) version of Sound Voltex.<br>Toggle the individual song option to unlock them on your next login.",
             "info": [
                "Unlocks ドゥサンコオデッセイ!! upon logging in.",
@@ -55,6 +65,10 @@
             "type": "cross_online",
             "enabled": true,
             "name": "BPL応援 楽曲解禁スタンプラリー (BPL ouen gakkyoku kaikin stamp rally)",
+            "version": [
+                20210727,
+                20210727
+            ],
             "desc": "Songs in this event are originally unlocked by accessing the official BEMANI PRO LEAGUE 2021 website and obtaining the stamp by watching VODs of the BPL competition.<br>However, since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding SOUND VOLTEX songs' option to automatically unlock them on your next login.",
             "info": [
                 "Unlocks カジノファイヤーことみちゃん upon logging in.",
@@ -66,14 +80,22 @@
             "type": "cross_online",
             "enabled": true,
             "name": "BEMANI 2021真夏の歌合戦5番勝負 (BEMANI 2021 manatsu no utagassen 5 ban shoubu)",
+            "version": [
+                20210727,
+                20210727,
+                20210727,
+                20210727,
+                20210727,
+                20210727
+            ],
             "desc": "This is a cross-BEMANI event. Songs are originally unlocked by playing participating BEMANI games and earn 'Yell' points.<br>However, since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding SOUND VOLTEX songs' option to automatically unlock them on your next login.",
             "info": [
                 "1st Stage: MA・TSU・RI -- TEAM RED",
                 "2nd Stage: MOVE! (We Keep It Movin') -- TEAM BLUE",
-                "3rd Stage: LIKE A VAMPIRE",
-                "3rd Stage: スーパー戦湯ババンバーン",
-                "4th Stage: 斑咲花 -- TEAM BLUE",
-                "5th Stage:  ユメブキ -- TEAM RED"
+                "3rd Stage: LIKE A VAMPIRE -- TEAM RED",
+                "4th Stage: スーパー戦湯ババンバーン -- TEAM BLUE",
+                "5th Stage: 斑咲花 -- TEAM BLUE",
+                "6th Stage:  ユメブキ -- TEAM RED"
             ]
         },
         {
@@ -81,6 +103,7 @@
             "type": "stamp",
             "enabled": true,
             "name": "SOUND VOLTEX 10th Anniversary",
+            "version": 20220117,
             "desc": "Stamp event to unlock 7 songs in any order. As of 07/06/2023, all the songs included in this event can now be unlocked via PCB.",
             "info": "Toggle this on to enable/disable this stamp event."
         },
@@ -89,6 +112,7 @@
             "type": "stamp",
             "enabled": true,
             "name": "REFLEC BEAT Song Stamp Event",
+            "version": 20220323,
             "desc": "Stamp event to unlock 5 songs originally from the REFLEC BEAT game series.<br><br>As of 01/30/2024, these songs are now unlockable via PCB.",
             "info": "Toggle this on to enable/disable this stamp event."
         },
@@ -97,6 +121,7 @@
             "type": "cross_online",
             "enabled": true,
             "name": "いちかのごちゃまぜMix UP！ (Ichika no gochamaze Mix UP!)",
+            "version": 20221031,
             "desc": "This is a cross-BEMANI event. Songs include some that are shared from other BEMANI games and some that are mashup/remixes of the shared songs. These are originally unlocked by playing participating BEMANI games and earning points to fill different gauges.<br><br>However, since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding SOUND VOLTEX songs' option to automatically unlock them on your next login.<br><br>As of 01/30/2024, these songs are now unlockable via PCB.", 
             "info": [
                 "Song 1: perditus†paradisus -- from beatmania IIDX 18 Resort Anthem",
@@ -110,7 +135,21 @@
             "id": "bpl2022",
             "type": "gift",
             "enabled": true,
-            "name": "BEMANI PRO LEAGUE -SEASON 2-! Original Song",
+            "name": "BEMANI PRO LEAGUE -SEASON 2- 参戦記念！オリジナル楽曲コンテスト | BEMANI PRO LEAGUE SEASON 2 Original Song Contest",
+            "version": [
+                20221129,
+                20221129,
+                20221220,
+                20221220,
+                20221220,
+                20221220,
+                20230117,
+                20230117,
+                20230131,
+                20230214,
+                20230214,
+                20230228
+            ],
             "desc": "Songs revealed for the BEMANI Pro League Season 2 sightread challenges.<br>Toggle to have the songs from their corresponding week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.",
             "info": [
                 "Week 1 songs: 'Chat perché' and 'WINNING ROAD'",
@@ -132,6 +171,7 @@
             "type": "stamp",
             "enabled": true,
             "name": "PCBおかわりスタンプイベント | PCB Refill Stamp Event",
+            "version": 20210831,
             "desc": "Stamp event to earn PCB. Once the stamp goal is complete, it will start over and you can earn more PCB.",
             "info": "Toggle this on to enable/disable this stamp event."
         },
@@ -140,6 +180,7 @@
             "type": "stamp",
             "enabled": true,
             "name": "んだんだぺったん☆二〇二三 | New Year 2023 Stamp Event",
+            "version": 20221220,
             "desc": "Stamp event to unlock the んだんだぺったん☆二〇二三 appeal card.",
             "info": "Toggle this on to enable/disable this stamp event."
         },
@@ -148,6 +189,7 @@
             "type": "stamp",
             "enabled": true,
             "name": "HIMEHINAコラボイベント | HIMEHINA Collab Stamp Event",
+            "version": 20211124,
             "desc": "Stamp event to unlock the HIMEHINA crew. Both can be unlocked in any order.",
             "info": "Toggle this on to enable/disable this stamp event."
         },
@@ -156,6 +198,7 @@
             "type": "stamp",
             "enabled": true,
             "name": "ボルテ11周年★記念限定カード | SOUND VOLTEX 11th Anniversary Stamp Event",
+            "version": 20230117,
             "desc": "Stamp event to unlock the ボルテ11周年★記念限定カード appeal card to commemorate 11 years of SOUND VOLTEX.",
             "info": "Toggle this on to enable/disable this stamp event."
         },
@@ -164,6 +207,7 @@
             "type": "stamp",
             "enabled": true,
             "name": "Commemorating BEMANI PRO LEAGUE -SEASON 2-! Original Song Contest Special Stamp Event",
+            "version": 20230329,
             "desc": "Stamp event to unlock 9 songs, including SuddeИDeath. Songs can be unlocked in any order, except for SuddeИDeath, which will be available to unlock once all the other songs are unlocked.<br><br>As of 01/30/2024, these songs are now unlockable via BLASTER GATE.",
             "info": "Toggle this on to enable/disable this stamp event."
         },
@@ -172,6 +216,7 @@
             "type": "gift",
             "enabled": true,
             "name": "KONAMI Arcade Championship (2023) Entry Song",
+            "version": 20230807,
             "desc": "Enabled by entering the Konami Arcade Championship 2023 SOUND VOLTEX qualifiers, this event unlocks the song パーフェクトイーター / Perfect Eater on your next login.",
             "info": "Toggle this on to enable/disable this event."
         },
@@ -179,7 +224,8 @@
             "id": "kac2023stamp",
             "type": "stamp",
             "enabled": true,
-            "name": "KAC 2023 Special Stamp Event (累乗のカルマ)",
+            "name": "KAC(2023) スペシャルスタンプ！ (予選ラウンドA) | KAC(2023) Special Stamp! (Qualifying Round A)",
+            "version": 20230807,
             "desc": "Enabled by entering the Konami Arcade Championship 2023 SOUND VOLTEX qualifiers, this event will start a stamp event to unlock a new song, 累乗のカルマ. Collect 10 stamps to complete the stamp event.",
             "info": "Toggle this on to enable/disable this event."
         },
@@ -188,6 +234,11 @@
             "type": "cross_online",
             "enabled": true,
             "name": "BEMANI PRO LEAGUE -SEASON 3- Triple Tribe",
+            "version": [
+              20230807,
+              20230807,
+              20230807  
+            ],
             "desc": "Crossover event between SOUND VOLTEX -Valkyrie model-, DanceDanceRevolution 20th anniversary model, and beatmania IIDX LIGHTNING MODEL cabinets where you would earn TD, TB and TS points which can be used to unlock songs through the participating games.<br>However, since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding SOUND VOLTEX songs' option to automatically unlock them on your next login.",
             "info": [
                 "Song 1: 'stellar rain.'",
@@ -200,6 +251,7 @@
             "type": "stamp",
             "enabled": true,
             "name": "KAC 2023 Special Stamp Event (Stylus and QQ)",
+            "version": 20230912,
             "desc": "Stamp select event to unlock Stylus and QQ and can be unlocked in any order. Collect 10 stamps for each song.",
             "info": "Toggle this option to enable/disable this stamp event."
         },
@@ -208,6 +260,7 @@
             "type": "cross_online",
             "enabled": true,
             "name": "CHASE CHASE JOKERS × SOUND VOLTEX collaboration event",
+            "version": 20230425,
             "desc": "Online crossover event with CHASE CHASE JOKERS. Obtaining 6 stamps on the event site would unlock a song originally from CCJ.<br><br>As of 01/30/2024, this song is now unlockable via PCB.",
             "info": "Toggle this option on to unlock チェイスチェイスジョーカーズのうた on your next login."
         },
@@ -215,7 +268,8 @@
             "id": "2024stamp",
             "type": "stamp",
             "enabled": true,
-            "name": "ドラゴンの宴☆二〇二四 | New Year 2024 Stamp Event",
+            "name": "新春ドラゴンの宴 スタンプボーナス | New Year 2024 Stamp Event",
+            "version": 20231219,
             "desc": "Stamp event to unlock the 2024 appeal card, plus PCB for the remaining 9 steps.",
             "info": "Toggle this option to enable/disable this stamp event."
         },
@@ -223,7 +277,8 @@
             "id": "12thanniv",
             "type": "stamp",
             "enabled": true,
-            "name": "ボルテ12周年★記念限定カード | 12th Anniversary Appeal Card",
+            "name": "12周年記念スタンプ | 12th Anniversary Appeal Card",
+            "version": 20240116,
             "desc": "Stamp event to unlock the SDVX 12th anniversary appeal card.",
             "info": "Toggle this option to enable/disable this stamp event."
         },
@@ -232,6 +287,7 @@
             "type": "stamp",
             "enabled": true,
             "name": "PCBおかわりスタンプイベント | 12th Anniversary PCB Refill Stamp Event",
+            "version": 20240116,
             "desc": "Stamp event to earn PCB. Once the stamp goal is complete, it will start over and you can earn more PCB.",
             "info": "Toggle this on to enable/disable this stamp event."
         },  
@@ -240,6 +296,15 @@
             "type": "gift",
             "enabled": true,
             "name": "BEMANI PRO LEAGUE -SEASON 3-! Original Song",
+            "version": [
+                20240130,
+                20240206,
+                20240206,
+                20240220,
+                20240220,
+                20240305,
+                20240305
+            ],
             "desc": "Songs revealed for the BEMANI Pro League Season 3 sightread challenges.<br>Toggle to have the songs from their corresponding week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.",
             "info": [
                 "Week 1 songs: 'We Are All The Dreamer' and 'Double or Nothing'",
@@ -256,6 +321,11 @@
             "type": "cross_online",
             "enabled": true,
             "name": "BEMANI PRO LEAGUE -SEASON 3- Triple Tribe (part 2)",
+            "version": [
+                20240206,
+                20240206,
+                20240206
+            ],
             "desc": "Crossover event between SOUND VOLTEX -Valkyrie model-, DanceDanceRevolution 20th anniversary model, and beatmania IIDX LIGHTNING MODEL cabinets where you would earn TD, TB and TS points which can be used to unlock songs through the participating games.<br>However, since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding SOUND VOLTEX songs' option to automatically unlock them on your next login.",
             "info": [
                 "Song 1: 'ちょえちょえまぎか.'",
@@ -268,6 +338,7 @@
             "type": "completestamp",
             "enabled": true,
             "name": "BPL S3 コンプリートスタンプ | BPL S3 Complete Stamp Event",
+            "version": 20240402,
             "desc": "Stamp event to unlock the BPL S3 SDVX Semifinal songs (Xeno Gravity, Cuz we <3 this Game) and the Final song (NEMSYS ARENA World Hexathlon.)<br>Clear the songs displayed on the sheet to earn their stamps. A total of 23 stamps can be obtained.",
             "info": "Toggle this option to enable/disable this stamp event."
         },
@@ -276,6 +347,7 @@
             "type": "gift_crew",
             "enabled": true,
             "name": "Mini Grace NEMSYS Crew Gift",
+            "version": 20240402,
             "desc": "Sent to people who bought tickets for the BPL S3 SDVX Finals event.",
             "info": "Toggle this on to automatically get the item."
         },
@@ -283,7 +355,8 @@
             "id": "bpls3stamp",
             "type": "stamp",
             "enabled": true,
-            "name": "BEMANI PRO LEAGUE -SEASON 3- Special Stamp",
+            "name": "BEMANI PRO LEAGUE -SEASON 3- オリジナル楽曲コンテスト採用楽曲スペシャルスタンプ | BEMANI PRO LEAGUE -SEASON 3- Original Song Contest Winning Song Special Stamp Event",
+            "version": 20240402,
             "desc": "Similar to BPL S2 stamp event (SuddeИDeath,) this is an event to unlock 10 songs, including { eXLIPXe }. Songs can be unlocked in any order, except for { eXLIPXe }, which will be available to unlock for 30 stamps once all the other songs are unlocked.",
             "info": "Toggle this on to enable/disable this stamp event."
         },
@@ -292,6 +365,7 @@
             "type": "tama",
             "enabled": true,
             "name": "TAMA猫アドベンチャー (TAMANEKO Adventure)",
+            "version": 20240709,
             "desc": "New unlock system where you complete map missions to earn TAMANEKO food. New and XCD charts are available to unlock, as well as a 'Track Liberation' and a 'OVER ADVENTURE' map.",
             "info": "Toggle to enable/disable event."
         },
@@ -300,6 +374,7 @@
             "type": "stamp",
             "enabled": true,
             "name": "REFLEC BEAT Song Stamp Event (2024)",
+            "version": 20240723,
             "desc": "Stamp event to unlock 5 more songs originally from the REFLEC BEAT game series.",
             "info": "Toggle this on to enable/disable this stamp event."
         },
@@ -308,6 +383,13 @@
             "type": "cross_online",
             "enabled": true,
             "name": "MYSTICAL Re:UNION",
+            "version": [
+                20240910,
+                20240910,
+                20240910,
+                20240910,
+                20240910
+            ],
             "desc": "Crossover event for SDVX and DDR. Toggle on to unlock song/s.",
             "info": [
                 "Song 1: Blφφdy Cφncertφ",
@@ -322,6 +404,11 @@
             "type": "cross_online",
             "enabled": true,
             "name": "BEMANI PRO LEAGUE -SEASON 4- Triple Tribe",
+            "version": [
+                20241022,
+                20241022,
+                20241022
+            ],
             "desc": "Crossover event between SOUND VOLTEX -Valkyrie model-, DanceDanceRevolution 20th anniversary model, and beatmania IIDX LIGHTNING MODEL cabinets where you would earn TD, TB and TS points which can be used to unlock songs through the participating games.<br>However, since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding SOUND VOLTEX songs' option to automatically unlock them on your next login.",
             "info": [
                 "Song 1: 'Come to Life",
@@ -334,6 +421,7 @@
             "type": "stamp",
             "enabled": true,
             "name": "PRECIOUS UNIVERSAL CELEBRATE STAMP",
+            "version": 20241210,
             "desc": "Stamp select event where you can unlock 9 songs in any order.",
             "info": "Toggle this on to enable/disable this stamp event."
         },
@@ -342,6 +430,7 @@
             "type": "stamp",
             "enabled": true,
             "name": "2025 U,R,B,R,,, YE-AR---!!!ｷｬ----!!!!!! スタンプボーナス | New Year 2025 Stamp Event",
+            "version": 20241223,
             "desc": "Stamp event to unlock the 2025 appeal card, plus PCB for the remaining 9 steps.",
             "info": "Toggle this option to enable/disable this stamp event."
         },
@@ -350,6 +439,7 @@
             "type": "gift_ap",
             "enabled": true,
             "name": "13th anniversary Tsubaki-chan appeal card gift",
+            "version": 20250114,
             "desc": "",
             "info": "Toggle this on to automatically get the item."
         },
@@ -358,6 +448,7 @@
             "type": "stamp",
             "enabled": true,
             "name": "PCBおかわりスタンプイベント | 13th Anniversary PCB Refill Stamp Event",
+            "version": 20250114,
             "desc": "Stamp event to earn PCB. Once the stamp goal is complete, it will start over and you can earn more PCB.",
             "info": "Toggle this on to enable/disable this stamp event."
         },
@@ -366,6 +457,7 @@
             "type": "stamp",
             "enabled": true,
             "name": "hololive SUPER EXPO 2025出展記念!コラボスタンプ",
+            "version": 20250218,
             "desc": "Stamp events to get hololive appeal cards and appeal titles. Play songs by Shirakami Fubuki, Nekomata Okayu, Tsunomaki Watame, Houshou Marine and Usada Pekora to earn stamps.",
             "info": "Toggle this on to enable the stamp events."
         },
@@ -374,6 +466,7 @@
             "type": "variant",
             "enabled": true,
             "name": "VARIANT GATE 「月輪の紋様」",
+            "version": 20250422,
             "desc": "1st set of VARIANT GATE. Accumulate VARIANT POWER to make a special song folder appear in EXTRACK, clear the songs at a certain difficulty to obtain keys. Get all keys to play OVER TRACK.",
             "info": "Toggle this on to enable/disable this event.",
             "settings": [
@@ -396,6 +489,7 @@
             "type": "variant",
             "enabled": true,
             "name": "VARIANT GATE 「永遠の紋様」",
+            "version": 20250624,
             "desc": "2nd set of VARIANT GATE. Accumulate VARIANT POWER to make a special song folder appear in EXTRACK, clear the songs at a certain difficulty to obtain keys. Get all keys to play OVER TRACK.",
             "info": "Toggle this on to enable/disable this event.",
             "settings": [
@@ -418,6 +512,17 @@
             "type": "cross_online",
             "enabled": true,
             "name": "ぼる×りこ Cross Resonance",
+            "version": [
+                20250422,
+                20250422,
+                20250422,
+                20250708,
+                20250708,
+                20250708,
+                20250924,
+                20250924,
+                20250924
+            ],
             "desc": "Crossover event between SOUND VOLTEX and Polaris Chord<br>Since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding songs' option below to automatically unlock them on your next login.",
             "info": [
                 "Song 1: 'Crossfade'",
@@ -436,6 +541,7 @@
             "type": "stamp",
             "enabled": true,
             "name": "REFLEC BEAT Song Stamp Event (2025)",
+            "version": 20250527,
             "desc": "Stamp event to unlock 5 more songs originally from the REFLEC BEAT game series.",
             "info": "Toggle this on to enable/disable this stamp event."
         },
@@ -444,6 +550,13 @@
             "type": "cross_online",
             "enabled": true,
             "name": "BEMANI PRO LEAGUE -SEASON 5- Triple Tribe 0",
+            "version": [
+                20250715,
+                20250715,
+                20250715,
+                20250715,
+                20250715
+            ],
             "desc": "Crossover event between SOUND VOLTEX, DanceDanceRevolution, and beatmania IIDX where you would earn TD, TB and TS points which can be used to unlock songs through the participating games.<br>However, since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding SOUND VOLTEX songs' option to automatically unlock them on your next login.",
             "info": [
                 "Song 1: 'Secret Rouge'",
@@ -505,13 +618,13 @@
         },
         {
             "id": "aprilrainbowline",
-            "key": "V-RAN (april fools 2024)",
+            "key": "V-RAN (April Fools 2024)",
             "str": "APRIL_RAINBOW_LINE_ACTIVE",
             "explain": "Enables April Fools 2024 Effect: rainbow lasers. Type V-RAN on song search bar to enable."
         },
         {
             "id": "aprilyukkuri",
-            "key": "ゆっくりしていってね！！！",
+            "key": "ゆっくりしていってね！！！ (April Fools 2025)",
             "str": ["YUKKURI_RASIS_CREW_ENABLE", "YUKKURI_RASIS_TITLE_ENABLE"],
             "explain": "Enables April Fools 2025 Effect: title screen with Yukkuri SOUND VOLTEX characters, and Yukkuri Rasis navigator."
         }
