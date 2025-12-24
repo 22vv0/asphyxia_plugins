@@ -5670,6 +5670,20 @@
             "rtype": "aptitle",
             "rid": 10364,
             "troptype": 3
+        },
+        {
+            "id": 811,
+            "title": "『SOUND VOLTEX 13周年記念！キャラクターテーマ楽曲コンテスト』 の楽曲をすべてクリア",
+            "rtype": "none",
+            "rid": -1,
+            "troptype": 0
+        },
+        {
+            "id": 812,
+            "title": "『BEMANI PRO LEAGUE -SEASON 5- オリジナル楽曲コンテスト』 の楽曲をすべてクリア",
+            "rtype": "none",
+            "rid": -1,
+            "troptype": 0
         }
     ]
 }

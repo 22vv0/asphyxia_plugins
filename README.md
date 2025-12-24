@@ -1,9 +1,9 @@
 # SOUND VOLTEX
 
-**Plugin Version:** 6.2.2
+**Plugin Version:** 6.2.3
 
 **Supported game versions:** 
-- EXCEED GEAR (2025100700)
+- EXCEED GEAR (2025120900 - final)
 
 **Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d)
 
@@ -14,19 +14,20 @@
 
 Changelog
 ===========
-### 6.2.2
+### 6.2.3
 
-- Updated Valkyrie Model exclusive songs (removed 5 songs)
-- Updated MEGAMIX songs list (added Re:Gloss tracks)
-- Updated ARENA rank match data (Final EG Season: ARENA BATTLE) - apologies for missing szn 21
-- Added filter for Permissive/Divine Rate courses in SKILL ANALYZER profile UI.
-- Updated the SKILL ANALYZER course ids to fix some of them not appearing in older game versions/datecodes.
-	- Plugin will automatically update your course data to reflect these new course IDs.
-	- Re-run the WebUI resource update to fix/update course_data.json.
-- Misc fixes
-	- added version checks to send fewer (if not only) necessary server data for that specific game versions/datecodes.
-	- fix compatibility issues with older versions of EXCEED GEAR (looks fine with 20210831, but will need to continue test for later versions)
-
+- Added event data:
+	- ぼる×りこ Cross Resonance (additional 3 songs)
+	- BEMANI PRO LEAGUE -SEASON 5- Original Song (Songs 1 to 4)
+	- BEMANI PRO LEAGUE -SEASON 5- Team Appeal Card
+	- GITADORA Special Stamp! (2 songs)
+- Added PREMIUM GENERATOR:
+	- GITADORA Rion set
+- Updated licensed songs list:
+	- シンクロニティ
+- Added ARENA STATION set 21 and 22 (Final)
+- Fixed previous ARENA STATION items list
+- Updated achievements list.
 
 #### RE: Standard Start issue on version 20250422+
 This is not a plugin issue but I feel it is necessary to share. I did notice this while testing VARIANT GATE but I forgot to mention it so I apologize. As mentioned in issue [#34](https://github.com/22vv0/asphyxia_plugins/issues/34), if you're having trouble carding in after a Standard Start credit, what fixed it for me was adding these lines to your ea3-config.xml file, in ea3->pos->coin. I personally put it just under _kfc\_game\_s\_standard_:

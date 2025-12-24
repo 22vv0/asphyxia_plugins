@@ -521,7 +521,10 @@
                 20250708,
                 20250924,
                 20250924,
-                20250924
+                20250924,
+                20251125,
+                20251125,
+                20251125
             ],
             "desc": "Crossover event between SOUND VOLTEX and Polaris Chord<br>Since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding songs' option below to automatically unlock them on your next login.",
             "info": [
@@ -533,7 +536,10 @@
                 "Song 6: 'DISTORDER'",
                 "Song 7: 'HOLOGRAPHY'",
                 "Song 8: 'Like the Starlight'",
-                "Song 9: 'FRENZY HEART'"
+                "Song 9: 'FRENZY HEART'",
+                "Song 10: 'フラッフィー・アドベンチャー！'",
+                "Song 11: 'Temporal Veil'",
+                "Song 12: '555 (Please call me “Go! Go! Go!”)'"
             ]
         },
         {
@@ -564,6 +570,59 @@
                 "Song 3: 'Snow Garland Fairy'",
                 "Song 4: 'Electronic Sports Complex'",
                 "Song 5: 'EYE OF THE HEAVEN'"
+            ]
+        },
+        {
+            "id": "bpls5sdvx",
+            "type": "gift",
+            "enabled": true,
+            "name": "BEMANI PRO LEAGUE -SEASON 5-! Original Song",
+            "version": [
+                20251125,
+                20251125,
+                20251209,
+                20251209
+            ],
+            "desc": "Songs revealed for the BEMANI Pro League Season 5 sightread challenges.<br>Toggle to have the songs from their corresponding week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.",
+            "info": [
+                "Week 1 song: 'Divine Ether'",
+                "Week 2 song: '#Evil_Signs_of_Bloodlines'",
+                "Week 3 songs: 'Blessed Horizon'",
+                "Week 4 songs: '双星の冒険録'"
+            ]
+        },
+        {
+            "id": "gitadorastamp",
+            "type": "stamp",
+            "enabled": true,
+            "name": "GITADORA Special Stamps！",
+            "version": 20251209,
+            "desc": "Stamp event to unlock 2 songs originally from GITADORA.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "bpls5apica",
+            "type": "gift_ap",
+            "enabled": true,
+            "name": "BEMANI PRO LEAGUE -SEASON 5-! Team Appeal Card",
+            "version": [
+                20251209,
+                20251209,
+                20251209,
+                20251209,
+                20251209,
+                20251209,
+                20251209
+            ],
+            "desc": "Toggle to unlock BPL S5 Appeal Card for each team.",
+            "info": [
+                "APINA VRAMeS",
+                "GiGO",
+                "GAME PANIC",
+                "SILK HAT",
+                "TAITO STATION Tradz",
+                "ROUND1",
+                "レジャーランド"
             ]
         }
     ],
