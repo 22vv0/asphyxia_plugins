@@ -1,6 +1,9 @@
 var achobt = []
 var achdata = []
 var aptitlelist = []
+var currentVersion;
+var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVIDWAVE', 'EXCEED GEAR', '∇']
+
 $(document).ready(async function() {
 	achobt = JSON.parse(document.getElementById("data-pass").innerText);
 	achobt.sort(function(a, b){return a['id'] - b['id']});
@@ -12,20 +15,33 @@ $(document).ready(async function() {
     })
     aptitlelist = aptitlelist['akaname']
 
-    await populateAch(1);
+    currentVersion = (achobt.length > 0) ? achobt.sort((a, b) => b.version - a.version)[0].version : 6
+    for(var i in versionText) {
+        if(achobt.filter(c => c.version === parseInt(i)).length > 0) {
+            $('#version_select').append($('<option>', {
+                value: i,
+                text: versionText[i],
+                selected: (parseInt(i) === currentVersion)
+            }));
+        }
+    }
+    await populateAch(1, currentVersion);
 
     $('#ach-filter').change(async function() {
     	// $('.ach-list').empty()
-    	await populateAch(parseInt($('#ach-filter').val()));
+    	await populateAch(parseInt($('#ach-filter').val()), parseInt($('#version_select').val()));
     })
 
+    $('#version_select').change(async function() {
+	    await populateAch(parseInt($('#ach-filter').val()), parseInt($('#version_select').val()));
+	});
 	
 })
 
-async function populateAch(listType) {
+async function populateAch(listType, version) {
 	let achListFinal = []
 	achdata['achievements'].forEach(ach => {
-		let achFound = achobt.find(obt => ach['id'] === obt['id'])
+		let achFound = achobt.filter(obt => parseInt(version) === obt.version).find(obt => ach['id'] === obt['id'])
 		let reward = ''
 		if(ach['rid'] !== -1) {
 			if(ach['rtype'] === 'pcb') {

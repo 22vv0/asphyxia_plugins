@@ -2,6 +2,8 @@ export interface Profile {
   collection: 'profile';
 
   pluginVer: number;
+  version: number;
+  dbver: number;
 
   id: number;
   name: string;

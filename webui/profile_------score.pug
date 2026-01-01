@@ -1,5 +1,6 @@
 //DATA//
-  profile: DB.Find(refid, { collection: 'music' })
+  profile: DB.Find(refid, { collection: 'profile' })
+  score: DB.Find(refid, { collection: 'music' })
 
 -
   //const padded = _.padStart(profile.id.toString(), 8);
@@ -14,6 +15,12 @@ div
           i.mdi.mdi-account-edit
         | Score
     .card-content
+      .field
+            label.label Show scores for version:
+            .ver-select
+              .control
+                .select
+                  select(name="version_select" id="version_select")
       table.table(id="music_score" style="width:100%")
         thead
           tr    
@@ -26,6 +33,7 @@ div
             th Clear Medal
         tbody
 
-div(hidden id='data-pass') !{JSON.stringify(profile)}
+div(hidden id='profile-pass') !{JSON.stringify(profile)}
+div(hidden id='score-pass') !{JSON.stringify(score)}
 script(src="static/asset/js/score.js") 
 script(src="static/asset/js/datatables.js")

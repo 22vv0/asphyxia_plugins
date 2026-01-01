@@ -1,33 +1,78 @@
 # SOUND VOLTEX
 
-**Plugin Version:** 6.2.3
+**Plugin Version:** 7.0.0
 
 **Supported game versions:** 
-- EXCEED GEAR (2025120900 - final)
+- EXCEED GEAR (2025120900)
+- ∇ (2025122600)
 
 **Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d)
 
 **Notes** 
-- Please be aware that this plugin and the savefile it produces are incompatible with the official plugin, or any other forks. Please be cautious of using other plugins' savefiles with this fork of the plugin, or using this fork's savefile with other plugins.
+- **Please keep a copy/backup of your savedata directory** so you have something to come back to in case of a problem with your database.
 - Before using this plugin, run the [WebUI Asset Update](/plugin/sdvx@asphyxia/update%20webui%20assets). Do this every data and plugin update.
-- Please back up your save data to prevent unwanted issues (just in case)
+
+
+Important notes for players migrating from EXCEED GEAR to ∇
+===========
+- Before logging in to ∇, **it is important to run the WebUI Asset Update** as the plugin needs at least the latest EG music_db to pull difficulty level info from so the plugin could calculate your ∇ VOLFORCE properly, or to as close as it can to your EG VF. In EG, the VF is calculated on the fly when you login, but in ∇ the individual chart VF is now being stored in DB.
+- Data import to ∇ will copy your profile, scores, items, etc. from EG. You can continue playing EG using your migrated profile but it will have separate progression/data from ∇.
+- Just a heads up that there is a bug in game version 20251224 that causes charts to not appear in the VOLFORCE POTENTIAL folder.
+- Charts announced to have EX SCORES reset will be reset here as well.
 
 Changelog
 ===========
-### 6.2.3
+### 7.0.0
 
-- Added event data:
-	- ぼる×りこ Cross Resonance (additional 3 songs)
-	- BEMANI PRO LEAGUE -SEASON 5- Original Song (Songs 1 to 4)
-	- BEMANI PRO LEAGUE -SEASON 5- Team Appeal Card
-	- GITADORA Special Stamp! (2 songs)
-- Added PREMIUM GENERATOR:
-	- GITADORA Rion set
-- Updated licensed songs list:
-	- シンクロニティ
-- Added ARENA STATION set 21 and 22 (Final)
-- Fixed previous ARENA STATION items list
-- Updated achievements list.
+- ∇ support
+	- Data creation/save/load
+		- Data import from EXCEED GEAR
+	- Added Features:
+		- Beginner Songs folder
+		- BLASTER GATE folder
+			- BPL S2 original songs
+			- BPL S3 original songs
+			- BPL S5 original songs
+			- HEXA DIVER songs
+			- XCD charts
+		- VARIANT GATE folder
+			- 月輪の紋様
+			- 永遠の紋様
+		- APPEAL GENERATOR
+			- Vol. 1
+		- PREMIUM GENERATOR
+			- Vol. 7 (∇ Rasis set)
+		- Events data
+			- ぼる×りこ Cross Resonance (12 songs)
+			- GITADORA Special Stamp! (2 songs)
+			- ∇ Weekly Stamp Bonus Weeks 1 to 3
+			- Appeal Card gift "2026 HAPPY NEW ∇!!"
+			- BPL S5 songs gift
+			- Blue Diamond stamp event
+
+- EXCEED GEAR
+	- Added Beginner Songs folder
+	- Fixed PREMIUM GENERATOR banners:
+		- Added correct Premium Generator （空澄セナ）
+		- Renamed existing "Premium Generator （空澄セナ）" to "Premium Generator （花芽すみれ）"
+
+- WebUI
+	- Version select for WebUI profile data navigation.
+	- Separate VF calculation for ∇
+	- Re-added older ifs file texture extract info.
+
+- Misc:
+	- Changed music_db.json structure.
+	- Updated handler for 'endless' stamp sheet events
+	- DB updates to include game version it's saved from
+	- Fixes to course data migrate code (again)
+	- Fixed matchmaking code to remove delay in match screen
+	- ∇ data import code
+		- Collections being migrated:
+			- Profile (some customization settings are reset like crew, appeal card, etc)
+			- Item
+			- Param
+			- MusicRecord
 
 #### RE: Standard Start issue on version 20250422+
 This is not a plugin issue but I feel it is necessary to share. I did notice this while testing VARIANT GATE but I forgot to mention it so I apologize. As mentioned in issue [#34](https://github.com/22vv0/asphyxia_plugins/issues/34), if you're having trouble carding in after a Standard Start credit, what fixed it for me was adding these lines to your ea3-config.xml file, in ea3->pos->coin. I personally put it just under _kfc\_game\_s\_standard_:

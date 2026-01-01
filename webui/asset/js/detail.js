@@ -3,7 +3,47 @@ var volforceArray = [];
 var profile_data, skill_data, course_data;
 var baseTBodyCMpD, baseTBodyCMpL, baseTBodyGpD, baseTBodyGpL, baseTBodyASpL;
 var notFirst = false;
-var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVIDWAVE', 'EXCEED GEAR']
+var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVIDWAVE', 'EXCEED GEAR', '∇']
+var currentProfile
+var currentVersion
+var egLevelDiffOverride = [
+    {'mid': 1, 'type': 1, 'lvl': 10},
+    {'mid': 18, 'type': 1, 'lvl': 8},
+    {'mid': 18, 'type': 2, 'lvl': 10},
+    {'mid': 73, 'type': 2, 'lvl': 17},
+    {'mid': 48, 'type': 1, 'lvl': 8},
+    {'mid': 75, 'type': 2, 'lvl': 12},
+    {'mid': 124, 'type': 2, 'lvl': 16},
+    {'mid': 65, 'type': 1, 'lvl': 7},
+    {'mid': 66, 'type': 1, 'lvl': 8},
+    {'mid': 27, 'type': 1, 'lvl': 7},
+    {'mid': 27, 'type': 2, 'lvl': 12},
+    {'mid': 68, 'type': 1, 'lvl': 9},
+    {'mid': 6, 'type': 1, 'lvl': 7},
+    {'mid': 6, 'type': 2, 'lvl': 12},
+    {'mid': 16, 'type': 1, 'lvl': 7},
+    {'mid': 2, 'type': 1, 'lvl': 10},
+    {'mid': 60, 'type': 3, 'lvl': 17},
+    {'mid': 5, 'type': 2, 'lvl': 13},
+    {'mid': 128, 'type': 2, 'lvl': 13},
+    {'mid': 9, 'type': 2, 'lvl': 1},
+    {'mid': 340, 'type': 2, 'lvl': 13},
+    {'mid': 247, 'type': 3, 'lvl': 18},
+    {'mid': 282, 'type': 2, 'lvl': 17},
+    {'mid': 288, 'type': 2, 'lvl': 13},
+    {'mid': 699, 'type': 3, 'lvl': 18},
+    {'mid': 595, 'type': 2, 'lvl': 17},
+    {'mid': 507, 'type': 2, 'lvl': 17},
+    {'mid': 1044, 'type': 2, 'lvl': 16},
+    {'mid': 948, 'type': 4, 'lvl': 16},
+    {'mid': 1115, 'type': 4, 'lvl': 16},
+    {'mid': 1215, 'type': 2, 'lvl': 15},
+    {'mid': 1152, 'type': 2, 'lvl': 15},
+    {'mid': 1282, 'type': 3, 'lvl': 18},
+    {'mid': 1343, 'type': 2, 'lvl': 16},
+    {'mid': 1300, 'type': 3, 'lvl': 18},
+    {'mid': 1938, 'type': 2, 'lvl': 18}
+  ]
 
 function createArray(length) {
     var arr = new Array(length || 0),
@@ -32,8 +72,9 @@ function getSkillFrameAsset(frame) {
 }
 
 function getSkillTitle() {
-    if(skill_data.length <= 0 || skill_data[0].name === (undefined || 0)) return ''
-    return skill_title_db.filter(e => e.id === skill_data[0].name)[0].name
+    let sk = skill_data.filter(sk => sk.version === currentVersion)
+    if(sk.length <= 0 || sk[0].name === (undefined || 0)) return ''
+    return skill_title_db.filter(e => e.id === sk[0].name)[0].name
 }
 
 function getGrade(name, grade) {
@@ -89,7 +130,7 @@ function getGrade(name, grade) {
     }
 }
 
-function getMedal(name, clear) {
+function getMedal(name, clear, version) {
     if(name) {
         switch (clear) {
             case 0:
@@ -100,12 +141,12 @@ function getMedal(name, clear) {
                 return "EFFECTIVE CLEAR";
             case 3:
                 return "EXCESSIVE CLEAR";
-            case 6:
-                return "MAXXIVE CLEAR";
             case 4:
-                return "UC";
+                return (version === 6) ? "UC" : "MAXXIVE CLEAR";
             case 5:
-                return "PUC";
+                return (version === 6) ? "PUC" : "UC";
+            case 6:
+                return (version === 6) ? "MAXXIVE CLEAR" : "PUC"
         }
     }
     switch (clear) {
@@ -117,21 +158,21 @@ function getMedal(name, clear) {
             return 1.0;
         case 3:
             return 1.02;
-        case 6:
-            return 1.04
         case 4:
-            return 1.05;
+            return (version === 6) ? 1.05 : 1.04;
         case 5:
-            return 1.10;
+            return (version === 6) ? 1.10 : 1.06;
+        case 6:
+            return (version === 6) ? 1.04 : 1.10;
     }
 }
 
 function getDifficulty(musicid, type) {
-    var result = music_db["mdb"]["music"].filter(object => object["@id"] == musicid);
+    var result = music_db["mdb"]["music"].filter(object => object["id"] == musicid);
     if (result.length == 0) {
         return "NOV";
     }
-    var inf_ver = result[0]["info"]["inf_ver"]["#text"] ? result[0]["info"]["inf_ver"]["#text"] : 5;
+    var inf_ver = result[0]["info"]["inf_ver"] ? result[0]["info"]["inf_ver"] : 5;
     switch (type) {
         case 0:
             return "NOV";
@@ -162,35 +203,35 @@ function getDifficulty(musicid, type) {
 }
 
 function getDifficultyNum(musicid, type) {
-    var result = music_db["mdb"]["music"].filter(object => object["@id"] == musicid);
+    var result = music_db["mdb"]["music"].filter(object => object["id"] == musicid);
     switch (type) {
         case 0:
-            return result[0]['difficulty']['novice']['difnum']['#text'];
+            return result[0]['difficulty']['novice'];
         case 1:
-            return result[0]['difficulty']['advanced']['difnum']['#text'];
+            return result[0]['difficulty']['advanced'];
         case 2:
-            return result[0]['difficulty']['exhaust']['difnum']['#text'];
+            return result[0]['difficulty']['exhaust'];
         case 3:
-            return result[0]['difficulty']['infinite']['difnum']['#text'];
+            return result[0]['difficulty']['infinite'];
         case 4:
-            return result[0]['difficulty']['maximum']['difnum']['#text'];
+            return result[0]['difficulty']['maximum'];
         case 5:
-            return result[0]['difficulty']['ultimate']['difnum']['#text'];
+            return result[0]['difficulty']['ultimate'];
     }
 }
 
-function getAppealCard(appeal) {
-
+function getAppealCard(appeal, version) {
+    let defaultCard = ['ap_06_0001', 'ap_07_0001']
     var result = appeal_db["appeal_card_data"]["card"].filter(object => object["@id"] == appeal);
-    return "static/asset/ap_card/" + ((result.length > 0) ? result[0]["info"]["texture"] : 'ap_06_0001') + ".png"
+    return "static/asset/ap_card/" + ((result.length > 0) ? result[0]["info"]["texture"] : defaultCard[version-6]) + ".png"
 }
 
 function getSongLevel(musicid, type) {
     //console.log(music_db["mdb"]["music"])
     // console.log(musicid + " " + type);
     // console.log(musicid)
-    var result = music_db["mdb"]["music"].filter(object => object["@id"] == musicid);
-    // console.log(result[0]["difficulty"]["novice"]["difnum"]["#text"])
+    var result = music_db["mdb"]["music"].filter(object => object["id"] == musicid);
+    // console.log(result[0]["difficulty"]["novice"]["difnum"])
     if (result.length == 0) {
         return "1"
     }
@@ -200,33 +241,39 @@ function getSongLevel(musicid, type) {
     switch (type) {
         case 0:
             if (!(result[0]["difficulty"]["novice"] === undefined))
-                diffnum = result[0]["difficulty"]["novice"]["difnum"]["#text"]
+                diffnum = result[0]["difficulty"]["novice"]
             break;
         case 1:
             if (!(result[0]["difficulty"]["advanced"] === undefined))
-                diffnum = result[0]["difficulty"]["advanced"]["difnum"]["#text"]
+                diffnum = result[0]["difficulty"]["advanced"]
             break;
         case 2:
             if (!(result[0]["difficulty"]["exhaust"] === undefined))
-                diffnum = result[0]["difficulty"]["exhaust"]["difnum"]["#text"]
+                diffnum = result[0]["difficulty"]["exhaust"]
             break;
         case 3:
             if (!(result[0]["difficulty"]["infinite"] === undefined))
-                diffnum = result[0]["difficulty"]["infinite"]["difnum"]["#text"]
+                diffnum = result[0]["difficulty"]["infinite"]
             break;
         case 4:
             if (!(result[0]["difficulty"]["maximum"] === undefined))
-                diffnum = result[0]["difficulty"]["maximum"]["difnum"]["#text"]
+                diffnum = result[0]["difficulty"]["maximum"]
             break;
         case 5:
             if (!(result[0]["difficulty"]["ultimate"] === undefined))
-                diffnum = result[0]["difficulty"]["ultimate"]["difnum"]["#text"]
+                diffnum = result[0]["difficulty"]["ultimate"]
             break;
     }
     // console.log(diffnum)
     if (diffnum == 0) {
         diffnum = 1;
     }
+    if (currentVersion < 7) {
+        diffnum = parseInt(diffnum).toString()
+        let egLvlInd = egLevelDiffOverride.findIndex(l => l.mid === musicid && l.type === type)
+        if (egLvlInd >= 0) diffnum = egLevelDiffOverride[egLvlInd]['lvl']
+    }
+
     // console.log(diffnum)
     return diffnum;
     // return result[0]["info"]["title_name"]
@@ -260,11 +307,11 @@ function getVFLevel(VF) {
 }
 
 function getSongInfo(mid) {
-    let mss = music_db.mdb.music.find(m => parseInt(m['@id']) === mid)
+    let mss = music_db.mdb.music.find(m => parseInt(m['id']) === mid)
     
     if(mss != undefined) {
         return {
-            'id': mss['@id'],
+            'id': mss['id'],
             'name': mss.info.title_name
         }
     } else return {
@@ -288,9 +335,9 @@ function getVFAsset(vf) {
 function singleScoreVolforce(score) {
     // lv * (score / 10000000) * gradeattr * clearmedalattr * 2
     var level = getSongLevel(score.mid, score.type);
-    // console.log(level);
-    var tempVF = parseInt(level) * (parseInt(score.score) / 10000000) * getGrade(false, score.grade) * getMedal(false, score.clear) * 2;
+    var tempVF = parseInt(level) * (parseInt(score.score) / 10000000) * getGrade(false, score.grade) * getMedal(false, score.clear, score.version) * 2;
     // console.log(tempVF);
+    if(currentVersion === 7 && 'volforce' in score) tempVF = score.volforce;
     return tempVF;
 }
 
@@ -300,8 +347,8 @@ function toFixed(num, fixed) {
 }
 
 function calculateVolforce() {
-    for (var i in score_db) {
-        var temp = singleScoreVolforce(score_db[i]);
+    for (var sc of score_db.filter(s => s.version === currentVersion)) {
+        var temp = singleScoreVolforce(sc);
         temp = parseFloat(toFixed(temp, 1));
         volforceArray.push(temp);
     }
@@ -317,22 +364,22 @@ function calculateVolforce() {
             VF += volforceArray[i];
         }
     }
-    VF /= 100;
+    VF /= (currentVersion === 7) ? 1000 : 100;
     // console.log(toFixed(VF, 3));
     return toFixed(VF, 3);
 }
 
 function getVF50() {
     let top50 = []
-    for (var i in score_db) {
-        let sinf = getSongInfo(score_db[i].mid)
+    for (var sc of score_db.filter(sc => sc.version === currentVersion)) {
+        let sinf = getSongInfo(sc.mid)
         if(sinf.name !== 'Unknown Song') {
             top50.push({
                 'name': sinf.name,
-                'diff': getDifficulty(sinf.id, score_db[i].type) + " " + getDifficultyNum(sinf.id, score_db[i].type),
-                'clear': getMedal(true, score_db[i].clear),
-                'score': score_db[i].score,
-                'vf': parseFloat(toFixed(singleScoreVolforce(score_db[i]), 1))
+                'diff': getDifficulty(sinf.id, sc.type) + " " + getDifficultyNum(sinf.id, sc.type),
+                'clear': getMedal(true, sc.clear, currentVersion),
+                'score': sc.score,
+                'vf': parseFloat(toFixed(singleScoreVolforce(sc, currentVersion), 1))
             })
         }
     }
@@ -571,7 +618,7 @@ function getAvg(array, lv) {
 }
 
 
-function setUpStatistics() {
+function setUpStatistics(profileVer) {
     baseTBodyCMpD = $('<tbody>');
     baseTBodyCMpL = $('<tbody>');
     baseTBodyGpL = $('<tbody>');
@@ -584,7 +631,9 @@ function setUpStatistics() {
     var GpLArray = createArray(20, 10);
     var ASpLArray = createArray(20, 2);
 
-    score_db.forEach(function(currentValue, index, array) {
+    score_db.filter(sc => sc.version === profileVer).forEach(function(currentValue, index, array) {
+        let egClear = [0, 1, 2, 3, 5, 6, 4]
+        // let clearMark = (profileVer === 7 && currentValue.version === 6) ? egClear[currentValue.clear] : currentValue.clear
         //console.log(currentValue);
         CMpDArray[currentValue.type][currentValue.clear - 1] += 1;
         CMpLArray[parseInt(getSongLevel(currentValue.mid, currentValue.type)) - 1][currentValue.clear - 1] += 1;
@@ -781,29 +830,30 @@ function setUpStatistics() {
 }
 
 $('#version_select').change(function() {
-    $('#skillLV').fadeOut(200, () => {
-        console.log("change version select");
-        $('#skillLV').attr('src', getSkillAsset(getPlayerSkill($('#version_select').val())[0]))
-    });
-    $('#skillLV').fadeIn(200);
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set('version', $('#version_select').val());
+    location.search = urlParams;
 });
 
-function getPlayerSkill(version) {
+function getPlayerSkill() {
     // console.log(getPlayerMaxVersion())
     if (skill_data.length == 0) return [-1, 0];
-    var k = skill_data.filter(e => e.version == version)
+    var k = skill_data.filter(e => e.version == currentVersion)
+    // console.log(k)
+    if(k.length < 1) return [-1, 0]
     let courseDataFil = course_data.filter(e => ![6,7,12,13,15,16].includes(e.sid) && e.cid === k[0].level && ((k[0].type !== undefined) ? k[0].type : 0) === ((e.stype !== undefined) ? e.stype : 0))
     return [(courseDataFil.length > 0) ? k[0].level : -1, (k[0].type !== undefined) ? k[0].type : 0];
 }
 
-function getPlayerCourse(version, playerSkill) {
-    if(version === 0) return 'none'
+function getPlayerCourse(playerSkill) {
+    if(currentVersion === 0) return 'none'
     let skillFrame = ['normal', 'god']
     let skillThrsh = [[130, 150, 160, 170], [150, 160, 170, 180]]
     let skillThrshVal = (playerSkill[0] <= 9) ? 0 : playerSkill[0] - 9
-    var k = course_db.courseData.filter(e => e.version == version)[0].info
+    var k = course_db.courseData.filter(e => e.version == currentVersion)[0]
+    if(!k) return 'none'
     let sidCourses = []
-    k.forEach(kd => {
+    k.info.forEach(kd => {
         kd.courses.forEach(kdc => {
             kdc['sid'] = kd.id
             kdc['isNew'] = kd.isNew
@@ -825,10 +875,10 @@ function getPlayerCourse(version, playerSkill) {
 
 
 function getVersionSelect() {
-    if (skill_data.length == 0) return [];
+    if (profile_data.length == 0) return [];
     var versionDATA = [];
-    for (var i = 0; i < skill_data.length; i++) {
-        versionDATA.push(parseInt(skill_data[i].version));
+    for (var i = 0; i < profile_data.length; i++) {
+        versionDATA.push(parseInt(profile_data[i].version));
     }
     return versionDATA;
 }
@@ -933,14 +983,15 @@ $(document).ready(function() {
     skill_data.sort(function(a, b) {
         return b.version - a.version;
     })
-    // console.log(score_db);
 
-    // $('#test').append(
-    //     $('<div>').append(
-    //         profile_data["name"]
-    //     ).css('font-family', "testfont")
-    //     .css('font-size', "35px")
-    // )
+    profile_data = profile_data.sort((a, b) => a.version - b.version)
+
+    let urlParams = new URLSearchParams(window.location.search);
+    currentVersion = (urlParams.has('version') && urlParams.get('version') !== "") ? parseInt(urlParams.get('version')) : profile_data[profile_data.length - 1].version
+    currentProfile = profile_data.find(p => p.version === currentVersion)
+    console.log(currentVersion)
+    console.log(currentProfile)
+
 
     $.when(
         $.getJSON("static/asset/json/music_db.json", function(json) {
@@ -961,7 +1012,7 @@ $(document).ready(function() {
             skill_title_db = json.skilltitle;
         }),
     ).then(function() {
-        var currentVF = calculateVolforce();
+        var currentVF = calculateVolforce(currentVersion);
         getVF50()
         var maxVer = skill_data.length > 0 ? parseInt(skill_data[0]["version"]) : 0
 
@@ -976,11 +1027,11 @@ $(document).ready(function() {
             $('#version_select').attr('disabled', 'disabled')
         } else {
             for (var i = 0; i < versionInfo.length; i++) {
-                console.log(versionInfo[i])
                 $('#version_select').append(
                     $('<option>', {
                         value: versionInfo[i],
                         text: versionText[versionInfo[i]],
+                        selected: (versionInfo[i] === currentVersion)
                     })
                 )
             }
@@ -1000,7 +1051,7 @@ $(document).ready(function() {
                     $('<div class="tile is-ancestor is-centered">').append(
                         $('<div class="tile is-parent is-3">').append(
                             $('<article class="tile is-child">').append(
-                                $('<img>').attr('src', getAppealCard(profile_data.appeal))
+                                $('<img>').attr('src', getAppealCard(currentProfile.appeal, currentProfile.version))
                                 .css('width', '150px')
                             ).css('vertical-align', 'middle')
                         )
@@ -1010,11 +1061,11 @@ $(document).ready(function() {
                                 $('<div>').append(
                                     $('<div>').append("Player Name:").css('font-size', '15').append($('<br>'))
                                 ).append(
-                                    $('<div>').append(profile_data["name"]).css('font-size', "35px")
+                                    $('<div>').append(currentProfile["name"]).css('font-size', "35px")
                                 ).append(
                                     $('<div>').append("Appeal Title:").css('font-size', '15')
                                 ).append(
-                                    $('<div>').append(getAkaname(profile_data["akaname"])).css('font-size', "35px")
+                                    $('<div>').append(getAkaname(currentProfile["akaname"])).css('font-size', "35px")
                                 )
                                 .css('font-family', "testfont,ffff")
                             )
@@ -1057,7 +1108,7 @@ $(document).ready(function() {
                         $('<div class="tile is-parent is-7">').append(
                             $('<article class="tile is-child">').append(
                                 $('<div class="content" style="position: relative;display: flex;justify-content: center;align-items: center;">').append(
-                                    $('<img id="skillLV">').attr('src', getSkillAsset(getPlayerSkill(maxVer)[0]))
+                                    $('<img id="skillLV">').attr('src', getSkillAsset(getPlayerSkill()[0]))
                                 ).append(
                                     $('<div style="position:absolute;width:100%;height:100%display: flex;justify-content: center;align-items: center;">').append(
                                         $('<img id="skillFrame" style="height:100%">')
@@ -1073,10 +1124,10 @@ $(document).ready(function() {
                         $('<div class="tile is-parent is-5">').append(
                             $('<article class="tile is-child">').append(
                                 $('<p class="title">').append(
-                                    "PCB"
+                                    (currentProfile.version === 6) ? "PCB" : "BLC / PC"
                                 ).append(
                                     $('<div class="content">').append(
-                                        profile_data.blocks
+                                        (currentProfile.version === 6) ? currentProfile.blocks : currentProfile.blocks + " / " + currentProfile.packets
                                     )
                                 ).css('font-family', "testfont") 
                             )
@@ -1179,7 +1230,7 @@ $(document).ready(function() {
             )
         )
 
-        arena_data = arena_data.sort(function(a,b) { return a['season'] - b['season'] } )
+        arena_data = arena_data.filter(are => are.version === currentVersion).sort(function(a,b) { return a['season'] - b['season'] } )
         if(arena_data.length <= 0) {
             $('#arena-szn-sel').append(
                 $('<option>', {
@@ -1204,12 +1255,12 @@ $(document).ready(function() {
             displayArenaSeasonData($('#arena-szn-sel').val())
         });
 
-        let skillFrame = getPlayerCourse(maxVer, getPlayerSkill(maxVer))
+        let skillFrame = getPlayerCourse(getPlayerSkill())
         if(skillFrame !== 'none') $('#skillFrame').attr('src', getSkillFrameAsset(skillFrame))
         $('#skillTitle').text(getSkillTitle())
-        $('#skillTitle').attr('style', 'font-size:25px; color:black; font-weight:bold;color:' + (getPlayerSkill(maxVer)[0] === 11 ? '#FFC100' : ((getPlayerSkill(maxVer)[0] === 12) ? '#FFE000' : "black")))
+        $('#skillTitle').attr('style', 'font-size:25px; color:black; font-weight:bold;color:' + (getPlayerSkill()[0] === 11 ? '#FFC100' : ((getPlayerSkill()[0] === 12) ? '#FFE000' : "black")))
 
-        setUpStatistics();
+        setUpStatistics(currentProfile.version);
         setCMpD();
         displayArenaSeasonData($('#arena-szn-sel').val())
 

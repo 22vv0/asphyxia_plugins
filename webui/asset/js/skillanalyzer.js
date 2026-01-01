@@ -88,23 +88,23 @@ $(document).ready(function() {
             infLabel = ['0', '1', 'Infinite', 'Gravity', 'Heavenly', 'Vivid', 'Exceed']
             musicDBDifficultyLabel = ['novice', 'advanced', 'exhaust', 'infinite', 'maximum']
             theCourse.forEach(function(courseTrack){
-                track = musicDB.mdb.music.find(data => parseInt(courseTrack.mid) === parseInt(data['@id']))
+                track = musicDB.mdb.music.find(data => parseInt(courseTrack.mid) === parseInt(data['id']))
                 // console.log(courseTrack.mty)
                 if(courseTrack.mty == 3) {
-                    difficultyLabel = infLabel[parseInt(track.info.inf_ver['#text'])]
+                    difficultyLabel = infLabel[parseInt(track.info.inf_ver)]
                 } else {
                     difficultyLabel = difficultyLabels[courseTrack.mty]
                 }
                 console.log(courseTrack.mid)
-                $(".track-id").eq(trackIndex).val(track['@id'])
+                $(".track-id").eq(trackIndex).val(track['id'])
                 $(".track-name").eq(trackIndex).val(track.info.title_name)
-                $(".track-name").eq(trackIndex).attr('track-id', track['@id'])
+                $(".track-name").eq(trackIndex).attr('track-id', track['id'])
                 $('.track-difficulty').eq(trackIndex).find('option').not(':first').remove();
-                $(".track-difficulty").eq(trackIndex).append("<option value=" + 0 + ">" + difficultyLabels[0] + ' (' + track.difficulty['novice'].difnum['#text'] + ")</option>")
-                $(".track-difficulty").eq(trackIndex).append("<option value=" + 1 + ">" + difficultyLabels[1] + ' (' + track.difficulty['advanced'].difnum['#text'] + ")</option>")
-                $(".track-difficulty").eq(trackIndex).append("<option value=" + 2 + ">" + difficultyLabels[2] + ' (' + track.difficulty['exhaust'].difnum['#text'] + ")</option>")
-                if(track.difficulty['maximum'].difnum['#text'] != '0' || track.difficulty['infinite'].difnum['#text'] != '0'){
-                    $(".track-difficulty").eq(trackIndex).append("<option value=" + ((courseTrack.mty == 3) ? 3 : 4) + ">" + (track.difficulty['infinite'].difnum['#text'] != '0' ? infLabel[parseInt(track.info.inf_ver['#text'])] : difficultyLabels[4]) + ' (' + (track.difficulty['infinite'].difnum['#text'] != '0' ? track.difficulty['infinite'].difnum['#text'] : track.difficulty['maximum'].difnum['#text']) + ")</option>")
+                $(".track-difficulty").eq(trackIndex).append("<option value=" + 0 + ">" + difficultyLabels[0] + ' (' + track.difficulty['novice'] + ")</option>")
+                $(".track-difficulty").eq(trackIndex).append("<option value=" + 1 + ">" + difficultyLabels[1] + ' (' + track.difficulty['advanced'] + ")</option>")
+                $(".track-difficulty").eq(trackIndex).append("<option value=" + 2 + ">" + difficultyLabels[2] + ' (' + track.difficulty['exhaust'] + ")</option>")
+                if(track.difficulty['maximum'] != '0' || track.difficulty['infinite'] != '0'){
+                    $(".track-difficulty").eq(trackIndex).append("<option value=" + ((courseTrack.mty == 3) ? 3 : 4) + ">" + (track.difficulty['infinite'] != '0' ? infLabel[parseInt(track.info.inf_ver)] : difficultyLabels[4]) + ' (' + (track.difficulty['infinite'] != '0' ? track.difficulty['infinite'] : track.difficulty['maximum']) + ")</option>")
                 }
                 $(".track-difficulty").eq(trackIndex).val(courseTrack.mty)
                 $(".track-difficulty").eq(trackIndex).attr('diff-id', courseTrack.mty)
@@ -120,16 +120,16 @@ $(document).ready(function() {
         difficultyLabels = ['Novice', 'Advanced', 'Exhaust', 'Inf/Grv/Hvn/Vvd/Xcd', 'Maximum']
         infLabel = ['0', '1', 'Infinite', 'Gravity', 'Heavenly', 'Vivid', 'Exceed']
         musicDBDifficultyLabel = ['novice', 'advanced', 'exhaust', 'infinite', 'maximum']
-        track = musicDB.mdb.music.find(data => searchTrackID === parseInt(data['@id']))
+        track = musicDB.mdb.music.find(data => searchTrackID === parseInt(data['id']))
         if(track){
             $(".track-name").eq(currentIndex).val(track.info.title_name)
-            $(".track-name").eq(currentIndex).attr('track-id', track['@id'])
+            $(".track-name").eq(currentIndex).attr('track-id', track['id'])
             $('.track-difficulty').eq(currentIndex).find('option').not(':first').remove();
-            $(".track-difficulty").eq(currentIndex).append("<option value=" + 0 + ">" + difficultyLabels[0] + ' (' + track.difficulty['novice'].difnum['#text'] + ")</option>")
-            $(".track-difficulty").eq(currentIndex).append("<option value=" + 1 + ">" + difficultyLabels[1] + ' (' + track.difficulty['advanced'].difnum['#text'] + ")</option>")
-            $(".track-difficulty").eq(currentIndex).append("<option value=" + 2 + ">" + difficultyLabels[2] + ' (' + track.difficulty['exhaust'].difnum['#text'] + ")</option>")
-            if(track.difficulty['maximum'].difnum['#text'] != '0' || track.difficulty['infinite'].difnum['#text'] != '0'){
-                $(".track-difficulty").eq(currentIndex).append("<option value=" + ((parseInt(track.info.inf_ver['#text']) != 0) ? 3 : 4) + ">" + (track.difficulty['infinite'].difnum['#text'] != '0' ? infLabel[parseInt(track.info.inf_ver['#text'])] : difficultyLabels[4]) + ' (' + (track.difficulty['infinite'].difnum['#text'] != '0' ? track.difficulty['infinite'].difnum['#text'] : track.difficulty['maximum'].difnum['#text']) + ")</option>")
+            $(".track-difficulty").eq(currentIndex).append("<option value=" + 0 + ">" + difficultyLabels[0] + ' (' + track.difficulty['novice'] + ")</option>")
+            $(".track-difficulty").eq(currentIndex).append("<option value=" + 1 + ">" + difficultyLabels[1] + ' (' + track.difficulty['advanced'] + ")</option>")
+            $(".track-difficulty").eq(currentIndex).append("<option value=" + 2 + ">" + difficultyLabels[2] + ' (' + track.difficulty['exhaust'] + ")</option>")
+            if(track.difficulty['maximum'] != '0' || track.difficulty['infinite'] != '0'){
+                $(".track-difficulty").eq(currentIndex).append("<option value=" + ((parseInt(track.info.inf_ver) != 0) ? 3 : 4) + ">" + (track.difficulty['infinite'] != '0' ? infLabel[parseInt(track.info.inf_ver)] : difficultyLabels[4]) + ' (' + (track.difficulty['infinite'] != '0' ? track.difficulty['infinite'] : track.difficulty['maximum']) + ")</option>")
             }
             $(".track-difficulty").eq(currentIndex).val('-- Select --')
             $(".track-difficulty").eq(currentIndex).attr('diff-id', 0)

@@ -1,6 +1,8 @@
 export interface VariantPower {
   collection: 'variantpower';
 
+  version: number;
+
   power: number,
   notes: number,
   peak: number,

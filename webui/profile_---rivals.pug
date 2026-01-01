@@ -1,5 +1,6 @@
 //DATA//
   rivals: DB.Find(refid, { collection: 'rival' })
+  yourprofile: DB.Find(refid, { collection: 'profile' })
   profiles: DB.Find(null, { collection: 'profile' })
 -
 link(rel="stylesheet" href="static/asset/css/datatables.css")
@@ -11,6 +12,12 @@ div
           i.mdi.mdi-account-edit
         | Add rival
     .card-content
+      h5 Game
+      .field
+        .control
+          .select.is-fullwidth
+            select.select(id="version_select")
+      h5 Profile
       .field
         .control
           .select.is-fullwidth
@@ -47,6 +54,7 @@ div
 
 //div(hidden id='data-pass') !{JSON.stringify(profile)}
 div(hidden id='rivals-pass') !{JSON.stringify(rivals)}
+div(hidden id='profile-pass') !{JSON.stringify(yourprofile)}
 div(hidden id='profiles-pass') !{JSON.stringify(profiles)}
 script(src="static/asset/js/rivals.js") 
 script(src="static/asset/js/datatables.js")

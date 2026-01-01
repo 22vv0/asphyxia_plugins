@@ -1,5 +1,5 @@
 //DATA//
-  profile: DB.Find(refid, { collection: 'course' })
+  course_data: DB.Find(refid, { collection: 'course' })
 
 -
   //const padded = _.padStart(profile.id.toString(), 8);
@@ -19,7 +19,6 @@ div
           .control
             .select
               select(name="version_select" id="version_select")
-                option(value="6") EXCEED GEAR
       .field
           label.label Skill Type
           .control
@@ -60,5 +59,5 @@ div
                       div(style="width:80%;display:inline-block;vertical-align: center;") f
                       div(style="width:20%;display:inline-block;vertical-align: center;") 12
 
-div(hidden id='data-pass') !{JSON.stringify(profile)}
+div(hidden id='data-pass') !{JSON.stringify(course_data)}
 script(src="static/asset/js/course.js") 

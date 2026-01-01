@@ -1,0 +1,341 @@
+import { LICENSED_SONGS6, MEGAMIX_SONGS, MEGAMIX_SONGS_2, MEGAMIX_SONGS_3, MEGAMIX_SONGS_4, UNLOCK_EVENTS6 } from './exg'
+
+export const EVENT7 = [
+  'DEMOGAME_PLAY',
+  'MATCHING_MODE',
+  'MATCHING_MODE_FREE_IP',
+  'LEVEL_LIMIT_EASING',
+  'ACHIEVEMENT_ENABLE',
+  'VOLFORCE_ENABLE',
+  'AKANAME_ENABLE',
+  'PAUSE_ONLINEUPDATE',
+  'CONTINUATION',
+  'TENKAICHI_MODE',
+  'QC_MODE',
+  'KAC_MODE',
+  'DISABLE_MONITOR_ID_CHECK',
+  'FAVORITE_APPEALCARD_MAX\t200',
+  'FAVORITE_MUSIC_MAX\t200',
+  'STANDARD_UNLOCK_ENABLE',
+  'PLAYERJUDGEADJ_ENABLE',
+  'MIXID_INPUT_ENABLE',
+  'DISP_PASELI_BANNER',
+  'CHARACTER_IGNORE_DISABLE\t122,123,131,139,140,143,149,160,162,163,164,167,170,174,175',
+  'STAMP_IGNORE_DISABLE\t273~312,773~820,993~1032,1245~1284,1469~1508,1585~1632,1633~1672,1737~1776,1777~1816,1897~1936',
+  'SUBBG_IGNORE_DISABLE\t166~185,281~346,369~381,419~438,464~482,515~552,595~616,660~673,714~727',
+  'BEGINNER_MUSIC_FOLDER\t56,78,80,86,87,91,111,128,134,275,278,180,697,770,769,779,842,948,940,1057,1056,1096,932,1136,1469,1480',
+  'BEGINNER_MUSIC_FOLDER\t1471,1758,1753,1739,1867,1866,1860,1857,1903,1904,1859,1863,1856,1864,1865,1916,1917,1914,1915,1918,1960',
+  'BEGINNER_MUSIC_FOLDER\t1961,1962,2029,2028,2030,2031,2035,2036,1905,1882,2058,2073,2070,2069,2074,2075,2067,2068,2066,2165,2166',
+  'BEGINNER_MUSIC_FOLDER\t2174,2175,2193,2195,2196,2213,2216,2214,2215,2205,2206,2224,2229,2228,2230,2241,2244,2243,2242,2245,2240',
+  'BEGINNER_MUSIC_FOLDER\t2251,2252,2220,2221,2289,2288,2291,2287,2290,2343,2344,2348,2353,2352,2345,2234,2351,2350,2209,2354',
+  // 'SKILL_ANALYZER_ABLE',
+  'BLASTER_ABLE',
+  'PREMIUM_TIME_ENABLE',
+  // 'MEGAMIX_ENABLE',
+  // 'ARENA_ENABLE',
+  'ARENA_LOCAL_TO_ONLINE_ENABLE',
+  'ARENA_ALTER_MODE_WINDOW_ENABLE',
+  'ARENA_PASS_MATCH_WINDOW_ENABLE',
+  'ARENA_VOTE_MODE_ENABLE',
+  'ARENA_LOCAL_ULTIMATE_MATCH_ALWAYS',
+  'MEGAMIX_BATTLE_MATCH_ENABLE',
+  'DISABLED_MUSIC_IN_ARENA_ONLINE',
+  'SINGLE_BATTLE_ENABLE',
+  'CREW_SELECT_ABLE',
+  'VALGENE_ENABLE',
+  'PLAYER_RADAR_ENABLE',
+  'S_PUC_EFFECT_ENABLE',
+  'FAVORITE_CREW_ENABLE',
+  'TAMAADV_VALGENE_BONUS_ENABLE',
+  'ULTIMATE_MATCH_PLAYABLE_ALWAYS',
+  'OVER_POWER_ENABLE',
+  'APIPAGENE_ENABLE'
+]
+
+export const BLASTER_GATE7 = [
+  // bpls3 songs
+  212923, 213023, 213323, 213423, 213223, 213523, 213723, 213623, 213923, 213823, 
+  214023, 214123, 214223, 214323, 214623, 214523, 214423, 214723, 213123, 214823,
+  214923, 212423, 212323, 216123, 216023, 212223, 212623, 215023, 212823, 215123,
+  212123, 215223, 212723, 212523,
+  // bpls2 songs
+  194323, 195223, 194823, 195123, 195623, 194923, 194623, 195823, 195523, 195723, 
+  194723, 195323, 195023, 194423, 194523, 195423, 194223, 193923, 194023, 194123, 
+  192123, 192223, 192623, 193823, 192023, 192523, 192323, 191923, 192423, 
+  // xcd charts
+  13208, 63208, 8808, 33208, 87108, 808, 6408, 11108, 71108, 63308, 87208, 3708,
+  38108, 34208, 23908, 32308, 13108, 61208, 78708, 79008, 78908, 78808, 61008,
+  78608, 84208, 51008, 28108, 16508, 63408, 34808, 24108, 28908, 39008, 8508,
+  63508, 38908, 77908, 22508, 41808, 6108, 46608, 18308, 83608, 47508, 68708
+]
+
+export const BLASTER_GATE7_2 = [
+  // hexadiver songs
+  158523, 158623, 158723, 158123, 158223, 158323, 158023,
+  158923, 159423, 159223, 159023, 159323, 159123, 158823, 158423,
+  166523, 166623, 166223, 166123, 166323, 166423, 166023, 
+  177623, 177423, 177523, 176823, 176923, 177023, 176623, 
+  177923, 177823, 177723, 177223, 177323, 177123, 176723,
+  190023, 189723, 189623, 189523, 189123, 189323, 188923,
+  189823, 189923, 190123, 189223, 189023, 189423, 188823,
+  204423, 205023, 204723, 204623, 203923, 204023, 203723, 
+  204323, 204923, 204823, 204523, 204123, 204223, 203823,
+  207923, 208023, 208123, 208223, 208323, 208423, 208523,
+  209223, 209023, 208923, 209123, 208623, 208823, 208723,
+  225723, 225823, 225923, 225423, 225523, 225623, 225323,
+
+  // bpls5 songs
+  231423, 231523, 231623, 231723, 231823, 231923
+]
+
+export const LICENSED_SONGS7 = LICENSED_SONGS6.concat([
+  2348, 2344, 2343, 2352, 2353, 2345, 2234, 2354, 2350, 2351, 2209
+])
+
+export const UNLOCK_EVENTS7 = {
+  'refillStamps': {},
+  'gitadorastamp': UNLOCK_EVENTS6['gitadorastamp'],
+  'vgate1': UNLOCK_EVENTS6['vgate1'],
+  'vgate2': UNLOCK_EVENTS6['vgate2'],
+  'nblstampbonus1': {
+    'type': 'main',
+    'info': {
+      'id': 0,
+      'stmpHdJ': '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      'stmpFtJ': '[sz:22]12/24~12/31の間、ポルテを遊ぶとスタンプを獲得できます',
+      'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 12/24～12/31',
+      'data': [
+        {
+          'stmpid': 61,
+          'stps': 310030,
+          'stprwrd': '1:p:1000 5:b:500 10:r:137 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        }
+      ]
+    }
+  },
+  'nblstampbonus2': {
+    'type': 'main',
+    'info': {
+      'id': 0,
+      'stmpHdJ': '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      'stmpFtJ': '[sz:22]1/1~1/7の間、ポルテを遊ぶとスタンプを獲得できます',
+      'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/1～1/7',
+      'data': [
+        {
+          'stmpid': 62,
+          'stps': 310030,
+          'stprwrd': '1:p:1000 5:b:500 10:r:138 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        }
+      ]
+    }
+  },
+  'nblstampbonus3': {
+    'type': 'main',
+    'info': {
+      'id': 0,
+      'stmpHdJ': '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      'stmpFtJ': '[sz:22]1/8~1/14の間、ポルテを遊ぶとスタンプを獲得できます',
+      'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/8～1/14',
+      'data': [
+        {
+          'stmpid': 63,
+          'stps': 310030,
+          'stprwrd': '1:p:1000 5:b:500 10:p:5000 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        }
+      ]
+    }
+  },
+  'bluediamond': {
+    'type': 'main',
+    'info': {
+      'id': 0,
+      'stmpHdJ': '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      'stmpFtJ': '[sz:22]1/8~1/14の間、ポルテを遊ぶとスタンプを獲得できます',
+      'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/8～2/11',
+      'data': [
+        {
+          'stmpid': 64,
+          'stps': 30,
+          'stprwrd': '5:e:217001 10:e:217002 15:e:217004 20:b:500 25:p:1000 30:e:217016'
+        }
+      ]
+    }
+  }
+}
+
+export const EVENT_ITEMS7 = {
+  "bpls5sdvx7_1": ['2318'],
+  "bpls5sdvx7_2": ['2319'],
+  "2026apica": ['6501'],
+  "crossresonance_1": ['2231'],
+  "crossresonance_2": ['2232'],
+  "crossresonance_3": ['2233'],
+  "crossresonance_4": ['2260'],
+  "crossresonance_5": ['2261'],
+  "crossresonance_6": ['2262'],
+  "crossresonance_7": ['2284'],
+  "crossresonance_8": ['2285'],
+  "crossresonance_9": ['2286'],
+  "crossresonance_10": ['2339'],
+  "crossresonance_11": ['2340'],
+  "crossresonance_12": ['2341']
+}
+
+// rule: 0 score 1 point 2 vote
+// rank_match_target: 0 arena 1 single 2 mega
+export const CURRENT_ARENA7 = {
+  season: 0,
+  rule: 0,
+  rank_match_target: 0,
+  time_start: BigInt(Date.parse('19 Dec 1900 08:00:00 GMT')),
+  time_end: BigInt(Date.parse('23 Dec 1900 15:59:59 GMT')),
+  shop_start: BigInt(Date.parse('19 Dec 1900 08:00:00 GMT')),
+  shop_end: BigInt(Date.parse('23 Dec 1900 15:59:59 GMT'))
+}
+
+// catalog_id, catalog_type, price, item_type, item_id, param 
+
+export const ARENA_STATION_ITEMS7 = {}
+
+export const VALGENE7 = {
+  info: [],
+  rarity: {},
+  catalog: []
+}
+
+export const PREGENE7 = [
+  {
+    id: 23,
+    items: {
+      'crew': [178],
+      'stamp': [535, 536, 537, 538, 539, 540, 541, 542, 543, 544],
+      'subbg': [763, 764, 765, 766, 767, 768, 769, 770, 771, 772, 773, 774, 775, 776, 777, 778, 779, 780, 781]
+    },
+    probability: [0.05, 0.39, 0.6]
+  }
+]
+
+export const APIGENE7 = {
+  info: [
+    {
+      apigene_id: 1,
+      name: 'アピールパーツジェネレーター 第1弾',
+      name_english: 'APPEAL PARTS GENERATOR VOL. 1',
+      common_rate: 60,
+      uncommon_rate: 30,
+      rare_rate: 1,
+      price: 100,
+      no_duplicate: false,
+      version: 20251224
+    }
+  ],
+  rarity: {
+    '23': 1,
+    '24': 0
+  },
+  catalog: [
+    {
+      volume: 1,
+      items: [
+        {
+          type: 23,
+          item_ids: Array.from({ length: 26 }, (_, i) => i + 1)
+
+        },
+        {
+          type: 24,
+          item_ids: Array.from({ length: 136 }, (_, i) => i + 1)
+        }
+      ]
+    }
+  ]
+}
+
+export const COURSES7 = []
+
+export const INFORMATION7 = [] 
+
+export const EXTENDS7 = [
+  {
+    version: 0,
+    id: 91,
+    type: 17,
+    params: [
+      0, 0, 0, 0, 0,
+      MEGAMIX_SONGS.join(','),
+      '',
+      '',
+      '',
+      '',
+    ],
+  },
+  {
+    version: 0,
+    id: 92,
+    type: 17,
+    params: [
+      0, 0, 0, 0, 0,
+      MEGAMIX_SONGS_2.join(','),
+      '',
+      '',
+      '',
+      '',
+    ],
+  },
+  {
+    version: 0,
+    id: 93,
+    type: 17,
+    params: [
+      0, 0, 0, 0, 0,
+      MEGAMIX_SONGS_3.join(','),
+      '',
+      '',
+      '',
+      '',
+    ],
+  },
+  {
+    version: 0,
+    id: 94,
+    type: 17,
+    params: [
+      0, 0, 0, 0, 0,
+      MEGAMIX_SONGS_4.join(','),
+      '',
+      '',
+      '',
+      '',
+    ],
+  },
+  {
+    version: 20251224,
+    id: 1,
+    type: 18,
+    params: [
+      0, 0, 0, 20, 0,
+      BLASTER_GATE7.join(' '),
+      '',
+      '',
+      '',
+      '',
+    ],
+  },
+  {
+    version: 20251224,
+    id: 1,
+    type: 18,
+    params: [
+      0, 0, 0, 20, 0,
+      BLASTER_GATE7_2.join(' '),
+      '',
+      '',
+      '',
+      '',
+    ],
+  }
+]

@@ -1,6 +1,8 @@
 export interface Arena {
   collection: 'arena';
 
+  version: number;
+
   last_play_season: number;
   rank_point: number;
   shop_point: number;

@@ -7,7 +7,8 @@ import { Mix } from '../models/mix'
 import { Rival } from '../models/rival'
 import { Item } from '../models/item'
 import { WeeklyMusicScore } from '../models/weeklymusic'
-import { PREGENE, COURSES6} from '../data/exg'
+import { PREGENE, COURSES6 } from '../data/exg'
+import { PREGENE7, COURSES7 } from '../data/nbl'
 import { textureslist } from '../data/webui'
 import * as fs from 'fs'
 import { PNG } from '../webui/asset/js/pngjs/png.js'
@@ -34,6 +35,7 @@ export const updateProfile = async (data: {
   valgeneTicket?: string;
   skilltitle?: string;
   creatorItem?: string;
+  version_select?: string;
 }) => {
   if (data.refid == null) return;
 
@@ -129,14 +131,14 @@ export const updateProfile = async (data: {
 
   await DB.Update<Profile>(
     data.refid,
-    { collection: 'profile' },
+    { collection: 'profile', version: parseInt(data.version_select) },
     { $set: update }
   );
 
   if (parseInt(data.skilltitle) >= 0) {
     await DB.Update<Skill>(
       data.refid,
-      { collection: 'skill' },
+      { collection: 'skill', version: parseInt(data.version_select) },
       { $set: {
           name: parseInt(data.skilltitle)
         } 
@@ -161,7 +163,7 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
   let mdbJsonFix = [];
   let mdbJsonFixFinal;
   let newJsonSongs = [];
-  let newXCDSongs = [];
+  let newINFSongs = [];
   let newULTSongs = [];
   let newNemsysData = []
   let newAPCardData = []
@@ -175,7 +177,6 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
   let apCardJsonData = JSON.parse(U.DecodeString(await IO.ReadFile('webui/asset/json/appeal.json'), 'utf8'))
 
   try {
-
     // Get new music data from music_db.xml
     console.log('Getting new music_db info')
     if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/others/music_db.xml")) {
@@ -184,22 +185,25 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
       if(IO.Exists('webui/asset/json/music_db.json')) {
         prevAssetMdb = JSON.parse(U.DecodeString(await IO.ReadFile('webui/asset/json/music_db.json'), 'utf8'))
       }
-    
+
+      let levelDiv = (mdb.mdb.music[0].difficulty.exhaust.difnum['@content'][0].toString().length === 3) ? 10 : 1
+      
       mdb.mdb.music.forEach(musicValue => {
         if(Object.keys(prevAssetMdb).length > 0) {
-          if(prevAssetMdb['mdb']['music'].find(item => parseInt(item['@id']) == parseInt(musicValue['@attr'].id)) == undefined) {
+          if(prevAssetMdb['mdb']['music'].find(item => parseInt(item['id']) == parseInt(musicValue['@attr'].id)) == undefined) {
             console.log("New song added to json: " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
             newJsonSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
           }
 
-          if(prevAssetMdb['mdb']['music'].find(item => (parseInt(item['@id']) == parseInt(musicValue['@attr'].id) && parseInt(item['info']['inf_ver']['#text']) === 0)) != undefined) {
-            if(musicValue.info.inf_ver['@content'] == '6') {
-              console.log("New chart: [XCD] " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
-              newXCDSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
+          if(prevAssetMdb['mdb']['music'].find(item => (parseInt(item['id']) == parseInt(musicValue['@attr'].id) && parseInt(item['info']['inf_ver']) === 0)) != undefined) {
+            let infVer = musicValue.info.inf_ver['@content']
+            if(['6', '7'].includes(infVer)) {
+              console.log("New chart: [" + (infVer === '6') ? "XCD" : "NBL" + "] " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
+              newINFSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
             }
           } 
 
-          if(prevAssetMdb['mdb']['music'].find(item => (parseInt(item['@id']) == parseInt(musicValue['@attr'].id) && 'ultimate' in item['difficulty'] )) == undefined && 'ultimate' in musicValue.difficulty) {
+          if(prevAssetMdb['mdb']['music'].find(item => (parseInt(item['id']) == parseInt(musicValue['@attr'].id) && 'ultimate' in item['difficulty'] )) == undefined && 'ultimate' in musicValue.difficulty) {
             console.log("New chart: [ULT] " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
             newULTSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
           }
@@ -207,67 +211,30 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
           console.log("New song added to json: " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
           newJsonSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
           
-          if(musicValue.info.inf_ver['@content'] == '6') {
-            console.log("New XCD difficulty song: " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
-            newXCDSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
+          let infVer = musicValue.info.inf_ver['@content']
+          if(['6', '7'].includes(infVer)) {
+            console.log("New chart: [" + (infVer === '6') ? "XCD" : "NBL" + "] " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
+            newINFSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
           }
         }
 
         mdbJsonFix.push({
-          '@id': musicValue['@attr'].id,
+          'id': musicValue['@attr'].id,
           'info': {
             'title_name': musicValue.info.title_name['@content'],
-            'version': {
-              '@__type': 'u8',
-              '#text': musicValue.info.version['@content'][0].toString()
-            },
-            'inf_ver': {
-              '@__type': 'u8',
-              '#text': musicValue.info.inf_ver['@content'][0].toString()
-            },
-            'distribution_date' : {
-              '#text': musicValue.info.distribution_date['@content'][0]
-            }
+            'version': musicValue.info.version['@content'][0].toString(),
+            'inf_ver': musicValue.info.inf_ver['@content'][0].toString(),
+            'distribution_date': musicValue.info.distribution_date['@content'][0]
           },
           'difficulty': {
-            'novice': {
-              'difnum': {
-                '@__type': 'u8',
-                '#text': musicValue.difficulty.novice.difnum['@content'][0].toString()
-              }
-            },
-            'advanced': {
-              'difnum': {
-                '@__type': 'u8',
-                '#text': musicValue.difficulty.advanced.difnum['@content'][0].toString()
-              }
-            },
-            'exhaust': {
-              'difnum': {
-                '@__type': 'u8',
-                '#text': musicValue.difficulty.exhaust.difnum['@content'][0].toString()
-              }
-            },
-            'maximum': {
-              'difnum': {
-                '@__type': 'u8',
-                '#text': musicValue.difficulty.maximum != undefined ? musicValue.difficulty.maximum.difnum['@content'][0].toString() : '0'
-              }
-            },
-            'infinite': {
-              'difnum': {
-                '@__type': 'u8',
-                '#text': musicValue.difficulty.infinite != undefined ? musicValue.difficulty.infinite.difnum['@content'][0].toString() : '0'
-              }
-            },
-            'ultimate': {
-              'difnum': {
-                '@__type': 'u8',
-                '#text': musicValue.difficulty.ultimate != undefined ? musicValue.difficulty.ultimate.difnum['@content'][0].toString() : '0'
-              }
-            }
+            'novice': (musicValue.difficulty.novice.difnum['@content'][0] / levelDiv).toString(),
+            'advanced': (musicValue.difficulty.advanced.difnum['@content'][0] / levelDiv).toString(),
+            'exhaust': (musicValue.difficulty.exhaust.difnum['@content'][0] / levelDiv).toString(),
+            'maximum': 'maximum' in musicValue.difficulty ? (musicValue.difficulty.maximum.difnum['@content'][0] / levelDiv).toString() : '0',
+            'infinite': 'infinite' in musicValue.difficulty ? (musicValue.difficulty.infinite.difnum['@content'][0] / levelDiv).toString() : '0',
+            'ultimate': 'ultimate' in musicValue.difficulty ? (musicValue.difficulty.ultimate.difnum['@content'][0] / levelDiv).toString() : '0'
           }
-        });  
+        });
       })
 
       mdbJsonFixFinal = {
@@ -295,7 +262,7 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
 
         if(nemsys.name.match(/([0-9]+)/g) != undefined) {
           let nemsysId = parseInt(nemsys.name.match(/([0-9]+)/g)[0])
-          if(nemsysId && ![8, 9, 10, 11].includes(nemsysId) && resourceJsonData.nemsys.find(nem => nem.value == nemsysId) == undefined) {
+          if(nemsysId && ![8, 9, 10, 11, 47].includes(nemsysId) && resourceJsonData.nemsys.find(nem => nem.value == nemsysId) == undefined) {
             console.log("[nemsys] adding to json: " + nemsys.name)
             resourceJsonData.nemsys.push({"value": nemsysId, "name": nemsys.name})
           }
@@ -504,96 +471,100 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
           bufOffset += 4
           let md5_hash = ifsBuffer.toString('hex', bufOffset, bufOffset + 16)
           bufOffset += 16
-          if(md5_hash === textureslist[listIter].md5) {
-            for(let texIter = 0; texIter < textureslist[listIter]['textures'].length; texIter++) {
-              let tdFileName = textureslist[listIter]['textures'][texIter][0]
-              let tdOffset = parseInt(textureslist[listIter]['textures'][texIter][1].toString())
-              let tdSize = parseInt(textureslist[listIter]['textures'][texIter][2].toString())
-              let tdUvrect = textureslist[listIter]['textures'][texIter][3]
-              let tdImgRect = textureslist[listIter]['textures'][texIter][4]
+          let md5Matched = false
+          for(const texData of textureslist[listIter].data) {
+            if(md5_hash === texData['md5']) {
+              md5Matched = true
+              for(let texIter = 0; texIter < texData['textures'].length; texIter++) {
+                let tdFileName = texData['textures'][texIter][0]
+                let tdOffset = parseInt(texData['textures'][texIter][1].toString())
+                let tdSize = parseInt(texData['textures'][texIter][2].toString())
+                let tdUvrect = texData['textures'][texIter][3]
+                let tdImgRect = texData['textures'][texIter][4]
 
-              if(!IO.Exists('webui/asset/' + textureslist[listIter].asset_folder + '/' + tdFileName)) {
-                let imgBufferHead = Buffer.from(ifsBuffer.buffer.slice(manifest_end + tdOffset, manifest_end + tdOffset + 8))
-                let imgBufferHeadOff = 0
-                let imgBuffer = Buffer.from(ifsBuffer.buffer.slice(manifest_end + tdOffset + 8, manifest_end + tdOffset + tdSize))
-                let imgBufferOff = 0
-                let imgUncompressedSize = imgBufferHead.readUInt32BE(imgBufferHeadOff)
-                imgBufferHeadOff += 4
-                let imgCompressedSize = imgBufferHead.readUInt32BE(imgBufferHeadOff)
-                imgBufferHeadOff += 4
+                if(!IO.Exists('webui/asset/' + textureslist[listIter].asset_folder + '/' + tdFileName)) {
+                  let imgBufferHead = Buffer.from(ifsBuffer.buffer.slice(manifest_end + tdOffset, manifest_end + tdOffset + 8))
+                  let imgBufferHeadOff = 0
+                  let imgBuffer = Buffer.from(ifsBuffer.buffer.slice(manifest_end + tdOffset + 8, manifest_end + tdOffset + tdSize))
+                  let imgBufferOff = 0
+                  let imgUncompressedSize = imgBufferHead.readUInt32BE(imgBufferHeadOff)
+                  imgBufferHeadOff += 4
+                  let imgCompressedSize = imgBufferHead.readUInt32BE(imgBufferHeadOff)
+                  imgBufferHeadOff += 4
 
-                // Decompression algorithm & code from ifstools/handlers/lz77.py
-                let decompressed = []
-                let contLoop = true
-                let diff, flag, w, position, length
-                while(contLoop) {
-                  flag = imgBuffer.readUInt8(imgBufferOff)
-                  imgBufferOff++
-                  for(let i = 0; i < 8; i++){
-                    if (((flag >> i) & 1) === 1) {
-                      decompressed.push(imgBuffer.readUInt8(imgBufferOff))
-                      imgBufferOff++
-                    }
-                    else {
-                      w = imgBuffer.readUInt16BE(imgBufferOff)
-                      imgBufferOff+=2
-                      position = (w >> 4)
-                      length = (w & 0x0F) + 3
-                      if(position === 0) {
-                        contLoop = false
-                        break;
-                      }
-                      if(position > decompressed.length) {
-                        diff = 0
-                        diff = position - decompressed.length
-                        diff = Math.min(diff, length)
-                        for(let e2p = 0; e2p < diff; e2p++) {
-                          decompressed.push(0)
-                        }
-                        length -= diff
-                      }
-                      if (-position+length < 0) {
-                        decompressed.push(...decompressed.slice(decompressed.length + (-position), decompressed.length + (-position+length)))
+                  // Decompression algorithm & code from ifstools/handlers/lz77.py
+                  let decompressed = []
+                  let contLoop = true
+                  let diff, flag, w, position, length
+                  while(contLoop) {
+                    flag = imgBuffer.readUInt8(imgBufferOff)
+                    imgBufferOff++
+                    for(let i = 0; i < 8; i++){
+                      if (((flag >> i) & 1) === 1) {
+                        decompressed.push(imgBuffer.readUInt8(imgBufferOff))
+                        imgBufferOff++
                       }
                       else {
-                        for(let loop = 0; loop < length; loop++) {
-                          decompressed.push(decompressed[decompressed.length + (-position)])
+                        w = imgBuffer.readUInt16BE(imgBufferOff)
+                        imgBufferOff+=2
+                        position = (w >> 4)
+                        length = (w & 0x0F) + 3
+                        if(position === 0) {
+                          contLoop = false
+                          break;
+                        }
+                        if(position > decompressed.length) {
+                          diff = 0
+                          diff = position - decompressed.length
+                          diff = Math.min(diff, length)
+                          for(let e2p = 0; e2p < diff; e2p++) {
+                            decompressed.push(0)
+                          }
+                          length -= diff
+                        }
+                        if (-position+length < 0) {
+                          decompressed.push(...decompressed.slice(decompressed.length + (-position), decompressed.length + (-position+length)))
+                        }
+                        else {
+                          for(let loop = 0; loop < length; loop++) {
+                            decompressed.push(decompressed[decompressed.length + (-position)])
+                          }
                         }
                       }
                     }
                   }
-                }
 
-                // Swap red and blue data (RGBA -> BGRA)
-                if(decompressed.length === imgUncompressedSize) {
-                  for(let decCtr = 0; decCtr < decompressed.length; decCtr += 4) {
-                    decompressed[decCtr + 2] = [decompressed[decCtr], decompressed[decCtr] = decompressed[decCtr + 2]][0];
+                  // Swap red and blue data (RGBA -> BGRA)
+                  if(decompressed.length === imgUncompressedSize) {
+                    for(let decCtr = 0; decCtr < decompressed.length; decCtr += 4) {
+                      decompressed[decCtr + 2] = [decompressed[decCtr], decompressed[decCtr] = decompressed[decCtr + 2]][0];
+                    }
+
+                    let pngf = new PNG({
+                      width: Math.floor(tdImgRect[1]/2) - Math.floor(tdImgRect[0]/2),
+                      height: Math.floor(tdImgRect[3]/2) - Math.floor(tdImgRect[2]/2),
+                      bitDepth: 8,
+                      colorType: 6,
+                      inputHasAlpha: true
+                    })
+
+                    pngf.data = Buffer.from(decompressed)
+                    const outputStream = await fs.createWriteStream('plugins/sdvx@asphyxia/webui/asset/' + textureslist[listIter].asset_folder + '/' + tdFileName);
+                    await pngf.pack().pipe(outputStream);
+                    console.log(' - ' + tdFileName + ' created successfully.');
+                    ifsSuccess.push(textureslist[listIter].file + ' - ' + tdFileName)
+                  } else {
+                    console.log("Decompression mismatch for " + textureslist[listIter]['file'] + '/' + tdFileName)
+                    runErrors.push('decompression mismatch for ' + textureslist[listIter]['file'] + '/' + tdFileName)
                   }
-
-                  let pngf = new PNG({
-                    width: Math.floor(tdImgRect[1]/2) - Math.floor(tdImgRect[0]/2),
-                    height: Math.floor(tdImgRect[3]/2) - Math.floor(tdImgRect[2]/2),
-                    bitDepth: 8,
-                    colorType: 6,
-                    inputHasAlpha: true
-                  })
-
-                  pngf.data = Buffer.from(decompressed)
-                  const outputStream = await fs.createWriteStream('plugins/sdvx@asphyxia/webui/asset/' + textureslist[listIter].asset_folder + '/' + tdFileName);
-                  await pngf.pack().pipe(outputStream);
-                  console.log(' - ' + tdFileName + ' created successfully.');
-                  ifsSuccess.push(textureslist[listIter].file + ' - ' + tdFileName)
-                } else {
-                  console.log("Decompression mismatch for " + textureslist[listIter]['file'] + '/' + tdFileName)
-                  runErrors.push('decompression mismatch for ' + textureslist[listIter]['file'] + '/' + tdFileName)
                 }
               }
             }
-          } else {
+          }
+          if(!md5Matched) {
             console.log('MD5 mismatch.')
             runErrors.push('MD5 mismatch - ' + textureslist[listIter].file)
           }
-           
         } else {
           console.log('IFS file unsupported/invalid.')
           runErrors.push('IFS file "' + textureslist[listIter].file + '" unsupported/invalid.')
@@ -610,6 +581,9 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
     for(let cIter = 0; cIter < courseData.courseData.length; cIter++) {
       if(courseData.courseData[cIter].version === 6) {
         courseData.courseData[cIter].info = COURSES6
+        courseDataUpdateSuccess = true
+      } else if(courseData.courseData[cIter].version === 7) {
+        courseData.courseData[cIter].info = COURSES7
         courseDataUpdateSuccess = true
       }
     }
@@ -631,7 +605,7 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
         chatStamp: newChatStampData,
         valgeneItemFiles: newValgeneItemFiles,
         jsonSongs: newJsonSongs.sort((a, b) => a[0] - b[0]),
-        xcdSongs: newXCDSongs.sort((a, b) => a[0] - b[0]),
+        infSongs: newINFSongs.sort((a, b) => a[0] - b[0]),
         ultSongs: newULTSongs.sort((a, b) => a[0] - b[0]),
         errors: runErrors
       }
@@ -647,41 +621,43 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
   }     
 }
 
-export const getRivalScores = async (data: { rivalId: string; refid: string; }, send: WebUISend) => {
-  let rival = await DB.FindOne<Rival>(data.refid, {collection: 'rival', refid: data.rivalId})
+export const getRivalScores = async (data: { rivalId: string; refid: string; version: string; }, send: WebUISend) => {
+  let ver = parseInt(data.version)
+  let rival = await DB.FindOne<Rival>(data.refid, {collection: 'rival', refid: data.rivalId, version: ver})
   send.json({
-    rival: await DB.FindOne<Profile>(data.rivalId, {collection: 'profile'}),
-    yourScores: await DB.Find<MusicRecord>(data.refid, { collection: 'music' }),
-    rivalScores: await DB.Find<MusicRecord>(rival.refid, { collection: 'music' })
+    rival: await DB.FindOne<Profile>(data.rivalId, {collection: 'profile', version: ver}),
+    yourScores: await DB.Find<MusicRecord>(data.refid, { collection: 'music', version: ver }),
+    rivalScores: await DB.Find<MusicRecord>(rival.refid, { collection: 'music', version: ver })
   })
 }
 
-export const addRival = async (data: { rivalId: string; refid: string; }, send: WebUISend) => {
-  let you = await DB.FindOne<Profile>(data.refid, {collection: 'profile'})
-  let rival = await DB.FindOne<Profile>(data.rivalId, {collection: 'profile'})
+export const addRival = async (data: { rivalId: string; refid: string; version: string }, send: WebUISend) => {
+  let ver = parseInt(data.version)
+  let you = await DB.FindOne<Profile>(data.refid, {collection: 'profile', version: ver})
+  let rival = await DB.FindOne<Profile>(data.rivalId, {collection: 'profile', version: ver})
 
-  let checkMutual = (await DB.Count<Rival>(data.rivalId, {collection: 'rival', refid: data.refid}) > 0)
-  if(await DB.Count<Rival>(data.refid, {collection: 'rival', refid: data.rivalId}) === 0) {
+  let checkMutual = (await DB.Count<Rival>(data.rivalId, {collection: 'rival', refid: data.refid, version: ver}) > 0)
+  if(await DB.Count<Rival>(data.refid, {collection: 'rival', refid: data.rivalId, version: ver}) === 0) {
     if(checkMutual) {
-      DB.Upsert(data.rivalId, {"collection": "rival", "sdvxID": you.id, "refid": data.refid, "name": you.name}, {$set: {"mutual": checkMutual}})
+      DB.Upsert(data.rivalId, {collection: "rival", sdvxID: you.id, refid: data.refid, name: you.name, version: ver}, {$set: {mutual: checkMutual}})
     }
-    DB.Insert(data.refid, {"collection": "rival", "sdvxID": rival.id, "refid": data.rivalId, "name": rival.name, "mutual": checkMutual})
+    DB.Insert(data.refid, {collection: "rival", sdvxID: rival.id, refid: data.rivalId, name: rival.name, version: ver, mutual: checkMutual})
     send.json({
       "msg": "Successfully added profile to rival. In order for your rivals to appear in-game, they need to add you as their rival as well."
     })
   } else {
     if(checkMutual) {
-      DB.Upsert(data.rivalId, {"collection": "rival", "sdvxID": you.id, "refid": data.refid, "name": you.name}, {$set: {"mutual": false}})
+      DB.Upsert(data.rivalId, {collection: "rival", sdvxID: you.id, refid: data.refid, name: you.name, version: ver}, {$set: {"mutual": false}})
     }
-    DB.Remove(data.refid, {"collection": "rival", "sdvxID": rival.id, "refid": data.rivalId, "name": rival.name})
+    DB.Remove(data.refid, {collection: "rival", sdvxID: rival.id, refid: data.rivalId, name: rival.name, version: ver})
     send.json({
-      "msg": "Successfully removed profile from rival."
+      "msg": "Successfully removed rival."
     })
   }
 }
 
 export const preGeneRoll = async (data: { set: number, refid: string, items: [] }, send: WebUISend) => {
-
+  let mergePregene = PREGENE.concat(PREGENE7)
   let itemId = {
     'crew': 11,
     'stamp': 17,
@@ -690,7 +666,8 @@ export const preGeneRoll = async (data: { set: number, refid: string, items: [] 
     'nemsys': 20,
     'sysbg': 21
   }
-  let preGeneSet = PREGENE.find(itemSet => itemSet.id === data.set)
+  let nblHave = (await DB.Count<Profile>(data.refid, {collection: 'profile', version: 7}) === 1)
+  let preGeneSet = mergePregene.find(itemSet => itemSet.id === data.set)
   let finishedRolling = false
   if(preGeneSet != undefined) {
     while(!finishedRolling) {
@@ -706,7 +683,7 @@ export const preGeneRoll = async (data: { set: number, refid: string, items: [] 
       }
 
       let unobtainedItems = preGeneSet.items[Object.keys(preGeneSet.items)[rollWhat]].map((x) => x)
-      data.items.forEach(item => {
+      data.items.filter(item => item['version'] === (nblHave ? 7 : 6)).forEach(item => {
         let checkId = 0;
         checkId = item['id']
         if(item['type'] == 17) checkId = (item['id'] / 4)
@@ -719,20 +696,26 @@ export const preGeneRoll = async (data: { set: number, refid: string, items: [] 
         console.log("Rolled item id: " + unobtainedItems[randomItemIndex] + " | item type: " + itemId[Object.keys(preGeneSet.items)[rollWhat]])
         if(itemId[Object.keys(preGeneSet.items)[rollWhat]] == 17) {
           for(let stampID = (unobtainedItems[randomItemIndex] * 4) - 3; stampID <= (unobtainedItems[randomItemIndex] * 4); stampID++) {
-            DB.Upsert(data.refid, {
-              "collection": "item", 
-              "type": itemId[Object.keys(preGeneSet.items)[rollWhat]], 
-              "id": stampID },
-              {$set: {"param": 1}}
+            DB.Upsert(data.refid, { collection: "item", type: itemId[Object.keys(preGeneSet.items)[rollWhat]], id: stampID, version: 7 },
+              { $set: {"param": 1} }
             )
+
+            if(preGeneSet.id !== 22 && preGeneSet.id < 24) {
+              DB.Upsert(data.refid, { collection: "item", type: itemId[Object.keys(preGeneSet.items)[rollWhat]], id: stampID, version: 6 },
+                { $set: {param: 1} }
+              )
+            }
           }
         } else {
-          DB.Upsert(data.refid, {
-            "collection": "item", 
-            "type": itemId[Object.keys(preGeneSet.items)[rollWhat]], 
-            "id": unobtainedItems[randomItemIndex] },
-            {$set: {"param": 1}}   
+          DB.Upsert(data.refid, { collection: "item", type: itemId[Object.keys(preGeneSet.items)[rollWhat]], id: unobtainedItems[randomItemIndex], version: 7 },
+            { $set: {param: 1} }   
           )
+
+          if(preGeneSet.id !== 22 && preGeneSet.id < 24) {
+            DB.Upsert(data.refid, { collection: "item", type: itemId[Object.keys(preGeneSet.items)[rollWhat]], id: unobtainedItems[randomItemIndex], version: 6 },
+              { $set: {param: 1} }   
+            )
+          }
         }
         let finalItemType = (Object.keys(preGeneSet.items)[rollWhat] === 'subbg') ? 'bg' : Object.keys(preGeneSet.items)[rollWhat]
         finishedRolling = true
@@ -754,7 +737,8 @@ export const preGeneReward = async (data: { reward: [], refid: string }, send: W
   let reward = Object.values(data.reward)
   let rewardItem = await DB.Find<Item>(data.refid, {collection: 'item', type: reward[0], id: reward[1], param: reward[2]})
   if(rewardItem.length === 0) {
-    DB.Upsert(data.refid, { collection: "item", type: reward[0], id: reward[1] }, { $set: { param: reward[2] } })
+    DB.Upsert(data.refid, { collection: "item", type: reward[0], id: reward[1], version: 6 }, { $set: { param: reward[2] } })
+    if(reward[5] >= 22) DB.Upsert(data.refid, { collection: "item", type: reward[0], id: reward[1], version: 7 }, { $set: { param: reward[2] } })
     send.json({
       received: true,
       reward: reward
@@ -820,15 +804,15 @@ export const addWeekly = async(data: { mid: number }) => {
   IO.WriteFile('webui/asset/config/weeklymusic.json', JSON.stringify(weekly, null, 4));
 }
 
-export const getWeekRankList = async(data: { week: number, mid: number, mtype: number}, send: WebUISend) => {
-  let results = await getRankListDB(data.week, data.mid, data.mtype)
+export const getWeekRankList = async(data: { week: number, mid: number, mtype: number, version: number}, send: WebUISend) => {
+  let results = await getRankListDB(data.week, data.mid, data.mtype, data.version)
   send.json({
     results: results
   })
 }
 
-export async function getRankListDB(week, mid, mtype) {
-  let rankResults = await DB.Find<WeeklyMusicScore>(null, {collection: 'weeklymusicscore', week: week, mid: mid, mtype: mtype})
+export async function getRankListDB(week, mid, mtype, version) {
+  let rankResults = await DB.Find<WeeklyMusicScore>(null, {collection: 'weeklymusicscore', version, week: week, mid: mid, mtype: mtype})
   let jRankResults = []
   if (rankResults.length > 0) {
     jRankResults = rankResults.sort((a, b) => b.exscore - a.exscore || b['updatedAt'].localeCompare(a['updatedAt']))

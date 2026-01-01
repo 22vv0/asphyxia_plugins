@@ -42,9 +42,9 @@ $(document).ready(async function() {
                     document.getElementById("logtextarea").textContent += '\n\n'
                 }
 
-                if(response['data']['xcdSongs'].length > 0) {
-                    document.getElementById("logtextarea").textContent += "[XCD charts]" + '\n'
-                    $.each(response['data']['xcdSongs'], function(key, val) {
+                if(response['data']['infSongs'].length > 0) {
+                    document.getElementById("logtextarea").textContent += "[INF charts]" + '\n'
+                    $.each(response['data']['infSongs'], function(key, val) {
                         document.getElementById("logtextarea").textContent += "- " +  val[1] + '\n'
                     })
                     document.getElementById("logtextarea").textContent += '\n\n'

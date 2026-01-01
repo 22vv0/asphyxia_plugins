@@ -24,7 +24,8 @@ import {
   saveValgene,
   saveE
 } from './handlers/profiles';
-import { ARENA_STATION_ITEMS, CURRENT_ARENA } from './data/exg';
+import { ARENA_STATION_ITEMS } from './data/exg';
+import { ARENA_STATION_ITEMS7 } from './data/nbl';
 import { dataUpdate } from './handlers/migrate'
 
 export function register() {
@@ -33,11 +34,11 @@ export function register() {
   R.Contributor("22vv0");
   R.GameCode('KFC');
 
-  R.Config('sdvx_eg_root_dir', { type: 'string', needRestart: true, default: '', name: 'Exceed Gear Data Directory', desc: 'The root directory of your SDVX Exceed Gear game files (for asset copying)'});
+  R.Config('sdvx_eg_root_dir', { type: 'string', needRestart: true, default: '', name: 'Game Data Directory', desc: 'The root directory of your Exceed Gear/∇ game files (for asset copying)'});
   R.Config('use_blasterpass',{ type: 'boolean', default: true, name:'Use BLASTER PASS', desc:''});
-  R.Config('arena_no_endtime',{ type: 'boolean', default: true, name: 'Keep ARENA running', desc: 'Choose whether to keep the latest ARENA season running past the end date. (Latest season: ' + CURRENT_ARENA['season'] + ')'});
-  R.Config('arena_station',{ type: 'string', options: Object.keys(ARENA_STATION_ITEMS), default: 'None', name: 'ARENA STATION set', desc: 'Choose which set of ARENA STATION items are available for purchase during ARENA.'});
-  R.Config('unlock_all_valk_items', { type: 'boolean', default: false, name:'Unlock Customization Items', desc: 'Unlock Nemsys, BGM, Submonitor BG, System BG and Appeal Stamps (Navigators not included; check \'unlock all navigators\' option)'});
+  R.Config('arena_no_endtime',{ type: 'boolean', default: true, name: 'Keep ARENA running', desc: 'Choose whether to keep the latest ARENA season running past the end date.'});
+  R.Config('arena_station',{ type: 'string', options: Object.keys({...ARENA_STATION_ITEMS, ...ARENA_STATION_ITEMS7}), default: 'None', name: 'ARENA STATION set', desc: 'Choose which set of ARENA STATION items are available for purchase during ARENA.'});
+  R.Config('unlock_all_valk_items', { type: 'boolean', default: false, name:'Unlock Customization Items', desc: 'Unlock most customization items (Navigators not included; check \'unlock all navigators\' option)'});
   R.Config('unlock_all_songs', { type: 'boolean', default: false, name:'Unlock All Songs'});
   R.Config('unlock_all_navigators', { type: 'boolean', default: false, name:'Unlock All Navigators'} );
   R.Config('unlock_all_appeal_cards', { type: 'boolean', default: false, name:'Unlock All Appeal Cards'});
@@ -56,6 +57,7 @@ export function register() {
   const MultiRoute = (method: string, handler: EPR | boolean) => {
     // Helper for register multiple versions.
     R.Route(`game.sv6_${method}`, handler);
+    R.Route(`game.sv7_${method}`, handler);
   };
 
   // Common

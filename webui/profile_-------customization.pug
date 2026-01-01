@@ -1,5 +1,5 @@
 //DATA//
-  profile: DB.FindOne(refid, { collection: 'profile' })
+  profile: DB.Find(refid, { collection: 'profile' })
 
   items_crew: DB.Find(refid, {$or:[{collection:"item",type:11,id:117}, {collection:"item",type:11,id:119}, {collection:"item",type:11,id:120}, {collection:"item",type:11,id:121}, {collection:"item",type:11,id:124}, {collection:"item",type:11,id:129}]})
 
@@ -22,7 +22,7 @@
   unlock_all: U.GetConfig('unlock_all_valk_items')
 
 -
-  const padded = _.padStart(profile.id.toString(), 8);
+  const padded = _.padStart(profile[0].id.toString(), 8);
   const sdvxid = `${padded.slice(0, 4)}-${padded.slice(4)}`;
 
 link(rel="stylesheet" href="static/asset/css/profile.css")
@@ -35,6 +35,14 @@ div
         | Settings
     .card-content
       form(method="post" action="/emit/updateProfile")
+        div(hidden name='version') !{6}
+        .field
+          label.label Game Version
+            span.icon.has-tooltip-right(data-tooltip="Choose which game profile to customize.")
+                i.mdi.mdi-help-circle
+          .control.is-expanded 
+            .select.is-fullwidth
+              select(name="version_select" id="version_select")
         .field
           label.label ID
           .control
@@ -46,7 +54,7 @@ div
         .field
           label.label Name
           .control
-            input.input(type="text" name="name", placeholder=profile.name)
+            input.input(type="text" name="name")
         .field
           label.label Appeal Card ID
             span.icon.has-tooltip-right(data-tooltip="Check \"data/others/appeal_card.xml\"")
@@ -55,7 +63,7 @@ div
                   .select.is-fullwidth
                     select(name="appeal" id="appeal_select")//
           .control
-            input.input(type="number" step=1 name="appeal", placeholder=profile.appeal)
+            input.input(type="number" step=1 name="appeal")
         .field
           label.label Appeal Card Frame
             span.icon.has-tooltip-right(data-tooltip="Adds a frame on top of your appeal card display.")
@@ -102,7 +110,7 @@ div
           .control.is-expanded 
             input.input(type="number" name="valgeneTicket" id="valgeneticket_select")
         br
-        div(style="font-size:26px;font-weight:bold;vertical-align:top; overflow-wrap: break-word;word-break: break-all;") EXCEED GEAR VALKYRIE GENERATOR CUSTOMIZATION
+        div(style="font-size:26px;font-weight:bold;vertical-align:top; overflow-wrap: break-word;word-break: break-all;") CUSTOMIZATION
           .tile.is-ancestor
             .tile.is-parent.is-6
               .tile.is-child(style="vertical-align: top;")

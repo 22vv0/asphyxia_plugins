@@ -5,12 +5,12 @@ import { getVersion, IDToCode, GetCounter } from '../utils';
 import { Rival } from '../models/rival';
 
 export const hiscore: EPR = async (info, data, send) => {
-  const records = await DB.Find<MusicRecord>(null, { collection: 'music' });
+  const version = Math.abs(getVersion(info));
 
-  const version = getVersion(info);
+  const records = await DB.Find<MusicRecord>(null, { collection: 'music', version, migrated: {$exists: false} });
 
   const profiles = _.groupBy(
-    await DB.Find<Profile>(null, { collection: 'profile' }),
+    await DB.Find<Profile>(null, { collection: 'profile', version }),
     '__refid'
   );
 
@@ -37,11 +37,12 @@ export const hiscore: EPR = async (info, data, send) => {
 
 export const rival: EPR = async (info, data, send) => {
   const refid = $(data).str('refid');
-  const version = parseInt(info.model.split(":")[4].slice(0, -2));
+  const version = Math.abs(getVersion(info));
+  const dVersion = parseInt(info.model.split(":")[4].slice(0, -2));
   if (!refid) return send.deny();
 
   const rivals = (
-    await DB.Find<Rival>(refid, { collection: 'rival', mutual: true })
+    await DB.Find<Rival>(refid, { collection: 'rival', mutual: true, version })
   ).filter(p => p.refid != refid);
 
   return send.object({
@@ -52,10 +53,10 @@ export const rival: EPR = async (info, data, send) => {
           seq: K.ITEM('str', IDToCode(p.sdvxID)),
           name: K.ITEM('str', p.name),
           music: (
-            await DB.Find<MusicRecord>(p.refid, { collection: 'music' })
+            await DB.Find<MusicRecord>(p.refid, { collection: 'music', version })
           ).map(r => ({
             // Version 2023042500 added exscore to rival data.
-            param: K.ARRAY('u32', version < 20230425 ? [r.mid, r.type, r.score, r.clear, r.grade] : [r.mid, r.type, r.score, r.exscore, r.clear, r.grade]),
+            param: K.ARRAY('u32', dVersion < 20230425 ? [r.mid, r.type, r.score, r.clear, r.grade] : [r.mid, r.type, r.score, r.exscore, r.clear, r.grade]),
           })),
         };
       })
@@ -69,8 +70,10 @@ export const entryE: EPR = async (info, data, send) => {
 }
 
 export const globalMatch: EPR = async (info, data, send) => {  
+  const version = Math.abs(getVersion(info));
   let entryData: Matchmaker = {
     collection: 'matchmaker',
+    version: version,
     timestamp: Date.now(),
     c_ver: $(data).number('c_ver'),
     p_num: $(data).number('p_num'),
@@ -101,19 +104,19 @@ export const globalMatch: EPR = async (info, data, send) => {
   // console.log("   claim: " + entryData.claim)
   // console.log("entry_id: " + entryData.entry_id)
   console.log("[" + loglip + " | " + loggip + "] Searching for online match opponents")
-  let expCnt = await DB.Remove({collection: 'matchmaker', timestamp: {$lt: Date.now() - 100000}})
+  let expCnt = await DB.Remove({collection: 'matchmaker', version, timestamp: {$lt: Date.now() - 100000}})
   console.log("[" + loglip + " | " + loggip + "] Removed " + expCnt + " expired match data.")
 
-  if(await DB.Count({collection: 'matchmaker', c_ver: entryData.c_ver, filter: entryData.filter, claim: entryData.claim, entry_id: entryData.entry_id}) === 0) {
+  if(await DB.Count({collection: 'matchmaker', version, c_ver: entryData.c_ver, filter: entryData.filter, claim: entryData.claim, entry_id: entryData.entry_id}) === 0) {
     console.log("[" + loglip + " | " + loggip + "] Adding your info.")
     await DB.Upsert<Matchmaker>(
-      { collection: 'matchmaker', gip: entryData.gip, lip: entryData.lip},
+      { collection: 'matchmaker', version, gip: entryData.gip, lip: entryData.lip},
       entryData
     )
-  } else if(await DB.Count({collection: 'matchmaker', c_ver: entryData.c_ver, filter: entryData.filter, claim: entryData.claim, entry_id: entryData.entry_id, lip: entryData.lip}) > 0) {
+  } else if(await DB.Count({collection: 'matchmaker', version, c_ver: entryData.c_ver, filter: entryData.filter, claim: entryData.claim, entry_id: entryData.entry_id, lip: entryData.lip}) > 0) {
     console.log("[" + loglip + " | " + loggip + "] Updating info.")
     await DB.Upsert<Matchmaker>(
-      { collection: 'matchmaker', gip: entryData.gip, lip: entryData.lip},
+      { collection: 'matchmaker', version, gip: entryData.gip, lip: entryData.lip },
       { $set: {
           c_ver: entryData.c_ver,
           p_num: entryData.p_num,
@@ -135,7 +138,7 @@ export const globalMatch: EPR = async (info, data, send) => {
 
   console.log("[" + loglip + " | " + loggip + "] Searching...")
 
-  let opData = await DB.Find<Matchmaker>({collection: 'matchmaker', c_ver: entryData.c_ver, filter: entryData.filter, claim: entryData.claim, entry_id: entryData.entry_id})
+  let opData = await DB.Find<Matchmaker>({collection: 'matchmaker', version, c_ver: entryData.c_ver, filter: entryData.filter, claim: entryData.claim, entry_id: entryData.entry_id, $not: {lip: entryData.lip}})
   let opponents = {
     entry_id: K.ITEM('u32', entryData.entry_id),
     entry: opData.length > 0 ? opData.map(e => ({
@@ -150,9 +153,10 @@ export const globalMatch: EPR = async (info, data, send) => {
 }
 
 export const lounge: EPR = async (info, data, send) => {
+  const version = Math.abs(getVersion(info));
   let filter = $(data).number('filter')
-  await DB.Remove({collection: 'matchmaker', timestamp: {$lt: Date.now() - 100000}})
-  let matches = await DB.Find<Matchmaker>({collection: 'matchmaker', filter: filter})
+  await DB.Remove({collection: 'matchmaker', version, timestamp: {$lt: Date.now() - 100000}})
+  let matches = await DB.Find<Matchmaker>({collection: 'matchmaker', version, filter: filter})
   if(matches.length < 1) {
     send.object({
       interval: K.ITEM('u32', 5)

@@ -25,7 +25,7 @@ function countGeneItems(geneItems, items_crew, items_stamp, items_subbg, items_b
         total += geneItems.items['sysbg'].length
     }
 
-    return [obtained, total]
+    return [obtained/2, total]
 }
 
 function loadImages(itemList, itemType, userItems) {
@@ -106,17 +106,19 @@ async function loadItems(itemSet, gene_edition, items_crew, items_stamp, items_s
     }
 }
 
-async function loadValgeneData(gene_edition) {
+async function loadValgeneData(gene_edition, nblHave) {
     let valGeneData = await $.getJSON( "static/asset/json/valgene_data.json", function(data) {
         return data
     })
     if(gene_edition === 'valkyrie') {
         for(const valGeneDataIndex in valGeneData.valgene) {
-            $('#set_select').append('<option value=' + valGeneData.valgene[valGeneDataIndex].id + '>' + valGeneData.valgene[valGeneDataIndex].name + '</option>')
+            if((nblHave && valGeneData.valgene[valGeneDataIndex].id >= 1) || (!nblHave && valGeneData.valgene[valGeneDataIndex].id < 19))
+                $('#set_select').append('<option value=' + valGeneData.valgene[valGeneDataIndex].id + '>' + valGeneData.valgene[valGeneDataIndex].name + '</option>')
         }
     } else { 
         for(const pregeneDataIndex in valGeneData.pregene) {
-            $('#set_select').append('<option value=' + valGeneData.pregene[pregeneDataIndex].id + '>' + valGeneData.pregene[pregeneDataIndex].name + '</option>')
+            if((nblHave && valGeneData.pregene[pregeneDataIndex].id >= 1) || (!nblHave && valGeneData.pregene[pregeneDataIndex].id < 23))
+                $('#set_select').append('<option value=' + valGeneData.pregene[pregeneDataIndex].id + '>' + valGeneData.pregene[pregeneDataIndex].name + '</option>')
         }
     }
     let urlParams = new URLSearchParams(window.location.search);
@@ -170,7 +172,8 @@ $(document).ready(async function() {
     let items_nemsys = JSON.parse(document.getElementById("data-pass-nemsys").innerText);
     let items_sysbg = JSON.parse(document.getElementById("data-pass-sysbg").innerText);
     let gene_edition = document.getElementById("generator-edition").innerText;
-    let currentSet = await loadValgeneData(gene_edition)
+    let nblHave = JSON.parse(document.getElementById("nbl-have").innerText);
+    let currentSet = await loadValgeneData(gene_edition, nblHave.length)
     $('#set_select').val(currentSet)
     loadItems(currentSet, gene_edition, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys, items_sysbg)
     

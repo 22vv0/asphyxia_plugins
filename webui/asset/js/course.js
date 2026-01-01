@@ -1,11 +1,14 @@
 var course_db, music_db;
-var version_name = ["", "Booth", "Infinite Infection", "Gravity Wars", "Heavenly Haven", "Vividwave", "Exceed Gear"];
+var urlParams;
+var currentVersion;
+var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVIDWAVE', 'EXCEED GEAR', '∇']
 
 var ii = [];
 var gw = [];
 var hh = [];
 var vw = [];
 var eg = [];
+var nb = [];
 
 function zeroPad(num, places) {
     var zero = places - num.toString().length + 1;
@@ -56,19 +59,19 @@ function getRate(rate) {
 }
 
 function getSongLevel(musicid, type) {
-    var result = music_db["mdb"]["music"].filter(object => object["@id"] == musicid);
+    var result = music_db["mdb"]["music"].filter(object => object["id"] == musicid);
     var resultDifficulty = result[0]["difficulty"];
     switch (type) {
         case 0:
-            return resultDifficulty["novice"]["difnum"]["#text"];
+            return resultDifficulty["novice"];
         case 1:
-            return resultDifficulty["advanced"]["difnum"]["#text"];
+            return resultDifficulty["advanced"];
         case 2:
-            return resultDifficulty["exhaust"]["difnum"]["#text"];
+            return resultDifficulty["exhaust"];
         case 3:
-            return resultDifficulty["infinite"]["difnum"]["#text"];
+            return resultDifficulty["infinite"];
         case 4:
-            return resultDifficulty["maximum"]["difnum"]["#text"];
+            return resultDifficulty["maximum"];
     }
     //console.log(result);
 }
@@ -76,14 +79,14 @@ function getSongLevel(musicid, type) {
 function getSongName(musicid) {
     //console.log(music_db["mdb"]["music"])
     //console.log(musicid+" "+type);
-    var result = music_db["mdb"]["music"].filter(object => object["@id"] == musicid);
+    var result = music_db["mdb"]["music"].filter(object => object["id"] == musicid);
     return result[0]["info"]["title_name"]
         //console.log(result);
 }
 
 function getDifficulty(musicid, type) {
-    var result = music_db["mdb"]["music"].filter(object => object["@id"] == musicid);
-    var inf_ver = result[0]["info"]["inf_ver"]["#text"];
+    var result = music_db["mdb"]["music"].filter(object => object["id"] == musicid);
+    var inf_ver = result[0]["info"]["inf_ver"];
     console.log([type, inf_ver]);
     switch (type) {
         case 0:
@@ -125,9 +128,6 @@ function getDifficultyAsset(type, level) {
 
     return t;
 }
-
-
-
 
 function getTrackInfo(track) {
     var currentTrack = {};
@@ -187,10 +187,6 @@ function getCourseInfo(sid, cid, version) {
     console.log(course.tracks);
     return course;
 }
-
-
-
-
 
 function setCourseInfo(courseArray, skillType) {
     var courseCtx = $('#course_content');
@@ -324,6 +320,9 @@ function setDataSource(dataSource, skillType) {
         case 6:
             setCourseInfo(eg, skillType);
             break;
+        case 7:
+            setCourseInfo(nb, skillType);
+            break;
     }
 }
 
@@ -343,12 +342,9 @@ $('#skilltype_select').change(function() {
     $('#course_content').fadeIn(200);
 });
 
-
-
-
 $(document).ready(function() {
-    var profile_data = JSON.parse(document.getElementById("data-pass").innerText);
-    profile_data = profile_data.sort(function(a, b) {
+    var course_data = JSON.parse(document.getElementById("data-pass").innerText);
+    course_data = course_data.sort(function(a, b) {
         if (a.version > b.version) return 1;
         if (a.version < b.version) return -1;
 
@@ -359,22 +355,38 @@ $(document).ready(function() {
         if (a.sid < b.sid) return -1;
     });
 
-    for (var i in profile_data) {
-        switch (profile_data[i].version) {
+    urlParams = new URLSearchParams(window.location.search);
+    currentVersion = (course_data.length > 0) ? course_data.sort((a, b) => b.version - a.version)[0].version : 0
+    for(var i in versionText) {
+        if(course_data.filter(c => c.version === parseInt(i)).length > 0) {
+            console.log('adding ' + i)
+            $('#version_select').append($('<option>', {
+                value: i,
+                text: versionText[i],
+                selected: (parseInt(i) === currentVersion)
+            }));
+        }
+    }
+
+    for (var i in course_data) {
+        switch (course_data[i].version) {
             case 2:
-                ii.push(profile_data[i]);
+                ii.push(course_data[i]);
                 continue;
             case 3:
-                gw.push(profile_data[i]);
+                gw.push(course_data[i]);
                 continue;
             case 4:
-                hh.push(profile_data[i]);
+                hh.push(course_data[i]);
                 continue;
             case 5:
-                vw.push(profile_data[i]);
+                vw.push(course_data[i]);
                 continue;
             case 6:
-                eg.push(profile_data[i]);
+                eg.push(course_data[i]);
+                continue;
+            case 7:
+                nb.push(course_data[i]);
                 continue;
         }
     }

@@ -1,5 +1,5 @@
 {
-    "events": [
+    "events6": [
         {
             "id": "xrecord_1",
             "type": "cross_online",
@@ -623,6 +623,158 @@
                 "TAITO STATION Tradz",
                 "ROUND1",
                 "レジャーランド"
+            ]
+        }
+    ],
+    "events7": [
+        {
+            "id": "gitadorastamp",
+            "type": "stamp",
+            "enabled": true,
+            "name": "GITADORA Special Stamps！",
+            "version": 20251209,
+            "desc": "Stamp event to unlock 2 songs originally from GITADORA.",
+            "info": "Toggle this on to enable/disable this stamp event. (EG/∇)"
+        },
+        {
+            "id": "bpls5sdvx7",
+            "type": "gift",
+            "enabled": true,
+            "name": "BEMANI PRO LEAGUE -SEASON 5-! Original Song",
+            "version": [
+                20251224,
+                20251224
+            ],
+            "desc": "Songs revealed for the BEMANI Pro League Season 5 sightread challenges.<br>Toggle to have the songs from their corresponding week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.",
+            "info": [
+                "Week 5 song: 'ИEXTAGE'",
+                "Week 6 song: 'CAKE,Cake'n Cake!'"
+            ]
+        },
+        {
+            "id": "nblstampbonus1",
+            "type": "stamp",
+            "enabled": true,
+            "name": "∇ Weekly Stamp Bonus! (Week 1)",
+            "version": 20251224,
+            "desc": "Stamp event to unlock the つまぶきサンタ appeal sticker, and gain PC and BLC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "nblstampbonus2",
+            "type": "stamp",
+            "enabled": true,
+            "name": "∇ Weekly Stamp Bonus! (Week 2)",
+            "version": 20251224,
+            "desc": "Stamp event to unlock the 鏡ﾓﾁｭ appeal sticker, and gain PC and BLC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "nblstampbonus3",
+            "type": "stamp",
+            "enabled": true,
+            "name": "∇ Weekly Stamp Bonus! (Week 3)",
+            "version": 20251224,
+            "desc": "Stamp event to gain PC and BLC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "2026apica",
+            "type": "gift_ap",
+            "enabled": true,
+            "name": "New Year 2026 Appeal Card",
+            "version": 20251226,
+            "desc": "Login to SDVX to get this appeal card.",
+            "info": "Toggle this option to enable/disable this stamp event."
+        },
+                {
+            "id": "vgate1",
+            "type": "variant",
+            "enabled": true,
+            "name": "VARIANT GATE 「月輪の紋様」",
+            "version": 20251226,
+            "desc": "1st set of VARIANT GATE. Accumulate VARIANT POWER to make a special song folder appear in EXTRACK, clear the songs at a certain difficulty to obtain keys. Get all keys to play OVER TRACK.",
+            "info": "Toggle this on to enable/disable this event. (EG/∇)",
+            "settings": [
+                {
+                    "id": "minSealDiff",
+                    "title": "OVER TRACK difficulty",
+                    "desc": "Set the lowest difficulty available for OVER TRACK (default: Maximum)",
+                    "val": [[3, "Choose difficulty"], [0, "Novice"], [1, "Advanced"], [2, "Exhaust"], [3, "Maximum"]]
+                },
+                {
+                    "id": "minOverTrackRank",
+                    "title": "OVER TRACK gauge rank",
+                    "desc": "Set the lowest VARIATIVE RATE gauge rank available for OVER TRACK (default: Rank V)",
+                    "val": [[5, "Choose rank"], [1, "Rank I"], [2, "Rank II"], [3, "Rank III"], [4, "Rank IV"], [5, "Rank V"]]
+                }
+            ]
+        },
+        {
+            "id": "vgate2",
+            "type": "variant",
+            "enabled": true,
+            "name": "VARIANT GATE 「永遠の紋様」",
+            "version": 20251226,
+            "desc": "2nd set of VARIANT GATE. Accumulate VARIANT POWER to make a special song folder appear in EXTRACK, clear the songs at a certain difficulty to obtain keys. Get all keys to play OVER TRACK.",
+            "info": "Toggle this on to enable/disable this event. (EG/∇)",
+            "settings": [
+                {
+                    "id": "minSealDiff",
+                    "title": "OVER TRACK difficulty",
+                    "desc": "Set the lowest difficulty available for OVER TRACK (default: Maximum)",
+                    "val": [[3, "Choose difficulty"], [0, "Novice"], [1, "Advanced"], [2, "Exhaust"], [3, "Maximum"]]
+                },
+                {
+                    "id": "minOverTrackRank",
+                    "title": "OVER TRACK gauge rank",
+                    "desc": "Set the lowest VARIATIVE RATE gauge rank available for OVER TRACK (default: Rank V)",
+                    "val": [[5, "Choose rank"], [1, "Rank I"], [2, "Rank II"], [3, "Rank III"], [4, "Rank IV"], [5, "Rank V"]]
+                }
+            ]
+        },
+        {
+            "id": "bluediamond",
+            "type": "stamp",
+            "enabled": true,
+            "name": "Blue Diamond Stamp Event",
+            "version": 20251224,
+            "desc": "Stamp event to unlock the song 'Blue Diamond.' Difficulties unlock at separate stamp steps.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "crossresonance",
+            "type": "cross_online",
+            "enabled": true,
+            "name": "ぼる×りこ Cross Resonance",
+            "version": [
+                20251224,
+                20251224,
+                20251224,
+                20251224,
+                20251224,
+                20251224,
+                20251224,
+                20251224,
+                20251224,
+                20251224,
+                20251224,
+                20251224
+            ],
+            "desc": "Crossover event between SOUND VOLTEX and Polaris Chord<br>Toggle the corresponding songs' option below to automatically unlock them on your next login. (EG/∇)",
+            "info": [
+                "Song 1: 'Crossfade'",
+                "Song 2: '星界のアルペジオ'",
+                "Song 3: 'Ö＜3rf10₩'",
+                "Song 4: 'ぐしゃ'",
+                "Song 5: 'Dear Deer'",
+                "Song 6: 'DISTORDER'",
+                "Song 7: 'HOLOGRAPHY'",
+                "Song 8: 'Like the Starlight'",
+                "Song 9: 'FRENZY HEART'",
+                "Song 10: 'フラッフィー・アドベンチャー！'",
+                "Song 11: 'Temporal Veil'",
+                "Song 12: '555 (Please call me “Go! Go! Go!”)'"
             ]
         }
     ],

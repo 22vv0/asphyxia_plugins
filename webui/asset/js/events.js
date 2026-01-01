@@ -1,3 +1,7 @@
+var currentVersion = 7;
+var urlParams;
+var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVIDWAVE', 'EXCEED GEAR', '∇']
+
 function generateEventToggles(eventInfo, eventConfig, eventEnabled) {
     let cardContent = $('<div class="card-content">')
     cardContent.append('<div class="field is-horizontal"').append(
@@ -59,25 +63,28 @@ function generateEventToggles(eventInfo, eventConfig, eventEnabled) {
     return cardContent
 }
 
-async function generateNewEventsConfigFile(eventData) {
-    let eventConfig = {}
-    for(const eventIter in eventData['events']) {
-        eventConfig[eventData['events'][eventIter]['id']] = await insertNewEventConfig(eventData, eventIter, eventData['events'][eventIter]['id'])
+async function generateNewEventsConfigFile(eventData, eventConfig) {
+    for(const eventIter in eventData['events6']) {
+        eventConfig[eventData['events6'][eventIter]['id']] = await insertNewEventConfig(eventData, eventIter, eventData['events6'][eventIter]['id'], 6)
+    }
+    for(const eventIter in eventData['events7']) {
+        eventConfig[eventData['events7'][eventIter]['id']] = await insertNewEventConfig(eventData, eventIter, eventData['events7'][eventIter]['id'], 7)
     }
     return eventConfig
 }
 
-async function insertNewEventConfig(eventData, eventIter, eventID) {
+async function insertNewEventConfig(eventData, eventIter, eventID, version) {
+
     let toggle = false
-    if(typeof eventData['events'][eventIter]['info'] !== 'string') {
+    if(typeof eventData['events' + version][eventIter]['info'] !== 'string') {
         toggle = {}
-        for(const toggleIter in eventData['events'][eventIter]['info']) {
-            toggle[eventData['events'][eventIter]['id'] + '_' + (parseInt(toggleIter) + 1)] = false
+        for(const toggleIter in eventData['events' + version][eventIter]['info']) {
+            toggle[eventData['events' + version][eventIter]['id'] + '_' + (parseInt(toggleIter) + 1)] = false
         }
     }
-    if(eventData['events'][eventIter]['settings'] !== undefined) {
+    if(eventData['events' + version][eventIter]['settings'] !== undefined) {
         let settings = {}
-        for(const set of eventData['events'][eventIter]['settings']) {
+        for(const set of eventData['events' + version][eventIter]['settings']) {
             settings[set['id']] = ''
         }
         return {
@@ -96,7 +103,7 @@ async function readEventsConfigFile(eventData) {
             return data
         })
     } catch {
-        return await generateNewEventsConfigFile(eventData)
+        return await generateNewEventsConfigFile(eventData, {})
     }
 } 
 
@@ -109,28 +116,52 @@ async function readEventsJsonFile() {
 $(document).ready(async function() {
     let eventData = await readEventsJsonFile()
     let eventConfig = await readEventsConfigFile(eventData)
-    for(const eventIter in eventData['events']) {
-        if(eventConfig[eventData['events'][eventIter]['id']] === undefined) {
-            eventConfig[eventData['events'][eventIter]['id']] = await insertNewEventConfig(eventData, eventIter, eventData['events'][eventIter]['id'])
+
+    urlParams = new URLSearchParams(window.location.search);
+    currentVersion = (urlParams.has('version') && urlParams.get('version') !== "") ? parseInt(urlParams.get('version')) : currentVersion
+
+    let versions = [
+        ["6", "EXCEED GEAR"],
+        ["7", "∇"]
+    ]
+    for (var i = 0; i < versions.length; i++) {
+        $('#version_select').append(
+            $('<option>', {
+                value: versions[i][0],
+                text: versions[i][1],
+                selected: (parseInt(versions[i][0]) === currentVersion)
+            })
+        )
+    }
+
+    $('select#version_select').change(async function(event) {
+        const urlParams = new URLSearchParams(location.search);
+        urlParams.set('version', $('#version_select').val());
+        location.search = urlParams;
+    })
+
+    for(const eventIter in eventData['events' + currentVersion]) {
+        if(eventConfig[eventData['events' + currentVersion][eventIter]['id']] === undefined) {
+            eventConfig[eventData['events' + currentVersion][eventIter]['id']] = await insertNewEventConfig(eventData, eventIter, eventData['events' + currentVersion][eventIter]['id'], currentVersion)
         }
 
-        if(eventData['events'][eventIter]['enabled']) {   
-            if(/tama|variant/.test(eventData['events'][eventIter]['type'])) {
+        if(eventData['events' + currentVersion][eventIter]['enabled']) {   
+            if(/tama|variant/.test(eventData['events' + currentVersion][eventIter]['type'])) {
                 $('#specevent_select').append(
-                    '<option value=' + eventData['events'][eventIter]['id'] + '>' + eventData['events'][eventIter]['name'] + '</option>'
+                    '<option value=' + eventData['events' + currentVersion][eventIter]['id'] + '>' + eventData['events' + currentVersion][eventIter]['name'] + '</option>'
                 )
             }
-            else if(/stamp|completestamp/.test(eventData['events'][eventIter]['type'])) {
+            else if(/stamp|completestamp/.test(eventData['events' + currentVersion][eventIter]['type'])) {
                 $('#stampevent_select').append(
-                    '<option value=' + eventData['events'][eventIter]['id'] + '>' + eventData['events'][eventIter]['name'] + '</option>'
+                    '<option value=' + eventData['events' + currentVersion][eventIter]['id'] + '>' + eventData['events' + currentVersion][eventIter]['name'] + '</option>'
                 )
-            } else if(/gift/.test(eventData['events'][eventIter]['type'])) {
+            } else if(/gift/.test(eventData['events' + currentVersion][eventIter]['type'])) {
                 $('#giftevent_select').append(
-                    '<option value=' + eventData['events'][eventIter]['id'] + '>' + eventData['events'][eventIter]['name'] + '</option>'
+                    '<option value=' + eventData['events' + currentVersion][eventIter]['id'] + '>' + eventData['events' + currentVersion][eventIter]['name'] + '</option>'
                 )
-            } else if(/cross_online/.test(eventData['events'][eventIter]['type'])) {
+            } else if(/cross_online/.test(eventData['events' + currentVersion][eventIter]['type'])) {
                 $('#crossevent_select').append(
-                    '<option value=' + eventData['events'][eventIter]['id'] + '>' + eventData['events'][eventIter]['name'] + '</option>'
+                    '<option value=' + eventData['events' + currentVersion][eventIter]['id'] + '>' + eventData['events' + currentVersion][eventIter]['name'] + '</option>'
                 )
             }
         }
@@ -138,27 +169,27 @@ $(document).ready(async function() {
 
     $('#event-submit').on('click', async function() {
         $.each($('span.check'), function(index, value) {
-            for(const eventIter in eventData['events']) {
+            for(const eventIter in eventData['events' + currentVersion]) {
                 let toggle = true
                 if($(value).css('background-color').includes("54, 54, 54")) {
                     toggle = false
                 }
 
-                if(eventData['events'][eventIter]['id'] === $(value).parent().children('input').attr('name')) {
-                    eventConfig[eventData['events'][eventIter]['id']]['toggle'] = toggle
-                } else if ($(value).parent().children('input').attr('name').includes(eventData['events'][eventIter]['id'] + "_")) {
-                    if(eventConfig[eventData['events'][eventIter]['id']]['toggle'] !== undefined && typeof eventConfig[eventData['events'][eventIter]['id']]['toggle'] === 'boolean') eventConfig[eventData['events'][eventIter]['id']]['toggle'] = {}
-                    eventConfig[eventData['events'][eventIter]['id']]['toggle'][[$(value).parent().children('input').attr('name')]] = toggle
+                if(eventData['events' + currentVersion][eventIter]['id'] === $(value).parent().children('input').attr('name')) {
+                    eventConfig[eventData['events' + currentVersion][eventIter]['id']]['toggle'] = toggle
+                } else if ($(value).parent().children('input').attr('name').includes(eventData['events' + currentVersion][eventIter]['id'] + "_")) {
+                    if(eventConfig[eventData['events' + currentVersion][eventIter]['id']]['toggle'] !== undefined && typeof eventConfig[eventData['events' + currentVersion][eventIter]['id']]['toggle'] === 'boolean') eventConfig[eventData['events' + currentVersion][eventIter]['id']]['toggle'] = {}
+                    eventConfig[eventData['events' + currentVersion][eventIter]['id']]['toggle'][[$(value).parent().children('input').attr('name')]] = toggle
                 }
             }
         })
 
         $.each($('select'), function(index, value) {
-            for(const eventIter in eventData['events']) {
-                if(eventData['events'][eventIter]['settings'] !== undefined) {
-                    for(const set of eventData['events'][eventIter]['settings']) {
-                        if(eventData['events'][eventIter]['id'] === $('#specevent_select').val() && set['id'] === $(value).parent().children('select').attr('name')) {
-                            eventConfig[eventData['events'][eventIter]['id']]['settings'][set['id']] = $(value).parent().children('select').val()
+            for(const eventIter in eventData['events' + currentVersion]) {
+                if(eventData['events' + currentVersion][eventIter]['settings'] !== undefined) {
+                    for(const set of eventData['events' + currentVersion][eventIter]['settings']) {
+                        if(eventData['events' + currentVersion][eventIter]['id'] === $('#specevent_select').val() && set['id'] === $(value).parent().children('select').attr('name')) {
+                            eventConfig[eventData['events' + currentVersion][eventIter]['id']]['settings'][set['id']] = $(value).parent().children('select').val()
                         }
                     }
                 }
@@ -178,15 +209,17 @@ $(document).ready(async function() {
     $('select').change(async function(event) {
         let selectClass = '#' + $(this).attr('id')
         let listClasses = {'#specevent_select': 'spec', '#stampevent_select': 'stamp', '#giftevent_select': 'gift', '#crossevent_select': 'cross'}
-        $('.' + listClasses[selectClass] + '.list').empty()
-        for(const eventIter in eventData['events']) {
-            if(eventData['events'][eventIter]['id'] === $(selectClass).val()) {
-                $('.' + listClasses[selectClass] + '.list').append(
-                    generateEventToggles(eventData['events'][eventIter], eventConfig[eventData['events'][eventIter]['id']], eventData['events'][eventIter]['enabled'])
-                )
-                $('div.main').append(
-                    $('<div class="field is-grouped"><div class="control is-expanded"></div><div class="control"><button class="button is-link" id="event-submit">Apply</button></div></div>')
-                )
+        if(selectClass in listClasses) {
+            $('.' + listClasses[selectClass] + '.list').empty()
+            for(const eventIter in eventData['events' + currentVersion]) {
+                if(eventData['events' + currentVersion][eventIter]['id'] === $(selectClass).val()) {
+                    $('.' + listClasses[selectClass] + '.list').append(
+                        generateEventToggles(eventData['events' + currentVersion][eventIter], eventConfig[eventData['events' + currentVersion][eventIter]['id']], eventData['events' + currentVersion][eventIter]['enabled'])
+                    )
+                    $('div.main').append(
+                        $('<div class="field is-grouped"><div class="control is-expanded"></div><div class="control"><button class="button is-link" id="event-submit">Apply</button></div></div>')
+                    )
+                }
             }
         }
     })

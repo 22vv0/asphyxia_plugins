@@ -1,3 +1,8 @@
+var urlParams;
+var currentVersion;
+var currentProfile;
+var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVIDWAVE', 'EXCEED GEAR', '∇']
+
 function getDifficulty(songData, difficultyNum) {
     switch(difficultyNum) {
         case 0:
@@ -7,7 +12,7 @@ function getDifficulty(songData, difficultyNum) {
         case 2:
             return 'EXH'
         case 3:
-            switch(songData['info']['inf_ver']['#text']) {
+            switch(songData['info']['inf_ver']) {
                 case "2":
                     return "INF";
                 case "3":
@@ -27,7 +32,7 @@ function getDifficulty(songData, difficultyNum) {
 function populateTable(yourScore, rivalScore, music_db) {
     let table_data = []
     for(let ind in yourScore) {
-        let songData = music_db['mdb']['music'].filter((m => parseInt(m['@id']) === yourScore[ind].mid))[0]
+        let songData = music_db['mdb']['music'].filter((m => parseInt(m['id']) === yourScore[ind].mid))[0]
         let songName = songData['info']['title_name']
         let difficulty = getDifficulty(songData, yourScore[ind].type)
         let rivalIndivScore = rivalScore.filter((s => s.mid === yourScore[ind].mid && s.type === yourScore[ind].type))
@@ -87,13 +92,26 @@ $(document).ready(async function() {
 
     rivals_data = JSON.parse(document.getElementById("rivals-pass").innerText);
     profiles_data = JSON.parse(document.getElementById("profiles-pass").innerText);
-    profiles_data_filtered = profiles_data.filter((p => p.__refid !== refid && rivals_data.filter((r => r.refid === p.__refid)).length === 0))
 
-    for(let ind in profiles_data) {
-        if(profiles_data[ind].__refid !== refid) {
+    your_profile_data = JSON.parse(document.getElementById("profile-pass").innerText);
+    urlParams = new URLSearchParams(window.location.search);
+    currentVersion = (urlParams.has('version') && urlParams.get('version') !== "") ? parseInt(urlParams.get('version')) : your_profile_data[your_profile_data.length - 1].version
+    currentProfile = your_profile_data.find(p => p.version === currentVersion)
+
+    profiles_data_filtered = profiles_data.filter((p => p.__refid !== refid && rivals_data.filter((r => refid === p.__refid && r.version === currentVersion)).length === 0))
+    for (var p of your_profile_data) {
+        $('#version_select').append($('<option>', {
+            value: p.version,
+            text: versionText[p.version],
+            selected: (p.version === currentVersion)
+        }));
+    }
+
+    for(let ind in profiles_data_filtered) {
+        if(profiles_data_filtered[ind].__refid !== refid) {
             $('#profilelist').append($('<option>', {
-                value: profiles_data[ind].__refid,
-                text: profiles_data[ind].name,
+                value: profiles_data_filtered[ind].__refid,
+                text: profiles_data_filtered[ind].name,
             }));
         }
     }
@@ -136,7 +154,7 @@ $(document).ready(async function() {
 
     $('#profilelist').change(async function() {
         console.log($('#profilelist').val())
-        if(rivals_data.filter((p => p.refid === $('#profilelist').val())).length > 0) {
+        if(rivals_data.filter((p => p.refid === $('#profilelist').val() && p.version === currentVersion)).length > 0) {
             $('#rival-button').text('Delete Rival')
         } else {
             $('#rival-button').text('Add Rival')
@@ -146,7 +164,7 @@ $(document).ready(async function() {
     $('#rivallist').change(async function() {
         $('#scorecompare').DataTable().clear().destroy()
         if($('#rivallist').val() !== "0") {
-            await emit('getRivalScores', {rivalId: $('#rivallist').val(), refid: refid}).then(
+            await emit('getRivalScores', {rivalId: $('#rivallist').val(), refid: refid, version: currentVersion}).then(
                 function(response){
                     populateTable(response.data.yourScores, response.data.rivalScores, music_db)
                 }
@@ -155,11 +173,19 @@ $(document).ready(async function() {
     })
 
     $('#addrival').click(async function() {
-        await emit('addRival', {rivalId: $('#profilelist').val(), refid: refid}).then(
-            function(response){
-                alert(response.data.msg)
-                location.reload()
-            }
-        )
+        if($('#profilelist').val() !== '0') {
+            await emit('addRival', {rivalId: $('#profilelist').val(), refid: refid, version: currentVersion}).then(
+                function(response){
+                    alert(response.data.msg)
+                    location.reload()
+                }
+            )
+        }
     })
+
+    $('#version_select').change(function() {
+        const urlParams = new URLSearchParams(location.search);
+        urlParams.set('version', $('#version_select').val());
+        location.search = urlParams;
+    });
 })

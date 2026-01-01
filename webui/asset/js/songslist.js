@@ -78,11 +78,11 @@ $(document).ready(function() {
         var music_data = [];
         for (let mdata in music_db.mdb.music) {
             var temp_data = {};
-            temp_data.mid = music_db.mdb.music[mdata]['@id'];
+            temp_data.mid = music_db.mdb.music[mdata]['id'];
             temp_data.songname = music_db.mdb.music[mdata]['info']['title_name'];
             temp_data.songname = temp_data.songname.replace(/[龕釁驩曦齷骭齶彜罇雋鬻鬥鬆曩驫齲騫趁鬮盥隍頽餮黻蔕闃]/g, m => translate_table[m]);
             if('distribution_date' in music_db.mdb.music[mdata]['info']) {
-                temp_data.releasedate = music_db.mdb.music[mdata]['info']['distribution_date']['#text'];
+                temp_data.releasedate = music_db.mdb.music[mdata]['info']['distribution_date'];
             } else {
                 temp_data.releasedate = 'Unknown'
             }
@@ -92,26 +92,26 @@ $(document).ready(function() {
             temp_data.mxm = "-";
             temp_data.oth = "-";
             temp_data.ult = "-";
-            if (music_db.mdb.music[mdata]['difficulty']['novice']['difnum']['#text'] != 0) {
-                temp_data.nov = music_db.mdb.music[mdata]['difficulty']['novice']['difnum']['#text'] 
+            if (music_db.mdb.music[mdata]['difficulty']['novice'] != 0) {
+                temp_data.nov = music_db.mdb.music[mdata]['difficulty']['novice']
             }
-            if (music_db.mdb.music[mdata]['difficulty']['advanced']['difnum']['#text'] != 0) {
-                temp_data.adv = music_db.mdb.music[mdata]['difficulty']['advanced']['difnum']['#text'] 
+            if (music_db.mdb.music[mdata]['difficulty']['advanced'] != 0) {
+                temp_data.adv = music_db.mdb.music[mdata]['difficulty']['advanced']
             }
-            if (music_db.mdb.music[mdata]['difficulty']['exhaust']['difnum']['#text'] != 0) {
-                temp_data.exh = music_db.mdb.music[mdata]['difficulty']['exhaust']['difnum']['#text'] 
+            if (music_db.mdb.music[mdata]['difficulty']['exhaust'] != 0) {
+                temp_data.exh = music_db.mdb.music[mdata]['difficulty']['exhaust'] 
             }
-            if (music_db.mdb.music[mdata]['info']['inf_ver']['#text'] != 0) {
-                temp_data.oth = music_db.mdb.music[mdata]['difficulty']['infinite']['difnum']['#text'] + ' | ' + getInfDifficulty(music_db.mdb.music[mdata]['info']['inf_ver']['#text'])
+            if (music_db.mdb.music[mdata]['info']['inf_ver'] != 0) {
+                temp_data.oth = music_db.mdb.music[mdata]['difficulty']['infinite'] + ' | ' + getInfDifficulty(music_db.mdb.music[mdata]['info']['inf_ver'])
             }
             if ("maximum" in music_db.mdb.music[mdata]['difficulty']) {
-                if (music_db.mdb.music[mdata]['difficulty']['maximum']['difnum']['#text'] != 0) {
-                    temp_data.mxm = music_db.mdb.music[mdata]['difficulty']['maximum']['difnum']['#text'] 
+                if (music_db.mdb.music[mdata]['difficulty']['maximum'] != 0) {
+                    temp_data.mxm = music_db.mdb.music[mdata]['difficulty']['maximum']
                 } 
             }
             if ("ultimate" in music_db.mdb.music[mdata]['difficulty']) {
-                if (music_db.mdb.music[mdata]['difficulty']['ultimate']['difnum']['#text'] != 0) {
-                    temp_data.ult = music_db.mdb.music[mdata]['difficulty']['ultimate']['difnum']['#text'] 
+                if (music_db.mdb.music[mdata]['difficulty']['ultimate'] != 0) {
+                    temp_data.ult = music_db.mdb.music[mdata]['difficulty']['ultimate'] 
                 } 
             }
             music_data.push(temp_data);

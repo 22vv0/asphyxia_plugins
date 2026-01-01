@@ -1,4 +1,8 @@
 var music_db;
+var urlParams;
+var currentVersion;
+var currentProfile;
+var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVIDWAVE', 'EXCEED GEAR', '∇']
 
 function zeroPad(num, places) {
     var zero = places - num.toString().length + 1;
@@ -6,7 +10,7 @@ function zeroPad(num, places) {
 }
 
 function getSongName(musicid) {
-    var result = music_db["mdb"]["music"].filter(object => object["@id"] == musicid);
+    var result = music_db["mdb"]["music"].filter(object => object["id"] == musicid);
     if (result.length == 0) {
         return "Custom Song";
     }
@@ -14,11 +18,11 @@ function getSongName(musicid) {
 }
 
 function getDifficulty(musicid, type) {
-    var result = music_db["mdb"]["music"].filter(object => object["@id"] == musicid);
+    var result = music_db["mdb"]["music"].filter(object => object["id"] == musicid);
     if (result.length == 0) {
         return "NOV";
     }
-    var inf_ver = result[0]["info"]["inf_ver"]["#text"] ? result[0]["info"]["inf_ver"]["#text"] : 5;
+    var inf_ver = result[0]["info"]["inf_ver"] ? result[0]["info"]["inf_ver"] : 5;
     switch (type) {
         case 0:
             return "NOV";
@@ -75,7 +79,7 @@ function getGrade(grade) {
     }
 }
 
-function getMedal(clear) {
+function getMedal(clear, version) {
     switch (clear) {
         case 0:
             return "No Data";
@@ -85,12 +89,12 @@ function getMedal(clear) {
             return "EFFECTIVE CLEAR";
         case 3:
             return "EXCESSIVE CLEAR";
-        case 6:
-            return "MAXXIVE CLEAR";
         case 4:
-            return "UC";
+            return (version === 6) ? "UC" : "MAXXIVE CLEAR";
         case 5:
-            return "PUC";
+            return (version === 6) ? "PUC" : "UC";
+        case 6:
+            return (version === 6) ? "MAXXIVE CLEAR" : "PUC"
     }
 }
 
@@ -169,6 +173,12 @@ function gradeSort(d) {
     return 0;
 };
 
+$('#version_select').change(function() {
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set('version', $('#version_select').val());
+    location.search = urlParams;
+});
+
 $(document).ready(function() {
     jQuery.fn.dataTableExt.oSort['diff-asc'] = function(a, b) {
         var x = difficultySort(a);
@@ -211,15 +221,27 @@ $(document).ready(function() {
 
         return ((x < y) ? 1 : ((x > y) ? -1 : 0));
     };
-    var profile_data = JSON.parse(document.getElementById("data-pass").innerText);
-    profile_data = profile_data.sort(function(a, b) {
+
+    var profile_data = JSON.parse(document.getElementById("profile-pass").innerText);
+    var score_data = JSON.parse(document.getElementById("score-pass").innerText);
+
+    urlParams = new URLSearchParams(window.location.search);
+    currentVersion = (urlParams.has('version') && urlParams.get('version') !== "") ? parseInt(urlParams.get('version')) : profile_data[profile_data.length - 1].version
+    currentProfile = profile_data.find(p => p.version === currentVersion)
+
+    for (var p of profile_data) {
+        $('#version_select').append($('<option>', {
+            value: p.version,
+            text: versionText[p.version],
+            selected: (p.version === currentVersion)
+        }));
+    }
+
+    score_data = score_data.filter(s => currentVersion === s.version).sort(function(a, b) {
         if (a.mid > b.mid) return 1;
         if (a.mid < b.mid) return -1;
         return a.type > b.type ? 1 : -1;
     });
-
-    //console.log(profile_data);
-    //$('#music_score').DataTable();
 
     $.getJSON("static/asset/json/music_db.json", function(json) {
         const translate_table = {
@@ -254,27 +276,17 @@ $(document).ready(function() {
         var music_data = [];
 
 
-        for (var i in profile_data) {
+        for (var i in score_data) {
             var temp_data = {};
-            temp_data.mid = profile_data[i].mid;
-            temp_data.songname = getSongName(profile_data[i].mid);
+            temp_data.mid = score_data[i].mid;
+            temp_data.songname = getSongName(score_data[i].mid);
             temp_data.songname = temp_data.songname.replace(/[龕釁驩曦齷骭齶彜罇雋鬻鬥鬆曩驫齲騫趁鬮盥隍頽餮黻蔕闃]/g, m => translate_table[m]);
-            temp_data.diff = getDifficulty(profile_data[i].mid, profile_data[i].type);
-            temp_data.score = profile_data[i].score;
-            temp_data.exscore = ((profile_data[i].exscore) ? profile_data[i].exscore : 0);
-            temp_data.grade = getGrade(profile_data[i].grade);
-            temp_data.clear = getMedal(profile_data[i].clear);
+            temp_data.diff = getDifficulty(score_data[i].mid, score_data[i].type);
+            temp_data.score = score_data[i].score;
+            temp_data.exscore = ((score_data[i].exscore) ? score_data[i].exscore : 0);
+            temp_data.grade = getGrade(score_data[i].grade);
+            temp_data.clear = getMedal(score_data[i].clear, currentProfile.version);
             music_data.push(temp_data);
-
-            // $("#music_score>tbody").append($('<tr>')
-            // .append($('<td>').append(getSongName(profile_data[i].mid)))
-            // .append($('<td>').append(getDifficulty(profile_data[i].mid,profile_data[i].type)))
-            // .append($('<td>').append(profile_data[i].score))
-            // .append($('<td>').append((profile_data[i].exscore)? profile_data[i].exscore:0))
-            // .append($('<td>').append(getGrade(profile_data[i].grade)))
-            // .append($('<td>').append(getMedal(profile_data[i].clear)))
-            // );
-            // getSongName(1);
         }
 
         $('#music_score').DataTable({

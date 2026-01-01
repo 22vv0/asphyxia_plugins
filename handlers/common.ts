@@ -1,18 +1,25 @@
-import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIE_SONGS,
-          LICENSED_SONGS6, CURRENT_ARENA, ARENA_STATION_ITEMS, VALGENE, INFORMATION6, UNLOCK_EVENTS6
-} from '../data/exg';
+import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIE_SONGS, LICENSED_SONGS6, CURRENT_ARENA, ARENA_STATION_ITEMS, VALGENE, INFORMATION6, UNLOCK_EVENTS6 } from '../data/exg';
+import { EVENT7, COURSES7, EXTENDS7, LICENSED_SONGS7, CURRENT_ARENA7, ARENA_STATION_ITEMS7, VALGENE7, APIGENE7, INFORMATION7, UNLOCK_EVENTS7, BLASTER_GATE7, BLASTER_GATE7_2 } from '../data/nbl';
 import {getVersion, getRandomIntInclusive} from '../utils';
 
 export const common: EPR = async (info, data, send) => {
   try {
-    let music_db = await IO.ReadFile('webui/asset/json/music_db.json')
     let events = [];
     let courses = [];
     let extend = [];
     let information = [];
+    let licensedSongs = [];
+    let unlockEvents;
+    let currentArena;
+    let arenaItems;
+    let valgene;
+    let apigene;
     let date = new Date();
     let currentYMDDate = parseInt([date.getFullYear(), ((date.getMonth() + 1) > 9 ? '' : '0') + (date.getMonth() + 1), (date.getDate() > 9 ? '' : '0') + date.getDate()].join(''));
     let currentDate = date.toLocaleDateString()
+    let songNum = 0;
+    const gameVersion = getVersion(info);
+
     console.log('====================================')
     console.log("Calling common function");
     
@@ -40,23 +47,61 @@ export const common: EPR = async (info, data, send) => {
         courses = COURSES6.filter(course => version >= course.version);
         information = INFORMATION6.filter(info => version >= info.version)
         EXTENDS6.filter(ex => version >= ex.version).forEach(val => extend.push(Object.assign({}, val)));
+        licensedSongs = LICENSED_SONGS6;
+        unlockEvents = UNLOCK_EVENTS6;
+        currentArena = CURRENT_ARENA;
+        arenaItems = ARENA_STATION_ITEMS;
+        valgene = VALGENE;
+        songNum = 2342
+        break;
+      }
+      case 'sv7_common': {
+        console.log('Game: ∇')
+        EVENT7.forEach(val => events.push(val));
+        if(IO.Exists('webui/asset/config/flags.json')) {
+          let bufFlagConfig = await IO.ReadFile('webui/asset/config/flags.json')
+          let flagConfig = JSON.parse(bufFlagConfig.toString())
+          for(const flagIter in flagConfig) {
+            if(flagConfig[flagIter]['toggle']) {
+              if(typeof flagConfig[flagIter]['str'] === 'string') events.push(flagConfig[flagIter]['str'])
+              else {
+                for(const multiFlagIter in flagConfig[flagIter]['str']) {
+                  events.push(flagConfig[flagIter]['str'][multiFlagIter])
+                }
+              }
+            }
+          }
+        }
+        courses = COURSES7.filter(course => version >= course.version);
+        information = INFORMATION7.filter(info => version >= info.version)
+        licensedSongs = LICENSED_SONGS7;
+        unlockEvents = UNLOCK_EVENTS7;
+        currentArena = CURRENT_ARENA7;
+        arenaItems = {...ARENA_STATION_ITEMS, ...ARENA_STATION_ITEMS7};
+        valgene = {
+          info: [...VALGENE.info, ...VALGENE7.info],
+          rarity: {...VALGENE.rarity, ...VALGENE7.rarity},
+          catalog: [...VALGENE.catalog, ...VALGENE7.catalog]
+        }
+        apigene = APIGENE7;
+        EXTENDS7.filter(ex => version >= ex.version).forEach(val => extend.push(Object.assign({}, val)));
+        songNum = 2400
         break;
       }
     }
-    let songs = [];
-    const gameVersion = getVersion(info);
+    let music_db = await IO.ReadFile('webui/asset/json/music_db.json')
     let mdb = JSON.parse(music_db.toString());
-    let songNum = 2400;
+    let songs = [];
     let diffName = ['novice', 'advanced', 'exhaust', 'infinite', 'maximum', 'ultimate']
 
     if(U.GetConfig('unlock_all_songs')) {
       console.log("Unlocking songs");
       for (let i = 1; i < songNum; ++i) {
-        var foundSongIndex = mdb.mdb.music.map(function(x) {return x['@id']; }).indexOf(i.toString());
+        var foundSongIndex = mdb.mdb.music.map(function(x) {return x['id']; }).indexOf(i.toString());
         if(foundSongIndex != -1) {
           var songData = mdb.mdb.music[foundSongIndex];
           for (let j = 0; j < 6; ++j) {
-            if(songData.difficulty[diffName[j]].difnum['#text'] != '0') {
+            if(songData.difficulty[diffName[j]] != '0') {
               songs.push({
                 music_id: K.ITEM('s32', i),
                 music_type: K.ITEM('u8', j),
@@ -66,32 +111,33 @@ export const common: EPR = async (info, data, send) => {
           }
         }
       }
-    } else {  
+    } 
+    else {
       let limitedNo = 2;
-      songNum = parseInt(mdb.mdb.music[mdb.mdb.music.length - 1]['@id'])
+      if(gameVersion === 7) songNum = parseInt(mdb.mdb.music[mdb.mdb.music.length - 1]['id'])
       console.log("Latest song id in mdb: " + songNum)
       for (let i = 0; i <= songNum; i++) {
-        var foundSongIndex = mdb.mdb.music.map(function(x) {return x['@id']; }).indexOf(i.toString());
+        var foundSongIndex = mdb.mdb.music.map(function(x) {return x['id']; }).indexOf(i.toString());
         if(foundSongIndex != -1) {
           var songData = mdb.mdb.music[foundSongIndex];
-          if(gameVersion === 6 || gameVersion === -6) {
-            if('distribution_date' in songData['info'] && parseInt(songData['info']['distribution_date']['#text']) > currentYMDDate) {
+          if(Math.abs(gameVersion) === 6) {
+            if(parseInt(songData.info.version) <= 6 && 'distribution_date' in songData['info'] && parseInt(songData['info']['distribution_date']) > currentYMDDate) {
               console.log("Unreleased song: " + songData.info.title_name)
             }
             else {
               limitedNo = 2;
               
               // if song is released during exceed gear
-              if(songData.info.version['#text'] === '6') {
+              if(songData.info.version === '6') {
                 // Licensed songs released in Exceed Gear needs limited=3 to appear
-                if(LICENSED_SONGS6.includes(i)) limitedNo += 1;
+                if(licensedSongs.includes(i)) limitedNo += 1;
                 else if(VALKYRIE_SONGS.includes(i) && info.model.split(":")[2].match(/^(G|H)$/g) == null) limitedNo -= 1;
                 
                 // manual lock songs
                 if(i === 2034) limitedNo = 2;
 
                 for(let j = 0; j < 6; j++) {
-                  if(songData.difficulty[diffName[j]].difnum['#text'] != '0') {
+                  if(songData.difficulty[diffName[j]] != '0') {
                     songs.push({
                       music_id: K.ITEM('s32', i),
                       music_type: K.ITEM('u8', j),
@@ -102,7 +148,7 @@ export const common: EPR = async (info, data, send) => {
               }
 
               // if song has new XCD track
-              else if (songData.info.inf_ver['#text'] === '6') { 
+              else if (songData.info.inf_ver === '6') { 
                 // manual lock charts
                 if (i === 469) limitedNo = 2;
                 songs.push({
@@ -111,11 +157,21 @@ export const common: EPR = async (info, data, send) => {
                   limited: K.ITEM('u8', limitedNo),
                 });
               }
+            }
+          }
+          else if(gameVersion === 7) {
+            let crossResonance = [2231, 2232, 2233, 2260, 2261, 2262, 2284, 2285, 2286, 2339, 2340, 2341]
+            if(parseInt(songData.info.version) <= 7 && 'distribution_date' in songData['info'] && parseInt(songData['info']['distribution_date']) > currentYMDDate) {
+              console.log("Unreleased song: " + songData.info.title_name)
+            }
+            else {
+              limitedNo = 2;
 
-              // Licensed songs released pre-exceed gear
-              else if (LICENSED_SONGS6.includes(i)) {
+              if(songData.info.version === '7' || crossResonance.includes(i)) {
+                if(licensedSongs.includes(i)) limitedNo += 1;
+
                 for(let j = 0; j < 6; j++) {
-                  if(songData.difficulty[diffName[j]].difnum['#text'] != '0') {
+                  if(songData.difficulty[diffName[j]] != '0') {
                     songs.push({
                       music_id: K.ITEM('s32', i),
                       music_type: K.ITEM('u8', j),
@@ -123,6 +179,19 @@ export const common: EPR = async (info, data, send) => {
                     });
                   }
                 }
+              }
+            }
+          }
+          // Licensed songs released prior to current version
+          if (parseInt(songData.info.version) < Math.abs(gameVersion) && licensedSongs.includes(i)) {
+            limitedNo += 1;
+            for(let j = 0; j < 6; j++) {
+              if(songData.difficulty[diffName[j]] != '0') {
+                songs.push({
+                  music_id: K.ITEM('s32', i),
+                  music_type: K.ITEM('u8', j),
+                  limited: K.ITEM('u8', limitedNo),
+                });
               }
             }
           }
@@ -154,14 +223,13 @@ export const common: EPR = async (info, data, send) => {
     }
 
     if(IO.Exists('webui/asset/config/events.json')) {
-      const itemTypeList = {"track": 'e', "appeal": 'a', "crew": 'c', "pcb": 'b', "prereq": "r"}
       let bufEventData = await IO.ReadFile('webui/asset/json/events.json')
       let bufEventConfig = await IO.ReadFile('webui/asset/config/events.json')
       let eventData = JSON.parse(bufEventData.toString())
       let eventConfig = JSON.parse(bufEventConfig.toString())
-      for(const eData of eventData.events) {
-        let stmpEvntInfo = UNLOCK_EVENTS6[eData.id]
-        if(version >= eData.version) {
+      for(const eData of eventData['events' + Math.abs(gameVersion)]) {
+        let stmpEvntInfo = unlockEvents[eData.id]
+        if(stmpEvntInfo && version >= eData.version) {
           if(eData.type === 'stamp' && eventConfig[eData.id] !== undefined && eventConfig[eData.id].toggle) {
             for(const stmpData of stmpEvntInfo.info.data) {
               extend.push({
@@ -171,11 +239,11 @@ export const common: EPR = async (info, data, send) => {
                   5,
                   stmpData.stps, 
                   0, 
-                  (stmpData.stmpid.toString() in UNLOCK_EVENTS6.refillStamps) ? 12 : stmpData.stps, 
-                  0,
+                  stmpData.stps % 10000, 
+                  (stmpData.stmpid.toString() in unlockEvents.refillStamps) ? 999999 : 0,
+                  ('stmpHdJ' in stmpEvntInfo.info) ? stmpEvntInfo.info.stmpHdJ : stmpEvntInfo.info.stmpHd,
                   stmpEvntInfo.info.stmpHd,
-                  stmpEvntInfo.info.stmpHd,
-                  stmpEvntInfo.info.stmpFt,
+                  ('stmpFtJ' in stmpEvntInfo.info) ? stmpEvntInfo.info.stmpFtJ : stmpEvntInfo.info.stmpFt,
                   stmpEvntInfo.info.stmpFt,
                   stmpData.stprwrd
                 ]
@@ -265,22 +333,22 @@ export const common: EPR = async (info, data, send) => {
       }
     }
 
-    let arenaOpen = U.GetConfig('arena_no_endtime') || BigInt(date) < CURRENT_ARENA.time_end
+    let arenaOpen = U.GetConfig('arena_no_endtime') || BigInt(date) < currentArena.time_end
     let shopOpen = arenaOpen && U.GetConfig('arena_station') !== 'None'
     let arenaData = {}
 
-    if(arenaOpen && version >= 20220425) {
+    if(arenaOpen && version >= 20220425 && currentArena.season !== 0) {
       arenaData = {
-        season: K.ITEM('s32', CURRENT_ARENA.season),
-        rule: K.ITEM('s32', CURRENT_ARENA.rule),
-        rank_match_target: K.ITEM('s32', CURRENT_ARENA.rank_match_target),
-        time_start: K.ITEM('u64', CURRENT_ARENA.time_start),
-        time_end: K.ITEM('u64', CURRENT_ARENA.time_end),
-        shop_start: K.ITEM('u64', CURRENT_ARENA.shop_start),
-        shop_end: K.ITEM('u64', CURRENT_ARENA.shop_end),
+        season: K.ITEM('s32', currentArena.season),
+        rule: K.ITEM('s32', currentArena.rule),
+        rank_match_target: K.ITEM('s32', currentArena.rank_match_target),
+        time_start: K.ITEM('u64', currentArena.time_start),
+        time_end: K.ITEM('u64', currentArena.time_end),
+        shop_start: K.ITEM('u64', currentArena.shop_start),
+        shop_end: K.ITEM('u64', currentArena.shop_end),
         is_open: K.ITEM('bool', arenaOpen),
         is_shop: K.ITEM('bool', shopOpen),
-        catalog: (shopOpen && U.GetConfig('arena_station') !== 'None' && version >= ARENA_STATION_ITEMS[U.GetConfig('arena_station')].version) ? ARENA_STATION_ITEMS[U.GetConfig('arena_station')].items.map(item => ({
+        catalog: (shopOpen && U.GetConfig('arena_station') !== 'None' && version >= arenaItems[U.GetConfig('arena_station')].version) ? arenaItems[U.GetConfig('arena_station')].items.map(item => ({
           catalog_id: K.ITEM('s32', item[0]),
           catalog_type: K.ITEM('s32', item[1]),
           price: K.ITEM('s32', item[2]),
@@ -290,23 +358,22 @@ export const common: EPR = async (info, data, send) => {
         })) : []
       }
     }
-
     let valgene_info = []
     let valgene_items = []
 
-    valgene_info = VALGENE.info.filter(val => version >= val.version).map(val => ({
+    valgene_info = valgene.info.filter(val => version >= val.version).map(val => ({
       valgene_name: K.ITEM('str', val.valgene_name),
       valgene_name_english: K.ITEM('str', val.valgene_name_english),
       valgene_id: K.ITEM('s32', val.valgene_id)
     }))
 
-    VALGENE.catalog.forEach((val) => {
-      if(version >= VALGENE.info.find(v => v.valgene_id === val.volume).version) {
+    valgene.catalog.forEach((val) => {
+      if(version >= valgene.info.find(v => v.valgene_id === val.volume).version) {
         val.items.forEach((itemVal) => {
           itemVal.item_ids.forEach((item_id) => {
             valgene_items.push({
               valgene_id: K.ITEM('s32', val.volume),
-              rarity: K.ITEM('s32', VALGENE.rarity[itemVal.type.toString()]),
+              rarity: K.ITEM('s32', valgene.rarity[itemVal.type.toString()]),
               item_type: K.ITEM('s32', itemVal.type),
               item_id: K.ITEM('s32', item_id)
             })
@@ -314,6 +381,37 @@ export const common: EPR = async (info, data, send) => {
         })
       }
     })
+
+    let apigeneInfo = []
+    let apigeneItems = []
+
+    if(gameVersion === 7) {
+      apigeneInfo = apigene.info.filter(val => version >= val.version).map(api => ({
+        apigene_id: K.ITEM('s32', api.apigene_id),
+        name: K.ITEM('str', api.name),
+        name_english: K.ITEM('str', api.name_english),
+        common_rate: K.ITEM('s32', api.common_rate),
+        uncommon_rate: K.ITEM('s32', api.uncommon_rate),
+        rare_rate: K.ITEM('s32', api.rare_rate),
+        price: K.ITEM('s32', api.price),
+        no_duplicate: K.ITEM('bool', api.no_duplicate)
+      }))
+
+      apigene.catalog.forEach((val) => {
+        if(version >= apigene.info.find(a => a.apigene_id === val.volume).version) {
+          val.items.forEach((itemVal) => {
+            itemVal.item_ids.forEach((item_id) => {
+              apigeneItems.push({
+                apigene_id: K.ITEM('s32', val.volume),
+                rarity: K.ITEM('s32', apigene.rarity[itemVal.type.toString()]),
+                item_type: K.ITEM('s32', itemVal.type),
+                item_id: K.ITEM('s32', item_id)
+              })
+            })
+          })
+        }
+      })
+    }
 
     if(currentDate.substring(0,4) === '2/5/') events.push("EVENTDATE_ONIGO")
     if(currentDate.substring(0,5) === '2/14/') events.push('VALENTINES_DAY_2024')
@@ -336,7 +434,6 @@ export const common: EPR = async (info, data, send) => {
     if(currentDate.substring(0,5) === '5/10/') events.push("EVENTDATE_GOTT")
     if(['10/24/', '10/25/', '10/26/', '10/27/', '10/28/', '10/29/', '10/30/', '10/31/'].includes(currentDate.substring(0,6))) events.push('HALLOWEEN_EVENT')
     if(['12/24/', '12/25/', '12/26/'].includes(currentDate.substring(0,6))) events.push('MERRY_CHRISTMAS_2023')
-    
 
     let curWeekly = []
     if(IO.Exists('webui/asset/config/weeklymusic.json')) {
@@ -356,97 +453,106 @@ export const common: EPR = async (info, data, send) => {
       }
     }
 
+    let response = {
+      valgene: {
+        info: valgene_info,
+        catalog: valgene_items
+      },
+      arena: arenaData,
+      event: {
+        info: events.map(e => ({
+          event_id: K.ITEM('str', e),
+        })),
+      },
+      extend: {
+        info: extend.map(e => ({
+          extend_id: K.ITEM('u32', e.id),
+          extend_type: K.ITEM('u32', e.type),
+          param_num_1: K.ITEM('s32', e.params[0]),
+          param_num_2: K.ITEM('s32', e.params[1]),
+          param_num_3: K.ITEM('s32', e.params[2]),
+          param_num_4: K.ITEM('s32', e.params[3]),
+          param_num_5: K.ITEM('s32', e.params[4]),
+          param_str_1: K.ITEM('str', e.params[5]),
+          param_str_2: K.ITEM('str', e.params[6]),
+          param_str_3: K.ITEM('str', e.params[7]),
+          param_str_4: K.ITEM('str', e.params[8]),
+          param_str_5: K.ITEM('str', e.params[9]),
+        })),
+      },
+      music_limited: { info: songs },
+      skill_course: {
+        info: courses.reduce(
+          (acc, s) => {
+            if(version >= s.version) {
+              let courseData = s.courses.map(c => ({
+                season_id: K.ITEM('s32', s.id),
+                season_name: K.ITEM('str', s.name),
+                season_new_flg: K.ITEM('bool', s.isNew),
+                course_type: K.ITEM('s16', c.type),
+                course_id: K.ITEM('s16', c.id),
+                course_name: K.ITEM('str', c.name),
+                skill_level: K.ITEM('s16', c.level),
+                skill_type: K.ITEM('s16', 0),
+                skill_name_id: K.ITEM('s16', c.nameID),
+                matching_assist: K.ITEM('bool', c.assist),
+                clear_rate: K.ITEM('s32', 5000),
+                avg_score: K.ITEM('u32', 15000000),
+                track: c.tracks.map(t => ({
+                  track_no: K.ITEM('s16', t.no),
+                  music_id: K.ITEM('s32', t.mid),
+                  music_type: K.ITEM('s8', t.mty),
+                })),
+              }))
+              acc = acc.concat(courseData)
+              if((info.model.split(":")[2] === 'G' || info.model.split(":")[2] === 'H') && s.hasGod !== undefined && s.hasGod === 1 && version >= 20230530) {
+                courseData = courseData.concat(
+                  s.courses.map(c => ({
+                    season_id: K.ITEM('s32', s.id),
+                    season_name: K.ITEM('str', s.name),
+                    season_new_flg: K.ITEM('bool', s.isNew),
+                    course_type: K.ITEM('s16', c.type),
+                    course_id: K.ITEM('s16', c.id),
+                    course_name: K.ITEM('str', c.name),
+                    skill_level: K.ITEM('s16', c.level),
+                    skill_type: K.ITEM('s16', s.hasGod),
+                    skill_name_id: K.ITEM('s16', c.nameID),
+                    matching_assist: K.ITEM('bool', c.assist),
+                    clear_rate: K.ITEM('s32', 5000),
+                    avg_score: K.ITEM('u32', 15000000),
+                    track: c.tracks.map(t => ({
+                      track_no: K.ITEM('s16', t.no),
+                      music_id: K.ITEM('s32', t.mid),
+                      music_type: K.ITEM('s8', t.mty),
+                    })),
+                  }))
+                )
+                acc = acc.concat(courseData)
+              }  
+            }
+            return acc
+          },
+          []
+        ),
+      },
+      weekly_music: curWeekly != [] ? curWeekly.map(w => ({
+        week_id: K.ITEM('s32', w.weekId),
+        music_id: K.ITEM('s32', w.musicId),
+        time_start: K.ITEM('u64', BigInt(w.start)),
+        time_end: K.ITEM('u64', BigInt(w.end))
+      })) : []
+    }
+
+    if(gameVersion === 7) {
+      response['apigene'] = {
+        info: apigeneInfo,
+        catalog: apigeneItems
+      }
+    }
+
     console.log("Sending common objects");
     send.object(
-      {
-        valgene: {
-          info: valgene_info,
-          catalog: valgene_items
-        },
-        arena: arenaData,
-        event: {
-          info: events.map(e => ({
-            event_id: K.ITEM('str', e),
-          })),
-        },
-        extend: {
-          info: extend.map(e => ({
-            extend_id: K.ITEM('u32', e.id),
-            extend_type: K.ITEM('u32', e.type),
-            param_num_1: K.ITEM('s32', e.params[0]),
-            param_num_2: K.ITEM('s32', e.params[1]),
-            param_num_3: K.ITEM('s32', e.params[2]),
-            param_num_4: K.ITEM('s32', e.params[3]),
-            param_num_5: K.ITEM('s32', e.params[4]),
-            param_str_1: K.ITEM('str', e.params[5]),
-            param_str_2: K.ITEM('str', e.params[6]),
-            param_str_3: K.ITEM('str', e.params[7]),
-            param_str_4: K.ITEM('str', e.params[8]),
-            param_str_5: K.ITEM('str', e.params[9]),
-          })),
-        },
-        music_limited: { info: songs },
-        skill_course: {
-          info: courses.reduce(
-            (acc, s) => {
-              if(version >= s.version) {
-                let courseData = s.courses.map(c => ({
-                  season_id: K.ITEM('s32', s.id),
-                  season_name: K.ITEM('str', s.name),
-                  season_new_flg: K.ITEM('bool', s.isNew),
-                  course_type: K.ITEM('s16', c.type),
-                  course_id: K.ITEM('s16', c.id),
-                  course_name: K.ITEM('str', c.name),
-                  skill_level: K.ITEM('s16', c.level),
-                  skill_type: K.ITEM('s16', 0),
-                  skill_name_id: K.ITEM('s16', c.nameID),
-                  matching_assist: K.ITEM('bool', c.assist),
-                  clear_rate: K.ITEM('s32', 5000),
-                  avg_score: K.ITEM('u32', 15000000),
-                  track: c.tracks.map(t => ({
-                    track_no: K.ITEM('s16', t.no),
-                    music_id: K.ITEM('s32', t.mid),
-                    music_type: K.ITEM('s8', t.mty),
-                  })),
-                }))
-                acc = acc.concat(courseData)
-                if((info.model.split(":")[2] === 'G' || info.model.split(":")[2] === 'H') && s.hasGod !== undefined && s.hasGod === 1 && version >= 20230530) {
-                  courseData = courseData.concat(
-                    s.courses.map(c => ({
-                      season_id: K.ITEM('s32', s.id),
-                      season_name: K.ITEM('str', s.name),
-                      season_new_flg: K.ITEM('bool', s.isNew),
-                      course_type: K.ITEM('s16', c.type),
-                      course_id: K.ITEM('s16', c.id),
-                      course_name: K.ITEM('str', c.name),
-                      skill_level: K.ITEM('s16', c.level),
-                      skill_type: K.ITEM('s16', s.hasGod),
-                      skill_name_id: K.ITEM('s16', c.nameID),
-                      matching_assist: K.ITEM('bool', c.assist),
-                      clear_rate: K.ITEM('s32', 5000),
-                      avg_score: K.ITEM('u32', 15000000),
-                      track: c.tracks.map(t => ({
-                        track_no: K.ITEM('s16', t.no),
-                        music_id: K.ITEM('s32', t.mid),
-                        music_type: K.ITEM('s8', t.mty),
-                      })),
-                    }))
-                  )
-                  acc = acc.concat(courseData)
-                }  
-              }
-              return acc
-            },
-            []
-          ),
-        },
-        weekly_music: curWeekly != [] ? curWeekly.map(w => ({
-          week_id: K.ITEM('s32', w.weekId),
-          music_id: K.ITEM('s32', w.musicId),
-          time_start: K.ITEM('u64', BigInt(w.start)),
-          time_end: K.ITEM('u64', BigInt(w.end))
-        })) : []
-      },
+      response,
       { encoding: 'utf8' }
     );
   } catch (error) {

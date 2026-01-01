@@ -1,5 +1,6 @@
 export interface Matchmaker {
   collection: 'matchmaker';
+  version: number,
 
   timestamp: number,
   c_ver: number,

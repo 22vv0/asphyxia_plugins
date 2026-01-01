@@ -1,3 +1,6 @@
+var currentVersion, currentProfile
+var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVIDWAVE', 'EXCEED GEAR', '∇']
+
 function zeroPad(num, places) {
     var zero = places - num.toString().length + 1;
     return Array(+(zero > 0 && zero)).join("0") + num;
@@ -199,19 +202,38 @@ var play_bgm = false;
 var play_sel = false;
 $(document).ready(function() {
     profile_data = JSON.parse(document.getElementById("data-pass").innerText);
+    let urlParams = new URLSearchParams(window.location.search);
+    currentVersion = (urlParams.has('version') && urlParams.get('version') !== "") ? parseInt(urlParams.get('version')) : profile_data[profile_data.length - 1].version
+    currentProfile = profile_data.find(p => p.version === currentVersion)
+    $('[name="version"]').val(currentVersion)
+
     items_crew = JSON.parse(document.getElementById("data-pass-crew").innerText);
-    items_stamp = JSON.parse(document.getElementById("data-pass-stamp").innerText);
-    items_subbg = JSON.parse(document.getElementById("data-pass-subbg").innerText);
-    items_bgm = JSON.parse(document.getElementById("data-pass-bgm").innerText);
-    items_nemsys = JSON.parse(document.getElementById("data-pass-nemsys").innerText);
-    items_sysbg = JSON.parse(document.getElementById("data-pass-sysbg").innerText);
+    items_stamp = JSON.parse(document.getElementById("data-pass-stamp").innerText).filter(i => i.version === currentVersion);
+    items_subbg = JSON.parse(document.getElementById("data-pass-subbg").innerText).filter(i => i.version === currentVersion);
+    items_bgm = JSON.parse(document.getElementById("data-pass-bgm").innerText).filter(i => i.version === currentVersion);
+    items_nemsys = JSON.parse(document.getElementById("data-pass-nemsys").innerText).filter(i => i.version === currentVersion);
+    items_sysbg = JSON.parse(document.getElementById("data-pass-sysbg").innerText).filter(i => i.version === currentVersion);
     valgene_ticket = JSON.parse(document.getElementById("data-pass-valgeneticket").innerText);
-    courses = JSON.parse(document.getElementById("data-pass-courses").innerText);
-    skill = JSON.parse(document.getElementById("data-pass-skill").innerText);
+    courses = JSON.parse(document.getElementById("data-pass-courses").innerText).filter(i => i.version === currentVersion);
+    skill = JSON.parse(document.getElementById("data-pass-skill").innerText).filter(i => i.version === currentVersion);
     unlock_all = (document.getElementById("data-pass-unlock-all").innerText === 'true');
+
+    for (var p of profile_data) {
+        $('#version_select').append($('<option>', {
+            value: p.version,
+            text: versionText[p.version],
+            selected: (p.version === currentVersion)
+        }));
+    }
 
     $.getJSON("static/asset/json/customize_data_ext.json", function(json) {
         database = json;
+
+        let name = currentProfile.name
+        $('[name="name').attr('placeholder', currentProfile.name)
+
+        let ap = currentProfile.appeal
+        $('[name="appeal').attr('placeholder', currentProfile.appeal)
 
         for (var i in json["supportTeams"]) {
             $('[name="bplSupport"]').append($('<option>', {
@@ -219,10 +241,10 @@ $(document).ready(function() {
                 text: json["supportTeams"][i].name,
             }));
         }
-        let bplSupport = profile_data["bplSupport"] ? profile_data["bplSupport"] % 10 : 0
+        let bplSupport = currentProfile["bplSupport"] ? currentProfile["bplSupport"] % 10 : 0
         $('[name="bplSupport"]').val(bplSupport);
 
-        if(profile_data["bplSupport"] >= 10) $('[name="bplPro"]').attr('checked', true);
+        if(currentProfile["bplSupport"] >= 10) $('[name="bplPro"]').attr('checked', true);
 
         for (var i in json["sysbg"]) {
             if(unlock_all || (items_sysbg.find(x => x.id === json["sysbg"][i].id) || json["sysbg"][i].id === 0)) {
@@ -232,7 +254,7 @@ $(document).ready(function() {
                 }));
             }
         }
-        $('[name="sysBG"]').val(profile_data["sysBG"] ? profile_data["sysBG"] : 0);
+        $('[name="sysBG"]').val(currentProfile["sysBG"] ? currentProfile["sysBG"] : 0);
 
         for (var i in json["skilltitle"]) {
             let foundCourses = courses.filter(c => c.cid === json["skilltitle"][i].id && c.clear >= 2)
@@ -252,7 +274,7 @@ $(document).ready(function() {
                 text: json["appeal_frame"][i].name,
             }));
         }
-        $('[name="creatorItem"]').val(profile_data["creatorItem"] ? profile_data["creatorItem"] : 0);
+        $('[name="creatorItem"]').val(currentProfile["creatorItem"] ? currentProfile["creatorItem"] : 1);
     });
 
     $.getJSON("static/asset/json/data.json", function(json) {
@@ -262,14 +284,15 @@ $(document).ready(function() {
         //console.log(profile_data);
 
         for (var i in json["nemsys"]) {
-            if(![8, 9, 10, 11].includes(json["nemsys"][i].value) && (unlock_all || (json["nemsys"][i].value === 0 || items_nemsys.find(x => x.id === json["nemsys"][i].value)))) {
+            if(![8, 9, 10, 11, 47].includes(json["nemsys"][i].value) && (unlock_all || (json["nemsys"][i].value === 0 || items_nemsys.find(x => x.id === json["nemsys"][i].value)))) {
                 $('#nemsys_select').append($('<option>', {
                     value: json["nemsys"][i].value,
-                    text: json["nemsys"][i].name,
+                    text: json["nemsys"][i].name + ((json["nemsys"][i].value == '0') ? (currentVersion === 7 ? 'NABLA' : 'EXCEED') : ''),
                 }));
                 var image = new Image();
                 if (json["nemsys"][i].value != 30) {
-                    image.src = "static/asset/nemsys/nemsys_" + zeroPad(json["nemsys"][i].value, 4) + ".png";
+                    let nem = (currentProfile['version'] === 7 && json["nemsys"][i].value === 0) ? 47 : json["nemsys"][i].value
+                    image.src = "static/asset/nemsys/nemsys_" + zeroPad(nem, 4) + ".png";
                 } else {
                     image.src = "static/asset/nemsys/nemsys_aprilfool.png";
                 }
@@ -277,7 +300,7 @@ $(document).ready(function() {
             }
                 
         }
-        $('#nemsys_select').val(profile_data["nemsys"]);
+        $('#nemsys_select').val(currentProfile["nemsys"]);
 
         for (var i in json["subbg"]) {
             
@@ -297,7 +320,7 @@ $(document).ready(function() {
                 //console.log(profile_data["subbg"])
             }
         }
-        $('[name="subbg"]').val(profile_data["subbg"]);
+        $('[name="subbg"]').val(currentProfile["subbg"]);
 
         for (var i in json["bgm"]) {
             if(unlock_all || (json["bgm"][i].value === 0 || items_bgm.find(x => parseInt(x.id) === parseInt(json["bgm"][i].value)))) {
@@ -317,7 +340,7 @@ $(document).ready(function() {
                 //console.log(profile_data["bgm"])
             }
         }
-        $('[name="bgm"]').val(profile_data["bgm"]);
+        $('[name="bgm"]').val(currentProfile["bgm"]);
 
         for (var i in json["akaname"]) {
             $('[name="akaname"]').append($('<option>', {
@@ -326,7 +349,7 @@ $(document).ready(function() {
             }));
             //console.log(profile_data["akaname"])
         }
-        $('[name="akaname"]').val(profile_data["akaname"]);
+        $('[name="akaname"]').val(currentProfile["akaname"]);
 
         let ticketNum = (valgene_ticket !== null) ? valgene_ticket.ticketNum : 0
         $('[name="valgeneTicket"]').val(ticketNum)
@@ -337,49 +360,49 @@ $(document).ready(function() {
                     value: json["stamp"][i].value,
                     text: json["stamp"][i].name,
                 }));
-                $('[name="stampA"]').val(profile_data["stampA"]);
+                $('[name="stampA"]').val(currentProfile["stampA"]);
 
                 $('[name="stampB"]').append($('<option>', {
                     value: json["stamp"][i].value,
                     text: json["stamp"][i].name,
                 }));
-                $('[name="stampB"]').val(profile_data["stampB"]);
+                $('[name="stampB"]').val(currentProfile["stampB"]);
 
                 $('[name="stampC"]').append($('<option>', {
                     value: json["stamp"][i].value,
                     text: json["stamp"][i].name,
                 }));
-                $('[name="stampC"]').val(profile_data["stampC"]);
+                $('[name="stampC"]').val(currentProfile["stampC"]);
 
                 $('[name="stampD"]').append($('<option>', {
                     value: json["stamp"][i].value,
                     text: json["stamp"][i].name,
                 }));
-                $('[name="stampD"]').val(profile_data["stampD"]);
+                $('[name="stampD"]').val(currentProfile["stampD"]);
 
                 $('[name="stampRA"]').append($('<option>', {
                     value: json["stamp"][i].value,
                     text: json["stamp"][i].name,
                 }));
-                $('[name="stampRA"]').val(profile_data["stampRA"]);
+                $('[name="stampRA"]').val(currentProfile["stampRA"]);
 
                 $('[name="stampRB"]').append($('<option>', {
                     value: json["stamp"][i].value,
                     text: json["stamp"][i].name,
                 }));
-                $('[name="stampRB"]').val(profile_data["stampRB"]);
+                $('[name="stampRB"]').val(currentProfile["stampRB"]);
 
                 $('[name="stampRC"]').append($('<option>', {
                     value: json["stamp"][i].value,
                     text: json["stamp"][i].name,
                 }));
-                $('[name="stampRC"]').val(profile_data["stampRC"]);
+                $('[name="stampRC"]').val(currentProfile["stampRC"]);
 
                 $('[name="stampRD"]').append($('<option>', {
                     value: json["stamp"][i].value,
                     text: json["stamp"][i].name,
                 }));
-                $('[name="stampRD"]').val(profile_data["stampRD"]);
+                $('[name="stampRD"]').val(currentProfile["stampRD"]);
 
                 var group = Math.trunc((json["stamp"][i].value - 1) / 4 + 1);
                 var item = json["stamp"][i].value % 4;
@@ -392,8 +415,8 @@ $(document).ready(function() {
     });
 
 
-    if (profile_data["nemsys"] != 30) {
-        $('#nemsys_pre').attr("src", "static/asset/nemsys/nemsys_" + zeroPad(profile_data["nemsys"], 4) + ".png");
+    if (currentProfile["nemsys"] != 30) {
+        $('#nemsys_pre').attr("src", "static/asset/nemsys/nemsys_" + zeroPad(currentVersion === 7 && currentProfile["nemsys"] === 0 ? 47 : currentProfile["nemsys"], 4) + ".png");
     } else {
         $('#nemsys_pre').attr("src", "static/asset/nemsys/nemsys_aprilfool.png");
     }
@@ -403,26 +426,26 @@ $(document).ready(function() {
 
     $.getJSON("static/asset/json/data.json", function(json) {
         database = json
-        let subbgType = database['subbg'].filter((e => e.value === parseInt(profile_data["subbg"])))[0]['type']
+        let subbgType = database['subbg'].filter((e => e.value === parseInt(currentProfile["subbg"])))[0]['type']
         let isSubbgSlideshow = (subbgType === 'slideshow')
 
         if(subbgType === 'video') {
             $('#sub_pre_vid').empty().append(
-                $("<source id='sub_pre_vid_src' src='static/asset/submonitor_bg/subbg_" + zeroPad(profile_data["subbg"], 4) + ".mp4'>")
+                $("<source id='sub_pre_vid_src' src='static/asset/submonitor_bg/subbg_" + zeroPad(currentProfile["subbg"], 4) + ".mp4'>")
             )
             $('#sub_pre_vid').fadeIn(200)
         } else {
-            $('#sub_pre').attr("src", isSubbgSlideshow ? "static/asset/submonitor_bg/subbg_" + zeroPad(profile_data["subbg"], 4) + "_0" + (Math.floor(Math.random() * 3) + 1) + getImageFileFormat(0, parseInt(zeroPad($('[name="subbg"]').val(), 4))) : "static/asset/submonitor_bg/subbg_" + zeroPad(profile_data["subbg"], 4) + getImageFileFormat(0, parseInt(zeroPad(profile_data["subbg"], 4))));
+            $('#sub_pre').attr("src", isSubbgSlideshow ? "static/asset/submonitor_bg/subbg_" + zeroPad(currentProfile["subbg"], 4) + "_0" + (Math.floor(Math.random() * 3) + 1) + getImageFileFormat(0, parseInt(zeroPad($('[name="subbg"]').val(), 4))) : "static/asset/submonitor_bg/subbg_" + zeroPad(currentProfile["subbg"], 4) + getImageFileFormat(0, parseInt(zeroPad(currentProfile["subbg"], 4))));
             $('#sub_pre').fadeIn(200)
         }
     })
     // console.log(database)
-    $('#custom_0').attr("src", "static/asset/audio/custom_" + zeroPad(profile_data["bgm"], 2) + "/0.mp3");
-    $('#custom_1').attr("src", "static/asset/audio/custom_" + zeroPad(profile_data["bgm"], 2) + "/1.mp3");
+    $('#custom_0').attr("src", "static/asset/audio/custom_" + zeroPad(currentProfile["bgm"], 2) + "/0.mp3");
+    $('#custom_1').attr("src", "static/asset/audio/custom_" + zeroPad(currentProfile["bgm"], 2) + "/1.mp3");
     $('#custom_0').prop("volume", 0.5);
     $('#custom_1').prop("volume", 0.2);
 
-    var stamp = profile_data["stampA"];
+    var stamp = currentProfile["stampA"];
     if (stamp == 0 || stamp == null) {
         $('#a_pre').attr("src", "static/asset/nostamp.png");
     } else {
@@ -431,7 +454,7 @@ $(document).ready(function() {
         if (item == 0) item = 4;
         $('#a_pre').attr("src", "static/asset/chat_stamp/stamp_" + zeroPad(group, 4) + "/stamp_" + zeroPad(group, 4) + "_" + zeroPad(item, 2) + ".png");
     }
-    stamp = profile_data["stampB"];
+    stamp = currentProfile["stampB"];
     if (stamp == 0 || stamp == null) {
         $('#b_pre').attr("src", "static/asset/nostamp.png");
     } else {
@@ -440,7 +463,7 @@ $(document).ready(function() {
         if (item == 0) item = 4;
         $('#b_pre').attr("src", "static/asset/chat_stamp/stamp_" + zeroPad(group, 4) + "/stamp_" + zeroPad(group, 4) + "_" + zeroPad(item, 2) + ".png");
     }
-    stamp = profile_data["stampC"];
+    stamp = currentProfile["stampC"];
     if (stamp == 0 || stamp == null) {
         $('#c_pre').attr("src", "static/asset/nostamp.png");
     } else {
@@ -449,7 +472,7 @@ $(document).ready(function() {
         if (item == 0) item = 4;
         $('#c_pre').attr("src", "static/asset/chat_stamp/stamp_" + zeroPad(group, 4) + "/stamp_" + zeroPad(group, 4) + "_" + zeroPad(item, 2) + ".png");
     }
-    stamp = profile_data["stampD"];
+    stamp = currentProfile["stampD"];
     if (stamp == 0 || stamp == null) {
         $('#d_pre').attr("src", "static/asset/nostamp.png");
     } else {
@@ -459,7 +482,7 @@ $(document).ready(function() {
         $('#d_pre').attr("src", "static/asset/chat_stamp/stamp_" + zeroPad(group, 4) + "/stamp_" + zeroPad(group, 4) + "_" + zeroPad(item, 2) + ".png");
     }
 
-    stamp = profile_data["stampRA"];
+    stamp = currentProfile["stampRA"];
     if (stamp == 0 || stamp == null) {
         $('#ra_pre').attr("src", "static/asset/nostamp.png");
     } else {
@@ -468,7 +491,7 @@ $(document).ready(function() {
         if (item == 0) item = 4;
         $('#ra_pre').attr("src", "static/asset/chat_stamp/stamp_" + zeroPad(group, 4) + "/stamp_" + zeroPad(group, 4) + "_" + zeroPad(item, 2) + ".png");
     }
-    stamp = profile_data["stampRB"];
+    stamp = currentProfile["stampRB"];
     if (stamp == 0 || stamp == null) {
         $('#rb_pre').attr("src", "static/asset/nostamp.png");
     } else {
@@ -477,7 +500,7 @@ $(document).ready(function() {
         if (item == 0) item = 4;
         $('#rb_pre').attr("src", "static/asset/chat_stamp/stamp_" + zeroPad(group, 4) + "/stamp_" + zeroPad(group, 4) + "_" + zeroPad(item, 2) + ".png");
     }
-    stamp = profile_data["stampRC"];
+    stamp = currentProfile["stampRC"];
     if (stamp == 0 || stamp == null) {
         $('#rc_pre').attr("src", "static/asset/nostamp.png");
     } else {
@@ -486,7 +509,7 @@ $(document).ready(function() {
         if (item == 0) item = 4;
         $('#rc_pre').attr("src", "static/asset/chat_stamp/stamp_" + zeroPad(group, 4) + "/stamp_" + zeroPad(group, 4) + "_" + zeroPad(item, 2) + ".png");
     }
-    stamp = profile_data["stampRD"];
+    stamp = currentProfile["stampRD"];
     if (stamp == 0 || stamp == null) {
         $('#rd_pre').attr("src", "static/asset/nostamp.png");
     } else {
@@ -571,6 +594,12 @@ $(document).ready(function() {
         var duration = parseInt($('#custom_1').prop('duration'));
         var percent = currentTime / duration * 100;
 
+
+    $('#version_select').change(function() {
+        const urlParams = new URLSearchParams(location.search);
+        urlParams.set('version', $('#version_select').val());
+        location.search = urlParams;
+    });
 
     });
 })
