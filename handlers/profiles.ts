@@ -32,8 +32,8 @@ function unlockAppealCards(items: Partial<Item>[]) {
 
 function unlockAppealParts(items: Partial<Item>[]) {
   console.log("Unlocking Appeal Parts");
-  for (let i = 0; i <= 26; ++i) items.push({ type: 23, id: i, param: 99 })
-  for (let i = 0; i <= 138; ++i) items.push({ type: 24, id: i, param: 99 })
+  for (let i = 0; i <= 50; ++i) items.push({ type: 23, id: i, param: 99 })
+  for (let i = 0; i <= 200; ++i) items.push({ type: 24, id: i, param: 99 })
 
   return items;
 }
@@ -474,6 +474,7 @@ export const load: EPR = async (info, data, send) => {
   let presents = []
   let date = new Date()
   let currentDate = date.toLocaleDateString()
+  let currentYMDDate = parseInt([date.getFullYear(), ((date.getMonth() + 1) > 9 ? '' : '0') + (date.getMonth() + 1), (date.getDate() > 9 ? '' : '0') + date.getDate()].join(''));
 
   if(IO.Exists('webui/asset/config/events.json')) {
     let bufEventData = await IO.ReadFile('webui/asset/json/events.json')
@@ -493,7 +494,7 @@ export const load: EPR = async (info, data, send) => {
       let typeIds = {'gift_crew': [11, 1], 'gift_ap': [1, 1], 'gift': [0, 23], 'cross_online': [0, 23]}
       if(['gift_crew', 'gift_ap', 'gift', 'cross_online'].includes(eData.type) && eventConfig[eData.id] !== undefined) {
         if(typeof eventConfig[eData.id].toggle === "boolean") {
-          if(eventConfig[eData.id].toggle && dVersion >= eData.version) {
+          if(eventConfig[eData.id].toggle && dVersion >= eData.version && currentYMDDate >= eData.start) {
             for(const itemIter in eventItems[eData.id]) {
               let itemId = parseInt(eventItems[eData.id][itemIter])
               if(await DB.Count(refid, {collection:'item', type: typeIds[eData.type][0], id: itemId, version: version}) === 0) {
@@ -513,7 +514,7 @@ export const load: EPR = async (info, data, send) => {
           }
         } else{
           for(const toggleKeys in Object.keys(eventConfig[eData.id].toggle)) {
-            if(eventConfig[eData['id']]['toggle'][Object.keys(eventConfig[eData.id].toggle)[toggleKeys]] && dVersion >= eData.version[toggleKeys]) {
+            if(eventConfig[eData['id']]['toggle'][Object.keys(eventConfig[eData.id].toggle)[toggleKeys]] && dVersion >= eData.version[toggleKeys] && currentYMDDate >= eData.start[toggleKeys]) {
               for(const itemIter in eventItems[Object.keys(eventConfig[eData.id].toggle)[toggleKeys]]) {
                 let itemId = parseInt(eventItems[Object.keys(eventConfig[eData.id].toggle)[toggleKeys]][itemIter])
                 if(await DB.Count(refid, {collection:'item', type: typeIds[eData.type][0], id: itemId, version: version}) === 0) {

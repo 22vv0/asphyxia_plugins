@@ -1,15 +1,17 @@
 var currentVersion = 7;
 var urlParams;
 var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVIDWAVE', 'EXCEED GEAR', '∇']
+let date = new Date();
+let currentYMDDate = parseInt([date.getFullYear(), ((date.getMonth() + 1) > 9 ? '' : '0') + (date.getMonth() + 1), (date.getDate() > 9 ? '' : '0') + date.getDate()].join(''));
 
-function generateEventToggles(eventInfo, eventConfig, eventEnabled) {
+function generateEventToggles(eventInfo, eventConfig, eventEnabled, currentYMDDate) {
     let cardContent = $('<div class="card-content">')
     cardContent.append('<div class="field is-horizontal"').append(
         $("<h5>" + eventInfo['name'] + "</h5>")
         ).append(
         $("<p style='font-size: 15px;'>" + eventInfo['desc'] + "</p>")
         )
-    if(typeof eventInfo['info'] === 'string') {
+    if(typeof eventInfo['info'] === 'string' && currentYMDDate >= eventInfo['start']) {
         cardContent.append(
             $('<div class="field is-horizontal">').append(
                 $('<div class="field-label is-normal"><label class="label" for="' + eventInfo['id'] + '">Enable</label></div>')
@@ -45,11 +47,20 @@ function generateEventToggles(eventInfo, eventConfig, eventEnabled) {
                     )
                 )
             }
-        }
-        
-    } else {
+        }    
+    } else if(typeof eventInfo['info'] === 'string' && currentYMDDate < eventInfo['start']) {
+        cardContent.append(
+            $('<div class="field is-horizontal">').append(
+                $('<div class="field-label is-normal"><label class="label">Event start: ' + eventInfo['start'] + '.</label></div>')
+            ).append(
+                $('<div class="field-body"><div class="field"><div class="control"></div>')
+            )
+        )
+    }
+
+    if(Array.isArray(eventInfo['info'])) {
         for(const infoIter in eventInfo['info']) {
-            if(eventInfo['info'][infoIter].includes('/hd') !== true) {
+            if(eventInfo['info'][infoIter].includes('/hd') !== true && currentYMDDate >= eventInfo['start'][infoIter]) {
                 cardContent.append(
                     $('<div class="field is-horizontal">').append(
                         $('<div class="field-label is-normal"><label class="label" for="' + eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString() + '">Enable Set ' + (parseInt(infoIter) + 1).toString() + '</label></div>')
@@ -214,7 +225,7 @@ $(document).ready(async function() {
             for(const eventIter in eventData['events' + currentVersion]) {
                 if(eventData['events' + currentVersion][eventIter]['id'] === $(selectClass).val()) {
                     $('.' + listClasses[selectClass] + '.list').append(
-                        generateEventToggles(eventData['events' + currentVersion][eventIter], eventConfig[eventData['events' + currentVersion][eventIter]['id']], eventData['events' + currentVersion][eventIter]['enabled'])
+                        generateEventToggles(eventData['events' + currentVersion][eventIter], eventConfig[eventData['events' + currentVersion][eventIter]['id']], eventData['events' + currentVersion][eventIter]['enabled'], currentYMDDate)
                     )
                     $('div.main').append(
                         $('<div class="field is-grouped"><div class="control is-expanded"></div><div class="control"><button class="button is-link" id="event-submit">Apply</button></div></div>')

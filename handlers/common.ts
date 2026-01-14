@@ -1,5 +1,5 @@
 import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIE_SONGS, LICENSED_SONGS6, CURRENT_ARENA, ARENA_STATION_ITEMS, VALGENE, INFORMATION6, UNLOCK_EVENTS6 } from '../data/exg';
-import { EVENT7, COURSES7, EXTENDS7, LICENSED_SONGS7, CURRENT_ARENA7, ARENA_STATION_ITEMS7, VALGENE7, APIGENE7, INFORMATION7, UNLOCK_EVENTS7, BLASTER_GATE7, BLASTER_GATE7_2 } from '../data/nbl';
+import { EVENT7, COURSES7, EXTENDS7, LICENSED_SONGS7, CURRENT_ARENA7, ARENA_STATION_ITEMS7, VALGENE7, APIGENE7, INFORMATION7, UNLOCK_EVENTS7 } from '../data/nbl';
 import {getVersion, getRandomIntInclusive} from '../utils';
 
 export const common: EPR = async (info, data, send) => {
@@ -46,7 +46,7 @@ export const common: EPR = async (info, data, send) => {
         }
         courses = COURSES6.filter(course => version >= course.version);
         information = INFORMATION6.filter(info => version >= info.version)
-        EXTENDS6.filter(ex => version >= ex.version).forEach(val => extend.push(Object.assign({}, val)));
+        EXTENDS6.filter(ex => version >= ex.version && currentYMDDate >= ex.start).forEach(val => extend.push(Object.assign({}, val)));
         licensedSongs = LICENSED_SONGS6;
         unlockEvents = UNLOCK_EVENTS6;
         currentArena = CURRENT_ARENA;
@@ -229,7 +229,7 @@ export const common: EPR = async (info, data, send) => {
       let eventConfig = JSON.parse(bufEventConfig.toString())
       for(const eData of eventData['events' + Math.abs(gameVersion)]) {
         let stmpEvntInfo = unlockEvents[eData.id]
-        if(stmpEvntInfo && version >= eData.version) {
+        if(stmpEvntInfo && version >= eData.version && currentYMDDate >= eData.start) {
           if(eData.type === 'stamp' && eventConfig[eData.id] !== undefined && eventConfig[eData.id].toggle) {
             for(const stmpData of stmpEvntInfo.info.data) {
               extend.push({

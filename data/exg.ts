@@ -6714,6 +6714,7 @@ export const MEGAMIX_SONGS_4 = [
 export const EXTENDS6 = [
   {
     version: 20230807,
+    start: 20230809,
     type: 6,
     id: 101,
     params: [
@@ -6727,6 +6728,7 @@ export const EXTENDS6 = [
   },
   {
     version: 20250218,
+    start: 20250225,
     type: 21,
     id: 0,
     params: [
@@ -6740,6 +6742,7 @@ export const EXTENDS6 = [
   },
   {
     version: 20241105,
+    start: 20241107,
     type: 21,
     id: 0,
     params: [
@@ -6753,6 +6756,7 @@ export const EXTENDS6 = [
   },
   {
     version: 0,
+    start: 0,
     id: 91,
     type: 17,
     params: [
@@ -6766,6 +6770,7 @@ export const EXTENDS6 = [
   },
   {
     version: 0,
+    start: 0,
     id: 92,
     type: 17,
     params: [
@@ -6779,6 +6784,7 @@ export const EXTENDS6 = [
   },
   {
     version: 0,
+    start: 0,
     id: 93,
     type: 17,
     params: [
@@ -6792,6 +6798,7 @@ export const EXTENDS6 = [
   },
   {
     version: 0,
+    start: 0,
     id: 94,
     type: 17,
     params: [

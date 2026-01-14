@@ -1,10 +1,10 @@
 # SOUND VOLTEX
 
-**Plugin Version:** 7.0.0
+**Plugin Version:** 7.0.0a
 
 **Supported game versions:** 
 - EXCEED GEAR (2025120900)
-- ∇ (2025122600)
+- ∇ (2026011300)
 
 **Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d)
 
@@ -22,57 +22,27 @@ Important notes for players migrating from EXCEED GEAR to ∇
 
 Changelog
 ===========
-### 7.0.0
+### 7.0.0a
 
-- ∇ support
-	- Data creation/save/load
-		- Data import from EXCEED GEAR
-	- Added Features:
-		- Beginner Songs folder
-		- BLASTER GATE folder
-			- BPL S2 original songs
-			- BPL S3 original songs
-			- BPL S5 original songs
-			- HEXA DIVER songs
-			- XCD charts
-		- VARIANT GATE folder
-			- 月輪の紋様
-			- 永遠の紋様
-		- APPEAL GENERATOR
-			- Vol. 1
-		- PREMIUM GENERATOR
-			- Vol. 7 (∇ Rasis set)
-		- Events data
-			- ぼる×りこ Cross Resonance (12 songs)
-			- GITADORA Special Stamp! (2 songs)
-			- ∇ Weekly Stamp Bonus Weeks 1 to 3
-			- Appeal Card gift "2026 HAPPY NEW ∇!!"
-			- BPL S5 songs gift
-			- Blue Diamond stamp event
-
-- EXCEED GEAR
-	- Added Beginner Songs folder
-	- Fixed PREMIUM GENERATOR banners:
-		- Added correct Premium Generator （空澄セナ）
-		- Renamed existing "Premium Generator （空澄セナ）" to "Premium Generator （花芽すみれ）"
-
-- WebUI
-	- Version select for WebUI profile data navigation.
-	- Separate VF calculation for ∇
-	- Re-added older ifs file texture extract info.
+- ∇
+	- Added events
+		- BPL S5 songs gift (1 song)
+		- BEMANI PRO LEAGUE -SEASON 5-! Team Appeal Card gift (7 cards)
+		- ▽ Weekly Stamp Bonus stamp events
+			- Week 4: 14th anniversary sticker (2026/01/15)
+			- Week 5: Snowman Maxima sticker (2026/01/22)
+			- Week 6: 5000 pc (2026/01/29)
+		- BLASTER GATE
+			- SOUND VOLTEX PERFECT ULTIMATE COMPLETE TRACKS ～Legend of KAC with Ω～ (9 songs)
+			- TAMANEKO ADVENTURE Songs (30 songs)
+			- TAMANEKO ADVENTURE XCD (9 charts)
+			- BPL S5 songs (will appear 1 week after release)
 
 - Misc:
-	- Changed music_db.json structure.
-	- Updated handler for 'endless' stamp sheet events
-	- DB updates to include game version it's saved from
-	- Fixes to course data migrate code (again)
-	- Fixed matchmaking code to remove delay in match screen
-	- ∇ data import code
-		- Collections being migrated:
-			- Profile (some customization settings are reset like crew, appeal card, etc)
-			- Item
-			- Param
-			- MusicRecord
+	- Updated Blue Diamond stamp event data (updated title)
+	- Increased unlockAppealParts item ID limit.
+	- Added start date check for unlockables and events
+		- Still can be overridden by auto unlock toggles.
 
 #### RE: Standard Start issue on version 20250422+
 This is not a plugin issue but I feel it is necessary to share. I did notice this while testing VARIANT GATE but I forgot to mention it so I apologize. As mentioned in issue [#34](https://github.com/22vv0/asphyxia_plugins/issues/34), if you're having trouble carding in after a Standard Start credit, what fixed it for me was adding these lines to your ea3-config.xml file, in ea3->pos->coin. I personally put it just under _kfc\_game\_s\_standard_:
