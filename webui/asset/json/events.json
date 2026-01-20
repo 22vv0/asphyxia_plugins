@@ -1062,6 +1062,16 @@
                 "/hdSong 2: '??'",
                 "/hdSong 3: '??"
             ]
+        },
+        {
+            "id": "14thannivap",
+            "type": "gift_ap",
+            "enabled": true,
+            "name": "14th Anniversary Appeal Card",
+            "version": 20260113,
+            "start": 20260118,
+            "desc": "Login to SDVX to get this appeal card.",
+            "info": "Toggle this option to enable/disable this gift."
         }
     ],
     "flags": [

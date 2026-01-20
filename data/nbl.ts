@@ -272,7 +272,8 @@ export const EVENT_ITEMS7 = {
   "bpls5apica_7": ['5553'],
   "popncheers_1": ['2357'],
   "popncheers_2": ['2356'],
-  "popncheers_3": ['2355']
+  "popncheers_3": ['2355'],
+  "14thannivap": ['6502']
 }
 
 // rule: 0 score 1 point 2 vote

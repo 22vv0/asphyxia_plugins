@@ -22,6 +22,17 @@ Important notes for players migrating from EXCEED GEAR to ∇
 
 Changelog
 ===========
+### 7.0.0a-fix1
+
+- ∇
+	- Added events
+		- 14th Anniversary Appeal Card Gift
+
+- Misc:
+	- Fixed incorrect display of data in the profile detail page's statistics.
+	- Updated song title translate table.
+
+
 ### 7.0.0a
 
 - ∇

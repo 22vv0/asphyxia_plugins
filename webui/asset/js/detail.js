@@ -633,10 +633,10 @@ function setUpStatistics(profileVer) {
 
     score_db.filter(sc => sc.version === profileVer).forEach(function(currentValue, index, array) {
         let egClear = [0, 1, 2, 3, 5, 6, 4]
-        // let clearMark = (profileVer === 7 && currentValue.version === 6) ? egClear[currentValue.clear] : currentValue.clear
-        //console.log(currentValue);
-        CMpDArray[currentValue.type][currentValue.clear - 1] += 1;
-        CMpLArray[parseInt(getSongLevel(currentValue.mid, currentValue.type)) - 1][currentValue.clear - 1] += 1;
+        let clearMark = (profileVer === 6) ? egClear[currentValue.clear] : currentValue.clear
+        // console.log(currentValue);
+        CMpDArray[currentValue.type][clearMark - 1] += 1;
+        CMpLArray[parseInt(getSongLevel(currentValue.mid, currentValue.type)) - 1][clearMark - 1] += 1;
         GpDArray[currentValue.type][currentValue.grade - 1]++;
         GpLArray[parseInt(getSongLevel(currentValue.mid, currentValue.type)) - 1][currentValue.grade - 1] += 1;
         ASpLArray[parseInt(getSongLevel(currentValue.mid, currentValue.type)) - 1][0] += 1;
@@ -668,15 +668,15 @@ function setUpStatistics(profileVer) {
                 )
             ).append(
                 $('<td>').append(
-                    CMpDArray[diff][5]
-                )
-            ).append(
-                $('<td>').append(
                     CMpDArray[diff][3]
                 )
             ).append(
                 $('<td>').append(
                     CMpDArray[diff][4]
+                )
+            ).append(
+                $('<td>').append(
+                    CMpDArray[diff][5]
                 )
             )
         )
@@ -701,15 +701,15 @@ function setUpStatistics(profileVer) {
                 )
             ).append(
                 $('<td>').append(
-                    CMpLArray[lv - 1][5]
-                )
-            ).append(
-                $('<td>').append(
                     CMpLArray[lv - 1][3]
                 )
             ).append(
                 $('<td>').append(
                     CMpLArray[lv - 1][4]
+                )
+            ).append(
+                $('<td>').append(
+                    CMpLArray[lv - 1][5]
                 )
             )
         )
@@ -989,8 +989,6 @@ $(document).ready(function() {
     let urlParams = new URLSearchParams(window.location.search);
     currentVersion = (urlParams.has('version') && urlParams.get('version') !== "") ? parseInt(urlParams.get('version')) : profile_data[profile_data.length - 1].version
     currentProfile = profile_data.find(p => p.version === currentVersion)
-    console.log(currentVersion)
-    console.log(currentProfile)
 
 
     $.when(

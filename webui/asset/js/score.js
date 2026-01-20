@@ -245,32 +245,40 @@ $(document).ready(function() {
 
     $.getJSON("static/asset/json/music_db.json", function(json) {
         const translate_table = {
-            '龕': '€',
-            '釁': '🍄',
-            '驩': 'Ø',
-            '曦': 'à',
-            '齷': 'é',
-            '骭': 'ü',
-            '齶': '♡',
-            '彜': 'ū',
-            '罇': 'ê',
-            '雋': 'Ǜ',
-            '鬻': '♃',
-            '鬥': 'Ã',
-            '鬆': 'Ý',
-            '曩': 'è',
-            '驫': 'ā',
-            '齲': '♥',
-            '騫': 'á',
-            '趁': 'Ǣ',
-            '鬮': '¡',
-            '盥': '⚙︎',
-            '隍': '︎Ü',
-            '頽': 'ä',
-            '餮': 'Ƶ',
-            '黻': '*',
-            '蔕': 'ũ',
-            '闃': 'Ā'
+              '龕': '€',
+              '釁': '🍄',
+              '驩': 'Ø',
+              '曦': 'à',
+              '齷': 'é',
+              '骭': 'ü',
+              '齶': '♡',
+              '彜': 'ū',
+              '罇': 'ê',
+              '雋': 'Ǜ',
+              '鬻': '♃',
+              '鬥': 'Ã',
+              '鬆': 'Ý',
+              '曩': 'è',
+              '驫': 'ā',
+              '齲': '♥',
+              '騫': 'á',
+              '趁': 'Ǣ',
+              '鬮': '¡',
+              '盥': '⚙︎',
+              '隍': '︎Ü',
+              '頽': 'ä',
+              '餮': 'Ƶ',
+              '黻': '*',
+              '蔕': 'ũ',
+              '闃': 'Ā',
+              '饌': '²',
+              '煢': 'ø',
+              '鑷': 'ゔ',
+              '墸': '͟͟͞ ',
+              '鹹': 'Ĥ',
+              '瀑': 'À',
+              '疉': 'Ö',
+              '鑒': '₩'
         }
         music_db = json;
         var music_data = [];
@@ -280,7 +288,7 @@ $(document).ready(function() {
             var temp_data = {};
             temp_data.mid = score_data[i].mid;
             temp_data.songname = getSongName(score_data[i].mid);
-            temp_data.songname = temp_data.songname.replace(/[龕釁驩曦齷骭齶彜罇雋鬻鬥鬆曩驫齲騫趁鬮盥隍頽餮黻蔕闃]/g, m => translate_table[m]);
+            temp_data.songname = temp_data.songname.replace(/[龕釁驩曦齷骭齶彜罇雋鬻鬥鬆曩驫齲騫趁鬮盥隍頽餮黻蔕闃饌煢鑷墸鹹瀑疉鑒]/g, m => translate_table[m]);
             temp_data.diff = getDifficulty(score_data[i].mid, score_data[i].type);
             temp_data.score = score_data[i].score;
             temp_data.exscore = ((score_data[i].exscore) ? score_data[i].exscore : 0);

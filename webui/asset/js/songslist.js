@@ -72,7 +72,15 @@ $(document).ready(function() {
               '餮': 'Ƶ',
               '黻': '*',
               '蔕': 'ũ',
-              '闃': 'Ā'
+              '闃': 'Ā',
+              '饌': '²',
+              '煢': 'ø',
+              '鑷': 'ゔ',
+              '墸': '͟͟͞ ',
+              '鹹': 'Ĥ',
+              '瀑': 'À',
+              '疉': 'Ö',
+              '鑒': '₩'
         }
         music_db = json;
         var music_data = [];
@@ -80,7 +88,7 @@ $(document).ready(function() {
             var temp_data = {};
             temp_data.mid = music_db.mdb.music[mdata]['id'];
             temp_data.songname = music_db.mdb.music[mdata]['info']['title_name'];
-            temp_data.songname = temp_data.songname.replace(/[龕釁驩曦齷骭齶彜罇雋鬻鬥鬆曩驫齲騫趁鬮盥隍頽餮黻蔕闃]/g, m => translate_table[m]);
+            temp_data.songname = temp_data.songname.replace(/[龕釁驩曦齷骭齶彜罇雋鬻鬥鬆曩驫齲騫趁鬮盥隍頽餮黻蔕闃饌煢鑷墸鹹瀑疉鑒]/g, m => translate_table[m]);
             if('distribution_date' in music_db.mdb.music[mdata]['info']) {
                 temp_data.releasedate = music_db.mdb.music[mdata]['info']['distribution_date'];
             } else {
