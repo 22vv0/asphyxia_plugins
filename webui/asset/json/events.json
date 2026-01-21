@@ -827,7 +827,7 @@
                 "Week 5 song: 'ИEXTAGE'",
                 "Week 6 song: 'CAKE,Cake'n Cake!'",
                 "Week 7 song: '天鯨譚'",
-                "Week 8 song: '???'"
+                "Week 8 song: '華麗なる一撃'"
             ]
         },
         {
@@ -1044,8 +1044,8 @@
         {
             "id": "popncheers",
             "type": "cross_online",
-            "enabled": false,
-            "name": "pop'n x BEMANI Cheers x Cheers!!",
+            "enabled": true,
+            "name": "pop'n & SDVX Cheers × Cheers!!",
             "version": [
                 20260113,
                 20260113,
@@ -1058,9 +1058,9 @@
             ],
             "desc": "Crossover event between pop'n music High☆Cheers!! and SOUND VOLTEX ∇.<br>Toggle the corresponding songs' option below to automatically unlock them on your next login.",
             "info": [
-                "/hdSong 1: '??'",
-                "/hdSong 2: '??'",
-                "/hdSong 3: '??"
+                "Song 1: '紅焔'",
+                "Song 2: 'Votum stellarum -forest #25 RMX-'",
+                "Song 3: 'Zt!riΔ"
             ]
         },
         {

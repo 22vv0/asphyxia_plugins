@@ -1,6 +1,6 @@
 # SOUND VOLTEX
 
-**Plugin Version:** 7.0.0a
+**Plugin Version:** 7.0.0c
 
 **Supported game versions:** 
 - EXCEED GEAR (2025120900)
@@ -22,7 +22,14 @@ Important notes for players migrating from EXCEED GEAR to ∇
 
 Changelog
 ===========
-### 7.0.0a-fix1
+### 7.0.0c
+
+- ∇
+	- Added/enabled events
+		- pop'n & SDVX Cheers × Cheers!! (20260122)
+
+
+### 7.0.0b
 
 - ∇
 	- Added events

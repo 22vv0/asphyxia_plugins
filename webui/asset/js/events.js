@@ -11,12 +11,12 @@ function generateEventToggles(eventInfo, eventConfig, eventEnabled, currentYMDDa
         ).append(
         $("<p style='font-size: 15px;'>" + eventInfo['desc'] + "</p>")
         )
-    if(typeof eventInfo['info'] === 'string' && currentYMDDate >= eventInfo['start']) {
+    if(typeof eventInfo['info'] === 'string') {
         cardContent.append(
             $('<div class="field is-horizontal">').append(
                 $('<div class="field-label is-normal"><label class="label" for="' + eventInfo['id'] + '">Enable</label></div>')
             ).append(
-                $('<div class="field-body"><div class="field"><div class="control"><label class="switch is-rounded"><input type="checkbox" ' + (eventConfig['toggle'] ? 'checked' : '') + ' name="' + eventInfo['id'] + '"><span class="check"></span></label></div><p class="help">' + eventInfo['info'] + '</p></div></div>')
+                $('<div class="field-body"><div class="field"><div class="control"><label class="switch is-rounded"><input type="checkbox" ' + (currentYMDDate < eventInfo['start'] ? 'disabled' : '') + (eventConfig['toggle'] ? 'checked' : '') + ' name="' + (currentYMDDate < eventInfo['start'] ? 'none' : eventInfo['id']) + '"><span class="check"></span></label></div><p class="help">' + (currentYMDDate < eventInfo['start'] ? eventInfo['info'] + ' (disabled until ' + eventInfo['start'] +')' : eventInfo['info']) + '</p></div></div>')
             )
         )
         if(eventInfo['settings'] !== undefined) {
@@ -48,24 +48,16 @@ function generateEventToggles(eventInfo, eventConfig, eventEnabled, currentYMDDa
                 )
             }
         }    
-    } else if(typeof eventInfo['info'] === 'string' && currentYMDDate < eventInfo['start']) {
-        cardContent.append(
-            $('<div class="field is-horizontal">').append(
-                $('<div class="field-label is-normal"><label class="label">Event start: ' + eventInfo['start'] + '.</label></div>')
-            ).append(
-                $('<div class="field-body"><div class="field"><div class="control"></div>')
-            )
-        )
     }
 
     if(Array.isArray(eventInfo['info'])) {
         for(const infoIter in eventInfo['info']) {
-            if(eventInfo['info'][infoIter].includes('/hd') !== true && currentYMDDate >= eventInfo['start'][infoIter]) {
+            if(eventInfo['info'][infoIter].includes('/hd') !== true) {
                 cardContent.append(
                     $('<div class="field is-horizontal">').append(
                         $('<div class="field-label is-normal"><label class="label" for="' + eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString() + '">Enable Set ' + (parseInt(infoIter) + 1).toString() + '</label></div>')
                     ).append(
-                        $('<div class="field-body"><div class="field"><div class="control"><label class="switch is-rounded"><input type="checkbox" ' + (eventConfig['toggle'][eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString()] ? 'checked' : '') + ' name="' + eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString() + '"><span class="check"></span></label></div><p class="help">' + eventInfo['info'][infoIter] + '</p></div></div>')
+                        $('<div class="field-body"><div class="field"><div class="control"><label class="switch is-rounded"><input ' + (currentYMDDate < eventInfo['start'][infoIter] ? 'disabled' : '') + ' type="checkbox" ' + (eventConfig['toggle'][eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString()] ? 'checked' : '') + ' name="' + (currentYMDDate < eventInfo['start'] ? 'none' : eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString()) + '"><span class="check"></span></label></div><p class="help">' + eventInfo['info'][infoIter] + (currentYMDDate < eventInfo['start'][infoIter] ? " (disabled until " + eventInfo['start'][infoIter] + ")" : '') + '</p></div></div>')
                     )
                 )
             }
