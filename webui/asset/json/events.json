@@ -814,20 +814,23 @@
                 20251224,
                 20251224,
                 20260113,
-                20260113
+                20260113,
+                20260127
             ],
             "start": [
                 20251225,
                 20260108,
                 20260115,
-                20260122
+                20260122,
+                20260129
             ],
-            "desc": "Songs revealed for the BEMANI Pro League Season 5 sightread challenges.<br>Toggle to have the songs from their corresponding week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.",
+            "desc": "Songs revealed for the BEMANI Pro League Season 5 sightread challenges.<br>Toggle to have the songs from their corresponding week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE a week after release.",
             "info": [
                 "Week 5 song: 'ИEXTAGE'",
                 "Week 6 song: 'CAKE,Cake'n Cake!'",
                 "Week 7 song: '天鯨譚'",
-                "Week 8 song: '華麗なる一撃'"
+                "Week 8 song: '華麗なる一撃'",
+                "Week 9 song: 'Veins Resonance'"
             ]
         },
         {
@@ -1072,6 +1075,34 @@
             "start": 20260118,
             "desc": "Login to SDVX to get this appeal card.",
             "info": "Toggle this option to enable/disable this gift."
+        },
+        {
+            "id": "bpls5tripletribe2",
+            "type": "cross_online",
+            "enabled": true,
+            "name": "BEMANI PRO LEAGUE -SEASON 5- Triple Tribe (part 2)",
+            "version": [
+                20260127,
+                20260127,
+                20260127,
+                20260127,
+                20260127
+            ],
+            "start": [
+                20260129,
+                20260129,
+                20260129,
+                20260129,
+                20260129
+            ],
+            "desc": "Crossover event between SOUND VOLTEX, DanceDanceRevolution, and beatmania IIDX where you would earn TTP points which can be used to unlock songs through the participating games.<br>However, since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding SOUND VOLTEX songs' option to automatically unlock them on your next login.",
+            "info": [
+                "Song 1: 'Mermaid girl'",
+                "Song 2: '9th Outburst'",
+                "Song 3: 'Anti-Matter'",
+                "Song 4: 'Glitch N Ride'",
+                "Song 5: 'fixer'"                
+            ]
         }
     ],
     "flags": [

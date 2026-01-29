@@ -93,7 +93,7 @@ export const BLASTER_GATE7 = [
   ],
   [
     // bpls5
-    231423, 231523, 231623, 231723, 231823, 231923
+    231423, 231523, 231623, 231723, 231823, 231923, 232023, 232123
   ],
   [
     // tamaadv
@@ -107,10 +107,7 @@ export const BLASTER_GATE7 = [
   ],
   // upcomings bpls5
   [
-    232023
-  ],
-  [
-    232123
+    232223
   ]
 ]
 
@@ -250,6 +247,7 @@ export const EVENT_ITEMS7 = {
   "bpls5sdvx7_2": ['2319'],
   "bpls5sdvx7_3": ['2320'],
   "bpls5sdvx7_4": ['2321'],
+  "bpls5sdvx7_5": ['2322'],
   "2026apica": ['6501'],
   "crossresonance_1": ['2231'],
   "crossresonance_2": ['2232'],
@@ -273,7 +271,12 @@ export const EVENT_ITEMS7 = {
   "popncheers_1": ['2357'],
   "popncheers_2": ['2356'],
   "popncheers_3": ['2355'],
-  "14thannivap": ['6502']
+  "14thannivap": ['6502'],
+  "bpls5tripletribe2_1": ['2360'],
+  "bpls5tripletribe2_2": ['2358'],
+  "bpls5tripletribe2_3": ['2359'],
+  "bpls5tripletribe2_4": ['2361'],
+  "bpls5tripletribe2_5": ['2362']
 }
 
 // rule: 0 score 1 point 2 vote
@@ -506,27 +509,13 @@ export const EXTENDS7 = [
     ],
   },
   {
-    version: 20260113,
-    start: 20260122,
+    version: 20260127,
+    start: 20260205,
     id: 1,
     type: 18,
     params: [
       0, 0, 0, 20, 0,
       BLASTER_GATE7[7].join(' '),
-      '',
-      '',
-      '',
-      '',
-    ],
-  },
-  {
-    version: 20260113,
-    start: 20260129,
-    id: 1,
-    type: 18,
-    params: [
-      0, 0, 0, 20, 0,
-      BLASTER_GATE7[8].join(' '),
       '',
       '',
       '',

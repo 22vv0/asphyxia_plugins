@@ -84,7 +84,7 @@ export const common: EPR = async (info, data, send) => {
           catalog: [...VALGENE.catalog, ...VALGENE7.catalog]
         }
         apigene = APIGENE7;
-        EXTENDS7.filter(ex => version >= ex.version).forEach(val => extend.push(Object.assign({}, val)));
+        EXTENDS7.filter(ex => version >= ex.version && currentYMDDate >= ex.start).forEach(val => extend.push(Object.assign({}, val)));
         songNum = 2400
         break;
       }

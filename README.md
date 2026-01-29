@@ -1,14 +1,15 @@
 # SOUND VOLTEX
 
-**Plugin Version:** 7.0.0c
+**Plugin Version:** fork-7.0.0d
 
 **Supported game versions:** 
 - EXCEED GEAR (2025120900)
-- ∇ (2026011300)
+- ∇ (2026012700)
 
 **Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d)
 
-**Notes** 
+**Notes**
+- This is a fork of the [official Asphyxia SDVX plugin](https://github.com/asphyxia-core/plugins). If you have any concerns and issues with this fork of the plugin, please do **not** ask for support on the official Asphyxia channels, and do **not** contact the devs of the official plugin as they would not be able to help you because do not maintain this fork. Direct your concerns to the [GitHub issues page](https://github.com/22vv0/asphyxia_plugins/issues) of this repository.
 - **Please keep a copy/backup of your savedata directory** so you have something to come back to in case of a problem with your database.
 - Before using this plugin, run the [WebUI Asset Update](/plugin/sdvx@asphyxia/update%20webui%20assets). Do this every data and plugin update.
 
@@ -22,6 +23,17 @@ Important notes for players migrating from EXCEED GEAR to ∇
 
 Changelog
 ===========
+### 7.0.0d
+
+- ∇
+	- Added/enabled events
+		- BPL S5 Song (Veins Resonance)
+		- BPL S5 Triple Tribe
+	- Updated BLASTER GATE
+
+- Misc:
+	- Fixed EXTENDS7 filter to include start date checking.
+
 ### 7.0.0c
 
 - ∇
