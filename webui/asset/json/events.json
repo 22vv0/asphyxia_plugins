@@ -815,14 +815,18 @@
                 20251224,
                 20260113,
                 20260113,
-                20260127
+                20260127,
+                20260203,
+                20260203
             ],
             "start": [
                 20251225,
                 20260108,
                 20260115,
                 20260122,
-                20260129
+                20260129,
+                20260205,
+                20260212
             ],
             "desc": "Songs revealed for the BEMANI Pro League Season 5 sightread challenges.<br>Toggle to have the songs from their corresponding week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE a week after release.",
             "info": [
@@ -830,7 +834,9 @@
                 "Week 6 song: 'CAKE,Cake'n Cake!'",
                 "Week 7 song: '天鯨譚'",
                 "Week 8 song: '華麗なる一撃'",
-                "Week 9 song: 'Veins Resonance'"
+                "Week 9 song: 'Veins Resonance'",
+                "Week 10 song: 'ShowDawn'",
+                "Week 11 song: '????'"
             ]
         },
         {
@@ -866,36 +872,6 @@
                 "ROUND1",
                 "レジャーランド"
             ]
-        },
-        {
-            "id": "nblstampbonus1",
-            "type": "stamp",
-            "enabled": true,
-            "name": "∇ Weekly Stamp Bonus! (Week 1)",
-            "version": 20251224,
-            "start": 20251224,
-            "desc": "Stamp event to unlock the つまぶきサンタ appeal sticker, and gain PC and BLC.",
-            "info": "Toggle this on to enable/disable this stamp event."
-        },
-        {
-            "id": "nblstampbonus2",
-            "type": "stamp",
-            "enabled": true,
-            "name": "∇ Weekly Stamp Bonus! (Week 2)",
-            "version": 20251224,
-            "start": 20260101,
-            "desc": "Stamp event to unlock the 鏡ﾓﾁｭ appeal sticker, and gain PC and BLC.",
-            "info": "Toggle this on to enable/disable this stamp event."
-        },
-        {
-            "id": "nblstampbonus3",
-            "type": "stamp",
-            "enabled": true,
-            "name": "∇ Weekly Stamp Bonus! (Week 3)",
-            "version": 20251224,
-            "start": 20260108,
-            "desc": "Stamp event to gain PC and BLC.",
-            "info": "Toggle this on to enable/disable this stamp event."
         },
         {
             "id": "2026apica",
@@ -1015,36 +991,6 @@
             ]
         },
         {
-            "id": "nblstampbonus4",
-            "type": "stamp",
-            "enabled": true,
-            "name": "∇ Weekly Stamp Bonus! (Week 4)",
-            "version": 20260113,
-            "start": 20260115,
-            "desc": "Stamp event to unlock the '14th anniversary!' appeal sticker, and gain PC and BLC.",
-            "info": "Toggle this on to enable/disable this stamp event."
-        },
-        {
-            "id": "nblstampbonus5",
-            "type": "stamp",
-            "enabled": true,
-            "name": "∇ Weekly Stamp Bonus! (Week 5)",
-            "version": 20260113,
-            "start": 20260122,
-            "desc": "Stamp event to unlock the '雪だるマキシマ' appeal sticker, and gain PC and BLC.",
-            "info": "Toggle this on to enable/disable this stamp event."
-        },
-        {
-            "id": "nblstampbonus6",
-            "type": "stamp",
-            "enabled": true,
-            "name": "∇ Weekly Stamp Bonus! (Week 6)",
-            "version": 20260113,
-            "start": 20260129,
-            "desc": "Another stamp event to gain PC and BLC.",
-            "info": "Toggle this on to enable/disable this stamp event."
-        },
-        {
             "id": "popncheers",
             "type": "cross_online",
             "enabled": true,
@@ -1103,6 +1049,142 @@
                 "Song 4: 'Glitch N Ride'",
                 "Song 5: 'fixer'"                
             ]
+        },
+        {
+            "id": "mikustamp",
+            "type": "stamp",
+            "enabled": true,
+            "name": "Hatsune Miku Stamp Event",
+            "version": 20260203,
+            "start": 20260205,
+            "desc": "Stamp event to unlock Hatsune Miku themed items.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "nblstampbonus1",
+            "type": "stamp",
+            "enabled": true,
+            "name": "∇ Weekly Stamp Bonus! #1",
+            "version": 20251224,
+            "start": 20251224,
+            "desc": "Stamp event to unlock the 'つまぶきサンタ' appeal sticker, and gain PC and BLC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "nblstampbonus2",
+            "type": "stamp",
+            "enabled": true,
+            "name": "∇ Weekly Stamp Bonus! #2",
+            "version": 20251224,
+            "start": 20260101,
+            "desc": "Stamp event to unlock the '鏡ﾓﾁｭ' appeal sticker, and gain PC and BLC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "nblstampbonus3",
+            "type": "stamp",
+            "enabled": true,
+            "name": "∇ Weekly Stamp Bonus! #3",
+            "version": 20251224,
+            "start": 20260108,
+            "desc": "Stamp event to gain PC and BLC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "nblstampbonus4",
+            "type": "stamp",
+            "enabled": true,
+            "name": "∇ Weekly Stamp Bonus! #4",
+            "version": 20260113,
+            "start": 20260115,
+            "desc": "Stamp event to unlock the '14th anniversary!' appeal sticker, and gain PC and BLC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "nblstampbonus5",
+            "type": "stamp",
+            "enabled": true,
+            "name": "∇ Weekly Stamp Bonus! #5",
+            "version": 20260113,
+            "start": 20260122,
+            "desc": "Stamp event to unlock the '雪だるマキシマ' appeal sticker, and gain PC and BLC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "nblstampbonus6",
+            "type": "stamp",
+            "enabled": true,
+            "name": "∇ Weekly Stamp Bonus! #6",
+            "version": 20260113,
+            "start": 20260129,
+            "desc": "Another stamp event to gain PC and BLC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "nblstampbonus7",
+            "type": "stamp",
+            "enabled": true,
+            "name": "∇ Weekly Stamp Bonus! #7",
+            "version": 20260203,
+            "start": 20260205,
+            "desc": "Stamp event to unlock the 'Onigo' jacket appeal sticker, and gain PC and BLC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "nblstampbonus8",
+            "type": "stamp",
+            "enabled": true,
+            "name": "∇ Weekly Stamp Bonus! #8",
+            "version": 20260203,
+            "start": 20260209,
+            "desc": "Stamp event to unlock the 'チョコぶき' appeal sticker, and gain PC and BLC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "nblstampbonus9",
+            "type": "stamp",
+            "enabled": true,
+            "name": "∇ Weekly Stamp Bonus! #9",
+            "version": 20260203,
+            "start": 20260216,
+            "desc": "Stamp event to unlock the '猫の日2026' appeal sticker, and gain PC and BLC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "nblstampbonus10",
+            "type": "stamp",
+            "enabled": true,
+            "name": "∇ Weekly Stamp Bonus! #10",
+            "version": 20260203,
+            "start": 20260223,
+            "desc": "Stamp event to unlock the '梅花' appeal sticker, and gain PC and BLC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "achmissions",
+            "type": "achmissions",
+            "enabled": true,
+            "name": "Achievement Event Missions",
+            "version": [
+                20260203
+            ],
+            "start": [
+                20260205
+            ],
+            "desc": "Complete event missions to unlock items.",
+            "info": [
+                "Hatsune Miku missions"           
+            ]
+        },
+        {
+            "id": "valentines2026",
+            "type": "gift_ap",
+            "enabled": false,
+            "name": "Valentines 2026 Appeal Card",
+            "version": 20260203,
+            "start": 20260214,
+            "desc": "Login to SDVX to get this appeal card.",
+            "info": "Toggle this option to enable/disable this gift."
         }
     ],
     "flags": [

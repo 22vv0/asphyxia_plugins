@@ -1,31 +1,31 @@
 function countGeneItems(geneItems, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys, items_sysbg) {
     let obtained = 0, total = 0;
     if('crew' in geneItems.items) {
-        obtained += items_crew.filter(crew => geneItems.items.crew.includes(crew['id'])).length
+        obtained += items_crew.filter((crew, index, self) => geneItems.items.crew.includes(crew['id']) && index === self.findIndex((item) => item.id === crew.id)).length
         total += geneItems.items['crew'].length
     }
     if('stamp' in geneItems.items) {
-        obtained += items_stamp.filter(stamp => geneItems.items.stamp.includes(stamp['id'] / 4)).length
+        obtained += items_stamp.filter((stamp, index, self) => geneItems.items.stamp.includes(stamp['id'] / 4) && index === self.findIndex((item) => item.id === stamp.id)).length
         total += geneItems.items['stamp'].length
     }
     if('subbg' in geneItems.items) {
-        obtained += items_subbg.filter(subbg => geneItems.items.subbg.includes(subbg['id'])).length
+        obtained += items_subbg.filter((subbg, index, self) => geneItems.items.subbg.includes(subbg['id']) && index === self.findIndex((item) => item.id === subbg.id)).length
         total += geneItems.items['subbg'].length
     }
     if('bgm' in geneItems.items) {
-        obtained += items_bgm.filter(bgm => geneItems.items.bgm.includes(bgm['id'])).length
+        obtained += items_bgm.filter((bgm, index, self) => geneItems.items.bgm.includes(bgm['id']) && index === self.findIndex((item) => item.id === bgm.id)).length
         total += geneItems.items['bgm'].length
     }
     if('nemsys' in geneItems.items) {
-        obtained += items_nemsys.filter(nemsys => geneItems.items.nemsys.includes(nemsys['id'])).length
+        obtained += items_nemsys.filter((nemsys, index, self) => geneItems.items.nemsys.includes(nemsys['id']) && index === self.findIndex((item) => item.id === nemsys.id)).length
         total += geneItems.items['nemsys'].length
     }
     if('sysbg' in geneItems.items) {
-        obtained += items_sysbg.filter(sysbg => geneItems.items.sysbg.includes(sysbg['id'])).length
+        obtained += items_sysbg.filter((sysbg, index, self) => geneItems.items.sysbg.includes(sysbg['id']) && index === self.findIndex((item) => item.id === sysbg.id)).length
         total += geneItems.items['sysbg'].length
     }
 
-    return [obtained/2, total]
+    return [obtained, total]
 }
 
 function loadImages(itemList, itemType, userItems) {

@@ -700,7 +700,7 @@ export const preGeneRoll = async (data: { set: number, refid: string, items: [] 
               { $set: {"param": 1} }
             )
 
-            if(preGeneSet.id !== 22 && preGeneSet.id < 24) {
+            if(preGeneSet.id <= 22) {
               DB.Upsert(data.refid, { collection: "item", type: itemId[Object.keys(preGeneSet.items)[rollWhat]], id: stampID, version: 6 },
                 { $set: {param: 1} }
               )
@@ -711,7 +711,7 @@ export const preGeneRoll = async (data: { set: number, refid: string, items: [] 
             { $set: {param: 1} }   
           )
 
-          if(preGeneSet.id !== 22 && preGeneSet.id < 24) {
+          if(preGeneSet.id <= 22) {
             DB.Upsert(data.refid, { collection: "item", type: itemId[Object.keys(preGeneSet.items)[rollWhat]], id: unobtainedItems[randomItemIndex], version: 6 },
               { $set: {param: 1} }   
             )
@@ -737,8 +737,8 @@ export const preGeneReward = async (data: { reward: [], refid: string }, send: W
   let reward = Object.values(data.reward)
   let rewardItem = await DB.Find<Item>(data.refid, {collection: 'item', type: reward[0], id: reward[1], param: reward[2]})
   if(rewardItem.length === 0) {
-    DB.Upsert(data.refid, { collection: "item", type: reward[0], id: reward[1], version: 6 }, { $set: { param: reward[2] } })
-    if(reward[5] >= 22) DB.Upsert(data.refid, { collection: "item", type: reward[0], id: reward[1], version: 7 }, { $set: { param: reward[2] } })
+    await DB.Upsert(data.refid, { collection: "item", type: reward[0], id: reward[1], version: 7 }, { $set: { param: reward[2] } })
+    if(reward[5] <= 22) await DB.Upsert(data.refid, { collection: "item", type: reward[0], id: reward[1], version: 6 }, { $set: { param: reward[2] } })
     send.json({
       received: true,
       reward: reward

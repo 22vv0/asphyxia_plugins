@@ -45,7 +45,7 @@ export const common: EPR = async (info, data, send) => {
           }
         }
         courses = COURSES6.filter(course => version >= course.version);
-        information = INFORMATION6.filter(info => version >= info.version)
+        information = INFORMATION6.filter(info => version >= info.version && currentYMDDate >= info.start)
         EXTENDS6.filter(ex => version >= ex.version && currentYMDDate >= ex.start).forEach(val => extend.push(Object.assign({}, val)));
         licensedSongs = LICENSED_SONGS6;
         unlockEvents = UNLOCK_EVENTS6;
@@ -73,7 +73,7 @@ export const common: EPR = async (info, data, send) => {
           }
         }
         courses = COURSES7.filter(course => version >= course.version);
-        information = INFORMATION7.filter(info => version >= info.version)
+        information = INFORMATION7.filter(info => version >= info.version && currentYMDDate >= info.start)
         licensedSongs = LICENSED_SONGS7;
         unlockEvents = UNLOCK_EVENTS7;
         currentArena = CURRENT_ARENA7;
@@ -316,6 +316,18 @@ export const common: EPR = async (info, data, send) => {
               ]
             })
           }
+        } else if (eData.id === 'achmissions' && version >= eData.version && currentYMDDate >= eData.start) {
+          let toggles = Object.keys(eventConfig['achmissions'].toggle)
+          let eventIds = '\t'
+          let prio = '1'
+          toggles.forEach(t => {
+            if(eventConfig['achmissions'].toggle[t] === true) {
+              eventIds += (eventIds === '\t' ? '' : ',') + t.split('_')[1]
+              prio = t.split('_')[1]
+            }
+          })
+          events.push('ACHIEVEMENT_EVENT_MISSION' + eventIds)
+          events.push('ACHIEVEMENT_EVENT_MISSION_PRIORITY\t' + prio)
         }
       }
     }

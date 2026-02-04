@@ -20,9 +20,10 @@ export const EVENT7 = [
   'PLAYERJUDGEADJ_ENABLE',
   'MIXID_INPUT_ENABLE',
   'DISP_PASELI_BANNER',
-  'CHARACTER_IGNORE_DISABLE\t122,123,131,139,140,143,149,160,162,163,164,167,170,174,175',
-  'STAMP_IGNORE_DISABLE\t273~312,773~820,993~1032,1245~1284,1469~1508,1585~1632,1633~1672,1737~1776,1777~1816,1897~1936',
-  'SUBBG_IGNORE_DISABLE\t166~185,281~346,369~381,419~438,464~482,515~552,595~616,660~673,714~727',
+  'CHARACTER_IGNORE_DISABLE\t122,123,131,139,140,143,149,160,162,163,164,167,170,174,175,179',
+  'STAMP_IGNORE_DISABLE\t273~312,773~820,993~1032,1245~1284,1469~1508,1585~1632,1633~1672,1737~1776,1777~1816,1897~1936,1937~1976,2177~2216',
+  'SUBBG_IGNORE_DISABLE\t166~185,281~346,369~381,419~438,464~482,515~552,595~616,660~673,714~727,728~741,782~795',
+  'NAMEPLATE_BADGE_IGNORE_DISABLE\t141~143',
   'BEGINNER_MUSIC_FOLDER\t56,78,80,86,87,91,111,128,134,275,278,180,697,770,769,779,842,948,940,1057,1056,1096,932,1136,1469,1480',
   'BEGINNER_MUSIC_FOLDER\t1471,1758,1753,1739,1867,1866,1860,1857,1903,1904,1859,1863,1856,1864,1865,1916,1917,1914,1915,1918,1960',
   'BEGINNER_MUSIC_FOLDER\t1961,1962,2029,2028,2030,2031,2035,2036,1905,1882,2058,2073,2070,2069,2074,2075,2067,2068,2066,2165,2166',
@@ -93,7 +94,7 @@ export const BLASTER_GATE7 = [
   ],
   [
     // bpls5
-    231423, 231523, 231623, 231723, 231823, 231923, 232023, 232123
+    231423, 231523, 231623, 231723, 231823, 231923, 232023, 232123, 232223
   ],
   [
     // tamaadv
@@ -107,7 +108,10 @@ export const BLASTER_GATE7 = [
   ],
   // upcomings bpls5
   [
-    232223
+    232323
+  ],
+  [
+    232423
   ]
 ]
 
@@ -116,126 +120,210 @@ export const LICENSED_SONGS7 = LICENSED_SONGS6.concat([
 ])
 
 export const UNLOCK_EVENTS7 = {
-  'refillStamps': {},
-  'gitadorastamp': UNLOCK_EVENTS6['gitadorastamp'],
-  'vgate1': UNLOCK_EVENTS6['vgate1'],
-  'vgate2': UNLOCK_EVENTS6['vgate2'],
-  'nblstampbonus1': {
-    'type': 'main',
-    'info': {
-      'id': 0,
-      'stmpHdJ': '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
-      'stmpFtJ': '[sz:22]12/24~12/31の間、ポルテを遊ぶとスタンプを獲得できます',
-      'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
-      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 12/24～12/31',
-      'data': [
+  refillStamps: {},
+  gitadorastamp: UNLOCK_EVENTS6['gitadorastamp'],
+  vgate1: UNLOCK_EVENTS6['vgate1'],
+  vgate2: UNLOCK_EVENTS6['vgate2'],
+  bluediamond: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFtJ: '[sz:22]1/8~2/11の間、ポルテを遊ぶとスタンプを獲得できます',
+      stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/8～2/11',
+      data: [
         {
-          'stmpid': 61,
-          'stps': 310030,
-          'stprwrd': '1:p:1000 5:b:500 10:r:137 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+          stmpid: 64,
+          stps: 30,
+          stprwrd: '5:e:217001 10:e:217002 15:e:217004 20:b:500 25:p:1000 30:e:217016'
         }
       ]
     }
   },
-  'nblstampbonus2': {
-    'type': 'main',
-    'info': {
-      'id': 0,
-      'stmpHdJ': '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
-      'stmpFtJ': '[sz:22]1/1~1/7の間、ポルテを遊ぶとスタンプを獲得できます',
-      'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
-      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/1～1/7',
-      'data': [
+  mikustamp: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFtJ: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 2/5～3/15',
+      stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 2/5～3/15',
+      data: [
         {
-          'stmpid': 62,
-          'stps': 310030,
-          'stprwrd': '1:p:1000 5:b:500 10:r:138 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+          stmpid: 68,
+          stps: 15,
+          stprwrd: '1:r:141 5:r:142 10:a:6503 12:r:143 15:n:40302 req:genre:8 imgbg:bg_stamp_miku'
         }
       ]
     }
   },
-  'nblstampbonus3': {
-    'type': 'main',
-    'info': {
-      'id': 0,
-      'stmpHdJ': '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
-      'stmpFtJ': '[sz:22]1/8~1/14の間、ポルテを遊ぶとスタンプを獲得できます',
-      'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
-      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/8～1/14',
-      'data': [
+  nblstampbonus1: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      stmpFtJ: '[sz:22]12/24~12/31の間、ポルテを遊ぶとスタンプを獲得できます',
+      stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 12/24～12/31',
+      data: [
         {
-          'stmpid': 63,
-          'stps': 310030,
-          'stprwrd': '1:p:1000 5:b:500 10:p:5000 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+          stmpid: 61,
+          stps: 310030,
+          stprwrd: '1:p:1000 5:b:500 10:r:137 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
         }
       ]
     }
   },
-  'bluediamond': {
-    'type': 'main',
-    'info': {
-      'id': 0,
-      'stmpHdJ': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
-      'stmpFtJ': '[sz:22]1/8~2/11の間、ポルテを遊ぶとスタンプを獲得できます',
-      'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
-      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/8～2/11',
-      'data': [
+  nblstampbonus2: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      stmpFtJ: '[sz:22]1/1~1/7の間、ポルテを遊ぶとスタンプを獲得できます',
+      stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/1～1/7',
+      data: [
         {
-          'stmpid': 64,
-          'stps': 30,
-          'stprwrd': '5:e:217001 10:e:217002 15:e:217004 20:b:500 25:p:1000 30:e:217016'
+          stmpid: 62,
+          stps: 310030,
+          stprwrd: '1:p:1000 5:b:500 10:r:138 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
         }
       ]
     }
   },
-
-  'nblstampbonus4': {
-    'type': 'main',
-    'info': {
-      'id': 0,
-      'stmpHdJ': '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
-      'stmpFtJ': '[sz:22]1/5~1/21の間、ポルテを遊ぶとスタンプを獲得できます',
-      'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
-      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/15～1/21',
-      'data': [
+  nblstampbonus3: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      stmpFtJ: '[sz:22]1/8~1/14の間、ポルテを遊ぶとスタンプを獲得できます',
+      stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/8～1/14',
+      data: [
         {
-          'stmpid': 65,
-          'stps': 310030,
-          'stprwrd': '1:p:1000 5:b:500 10:r:139 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+          stmpid: 63,
+          stps: 310030,
+          stprwrd: '1:p:1000 5:b:500 10:p:5000 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
         }
       ]
     }
   },
-  'nblstampbonus5': {
-    'type': 'main',
-    'info': {
-      'id': 0,
-      'stmpHdJ': '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
-      'stmpFtJ': '[sz:22]1/22~1/28の間、ポルテを遊ぶとスタンプを獲得できます',
-      'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
-      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/22～1/28',
-      'data': [
+  nblstampbonus4: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      stmpFtJ: '[sz:22]1/5~1/21の間、ポルテを遊ぶとスタンプを獲得できます',
+      stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/15～1/21',
+      data: [
         {
-          'stmpid': 66,
-          'stps': 310030,
-          'stprwrd': '1:p:1000 5:b:500 10:r:140 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+          stmpid: 65,
+          stps: 310030,
+          stprwrd: '1:p:1000 5:b:500 10:r:139 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
         }
       ]
     }
   },
-  'nblstampbonus6': {
-    'type': 'main',
-    'info': {
-      'id': 0,
-      'stmpHdJ': '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
-      'stmpFtJ': '[sz:22]1/29~2/4の間、ポルテを遊ぶとスタンプを獲得できます',
-      'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
-      'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/29～2/4',
-      'data': [
+  nblstampbonus5: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      stmpFtJ: '[sz:22]1/22~1/28の間、ポルテを遊ぶとスタンプを獲得できます',
+      stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/22～1/28',
+      data: [
         {
-          'stmpid': 67,
-          'stps': 310030,
-          'stprwrd': '1:p:1000 5:b:500 10:p:5000 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+          stmpid: 66,
+          stps: 310030,
+          stprwrd: '1:p:1000 5:b:500 10:r:140 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        }
+      ]
+    }
+  },
+  nblstampbonus6: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      stmpFtJ: '[sz:22]1/29~2/4の間、ポルテを遊ぶとスタンプを獲得できます',
+      stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/29～2/4',
+      data: [
+        {
+          stmpid: 67,
+          stps: 310030,
+          stprwrd: '1:p:1000 5:b:500 10:p:5000 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        }
+      ]
+    }
+  },
+  nblstampbonus7: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      stmpFtJ: '[sz:22]1/5~1/21の間、ポルテを遊ぶとスタンプを獲得できます',
+      stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 2/5～2/8',
+      data: [
+        {
+          stmpid: 69,
+          stps: 310030,
+          stprwrd: '1:p:1000 5:b:500 10:r:144 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        }
+      ]
+    }
+  },
+  nblstampbonus8: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      stmpFtJ: '[sz:22]1/22~1/28の間、ポルテを遊ぶとスタンプを獲得できます',
+      stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 2/9～2/15',
+      data: [
+        {
+          stmpid: 70,
+          stps: 310030,
+          stprwrd: '1:p:1000 5:b:500 10:r:145 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        }
+      ]
+    }
+  },
+  nblstampbonus9: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      stmpFtJ: '[sz:22]1/29~2/4の間、ポルテを遊ぶとスタンプを獲得できます',
+      stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 2/16～2/22',
+      data: [
+        {
+          stmpid: 71,
+          stps: 310030,
+          stprwrd: '1:p:1000 5:b:500 10:r:146 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        }
+      ]
+    }
+  },
+  nblstampbonus10: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      stmpFtJ: '[sz:22]1/29~2/4の間、ポルテを遊ぶとスタンプを獲得できます',
+      stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 2/23～3/1',
+      data: [
+        {
+          stmpid: 72,
+          stps: 310030,
+          stprwrd: '1:p:1000 5:b:500 10:r:147 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
         }
       ]
     }
@@ -248,6 +336,8 @@ export const EVENT_ITEMS7 = {
   "bpls5sdvx7_3": ['2320'],
   "bpls5sdvx7_4": ['2321'],
   "bpls5sdvx7_5": ['2322'],
+  "bpls5sdvx7_6": ['2323'],
+  "bpls5sdvx7_7": ['2324'],
   "2026apica": ['6501'],
   "crossresonance_1": ['2231'],
   "crossresonance_2": ['2232'],
@@ -276,7 +366,8 @@ export const EVENT_ITEMS7 = {
   "bpls5tripletribe2_2": ['2358'],
   "bpls5tripletribe2_3": ['2359'],
   "bpls5tripletribe2_4": ['2361'],
-  "bpls5tripletribe2_5": ['2362']
+  "bpls5tripletribe2_5": ['2362'],
+  "valentines2026": ['6504']
 }
 
 // rule: 0 score 1 point 2 vote
@@ -308,6 +399,15 @@ export const PREGENE7 = [
       'crew': [178],
       'stamp': [535, 536, 537, 538, 539, 540, 541, 542, 543, 544],
       'subbg': [763, 764, 765, 766, 767, 768, 769, 770, 771, 772, 773, 774, 775, 776, 777, 778, 779, 780, 781]
+    },
+    probability: [0.05, 0.39, 0.6]
+  },
+  {
+    id: 24,
+    items: {
+      'crew': [179],
+      'stamp': [545, 546, 547, 548, 549, 550, 551, 552, 553, 554],
+      'subbg': [782, 783, 784, 785, 786, 787, 788, 789, 790, 791, 792, 793, 794, 795]
     },
     probability: [0.05, 0.39, 0.6]
   }
@@ -351,9 +451,28 @@ export const APIGENE7 = {
 
 export const COURSES7 = []
 
-export const INFORMATION7 = [] 
+export const INFORMATION7 = [
+  { id: 43, version: 20260127, start: 20260127, str: '[img:info/260122_info_14th_voltefactory.png:]'},
+  { id: 44, version: 20260127, start: 20260127, str: '[img:info/260122_info_popn_cc.png:]'},
+  { id: 45, version: 20260127, start: 20260129, str: '[img:info/260129_info_tripletribe.png:]'},
+  { id: 46, version: 20260203, start: 20260205, str: '[img:info/250205_info_hatsunemiku.png:]'}
+] 
 
 export const EXTENDS7 = [
+  {
+    version: 20260203,
+    start: 20260203,
+    type: 21,
+    id: 0,
+    params: [
+      0, 0, 0, 0, 0,
+      "demo/260205_miku_demo.mp4",
+      "demo/260205_miku_demo.s3v",
+      "",
+      "",
+      ""
+    ]
+  },
   {
     version: 0,
     start: 0,
@@ -509,13 +628,27 @@ export const EXTENDS7 = [
     ],
   },
   {
-    version: 20260127,
-    start: 20260205,
+    version: 20260203,
+    start: 20260212,
     id: 1,
     type: 18,
     params: [
       0, 0, 0, 20, 0,
       BLASTER_GATE7[7].join(' '),
+      '',
+      '',
+      '',
+      '',
+    ],
+  },
+  {
+    version: 20260203,
+    start: 20260219,
+    id: 1,
+    type: 18,
+    params: [
+      0, 0, 0, 20, 0,
+      BLASTER_GATE7[8].join(' '),
       '',
       '',
       '',

@@ -16,7 +16,7 @@ function generateEventToggles(eventInfo, eventConfig, eventEnabled, currentYMDDa
             $('<div class="field is-horizontal">').append(
                 $('<div class="field-label is-normal"><label class="label" for="' + eventInfo['id'] + '">Enable</label></div>')
             ).append(
-                $('<div class="field-body"><div class="field"><div class="control"><label class="switch is-rounded"><input type="checkbox" ' + (currentYMDDate < eventInfo['start'] ? 'disabled' : '') + (eventConfig['toggle'] ? 'checked' : '') + ' name="' + (currentYMDDate < eventInfo['start'] ? 'none' : eventInfo['id']) + '"><span class="check"></span></label></div><p class="help">' + (currentYMDDate < eventInfo['start'] ? eventInfo['info'] + ' (disabled until ' + eventInfo['start'] +')' : eventInfo['info']) + '</p></div></div>')
+                $('<div class="field-body"><div class="field"><div class="control"><label class="switch is-rounded"><input type="checkbox" ' + (currentYMDDate < eventInfo['start'] ? 'disabled ' : '') + (eventConfig['toggle'] ? 'checked' : '') + ' name="' + (currentYMDDate < eventInfo['start'] ? 'none' : eventInfo['id']) + '"><span class="check"></span></label></div><p class="help">' + (currentYMDDate < eventInfo['start'] ? eventInfo['info'] + ' (disabled until ' + eventInfo['start'] +')' : eventInfo['info']) + '</p></div></div>')
             )
         )
         if(eventInfo['settings'] !== undefined) {
@@ -149,7 +149,7 @@ $(document).ready(async function() {
         }
 
         if(eventData['events' + currentVersion][eventIter]['enabled']) {   
-            if(/tama|variant/.test(eventData['events' + currentVersion][eventIter]['type'])) {
+            if(/tama|variant|achmissions/.test(eventData['events' + currentVersion][eventIter]['type'])) {
                 $('#specevent_select').append(
                     '<option value=' + eventData['events' + currentVersion][eventIter]['id'] + '>' + eventData['events' + currentVersion][eventIter]['name'] + '</option>'
                 )

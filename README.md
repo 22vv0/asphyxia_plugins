@@ -1,10 +1,10 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-7.0.0d
+**Plugin Version:** fork-7.0.1
 
 **Supported game versions:** 
-- EXCEED GEAR (2025120900)
-- ∇ (2026012700)
+- EXCEED GEAR (2025120900 final)
+- ∇ (2026020300)
 
 **Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d)
 
@@ -23,56 +23,36 @@ Important notes for players migrating from EXCEED GEAR to ∇
 
 Changelog
 ===========
-### 7.0.0d
+### fork-7.0.1
 
 - ∇
-	- Added/enabled events
-		- BPL S5 Song (Veins Resonance)
-		- BPL S5 Triple Tribe
-	- Updated BLASTER GATE
+	- Added/enabled event toggles (see Unlock Events page)
+		- Unlock events:
+			- Achievement Event Missions
+				- 初音ミク (Hatsune Miku) missions -- clear songs on VOCALOID folder to progress
+		- Item gifts:
+			- BPL S5 song gifts
+		- Stamp events:
+			- 初音ミク (Hatsune Miku) stamp event -- play songs on VOCALOID folder to earn stamps
+			- ∇ Weekly Stamp events
+				- \#7: Onigo jacket sticker + PC/BLC
+				- \#8: チョコぶき sticker + PC/BLC
+				- \#9: 猫の日2026 sticker + PC/BLC
+				- \#10: 梅花 sticker + PC/BLC
+	- Updated BLASTER GATE song list
+		- BPL S5 songs (will appear a week after release)
+
+- WebUI:
+	- Added Premium Generator (初音ミク) to WebUI generator banner list
+		- Customization items list updated.
 
 - Misc:
-	- Fixed EXTENDS7 filter to include start date checking.
+	- Fixed WebUI generator obtained items count calculation
+	- Changed rolled item upsert condition
+	- Added missing items to IGNORE_DISABLE
+		- Asumi Sena (subbg, appeal stamps) (EG/∇)
+		- Hatsune Miku (crew, subbg, appeal stamps, board stickers)  
 
-### 7.0.0c
-
-- ∇
-	- Added/enabled events
-		- pop'n & SDVX Cheers × Cheers!! (20260122)
-
-
-### 7.0.0b
-
-- ∇
-	- Added events
-		- 14th Anniversary Appeal Card Gift
-
-- Misc:
-	- Fixed incorrect display of data in the profile detail page's statistics.
-	- Updated song title translate table.
-
-
-### 7.0.0a
-
-- ∇
-	- Added events
-		- BPL S5 songs gift (1 song)
-		- BEMANI PRO LEAGUE -SEASON 5-! Team Appeal Card gift (7 cards)
-		- ▽ Weekly Stamp Bonus stamp events
-			- Week 4: 14th anniversary sticker (2026/01/15)
-			- Week 5: Snowman Maxima sticker (2026/01/22)
-			- Week 6: 5000 pc (2026/01/29)
-		- BLASTER GATE
-			- SOUND VOLTEX PERFECT ULTIMATE COMPLETE TRACKS ～Legend of KAC with Ω～ (9 songs)
-			- TAMANEKO ADVENTURE Songs (30 songs)
-			- TAMANEKO ADVENTURE XCD (9 charts)
-			- BPL S5 songs (will appear 1 week after release)
-
-- Misc:
-	- Updated Blue Diamond stamp event data (updated title)
-	- Increased unlockAppealParts item ID limit.
-	- Added start date check for unlockables and events
-		- Still can be overridden by auto unlock toggles.
 
 #### RE: Standard Start issue on version 20250422+
 This is not a plugin issue but I feel it is necessary to share. I did notice this while testing VARIANT GATE but I forgot to mention it so I apologize. As mentioned in issue [#34](https://github.com/22vv0/asphyxia_plugins/issues/34), if you're having trouble carding in after a Standard Start credit, what fixed it for me was adding these lines to your ea3-config.xml file, in ea3->pos->coin. I personally put it just under _kfc\_game\_s\_standard_:
