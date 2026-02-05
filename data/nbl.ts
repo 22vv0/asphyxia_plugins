@@ -153,7 +153,7 @@ export const UNLOCK_EVENTS7 = {
         {
           stmpid: 68,
           stps: 15,
-          stprwrd: '1:r:141 5:r:142 10:a:6503 12:r:143 15:n:40302 req:genre:8 imgbg:bg_stamp_miku'
+          stprwrd: '1:r:141 3:b:390 5:r:142 7:b:3900 10:a:6503 12:r:143 15:n:40302 req:genre:8 imgbg:bg_stamp_miku'
         }
       ]
     }
