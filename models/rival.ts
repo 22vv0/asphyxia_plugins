@@ -1,5 +1,6 @@
 export interface Rival {
   collection: 'rival';
+  dbver: number;
 
   version: number;
 

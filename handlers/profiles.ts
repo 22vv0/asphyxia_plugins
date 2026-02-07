@@ -161,6 +161,7 @@ export const saveScore: EPR = async (info, data, send) => {
       })) || {
         collection: 'music',
         version: Math.abs(version),
+        dbver: DB_VER,
         mid,
         type,
         score: 0,
@@ -201,6 +202,7 @@ export const saveScore: EPR = async (info, data, send) => {
         record.clear = Math.max(i.number('clear_type', 0), record.clear);
       }
       record.grade = Math.max(i.number('score_grade', 0), record.grade);
+      record.dbver = DB_VER
 
       await DB.Upsert<MusicRecord>(
         refid,
@@ -343,7 +345,7 @@ export const save: EPR = async (info, data, send) => {
     await DB.Upsert<Item>(
       refid,
       { collection: 'item', type, id, version },
-      { $set: { param } }
+      { $set: { param, dbver: DB_VER } }
     );
   }
 
@@ -359,7 +361,7 @@ export const save: EPR = async (info, data, send) => {
     await DB.Upsert<Param>(
       refid,
       { collection: 'param', type, id, version },
-      { $set: { param } }
+      { $set: { param, dbver: DB_VER } }
     );
   }
 
@@ -376,6 +378,7 @@ export const save: EPR = async (info, data, send) => {
         level: $(data).number('skill_level'),
         name: $(data).number('skill_name_id'),
         type: $(data).number('skill_type'),
+        dbver: DB_VER
       },
     }
   );
@@ -407,7 +410,10 @@ export const save: EPR = async (info, data, send) => {
           liveEnergy: _.isNil(earnedLE) ? 0 : earnedLE,
           rankCount: rankPlay,
           ultimateCount: ultimatePlay
-        } 
+        },
+        $set: {
+          dbver: DB_VER
+        }
       }
     );
   }
@@ -821,7 +827,7 @@ export const buy: EPR = async (info, data, send) => {
       await DB.Upsert<Item>(
         refid,
         { collection: 'item', type: item.type, id: item.id },
-        { $set: { param: item.param } }
+        { $set: { param: item.param, dbver: DB_VER } }
       );
     }
 
@@ -879,23 +885,23 @@ export const saveValgene: EPR = async (info, data, send) => {
     }
   }
 
-  for(let itemToAdd in itemsToAdd) {
-    let id = itemsToAdd[itemToAdd].id
-    let type = itemsToAdd[itemToAdd].type
-    let param = itemsToAdd[itemToAdd].param
+  for(let i of itemsToAdd) {
+    let id = i.id
+    let type = i.type
+    let param = i.param
     console.log("Saving (" + type + " | " + id + " | " + param + ")")
     if (_.isNil(type) || _.isNil(id) || _.isNil(param)) continue;
 
     await DB.Upsert<Item>(
       refid,
       { collection: 'item', type, id, version },
-      { $set: { param } }
+      { $set: { param, dbver: DB_VER } }
     );
     if(version === 7 && id <= 18) {
       await DB.Upsert<Item>(
         refid,
         { collection: 'item', type, id, version: 6 },
-        { $set: { param } }
+        { $set: { param, dbver: DB_VER } }
       );
     }
   }
@@ -907,7 +913,7 @@ export const saveValgene: EPR = async (info, data, send) => {
       { $inc: {ticketNum: -1} }
     )
   }
-  let valgeneTicket = await DB.FindOne<ValgeneTicket>(refid, { collection: 'valgene_ticket' })
+  let valgeneTicket = await DB.FindOne<ValgeneTicket>(refid, { collection: 'valgene_ticket', version })
   let result = {
     result: K.ITEM('s32', 1)
   }
@@ -946,7 +952,8 @@ export const saveE: EPR = async (info, data, send) => {
         {
           $set: {
             exscore: curExscore,
-            name: profile.name
+            name: profile.name,
+            dbver: DB_VER
           },
           $inc: {
             playCount: playCount,

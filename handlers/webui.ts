@@ -12,6 +12,7 @@ import { PREGENE7, COURSES7 } from '../data/nbl'
 import { textureslist } from '../data/webui'
 import * as fs from 'fs'
 import { PNG } from '../webui/asset/js/pngjs/png.js'
+import { DB_VER } from './migrate'
 
 export const updateProfile = async (data: {
   refid: string;
@@ -152,7 +153,8 @@ export const updateProfile = async (data: {
       { collection: 'valgene_ticket' },
       { $set: {
           ticketNum: parseInt(data.valgeneTicket),
-          limitDate: Date.parse('31 Dec 2099 23:59:59 GMT')
+          limitDate: Date.parse('31 Dec 2099 23:59:59 GMT'),
+          version: parseInt(data.version_select)
         } 
       }
     );
@@ -639,17 +641,17 @@ export const addRival = async (data: { rivalId: string; refid: string; version: 
   let checkMutual = (await DB.Count<Rival>(data.rivalId, {collection: 'rival', refid: data.refid, version: ver}) > 0)
   if(await DB.Count<Rival>(data.refid, {collection: 'rival', refid: data.rivalId, version: ver}) === 0) {
     if(checkMutual) {
-      DB.Upsert(data.rivalId, {collection: "rival", sdvxID: you.id, refid: data.refid, name: you.name, version: ver}, {$set: {mutual: checkMutual}})
+      DB.Upsert<Rival>(data.rivalId, {collection: "rival", sdvxID: you.id, refid: data.refid, name: you.name, version: ver}, {$set: {mutual: checkMutual, dbver: DB_VER}})
     }
-    DB.Insert(data.refid, {collection: "rival", sdvxID: rival.id, refid: data.rivalId, name: rival.name, version: ver, mutual: checkMutual})
+    DB.Insert<Rival>(data.refid, {collection: "rival", sdvxID: rival.id, refid: data.rivalId, name: rival.name, version: ver, mutual: checkMutual, dbver: DB_VER})
     send.json({
       "msg": "Successfully added profile to rival. In order for your rivals to appear in-game, they need to add you as their rival as well."
     })
   } else {
     if(checkMutual) {
-      DB.Upsert(data.rivalId, {collection: "rival", sdvxID: you.id, refid: data.refid, name: you.name, version: ver}, {$set: {"mutual": false}})
+      DB.Upsert<Rival>(data.rivalId, {collection: "rival", sdvxID: you.id, refid: data.refid, name: you.name, version: ver}, {$set: {"mutual": false, dbver: DB_VER}})
     }
-    DB.Remove(data.refid, {collection: "rival", sdvxID: rival.id, refid: data.rivalId, name: rival.name, version: ver})
+    DB.Remove<Rival>(data.refid, {collection: "rival", sdvxID: rival.id, refid: data.rivalId, name: rival.name, version: ver, dbver: DB_VER})
     send.json({
       "msg": "Successfully removed rival."
     })

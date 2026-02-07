@@ -175,7 +175,8 @@ export async function nablaMigrate(refid) {
   itemData.forEach(async item => {
   	await DB.Upsert<Item>(refid, {collection: 'item', version: 7, type: item.type, id: item.id}, {
   		$set: {
-			  param: item.param
+			  param: item.param,
+			  dbver: DB_VER
   		}
   	})
   })
@@ -186,7 +187,8 @@ export async function nablaMigrate(refid) {
   	if(param.type === 2 && param.id === 1) param.param[24] = 0
   	await DB.Upsert<Param>(refid, {collection: 'param', version: 7, type: param.type, id: param.id}, {
   		$set: {
-			  param: param.param
+			  param: param.param,
+			  dbver: DB_VER
   		}
   	})
   })
@@ -237,7 +239,8 @@ export async function nablaMigrate(refid) {
 	  			grade: rec.grade,
 	  			buttonRate: rec.buttonRate,
 	  			longRate: rec.longRate,
-	  			volRate: rec.volRate
+	  			volRate: rec.volRate,
+			  	dbver: DB_VER
 	  		}
 	  	})
 		}
