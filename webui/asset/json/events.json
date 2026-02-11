@@ -836,7 +836,7 @@
                 "Week 8 song: '華麗なる一撃'",
                 "Week 9 song: 'Veins Resonance'",
                 "Week 10 song: 'ShowDawn'",
-                "Week 11 song: '????'"
+                "Week 11 song: 'DANGER XLOZE'"
             ]
         },
         {
@@ -1179,10 +1179,10 @@
         {
             "id": "valentines2026",
             "type": "gift_ap",
-            "enabled": false,
+            "enabled": true,
             "name": "Valentines 2026 Appeal Card",
             "version": 20260203,
-            "start": 20260214,
+            "start": 20260212,
             "desc": "Login to SDVX to get this appeal card.",
             "info": "Toggle this option to enable/disable this gift."
         }

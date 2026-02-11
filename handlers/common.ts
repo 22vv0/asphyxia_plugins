@@ -1,5 +1,5 @@
-import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIE_SONGS, LICENSED_SONGS6, CURRENT_ARENA, ARENA_STATION_ITEMS, VALGENE, INFORMATION6, UNLOCK_EVENTS6 } from '../data/exg';
-import { EVENT7, COURSES7, EXTENDS7, LICENSED_SONGS7, CURRENT_ARENA7, ARENA_STATION_ITEMS7, VALGENE7, APIGENE7, INFORMATION7, UNLOCK_EVENTS7 } from '../data/nbl';
+import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIE_SONGS, LICENSED_SONGS6, CURRENT_ARENA, ARENA_STATION_ITEMS, VALGENE, INFORMATION6, UNLOCK_EVENTS6, MUSIC_OVERRIDE6 } from '../data/exg';
+import { EVENT7, COURSES7, EXTENDS7, LICENSED_SONGS7, CURRENT_ARENA7, ARENA_STATION_ITEMS7, VALGENE7, APIGENE7, INFORMATION7, UNLOCK_EVENTS7, EGSONGS_LOCKED, MUSIC_OVERRIDE7 } from '../data/nbl';
 import {getVersion, getRandomIntInclusive} from '../utils';
 
 export const common: EPR = async (info, data, send) => {
@@ -160,14 +160,14 @@ export const common: EPR = async (info, data, send) => {
             }
           }
           else if(gameVersion === 7) {
-            let crossResonance = [2231, 2232, 2233, 2260, 2261, 2262, 2284, 2285, 2286, 2339, 2340, 2341]
             if(parseInt(songData.info.version) <= 7 && 'distribution_date' in songData['info'] && parseInt(songData['info']['distribution_date']) > currentYMDDate) {
               console.log("Unreleased song: " + songData.info.title_name)
             }
             else {
               limitedNo = 2;
 
-              if(songData.info.version === '7' || crossResonance.includes(i)) {
+              let egSongsMerge = [...EGSONGS_LOCKED['crossresonance']]
+              if(songData.info.version === '7' || egSongsMerge.includes(i)) {
                 if(licensedSongs.includes(i)) limitedNo += 1;
 
                 for(let j = 0; j < 6; j++) {
@@ -197,6 +197,32 @@ export const common: EPR = async (info, data, send) => {
           }
         }
       }
+    }
+
+    let musicOverride = []
+    let mList = (Math.abs(gameVersion) === 6) ? MUSIC_OVERRIDE6 : MUSIC_OVERRIDE7
+    const createItem = (key, val) => {return (typeof val === 'string') ? K.ITEM('str', val) : ((key === 'volume') ? K.ITEM('u16', val) : K.ITEM('u32', val))}
+    for(const music of mList.filter(m => currentYMDDate >= m.start)) {
+      let mInfKeys = Object.keys(music).filter(m => !['charts', 'start'].includes(m))
+      let musicInfo = {}
+      mInfKeys.forEach(k => {
+        musicInfo[k] = createItem(k, music[k])
+      })
+      musicOverride.push(musicInfo)
+
+      let mChartKeys = Object.keys(music.charts)
+      let chartInfo = {}
+      let difName = {nov: 'NOVICE', adv: 'ADVANCED', exh: 'EXHAUST', inf: 'INFINITE', mxm: 'MAXIMUM', ult: 'ULTIMATE'}
+      mChartKeys.forEach(ch => {
+        let mChartInfoKeys = Object.keys(music.charts[ch])
+        let ci = {}
+        mChartInfoKeys.forEach(i => {
+          ci[i] = createItem(i, music.charts[ch][i])
+        })
+
+        chartInfo[difName[ch]] = ci
+      })
+      musicOverride.push(chartInfo)
     }
 
     if(information.length > 0) {
@@ -492,6 +518,7 @@ export const common: EPR = async (info, data, send) => {
           param_str_5: K.ITEM('str', e.params[9]),
         })),
       },
+      music: { info: musicOverride },
       music_limited: { info: songs },
       skill_course: {
         info: courses.reduce(

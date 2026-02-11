@@ -1,6 +1,6 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-7.0.1
+**Plugin Version:** fork-7.0.1a
 
 **Supported game versions:** 
 - EXCEED GEAR (2025120900 final)
@@ -23,35 +23,25 @@ Important notes for players migrating from EXCEED GEAR to ∇
 
 Changelog
 ===========
-### fork-7.0.1
+### fork-7.0.1a
 
 - ∇
 	- Added/enabled event toggles (see Unlock Events page)
-		- Unlock events:
-			- Achievement Event Missions
-				- 初音ミク (Hatsune Miku) missions -- clear songs on VOCALOID folder to progress
 		- Item gifts:
-			- BPL S5 song gifts
+			- Valentine's Day 2026 Appeal Card gift
 		- Stamp events:
-			- 初音ミク (Hatsune Miku) stamp event -- play songs on VOCALOID folder to earn stamps
-			- ∇ Weekly Stamp events
-				- \#7: Onigo jacket sticker + PC/BLC
-				- \#8: チョコぶき sticker + PC/BLC
-				- \#9: 猫の日2026 sticker + PC/BLC
-				- \#10: 梅花 sticker + PC/BLC
-	- Updated BLASTER GATE song list
-		- BPL S5 songs (will appear a week after release)
-
-- WebUI:
-	- Added Premium Generator (初音ミク) to WebUI generator banner list
-		- Customization items list updated.
+			- 初音ミク (Hatsune Miku) stamp event
+				- Updated stamp reward data
+	- Added music info override:
+		- REFLEC BEAT songs (blc unlockable)
 
 - Misc:
-	- Fixed WebUI generator obtained items count calculation
-	- Changed rolled item upsert condition
-	- Added missing items to IGNORE_DISABLE
-		- Asumi Sena (subbg, appeal stamps) (EG/∇)
-		- Hatsune Miku (crew, subbg, appeal stamps, board stickers)  
+	- Added handler for music info overriding
+	- Added checks to prevent profile creation for older game versions (EG) if profile for newer versions already exists
+
+- WebUI:
+	- Updated BPL S5 song label
+		- ???? -> DANGER XLOZE
 
 
 #### RE: Standard Start issue on version 20250422+

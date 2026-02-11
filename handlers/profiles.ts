@@ -468,7 +468,8 @@ export const load: EPR = async (info, data, send) => {
   });
 
   if (!profile) {
-    if(version === 7 && await DB.Count<Profile>(refid, {collection: 'profile', version: 6}) === 1) profile = await DB.FindOne<Profile>(refid, {collection: 'profile', version: 6})
+    if(version === 7 && await DB.Count<Profile>(refid, {collection: 'profile', version: 6}) === 1) profile = await DB.FindOne<Profile>(refid, {collection: 'profile', version: 6});
+    else if(version === 6 && await DB.Count<Profile>(refid, {collection: 'profile', version: {$gt: 6}}) >= 1) return send.deny();
     else return send.object({ result: K.ITEM('u8', 1) });
   }
 

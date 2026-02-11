@@ -94,7 +94,7 @@ export const BLASTER_GATE7 = [
   ],
   [
     // bpls5
-    231423, 231523, 231623, 231723, 231823, 231923, 232023, 232123, 232223
+    231423, 231523, 231623, 231723, 231823, 231923, 232023, 232123, 232223, 232323
   ],
   [
     // tamaadv
@@ -107,9 +107,6 @@ export const BLASTER_GATE7 = [
     196923, 197723, 197623, 197123, 197523, 197323, 197423, 197023, 197223
   ],
   // upcomings bpls5
-  [
-    232323
-  ],
   [
     232423
   ]
@@ -629,7 +626,7 @@ export const EXTENDS7 = [
   },
   {
     version: 20260203,
-    start: 20260212,
+    start: 20260219,
     id: 1,
     type: 18,
     params: [
@@ -640,19 +637,62 @@ export const EXTENDS7 = [
       '',
       '',
     ],
+  }
+]
+
+export const EGSONGS_LOCKED = {
+  "crossresonance" : [2231, 2232, 2233, 2260, 2261, 2262, 2284, 2285, 2286, 2339, 2340, 2341]
+}
+
+export const MUSIC_OVERRIDE7 = [
+  {
+    music_id: 2235,
+    start: 20260212,
+    charts: {
+      nov: { price: 4294967294 },
+      adv: { price: 4294967294 },
+      exh: { price: 4294967294 },
+      mxm: { price: 4294967294 }
+    }
   },
   {
-    version: 20260203,
-    start: 20260219,
-    id: 1,
-    type: 18,
-    params: [
-      0, 0, 0, 20, 0,
-      BLASTER_GATE7[8].join(' '),
-      '',
-      '',
-      '',
-      '',
-    ],
+    music_id: 2236,
+    start: 20260212,
+    charts: {
+      nov: { price: 4294967294 },
+      adv: { price: 4294967294 },
+      exh: { price: 4294967294 },
+      mxm: { price: 4294967294 }
+    }
+  },
+  {
+    music_id: 2237,
+    start: 20260212,
+    charts: {
+      nov: { price: 4294967294 },
+      adv: { price: 4294967294 },
+      exh: { price: 4294967294 },
+      mxm: { price: 4294967294 }
+    }
+  },
+  {
+    music_id: 2238,
+    start: 20260212,
+    charts: {
+      nov: { price: 4294967294 },
+      adv: { price: 4294967294 },
+      exh: { price: 4294967294 },
+      mxm: { price: 4294967294 }
+    }
+  },
+  {
+    music_id: 2239,
+    start: 20260212,
+    charts: {
+      nov: { price: 4294967294 },
+      adv: { price: 4294967294 },
+      exh: { price: 4294967294 },
+      mxm: { price: 4294967294 }
+    }
   }
 ]
