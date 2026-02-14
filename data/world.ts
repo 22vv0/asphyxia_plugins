@@ -824,7 +824,7 @@ export const EVENTS_WORLD = [
 	
 ]
 
-export const LEAGUE_SEASON = 9
+export const LEAGUE_SEASON = 10
 export const LEAGUE_GOLD_BORDER_MCODE = 0
 export const LEAGUE_WORLD = [
 	{
@@ -879,6 +879,15 @@ export const LEAGUE_WORLD = [
 		start: BigInt(Date.parse('18 Dec 2025 01:00:00 GMT')),
 		end: BigInt(Date.parse('14 Jan 2026 08:00:00 GMT')),
 		summary: BigInt(Date.parse('14 Jan 2026 09:00:00 GMT')),
+		advanceBorder: [150000, 175000, 500000]
+	},
+	{
+		id: 10,
+		name: "第10回 WORLD LEAGUE",
+		nameEng: "The 10th WORLD LEAGUE",
+		start: BigInt(Date.parse('12 Feb 2026 01:00:00 GMT')),
+		end: BigInt(Date.parse('11 Mar 2026 08:00:00 GMT')),
+		summary: BigInt(Date.parse('11 Mar 2026 09:00:00 GMT')),
 		advanceBorder: [150000, 175000, 500000]
 	}
 ]

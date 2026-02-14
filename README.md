@@ -1,10 +1,11 @@
 # DanceDanceRevolution
 
-**Plugin Version:** 3.1.0b
+**Plugin Version:** 3.1.0c
+- Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=mdx&expanded=true).
 
 **Supported game versions:** WORLD (2025061000)
 
-**Required Asphyxia Core version** [1.50c](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50)
+**Required Asphyxia Core version** [1.50c](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50) and above
 
 **Notes:**
 - Please be aware that this plugin and the savefile it produces are incompatible with the official plugin, or any other forks. Please be cautious of using other plugins' savefiles with this fork of the plugin, or using this fork's savefile with other plugins.
@@ -12,11 +13,10 @@
 
 Changelog
 ===========
-### 3.1.0b
+### 3.1.0c
 
-- Added WORLD LEAGUE 9
-	- Period: 25/12/18 - 26/01/14
-- Moved advance play songs to default unlocked.
+- Added WORLD LEAGUE 10
+	- Period: 26/02/12 - 26/03/11
 
 musicdb.xml Usage Guide
 ===========
