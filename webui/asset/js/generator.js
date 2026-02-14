@@ -41,9 +41,11 @@ function loadImages(itemList, itemType, userItems) {
 }
 
 async function getGeneratorEditionItems(gene_edition, itemSet) {
-    let valGeneData = await $.getJSON( "static/asset/json/valgene_data.json", function(data) {
-        return data
-    })
+    let valGeneData = await $.getJSON( "static/asset/json/valgene_data.json")
+    valGeneData = {
+        valgene: valGeneData.valgene.filter(d => datecode >= d.version),
+        pregene: valGeneData.pregene.filter(d => datecode >= d.version),
+    }
     if(gene_edition === 'valkyrie') {
         return valGeneData.valgene[itemSet - 1]
     } else { 
@@ -66,8 +68,6 @@ async function loadItems(itemSet, gene_edition, items_crew, items_stamp, items_s
     
 
     $('.count').text('Obtained items: ' + itemCounts[0] + "/" + itemCounts[1])
-    $('.jpn-excl').remove()
-    if(geneItems.jpn_exc) $('.setinfo').append('<p class="jpn-excl" style="padding:5px">These items are only usable if your game region is set to Japan. Change your game region through either modifying ea3-config.xml or dll patch.</p>')
 
     if('crew' in geneItems.items) {
         $('.item_banners').append('<div style="padding: 5px"><h3>Nemsys Crew</h3></div>')
@@ -107,9 +107,11 @@ async function loadItems(itemSet, gene_edition, items_crew, items_stamp, items_s
 }
 
 async function loadValgeneData(gene_edition, nblHave) {
-    let valGeneData = await $.getJSON( "static/asset/json/valgene_data.json", function(data) {
-        return data
-    })
+    let valGeneData = await $.getJSON( "static/asset/json/valgene_data.json")
+    valGeneData = {
+        valgene: valGeneData.valgene.filter(d => datecode >= d.version),
+        pregene: valGeneData.pregene.filter(d => datecode >= d.version),
+    }
     if(gene_edition === 'valkyrie') {
         for(const valGeneDataIndex in valGeneData.valgene) {
             if((nblHave && valGeneData.valgene[valGeneDataIndex].id >= 1) || (!nblHave && valGeneData.valgene[valGeneDataIndex].id < 19))
@@ -149,6 +151,8 @@ function checkSetReward(geneItems) {
     }
 }
 
+var datecode = 0
+
 $(document).ready(async function() {
     if(document.getElementById("data-pass-unlock-all").innerText === 'true') {
         $('.card-content').text("The \"Unlock All Valkyrie and Premium Items\" option is enabled. You wouldn't need this.")
@@ -165,6 +169,12 @@ $(document).ready(async function() {
     $('.input').hide()
     $('.button').addClass('is-link')
     let refid = document.getElementsByName("refid")[0].value
+    let profiles = JSON.parse(document.getElementById("data-pass-profiles").innerText);
+    profiles.sort((a,b) => a.version - b.version).forEach(profile => {
+        if(!('datecode' in profile)) datecode = (profile['version'] === 7 ? 20251226 : 20251209)
+        else if(profile.datecode > datecode) datecode = profile.datecode
+    })
+
     let items_crew = JSON.parse(document.getElementById("data-pass-crew").innerText);
     let items_stamp = JSON.parse(document.getElementById("data-pass-stamp").innerText);
     let items_subbg = JSON.parse(document.getElementById("data-pass-subbg").innerText);
@@ -173,7 +183,8 @@ $(document).ready(async function() {
     let items_sysbg = JSON.parse(document.getElementById("data-pass-sysbg").innerText);
     let gene_edition = document.getElementById("generator-edition").innerText;
     let nblHave = JSON.parse(document.getElementById("nbl-have").innerText);
-    let currentSet = await loadValgeneData(gene_edition, nblHave.length)
+    let currentSet = await loadValgeneData(gene_edition, nblHave.length);
+
     $('#set_select').val(currentSet)
     loadItems(currentSet, gene_edition, items_crew, items_stamp, items_subbg, items_bgm, items_nemsys, items_sysbg)
     

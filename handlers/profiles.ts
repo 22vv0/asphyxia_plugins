@@ -473,6 +473,10 @@ export const load: EPR = async (info, data, send) => {
     else return send.object({ result: K.ITEM('u8', 1) });
   }
 
+  if(!('datecode' in profile) || dVersion > profile.datecode) {
+    await DB.Upsert<Profile>(refid, {collection: 'profile', version: version}, {$set: {datecode: dVersion}})
+  }
+
   let skill = (await DB.FindOne<Skill>(refid, {
     collection: 'skill',
     version,
@@ -638,41 +642,9 @@ export const load: EPR = async (info, data, send) => {
   time.setHours(tempHour);
   const currentTime = time.getTime();
 
-  const bgm = profile.bgm ? profile.bgm : 0;
-  const subbg = profile.subbg ? profile.subbg : 0;
-  const nemsys = profile.nemsys ? profile.nemsys : 0;
-  const stampA = profile.stampA ? profile.stampA : 0;
-  const stampB = profile.stampB ? profile.stampB : 0;
-  const stampC = profile.stampC ? profile.stampC : 0;
-  const stampD = profile.stampD ? profile.stampD : 0;
-  const stampRA = profile.stampRA ? profile.stampRA : 0;
-  const stampRB = profile.stampRB ? profile.stampRB : 0;
-  const stampRC = profile.stampRC ? profile.stampRC : 0;
-  const stampRD = profile.stampRD ? profile.stampRD : 0;
-  const sysBG = profile.sysBG ? profile.sysBG : 0;
   const creatorItem = profile.creatorItem ? profile.creatorItem : 0;
   const bplPro = (profile.bplSupport > 10) ? true : false
   profile.bplSupport = profile.bplSupport ? profile.bplSupport % 10 : 0;
-
-  const customize = [];
-  customize.push(bgm, subbg, nemsys, stampA, stampB, stampC, stampD, stampRA, stampRB, stampRC, stampRD, sysBG);
-
-  var tempCustom = params.findIndex((e) => (e.type == 2 && e.id == 2))
-
-  if (tempCustom == -1) {
-    const tempParam: Param = { collection: 'param', type: 2, id: 2, param: [] };
-    params.push(tempParam);
-    tempCustom = params.findIndex((e) => (e.type == 2 && e.id == 2))
-  }
-
-  if (params[tempCustom]) {
-    if(version === 6) params[tempCustom].param = customize;
-    else if(version === 7) {
-      for(let ind in customize) {
-        params[tempCustom].param[ind] = customize[ind]
-      }
-    }
-  }
 
   let blasterpass = U.GetConfig('use_blasterpass') ? 1 : 0;
 
@@ -714,6 +686,7 @@ export const load: EPR = async (info, data, send) => {
 export const create: EPR = async (info, data, send) => {
   console.log("Creating profile");
   const version = Math.abs(getVersion(info))
+  const dVersion = parseInt(info.model.split(":")[4].slice(0, -2));
   const refid = $(data).str('refid', $(data).attr().refid);
   if (!refid) return send.deny();
   console.log("DataID " + refid);
@@ -737,6 +710,7 @@ export const create: EPR = async (info, data, send) => {
     pluginVer: 1,
     version: version,
     dbver: DB_VER,
+    datecode: dVersion,
 
     collection: 'profile',
     id,
@@ -756,19 +730,6 @@ export const create: EPR = async (info, data, send) => {
     narrowDown: 0,
     notesOption: 0,
     blasterEnergy: 0,
-    bgm: 0,
-    subbg: 0,
-    nemsys: 0,
-    stampA: 0,
-    stampB: 0,
-    stampC: 0,
-    stampD: 0,
-    stampRA: 0,
-    stampRB: 0,
-    stampRC: 0,
-    stampRD: 0,
-
-    sysBG: 0,
 
     headphone: 0,
     musicID: 0,

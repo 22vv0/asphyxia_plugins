@@ -1,6 +1,7 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-7.0.1a
+**Plugin Version:** fork-7.0.1b
+- Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
 **Supported game versions:** 
 - EXCEED GEAR (2025120900 final)
@@ -23,25 +24,24 @@ Important notes for players migrating from EXCEED GEAR to ∇
 
 Changelog
 ===========
-### fork-7.0.1a
+### fork-7.0.1b
 
 - ∇
-	- Added/enabled event toggles (see Unlock Events page)
-		- Item gifts:
-			- Valentine's Day 2026 Appeal Card gift
-		- Stamp events:
-			- 初音ミク (Hatsune Miku) stamp event
-				- Updated stamp reward data
-	- Added music info override:
-		- REFLEC BEAT songs (blc unlockable)
-
-- Misc:
-	- Added handler for music info overriding
-	- Added checks to prevent profile creation for older game versions (EG) if profile for newer versions already exists
+	- Re-enabled MEGAMIX BATTLE (oops)
 
 - WebUI:
-	- Updated BPL S5 song label
-		- ???? -> DANGER XLOZE
+	- Significantly decreased load times for Profile Customization page
+	- Customization page
+		- Customization data now being loaded from Param.
+		- Added filter for available customization items by game datecode. Will need to login first to work properly
+		- Switched Appeal Card selection from number input to drop-down menu
+		- Added blank placeholder subbg id 0 image.
+	- Generator pages
+		- Added filter for available Generator banners by game datecode. Will need to login first to work properly as well
+
+- Misc:
+	- Item customization data migration
+		- Customization data will now be directly saved to Param data
 
 
 #### RE: Standard Start issue on version 20250422+

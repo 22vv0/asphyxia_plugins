@@ -102,6 +102,19 @@ async function updateDB() {
 			}
 		}
 	})
+
+	// move customization settings to param
+	profiles = await DB.Find<Profile>(null, {collection: 'profile', bgm: {$exists: true}})
+	profiles.forEach(async profile => {
+		let customParam = await DB.FindOne<Param>(profile['__refid'], {collection: 'param', type: 2, id: 2, version: profile['version']})
+		let customize = (!customParam) ? [0, 0, (profile['version'] === 7 ? 47 : 0), 0, 0, 0, 0, 0, 0, 0, 0, 0] : customParam.param
+		const custMig = [profile['bgm'], profile['subbg'], (profile['version'] === 7 && profile['nemsys'] === 0 ? 47 : profile['nemsys'] ), profile['stampA'], profile['stampB'], profile['stampC'], profile['stampD'], profile['stampRA'], profile['stampRB'], profile['stampRC'], profile['stampRD'], profile['sysBG']]
+		custMig.forEach((c, ind) => {
+			customize[ind] = c
+		})
+		await DB.Upsert<Param>(profile['__refid'], {collection: 'param', type: 2, id: 2, version: profile['version']}, {$set: {param: customize}})
+		await DB.Update<Profile>(profile['__refid'], {collection: 'profile', version: profile['version']}, {$unset: {bgm: true, subbg: true, nemsys: true, stampA: true, stampB: true, stampC: true, stampD: true, stampRA: true, stampRB: true, stampRC: true, stampRD: true, sysBG: true}})
+	})
 }
 
 export async function nablaMigrate(refid) {
@@ -133,19 +146,6 @@ export async function nablaMigrate(refid) {
 	    narrowDown: 0,
 	    notesOption: 0,
 	    blasterEnergy: 0,
-	    bgm: profileData.bgm,
-	    subbg: profileData.subbg,
-	    nemsys: 0,
-	    stampA: profileData.stampA,
-	    stampB: profileData.stampB,
-	    stampC: profileData.stampC,
-	    stampD: profileData.stampD,
-	    stampRA: profileData.stampRA,
-	    stampRB: profileData.stampRB,
-	    stampRC: profileData.stampRC,
-	    stampRD: profileData.stampRD,
-
-	    sysBG: 0,
 
 	    headphone: 0,
 	    musicID: 0,

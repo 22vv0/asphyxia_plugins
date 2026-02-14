@@ -1,4 +1,5 @@
 import { Profile } from '../models/profile'
+import { Param } from '../models/param'
 import { MusicRecord } from '../models/music_record'
 import { ValgeneTicket } from '../models/valgene_ticket'
 import { Skill } from '../models/skill'
@@ -24,10 +25,10 @@ export const updateProfile = async (data: {
   nemsys?: string;
   bgm?: string;
   subbg?: string;
-  stampA?: string;
-  stampB?: string;
-  stampC?: string;
-  stampD?: string;
+  stampLA?: string;
+  stampLB?: string;
+  stampLC?: string;
+  stampLD?: string;
   stampRA?: string;
   stampRB?: string;
   stampRC?: string;
@@ -41,6 +42,8 @@ export const updateProfile = async (data: {
   if (data.refid == null) return;
 
   const update: Update<Profile>['$set'] = {};
+  let custom = await DB.FindOne<Param>(data.refid, {collection: 'param', version: parseInt(data.version_select) ,type: 2, id: 2})
+  let customParam = (!custom) ? [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] : custom['param']
 
   if (data.name && data.name.length > 0) {
     const validName = data.name
@@ -60,74 +63,74 @@ export const updateProfile = async (data: {
     if (!_.isNaN(validAka)) update.akaname = validAka;
   }
 
-  if (data.nemsys && data.nemsys.length > 0) {
-    const validNemsys = parseInt(data.nemsys);
-    if (!_.isNaN(validNemsys)) update.nemsys = validNemsys;
-  }
-
   if (data.bplSupport && data.bplSupport.length > 0) {
     const validBplSupport = data.bplPro ? parseInt(data.bplSupport) + 10 : parseInt(data.bplSupport);
     if (!_.isNaN(validBplSupport)) update.bplSupport = validBplSupport;
   }
 
-  if (data.subbg && data.subbg.length > 0) {
-    const validSubbg = parseInt(data.subbg);
-    if (!_.isNaN(validSubbg)) update.subbg = validSubbg;
+  if (data.creatorItem && data.creatorItem.length > 0) {
+    const validCreatorItem = parseInt(data.creatorItem);
+    if (!_.isNaN(validCreatorItem)) update.creatorItem = validCreatorItem;
   }
 
   if (data.bgm && data.bgm.length > 0) {
     const validBGM = parseInt(data.bgm);
-    if (!_.isNaN(validBGM)) update.bgm = validBGM;
+    if (!_.isNaN(validBGM)) customParam[0] = validBGM;
   }
 
-  if (data.stampA && data.stampA.length > 0) {
-    const validStampA = parseInt(data.stampA);
-    if (!_.isNaN(validStampA)) update.stampA = validStampA;
+  if (data.subbg && data.subbg.length > 0) {
+    const validSubbg = parseInt(data.subbg);
+    if (!_.isNaN(validSubbg)) customParam[1] = validSubbg;
   }
 
-  if (data.stampB && data.stampB.length > 0) {
-    const validStampB = parseInt(data.stampB);
-    if (!_.isNaN(validStampB)) update.stampB = validStampB;
+  if (data.nemsys && data.nemsys.length > 0) {
+    const validNemsys = parseInt(data.nemsys);
+    if (!_.isNaN(validNemsys)) customParam[2] = validNemsys;
   }
 
-  if (data.stampC && data.stampC.length > 0) {
-    const validStampC = parseInt(data.stampC);
-    if (!_.isNaN(validStampC)) update.stampC = validStampC;
+  if (data.stampLA && data.stampLA.length > 0) {
+    const validStampLA = parseInt(data.stampLA);
+    if (!_.isNaN(validStampLA)) customParam[3] = validStampLA;
   }
 
-  if (data.stampD && data.stampD.length > 0) {
-    const validStampD = parseInt(data.stampD);
-    if (!_.isNaN(validStampD)) update.stampD = validStampD;
+  if (data.stampLB && data.stampLB.length > 0) {
+    const validStampLB = parseInt(data.stampLB);
+    if (!_.isNaN(validStampLB)) customParam[4] = validStampLB;
+  }
+
+  if (data.stampLC && data.stampLC.length > 0) {
+    const validStampLC = parseInt(data.stampLC);
+    if (!_.isNaN(validStampLC)) customParam[5] = validStampLC;
+  }
+
+  if (data.stampLD && data.stampLD.length > 0) {
+    const validStampLD = parseInt(data.stampLD);
+    if (!_.isNaN(validStampLD)) customParam[6] = validStampLD;
   }
 
   if (data.stampRA && data.stampRA.length > 0) {
     const validStampRA = parseInt(data.stampRA);
-    if (!_.isNaN(validStampRA)) update.stampRA = validStampRA;
+    if (!_.isNaN(validStampRA)) customParam[7] = validStampRA;
   }
 
   if (data.stampRB && data.stampRB.length > 0) {
     const validStampRB = parseInt(data.stampRB);
-    if (!_.isNaN(validStampRB)) update.stampRB = validStampRB;
+    if (!_.isNaN(validStampRB)) customParam[8] = validStampRB;
   }
 
   if (data.stampRC && data.stampRC.length > 0) {
     const validStampRC = parseInt(data.stampRC);
-    if (!_.isNaN(validStampRC)) update.stampRC = validStampRC;
+    if (!_.isNaN(validStampRC)) customParam[9] = validStampRC;
   }
 
   if (data.stampRD && data.stampRD.length > 0) {
     const validStampRD = parseInt(data.stampRD);
-    if (!_.isNaN(validStampRD)) update.stampRD = validStampRD;
+    if (!_.isNaN(validStampRD)) customParam[10] = validStampRD;
   }
 
   if (data.sysBG && data.sysBG.length > 0) {
     const validSysBG = parseInt(data.sysBG);
-    if (!_.isNaN(validSysBG)) update.sysBG = validSysBG;
-  }
-
-  if (data.creatorItem && data.creatorItem.length > 0) {
-    const validCreatorItem = parseInt(data.creatorItem);
-    if (!_.isNaN(validCreatorItem)) update.creatorItem = validCreatorItem;
+    if (!_.isNaN(validSysBG)) customParam[11] = validSysBG;
   }
 
   await DB.Update<Profile>(
@@ -159,6 +162,15 @@ export const updateProfile = async (data: {
       }
     );
   }
+
+  await DB.Upsert<Param>(
+    data.refid,
+    { collection: 'param', type: 2, id: 2, version: parseInt(data.version_select) },
+    { $set: {
+        param: customParam
+      }
+    }
+  )
 };
 
 export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
