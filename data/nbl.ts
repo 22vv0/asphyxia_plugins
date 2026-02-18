@@ -33,7 +33,7 @@ export const EVENT7 = [
   'BLASTER_ABLE',
   'PREMIUM_TIME_ENABLE',
   'MEGAMIX_ENABLE',
-  // 'ARENA_ENABLE',
+  'ARENA_ENABLE',
   'ARENA_LOCAL_TO_ONLINE_ENABLE',
   'ARENA_ALTER_MODE_WINDOW_ENABLE',
   'ARENA_PASS_MATCH_WINDOW_ENABLE',
@@ -94,13 +94,13 @@ export const BLASTER_GATE7 = [
   ],
   [
     // bpls5
-    231423, 231523, 231623, 231723, 231823, 231923, 232023, 232123, 232223, 232323
+    231423, 231523, 231623, 231723, 231823, 231923, 232023, 232123, 232223, 232323, 232423
   ],
   [
     // tamaadv
-     215623, 215323, 215523, 215923, 215423, 215723, 215823, 218623, 218323, 218523, 211223, 209823, 211723, 210923,
-     210023, 210723, 211523, 209423, 209723, 210623, 211623, 210823, 211023, 211323, 220423, 220023, 220323, 220223,
-     220123, 219823
+    215623, 215323, 215523, 215923, 215423, 215723, 215823, 218623, 218323, 218523, 211223, 209823, 211723, 210923,
+    210023, 210723, 211523, 209423, 209723, 210623, 211623, 210823, 211023, 211323, 220423, 220023, 220323, 220223,
+    220123, 219823
   ],
   [
     // puct
@@ -108,7 +108,10 @@ export const BLASTER_GATE7 = [
   ],
   // upcomings bpls5
   [
-    232423
+    232523
+  ],
+  [
+    232623
   ]
 ]
 
@@ -324,6 +327,43 @@ export const UNLOCK_EVENTS7 = {
         }
       ]
     }
+  },
+  hololive7: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFtJ: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 2/19～3/22',
+      stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 2/19～3/22',
+      data: [
+        {
+          stmpid: 73,
+          stps: 15,
+          stprwrd: '1:a:5541[p:1000] 2:r:148 4:n:40245[p:1000] 6:r:149 8:n:40246[p:1000] 10:r:150 12:n:40247[p:1000] 15:r:151 req:musicid:2069,2070,2071,2072,2073 imgbg:bg_stamp_fubuki'
+        },
+        {
+          stmpid: 74,
+          stps: 15,
+          stprwrd: '1:a:5542[p:1000] 2:r:152 4:n:40248[p:1000] 6:r:153 8:n:40249[p:1000] 10:r:154 12:n:40250[p:1000] 15:r:155 req:musicid:2165,2166,2167 imgbg:bg_stamp_okayu'
+        },
+        {
+          stmpid: 75,
+          stps: 15,
+          stprwrd: '1:a:5543[p:1000] 2:r:156 4:n:40251[p:1000] 6:r:157 8:n:40252[p:1000] 10:r:158 12:n:40253[p:1000] 15:r:159 req:musicid:2172,2173,2174,2175 imgbg:bg_stamp_watame'
+        },
+        {
+          stmpid: 76,
+          stps: 15,
+          stprwrd: '1:a:5544[p:1000] 2:r:160 4:n:40254[p:1000] 6:r:161 8:n:40255[p:1000] 10:r:162 12:n:40256[p:1000] 15:r:163 req:musicid:1753,1754,1755,1756,1757,1758,2071,2194,2195,2196,2197 imgbg:bg_stamp_marine'
+        },
+        {
+          stmpid: 77,
+          stps: 15,
+          stprwrd: '1:a:5545[p:1000] 2:r:164 4:n:40257[p:1000] 6:r:165 8:n:40258[p:1000] 10:r:166 12:n:40259[p:1000] 15:r:167 req:musicid:1755,2205,2206,2207,2208 imgbg:bg_stamp_pekora'
+        }
+      ]
+    }
   }
 }
 
@@ -335,6 +375,8 @@ export const EVENT_ITEMS7 = {
   "bpls5sdvx7_5": ['2322'],
   "bpls5sdvx7_6": ['2323'],
   "bpls5sdvx7_7": ['2324'],
+  "bpls5sdvx7_8": ['2325'],
+  "bpls5sdvx7_9": ['2326'],
   "2026apica": ['6501'],
   "crossresonance_1": ['2231'],
   "crossresonance_2": ['2232'],
@@ -348,6 +390,9 @@ export const EVENT_ITEMS7 = {
   "crossresonance_10": ['2339'],
   "crossresonance_11": ['2340'],
   "crossresonance_12": ['2341'],
+  "crossresonance_13": ['2370'],
+  "crossresonance_14": ['2371'],
+  "crossresonance_15": ['2372'],
   "bpls5apica_1": ['5547'],
   "bpls5apica_2": ['5548'],
   "bpls5apica_3": ['5549'],
@@ -452,7 +497,8 @@ export const INFORMATION7 = [
   { id: 43, version: 20260127, start: 20260127, str: '[img:info/260122_info_14th_voltefactory.png:]'},
   { id: 44, version: 20260127, start: 20260127, str: '[img:info/260122_info_popn_cc.png:]'},
   { id: 45, version: 20260127, start: 20260129, str: '[img:info/260129_info_tripletribe.png:]'},
-  { id: 46, version: 20260203, start: 20260205, str: '[img:info/250205_info_hatsunemiku.png:]'}
+  { id: 46, version: 20260203, start: 20260205, str: '[img:info/250205_info_hatsunemiku.png:]'},
+  { id: 47, version: 20260217, start: 20260219, str: '[img:info/260219_info_cross_resonance.png:]'}
 ] 
 
 export const EXTENDS7 = [
@@ -625,13 +671,27 @@ export const EXTENDS7 = [
     ],
   },
   {
-    version: 20260203,
-    start: 20260219,
+    version: 20260217,
+    start: 20260226,
     id: 1,
     type: 18,
     params: [
       0, 0, 0, 20, 0,
       BLASTER_GATE7[7].join(' '),
+      '',
+      '',
+      '',
+      '',
+    ],
+  },
+  {
+    version: 20260217,
+    start: 20260305,
+    id: 1,
+    type: 18,
+    params: [
+      0, 0, 0, 20, 0,
+      BLASTER_GATE7[8].join(' '),
       '',
       '',
       '',

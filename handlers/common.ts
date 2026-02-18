@@ -1,6 +1,6 @@
 import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIE_SONGS, LICENSED_SONGS6, CURRENT_ARENA, ARENA_STATION_ITEMS, VALGENE, INFORMATION6, UNLOCK_EVENTS6, MUSIC_OVERRIDE6 } from '../data/exg';
 import { EVENT7, COURSES7, EXTENDS7, LICENSED_SONGS7, CURRENT_ARENA7, ARENA_STATION_ITEMS7, VALGENE7, APIGENE7, INFORMATION7, UNLOCK_EVENTS7, EGSONGS_LOCKED, MUSIC_OVERRIDE7 } from '../data/nbl';
-import {getVersion, getRandomIntInclusive} from '../utils';
+import {getVersion, checkVerStart, getRandomIntInclusive} from '../utils';
 
 export const common: EPR = async (info, data, send) => {
   try {
@@ -45,8 +45,8 @@ export const common: EPR = async (info, data, send) => {
           }
         }
         courses = COURSES6.filter(course => version >= course.version);
-        information = INFORMATION6.filter(info => version >= info.version && currentYMDDate >= info.start)
-        EXTENDS6.filter(ex => version >= ex.version && currentYMDDate >= ex.start).forEach(val => extend.push(Object.assign({}, val)));
+        information = INFORMATION6.filter(info => checkVerStart(version, info.version, info.start, date))
+        EXTENDS6.filter(ex => checkVerStart(version, ex.version, ex.start, date)).forEach(val => extend.push(Object.assign({}, val)));
         licensedSongs = LICENSED_SONGS6;
         unlockEvents = UNLOCK_EVENTS6;
         currentArena = CURRENT_ARENA;
@@ -73,7 +73,7 @@ export const common: EPR = async (info, data, send) => {
           }
         }
         courses = COURSES7.filter(course => version >= course.version);
-        information = INFORMATION7.filter(info => version >= info.version && currentYMDDate >= info.start)
+        information = INFORMATION7.filter(info => checkVerStart(version, info.version, info.start, date))
         licensedSongs = LICENSED_SONGS7;
         unlockEvents = UNLOCK_EVENTS7;
         currentArena = CURRENT_ARENA7;
@@ -84,7 +84,7 @@ export const common: EPR = async (info, data, send) => {
           catalog: [...VALGENE.catalog, ...VALGENE7.catalog]
         }
         apigene = APIGENE7;
-        EXTENDS7.filter(ex => version >= ex.version && currentYMDDate >= ex.start).forEach(val => extend.push(Object.assign({}, val)));
+        EXTENDS7.filter(ex => checkVerStart(version, ex.version, ex.start, date)).forEach(val => extend.push(Object.assign({}, val)));
         songNum = 2400
         break;
       }
@@ -95,7 +95,7 @@ export const common: EPR = async (info, data, send) => {
     let diffName = ['novice', 'advanced', 'exhaust', 'infinite', 'maximum', 'ultimate']
 
     if(U.GetConfig('unlock_all_songs')) {
-      console.log("Unlocking songs");
+      console.log("Unlocking songs. Make sure music_db.json is updated.");
       for (let i = 1; i < songNum; ++i) {
         var foundSongIndex = mdb.mdb.music.map(function(x) {return x['id']; }).indexOf(i.toString());
         if(foundSongIndex != -1) {
@@ -202,7 +202,7 @@ export const common: EPR = async (info, data, send) => {
     let musicOverride = []
     let mList = (Math.abs(gameVersion) === 6) ? MUSIC_OVERRIDE6 : MUSIC_OVERRIDE7
     const createItem = (key, val) => {return (typeof val === 'string') ? K.ITEM('str', val) : ((key === 'volume') ? K.ITEM('u16', val) : K.ITEM('u32', val))}
-    for(const music of mList.filter(m => currentYMDDate >= m.start)) {
+    for(const music of mList.filter(m => checkVerStart(0, 0, m.start, date))) {
       let mInfKeys = Object.keys(music).filter(m => !['charts', 'start'].includes(m))
       let musicInfo = {}
       mInfKeys.forEach(k => {
@@ -226,8 +226,7 @@ export const common: EPR = async (info, data, send) => {
     }
 
     if(information.length > 0) {
-      let time = new Date()
-      let currentTime = parseInt((time.getTime()/100000) as unknown as string) * 100
+      let currentTime = parseInt((date.getTime()/100000) as unknown as string) * 100
       for(const info of information) {
         extend.push({
           id: info.id,
@@ -255,7 +254,7 @@ export const common: EPR = async (info, data, send) => {
       let eventConfig = JSON.parse(bufEventConfig.toString())
       for(const eData of eventData['events' + Math.abs(gameVersion)]) {
         let stmpEvntInfo = unlockEvents[eData.id]
-        if(stmpEvntInfo && version >= eData.version && currentYMDDate >= eData.start) {
+        if(stmpEvntInfo && checkVerStart(version, eData.version, eData.start, date)) {
           if(eData.type === 'stamp' && eventConfig[eData.id] !== undefined && eventConfig[eData.id].toggle) {
             for(const stmpData of stmpEvntInfo.info.data) {
               extend.push({
@@ -342,7 +341,7 @@ export const common: EPR = async (info, data, send) => {
               ]
             })
           }
-        } else if (eData.id === 'achmissions' && version >= eData.version && currentYMDDate >= eData.start) {
+        } else if (eData.id === 'achmissions' && checkVerStart(version, eData.version, eData.start, date)) {
           let toggles = Object.keys(eventConfig['achmissions'].toggle)
           let eventIds = '\t'
           let prio = '1'

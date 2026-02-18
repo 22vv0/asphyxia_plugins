@@ -2,9 +2,75 @@ var currentVersion = 7;
 var urlParams;
 var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVIDWAVE', 'EXCEED GEAR', '∇']
 let date = new Date();
-let currentYMDDate = parseInt([date.getFullYear(), ((date.getMonth() + 1) > 9 ? '' : '0') + (date.getMonth() + 1), (date.getDate() > 9 ? '' : '0') + date.getDate()].join(''));
+let musicDb;
+const translate_table = {
+      '龕': '€',
+      '釁': '🍄',
+      '驩': 'Ø',
+      '曦': 'à',
+      '齷': 'é',
+      '骭': 'ü',
+      '齶': '♡',
+      '彜': 'ū',
+      '罇': 'ê',
+      '雋': 'Ǜ',
+      '鬻': '♃',
+      '鬥': 'Ã',
+      '鬆': 'Ý',
+      '曩': 'è',
+      '驫': 'ā',
+      '齲': '♥',
+      '騫': 'á',
+      '趁': 'Ǣ',
+      '鬮': '¡',
+      '盥': '⚙︎',
+      '隍': '︎Ü',
+      '頽': 'ä',
+      '餮': 'Ƶ',
+      '黻': '*',
+      '蔕': 'ũ',
+      '闃': 'Ā',
+      '饌': '²',
+      '煢': 'ø',
+      '鑷': 'ゔ',
+      '墸': '͟͟͞ ',
+      '鹹': 'Ĥ',
+      '瀑': 'À',
+      '疉': 'Ö',
+      '鑒': '₩'
+}
+$.getJSON("static/asset/json/music_db.json", function(json) {
+    musicDb = json;
+})
 
-function generateEventToggles(eventInfo, eventConfig, eventEnabled, currentYMDDate) {
+
+function formatStartDate(startDate) {
+    return startDate.toString().slice(0,4) + '-' + startDate.toString().slice(4,6) + '-' + startDate.toString().slice(6,8)
+}
+
+function checkStart(startDate) {
+    if(startDate === 0) return true
+    let start = formatStartDate(startDate)
+    let checkStartUTC = new Date(start +'T00:00:00Z')
+
+    if (date.getTime() >= checkStartUTC.getTime()) return false
+    return true
+}
+
+function substituteString(str, start) {
+    let mid = str.match(/\[mid:\d+\]/g);
+    if(!mid) return str
+    mid = mid[0].slice(5,9)
+    let musicData = musicDb.mdb.music.find(m => m.id === mid)
+    let title = ''
+    if(checkStart(start)) title = '????'
+    else if(!musicData) title = '[TITLE NOT FOUND]'
+    else title = musicData['info']['title_name'].replace(/[龕釁驩曦齷骭齶彜罇雋鬻鬥鬆曩驫齲騫趁鬮盥隍頽餮黻蔕闃饌煢鑷墸鹹瀑疉鑒]/g, m => translate_table[m])
+
+    return str.replace(/\[mid:\d+\]/g, title)
+}
+
+function generateEventToggles(eventInfo, eventConfig, eventEnabled) {
     let cardContent = $('<div class="card-content">')
     cardContent.append('<div class="field is-horizontal"').append(
         $("<h5>" + eventInfo['name'] + "</h5>")
@@ -16,7 +82,7 @@ function generateEventToggles(eventInfo, eventConfig, eventEnabled, currentYMDDa
             $('<div class="field is-horizontal">').append(
                 $('<div class="field-label is-normal"><label class="label" for="' + eventInfo['id'] + '">Enable</label></div>')
             ).append(
-                $('<div class="field-body"><div class="field"><div class="control"><label class="switch is-rounded"><input type="checkbox" ' + (currentYMDDate < eventInfo['start'] ? 'disabled ' : '') + (eventConfig['toggle'] ? 'checked' : '') + ' name="' + (currentYMDDate < eventInfo['start'] ? 'none' : eventInfo['id']) + '"><span class="check"></span></label></div><p class="help">' + (currentYMDDate < eventInfo['start'] ? eventInfo['info'] + ' (disabled until ' + eventInfo['start'] +')' : eventInfo['info']) + '</p></div></div>')
+                $('<div class="field-body"><div class="field"><div class="control"><label class="switch is-rounded"><input type="checkbox" ' + (checkStart(eventInfo['start'], date) ? 'disabled ' : '') + (eventConfig['toggle'] ? 'checked' : '') + ' name="' + (checkStart(eventInfo['start'], date) ? 'none' : eventInfo['id']) + '"><span class="check"></span></label></div><p class="help">' + (checkStart(eventInfo['start'], date) ? substituteString(eventInfo['info'], eventInfo['start']) + ' (disabled until ' + formatStartDate(eventInfo['start']) +'  00:00 UTC)' : substituteString(eventInfo['info'], eventInfo['start'])) + '</p></div></div>')
             )
         )
         if(eventInfo['settings'] !== undefined) {
@@ -57,7 +123,7 @@ function generateEventToggles(eventInfo, eventConfig, eventEnabled, currentYMDDa
                     $('<div class="field is-horizontal">').append(
                         $('<div class="field-label is-normal"><label class="label" for="' + eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString() + '">Enable Set ' + (parseInt(infoIter) + 1).toString() + '</label></div>')
                     ).append(
-                        $('<div class="field-body"><div class="field"><div class="control"><label class="switch is-rounded"><input ' + (currentYMDDate < eventInfo['start'][infoIter] ? 'disabled' : '') + ' type="checkbox" ' + (eventConfig['toggle'][eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString()] ? 'checked' : '') + ' name="' + (currentYMDDate < eventInfo['start'] ? 'none' : eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString()) + '"><span class="check"></span></label></div><p class="help">' + eventInfo['info'][infoIter] + (currentYMDDate < eventInfo['start'][infoIter] ? " (disabled until " + eventInfo['start'][infoIter] + ")" : '') + '</p></div></div>')
+                        $('<div class="field-body"><div class="field"><div class="control"><label class="switch is-rounded"><input ' + (checkStart(eventInfo['start'][infoIter], date) ? 'disabled' : '') + ' type="checkbox" ' + (eventConfig['toggle'][eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString()] ? 'checked' : '') + ' name="' + (checkStart(eventInfo['start'][infoIter], date) ? 'none' : eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString()) + '"><span class="check"></span></label></div><p class="help">' + substituteString(eventInfo['info'][infoIter], eventInfo['start'][infoIter]) + (checkStart(eventInfo['start'][infoIter], date) ? " (disabled until " + formatStartDate(eventInfo['start'][infoIter]) + " 00:00 UTC)" : '') + '</p></div></div>')
                     )
                 )
             }
@@ -217,7 +283,7 @@ $(document).ready(async function() {
             for(const eventIter in eventData['events' + currentVersion]) {
                 if(eventData['events' + currentVersion][eventIter]['id'] === $(selectClass).val()) {
                     $('.' + listClasses[selectClass] + '.list').append(
-                        generateEventToggles(eventData['events' + currentVersion][eventIter], eventConfig[eventData['events' + currentVersion][eventIter]['id']], eventData['events' + currentVersion][eventIter]['enabled'], currentYMDDate)
+                        generateEventToggles(eventData['events' + currentVersion][eventIter], eventConfig[eventData['events' + currentVersion][eventIter]['id']], eventData['events' + currentVersion][eventIter]['enabled'])
                     )
                     $('div.main').append(
                         $('<div class="field is-grouped"><div class="control is-expanded"></div><div class="control"><button class="button is-link" id="event-submit">Apply</button></div></div>')

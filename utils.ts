@@ -38,3 +38,15 @@ export function computeForce(diff, score, medal, grade) { // computing force wit
   const gradeCoef = [0, 0.8, 0.82, 0.85, 0.88, 0.91, 0.94, 0.97, 1.0, 1.02, 1.05]
   return Math.floor(diff * (score / 10000000) * (gradeCoef[grade]) * (medalCoef[medal]) * 20)
 }
+
+export function checkVerStart(gameVersion, checkVersion, checkStart, dateObj) {
+  if(checkStart === 0) return true 
+  let startYr = checkStart.toString().slice(0,4) 
+  let startMo = checkStart.toString().slice(4,6) 
+  let startDa = checkStart.toString().slice(6,8)
+  let checkStartUTC = new Date(startYr + '-' + startMo + '-' + startDa +'T00:00:00Z')
+
+  if (gameVersion < checkVersion) return false
+  if (dateObj.getTime() < checkStartUTC.getTime()) return false
+  return true
+}

@@ -8,7 +8,7 @@ import { Profile } from '../models/profile'
 import { ValgeneTicket } from '../models/valgene_ticket'
 import { WeeklyMusicScore } from '../models/weeklymusic'
 import { VariantPower } from '../models/variant'
-import { getVersion, IDToCode } from '../utils'
+import { getVersion, IDToCode, checkVerStart } from '../utils'
 import { Mix } from '../models/mix'
 import { CURRENT_ARENA, EVENT_ITEMS6, UNLOCK_EVENTS6 } from '../data/exg'
 import { CURRENT_ARENA7, EVENT_ITEMS7, UNLOCK_EVENTS7 } from '../data/nbl'
@@ -505,7 +505,7 @@ export const load: EPR = async (info, data, send) => {
       let typeIds = {'gift_crew': [11, 1], 'gift_ap': [1, 1], 'gift': [0, 23], 'cross_online': [0, 23]}
       if(['gift_crew', 'gift_ap', 'gift', 'cross_online'].includes(eData.type) && eventConfig[eData.id] !== undefined) {
         if(typeof eventConfig[eData.id].toggle === "boolean") {
-          if(eventConfig[eData.id].toggle && dVersion >= eData.version && currentYMDDate >= eData.start) {
+          if(eventConfig[eData.id].toggle && checkVerStart(dVersion, eData.version, eData.start, date)) {
             for(const itemIter in eventItems[eData.id]) {
               let itemId = parseInt(eventItems[eData.id][itemIter])
               if(await DB.Count(refid, {collection:'item', type: typeIds[eData.type][0], id: itemId, version: version}) === 0) {
@@ -525,7 +525,7 @@ export const load: EPR = async (info, data, send) => {
           }
         } else{
           for(const toggleKeys in Object.keys(eventConfig[eData.id].toggle)) {
-            if(eventConfig[eData['id']]['toggle'][Object.keys(eventConfig[eData.id].toggle)[toggleKeys]] && dVersion >= eData.version[toggleKeys] && currentYMDDate >= eData.start[toggleKeys]) {
+            if(eventConfig[eData['id']]['toggle'][Object.keys(eventConfig[eData.id].toggle)[toggleKeys]] && checkVerStart(dVersion, eData.version[toggleKeys], eData.start[toggleKeys], date)) {
               for(const itemIter in eventItems[Object.keys(eventConfig[eData.id].toggle)[toggleKeys]]) {
                 let itemId = parseInt(eventItems[Object.keys(eventConfig[eData.id].toggle)[toggleKeys]][itemIter])
                 if(await DB.Count(refid, {collection:'item', type: typeIds[eData.type][0], id: itemId, version: version}) === 0) {

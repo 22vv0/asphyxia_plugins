@@ -586,7 +586,7 @@
             "name": "hololive SUPER EXPO 2025出展記念!コラボスタンプ",
             "version": 20250218,
             "start": 20250220,
-            "desc": "Stamp events to get hololive appeal cards and appeal titles. Play songs by Shirakami Fubuki, Nekomata Okayu, Tsunomaki Watame, Houshou Marine and Usada Pekora to earn stamps.",
+            "desc": "Stamp events to get hololive appeal cards and appeal titles. Play songs featuring Shirakami Fubuki, Nekomata Okayu, Tsunomaki Watame, Houshou Marine and Usada Pekora to earn stamps.",
             "info": "Toggle this on to enable the stamp events."
         },
         {
@@ -817,7 +817,9 @@
                 20260113,
                 20260127,
                 20260203,
-                20260203
+                20260203,
+                20260217,
+                20260217
             ],
             "start": [
                 20251225,
@@ -826,17 +828,21 @@
                 20260122,
                 20260129,
                 20260205,
-                20260212
+                20260212,
+                20260219,
+                20260226
             ],
             "desc": "Songs revealed for the BEMANI Pro League Season 5 sightread challenges.<br>Toggle to have the songs from their corresponding week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE a week after release.",
             "info": [
-                "Week 5 song: 'ИEXTAGE'",
-                "Week 6 song: 'CAKE,Cake'n Cake!'",
-                "Week 7 song: '天鯨譚'",
-                "Week 8 song: '華麗なる一撃'",
-                "Week 9 song: 'Veins Resonance'",
-                "Week 10 song: 'ShowDawn'",
-                "Week 11 song: 'DANGER XLOZE'"
+                "Week 5 song: '[mid:2318]'",
+                "Week 6 song: '[mid:2319]'",
+                "Week 7 song: '[mid:2320]'",
+                "Week 8 song: '[mid:2321]'",
+                "Week 9 song: '[mid:2322]'",
+                "Week 10 song: '[mid:2323]'",
+                "Week 11 song: '[mid:2324]'",
+                "Week 12 song: '[mid:2325]'",
+                "Week 13 song: '[mid:2326]'"
             ]
         },
         {
@@ -958,7 +964,10 @@
                 20251224,
                 20251224,
                 20251224,
-                20251224
+                20251224,
+                20260217,
+                20260217,
+                20260217
             ],
             "start": [
                 20251224,
@@ -972,22 +981,28 @@
                 20251224,
                 20251224,
                 20251224,
-                20251224
+                20251224,
+                20260219,
+                20260219,
+                20260219
             ],
             "desc": "Crossover event between SOUND VOLTEX and Polaris Chord<br>Toggle the corresponding songs' option below to automatically unlock them on your next login. (EG/∇)",
             "info": [
-                "Song 1: 'Crossfade'",
-                "Song 2: '星界のアルペジオ'",
-                "Song 3: 'Ö＜3rf10₩'",
-                "Song 4: 'ぐしゃ'",
-                "Song 5: 'Dear Deer'",
-                "Song 6: 'DISTORDER'",
-                "Song 7: 'HOLOGRAPHY'",
-                "Song 8: 'Like the Starlight'",
-                "Song 9: 'FRENZY HEART'",
-                "Song 10: 'フラッフィー・アドベンチャー！'",
-                "Song 11: 'Temporal Veil'",
-                "Song 12: '555 (Please call me “Go! Go! Go!”)'"
+                "Song 1: '[mid:2231]'",
+                "Song 2: '[mid:2232]'",
+                "Song 3: '[mid:2233]'",
+                "Song 4: '[mid:2260]'",
+                "Song 5: '[mid:2262]'",
+                "Song 6: '[mid:2262]'",
+                "Song 7: '[mid:2284]'",
+                "Song 8: '[mid:2285]'",
+                "Song 9: '[mid:2286]'",
+                "Song 10: '[mid:2339]'",
+                "Song 11: '[mid:2340]'",
+                "Song 12: '[mid:2341]'",
+                "Song 13: '[mid:2370]'",
+                "Song 14: '[mid:2371]'",
+                "Song 15: '[mid:2372]'"
             ]
         },
         {
@@ -1185,6 +1200,16 @@
             "start": 20260212,
             "desc": "Login to SDVX to get this appeal card.",
             "info": "Toggle this option to enable/disable this gift."
+        },
+        {
+            "id": "hololive7",
+            "type": "stamp",
+            "enabled": true,
+            "name": "hololive Collab Stamp Bonus Event",
+            "version": 20260217,
+            "start": 20260219,
+            "desc": "A rerun of the hololive stamp bonus events to get hololive appeal cards and appeal titles, as well as new appeal board stickers.<br>Play songs featuring Shirakami Fubuki, Nekomata Okayu, Tsunomaki Watame, Houshou Marine and Usada Pekora to earn stamps.<br>If you already obtained the items included in the stamp sheet from the previous event, 1000pc will be obtained instead.",
+            "info": "Toggle this on to enable/disable this stamp event."
         }
     ],
     "flags": [

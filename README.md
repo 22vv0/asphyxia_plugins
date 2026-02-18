@@ -1,13 +1,13 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-7.0.1b
+**Plugin Version:** fork-7.0.1c
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
 **Supported game versions:** 
 - EXCEED GEAR (2025120900 final)
-- ∇ (2026020300)
+- ∇ (2026021700)
 
-**Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d)
+**Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d) or above
 
 **Notes**
 - This is a fork of the [official Asphyxia SDVX plugin](https://github.com/asphyxia-core/plugins). If you have any concerns and issues with this fork of the plugin, please do **not** ask for support on the official Asphyxia channels, and do **not** contact the devs of the official plugin as they would not be able to help you because do not maintain this fork. Direct your concerns to the [GitHub issues page](https://github.com/22vv0/asphyxia_plugins/issues) of this repository.
@@ -24,24 +24,28 @@ Important notes for players migrating from EXCEED GEAR to ∇
 
 Changelog
 ===========
-### fork-7.0.1b
+### fork-7.0.1c
 
 - ∇
-	- Re-enabled MEGAMIX BATTLE (oops)
+	- Re-enabled ARENA BATTLE and SINGLE BATTLE
+	- Added/updated event data
+		- Stamp events:
+			- hololive Collab Stamp Bonus Event
+		- Gift events:
+			- BPL S5 Songs
+		- Cross events:
+			- ぼる×りこ Cross Resonance batch 5 (3 songs)
+		- Updated BLASTER GATE list
+	- Updated information popup list
 
 - WebUI:
-	- Significantly decreased load times for Profile Customization page
-	- Customization page
-		- Customization data now being loaded from Param.
-		- Added filter for available customization items by game datecode. Will need to login first to work properly
-		- Switched Appeal Card selection from number input to drop-down menu
-		- Added blank placeholder subbg id 0 image.
-	- Generator pages
-		- Added filter for available Generator banners by game datecode. Will need to login first to work properly as well
+	- Unlock events page
+		- Updated date format in event "disabled until" message
+		- Used string match/replace for song titles in toggle labels.
 
 - Misc:
-	- Item customization data migration
-		- Customization data will now be directly saved to Param data
+	- Added current time to event date start checking.
+		- Events will start 00:00 UTC.
 
 
 #### RE: Standard Start issue on version 20250422+
