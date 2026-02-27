@@ -1,5 +1,5 @@
-# SOUND VOLTEX
-
+SOUND VOLTEX
+===
 **Plugin Version:** fork-7.0.1d
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
@@ -14,6 +14,7 @@
 - **Please keep a copy/backup of your savedata directory** so you have something to come back to in case of a problem with your database.
 - Before using this plugin, run the [WebUI Asset Update](/plugin/sdvx@asphyxia/update%20webui%20assets). Do this every data and plugin update.
 
+---
 ## Changelog
 
 ### fork-7.0.1d
@@ -25,6 +26,7 @@
 - \[Misc\] Rewrote online matchmaking code (been able to match 2 clients using spice2x + Zerotier, and with matching port set to 5700)
 - \[WebUI\] Upcoming event toggles now able to be toggled before start date. Events will still start on set date.
 
+---
 ## Extra notes
 
 #### Important notes for players migrating from EXCEED GEAR to ∇
@@ -46,6 +48,7 @@ This is not a plugin issue but I feel it is necessary to share. I did notice thi
 ```
 Then [re]start your game. Saving your data and starting a new Standard Start credit should now work fine. Also it looks like playing Standard Start in Skill Analyzer will cause the same problem to occur. In that case, doing the ea3-config fix above (or something similar) should be enough to resolve this problem as well.
 
+---
 ## Report issues
 
 #### Run asphyxia in dev mode 
@@ -62,6 +65,7 @@ Then [re]start your game. Saving your data and starting a new Standard Start cre
 #### Create Github Issue
 [Add an issue](https://github.com/22vv0/asphyxia_plugins/issues) to the GitHub repository and make sure to provide the logs from Asphyxia dev mode so I could have a better idea on where to check for bugs and issues.
 
+---
 ## Todo:
 
 1. Proper handling of appeal title customization.
