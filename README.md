@@ -14,8 +14,8 @@
 - **Please keep a copy/backup of your savedata directory** so you have something to come back to in case of a problem with your database.
 - Before using this plugin, run the [WebUI Asset Update](/plugin/sdvx@asphyxia/update%20webui%20assets). Do this every data and plugin update.
 
-Changelog
-===========
+## Changelog
+
 ### fork-7.0.1d
 
 - \[∇\] Added event data: ∇ Weekly Stamp Bonus 11 - お雛様レイシス sticker
@@ -25,9 +25,9 @@ Changelog
 - \[Misc\] Rewrote online matchmaking code (been able to match 2 clients using spice2x + Zerotier, and with matching port set to 5700)
 - \[WebUI\] Upcoming event toggles now able to be toggled before start date. Events will still start on set date.
 
+## Extra notes
 
-Important notes for players migrating from EXCEED GEAR to ∇
-===========
+#### Important notes for players migrating from EXCEED GEAR to ∇
 - Before logging in to ∇, **it is important to run the WebUI Asset Update** as the plugin needs at least the latest EG music_db to pull difficulty level info from so the plugin could calculate your ∇ VOLFORCE properly, or to as close as it can to your EG VF. In EG, the VF is calculated on the fly when you login, but in ∇ the individual chart VF is now being stored in DB.
 - Data import to ∇ will copy your profile, scores, items, etc. from EG. You can continue playing EG using your migrated profile but it will have separate progression/data from ∇.
 - Just a heads up that there is a bug in game version 20251224 that causes charts to not appear in the VOLFORCE POTENTIAL folder.
@@ -46,8 +46,8 @@ This is not a plugin issue but I feel it is necessary to share. I did notice thi
 ```
 Then [re]start your game. Saving your data and starting a new Standard Start credit should now work fine. Also it looks like playing Standard Start in Skill Analyzer will cause the same problem to occur. In that case, doing the ea3-config fix above (or something similar) should be enough to resolve this problem as well.
 
-Report issues
-===========
+## Report issues
+
 #### Run asphyxia in dev mode 
 1. Make sure you have npm in your machine. [Installing Node.js](https://nodejs.org/en/download) should do it.
 2. From the asphyxia-core zip file, extract these files to your plugins folder:
@@ -62,7 +62,7 @@ Report issues
 #### Create Github Issue
 [Add an issue](https://github.com/22vv0/asphyxia_plugins/issues) to the GitHub repository and make sure to provide the logs from Asphyxia dev mode so I could have a better idea on where to check for bugs and issues.
 
-Todo:
-==========
+## Todo:
+
 1. Proper handling of appeal title customization.
-2. More work on online matchmaking (?)
+2. Look into per-profile auto-unlock system
