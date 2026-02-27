@@ -82,7 +82,7 @@ function generateEventToggles(eventInfo, eventConfig, eventEnabled) {
             $('<div class="field is-horizontal">').append(
                 $('<div class="field-label is-normal"><label class="label" for="' + eventInfo['id'] + '">Enable</label></div>')
             ).append(
-                $('<div class="field-body"><div class="field"><div class="control"><label class="switch is-rounded"><input type="checkbox" ' + (checkStart(eventInfo['start'], date) ? 'disabled ' : '') + (eventConfig['toggle'] ? 'checked' : '') + ' name="' + (checkStart(eventInfo['start'], date) ? 'none' : eventInfo['id']) + '"><span class="check"></span></label></div><p class="help">' + (checkStart(eventInfo['start'], date) ? substituteString(eventInfo['info'], eventInfo['start']) + ' (disabled until ' + formatStartDate(eventInfo['start']) +'  00:00 UTC)' : substituteString(eventInfo['info'], eventInfo['start'])) + '</p></div></div>')
+                $('<div class="field-body"><div class="field"><div class="control"><label class="switch is-rounded"><input type="checkbox" ' + (eventConfig['toggle'] ? 'checked' : '') + ' name="' + eventInfo['id'] + '"><span class="check"></span></label></div><p class="help">' + (checkStart(eventInfo['start'], date) ? substituteString(eventInfo['info'], eventInfo['start']) + ' (disabled until ' + formatStartDate(eventInfo['start']) +'  00:00 UTC)' : substituteString(eventInfo['info'], eventInfo['start'])) + '</p></div></div>')
             )
         )
         if(eventInfo['settings'] !== undefined) {
@@ -123,7 +123,7 @@ function generateEventToggles(eventInfo, eventConfig, eventEnabled) {
                     $('<div class="field is-horizontal">').append(
                         $('<div class="field-label is-normal"><label class="label" for="' + eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString() + '">Enable Set ' + (parseInt(infoIter) + 1).toString() + '</label></div>')
                     ).append(
-                        $('<div class="field-body"><div class="field"><div class="control"><label class="switch is-rounded"><input ' + (checkStart(eventInfo['start'][infoIter], date) ? 'disabled' : '') + ' type="checkbox" ' + (eventConfig['toggle'][eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString()] ? 'checked' : '') + ' name="' + (checkStart(eventInfo['start'][infoIter], date) ? 'none' : eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString()) + '"><span class="check"></span></label></div><p class="help">' + substituteString(eventInfo['info'][infoIter], eventInfo['start'][infoIter]) + (checkStart(eventInfo['start'][infoIter], date) ? " (disabled until " + formatStartDate(eventInfo['start'][infoIter]) + " 00:00 UTC)" : '') + '</p></div></div>')
+                        $('<div class="field-body"><div class="field"><div class="control"><label class="switch is-rounded"><input type="checkbox" ' + (eventConfig['toggle'][eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString()] ? 'checked' : '') + ' name="' + (eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString()) + '"><span class="check"></span></label></div><p class="help">' + substituteString(eventInfo['info'][infoIter], eventInfo['start'][infoIter]) + (checkStart(eventInfo['start'][infoIter], date) ? " (disabled until " + formatStartDate(eventInfo['start'][infoIter]) + " 00:00 UTC)" : '') + '</p></div></div>')
                     )
                 )
             }

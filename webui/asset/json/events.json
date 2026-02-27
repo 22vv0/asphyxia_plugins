@@ -1076,6 +1076,16 @@
             "info": "Toggle this on to enable/disable this stamp event."
         },
         {
+            "id": "hololive7",
+            "type": "stamp",
+            "enabled": true,
+            "name": "hololive Collab Stamp Bonus Event",
+            "version": 20260217,
+            "start": 20260219,
+            "desc": "A rerun of the hololive stamp bonus events to get hololive appeal cards and appeal titles, as well as new appeal board stickers.<br>Play songs featuring Shirakami Fubuki, Nekomata Okayu, Tsunomaki Watame, Houshou Marine and Usada Pekora to earn stamps.<br>If you already obtained the items included in the stamp sheet from the previous event, 1000pc will be obtained instead.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
             "id": "nblstampbonus1",
             "type": "stamp",
             "enabled": true,
@@ -1176,6 +1186,46 @@
             "info": "Toggle this on to enable/disable this stamp event."
         },
         {
+            "id": "nblstampbonus11",
+            "type": "stamp",
+            "enabled": true,
+            "name": "∇ Weekly Stamp Bonus! #11",
+            "version": 20260217,
+            "start": 20260302,
+            "desc": "Stamp event to unlock the 'お雛様レイシス' appeal sticker, and gain PC and BLC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "nblstampbonus12",
+            "type": "stamp",
+            "enabled": true,
+            "name": "∇ Weekly Stamp Bonus! #12",
+            "version": 20260217,
+            "start": 20260309,
+            "desc": "Stamp event to unlock the 'わたがしクッキー' appeal sticker, and gain PC and BLC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "nblstampbonus13",
+            "type": "stamp",
+            "enabled": true,
+            "name": "∇ Weekly Stamp Bonus! #13",
+            "version": 20260217,
+            "start": 20260316,
+            "desc": "Stamp event to unlock the '勇者の卒業式' jacket appeal sticker, and gain PC and BLC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "nblstampbonus14",
+            "type": "stamp",
+            "enabled": true,
+            "name": "∇ Weekly Stamp Bonus! #14",
+            "version": 20260217,
+            "start": 20260323,
+            "desc": "Stamp event to unlock the 'お花見だんご' appeal sticker, and gain PC and BLC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
             "id": "achmissions",
             "type": "achmissions",
             "enabled": true,
@@ -1200,16 +1250,6 @@
             "start": 20260212,
             "desc": "Login to SDVX to get this appeal card.",
             "info": "Toggle this option to enable/disable this gift."
-        },
-        {
-            "id": "hololive7",
-            "type": "stamp",
-            "enabled": true,
-            "name": "hololive Collab Stamp Bonus Event",
-            "version": 20260217,
-            "start": 20260219,
-            "desc": "A rerun of the hololive stamp bonus events to get hololive appeal cards and appeal titles, as well as new appeal board stickers.<br>Play songs featuring Shirakami Fubuki, Nekomata Okayu, Tsunomaki Watame, Houshou Marine and Usada Pekora to earn stamps.<br>If you already obtained the items included in the stamp sheet from the previous event, 1000pc will be obtained instead.",
-            "info": "Toggle this on to enable/disable this stamp event."
         }
     ],
     "flags": [

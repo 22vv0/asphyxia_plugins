@@ -158,6 +158,43 @@ export const UNLOCK_EVENTS7 = {
       ]
     }
   },
+  hololive7: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFtJ: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 2/19～3/22',
+      stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 2/19～3/22',
+      data: [
+        {
+          stmpid: 73,
+          stps: 15,
+          stprwrd: '1:a:5541[p:1000] 2:r:148 4:n:40245[p:1000] 6:r:149 8:n:40246[p:1000] 10:r:150 12:n:40247[p:1000] 15:r:151 req:musicid:2069,2070,2071,2072,2073 imgbg:bg_stamp_fubuki'
+        },
+        {
+          stmpid: 74,
+          stps: 15,
+          stprwrd: '1:a:5542[p:1000] 2:r:152 4:n:40248[p:1000] 6:r:153 8:n:40249[p:1000] 10:r:154 12:n:40250[p:1000] 15:r:155 req:musicid:2165,2166,2167 imgbg:bg_stamp_okayu'
+        },
+        {
+          stmpid: 75,
+          stps: 15,
+          stprwrd: '1:a:5543[p:1000] 2:r:156 4:n:40251[p:1000] 6:r:157 8:n:40252[p:1000] 10:r:158 12:n:40253[p:1000] 15:r:159 req:musicid:2172,2173,2174,2175 imgbg:bg_stamp_watame'
+        },
+        {
+          stmpid: 76,
+          stps: 15,
+          stprwrd: '1:a:5544[p:1000] 2:r:160 4:n:40254[p:1000] 6:r:161 8:n:40255[p:1000] 10:r:162 12:n:40256[p:1000] 15:r:163 req:musicid:1753,1754,1755,1756,1757,1758,2071,2194,2195,2196,2197 imgbg:bg_stamp_marine'
+        },
+        {
+          stmpid: 77,
+          stps: 15,
+          stprwrd: '1:a:5545[p:1000] 2:r:164 4:n:40257[p:1000] 6:r:165 8:n:40258[p:1000] 10:r:166 12:n:40259[p:1000] 15:r:167 req:musicid:1755,2205,2206,2207,2208 imgbg:bg_stamp_pekora'
+        }
+      ]
+    }
+  },
   nblstampbonus1: {
     type: 'main',
     info: {
@@ -328,39 +365,70 @@ export const UNLOCK_EVENTS7 = {
       ]
     }
   },
-  hololive7: {
+  nblstampbonus11: {
     type: 'main',
     info: {
       id: 0,
-      stmpHdJ: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
-      stmpFtJ: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 2/19～3/22',
+      stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      stmpFtJ: '[sz:22]3/2~3/8の間、ポルテを遊ぶとスタンプを獲得できます',
       stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
-      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 2/19～3/22',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 3/2～3/8',
       data: [
         {
-          stmpid: 73,
-          stps: 15,
-          stprwrd: '1:a:5541[p:1000] 2:r:148 4:n:40245[p:1000] 6:r:149 8:n:40246[p:1000] 10:r:150 12:n:40247[p:1000] 15:r:151 req:musicid:2069,2070,2071,2072,2073 imgbg:bg_stamp_fubuki'
-        },
+          stmpid: 78,
+          stps: 310030,
+          stprwrd: '1:p:1000 5:b:500 10:r:168 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        }
+      ]
+    }
+  },
+  nblstampbonus12: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      stmpFtJ: '[sz:22]3/9~3/15の間、ポルテを遊ぶとスタンプを獲得できます',
+      stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 3/9～3/15',
+      data: [
         {
-          stmpid: 74,
-          stps: 15,
-          stprwrd: '1:a:5542[p:1000] 2:r:152 4:n:40248[p:1000] 6:r:153 8:n:40249[p:1000] 10:r:154 12:n:40250[p:1000] 15:r:155 req:musicid:2165,2166,2167 imgbg:bg_stamp_okayu'
-        },
+          stmpid: 79,
+          stps: 310030,
+          stprwrd: '1:p:1000 5:b:500 10:r:169 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        }
+      ]
+    }
+  },
+  nblstampbonus13: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      stmpFtJ: '[sz:22]3/16~3/22の間、ポルテを遊ぶとスタンプを獲得できます',
+      stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 3/16～3/22',
+      data: [
         {
-          stmpid: 75,
-          stps: 15,
-          stprwrd: '1:a:5543[p:1000] 2:r:156 4:n:40251[p:1000] 6:r:157 8:n:40252[p:1000] 10:r:158 12:n:40253[p:1000] 15:r:159 req:musicid:2172,2173,2174,2175 imgbg:bg_stamp_watame'
-        },
+          stmpid: 80,
+          stps: 310030,
+          stprwrd: '1:p:1000 5:b:500 10:r:170 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        }
+      ]
+    }
+  },
+  nblstampbonus14: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      stmpFtJ: '[sz:22]3/23~3/29の間、ポルテを遊ぶとスタンプを獲得できます',
+      stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 3/23～3/29',
+      data: [
         {
-          stmpid: 76,
-          stps: 15,
-          stprwrd: '1:a:5544[p:1000] 2:r:160 4:n:40254[p:1000] 6:r:161 8:n:40255[p:1000] 10:r:162 12:n:40256[p:1000] 15:r:163 req:musicid:1753,1754,1755,1756,1757,1758,2071,2194,2195,2196,2197 imgbg:bg_stamp_marine'
-        },
-        {
-          stmpid: 77,
-          stps: 15,
-          stprwrd: '1:a:5545[p:1000] 2:r:164 4:n:40257[p:1000] 6:r:165 8:n:40258[p:1000] 10:r:166 12:n:40259[p:1000] 15:r:167 req:musicid:1755,2205,2206,2207,2208 imgbg:bg_stamp_pekora'
+          stmpid: 81,
+          stps: 310030,
+          stprwrd: '1:p:1000 5:b:500 10:r:171 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
         }
       ]
     }

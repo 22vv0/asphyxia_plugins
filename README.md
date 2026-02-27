@@ -1,6 +1,6 @@
 # SOUND VOLTEX
 
-**Plugin Version:** fork-7.0.1c
+**Plugin Version:** fork-7.0.1d
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
 **Supported game versions:** 
@@ -14,6 +14,17 @@
 - **Please keep a copy/backup of your savedata directory** so you have something to come back to in case of a problem with your database.
 - Before using this plugin, run the [WebUI Asset Update](/plugin/sdvx@asphyxia/update%20webui%20assets). Do this every data and plugin update.
 
+Changelog
+===========
+### fork-7.0.1d
+
+- \[∇\] Added event data: ∇ Weekly Stamp Bonus 11 - お雛様レイシス sticker
+- \[∇\] Added event data: ∇ Weekly Stamp Bonus 12 - わたがしクッキー sticker
+- \[∇\] Added event data: ∇ Weekly Stamp Bonus 13 - 勇者の卒業式 song jacket sticker
+- \[∇\] Added event data: ∇ Weekly Stamp Bonus 14 - お花見だんご sticker
+- \[Misc\] Rewrote online matchmaking code (been able to match 2 clients using spice2x + Zerotier, and with matching port set to 5700)
+- \[WebUI\] Upcoming event toggles now able to be toggled before start date. Events will still start on set date.
+
 
 Important notes for players migrating from EXCEED GEAR to ∇
 ===========
@@ -21,31 +32,6 @@ Important notes for players migrating from EXCEED GEAR to ∇
 - Data import to ∇ will copy your profile, scores, items, etc. from EG. You can continue playing EG using your migrated profile but it will have separate progression/data from ∇.
 - Just a heads up that there is a bug in game version 20251224 that causes charts to not appear in the VOLFORCE POTENTIAL folder.
 - Charts announced to have EX SCORES reset will be reset here as well.
-
-Changelog
-===========
-### fork-7.0.1c
-
-- ∇
-	- Re-enabled ARENA BATTLE and SINGLE BATTLE
-	- Added/updated event data
-		- Stamp events:
-			- hololive Collab Stamp Bonus Event
-		- Gift events:
-			- BPL S5 Songs
-		- Cross events:
-			- ぼる×りこ Cross Resonance batch 5 (3 songs)
-		- Updated BLASTER GATE list
-	- Updated information popup list
-
-- WebUI:
-	- Unlock events page
-		- Updated date format in event "disabled until" message
-		- Used string match/replace for song titles in toggle labels.
-
-- Misc:
-	- Added current time to event date start checking.
-		- Events will start 00:00 UTC.
 
 
 #### RE: Standard Start issue on version 20250422+
@@ -68,7 +54,7 @@ Report issues
 	- plugins/asphyxia-core.d.ts
 	- plugins/package.json
 	- plugins/tsconfig.json
-3. Open a command prompt/terminal window, cd to your asphyxia plugins folder, then install node and lodash typings by run these two commands:
+3. Open a command prompt/terminal window, cd to your asphyxia plugins folder, then install node and lodash typings by running these two commands:
 	- npm install --save @types/lodash
 	- npm install --save @types/node
 4. Now from the asphyxia root folder, run asphyxia in dev mode by adding "--dev" after the executable filename (eg: asphyxia-core-x64.exe --dev). This should run and provide more logs during game runtime.
