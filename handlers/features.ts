@@ -124,13 +124,13 @@ export const globalMatch: EPR = async (info, data, send) => {
       ]
     })
 
-    // delete room after sec * 100
+    // delete room after sec
     setTimeout(function () {
       console.log("[" + loglip + " | " + loggip + "] Deleting expired room: " + entryData.c_ver + " - " + entryData.filter +  -  + entryData.mid)
       const search = (element) => element.players[0].lip.join('.') === entryData.lip.join('.')
       const index = matchRooms.findIndex(search)
       matchRooms.splice(index, 1)
-    }, (entryData.sec * 100) * 1000);
+    }, entryData.sec * 1000);
 
     // new room, waiting for opponents
     let opponents = {
@@ -175,7 +175,7 @@ export const globalMatch: EPR = async (info, data, send) => {
               lip: K.ITEM('4u8', e.lip)
             }))
           }
-          console.log("[" + loglip + " | " + loggip + "] Added data to player list. Sending opponents.")
+          console.log("[" + loglip + " | " + loggip + "] Added data to player list. Sending opponent data.")
 
           return send.object(opponents)
         }
@@ -198,14 +198,14 @@ export const globalMatch: EPR = async (info, data, send) => {
             }
           ]
         })
-        console.log("[" + loglip + " | " + loggip + "] Rooms with same filter full, creating new.")
+        console.log("[" + loglip + " | " + loggip + "] No available rooms, creating new room.")
         // delete room after sec
         setTimeout(function () {
           const search = (element) => element.players[0].lip.join('.') === entryData.lip.join('.')
           const index = matchRooms.findIndex(search)
           console.log("[" + loglip + " | " + loggip + "] Room expired, deleting.")
           matchRooms.splice(index, 1)
-        }, (entryData.sec * 100) * 1000);
+        }, entryData.sec * 1000);
         let opponents = {
           entry_id: K.ITEM('u32', entryData.entry_id),
         }
@@ -213,7 +213,7 @@ export const globalMatch: EPR = async (info, data, send) => {
       }
     }
 
-    // if in room, use index to find room
+    // if in room, use index to find room, get otherplayer data
     else {
       let room = fRooms[roomInd]
       let playInd = room.players.findIndex(p => p.lip.join('.') === entryData.lip.join('.'))
@@ -227,7 +227,7 @@ export const globalMatch: EPR = async (info, data, send) => {
           lip: K.ITEM('4u8', e.lip)
         }))
       }
-      console.log("[" + loglip + " | " + loggip + "] Already in room, re-sending opponents")
+      console.log("[" + loglip + " | " + loggip + "] Already in room, re-sending opponent data.")
       return send.object(opponents)
     }
   }
@@ -236,7 +236,7 @@ export const globalMatch: EPR = async (info, data, send) => {
 export const lounge: EPR = async (info, data, send) => {
   const version = Math.abs(getVersion(info));
   let filter = $(data).number('filter')
-  let matches = matchRooms.filter(room => room.filter === filter)
+  let matches = matchRooms.filter(room => room.version === version && room.filter === filter)
   if(matches.length < 1) {
     send.object({
       interval: K.ITEM('u32', 5)
