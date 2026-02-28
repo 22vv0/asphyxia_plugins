@@ -19,21 +19,30 @@ export const hiscore: EPR = async (info, data, send) => {
   return send.object({
     sc: {
       d: _.map(
-        _.groupBy(records, r => {
-          return `${r.mid}:${r.type}`;
-        }),
-        r => _.maxBy(r, 'score')
-      ).map(r => ({
-        id: K.ITEM('u32', r.mid),
-        ty: K.ITEM('u32', r.type),
-        a_sq: K.ITEM('str', IDToCode(profiles[r.__refid][0].id)),
-        a_nm: K.ITEM('str', profiles[r.__refid][0].name),
-        a_sc: K.ITEM('u32', r.score),
-        l_sq: K.ITEM('str', IDToCode(profiles[r.__refid][0].id)),
-        l_nm: K.ITEM('str', profiles[r.__refid][0].name),
-        l_sc: K.ITEM('u32', r.score),
-      })),
-    },
+        _.groupBy(records, r => `${r.mid}:${r.type}`),
+        group => {
+          const rScore = _.maxBy(group, 'score')
+          const rExscore = _.maxBy(group, 'exscore')
+          
+          return {
+            id: K.ITEM('u32', rScore.mid),
+            ty: K.ITEM('u32', rScore.type),
+            a_sq: K.ITEM('str', IDToCode(profiles[rScore.__refid][0].id)),
+            a_nm: K.ITEM('str', profiles[rScore.__refid][0].name),
+            a_sc: K.ITEM('u32', rScore.score),
+            l_sq: K.ITEM('str', IDToCode(profiles[rScore.__refid][0].id)),
+            l_nm: K.ITEM('str', profiles[rScore.__refid][0].name),
+            l_sc: K.ITEM('u32', rScore.score),
+            ax_sq: K.ITEM('str', IDToCode(profiles[rExscore.__refid][0].id)),
+            ax_nm: K.ITEM('str', profiles[rExscore.__refid][0].name),
+            ax_sc: K.ITEM('u32', rExscore.exscore),
+            lx_sq: K.ITEM('str', IDToCode(profiles[rExscore.__refid][0].id)),
+            lx_nm: K.ITEM('str', profiles[rExscore.__refid][0].name),
+            lx_sc: K.ITEM('u32', rExscore.exscore),
+          }
+        }
+      )
+    }
   });
 };
 
