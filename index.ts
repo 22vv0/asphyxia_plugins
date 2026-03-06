@@ -10,7 +10,8 @@ import {
   manageEvents,
   manageStartupFlags,
   addWeekly,
-  getWeekRankList
+  getWeekRankList,
+  getDateCode
 } from './handlers/webui';
 import {
   load,
@@ -26,7 +27,7 @@ import {
 } from './handlers/profiles';
 import { ARENA_STATION_ITEMS } from './data/exg';
 import { ARENA_STATION_ITEMS7 } from './data/nbl';
-import { dataUpdate } from './handlers/migrate'
+import { dataUpdate } from './handlers/migrate';
 
 export function register() {
 
@@ -53,6 +54,7 @@ export function register() {
   R.WebUIEvent('updateProfile', updateProfile);
   R.WebUIEvent('addWeekly', addWeekly);
   R.WebUIEvent('getWeekRankList', getWeekRankList);
+  R.WebUIEvent('getDateCode', getDateCode);
 
   const MultiRoute = (method: string, handler: EPR | boolean) => {
     // Helper for register multiple versions.

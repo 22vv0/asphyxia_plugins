@@ -14,6 +14,7 @@ import { textureslist } from '../data/webui'
 import * as fs from 'fs'
 import { PNG } from '../webui/asset/js/pngjs/png.js'
 import { DB_VER } from './migrate'
+import { getDateCodeInit } from '../utils'
 
 export const updateProfile = async (data: {
   refid: string;
@@ -842,4 +843,10 @@ export async function getRankListDB(week, mid, mtype, version) {
     }))
   } 
   return jRankResults
+}
+
+export const getDateCode = async(data: {}, send: WebUISend) =>  {
+  send.json({
+    datecode: await getDateCodeInit()
+  })
 }

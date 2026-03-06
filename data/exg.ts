@@ -1340,7 +1340,7 @@ export const ARENA_STATION_ITEMS = {
 export const VALGENE = {
   info: [
     {
-      valgene_name: "ヴァルキリージェネレーター　第１弾",
+      valgene_name: "ヴァルキリージェネレーター　第1弾",
       valgene_name_english: "Valkyrie Generator Vol. 1",
       valgene_id: 1,
       version: 20210426

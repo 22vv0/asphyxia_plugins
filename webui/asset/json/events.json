@@ -225,7 +225,7 @@
                 20230223,
                 20230302
             ],
-            "desc": "Songs revealed for the BEMANI Pro League Season 2 sightread challenges.<br>Toggle to have the songs from their corresponding week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.",
+            "desc": "Songs revealed for the BEMANI PRO LEAGUE Season 2 sightread challenges.<br>Toggle to have the songs from their corresponding week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.",
             "info": [
                 "Week 1 songs: 'Chat perché' and 'WINNING ROAD'",
                 "Week 2 songs: 'ENDGAME' and 'ИADIR'",
@@ -406,7 +406,7 @@
                 20240307,
                 20240314
             ],
-            "desc": "Songs revealed for the BEMANI Pro League Season 3 sightread challenges.<br>Toggle to have the songs from their corresponding week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.",
+            "desc": "Songs revealed for the BEMANI PRO LEAGUE Season 3 sightread challenges.<br>Toggle to have the songs from their corresponding week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE.",
             "info": [
                 "Week 1 songs: 'We Are All The Dreamer' and 'Double or Nothing'",
                 "Week 2 songs: 'トリコエリヌム▽コンチェルト,' '群青纏う朱の槍,' and 'CHOVERY GOOSE!!!'",
@@ -819,7 +819,8 @@
                 20260203,
                 20260203,
                 20260217,
-                20260217
+                20260217,
+                20260303
             ],
             "start": [
                 20251225,
@@ -830,9 +831,10 @@
                 20260205,
                 20260212,
                 20260219,
-                20260226
+                20260226,
+                20260305
             ],
-            "desc": "Songs revealed for the BEMANI Pro League Season 5 sightread challenges.<br>Toggle to have the songs from their corresponding week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE a week after release.",
+            "desc": "Songs revealed for the BEMANI PRO LEAGUE Season 5 sightread challenges.<br>Toggle to have the songs from their corresponding week unlocked on the next login.<br>Otherwise, the songs are still unlockable through BLASTER GATE a week after release.",
             "info": [
                 "Week 5 song: '[mid:2318]'",
                 "Week 6 song: '[mid:2319]'",
@@ -842,7 +844,8 @@
                 "Week 10 song: '[mid:2323]'",
                 "Week 11 song: '[mid:2324]'",
                 "Week 12 song: '[mid:2325]'",
-                "Week 13 song: '[mid:2326]'"
+                "Week 13 song: '[mid:2326]'",
+                "Week 14 song: '[mid:2327]'"
             ]
         },
         {

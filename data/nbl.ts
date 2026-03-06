@@ -94,7 +94,7 @@ export const BLASTER_GATE7 = [
   ],
   [
     // bpls5
-    231423, 231523, 231623, 231723, 231823, 231923, 232023, 232123, 232223, 232323, 232423
+    231423, 231523, 231623, 231723, 231823, 231923, 232023, 232123, 232223, 232323, 232423, 232523, 232623
   ],
   [
     // tamaadv
@@ -108,10 +108,7 @@ export const BLASTER_GATE7 = [
   ],
   // upcomings bpls5
   [
-    232523
-  ],
-  [
-    232623
+    232723
   ]
 ]
 
@@ -445,6 +442,7 @@ export const EVENT_ITEMS7 = {
   "bpls5sdvx7_7": ['2324'],
   "bpls5sdvx7_8": ['2325'],
   "bpls5sdvx7_9": ['2326'],
+  "bpls5sdvx7_10": ['2327'],
   "2026apica": ['6501'],
   "crossresonance_1": ['2231'],
   "crossresonance_2": ['2232'],
@@ -497,9 +495,44 @@ export const CURRENT_ARENA7 = {
 export const ARENA_STATION_ITEMS7 = {}
 
 export const VALGENE7 = {
-  info: [],
-  rarity: {},
-  catalog: []
+  info: [
+    {
+      valgene_name: "ヴァルキリージェネレーター　第18弾",
+      valgene_name_english: "Valkyrie Generator Vol. 18",
+      valgene_id: 19,
+      version: 20210303
+    },
+  ],
+  rarity: {
+    "11": 5,
+    "17": 20,
+    "18": 15,
+    "19": 10,
+    "20": 15,
+  },
+  catalog: [
+    {
+      volume: 19,
+      items: [
+        {
+          type: 11, // nemsys crew
+          item_ids: [180, 181]
+        },
+        {
+          type: 18, // submonitor bg
+          item_ids: [796, 797, 798, 799, 800, 801, 802, 803, 804, 805, 806, 807, 808, 809, 810, 811, 812, 813, 814, 815]
+        },
+        {
+          type: 19, // bgm
+          item_ids: [93, 94, 95, 96, 97, 98, 99, 100, 101]
+        },
+        {
+          type: 20, // nemsys
+          item_ids: [48]
+        }
+      ]
+    },
+  ]
 }
 
 export const PREGENE7 = [
@@ -739,27 +772,13 @@ export const EXTENDS7 = [
     ],
   },
   {
-    version: 20260217,
-    start: 20260226,
+    version: 20260303,
+    start: 20260312,
     id: 1,
     type: 18,
     params: [
       0, 0, 0, 20, 0,
       BLASTER_GATE7[7].join(' '),
-      '',
-      '',
-      '',
-      '',
-    ],
-  },
-  {
-    version: 20260217,
-    start: 20260305,
-    id: 1,
-    type: 18,
-    params: [
-      0, 0, 0, 20, 0,
-      BLASTER_GATE7[8].join(' '),
       '',
       '',
       '',

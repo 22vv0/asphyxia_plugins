@@ -175,6 +175,10 @@
         {
             "value": 47,
             "name": "VIVID MODEL TYPE NABLA"
+        },
+        {
+            "value": 48,
+            "name": "BEMANI PRO LEAGUE -SEASON 5-"
         }
     ],
     "subbg": [
@@ -4081,6 +4085,106 @@
             "value": 795,
             "type": "video",
             "name": "初音ミク 14"
+        },
+        {
+            "value": 796,
+            "type": "normal",
+            "name": "らぶ!"
+        },
+        {
+            "value": 797,
+            "type": "normal",
+            "name": "激励BPL"
+        },
+        {
+            "value": 798,
+            "type": "normal",
+            "name": "自分を信じてGOよっ!!!!"
+        },
+        {
+            "value": 799,
+            "type": "normal",
+            "name": "L-SIDE TWIST 720 -GET HIGHER!!!-"
+        },
+        {
+            "value": 800,
+            "type": "normal",
+            "name": "仲間の待つ場所へ"
+        },
+        {
+            "value": 801,
+            "type": "normal",
+            "name": "From Rivals to Riders"
+        },
+        {
+            "value": 802,
+            "type": "normal",
+            "name": "MochuPL -SEASONﾃﾞｳ- TAMA猫部門"
+        },
+        {
+            "value": 803,
+            "type": "normal",
+            "name": "届け!夢と光のメロディ!"
+        },
+        {
+            "value": 804,
+            "type": "normal",
+            "name": "Echoes of the Blue Twinkle March"
+        },
+        {
+            "value": 805,
+            "type": "normal",
+            "name": "おつかれさまの勝利のごはん!"
+        },
+        {
+            "value": 806,
+            "type": "normal",
+            "name": "うたかたの夜明け"
+        },
+        {
+            "value": 807,
+            "type": "normal",
+            "name": "みんなで見る夢"
+        },
+        {
+            "value": 808,
+            "type": "normal",
+            "name": "暁に立つ"
+        },
+        {
+            "value": 809,
+            "type": "normal",
+            "name": "Beyond the Stars!"
+        },
+        {
+            "value": 810,
+            "type": "normal",
+            "name": "龍狼相搏"
+        },
+        {
+            "value": 811,
+            "type": "normal",
+            "name": "observatrice"
+        },
+        {
+            "value": 812,
+            "type": "normal",
+            "name": "This DJ \"Best Performance Legendary\"!!"
+        },
+        {
+            "value": 813,
+            "type": "normal",
+            "name": "JUMP!"
+        },
+        {
+            "value": 814,
+            "type": "normal",
+            "name": "夢芽吹く君へ、祝咲を。"
+        },
+        {
+            "value": 815,
+            "type": "normal",
+            "name": "永遠へ変わる"
         }
     ],
     "bgm": [
@@ -4455,6 +4559,42 @@
         {
             "value": 92,
             "name": "{ eXLIPXe }"
+        },
+        {
+            "value": 93,
+            "name": "COLOR BURST"
+        },
+        {
+            "value": 94,
+            "name": "Meteor☆Shower"
+        },
+        {
+            "value": 95,
+            "name": "GO!"
+        },
+        {
+            "value": 96,
+            "name": "King of Tribe"
+        },
+        {
+            "value": 97,
+            "name": "RIZING-GAMERS."
+        },
+        {
+            "value": 98,
+            "name": "SILKY BRAVE"
+        },
+        {
+            "value": 99,
+            "name": "HORIZON BEATZ"
+        },
+        {
+            "value": 100,
+            "name": "Astra Blaze"
+        },
+        {
+            "value": 101,
+            "name": "No→to"
         }
     ],
     "stamp": [

@@ -50,3 +50,31 @@ export function checkVerStart(gameVersion, checkVersion, checkStart, dateObj) {
   if (dateObj.getTime() < checkStartUTC.getTime()) return false
   return true
 }
+
+export async function getDateCodeInit() {
+  // based on get_identifier from sp2xpatcher's find_sp2x_patches
+  // https://github.com/pinapelz/sp2xpatcher/blob/1b69d4f1abedbfe5ee6f56865504dd37e8568785/find_sp2x_patches/find_sp2x_patches.py#L212-L241
+  const dateCodes = {
+    "69318a20_74de58": 20251209,
+    "694a2601_743f28": 20251224,
+    "694cd6fa_743f38": 20251226,
+    "695f6ac9_7449d8": 20260113,
+    "6970d404_7463f8": 20260127,
+    "697c025d_751898": 20260203,
+    "698e6863_753ba8": 20260217,
+    "69a00a63_7551f8": 20260303
+  }
+  let bufOffset = 60
+  let gameDir = U.GetConfig('sdvx_eg_root_dir')
+  if(gameDir != "" && IO.Exists(gameDir + '/modules/soundvoltex.dll')) {
+    let dll = await IO.ReadFile(gameDir + '/modules/soundvoltex.dll', {flag: 'r'})
+    let hdrOffset = dll.readUInt32LE(bufOffset)
+    let hdr = dll.readUInt32BE(hdrOffset).toString(16).toUpperCase()
+    if (hdr !== '50450000') return false
+    let opt = hdrOffset + 24
+    let epoint = dll.readUInt32LE(hdrOffset + 8).toString(16) + "_" + dll.readUInt32LE(opt + 16).toString(16)
+    if(!(epoint in dateCodes)) return false
+    return dateCodes[epoint]
+  }
+  return false
+}

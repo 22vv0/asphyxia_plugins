@@ -54,10 +54,6 @@ $('[name="subbg"]').change(async function() {
 $('[name="bgm"]').change(function() {
     $('#custom_0').attr("src", "static/asset/audio/custom_" + zeroPad($('[name="bgm"]').val(), 2) + "/0.mp3");
     $('#custom_1').attr("src", "static/asset/audio/custom_" + zeroPad($('[name="bgm"]').val(), 2) + "/1.mp3");
-    if ($('[name="bgm"]').val() == 99) {
-        $('#custom_0').attr("src", "static/asset/audio/special_00/0.mp3");
-        $('#custom_1').attr("src", "static/asset/audio/custom_00/1.mp3");
-    }
     $('#custom_0').prop("volume", 0.5);
     $('#custom_1').prop("volume", 0.2);
 
@@ -197,7 +193,7 @@ $('[name="stampRD"]').change(function() {
 var profile_data, database, databaseext;
 var play_bgm = false;
 var play_sel = false;
-$(document).ready(function() {
+$(document).ready(async function() {
     profile_data = JSON.parse(document.getElementById("data-pass").innerText);
     customize_data = JSON.parse(document.getElementById("data-pass-custom").innerText);
     let urlParams = new URLSearchParams(window.location.search);
@@ -220,17 +216,24 @@ $(document).ready(function() {
     courses = JSON.parse(document.getElementById("data-pass-courses").innerText).filter(i => i.version === currentVersion);
     skill = JSON.parse(document.getElementById("data-pass-skill").innerText).filter(i => i.version === currentVersion);
     unlock_all = (document.getElementById("data-pass-unlock-all").innerText === 'true');
+    let datecode = await emit("getDateCode").then(
+        function(response) {
+            return response.data.datecode
+        }
+    )
 
     // akaname, apcard, nemsys, subbg, bgm, stamp, crew
     let finalLim = [0, 0, 0, 0, 0, 0, 0, 0]
-    const profileDateCode = currentProfile.datecode || ((currentVersion === 6) ? 20251209 : 20251226)
+    const finDateCode = (datecode !== (false || undefined || null || "") && datecode >= currentProfile.datecode) ? datecode : (currentProfile.datecode || ((currentVersion === 6) ? 20251209 : 20251226))
+    
     const datecodeLimit = [
         [20251209, 40287, 5553, 46, 762, 92, 2136, 176],
-        [20251224, 40301, 6001, 47, 781, 93, 2176, 178],
+        [20251224, 40301, 6001, 47, 781, 92, 2176, 178],
         [20251226, 0, 6501, 0, 0, 0, 0, 0],
         [20260113, 0, 6502, 0, 0, 0, 0, 0],
-        [20260203, 40302, 6504, 47, 795, 93, 2216, 179]
-    ].filter(lim => lim[0] <= profileDateCode).forEach(lim => {
+        [20260203, 40302, 6504, 47, 795, 92, 2216, 179],
+        [20260303, 0, 6507, 48, 815, 101, 0, 181]
+    ].filter(lim => lim[0] <= finDateCode).forEach(lim => {
         lim.forEach((l, ind) => {
             if(l !== 0) finalLim[ind] = l
         })

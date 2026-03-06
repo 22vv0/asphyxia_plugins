@@ -1,11 +1,11 @@
 SOUND VOLTEX
 ===
-**Plugin Version:** fork-7.0.1d
+**Plugin Version:** fork-7.0.1e
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
 **Supported game versions:** 
 - EXCEED GEAR (2025120900 final)
-- ∇ (2026021700)
+- ∇ (2026030300)
 
 **Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d) or above
 
@@ -17,14 +17,15 @@ SOUND VOLTEX
 ---
 ## Changelog
 
-### fork-7.0.1d
+### fork-7.0.1e
 
-- \[∇\] Added event data: ∇ Weekly Stamp Bonus 11 - お雛様レイシス sticker
-- \[∇\] Added event data: ∇ Weekly Stamp Bonus 12 - わたがしクッキー sticker
-- \[∇\] Added event data: ∇ Weekly Stamp Bonus 13 - 勇者の卒業式 song jacket sticker
-- \[∇\] Added event data: ∇ Weekly Stamp Bonus 14 - お花見だんご sticker
-- \[Misc\] Rewrote online matchmaking code (been able to match 2 clients using spice2x + Zerotier, and with matching port set to 5700)
-- \[WebUI\] Upcoming event toggles now able to be toggled before start date. Events will still start on set date.
+- \[∇\] Updated event data: BPL S5 Songs list
+- \[∇\] Added VALKYRIE GENERATOR Vol.18
+- \[∇\] Updated BLASTER GATE list
+- \[∇+EG\] EX score hiscore implementation
+- \[WebUI\] Customization page: updated customization data - added VALKYRIE GENERATOR Vol.18 items.
+- \[WebUI\] Customization page: added ability to automatically retrieve datecode via game dll, used for filtering of available customization items. Requires `Game Data Directory` plugin setting and `/modules/soundvoltex.dll` to exist in it.
+- \[WebUI\] Customization page: removed new years bgm playback on bgm id 99.
 
 ---
 ## Extra notes
