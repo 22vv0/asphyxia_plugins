@@ -168,9 +168,9 @@ function getMedal(name, clear, version) {
 }
 
 function getDifficulty(musicid, type) {
-    var result = music_db["mdb"]["music"].filter(object => object["id"] == musicid);
+    var result = music_db.filter(object => object["id"] == musicid);
     if (result.length == 0) {
-        return "NOV";
+        return "Unknown";
     }
     var inf_ver = result[0]["info"]["inf_ver"] ? result[0]["info"]["inf_ver"] : 5;
     switch (type) {
@@ -203,7 +203,7 @@ function getDifficulty(musicid, type) {
 }
 
 function getDifficultyNum(musicid, type) {
-    var result = music_db["mdb"]["music"].filter(object => object["id"] == musicid);
+    var result = music_db.filter(object => object["id"] == musicid);
     switch (type) {
         case 0:
             return result[0]['difficulty']['novice'];
@@ -230,7 +230,7 @@ function getSongLevel(musicid, type) {
     //console.log(music_db["mdb"]["music"])
     // console.log(musicid + " " + type);
     // console.log(musicid)
-    var result = music_db["mdb"]["music"].filter(object => object["id"] == musicid);
+    var result = music_db.filter(object => object["id"] == musicid);
     // console.log(result[0]["difficulty"]["novice"]["difnum"])
     if (result.length == 0) {
         return "1"
@@ -307,16 +307,17 @@ function getVFLevel(VF) {
 }
 
 function getSongInfo(mid) {
-    let mss = music_db.mdb.music.find(m => parseInt(m['id']) === mid)
+    let mss = music_db.find(m => parseInt(m['id']) === mid)
     
-    if(mss != undefined) {
+    if(mss === undefined) {
         return {
-            'id': mss['id'],
-            'name': mss.info.title_name
+            'id': mid,
+            'name': 'Unknown Song'
         }
-    } else return {
-        'id': mid,
-        'name': 'Unknown Song'
+    }
+    return {
+        'id': mss['id'],
+        'name': mss.info.title_name
     }
 }
 
@@ -993,7 +994,7 @@ $(document).ready(function() {
 
     $.when(
         $.getJSON("static/asset/json/music_db.json", function(json) {
-            music_db = json;
+            music_db = [...json.mdb.music, ...json.omni.music];
             // console.log(music_db);
         }),
         $.getJSON("static/asset/json/course_data.json", function(json) {
@@ -1010,7 +1011,7 @@ $(document).ready(function() {
             skill_title_db = json.skilltitle;
         }),
     ).then(function() {
-        var currentVF = calculateVolforce(currentVersion);
+        var currentVF = calculateVolforce();
         getVF50()
         var maxVer = skill_data.length > 0 ? parseInt(skill_data[0]["version"]) : 0
 

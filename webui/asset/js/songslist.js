@@ -19,6 +19,7 @@ function populateSongsList(music_data) {
         columns: [
             { data: 'mid' },
             { data: 'songname' },
+            { data: 'type' },
             { data: 'releasedate' },
             { data: 'nov', },
             { data: 'adv' },
@@ -84,13 +85,14 @@ $(document).ready(function() {
         }
         music_db = json;
         var music_data = [];
-        for (let mdata in music_db.mdb.music) {
+        for (const mdata of [...music_db.mdb.music, ...music_db.omni.music]) {
             var temp_data = {};
-            temp_data.mid = music_db.mdb.music[mdata]['id'];
-            temp_data.songname = music_db.mdb.music[mdata]['info']['title_name'];
+            temp_data.mid = mdata['id'];
+            temp_data.songname = mdata['info']['title_name'];
             temp_data.songname = temp_data.songname.replace(/[龕釁驩曦齷骭齶彜罇雋鬻鬥鬆曩驫齲騫趁鬮盥隍頽餮黻蔕闃饌煢鑷墸鹹瀑疉鑒]/g, m => translate_table[m]);
-            if('distribution_date' in music_db.mdb.music[mdata]['info']) {
-                temp_data.releasedate = music_db.mdb.music[mdata]['info']['distribution_date'];
+            temp_data.type = music_db.omni.music.findIndex(m => m['id'] === mdata['id']) >= 0 ? "Yes" : "No"
+            if('distribution_date' in mdata['info']) {
+                temp_data.releasedate = mdata['info']['distribution_date'];
             } else {
                 temp_data.releasedate = 'Unknown'
             }
@@ -100,26 +102,26 @@ $(document).ready(function() {
             temp_data.mxm = "-";
             temp_data.oth = "-";
             temp_data.ult = "-";
-            if (music_db.mdb.music[mdata]['difficulty']['novice'] != 0) {
-                temp_data.nov = music_db.mdb.music[mdata]['difficulty']['novice']
+            if (mdata['difficulty']['novice'] != 0) {
+                temp_data.nov = mdata['difficulty']['novice']
             }
-            if (music_db.mdb.music[mdata]['difficulty']['advanced'] != 0) {
-                temp_data.adv = music_db.mdb.music[mdata]['difficulty']['advanced']
+            if (mdata['difficulty']['advanced'] != 0) {
+                temp_data.adv = mdata['difficulty']['advanced']
             }
-            if (music_db.mdb.music[mdata]['difficulty']['exhaust'] != 0) {
-                temp_data.exh = music_db.mdb.music[mdata]['difficulty']['exhaust'] 
+            if (mdata['difficulty']['exhaust'] != 0) {
+                temp_data.exh = mdata['difficulty']['exhaust'] 
             }
-            if (music_db.mdb.music[mdata]['info']['inf_ver'] != 0) {
-                temp_data.oth = music_db.mdb.music[mdata]['difficulty']['infinite'] + ' | ' + getInfDifficulty(music_db.mdb.music[mdata]['info']['inf_ver'])
+            if (mdata['info']['inf_ver'] != 0) {
+                temp_data.oth = mdata['difficulty']['infinite'] + ' | ' + getInfDifficulty(mdata['info']['inf_ver'])
             }
-            if ("maximum" in music_db.mdb.music[mdata]['difficulty']) {
-                if (music_db.mdb.music[mdata]['difficulty']['maximum'] != 0) {
-                    temp_data.mxm = music_db.mdb.music[mdata]['difficulty']['maximum']
+            if ("maximum" in mdata['difficulty']) {
+                if (mdata['difficulty']['maximum'] != 0) {
+                    temp_data.mxm = mdata['difficulty']['maximum']
                 } 
             }
-            if ("ultimate" in music_db.mdb.music[mdata]['difficulty']) {
-                if (music_db.mdb.music[mdata]['difficulty']['ultimate'] != 0) {
-                    temp_data.ult = music_db.mdb.music[mdata]['difficulty']['ultimate'] 
+            if ("ultimate" in mdata['difficulty']) {
+                if (mdata['difficulty']['ultimate'] != 0) {
+                    temp_data.ult = mdata['difficulty']['ultimate'] 
                 } 
             }
             music_data.push(temp_data);

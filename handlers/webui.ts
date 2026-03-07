@@ -176,6 +176,7 @@ export const updateProfile = async (data: {
 
 export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
   let mdbJsonFix = [];
+  let mdbJsonOmniFix = [];
   let mdbJsonFixFinal;
   let newJsonSongs = [];
   let newINFSongs = [];
@@ -190,77 +191,94 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
   let runErrors = []
   let resourceJsonData = JSON.parse(U.DecodeString(await IO.ReadFile('webui/asset/json/data.json'), 'utf8'))
   let apCardJsonData = JSON.parse(U.DecodeString(await IO.ReadFile('webui/asset/json/appeal.json'), 'utf8'))
-
+  let courseDataUpdateSuccess = false
+  let ifsSuccess = []
+  
   try {
     // Get new music data from music_db.xml
     console.log('Getting new music_db info')
-    if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/others/music_db.xml")) {
-      let mdb = U.parseXML(U.DecodeString(await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/others/music_db.xml"), "shift_jis"), false)
-      let prevAssetMdb = []
-      if(IO.Exists('webui/asset/json/music_db.json')) {
-        prevAssetMdb = JSON.parse(U.DecodeString(await IO.ReadFile('webui/asset/json/music_db.json'), 'utf8'))
-      }
+    let mdbPaths = [
+      ["mdb", "/data/others/music_db.xml"],
+      ["omni", "/data_mods/omnimix/others/music_db.merged.xml"]
+    ]
+    let prevAssetMdb = []
+    if(IO.Exists('webui/asset/json/music_db.json')) {
+      prevAssetMdb = JSON.parse(U.DecodeString(await IO.ReadFile('webui/asset/json/music_db.json'), 'utf8'))
+    }
+    if(!("omni" in prevAssetMdb)) prevAssetMdb["omni"] = { music: [] }
+    
+    for(const path of mdbPaths) {
+      if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + path[1])) {
+        let mdb = U.parseXML(U.DecodeString(await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + path[1]), "shift_jis"), false)
+        
+        let levelDiv = (mdb.mdb.music[0].difficulty.exhaust.difnum['@content'][0].toString().length === 3) ? 10 : 1
+        
+        mdb.mdb.music.forEach(musicValue => {
+          if(Object.keys(prevAssetMdb).length > 0) {
+            if(prevAssetMdb[path[0]]['music'].find(item => parseInt(item['id']) == parseInt(musicValue['@attr'].id)) == undefined) {
+              console.log((path[0] === 'omni' ? "[omnimix] " : "") + "New song added to json: " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
+              newJsonSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + (path[0] === 'omni' ? " | omnimix" : "") + '] ' + musicValue.info.title_name['@content']])
+            }
 
-      let levelDiv = (mdb.mdb.music[0].difficulty.exhaust.difnum['@content'][0].toString().length === 3) ? 10 : 1
-      
-      mdb.mdb.music.forEach(musicValue => {
-        if(Object.keys(prevAssetMdb).length > 0) {
-          if(prevAssetMdb['mdb']['music'].find(item => parseInt(item['id']) == parseInt(musicValue['@attr'].id)) == undefined) {
-            console.log("New song added to json: " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
-            newJsonSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
-          }
+            if(prevAssetMdb[path[0]]['music'].find(item => (parseInt(item['id']) == parseInt(musicValue['@attr'].id) && parseInt(item['info']['inf_ver']) === 0)) != undefined) {
+              let infVer = musicValue.info.inf_ver['@content']
+              if(['6', '7'].includes(infVer)) {
+                console.log((path[0] === 'omni' ? "[omnimix] " : "") + "New chart: [" + (infVer === '6') ? "XCD" : "NBL" + "] " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
+                newINFSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + (path[0] === 'omni' ? " | omnimix" : "") + '] ' + musicValue.info.title_name['@content']])
+              }
+            } 
 
-          if(prevAssetMdb['mdb']['music'].find(item => (parseInt(item['id']) == parseInt(musicValue['@attr'].id) && parseInt(item['info']['inf_ver']) === 0)) != undefined) {
+            if(prevAssetMdb[path[0]]['music'].find(item => (parseInt(item['id']) == parseInt(musicValue['@attr'].id) && 'ultimate' in item['difficulty'] )) == undefined && 'ultimate' in musicValue.difficulty) {
+              console.log((path[0] === 'omni' ? "[omnimix] " : "") + "New chart: [ULT] " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
+              newULTSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + (path[0] === 'omni' ? " | omnimix" : "") + '] ' + musicValue.info.title_name['@content']])
+            }
+          } else {
+            console.log((path[0] === 'omni' ? "[omnimix] " : "") + "New song added to json: " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
+            newJsonSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + (path[0] === 'omni' ? " | omnimix" : "") + '] ' + musicValue.info.title_name['@content']])
+            
             let infVer = musicValue.info.inf_ver['@content']
             if(['6', '7'].includes(infVer)) {
-              console.log("New chart: [" + (infVer === '6') ? "XCD" : "NBL" + "] " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
-              newINFSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
+              console.log((path[0] === 'omni' ? "[omnimix] " : "") + "New chart: [" + (infVer === '6') ? "XCD" : "NBL" + "] " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
+              newINFSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + (path[0] === 'omni' ? " | omnimix" : "") + '] ' + musicValue.info.title_name['@content']])
             }
-          } 
-
-          if(prevAssetMdb['mdb']['music'].find(item => (parseInt(item['id']) == parseInt(musicValue['@attr'].id) && 'ultimate' in item['difficulty'] )) == undefined && 'ultimate' in musicValue.difficulty) {
-            console.log("New chart: [ULT] " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
-            newULTSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
           }
-        } else {
-          console.log("New song added to json: " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
-          newJsonSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
-          
-          let infVer = musicValue.info.inf_ver['@content']
-          if(['6', '7'].includes(infVer)) {
-            console.log("New chart: [" + (infVer === '6') ? "XCD" : "NBL" + "] " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
-            newINFSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
-          }
-        }
 
-        mdbJsonFix.push({
-          'id': musicValue['@attr'].id,
-          'info': {
-            'title_name': musicValue.info.title_name['@content'],
-            'version': musicValue.info.version['@content'][0].toString(),
-            'inf_ver': musicValue.info.inf_ver['@content'][0].toString(),
-            'distribution_date': musicValue.info.distribution_date['@content'][0]
+          let mObj = {
+            'id': musicValue['@attr'].id,
+            'info': {
+              'title_name': musicValue.info.title_name['@content'],
+              'version': musicValue.info.version['@content'][0].toString(),
+              'inf_ver': musicValue.info.inf_ver['@content'][0].toString(),
+              'distribution_date': musicValue.info.distribution_date['@content'][0]
+            },
+            'difficulty': {
+              'novice': (musicValue.difficulty.novice.difnum['@content'][0] / levelDiv).toString(),
+              'advanced': (musicValue.difficulty.advanced.difnum['@content'][0] / levelDiv).toString(),
+              'exhaust': (musicValue.difficulty.exhaust.difnum['@content'][0] / levelDiv).toString(),
+              'maximum': 'maximum' in musicValue.difficulty ? (musicValue.difficulty.maximum.difnum['@content'][0] / levelDiv).toString() : '0',
+              'infinite': 'infinite' in musicValue.difficulty ? (musicValue.difficulty.infinite.difnum['@content'][0] / levelDiv).toString() : '0',
+              'ultimate': 'ultimate' in musicValue.difficulty ? (musicValue.difficulty.ultimate.difnum['@content'][0] / levelDiv).toString() : '0'
+            }
+          }
+
+          if(path[0] === "mdb") mdbJsonFix.push(mObj)
+          else mdbJsonOmniFix.push(mObj)
+        })
+
+        mdbJsonFixFinal = {
+          'mdb': {
+            'music': mdbJsonFix
           },
-          'difficulty': {
-            'novice': (musicValue.difficulty.novice.difnum['@content'][0] / levelDiv).toString(),
-            'advanced': (musicValue.difficulty.advanced.difnum['@content'][0] / levelDiv).toString(),
-            'exhaust': (musicValue.difficulty.exhaust.difnum['@content'][0] / levelDiv).toString(),
-            'maximum': 'maximum' in musicValue.difficulty ? (musicValue.difficulty.maximum.difnum['@content'][0] / levelDiv).toString() : '0',
-            'infinite': 'infinite' in musicValue.difficulty ? (musicValue.difficulty.infinite.difnum['@content'][0] / levelDiv).toString() : '0',
-            'ultimate': 'ultimate' in musicValue.difficulty ? (musicValue.difficulty.ultimate.difnum['@content'][0] / levelDiv).toString() : '0'
+          'omni': {
+            'music': mdbJsonOmniFix
           }
-        });
-      })
+        };
+        IO.WriteFile('webui/asset/json/music_db.json', JSON.stringify(mdbJsonFixFinal, null, 4));
+      } else {
+        console.log('Error reading music_db.xml.')
+        runErrors.push('Error reading music_db.xml.')
+      }
 
-      mdbJsonFixFinal = {
-        'mdb': {
-          'music': mdbJsonFix
-        }
-      };
-      IO.WriteFile('webui/asset/json/music_db.json', JSON.stringify(mdbJsonFixFinal, null, 4));
-    } else {
-      console.log('Error reading music_db.xml.')
-      runErrors.push('Error reading music_db.xml.')
     }
 
     // Copying new nemsys files from gamedata
@@ -466,7 +484,6 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
 
     // Extract textures from ifs files using pngjs. Massive thanks to https://github.com/mon/ifstools
     console.log("Extracting textures from IFS files")
-    let ifsSuccess = []
     for(let listIter = 0; listIter < textureslist.length; listIter++) {
       let manifestJson = {}
       let bufOffset = 0
@@ -591,7 +608,7 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
     }
 
     console.log("Updating course_data.json")
-    let courseDataUpdateSuccess = false
+
     let courseData = JSON.parse(U.DecodeString(await IO.ReadFile('webui/asset/json/course_data.json'), 'utf8'))
     for(let cIter = 0; cIter < courseData.courseData.length; cIter++) {
       if(courseData.courseData[cIter].version === 6) {

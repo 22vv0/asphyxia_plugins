@@ -10,19 +10,25 @@ function zeroPad(num, places) {
 }
 
 function getSongName(musicid) {
-    var result = music_db["mdb"]["music"].filter(object => object["id"] == musicid);
-    if (result.length == 0) {
+    var ind = music_db["mdb"]["music"].findIndex(object => object["id"] == musicid);
+    if (ind === -1) {
+        ind = music_db["omni"]["music"].findIndex(object => object["id"] == musicid);
+        if (ind > -1) return music_db["omni"]["music"][ind]["info"]["title_name"]
         return "Custom Song";
     }
-    return result[0]["info"]["title_name"]
+    return music_db["mdb"]["music"][ind]["info"]["title_name"]
 }
 
 function getDifficulty(musicid, type) {
-    var result = music_db["mdb"]["music"].filter(object => object["id"] == musicid);
-    if (result.length == 0) {
-        return "NOV";
-    }
-    var inf_ver = result[0]["info"]["inf_ver"] ? result[0]["info"]["inf_ver"] : 5;
+    let result
+    var ind = music_db["mdb"]["music"].findIndex(object => object["id"] == musicid);
+    if (ind === -1) {
+        ind = music_db["omni"]["music"].findIndex(object => object["id"] == musicid);
+        if(ind === -1) return "Unknown";
+        result = music_db["omni"]["music"][ind]
+    } else result = music_db["mdb"]["music"][ind]
+
+    var inf_ver = result["info"]["inf_ver"] ? result["info"]["inf_ver"] : 5;
     switch (type) {
         case 0:
             return "NOV";

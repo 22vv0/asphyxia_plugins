@@ -69,6 +69,7 @@ function populateTable(yourScore, rivalScore, music_db) {
     let table_data = []
     for(let ind in yourScore) {
         let songData = music_db['mdb']['music'].filter((m => parseInt(m['id']) === yourScore[ind].mid))[0]
+        if(!songData) songData = music_db['omni']['music'].filter((m => parseInt(m['id']) === yourScore[ind].mid))[0]
         let songName = songData['info']['title_name']
         let difficulty = getDifficulty(songData, yourScore[ind].type)
         let rivalIndivScore = rivalScore.filter((s => s.mid === yourScore[ind].mid && s.type === yourScore[ind].type))
@@ -134,7 +135,7 @@ $(document).ready(async function() {
     currentVersion = (urlParams.has('version') && urlParams.get('version') !== "") ? parseInt(urlParams.get('version')) : your_profile_data[your_profile_data.length - 1].version
     currentProfile = your_profile_data.find(p => p.version === currentVersion)
 
-    profiles_data_filtered = profiles_data.filter((p => p.__refid !== refid && rivals_data.filter((r => refid === p.__refid && r.version === currentVersion)).length === 0))
+    profiles_data_filtered = profiles_data.filter((p => p.__refid !== refid && p.version === currentVersion && rivals_data.filter((r => refid === p.__refid && r.version === currentVersion)).length === 0))
     for (var p of your_profile_data) {
         $('#version_select').append($('<option>', {
             value: p.version,

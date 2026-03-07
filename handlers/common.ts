@@ -91,15 +91,16 @@ export const common: EPR = async (info, data, send) => {
     }
     let music_db = await IO.ReadFile('webui/asset/json/music_db.json')
     let mdb = JSON.parse(music_db.toString());
+    let mdbFin = [...mdb.mdb.music, ...mdb.omni.music]
     let songs = [];
     let diffName = ['novice', 'advanced', 'exhaust', 'infinite', 'maximum', 'ultimate']
 
     if(U.GetConfig('unlock_all_songs')) {
       console.log("Unlocking songs. Make sure music_db.json is updated.");
       for (let i = 1; i < songNum; ++i) {
-        var foundSongIndex = mdb.mdb.music.map(function(x) {return x['id']; }).indexOf(i.toString());
+        var foundSongIndex = mdbFin.map(function(x) {return x['id']; }).indexOf(i.toString());
         if(foundSongIndex != -1) {
-          var songData = mdb.mdb.music[foundSongIndex];
+          var songData = mdbFin[foundSongIndex];
           for (let j = 0; j < 6; ++j) {
             if(songData.difficulty[diffName[j]] != '0') {
               songs.push({
@@ -114,12 +115,15 @@ export const common: EPR = async (info, data, send) => {
     } 
     else {
       let limitedNo = 2;
-      if(gameVersion === 7) songNum = parseInt(mdb.mdb.music[mdb.mdb.music.length - 1]['id'])
-      console.log("Latest song id in mdb: " + songNum)
+      let mdbId = Math.max(...mdb.mdb.music.map(m => parseInt(m['id'])))
+      let omniId = Math.max(...mdb.omni.music.map(m => parseInt(m['id'])))
+      songNum = mdbId > omniId ? mdbId : omniId 
+
+      console.log("Highest music id: " + songNum)
       for (let i = 0; i <= songNum; i++) {
-        var foundSongIndex = mdb.mdb.music.map(function(x) {return x['id']; }).indexOf(i.toString());
+        var foundSongIndex = mdbFin.map(function(x) {return x['id']; }).indexOf(i.toString());
         if(foundSongIndex != -1) {
-          var songData = mdb.mdb.music[foundSongIndex];
+          var songData = mdbFin[foundSongIndex];
           if(Math.abs(gameVersion) === 6) {
             if(parseInt(songData.info.version) <= 6 && 'distribution_date' in songData['info'] && parseInt(songData['info']['distribution_date']) > currentYMDDate) {
               console.log("Unreleased song: " + songData.info.title_name)
@@ -245,6 +249,26 @@ export const common: EPR = async (info, data, send) => {
           ],
         });
       }
+    }
+
+    if(mdb.omni.music.length > 0) {
+      let omniList = mdb.omni.music.map(m => m['id'])
+      extend.push({
+        id: 1,
+        type: 3,
+        params: [
+          4,
+          0,
+          0,
+          0,
+          0,
+          '!',
+          '',
+          '',
+          omniList.join(','),
+          "Omnimix Songs",
+        ]
+      })
     }
 
     if(IO.Exists('webui/asset/config/events.json')) {
