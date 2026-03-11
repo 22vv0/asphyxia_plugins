@@ -1089,6 +1089,16 @@
             "info": "Toggle this on to enable/disable this stamp event."
         },
         {
+            "id": "whiteday2026",
+            "type": "stamp",
+            "enabled": true,
+            "name": "White Day 2026 Stamp Event",
+            "version": 20260303,
+            "start": 20260312,
+            "desc": "Stamp event to unlock White Day themed Appeal Cards.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
             "id": "nblstampbonus1",
             "type": "stamp",
             "enabled": true,

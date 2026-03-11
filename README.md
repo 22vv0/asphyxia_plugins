@@ -1,6 +1,6 @@
 SOUND VOLTEX
 ===
-**Plugin Version:** fork-7.0.1e
+**Plugin Version:** fork-7.0.1f
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
 **Supported game versions:** 
@@ -17,15 +17,14 @@ SOUND VOLTEX
 ---
 ## Changelog
 
-### fork-7.0.1e
+### fork-7.0.1f
 
-- \[∇\] Updated event data: BPL S5 Songs list
-- \[∇\] Added VALKYRIE GENERATOR Vol.18
-- \[∇\] Updated BLASTER GATE list
-- \[∇+EG\] EX score hiscore implementation
-- \[WebUI\] Customization page: updated customization data - added VALKYRIE GENERATOR Vol.18 items.
-- \[WebUI\] Customization page: added ability to automatically retrieve datecode via game dll, used for filtering of available customization items. Requires `Game Data Directory` plugin setting and `/modules/soundvoltex.dll` to exist in it.
-- \[WebUI\] Customization page: removed new years bgm playback on bgm id 99.
+- \[∇\] Added event data: White Day 2026 Stamp Bonus Event
+- \[∇\] Updated Licensed Songs list
+- \[∇+EG\] Added `Omnimix Songs` folder - appears when Omnimix mdb exists
+- \[EG\] Updated Licensed Songs list with Omnimix music IDs
+- \[Misc\] Omnimix handler - allows Omnimix songs to be available in game with this plugin. Run `WebUI Asset Update` to retrieve mdb data from `/data_mods/omnimix/others/music_db.merged.xml`
+- \[WebUI\] Songs List page: added column for Omnimix song data indicator
 
 ---
 ## Extra notes

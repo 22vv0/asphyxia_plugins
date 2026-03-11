@@ -113,7 +113,7 @@ export const BLASTER_GATE7 = [
 ]
 
 export const LICENSED_SONGS7 = LICENSED_SONGS6.concat([
-  2348, 2344, 2343, 2352, 2353, 2345, 2234, 2354, 2350, 2351, 2209
+  2348, 2344, 2343, 2352, 2353, 2345, 2234, 2354, 2350, 2351, 2209, 2376, 2377
 ])
 
 export const UNLOCK_EVENTS7 = {
@@ -191,7 +191,21 @@ export const UNLOCK_EVENTS7 = {
         }
       ]
     }
-  },
+  },  
+  whiteday2026: {
+    id: 82,
+    type: 3,
+    params: [
+      5, 3, 0, 3, 0,
+      '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 3/12～3/23',
+      '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 3/12～3/23',
+      '1:a:6505 2:a:6506 3:a:6507 imgbg:bg_stamp_whiteday',
+    ],
+    version: 20260303,
+    start: 20260312
+  }, 
   nblstampbonus1: {
     type: 'main',
     info: {
