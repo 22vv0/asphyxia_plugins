@@ -43,7 +43,30 @@ var egLevelDiffOverride = [
     {'mid': 1343, 'type': 2, 'lvl': 16},
     {'mid': 1300, 'type': 3, 'lvl': 18},
     {'mid': 1938, 'type': 2, 'lvl': 18}
-  ]
+]
+
+var boothRank = [
+    {'exp': 0, 'title': '名も無き草'},
+    {'exp': 30, 'title': '若芽'},
+    {'exp': 100, 'title': '樹葉'},
+    {'exp': 180, 'title': '新緑'},
+    {'exp': 300, 'title': '桜花'},
+    {'exp': 450, 'title': '睡蓮'},
+    {'exp': 700, 'title': '桔梗'},
+    {'exp': 950, 'title': '雪月花'},
+    {'exp': 1200, 'title': '小雨'},
+    {'exp': 1600, 'title': '霧雨'},
+    {'exp': 2100, 'title': '村雨'},
+    {'exp': 2700, 'title': '時雨'},
+    {'exp': 3250, 'title': '彩雲'},
+    {'exp': 3800, 'title': '紫雲'},
+    {'exp': 4350, 'title': '暁雲'},
+    {'exp': 4900, 'title': '金剛雲'},
+    {'exp': 5250, 'title': '蒼空'},
+    {'exp': 5600, 'title': '天空'},
+    {'exp': 6000, 'title': '絶空'},
+    {'exp': 6500, 'title': '虚空'}
+]
 
 function createArray(length) {
     var arr = new Array(length || 0),
@@ -91,9 +114,9 @@ function getGrade(name, grade) {
             case 4:
                 return "A";
             case 5:
-                return "A+";
+                return currentVersion >= 4 ? "A+" : "AA";
             case 6:
-                return "AA";
+                return currentVersion >= 4 ? "AAA" : "AA";
             case 7:
                 return "AA+";
             case 8:
@@ -138,11 +161,11 @@ function getMedal(name, clear, version) {
             case 1:
                 return "PLAYED";
             case 2:
-                return "EFFECTIVE CLEAR";
+                return currentVersion >= 4 ? "EFFECTIVE CLEAR" : "CLEAR";
             case 3:
-                return "EXCESSIVE CLEAR";
+                return currentVersion >= 4 ? "EXCESSIVE CLEAR" : "UC";
             case 4:
-                return (version === 6) ? "UC" : "MAXXIVE CLEAR";
+                return currentVersion >= 6 ? ((version === 6) ? "UC" : "MAXXIVE CLEAR") : "PUC";
             case 5:
                 return (version === 6) ? "PUC" : "UC";
             case 6:
@@ -203,27 +226,18 @@ function getDifficulty(musicid, type) {
 }
 
 function getDifficultyNum(musicid, type) {
+    let diffLbl = ['novice', 'advanced', 'exhaust', 'infinite', 'maximum', 'ultimate']
     var result = music_db.filter(object => object["id"] == musicid);
-    switch (type) {
-        case 0:
-            return result[0]['difficulty']['novice'];
-        case 1:
-            return result[0]['difficulty']['advanced'];
-        case 2:
-            return result[0]['difficulty']['exhaust'];
-        case 3:
-            return result[0]['difficulty']['infinite'];
-        case 4:
-            return result[0]['difficulty']['maximum'];
-        case 5:
-            return result[0]['difficulty']['ultimate'];
-    }
+    if(Object.keys(result[0]['difficulty'][currentVersion]).includes(diffLbl[type])) {
+        return result[0]['difficulty'][currentVersion][diffLbl[type]]
+    } else if(Object.keys(result[0]['difficulty'][0]).includes(diffLbl[type])) {
+        return result[0]['difficulty'][0][diffLbl[type]]
+    } else return 0
 }
 
 function getAppealCard(appeal, version) {
-    let defaultCard = ['ap_06_0001', 'ap_07_0001']
     var result = appeal_db["appeal_card_data"]["card"].filter(object => object["@id"] == appeal);
-    return "static/asset/ap_card/" + ((result.length > 0) ? result[0]["info"]["texture"] : defaultCard[version-6]) + ".png"
+    return "static/asset/ap_card/" + ((result.length > 0) ? result[0]["info"]["texture"] : 'ap' + (version > 1 ? zeroPad(version, 2) : '') + '_0001') + ".png"
 }
 
 function getSongLevel(musicid, type) {
@@ -236,35 +250,8 @@ function getSongLevel(musicid, type) {
         return "1"
     }
 
-    var diffnum = 0;
+    var diffnum = getDifficultyNum(musicid, type);
 
-    switch (type) {
-        case 0:
-            if (!(result[0]["difficulty"]["novice"] === undefined))
-                diffnum = result[0]["difficulty"]["novice"]
-            break;
-        case 1:
-            if (!(result[0]["difficulty"]["advanced"] === undefined))
-                diffnum = result[0]["difficulty"]["advanced"]
-            break;
-        case 2:
-            if (!(result[0]["difficulty"]["exhaust"] === undefined))
-                diffnum = result[0]["difficulty"]["exhaust"]
-            break;
-        case 3:
-            if (!(result[0]["difficulty"]["infinite"] === undefined))
-                diffnum = result[0]["difficulty"]["infinite"]
-            break;
-        case 4:
-            if (!(result[0]["difficulty"]["maximum"] === undefined))
-                diffnum = result[0]["difficulty"]["maximum"]
-            break;
-        case 5:
-            if (!(result[0]["difficulty"]["ultimate"] === undefined))
-                diffnum = result[0]["difficulty"]["ultimate"]
-            break;
-    }
-    // console.log(diffnum)
     if (diffnum == 0) {
         diffnum = 1;
     }
@@ -371,6 +358,9 @@ function calculateVolforce() {
 }
 
 function getVF50() {
+    if(currentVersion <= 3) {
+        return $('#vf50').remove()
+    }
     let top50 = []
     for (var sc of score_db.filter(sc => sc.version === currentVersion)) {
         let sinf = getSongInfo(sc.mid)
@@ -420,21 +410,23 @@ function preSetTableMark(type) {
                 )
             ).append(
                 $('<th>').append(
-                    "EFFECTIVE CLEAR"
+                    currentVersion >= 3 ? "EFFECTIVE CLEAR" : 'CLEAR'
                 )
             ).append(
                 $('<th>').append(
-                    "EXCESSIVE CLEAR"
+                    currentVersion >= 3 ? "EXCESSIVE CLEAR" : 'UC'
                 )
             ).append(
+                currentVersion < 6 ? null :
                 $('<th>').append(
                     "MAXXIVE CLEAR"
                 )
             ).append(
                 $('<th>').append(
-                    "UC"
+                    currentVersion >= 3 ? "UC" : "PUC"
                 )
             ).append(
+                currentVersion < 3 ? null :
                 $('<th>').append(
                     "PUC"
                 )
@@ -469,25 +461,29 @@ function preSetTableGrade(type) {
                 )
             ).append(
                 $('<th>').append(
-                    "A+"
+                    currentVersion >= 4 ? "A+" : "AA"
                 )
             ).append(
                 $('<th>').append(
-                    "AA"
+                    currentVersion >= 4 ? "AA" : "AAA"
                 )
             ).append(
+                currentVersion < 4 ? null :
                 $('<th>').append(
                     "AA+"
                 )
             ).append(
+                currentVersion < 4 ? null :
                 $('<th>').append(
                     "AAA"
                 )
             ).append(
+                currentVersion < 4 ? null :
                 $('<th>').append(
                     "AAA+"
                 )
             ).append(
+                currentVersion < 4 ? null :
                 $('<th>').append(
                     "S"
                 )
@@ -526,9 +522,6 @@ function setCMpD() {
             .css('width', '45%');
         $('#statistic-table').fadeIn(200);
     })
-
-
-
 }
 
 function setCMpL() {
@@ -626,16 +619,25 @@ function setUpStatistics(profileVer) {
     baseTBodyGpD = $('<tbody>');
     baseTBodyASpL = $('<tbody>');
 
-    var CMpDArray = createArray(6, 6);
-    var CMpLArray = createArray(20, 6);
-    var GpDArray = createArray(6, 10);
-    var GpLArray = createArray(20, 10);
-    var ASpLArray = createArray(20, 2);
+    let matLen = {
+        cmpd: currentVersion <= 3 ? [3, 4] : [6, 6],
+        cmpl: currentVersion <= 3 ? [15, 4] : [20, 6],
+        gpd: currentVersion <= 3 ? [3, 6] : [6, 10],
+        gpl: currentVersion <= 3 ? [15, 6] : [20, 10],
+        aspl: currentVersion <= 3 ? [15, 2] : [20, 2],
+    }
+
+    var CMpDArray = createArray(matLen['cmpd'][0], matLen['cmpd'][1]);
+    var CMpLArray = createArray(matLen['cmpl'][0], matLen['cmpl'][1]);
+    var GpDArray = createArray(matLen['gpd'][0], matLen['gpd'][1]);
+    var GpLArray = createArray(matLen['gpl'][0], matLen['gpl'][1]);
+    var ASpLArray = createArray(matLen['aspl'][0], matLen['aspl'][1]);
+    console.log(matLen)
 
     score_db.filter(sc => sc.version === profileVer).forEach(function(currentValue, index, array) {
         let egClear = [0, 1, 2, 3, 5, 6, 4]
         let clearMark = (profileVer === 6) ? egClear[currentValue.clear] : currentValue.clear
-        // console.log(currentValue);
+        console.log(currentValue);
         CMpDArray[currentValue.type][clearMark - 1] += 1;
         CMpLArray[parseInt(getSongLevel(currentValue.mid, currentValue.type)) - 1][clearMark - 1] += 1;
         GpDArray[currentValue.type][currentValue.grade - 1]++;
@@ -649,115 +651,138 @@ function setUpStatistics(profileVer) {
     // console.log(GpDArray);
     // console.log(GpLArray);
     // console.log(ASpLArray);
-    for (var diff = 0; diff < 6; diff++) {
+    for (var diff = 0; diff < matLen['cmpd'][0]; diff++) {
+        console.log(matLen['cmpd'][1])
         baseTBodyCMpD.append(
             $('<tr>').append(
                 $('<th>').append(
                     diffName[diff]
                 )
             ).append(
+                (0 >= matLen['cmpd'][1]) ? null :
                 $('<td>').append(
                     CMpDArray[diff][0]
                 )
             ).append(
+                (1 >= matLen['cmpd'][1]) ? null :
                 $('<td>').append(
                     CMpDArray[diff][1]
                 )
             ).append(
+                (2 >= matLen['cmpd'][1]) ? null :
                 $('<td>').append(
                     CMpDArray[diff][2]
                 )
             ).append(
+                (3 >= matLen['cmpd'][1]) ? null :
                 $('<td>').append(
                     CMpDArray[diff][3]
                 )
             ).append(
+                (4 >= matLen['cmpd'][1]) ? null :
                 $('<td>').append(
                     CMpDArray[diff][4]
                 )
             ).append(
+                (5 >= matLen['cmpd'][1]) ? null :
                 $('<td>').append(
                     CMpDArray[diff][5]
                 )
             )
         )
     }
-    for (var lv = 1; lv <= 20; lv++) {
+    for (var lv = 1; lv <= matLen['cmpl'][0]; lv++) {
         baseTBodyCMpL.append(
             $('<tr>').append(
                 $('<th>').append(
                     lv
                 )
             ).append(
+                (0 >= matLen['cmpl'][1]) ? null :
                 $('<td>').append(
                     CMpLArray[lv - 1][0]
                 )
             ).append(
+                (1 >= matLen['cmpl'][1]) ? null :
                 $('<td>').append(
                     CMpLArray[lv - 1][1]
                 )
             ).append(
+                (2 >= matLen['cmpl'][1]) ? null :
                 $('<td>').append(
                     CMpLArray[lv - 1][2]
                 )
             ).append(
+                (3 >= matLen['cmpl'][1]) ? null :
                 $('<td>').append(
                     CMpLArray[lv - 1][3]
                 )
             ).append(
+                (4 >= matLen['cmpl'][1]) ? null :
                 $('<td>').append(
                     CMpLArray[lv - 1][4]
                 )
             ).append(
+                (5 >= matLen['cmpl'][1]) ? null :
                 $('<td>').append(
                     CMpLArray[lv - 1][5]
                 )
             )
         )
     }
-    for (var diff = 0; diff < 6; diff++) {
+    for (var diff = 0; diff < matLen['gpd'][0]; diff++) {
         baseTBodyGpD.append(
             $('<tr>').append(
                 $('<th>').append(
                     diffName[diff]
                 )
             ).append(
+                (0 >= matLen['gpd'][1]) ? null :
                 $('<td>').append(
                     GpDArray[diff][0]
                 )
             ).append(
+                (1 >= matLen['gpd'][1]) ? null :
                 $('<td>').append(
                     GpDArray[diff][1]
                 )
             ).append(
+                (2 >= matLen['gpd'][1]) ? null :
                 $('<td>').append(
                     GpDArray[diff][2]
                 )
             ).append(
+                (3 >= matLen['gpd'][1]) ? null :
                 $('<td>').append(
                     GpDArray[diff][3]
                 )
             ).append(
+                (4 >= matLen['gpd'][1]) ? null :
                 $('<td>').append(
                     GpDArray[diff][4]
                 )
             ).append(
+                (5 >= matLen['gpd'][1]) ? null :
                 $('<td>').append(
                     GpDArray[diff][5]
                 )
             ).append(
+                (6 >= matLen['gpd'][1]) ? null :
                 $('<td>').append(
                     GpDArray[diff][6]
                 )
             ).append(
+                (7 >= matLen['gpd'][1]) ? null :
                 $('<td>').append(
                     GpDArray[diff][7]
                 )
             ).append(
+                (8 >= matLen['gpd'][1]) ? null :
                 $('<td>').append(
                     GpDArray[diff][8]
                 )
             ).append(
+                (9 >= matLen['gpd'][1]) ? null :
                 $('<td>').append(
                     GpDArray[diff][9]
                 )
@@ -765,56 +790,66 @@ function setUpStatistics(profileVer) {
         )
     }
 
-    for (var lv = 1; lv <= 20; lv++) {
+    for (var lv = 1; lv <= matLen['gpl'][0]; lv++) {
         baseTBodyGpL.append(
             $('<tr>').append(
                 $('<th>').append(
                     lv
                 )
             ).append(
+                (0 >= matLen['gpl'][1]) ? null :
                 $('<td>').append(
                     GpLArray[lv - 1][0]
                 )
             ).append(
+                (1 >= matLen['gpl'][1]) ? null :
                 $('<td>').append(
                     GpLArray[lv - 1][1]
                 )
             ).append(
+                (2 >= matLen['gpl'][1]) ? null :
                 $('<td>').append(
                     GpLArray[lv - 1][2]
                 )
             ).append(
+                (3 >= matLen['gpl'][1]) ? null :
                 $('<td>').append(
                     GpLArray[lv - 1][3]
                 )
             ).append(
+                (4 >= matLen['gpl'][1]) ? null :
                 $('<td>').append(
                     GpLArray[lv - 1][4]
                 )
             ).append(
+                (5 >= matLen['gpl'][1]) ? null :
                 $('<td>').append(
                     GpLArray[lv - 1][5]
                 )
             ).append(
+                (6 >= matLen['gpl'][1]) ? null :
                 $('<td>').append(
                     GpLArray[lv - 1][6]
                 )
             ).append(
+                (7 >= matLen['gpl'][1]) ? null :
                 $('<td>').append(
                     GpLArray[lv - 1][7]
                 )
             ).append(
+                (8 >= matLen['gpl'][1]) ? null :
                 $('<td>').append(
                     GpLArray[lv - 1][8]
                 )
             ).append(
+                (9 >= matLen['gpl'][1]) ? null :
                 $('<td>').append(
                     GpLArray[lv - 1][9]
                 )
             )
         )
     }
-    for (var lv = 1; lv <= 20; lv++) {
+    for (var lv = 1; lv <= matLen['aspl'][0]; lv++) {
         baseTBodyASpL.append(
             $('<tr>').append(
                 $('<th>').append(
@@ -994,7 +1029,7 @@ $(document).ready(function() {
 
     $.when(
         $.getJSON("static/asset/json/music_db.json", function(json) {
-            music_db = [...json.mdb.music, ...json.omni.music];
+            music_db = json.mdb.music;
             // console.log(music_db);
         }),
         $.getJSON("static/asset/json/course_data.json", function(json) {
@@ -1036,8 +1071,9 @@ $(document).ready(function() {
             }
         }
 
+        console.log(currentProfile)
         $('#test').append(
-            $('<div class="card is-inlineblocked" style="padding-bottom:30px">').append(
+            $('<div class="card" style="padding-bottom:30px">').append(
                 $('<div class="card-header">').append(
                     $('<p class="card-header-title">').append(
                         $('<span class="icon">').append(
@@ -1058,13 +1094,13 @@ $(document).ready(function() {
                         $('<div class="tile is-parent is-6">').append(
                             $('<article class="tile is-child">').append(
                                 $('<div>').append(
-                                    $('<div>').append("Player Name:").css('font-size', '15').append($('<br>'))
+                                    $('<div>').append("Player Name:").css('font-size', '20px').append($('<br>'))
                                 ).append(
                                     $('<div>').append(currentProfile["name"]).css('font-size', "35px")
                                 ).append(
-                                    $('<div>').append("Appeal Title:").css('font-size', '15')
+                                    currentVersion <= 3 ? null : $('<div>').append("Appeal Title:").css('font-size', '20px')
                                 ).append(
-                                    $('<div>').append(getAkaname(currentProfile["akaname"])).css('font-size', "35px")
+                                    currentVersion <= 3 ? null : $('<div>').append(getAkaname(currentProfile["akaname"])).css('font-size', "35px")
                                 )
                                 .css('font-family', "testfont,ffff")
                             )
@@ -1073,10 +1109,12 @@ $(document).ready(function() {
                         $('<div class="tile is-parent is-3">').append(
                             $('<article class="tile is-child is-centered">').append(
                                 $('<div>').append(
+                                    (currentVersion <= 3) ? "Rank:" :
                                     $('<img>').attr('src', getVFAsset(currentVF)).css('width', '7em')
                                     .css('margin', '0 auto')
-                                ).append(
+                                ).css('font-size', '20px').append(
                                     $('<div>').append(
+                                        (currentVersion <= 3) ? boothRank[boothRank.findIndex((val, ind, arr) => ind < arr.length - 1 && currentProfile.expPoint >= val.exp && currentProfile.expPoint <= arr[ind + 1].exp)].title : 
                                         currentVF
                                     ).css('font-family', "testfont")
                                     .css('font-size', "35px")
@@ -1085,7 +1123,7 @@ $(document).ready(function() {
                                 .css('vertical-align', 'middle')
                                 .css('min-height', '100%')
                                 .css('height', '100%')
-                            )
+                            ).css('font-family', "testfont,ffff")
                         )
                     )
                 ).append(
@@ -1135,7 +1173,8 @@ $(document).ready(function() {
                 )
             )
         ).append(
-            $('<div class="card  is-inlineblocked">').append(
+            currentVersion !== 6 ? null :
+            $('<div class="card">').append(
                 $('<div class="card-header">').append(
                     $('<p class="card-header-title">').append(
                         $('<span class="icon">').append(

@@ -176,7 +176,6 @@ function getCourseInfo(sid, cid, version) {
         return a.id == cid;
     });
     courseLevelFiltered = courseLevelFiltered[0] ? courseLevelFiltered[0] : 0;
-    console.log(courseLevelFiltered);
     course.skillName = courseLevelFiltered.name;
     var tracksInfo = [];
     for (var i in courseLevelFiltered.tracks) {
@@ -184,18 +183,17 @@ function getCourseInfo(sid, cid, version) {
     }
     course.level = courseLevelFiltered.level;
     course.tracks = tracksInfo;
-    console.log(course.tracks);
     return course;
 }
 
 function setCourseInfo(courseArray, skillType) {
     var courseCtx = $('#course_content');
     courseCtx.empty();
-    console.log(courseArray);
     for (var i in courseArray) {
+        console.log(courseArray[i])
         var courseSeason = courseArray[i].sid;
         var cid = courseArray[i].cid;
-        var stype = courseArray[i].stype;
+        var stype = courseArray[i].stype || 0;
         var version = courseArray[i].version;
         var score = courseArray[i].score;
         var rate = courseArray[i].rate;
@@ -344,6 +342,12 @@ $('#skilltype_select').change(function() {
 
 $(document).ready(function() {
     var course_data = JSON.parse(document.getElementById("data-pass").innerText);
+    if(course_data.length === 0) {
+        $('#course-disp').attr('hidden', 'true')
+        $('#no-data').removeAttr('hidden')
+    } else {
+        $('#course-disp').removeAttr('hidden')
+    }
     course_data = course_data.sort(function(a, b) {
         if (a.version > b.version) return 1;
         if (a.version < b.version) return -1;
@@ -406,7 +410,7 @@ $(document).ready(function() {
         for (var i in music_db["mdb"]["music"]) {
             arr.push(music_db["mdb"]["music"][i]["info"]["title_name"]);
         }
-        console.log(arr);
+        // console.log(arr);
         $('#version_select').val(6);
         $('#skilltype_select').val(0);
         setDataSource($('#version_select').val(), $('#skilltype_select').val());

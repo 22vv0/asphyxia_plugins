@@ -43,6 +43,14 @@ export function register() {
   R.Config('unlock_all_songs', { type: 'boolean', default: false, name:'Unlock All Songs'});
   R.Config('unlock_all_navigators', { type: 'boolean', default: false, name:'Unlock All Navigators'} );
   R.Config('unlock_all_appeal_cards', { type: 'boolean', default: false, name:'Unlock All Appeal Cards'});
+  R.DataFile('./webui/asset/uploads/1_mdb.xml', {name: 'SDVX1 mdb xml', accept: 'text/xml, .xml'});
+  R.DataFile('./webui/asset/uploads/2_mdb.xml', {name: 'SDVX2 mdb xml', accept: 'text/xml, .xml'});
+  R.DataFile('./webui/asset/uploads/3_mdb.xml', {name: 'SDVX3 mdb xml', accept: 'text/xml, .xml'});
+  R.DataFile('./webui/asset/uploads/4_mdb.xml', {name: 'SDVX4 mdb xml', accept: 'text/xml, .xml'});
+  R.DataFile('./webui/asset/uploads/5_mdb.xml', {name: 'SDVX5 mdb xml', accept: 'text/xml, .xml'});
+  R.DataFile('./webui/asset/uploads/6_mdb.xml', {name: 'SDVX6 mdb xml', accept: 'text/xml, .xml'});
+  R.DataFile('./webui/asset/uploads/7_mdb.xml', {name: 'SDVX7 mdb xml', accept: 'text/xml, .xml'});
+  R.DataFile('./webui/asset/uploads/0_mdb.xml', {name: 'Omnimix mdb xml', desc: 'SDVX7 compatible mdb', accept: 'text/xml, .xml'});
 
   R.WebUIEvent('copyResourcesFromGame', copyResourcesFromGame);
   R.WebUIEvent('getRivalScores', getRivalScores);
@@ -58,6 +66,7 @@ export function register() {
 
   const MultiRoute = (method: string, handler: EPR | boolean) => {
     // Helper for register multiple versions.
+    R.Route(`game.${method}`, handler);
     R.Route(`game.sv6_${method}`, handler);
     R.Route(`game.sv7_${method}`, handler);
   };

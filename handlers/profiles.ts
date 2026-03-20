@@ -69,6 +69,21 @@ export const loadScore: EPR = async (info, data, send) => {
   console.log('Finding record');
   const records = await DB.Find<MusicRecord>(refid, { collection: 'music', version });
 
+  if (version === 1) {
+    return send.object({
+      music: records.map(r => (
+        K.ATTR({ music_id: r.mid.toString() }, {
+        type: K.ATTR({
+          type_id: r.type.toString(),
+          clear_type: r.clear.toString(),
+          score_grade: r.grade.toString(),
+          score: r.score.toString(),
+          cnt: r.playCount.toString()
+        })
+      })))
+    });
+  }
+
   if (version === 6) {
     return send.object({
       music: {
@@ -145,6 +160,55 @@ export const saveScore: EPR = async (info, data, send) => {
 
   const version = getVersion(info);
   const dVersion = parseInt(info.model.split(":")[4].slice(0, -2));
+
+  if (version === 1) {
+    try {
+      const mid = parseInt($(data).attr().music_id);
+      const type = parseInt($(data).attr().music_type);
+
+      if (_.isNil(mid) || _.isNil(type)) return send.deny();
+
+      const record = (await DB.FindOne<MusicRecord>(refid, {
+        collection: 'music',
+        version,
+        mid,
+        type,
+      })) || {
+        collection: 'music',
+        version,
+        mid,
+        type,
+        score: 0,
+        clear: 0,
+        grade: 0,
+        buttonRate: 0,
+        longRate: 0,
+        volRate: 0,
+        playCount: 0
+      };
+
+      const score = $(data).attr().score ? parseInt($(data).attr().score) : 0;
+      const clear = $(data).attr().clear_type ? parseInt($(data).attr().clear_type) : 0;
+      const grade = $(data).attr().score_grade ? parseInt($(data).attr().score_grade) : 0;
+      if (score > record.score) {
+        record.score = score;
+      }
+
+      record.clear = Math.max(clear, record.clear);
+      record.grade = Math.max(grade, record.grade);
+      record.playCount = record.playCount + 1
+
+      await DB.Upsert<MusicRecord>(
+        refid,
+        { collection: 'music', version, mid, type },
+        record,
+      );
+
+      return send.success();
+    } catch {
+      return send.deny();
+    }
+  }
 
   if (version === -6 || version === 7) { // Using alternate scoring system after 20210831
     const tracks = $(data).elements('track');
@@ -254,6 +318,33 @@ export const save: EPR = async (info, data, send) => {
 
   const version = Math.abs(getVersion(info));
   if (version === 0) return send.deny();
+
+  if (version === 1) {
+    await DB.Update<Profile>(
+      refid,
+      { collection: 'profile', version },
+      {
+        $set: {
+          headphone: $(data).number('headphone'),
+          hiSpeed: $(data).number('hispeed'),
+          appeal: $(data).number('appeal_id'),
+          boothFrame: [$(data).number('frame0'), $(data).number('frame1'), $(data).number('frame2'), $(data).number('frame3'), $(data).number('frame4')],
+          musicID: parseInt($(data).attr("last").music_id),
+          musicType: parseInt($(data).attr("last").music_type),
+          sortType: parseInt($(data).attr("last").sort_type),
+          mUserCnt: $(data).number('m_user_cnt'),
+          haveItem: $(data).numbers('have_item'),
+          haveNote: $(data).numbers('have_note')
+        },
+        $inc: {
+          expPoint: $(data).number('gain_exp'),
+          packets: $(data).number('earned_gamecoin_packet'),
+          blocks: $(data).number('earned_gamecoin_block'),
+        },
+      }
+    );
+    return send.success();
+  }
 
   // Save Profile
   if (version === 6 || version === 7) {
@@ -468,9 +559,36 @@ export const load: EPR = async (info, data, send) => {
   });
 
   if (!profile) {
-    if(version === 7 && await DB.Count<Profile>(refid, {collection: 'profile', version: 6}) === 1) profile = await DB.FindOne<Profile>(refid, {collection: 'profile', version: 6});
-    else if(version === 6 && await DB.Count<Profile>(refid, {collection: 'profile', version: {$gt: 6}}) >= 1) return send.deny();
+    if(await DB.Count<Profile>(refid, {collection: 'profile', version: version - 1}) === 1) profile = await DB.FindOne<Profile>(refid, {collection: 'profile', version: version - 1});
+    // else if(version === 6 && await DB.Count<Profile>(refid, {collection: 'profile', version: {$gt: 6}}) >= 1) return send.deny();
+    else if(version === 1) return send.object(K.ATTR({none: "1"}));
     else return send.object({ result: K.ITEM('u8', 1) });
+  }
+
+  if (version === 1) {
+    return send.object({
+      name: K.ITEM('str', profile.name),
+      code: K.ITEM('str', IDToCode(profile.id)),
+      gamecoin_packet: K.ITEM('u32', profile.packets),
+      gamecoin_block: K.ITEM('u32', profile.blocks),
+      exp_point: K.ITEM('u32', profile.expPoint),
+      m_user_cnt: K.ITEM('u32', profile.mUserCnt),
+      have_item: K.ARRAY('bool', profile.haveItem),
+      have_note: K.ARRAY('bool', profile.haveNote),
+      last: K.ATTR({
+        music_id: profile.musicID.toString(),
+        music_type: profile.musicType.toString(),
+        sort_type: profile.sortType.toString(),
+        headphone: profile.headphone.toString(),
+        hispeed: profile.hiSpeed.toString(),
+        appeal_id: profile.appeal.toString(),
+        frame1: profile.boothFrame[0].toString(),
+        frame2: profile.boothFrame[1].toString(),
+        frame3: profile.boothFrame[2].toString(),
+        frame4: profile.boothFrame[3].toString(),
+        frame5: profile.boothFrame[4].toString()
+      }, {})
+    })
   }
 
   if(!('datecode' in profile) || dVersion > profile.datecode) {
@@ -738,6 +856,8 @@ export const create: EPR = async (info, data, send) => {
     expPoint: 0,
     mUserCnt: 0,
     boothFrame: [0, 0, 0, 0, 0],
+    haveItem: [],
+    haveNote: [],
 
     playCount: 0,
     dayCount: 0,
@@ -753,12 +873,13 @@ export const create: EPR = async (info, data, send) => {
     creatorItem: 1
   };
 
-  await DB.Upsert(refid, { collection: 'profile' }, profile);
+  await DB.Upsert(refid, { collection: 'profile', version}, profile);
   return send.object({ result: K.ITEM('u8', 0) });
 };
 
 export const buy: EPR = async (info, data, send) => {
-  const refid = $(data).str('refid');
+  const version = Math.abs(getVersion(info))
+  const refid = (version === 1) ? $(data).attr().refid : $(data).str('refid');
   if (!refid) return send.deny();
 
   const growth = {
@@ -768,16 +889,24 @@ export const buy: EPR = async (info, data, send) => {
 
   const currency = $(data).bool('currency_type') ? 'blocks' : 'packets';
 
-  const cost = _.sum($(data).numbers('item.price', []));
+  const cost = (version === 1) ? $(data).number('price') : _.sum($(data).numbers('item.price', []));
   const balanceChange = growth[currency] - cost;
 
-  const updated = await DB.Update<Profile>(
+  await DB.Update<Profile>(
     refid,
-    { collection: 'profile', [currency]: { $gte: -balanceChange } },
+    { collection: 'profile', version, [currency]: { $gte: -balanceChange } },
     { $inc: { [currency]: balanceChange } }
   );
 
-  if (updated.updated) {
+  let profile = await DB.FindOne<Profile>(refid, {collection: 'profile', version: 1})
+  if (version === 1) {
+    const index = $(data).number('open_index')
+    await DB.Upsert<Profile>(refid, {collection: 'profile', version}, {
+      $set: {
+        [`haveItem.${index}`]: 1
+      }
+    })
+  } else {
     const items = _.zipWith(
       $(data).numbers('item.item_type', []),
       $(data).numbers('item.item_id', []),
@@ -792,14 +921,11 @@ export const buy: EPR = async (info, data, send) => {
         { $set: { param: item.param, dbver: DB_VER } }
       );
     }
-
-    return send.object({
-      gamecoin_packet: K.ITEM('u32', updated.docs[0].packets),
-      gamecoin_block: K.ITEM('u32', updated.docs[0].blocks),
-    });
-  } else {
-    return send.success();
   }
+  return send.object({
+    gamecoin_packet: K.ITEM('u32', profile.packets),
+    gamecoin_block: K.ITEM('u32', profile.blocks),
+  });
 };
 
 export const print: EPR = async (info, data, send) => {

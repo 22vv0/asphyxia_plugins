@@ -1,9 +1,11 @@
+import { EVENT, SDVX_STATION } from '../data/booth';
 import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIE_SONGS, LICENSED_SONGS6, CURRENT_ARENA, ARENA_STATION_ITEMS, VALGENE, INFORMATION6, UNLOCK_EVENTS6, MUSIC_OVERRIDE6 } from '../data/exg';
 import { EVENT7, COURSES7, EXTENDS7, LICENSED_SONGS7, CURRENT_ARENA7, ARENA_STATION_ITEMS7, VALGENE7, APIGENE7, INFORMATION7, UNLOCK_EVENTS7, EGSONGS_LOCKED, MUSIC_OVERRIDE7 } from '../data/nbl';
 import {getVersion, checkVerStart, getRandomIntInclusive} from '../utils';
 
 export const common: EPR = async (info, data, send) => {
   try {
+    let station = [];
     let events = [];
     let courses = [];
     let extend = [];
@@ -26,8 +28,15 @@ export const common: EPR = async (info, data, send) => {
     const version = parseInt(info.model.split(":")[4].slice(0, -2));
 
     switch (info.method) {
+      case 'common': {
+        console.log('Game: BOOTH')
+        songNum = 187
+        events = EVENT
+        station = SDVX_STATION
+        break
+      }
       case 'sv6_common': {
-        console.log('Game: Exceed Gear')
+        console.log('Game: EXCEED GEAR')
         //events = EVENT6;
         EVENT6.forEach(val => events.push(val));
         if(IO.Exists('webui/asset/config/flags.json')) {
@@ -89,20 +98,39 @@ export const common: EPR = async (info, data, send) => {
         break;
       }
     }
+
+    if(gameVersion === 1)  return send.object({
+      limited: {
+        music: Array.from({ length: songNum }, (_, id) => K.ATTR({id: (id + 1).toString(), flag: '2'}, {}))
+      },
+      event: {
+        info: events.map(id => K.ATTR({id: id.toString()}))
+      },
+      catalog: {
+        info: [
+          ...[
+            K.ATTR({id: "1", currency: "1", price: "0"}, {}),
+            K.ATTR({id: "2", currency: "1", price: "0"}, {}),
+          ],
+          ...station.map((prc, ind) => K.ATTR({id: (ind + 1000).toString(), currency: "1", price: prc.toString()}))
+        ]
+      }
+    })
+
     let music_db = await IO.ReadFile('webui/asset/json/music_db.json')
-    let mdb = JSON.parse(music_db.toString());
-    let mdbFin = [...mdb.mdb.music, ...mdb.omni.music]
+    let mdb = JSON.parse(music_db.toString())
     let songs = [];
     let diffName = ['novice', 'advanced', 'exhaust', 'infinite', 'maximum', 'ultimate']
+    let omniList = []
 
     if(U.GetConfig('unlock_all_songs')) {
       console.log("Unlocking songs. Make sure music_db.json is updated.");
       for (let i = 1; i < songNum; ++i) {
-        var foundSongIndex = mdbFin.map(function(x) {return x['id']; }).indexOf(i.toString());
+        var foundSongIndex = mdb.mdb.music.map(function(x) {return x['id']; }).indexOf(i.toString());
         if(foundSongIndex != -1) {
-          var songData = mdbFin[foundSongIndex];
+          var songData = mdb.mdb.music[foundSongIndex];
           for (let j = 0; j < 6; ++j) {
-            if(songData.difficulty[diffName[j]] != '0') {
+            if(songData.difficulty[gameVersion][diffName[j]] != '0') {
               songs.push({
                 music_id: K.ITEM('s32', i),
                 music_type: K.ITEM('u8', j),
@@ -115,15 +143,14 @@ export const common: EPR = async (info, data, send) => {
     } 
     else {
       let limitedNo = 2;
-      let mdbId = Math.max(...mdb.mdb.music.map(m => parseInt(m['id'])))
-      let omniId = Math.max(...mdb.omni.music.map(m => parseInt(m['id'])))
-      songNum = mdbId > omniId ? mdbId : omniId 
+      songNum = Math.max(...mdb.mdb.music.map(m => parseInt(m['id'])))
 
       console.log("Highest music id: " + songNum)
       for (let i = 0; i <= songNum; i++) {
-        var foundSongIndex = mdbFin.map(function(x) {return x['id']; }).indexOf(i.toString());
+        var foundSongIndex = mdb.mdb.music.map(function(x) {return x['id']; }).indexOf(i.toString());
         if(foundSongIndex != -1) {
-          var songData = mdbFin[foundSongIndex];
+          var songData = mdb.mdb.music[foundSongIndex];
+          if ('omnimix' in songData.info) omniList.push(i)
           if(Math.abs(gameVersion) === 6) {
             if(parseInt(songData.info.version) <= 6 && 'distribution_date' in songData['info'] && parseInt(songData['info']['distribution_date']) > currentYMDDate) {
               console.log("Unreleased song: " + songData.info.title_name)
@@ -141,7 +168,7 @@ export const common: EPR = async (info, data, send) => {
                 if(i === 2034) limitedNo = 2;
 
                 for(let j = 0; j < 6; j++) {
-                  if(songData.difficulty[diffName[j]] != '0') {
+                  if(songData.difficulty[gameVersion][diffName[j]] != '0') {
                     songs.push({
                       music_id: K.ITEM('s32', i),
                       music_type: K.ITEM('u8', j),
@@ -163,7 +190,7 @@ export const common: EPR = async (info, data, send) => {
               }
             }
           }
-          else if(gameVersion === 7) {
+          else if(Math.abs(gameVersion) === 7) {
             if(parseInt(songData.info.version) <= 7 && 'distribution_date' in songData['info'] && parseInt(songData['info']['distribution_date']) > currentYMDDate) {
               console.log("Unreleased song: " + songData.info.title_name)
             }
@@ -175,7 +202,7 @@ export const common: EPR = async (info, data, send) => {
                 if(licensedSongs.includes(i)) limitedNo += 1;
 
                 for(let j = 0; j < 6; j++) {
-                  if(songData.difficulty[diffName[j]] != '0') {
+                  if(songData.difficulty[gameVersion][diffName[j]] != '0') {
                     songs.push({
                       music_id: K.ITEM('s32', i),
                       music_type: K.ITEM('u8', j),
@@ -190,7 +217,7 @@ export const common: EPR = async (info, data, send) => {
           if (parseInt(songData.info.version) < Math.abs(gameVersion) && licensedSongs.includes(i)) {
             limitedNo += 1;
             for(let j = 0; j < 6; j++) {
-              if(songData.difficulty[diffName[j]] != '0') {
+              if(songData.difficulty[gameVersion][diffName[j]] != '0') {
                 songs.push({
                   music_id: K.ITEM('s32', i),
                   music_type: K.ITEM('u8', j),
@@ -251,8 +278,7 @@ export const common: EPR = async (info, data, send) => {
       }
     }
 
-    if(mdb.omni.music.length > 0) {
-      let omniList = mdb.omni.music.map(m => m['id'])
+    if(omniList.length > 0) {
       extend.push({
         id: 1,
         type: 3,

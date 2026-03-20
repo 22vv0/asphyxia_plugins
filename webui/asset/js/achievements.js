@@ -2,7 +2,7 @@ var achobt = []
 var achdata = []
 var aptitlelist = []
 var currentVersion;
-var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVIDWAVE', 'EXCEED GEAR', '∇']
+var versionText = ['', 'BOOTH', 'infinite infection', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVID WAVE', 'EXCEED GEAR', '∇']
 
 $(document).ready(async function() {
 	achobt = JSON.parse(document.getElementById("data-pass").innerText);

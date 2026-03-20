@@ -16,6 +16,23 @@ export const hiscore: EPR = async (info, data, send) => {
     '__refid'
   );
 
+  if (version === 1) {
+    return send.object({
+      hiscore: K.ATTR({ type: "1" }, {
+        music: _.map(
+          _.groupBy(records, r => `${r.mid}:${r.type}`),
+          r => _.maxBy(r, 'score')
+        ).map(r => (
+          K.ATTR({ id: r.mid.toString() }, {
+          note: K.ATTR({ type: r.type.toString() }, {
+            name: K.ITEM('str', profiles[r.__refid][0].name),
+            score: K.ITEM('u32', r.score)
+          })
+        }))),
+      })
+    })
+  }
+
   return send.object({
     sc: {
       d: _.map(

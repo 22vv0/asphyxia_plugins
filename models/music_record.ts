@@ -14,4 +14,5 @@ export interface MusicRecord {
   buttonRate: number;
   longRate: number;
   volRate: number;
+  playCount: number;
 }

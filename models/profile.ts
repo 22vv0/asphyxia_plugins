@@ -35,6 +35,8 @@ export interface Profile {
   narrowDown: number;
 
   boothFrame: number[];
+  haveItem: number[];
+  haveNote: number[];
 
   playCount: number;
   dayCount: number;

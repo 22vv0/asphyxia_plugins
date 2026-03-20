@@ -1,9 +1,10 @@
 SOUND VOLTEX
 ===
-**Plugin Version:** fork-7.0.1f
+**Plugin Version:** fork-7.1.0
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
-**Supported game versions:** 
+**Supported game versions:**
+- BOOTH (2013052900)
 - EXCEED GEAR (2025120900 final)
 - ∇ (2026030300)
 
@@ -17,14 +18,32 @@ SOUND VOLTEX
 ---
 ## Changelog
 
-### fork-7.0.1f
+### BOOTH support (2013052900)
 
-- \[∇\] Added event data: White Day 2026 Stamp Bonus Event
-- \[∇\] Updated Licensed Songs list
-- \[∇+EG\] Added `Omnimix Songs` folder - appears when Omnimix mdb exists
-- \[EG\] Updated Licensed Songs list with Omnimix music IDs
-- \[Misc\] Omnimix handler - allows Omnimix songs to be available in game with this plugin. Run `WebUI Asset Update` to retrieve mdb data from `/data_mods/omnimix/others/music_db.merged.xml`
-- \[WebUI\] Songs List page: added column for Omnimix song data indicator
+- Re-added support (profile creation, data save/load, hiscore)
+- Added catalog data: SDVX STATION song shop list
+- Added catalog data: GENERATOR:01 and GENERATOR:02
+- Added event data: Matching mode
+- Added event data: SDVX Spring Special Bonus (one-time 573 pc and blc bonus)
+- Added event data: Special Bonus (one-time 500 pc and blc bonus)
+- Added event data: Enable Touhou brand logo display
+- Added event data: Adds 8 items to GENERATOR:02
+
+### Misc
+
+- Added option to upload SDVX 1-7 music_db.xml file to pull version-specific song data from -- required for accurate statistics data
+- Re-added ability to create play data for older games
+- Added haveItem and haveNote to Profile model to save/load BOOTH unlock data
+- Added playCount to Music (score) model
+
+### WebUI
+
+- Profile details page: Display version-specific data (Rank for BOOTH, etc)
+- Profile details page: Adjust statistics table depending on profile data version being displayed
+- Customization page: Hide incompatible options per version (BOOTH)
+- Songs list page: Added ability to select game version mdb to load
+- Skill Analyzer data page: Fix data not displaying when stype does not exist in course data
+- Skill Analyzer data page: Fix view when there are no course data
 
 ---
 ## Extra notes

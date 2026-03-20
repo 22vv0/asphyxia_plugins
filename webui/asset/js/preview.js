@@ -239,6 +239,17 @@ $(document).ready(async function() {
         })
     })
 
+    if (currentVersion === 1) {
+        $('#apica').attr('hidden', 'true')
+        $('#apicaframe').attr('hidden', 'true')
+        $('#skillt').attr('hidden', 'true')
+        $('#aptitle').attr('hidden', 'true')
+        $('#bplsupport').attr('hidden', 'true')
+        $('#bplpro').attr('hidden', 'true')
+        $('#valgene').attr('hidden', 'true')
+        $('#customize').attr('hidden', 'true')
+    }
+
     for (var p of profile_data) {
         $('#version_select').append($('<option>', {
             value: p.version,
@@ -357,9 +368,9 @@ $(document).ready(async function() {
         $('#nemsys_select').html(nemsyshtml);
         $('#nemsys_select').val(nemId);
         $('#nemsys_pre').attr("src", "static/asset/nemsys/nemsys_" + zeroPad(nemId, 4) + ".png");
-    
 
-        let ticketNum = (valgene_ticket !== null) ? valgene_ticket.ticketNum : 0
+        let vgInd = valgene_ticket.findIndex(v => v.version === currentVersion)
+        let ticketNum = (vgInd >= 0) ? valgene_ticket[vgInd].ticketNum : 0
         $('[name="valgeneTicket"]').val(ticketNum)
 
         let stamphtml = ''
