@@ -239,6 +239,7 @@ $(document).ready(async function() {
         })
     })
 
+    
     if (currentVersion === 1) {
         $('#apica').attr('hidden', 'true')
         $('#apicaframe').attr('hidden', 'true')
@@ -248,9 +249,17 @@ $(document).ready(async function() {
         $('#bplpro').attr('hidden', 'true')
         $('#valgene').attr('hidden', 'true')
         $('#customize').attr('hidden', 'true')
+    } else if (currentVersion === 2) {
+        $('#apicaframe').attr('hidden', 'true')
+        $('#skillt').attr('hidden', 'true')
+        $('#aptitle').attr('hidden', 'true')
+        $('#bplsupport').attr('hidden', 'true')
+        $('#bplpro').attr('hidden', 'true')
+        $('#valgene').attr('hidden', 'true')
+        $('#customize').attr('hidden', 'true')
     }
 
-    for (var p of profile_data) {
+    for (var p of profile_data.sort((a,b) => a.version - b.version)) {
         $('#version_select').append($('<option>', {
             value: p.version,
             text: versionText[p.version],
@@ -263,6 +272,7 @@ $(document).ready(async function() {
 
     $.getJSON("static/asset/json/customize_data_ext.json", function(json) {
         databaseext = json;
+        let skt = databaseext['skilltitle' + currentVersion]
 
         for (var i in databaseext["supportTeams"]) {
             $('[name="bplSupport"]').append($('<option>', {
@@ -275,12 +285,12 @@ $(document).ready(async function() {
 
         if(currentProfile["bplSupport"] >= 10) $('[name="bplPro"]').attr('checked', true);
 
-        for (var i in databaseext["skilltitle"]) {
-            let foundCourses = courses.filter(c => c.cid === databaseext["skilltitle"][i].id && c.clear >= 2)
+        for (var i in skt) {
+            let foundCourses = courses.filter(c => c.cid === skt[i].id && c.clear >= 2)
             if(foundCourses.length > 0) {
                 $('[name="skilltitle"]').append($('<option>', {
-                    value: databaseext["skilltitle"][i].id,
-                    text: databaseext["skilltitle"][i].name + ' (' + databaseext["skilltitle"][i].info + ')',
+                    value: skt[i].id,
+                    text: skt[i].name + ' (' + skt[i].info + ')',
                 }));
             }
         }
