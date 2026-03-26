@@ -4,8 +4,8 @@ game
     name(__type="str") #{name}
     code(__type="str") #{code}
     creator_id(__type="u32") #{creatorId}
-    gamecoin_packet(__type="u32") #{packets + 69}
-    gamecoin_block(__type="u32") #{blocks + 69}
+    gamecoin_packet(__type="u32") #{packets}
+    gamecoin_block(__type="u32") #{blocks}
     skill_name_id(__type="s16") #{skill.name} 
     hidden_param(__type="s32" __count=param.param.length) #{param.param.join(" ")}
     play_count(__type="u32") #{playCount}
