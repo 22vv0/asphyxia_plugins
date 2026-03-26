@@ -23,7 +23,8 @@ import {
   buy,
   print,
   saveValgene,
-  saveE
+  saveE,
+  savePb
 } from './handlers/profiles';
 import { ARENA_STATION_ITEMS } from './data/exg';
 import { ARENA_STATION_ITEMS7 } from './data/nbl';
@@ -67,6 +68,7 @@ export function register() {
   const MultiRoute = (method: string, handler: EPR | boolean) => {
     // Helper for register multiple versions.
     R.Route(`game.${method}`, handler);
+    R.Route(`game_2.${method}`, handler);
     R.Route(`game.sv6_${method}`, handler);
     R.Route(`game.sv7_${method}`, handler);
   };
@@ -81,6 +83,7 @@ export function register() {
   MultiRoute('save', save);
   MultiRoute('save_m', saveScore);
   MultiRoute('save_c', saveCourse);
+  MultiRoute('save_pb', savePb);
   MultiRoute('save_valgene', saveValgene);
   MultiRoute('frozen', true);
   MultiRoute('buy', buy);

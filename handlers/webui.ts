@@ -8,6 +8,7 @@ import { Mix } from '../models/mix'
 import { Rival } from '../models/rival'
 import { Item } from '../models/item'
 import { WeeklyMusicScore } from '../models/weeklymusic'
+import { COURSES2 } from '../data/ii'
 import { PREGENE, COURSES6 } from '../data/exg'
 import { PREGENE7, COURSES7 } from '../data/nbl'
 import { textureslist } from '../data/webui'
@@ -54,86 +55,84 @@ export const updateProfile = async (data: {
     if (validName.length > 0) update.name = validName;
   }
 
-  if(parseInt(data.version_select) >= 6) {
-    if (data.appeal && data.appeal.length > 0) {
-      const validAppeal = parseInt(data.appeal);
-      if (!_.isNaN(validAppeal)) update.appeal = validAppeal;
-    }
+  if (data.appeal && data.appeal.length > 0) {
+    const validAppeal = parseInt(data.appeal);
+    if (!_.isNaN(validAppeal)) update.appeal = validAppeal;
+  }
 
-    if (data.akaname && data.akaname.length > 0) {
-      const validAka = parseInt(data.akaname);
-      if (!_.isNaN(validAka)) update.akaname = validAka;
-    }
+  if (data.akaname && data.akaname.length > 0) {
+    const validAka = parseInt(data.akaname);
+    if (!_.isNaN(validAka)) update.akaname = validAka;
+  }
 
-    if (data.bplSupport && data.bplSupport.length > 0) {
-      const validBplSupport = data.bplPro ? parseInt(data.bplSupport) + 10 : parseInt(data.bplSupport);
-      if (!_.isNaN(validBplSupport)) update.bplSupport = validBplSupport;
-    }
+  if (data.bplSupport && data.bplSupport.length > 0) {
+    const validBplSupport = data.bplPro ? parseInt(data.bplSupport) + 10 : parseInt(data.bplSupport);
+    if (!_.isNaN(validBplSupport)) update.bplSupport = validBplSupport;
+  }
 
-    if (data.creatorItem && data.creatorItem.length > 0) {
-      const validCreatorItem = parseInt(data.creatorItem);
-      if (!_.isNaN(validCreatorItem)) update.creatorItem = validCreatorItem;
-    }
+  if (data.creatorItem && data.creatorItem.length > 0) {
+    const validCreatorItem = parseInt(data.creatorItem);
+    if (!_.isNaN(validCreatorItem)) update.creatorItem = validCreatorItem;
+  }
 
-    if (data.bgm && data.bgm.length > 0) {
-      const validBGM = parseInt(data.bgm);
-      if (!_.isNaN(validBGM)) customParam[0] = validBGM;
-    }
+  if (data.bgm && data.bgm.length > 0) {
+    const validBGM = parseInt(data.bgm);
+    if (!_.isNaN(validBGM)) customParam[0] = validBGM;
+  }
 
-    if (data.subbg && data.subbg.length > 0) {
-      const validSubbg = parseInt(data.subbg);
-      if (!_.isNaN(validSubbg)) customParam[1] = validSubbg;
-    }
+  if (data.subbg && data.subbg.length > 0) {
+    const validSubbg = parseInt(data.subbg);
+    if (!_.isNaN(validSubbg)) customParam[1] = validSubbg;
+  }
 
-    if (data.nemsys && data.nemsys.length > 0) {
-      const validNemsys = parseInt(data.nemsys);
-      if (!_.isNaN(validNemsys)) customParam[2] = validNemsys;
-    }
+  if (data.nemsys && data.nemsys.length > 0) {
+    const validNemsys = parseInt(data.nemsys);
+    if (!_.isNaN(validNemsys)) customParam[2] = validNemsys;
+  }
 
-    if (data.stampLA && data.stampLA.length > 0) {
-      const validStampLA = parseInt(data.stampLA);
-      if (!_.isNaN(validStampLA)) customParam[3] = validStampLA;
-    }
+  if (data.stampLA && data.stampLA.length > 0) {
+    const validStampLA = parseInt(data.stampLA);
+    if (!_.isNaN(validStampLA)) customParam[3] = validStampLA;
+  }
 
-    if (data.stampLB && data.stampLB.length > 0) {
-      const validStampLB = parseInt(data.stampLB);
-      if (!_.isNaN(validStampLB)) customParam[4] = validStampLB;
-    }
+  if (data.stampLB && data.stampLB.length > 0) {
+    const validStampLB = parseInt(data.stampLB);
+    if (!_.isNaN(validStampLB)) customParam[4] = validStampLB;
+  }
 
-    if (data.stampLC && data.stampLC.length > 0) {
-      const validStampLC = parseInt(data.stampLC);
-      if (!_.isNaN(validStampLC)) customParam[5] = validStampLC;
-    }
+  if (data.stampLC && data.stampLC.length > 0) {
+    const validStampLC = parseInt(data.stampLC);
+    if (!_.isNaN(validStampLC)) customParam[5] = validStampLC;
+  }
 
-    if (data.stampLD && data.stampLD.length > 0) {
-      const validStampLD = parseInt(data.stampLD);
-      if (!_.isNaN(validStampLD)) customParam[6] = validStampLD;
-    }
+  if (data.stampLD && data.stampLD.length > 0) {
+    const validStampLD = parseInt(data.stampLD);
+    if (!_.isNaN(validStampLD)) customParam[6] = validStampLD;
+  }
 
-    if (data.stampRA && data.stampRA.length > 0) {
-      const validStampRA = parseInt(data.stampRA);
-      if (!_.isNaN(validStampRA)) customParam[7] = validStampRA;
-    }
+  if (data.stampRA && data.stampRA.length > 0) {
+    const validStampRA = parseInt(data.stampRA);
+    if (!_.isNaN(validStampRA)) customParam[7] = validStampRA;
+  }
 
-    if (data.stampRB && data.stampRB.length > 0) {
-      const validStampRB = parseInt(data.stampRB);
-      if (!_.isNaN(validStampRB)) customParam[8] = validStampRB;
-    }
+  if (data.stampRB && data.stampRB.length > 0) {
+    const validStampRB = parseInt(data.stampRB);
+    if (!_.isNaN(validStampRB)) customParam[8] = validStampRB;
+  }
 
-    if (data.stampRC && data.stampRC.length > 0) {
-      const validStampRC = parseInt(data.stampRC);
-      if (!_.isNaN(validStampRC)) customParam[9] = validStampRC;
-    }
+  if (data.stampRC && data.stampRC.length > 0) {
+    const validStampRC = parseInt(data.stampRC);
+    if (!_.isNaN(validStampRC)) customParam[9] = validStampRC;
+  }
 
-    if (data.stampRD && data.stampRD.length > 0) {
-      const validStampRD = parseInt(data.stampRD);
-      if (!_.isNaN(validStampRD)) customParam[10] = validStampRD;
-    }
+  if (data.stampRD && data.stampRD.length > 0) {
+    const validStampRD = parseInt(data.stampRD);
+    if (!_.isNaN(validStampRD)) customParam[10] = validStampRD;
+  }
 
-    if (data.sysBG && data.sysBG.length > 0) {
-      const validSysBG = parseInt(data.sysBG);
-      if (!_.isNaN(validSysBG)) customParam[11] = validSysBG;
-    }
+  if (data.sysBG && data.sysBG.length > 0) {
+    const validSysBG = parseInt(data.sysBG);
+    if (!_.isNaN(validSysBG)) customParam[11] = validSysBG;
   }
 
   await DB.Update<Profile>(
@@ -689,7 +688,10 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
 
     let courseData = JSON.parse(U.DecodeString(await IO.ReadFile('webui/asset/json/course_data.json'), 'utf8'))
     for(let cIter = 0; cIter < courseData.courseData.length; cIter++) {
-      if(courseData.courseData[cIter].version === 6) {
+      if(courseData.courseData[cIter].version === 2) {
+        courseData.courseData[cIter].info = COURSES2
+        courseDataUpdateSuccess = true
+      } else if(courseData.courseData[cIter].version === 6) {
         courseData.courseData[cIter].info = COURSES6
         courseDataUpdateSuccess = true
       } else if(courseData.courseData[cIter].version === 7) {

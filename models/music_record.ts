@@ -15,4 +15,10 @@ export interface MusicRecord {
   longRate: number;
   volRate: number;
   playCount: number;
+
+  maxChain: number;
+  critical: number;
+  near: number;
+  error: number;
+  effectiveRate: number;
 }

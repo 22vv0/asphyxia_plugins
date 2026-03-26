@@ -16,6 +16,7 @@ function zeroPad(num, places) {
 }
 
 function getSkillAsset(skill) {
+    if(currentVersion === 2) skill += 1
     return "static/asset/skill_lv/skill_" + zeroPad(skill, 2) + ".png";
 }
 
@@ -301,19 +302,21 @@ function setCourseInfo(courseArray, skillType) {
 }
 
 function setDataSource(dataSource, skillType) {
-    //console.log("currentDATA" + dataSource);
+    if(currentVersion >= 6) $('#skillT').removeAttr('hidden')
+    else $('#skillT').attr('hidden', true)
+    // console.log("currentDATA" + dataSource);
     switch (parseInt(dataSource)) {
         case 2:
-            setCourseInfo(ii);
+            setCourseInfo(ii, 0);
             break;
         case 3:
-            setCourseInfo(gw);
+            setCourseInfo(gw, 0);
             break;
         case 4:
-            setCourseInfo(hh);
+            setCourseInfo(hh, 0);
             break;
         case 5:
-            setCourseInfo(vw);
+            setCourseInfo(vw, 0);
             break;
         case 6:
             setCourseInfo(eg, skillType);
@@ -410,8 +413,7 @@ $(document).ready(function() {
         for (var i in music_db["mdb"]["music"]) {
             arr.push(music_db["mdb"]["music"][i]["info"]["title_name"]);
         }
-        // console.log(arr);
-        $('#version_select').val(6);
+        if(currentVersion < 6) $('#skillT').attr('hidden', 'true')
         $('#skilltype_select').val(0);
         setDataSource($('#version_select').val(), $('#skilltype_select').val());
     })

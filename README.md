@@ -5,7 +5,8 @@ SOUND VOLTEX
 
 **Supported game versions:**
 - BOOTH (2013052900)
-- EXCEED GEAR (2025120900 final)
+- infinite infection (2014102200)
+- EXCEED GEAR (2025120900)
 - ∇ (2026030300)
 
 **Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d) or above
@@ -18,7 +19,7 @@ SOUND VOLTEX
 ---
 ## Changelog
 
-### BOOTH support (2013052900)
+### BOOTH (2013052900)
 
 - Re-added support (profile creation, data save/load, hiscore)
 - Added catalog data: SDVX STATION song shop list
@@ -27,19 +28,36 @@ SOUND VOLTEX
 - Added event data: SDVX Spring Special Bonus (one-time 573 pc and blc bonus)
 - Added event data: Special Bonus (one-time 500 pc and blc bonus)
 - Added event data: Enable Touhou brand logo display
-- Added event data: Adds 8 items to GENERATOR:02
+- Added event data: Extra items added to GENERATOR:02
+
+### infinite infection (2014102200)
+
+- Re-added support (profile creation, data save/load, hiscore)
+- Data transfer from BOOTH (appeal card unlock status, song unlock status)
+- BOOTH scores loaded through `old` in `load_m`
+- Added SKILL ANALYZER data: 第14回, KAC予選コース, INFINITE INFECTION 壱周年記念, 2014夏休み
+- Added event data: Matching mode 
+- Added event data: SKILL ANALYZER
+- Added event data: POLICY BREAK on SDVX STATION - select to increase gauge by 3000pw
+- Added event data: Extra items added to APPEAL CARD GENERATOR 2
+- Added locked songs list for proper unlock progression
 
 ### Misc
 
-- Added option to upload SDVX 1-7 music_db.xml file to pull version-specific song data from -- required for accurate statistics data
+- Added option to upload SDVX 1-7 `music_db.xml` file to pull version-specific song data from -- required for accurate per-version statistics data display
 - Re-added ability to create play data for older games
-- Added haveItem and haveNote to Profile model to save/load BOOTH unlock data
-- Added playCount to Music (score) model
+- Added haveItem and haveNote to `Profile` model to save/load BOOTH unlock data
+- Added attributes to `Music` (score data) model: `playCount`, `maxChain`, `effectiveRate`, `critical`, `near`, `error`
+- Created `save_pb` function to save POLICY BREAK progress
+- Created BOOTH -> infinite infection data transfer code
+- Added SDVX2 Skill title data
+- Update to `utils.getVersion()`
 
 ### WebUI
 
 - Profile details page: Display version-specific data (Rank for BOOTH, etc)
 - Profile details page: Adjust statistics table depending on profile data version being displayed
+- Profile details page: Chart level constants for ∇ statistics table
 - Customization page: Hide incompatible options per version (BOOTH)
 - Songs list page: Added ability to select game version mdb to load
 - Skill Analyzer data page: Fix data not displaying when stype does not exist in course data
