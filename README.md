@@ -32,11 +32,11 @@ SOUND VOLTEX
 - Re-added support (profile creation, data save/load)
 - Added catalog data: SDVX STATION song shop list
 - Added catalog data: GENERATOR:01 and GENERATOR:02
-- Added event data: Matching mode
-- Added event data: SDVX Spring Special Bonus (one-time 573 pc and blc bonus)
-- Added event data: Special Bonus (one-time 500 pc and blc bonus)
-- Added event data: Enable Touhou brand logo display
-- Added event data: Extra items added to GENERATOR:02
+- Added event flag: Matching mode
+- Added event flag: SDVX Spring Special Bonus (one-time 573 pc and blc bonus)
+- Added event flag: Special Bonus (one-time 500 pc and blc bonus)
+- Added event flag: Enable Touhou brand logo display
+- Added event flag: Extra items added to GENERATOR:02
 
 ### infinite infection (2014102200)
 
