@@ -134,6 +134,103 @@
 			"info": "KAC 2023 Challenge Round B"
 		}
 	],
+	"skilltitle2": [
+		{
+			"id": 0,
+			"name": "岳翔",
+			"info": "Lv01"
+		},
+		{
+			"id": 1,
+			"name": "流星",
+			"info": "Lv02"
+		},
+		{
+			"id": 2,
+			"name": "月衝",
+			"info": "Lv03"
+		},
+		{
+			"id": 3,
+			"name": "瞬光",
+			"info": "Lv04"
+		},
+		{
+			"id": 4,
+			"name": "天極",
+			"info": "Lv05"
+		},
+		{
+			"id": 5,
+			"name": "烈風",
+			"info": "Lv06"
+		},
+		{
+			"id": 6,
+			"name": "雷電",
+			"info": "Lv07"
+		},
+		{
+			"id": 7,
+			"name": "麗華",
+			"info": "Lv08"
+		},
+		{
+			"id": 8,
+			"name": "魔騎士",
+			"info": "Lv09"
+		},
+		{
+			"id": 9,
+			"name": "剛力羅",
+			"info": "Lv10"
+		},
+		{
+			"id": 10,
+			"name": "慧影志",
+			"info": "KAC Qualifiers"
+		},
+		{
+			"id": 11,
+			"name": "覇和々",
+			"info": "INFINITE INFECTION 壱周年記念"
+		},
+		{
+			"id": 12,
+			"name": "武宇主",
+			"info": "INFINITE INFECTION 壱周年記念"
+		},
+		{
+			"id": 13,
+			"name": "韻符弐刀",
+			"info": "INFINITE INFECTION 壱周年記念"
+		},
+		{
+			"id": 14,
+			"name": "弩履瑠",
+			"info": "2014夏休み"
+		},
+		{
+			"id": 15,
+			"name": "鍛威",
+			"info": "2014夏休み"
+		},
+		{
+			"id": 16,
+			"name": "鎖魔亜",
+			"info": "2014夏休み"
+		},
+		{
+			"id": 17,
+			"name": "或帝滅斗",
+			"info": "Lv11"
+		},
+		{
+			"id": 18,
+			"name": "暴龍天",
+			"info": "Lv∞"
+		}
+	],
 	"appeal_frame" : [
 		{
 			"id": 1,

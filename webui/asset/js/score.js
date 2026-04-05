@@ -71,9 +71,9 @@ function getGrade(grade) {
         case 4:
             return "A";
         case 5:
-            return "A+";
+            return currentVersion >= 4 ? "A+" : "AA";
         case 6:
-            return "AA";
+            return currentVersion >= 4 ? "AAA" : "AA";
         case 7:
             return "AA+";
         case 8:
@@ -92,11 +92,11 @@ function getMedal(clear, version) {
         case 1:
             return "PLAYED";
         case 2:
-            return "EFFECTIVE CLEAR";
+            return currentVersion >= 4 ? "EFFECTIVE CLEAR" : "CLEAR";
         case 3:
-            return "EXCESSIVE CLEAR";
+            return currentVersion >= 4 ? "EXCESSIVE CLEAR" : "UC";
         case 4:
-            return (version === 6) ? "UC" : "MAXXIVE CLEAR";
+            return currentVersion >= 6 ? ((version === 6) ? "UC" : "MAXXIVE CLEAR") : "PUC";
         case 5:
             return (version === 6) ? "PUC" : "UC";
         case 6:
@@ -235,7 +235,7 @@ $(document).ready(function() {
     currentVersion = (urlParams.has('version') && urlParams.get('version') !== "") ? parseInt(urlParams.get('version')) : profile_data[profile_data.length - 1].version
     currentProfile = profile_data.find(p => p.version === currentVersion)
 
-    for (var p of profile_data) {
+    for (var p of profile_data.sort((a, b) => a.version - b.version)) {
         $('#version_select').append($('<option>', {
             value: p.version,
             text: versionText[p.version],
@@ -289,7 +289,6 @@ $(document).ready(function() {
         music_db = json;
         var music_data = [];
 
-
         for (var i in score_data) {
             var temp_data = {};
             temp_data.mid = score_data[i].mid;
@@ -315,7 +314,10 @@ $(document).ready(function() {
                 { data: 'clear', "type": "clear-mark" }
             ],
             columnDefs: [
-
+                {
+                  "targets": [4],
+                  "visible": currentVersion >= 6
+                }
             ],
             responsive: {
                 details: {

@@ -70,7 +70,7 @@ async function loadItems(itemSet, gene_edition, items_crew, items_stamp, items_s
     $('.count').text('Obtained items: ' + itemCounts[0] + "/" + itemCounts[1])
 
     if('crew' in geneItems.items) {
-        $('.item_banners').append('<div style="padding: 5px"><h3>Nemsys Crew</h3></div>')
+        $('.item_banners').append('<div style="padding: 5px"><h3>Crew</h3></div>')
         $('.item_banners').append('<div class=crew-items style="text-align: center; background-color: #3a3a3a; padding: 20px; border-radius: 6px;"></div><br>')
         loadImages(geneItems.items['crew'].sort(function(a, b){return parseInt(a.id) - parseInt(b.id)}), 'crew', items_crew)
     }
@@ -82,7 +82,7 @@ async function loadItems(itemSet, gene_edition, items_crew, items_stamp, items_s
     }
 
     if('subbg' in geneItems.items) {
-        $('.item_banners').append('<div style="padding: 5px"><h3>Submonitor BG</h3></div>')
+        $('.item_banners').append('<div style="padding: 5px"><h3>Touch Panel Background</h3></div>')
         $('.item_banners').append('<div class=bg-items style="text-align: center; background-color: #3a3a3a; padding: 20px; border-radius: 6px;"></div><br>')
         loadImages(geneItems.items['subbg'].sort(function(a, b){return parseInt(a.id) - parseInt(b.id)}), 'bg', items_subbg)
     }
@@ -100,7 +100,7 @@ async function loadItems(itemSet, gene_edition, items_crew, items_stamp, items_s
     }
 
     if('sysbg' in geneItems.items) {
-        $('.item_banners').append('<div style="padding: 5px"><h3>System BG</h3></div>')
+        $('.item_banners').append('<div style="padding: 5px"><h3>System Background</h3></div>')
         $('.item_banners').append('<div class=sysbg-items style="text-align: center; background-color: #3a3a3a; padding: 20px; border-radius: 6px;"></div><br>')
         loadImages(geneItems.items['sysbg'].sort(function(a, b){return parseInt(a.id) - parseInt(b.id)}), 'sysbg', items_sysbg)
     }
@@ -169,11 +169,20 @@ $(document).ready(async function() {
     $('.input').hide()
     $('.button').addClass('is-link')
     let refid = document.getElementsByName("refid")[0].value
-    let profiles = JSON.parse(document.getElementById("data-pass-profiles").innerText);
-    profiles.sort((a,b) => a.version - b.version).forEach(profile => {
-        if(!('datecode' in profile)) datecode = (profile['version'] === 7 ? 20251226 : 20251209)
-        else if(profile.datecode > datecode) datecode = profile.datecode
-    })
+    
+    datecode = await emit("getDateCode").then(
+        function(response) {
+            if(!response.data.datecode) {
+                let profiles = JSON.parse(document.getElementById("data-pass-profiles").innerText);
+                for(const profile of profiles.sort((a,b) => a.version - b.version)) {
+                    if(!('datecode' in profile)) datecode = (profile['version'] === 7 ? 20251226 : 20251209)
+                    else if(profile.datecode > datecode) datecode = profile.datecode
+                }
+                return datecode
+            }
+            return response.data.datecode
+        }
+    )
 
     let items_crew = JSON.parse(document.getElementById("data-pass-crew").innerText);
     let items_stamp = JSON.parse(document.getElementById("data-pass-stamp").innerText);

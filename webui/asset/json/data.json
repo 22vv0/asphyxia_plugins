@@ -4185,6 +4185,141 @@
             "value": 815,
             "type": "normal",
             "name": "永遠へ変わる"
+        },
+        {
+            "value": 816,
+            "type": "video",
+            "name": "クル一登場 恋刃(ライブ衣装)"
+        },
+        {
+            "value": 817,
+            "type": "video",
+            "name": "クルー登場 奈奈(ライブ衣装)"
+        },
+        {
+            "value": 818,
+            "type": "video",
+            "name": "クル一登場 烈風刀(ライプ衣装)"
+        },
+        {
+            "value": 819,
+            "type": "video",
+            "name": "クルー登場 紅刃(EXCEED GEAR)"
+        },
+        {
+            "value": 820,
+            "type": "video",
+            "name": "クルー登場 京終始果"
+        },
+        {
+            "value": 821,
+            "type": "video",
+            "name": "クルー登場 かなで(EXCEED GEAR)"
+        },
+        {
+            "value": 822,
+            "type": "video",
+            "name": "クルー登場 オルトリンデ(Λkasha)"
+        },
+        {
+            "value": 823,
+            "type": "video",
+            "name": "クルー登場 ニアノア(EXCEED GEAR)"
+        },
+        {
+            "value": 824,
+            "type": "video",
+            "name": "クルー登場 雛&桃&蒼(EXCEED GEAR)"
+        },
+        {
+            "value": 825,
+            "type": "video",
+            "name": "クルー登場 グレイス(ユメブキ)"
+        },
+        {
+            "value": 826,
+            "type": "video",
+            "name": "クルー登場 いちか"
+        },
+        {
+            "value": 827,
+            "type": "video",
+            "name": "No→to(BPLS5 SOUND VOLTEX テーマソング)01"
+        },
+        {
+            "value": 828,
+            "type": "video",
+            "name": "No→to(BPLS5 SOUND VOLTEX テーマソング)02"
+        },
+        {
+            "value": 829,
+            "type": "video",
+            "name": "No→to(BPLS5 SOUND VOLTEX テーマソング)03"
+        },
+        {
+            "value": 830,
+            "type": "video",
+            "name": "No→to(BPLS5 SOUND VOLTEX テーマソング)04"
+        },
+        {
+            "value": 831,
+            "type": "video",
+            "name": "BPLS3 オープニング"
+        },
+        {
+            "value": 832,
+            "type": "video",
+            "name": "BEMANI PRO LEAGUE 栄光の証"
+        },
+        {
+            "value": 833,
+            "type": "video",
+            "name": "HEXA DIVER －憧憬の銀幕篇－"
+        },
+        {
+            "value": 834,
+            "type": "video",
+            "name": "HEXA DIVER －彩虹の銀幕篇－"
+        },
+        {
+            "value": 835,
+            "type": "video",
+            "name": "HEXA DIVER -CODE:DimiourGEAR-"
+        },
+        {
+            "value": 836,
+            "type": "video",
+            "name": "HEXA DIVER Ep:開催!NEMSYS GAME EXPO"
+        },
+        {
+            "value": 837,
+            "type": "video",
+            "name": "HEXA DIVER Ep:冥府肝試し編～地獄の河もレジャー次第～"
+        },
+        {
+            "value": 838,
+            "type": "video",
+            "name": "ゲーム背景(HEXA DIVER 冥府肝試し)"
+        },
+        {
+            "value": 839,
+            "type": "video",
+            "name": "ゲーム背景(VARIANT GATE)"
+        },
+        {
+            "value": 840,
+            "type": "video",
+            "name": "BEMANI PRO LEAGUE-SEASON 2-"
+        },
+        {
+            "value": 841,
+            "type": "video",
+            "name": "BEMANI PRO LEAGUE-SEASON 3-"
+        },
+        {
+            "value": 842,
+            "type": "video",
+            "name": "BEMANI PRO LEAGUE-SEASON 5-"
         }
     ],
     "bgm": [
@@ -13465,6 +13600,166 @@
         {
             "value": 2216,
             "name": "初音ミク 10 4"
+        },
+        {
+            "value": 2217,
+            "name": "おしゃべり恋刃 001 1"
+        },
+        {
+            "value": 2218,
+            "name": "おしゃべり恋刃 001 2"
+        },
+        {
+            "value": 2219,
+            "name": "おしゃべり恋刃 001 3"
+        },
+        {
+            "value": 2220,
+            "name": "おしゃべり恋刃 001 4"
+        },
+        {
+            "value": 2221,
+            "name": "おしゃべり恋刃 002 1"
+        },
+        {
+            "value": 2222,
+            "name": "おしゃべり恋刃 002 2"
+        },
+        {
+            "value": 2223,
+            "name": "おしゃべり恋刃 002 3"
+        },
+        {
+            "value": 2224,
+            "name": "おしゃべり恋刃 002 4"
+        },
+        {
+            "value": 2225,
+            "name": "おしゃべり恋刃 003 1"
+        },
+        {
+            "value": 2226,
+            "name": "おしゃべり恋刃 003 2"
+        },
+        {
+            "value": 2227,
+            "name": "おしゃべり恋刃 003 3"
+        },
+        {
+            "value": 2228,
+            "name": "おしゃべり恋刃 003 4"
+        },
+        {
+            "value": 2229,
+            "name": "おしゃべり恋刃 004 1"
+        },
+        {
+            "value": 2230,
+            "name": "おしゃべり恋刃 004 2"
+        },
+        {
+            "value": 2231,
+            "name": "おしゃべり恋刃 004 3"
+        },
+        {
+            "value": 2232,
+            "name": "おしゃべり恋刃 004 4"
+        },
+        {
+            "value": 2233,
+            "name": "おしゃべり紅刃 011 1"
+        },
+        {
+            "value": 2234,
+            "name": "おしゃべり紅刃 011 2"
+        },
+        {
+            "value": 2235,
+            "name": "おしゃべり紅刃 011 3"
+        },
+        {
+            "value": 2236,
+            "name": "おしゃべり紅刃 011 4"
+        },
+        {
+            "value": 2237,
+            "name": "おしゃべりグレイス 013 1"
+        },
+        {
+            "value": 2238,
+            "name": "おしゃべりグレイス 013 2"
+        },
+        {
+            "value": 2239,
+            "name": "おしゃべりグレイス 013 3"
+        },
+        {
+            "value": 2240,
+            "name": "おしゃべりグレイス 013 4"
+        },
+        {
+            "value": 2241,
+            "name": "おしゃべり雷刀 008 1"
+        },
+        {
+            "value": 2242,
+            "name": "おしゃべり雷刀 008 2"
+        },
+        {
+            "value": 2243,
+            "name": "おしゃべり雷刀 008 3"
+        },
+        {
+            "value": 2244,
+            "name": "おしゃべり雷刀 008 4"
+        },
+        {
+            "value": 2245,
+            "name": "おしゃべり烈風刀 008 1"
+        },
+        {
+            "value": 2246,
+            "name": "おしゃべり烈風刀 008 2"
+        },
+        {
+            "value": 2247,
+            "name": "おしゃべり烈風刀 008 3"
+        },
+        {
+            "value": 2248,
+            "name": "おしゃべり烈風刀 008 4"
+        },
+        {
+            "value": 2249,
+            "name": "おしゃべりマキシマ 008 1"
+        },
+        {
+            "value": 2250,
+            "name": "おしゃべりマキシマ 008 2"
+        },
+        {
+            "value": 2251,
+            "name": "おしゃべりマキシマ 008 3"
+        },
+        {
+            "value": 2252,
+            "name": "おしゃべりマキシマ 008 4"
+        },
+        {
+            "value": 2253,
+            "name": "おしゃべりつまぶき 009 1"
+        },
+        {
+            "value": 2254,
+            "name": "おしゃべりつまぶき 009 2"
+        },
+        {
+            "value": 2255,
+            "name": "おしゃべりつまぶき 009 3"
+        },
+        {
+            "value": 2256,
+            "name": "おしゃべりつまぶき 009 4"
         }
     ],
     "akaname": [
@@ -16993,6 +17288,54 @@
         {
             "id": 19,
             "name": "VIVID WAVE"
+        },
+        {
+            "id": 20,
+            "name": "EXCEED GEAR"
+        },
+        {
+            "id": 21,
+            "name": "EXCEED GEAR セカンドシーズン 01"
+        },
+        {
+            "id": 22,
+            "name": "EXCEED GEAR セカンドシーズン 02"
+        },
+        {
+            "id": 23,
+            "name": "ΩDimension(幽霊船)"
+        },
+        {
+            "id": 24,
+            "name": "ΩDimension(ココロの欠片)"
+        },
+        {
+            "id": 25,
+            "name": "ΩDimension(神の試煉)"
+        },
+        {
+            "id": 26,
+            "name": "HEXA DIVER(Abnormal)"
+        },
+        {
+            "id": 27,
+            "name": "HEXA DIVER(Normal)"
+        },
+        {
+            "id": 28,
+            "name": "HEXA DIVER(DimiourGEAR)"
+        },
+        {
+            "id": 29,
+            "name": "BPLS2 ネメシスアリーナ"
+        },
+        {
+            "id": 30,
+            "name": "BPLS3 ネメシスアリーナ"
+        },
+        {
+            "id": 31,
+            "name": "BPLS5 ネメシスアリーナ"
         }
     ]
 }

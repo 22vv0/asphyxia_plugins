@@ -9,7 +9,7 @@
   items_bgm: DB.Find(refid, { collection:"item", type:19 })
   items_nemsys: DB.Find(refid, { collection:"item", type:20 })
   items_sysbg: DB.Find(refid, { collection: "item", type:21 })
-  valgene_tickets: DB.FindOne(refid, { collection: "valgene_ticket" })
+  valgene_tickets: DB.Find(refid, { collection: "valgene_ticket" })
   courses: DB.Find(refid, {collection: "course"})
   skill: DB.Find(refid, {collection: "skill"})
   unlock_all: U.GetConfig('unlock_all_valk_items')
@@ -47,7 +47,7 @@ div
           label.label Name
           .control
             input.input(type="text" name="name")
-        .field
+        .field#apica
           label.label Appeal Card ID
             span.icon.has-tooltip-right(data-tooltip="Check \"data/others/appeal_card.xml\"")
               i.mdi.mdi-help-circle
@@ -56,21 +56,21 @@ div
                     select(name="appeal" id="appeal_select")
           //- .control
           //-   input.input(type="number" step=1 name="appeal")
-        .field
+        .field#apicaframe
           label.label Appeal Card Frame
             span.icon.has-tooltip-right(data-tooltip="Adds a frame on top of your appeal card display.")
               i.mdi.mdi-help-circle
           .control.is-expanded 
             .select.is-fullwidth
               select(name="creatorItem" id="creatoritem_select")
-        .field
+        .field#skillt
           label.label Skill Title
             span.icon.has-tooltip-right(data-tooltip="Changes the title displayed on your skill plate.")
               i.mdi.mdi-help-circle
           .control.is-expanded 
                   .select.is-fullwidth
                     select(name="skilltitle" id="skilltitle_select")
-        .field
+        .field#aptitle
           label.label Appeal Title
             span.icon.has-tooltip-right(data-tooltip="Custom is set as ID 50000, if you want to use custom, please make sure you add the entry to the xml file.")
               i.mdi.mdi-help-circle
@@ -79,12 +79,12 @@ div
                     select(name="akaname" id="akaname_select")
           //.control
             input.input(type="number" step=1 name="akaname", placeholder=profile.akaname)//
-        .field
+        .field#bplsupport
           label.label BPL Team Supporter
           .control.is-expanded 
                   .select.is-fullwidth
                     select(name="bplSupport" id="bplsupport_select")
-        .field
+        .field#bplpro
           label.label BPL Pro Player
             span.icon.has-tooltip-right(data-tooltip="Enabling this will show the BPL Pro Player label instead of the Supporter label.")
               i.mdi.mdi-help-circle
@@ -95,14 +95,14 @@ div
                         label.switch.is-rounded
                           input(name="bplPro" type="checkbox")
                           span.check
-        .field
+        .field#valgene
           label.label Valgene Tickets
             span.icon.has-tooltip-right(data-tooltip="Number of tickets you can use to buy Valkyrie Generator Items, instead of PASELI or credits.")
               i.mdi.mdi-help-circle
           .control.is-expanded 
             input.input(type="number" name="valgeneTicket" id="valgeneticket_select")
         br
-        div(style="font-size:26px;font-weight:bold;vertical-align:top; overflow-wrap: break-word;word-break: break-all;") CUSTOMIZATION
+        div#customize(style="font-size:26px;font-weight:bold;vertical-align:top; overflow-wrap: break-word;word-break: break-all;") CUSTOMIZATION
           br
           .tile.is-ancestor
             .tile.is-parent.is-6
@@ -117,7 +117,7 @@ div
                 //.control
                     input.input(type="number" step=1 name="nemsys", placeholder=profile.nemsys)//
                 .field
-                  label.label Submonitor BG
+                  label.label Touch Panel Background
                     //span.icon.has-tooltip-right(data-tooltip="0~15 Check \"data/graphics/submonitor_bg\"")
                       i.mdi.mdi-help-circle
                   .control
@@ -125,7 +125,7 @@ div
                       select(name="subbg")
                     //input.input(type="number" step=1 name="subbg", placeholder=profile.subbg)    
                 .field
-                  label.label BGM
+                  label.label Menu BGM
                     //span.icon.has-tooltip-right(data-tooltip="0.Default 1.Max Burning 2.Bangin' Burst\n3.Ultraplayer 4.Everlasting Message\n5.Lachryma《Re:Queen’M》6.He4ven\n7.iLLness LiLin 8.I")
                       i.mdi.mdi-help-circle
                   .control
@@ -203,10 +203,6 @@ div
                       select(name="stampRD")
                     //input.input(type="number" step=1 name="stampRD", placeholder=profile.stampRD)
                 .field
-                  button.button.is-primary(type="submit") 
-                    span.icon
-                      i.mdi.mdi-check
-                    span Submit
             .tile.is-vertical(style="vertical-aling:top;font-size:1rem;font-weight:700;") 
               .tile 
                 .tile.is-parent
@@ -273,6 +269,10 @@ div
                     | THIS IS SELF-PHOTOSHOP TEXTURE, NOT OFFICIAL
                 .tild.is-child
                   a(href="static/asset/nemsys/custom_nemsys.xml" download="custom_nemsys.xml") custom_nemsys.xml download
+        button.button.is-primary(type="submit") 
+          span.icon
+            i.mdi.mdi-check
+          span Submit
 div(hidden id='data-pass') !{JSON.stringify(profile)}
 div(hidden id='data-pass-custom') !{JSON.stringify(customize)}
 div(hidden id='data-pass-crew') !{JSON.stringify(items_crew)}

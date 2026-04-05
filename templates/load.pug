@@ -1,158 +1,215 @@
 game
-  result(__type="u8") #{result}
-  name(__type="str") #{name}
-  code(__type="str") #{code}
-  sdvx_id(__type="str") #{code}
-  gamecoin_packet(__type="u32") #{packets}
-  gamecoin_block(__type="u32") #{blocks}
-  appeal_id(__type="u16") #{appeal}
+  if version === 2
+    result(__type="u8") 0
+    name(__type="str") #{name}
+    code(__type="str") #{code}
+    creator_id(__type="u32") #{creatorId}
+    gamecoin_packet(__type="u32") #{packets}
+    gamecoin_block(__type="u32") #{blocks}
+    skill_name_id(__type="s16") #{skill.name} 
+    hidden_param(__type="s32" __count=param.param.length) #{param.param.join(" ")}
+    play_count(__type="u32") #{playCount}
+    daily_count(__type="u32") #{dayCount}
+    play_chain(__type="u32") #{todayCount}
+    blaster_energy(__type="u32") #{blasterEnergy}
+    blaster_count(__type="u32") #{blasterCount}
+    last
+      music_id(__type="s32") #{musicID}
+      music_type(__type="u8") #{musicType}
+      sort_type(__type="u8") #{sortType}
+      narrow_down(__type="u8") #{narrowDown}
+      headphone(__type="u8") #{headphone}
+      hispeed(__type="u8") #{hiSpeed}
+      appeal_id(__type="u16") #{appeal}
+      comment_id(__type="u16") 0
+      gauge_option(__type="u8") #{gaugeOption}
+    appealcard
+      if apCard.length > 0
+        each card in apCard
+          info
+            id(__type="u32") #{card.id}
+            count(__type="u32") #{card.param}
+    item
+      if items.length > 0
+        each item in items
+          info
+            type(__type="u8") #{item.type}
+            id(__type="u32") #{item.id}
+            param(__type="u32") #{item.param}
+    skill
+      course_all
+        if courses.length > 0
+          each course in courses
+            d
+              ssnid(__type="s32") #{course.sid}
+              crsid(__type="s16") #{course.cid}
+              ct(__type="s16") #{course.clear}
+              ar(__type="s16") #{course.rate}
+    pb
+      if pbFin.length > 0
+        for p in pbFin
+          info
+            id(__type="s32") #{p.id}
+            start_date(__type="u64") #{p.start}
+            end_date(__type="u64") #{p.end}
+            before(__type="s32") #{p.before}
+            after(__type="s32") #{p.after}
 
-  last_music_id(__type="s32") #{musicID}
-  last_music_type(__type="u8") #{musicType}
-  sort_type(__type="u8") #{sortType}
-  headphone(__type="u8") #{headphone}
-  blaster_energy(__type="u32") #{blasterEnergy}
 
-  hispeed(__type="s32") #{hiSpeed}
-  lanespeed(__type="u32") #{laneSpeed}
-  gauge_option(__type="u8") #{gaugeOption}
-  ars_option(__type="u8") #{arsOption}
-  notes_option(__type="u8") #{notesOption}
-  early_late_disp(__type="u8") #{earlyLateDisp}
-  draw_adjust(__type="s32") #{drawAdjust}
-  eff_c_left(__type="u8") #{effCLeft}
-  eff_c_right(__type="u8") #{effCRight}
-  narrow_down(__type="u8") #{narrowDown}
+  if version >= 6
+    result(__type="u8") #{result}
+    name(__type="str") #{name}
+    code(__type="str") #{code}
+    sdvx_id(__type="str") #{code}
+    gamecoin_packet(__type="u32") #{packets}
+    gamecoin_block(__type="u32") #{blocks}
+    appeal_id(__type="u16") #{appeal}
 
-  kac_id(__type="str") #{name}
+    last_music_id(__type="s32") #{musicID}
+    last_music_type(__type="u8") #{musicType}
+    sort_type(__type="u8") #{sortType}
+    headphone(__type="u8") #{headphone}
+    blaster_energy(__type="u32") #{blasterEnergy}
 
-  skill_level(__type="s16") #{skill.level}
-  skill_base_id(__type="s16") #{skill.base}
-  skill_name_id(__type="s16") #{skill.name}
-  skill_type(__type="s16") #{skill.type !== undefined ? skill.type : 0}
+    hispeed(__type="s32") #{hiSpeed}
+    lanespeed(__type="u32") #{laneSpeed}
+    gauge_option(__type="u8") #{gaugeOption}
+    ars_option(__type="u8") #{arsOption}
+    notes_option(__type="u8") #{notesOption}
+    early_late_disp(__type="u8") #{earlyLateDisp}
+    draw_adjust(__type="s32") #{drawAdjust}
+    eff_c_left(__type="u8") #{effCLeft}
+    eff_c_right(__type="u8") #{effCRight}
+    narrow_down(__type="u8") #{narrowDown}
 
-  if bplSupport > 0 && !bplPro
-    support_team_id(__type="s32") #{bplSupport}
+    kac_id(__type="str") #{name}
 
-  if weeklyMusic
-    each weekly in weeklyMusic
-      weekly_music
-        week_id(__type="s32") #{weekly.week}
-        music_id(__type="s32") #{weekly.mid}
-        music_type(__type="s32") #{weekly.mtype}
-        exscore(__type="u32") #{weekly.exscore}
-        rank(__type="s32") #{weekly.rank}
+    skill_level(__type="s16") #{skill.level}
+    skill_base_id(__type="s16") #{skill.base}
+    skill_name_id(__type="s16") #{skill.name}
+    skill_type(__type="s16") #{skill.type !== undefined ? skill.type : 0}
 
+    if bplSupport > 0 && !bplPro
+      support_team_id(__type="s32") #{bplSupport}
 
-  additional_info
-    if bplPro && bplSupport > 0
-      pro_team_id(val=`${bplSupport}`)
+    if weeklyMusic
+      each weekly in weeklyMusic
+        weekly_music
+          week_id(__type="s32") #{weekly.week}
+          music_id(__type="s32") #{weekly.mid}
+          music_type(__type="s32") #{weekly.mtype}
+          exscore(__type="u32") #{weekly.exscore}
+          rank(__type="s32") #{weekly.rank}
 
-  ea_shop
-    packet_booster(__type="s32") 1
-    if version < 5
-      block_booster(__type="s32") 1
-    if version >= 5
+    additional_info
+      if bplPro && bplSupport > 0
+        pro_team_id(val=`${bplSupport}`)
+
+    ea_shop
+      packet_booster(__type="s32") 1
       blaster_pass_enable(__type="bool") #{blasterpass}
       blaster_pass_limit_date(__type="u64") #{currentTime}
-  
-  eaappli
-    relation(__type="s8") 1
-  cloud
-    relation(__type="s8") 1
-  block_no(__type="s32") 0
+      //- if version < 5
+      //-   block_booster(__type="s32") 1
+      //- if version >= 5
+        
+    eaappli
+      relation(__type="s8") 1
+    cloud
+      relation(__type="s8") 1
+    block_no(__type="s32") 0
 
-  skill
-    each course in courses
-      course
-        ssnid(__type="s16") #{course.sid}
-        crsid(__type="s16") #{course.cid}
-        st(__type="s16") #{course.stype !== undefined ? course.stype : 0}
-        sc(__type="s32") #{course.score}
-        ex(__type="s32") #{course.exscore !== undefined ? course.exscore : 0}
-        ct(__type="s16") #{course.clear}
-        gr(__type="s16") #{course.grade}
-        ar(__type="s16") #{course.rate}
-        cnt(__type="s16") #{course.count}
+    skill
+      each course in courses
+        course
+          ssnid(__type="s16") #{course.sid}
+          crsid(__type="s16") #{course.cid}
+          st(__type="s16") #{course.stype || 0}
+          sc(__type="s32") #{course.score}
+          ex(__type="s32") #{course.exscore || 0}
+          ct(__type="s16") #{course.clear}
+          gr(__type="s16") #{course.grade}
+          ar(__type="s16") #{course.rate}
+          cnt(__type="s16") #{course.count}
 
-  item
-    each item in items
-      info
-        type(__type="u8") #{item.type}
-        id(__type="u32") #{item.id}
-        param(__type="u32") #{item.param}
+    item
+      each item in items
+        info
+          type(__type="u8") #{item.type}
+          id(__type="u32") #{item.id}
+          param(__type="u32") #{item.param}
 
-  present
-    each item in present
-      info
-        type(__type="u8") #{item.type}
-        id(__type="u32") #{item.id}
-        param(__type="u32") #{item.param}
+    present
+      each item in present
+        info
+          type(__type="u8") #{item.type}
+          id(__type="u32") #{item.id}
+          param(__type="u32") #{item.param}
 
-  param
-    each param in params
-      info
-        type(__type="s32") #{param.type}
-        id(__type="s32") #{param.id}
-        param(__type="s32" __count=param.param.length) #{param.param.join(" ")}
-    
-    //- Akaname
-    each id in [0, 1, 2]
-      info
-        type(__type="s32") 6
-        id(__type="s32") #{id}
-        param(__type="s32" __count="1") #{akaname}
+    param
+      each param in params
+        info
+          type(__type="s32") #{param.type}
+          id(__type="s32") #{param.id}
+          param(__type="s32" __count=param.param.length) #{param.param.join(" ")}
+      
+      //- Akaname
+      each id in [0, 1, 2]
+        info
+          type(__type="s32") 6
+          id(__type="s32") #{id}
+          param(__type="s32" __count="1") #{akaname}
 
-  if playCount
-    play_count(__type="u32") #{playCount}
-  if dayCount
-    day_count(__type="u32") #{dayCount}
-  if todayCount
-    today_count(__type="u32") #{todayCount}
-  if playChain
-    play_chain(__type="u32") #{playChain}
-  if maxPlayChain
-    max_play_chain(__type="u32") #{maxPlayChain}
-  if weekCount
-    week_count(__type="u32") #{weekCount}
-  if weekPlayCount
-    week_play_count(__type="u32") #{weekPlayCount}
-  if weekChain
-    week_chain(__type="u32") #{weekChain}
-  if maxWeekChain
-    max_week_chain(__type="u32") #{maxWeekChain}
+    if playCount
+      play_count(__type="u32") #{playCount}
+    if dayCount
+      day_count(__type="u32") #{dayCount}
+    if todayCount
+      today_count(__type="u32") #{todayCount}
+    if playChain
+      play_chain(__type="u32") #{playChain}
+    if maxPlayChain
+      max_play_chain(__type="u32") #{maxPlayChain}
+    if weekCount
+      week_count(__type="u32") #{weekCount}
+    if weekPlayCount
+      week_play_count(__type="u32") #{weekPlayCount}
+    if weekChain
+      week_chain(__type="u32") #{weekChain}
+    if maxWeekChain
+      max_week_chain(__type="u32") #{maxWeekChain}
 
-  if arena
-    arena
-      last_play_season(__type="s32") #{arena.season !== undefined ? arena.season : 0}
-      rank_point(__type="s32") #{arena.rankPoint}
-      shop_point(__type="s32") #{arena.shopPoint}
-      ultimate_rate(__type="s32") #{arena.ultimateRate}
-      ultimate_rank_num(__type="s32") #{arena.ultimateRankNum !== undefined ? arena.ultimateRankNum : 0}
-      megamix_rate(__type="s32") #{arena.megamixRate !== undefined ? arena.megamixRate : 0}
-      rank_play_cnt(__type="s32") #{arena.rankCount}
-      ultimate_play_cnt(__type="s32") #{arena.ultimateCount}
+    if arena
+      arena
+        last_play_season(__type="s32") #{arena.season || 0}
+        rank_point(__type="s32") #{arena.rankPoint}
+        shop_point(__type="s32") #{arena.shopPoint}
+        ultimate_rate(__type="s32") #{arena.ultimateRate}
+        ultimate_rank_num(__type="s32") #{arena.ultimateRankNum || 0}
+        megamix_rate(__type="s32") #{arena.megamixRate || 0}
+        rank_play_cnt(__type="s32") #{arena.rankCount}
+        ultimate_play_cnt(__type="s32") #{arena.ultimateCount}
 
-  if valgeneTicket
-    valgene_ticket
-      ticket_num(__type="s32") #{valgeneTicket.ticketNum}
-      limit_date(__type="u64") #{valgeneTicket.limitDate}
+    if valgeneTicket
+      valgene_ticket
+        ticket_num(__type="s32") #{valgeneTicket.ticketNum}
+        limit_date(__type="u64") #{valgeneTicket.limitDate}
 
-  if creatorItem > 1
-    creator_item
-      info
-        creator_type(__type="u32") #{creatorItem}
-        item_id(__type="u32") 0
-        param(__type="u32") 0
+    if creatorItem > 1
+      creator_item
+        info
+          creator_type(__type="u32") #{creatorItem}
+          item_id(__type="u32") 0
+          param(__type="u32") 0
 
-  if variant
-    variant_gate
-      power(__type="s32") #{variant.power}
-      over_radar(__type="s32", __count=variant.overRadar.length) #{variant.overRadar.join(" ")}
-      element
-        notes(__type="s32") #{variant.notes}
-        peak(__type="s32") #{variant.peak}
-        tsumami(__type="s32") #{variant.tsumami}
-        tricky(__type="s32") #{variant.tricky}
-        onehand(__type="s32") #{variant.onehand}
-        handtrip(__type="s32") #{variant.handtrip}
+    if variant
+      variant_gate
+        power(__type="s32") #{variant.power}
+        over_radar(__type="s32", __count=variant.overRadar.length) #{variant.overRadar.join(" ")}
+        element
+          notes(__type="s32") #{variant.notes}
+          peak(__type="s32") #{variant.peak}
+          tsumami(__type="s32") #{variant.tsumami}
+          tricky(__type="s32") #{variant.tricky}
+          onehand(__type="s32") #{variant.onehand}
+          handtrip(__type="s32") #{variant.handtrip}

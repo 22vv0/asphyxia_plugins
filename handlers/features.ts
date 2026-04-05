@@ -9,12 +9,73 @@ var matchRooms = []
 export const hiscore: EPR = async (info, data, send) => {
   const version = Math.abs(getVersion(info));
 
-  const records = await DB.Find<MusicRecord>(null, { collection: 'music', version, migrated: {$exists: false} });
+  const records = await DB.Find<MusicRecord>(null, { collection: 'music', version });
 
   const profiles = _.groupBy(
     await DB.Find<Profile>(null, { collection: 'profile', version }),
     '__refid'
   );
+
+  if (version === 1) {
+    return send.object({
+      hiscore: K.ATTR({ type: "1" }, {
+        music: _.map(
+          _.groupBy(records, r => `${r.mid}:${r.type}`),
+          r => _.maxBy(r, 'score')
+        ).map(r => (
+          K.ATTR({ id: r.mid.toString() }, {
+          note: K.ATTR({ type: r.type.toString() }, {
+            name: K.ITEM('str', profiles[r.__refid][0].name),
+            score: K.ITEM('u32', r.score)
+          })
+        }))),
+      })
+    })
+  }
+
+  if (version === 2) {
+    let profCnt = await DB.Count<Profile>(null, {collection: 'profile', version})
+    return send.object({
+      hiscore_allover: {
+        info: _.map(
+          _.groupBy(records, r => `${r.mid}:${r.type}`),
+          r => _.maxBy(r, 'score')
+        ).map(r => ({
+          id: K.ITEM('u32', r.mid),
+          type: K.ITEM('u32', r.type),
+          seq: K.ITEM('str', IDToCode(profiles[r.__refid][0].id)),
+          name: K.ITEM('str', profiles[r.__refid][0].name),
+          score: K.ITEM('u32', r.score)
+        }))
+      },
+      hiscore_location: {
+        info: _.map(
+          _.groupBy(records, r => `${r.mid}:${r.type}`),
+          r => _.maxBy(r, 'score')
+        ).map(r => ({
+          id: K.ITEM('u32', r.mid),
+          type: K.ITEM('u32', r.type),
+          seq: K.ITEM('str', IDToCode(profiles[r.__refid][0].id)),
+          name: K.ITEM('str', profiles[r.__refid][0].name),
+          score: K.ITEM('u32', r.score)
+        }))
+      },
+      clear_rate: {
+        d: _.map(
+          _.groupBy(records, r => `${r.mid}:${r.type}`),
+          group => {
+            const filt = _.filter(group, g => g.clear > 1).length
+
+            return {
+              id: K.ITEM('u32', group[0].mid),
+              type: K.ITEM('u32', group[0].type),
+              cr: K.ITEM('s16', Math.ceil((filt / profCnt) * 10000))
+            }
+          }
+        )
+      }
+    })
+  }
 
   return send.object({
     sc: {

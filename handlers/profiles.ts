@@ -2,6 +2,7 @@ import { Skill } from '../models/skill'
 import { Item } from '../models/item'
 import { Param } from '../models/param'
 import { Arena } from '../models/arena'
+import { PolicyBreak } from '../models/policy_break'
 import { MusicRecord } from '../models/music_record'
 import { CourseRecord } from '../models/course_record'
 import { Profile } from '../models/profile'
@@ -10,10 +11,11 @@ import { WeeklyMusicScore } from '../models/weeklymusic'
 import { VariantPower } from '../models/variant'
 import { getVersion, IDToCode, checkVerStart } from '../utils'
 import { Mix } from '../models/mix'
+import { POLICY_BREAK2 } from '../data/ii'
 import { CURRENT_ARENA, EVENT_ITEMS6, UNLOCK_EVENTS6 } from '../data/exg'
 import { CURRENT_ARENA7, EVENT_ITEMS7, UNLOCK_EVENTS7 } from '../data/nbl'
 import { getRankListDB } from './webui'
-import { DB_VER, nablaMigrate } from './migrate'
+import { DB_VER, iiMigrate, viiMigrate } from './migrate'
 
 function unlockNavigators(items: Partial<Item>[]) {
   for (let i = 0; i < 300; ++i) items.push({ type: 11, id: i, param: 15 });
@@ -63,11 +65,55 @@ export const loadScore: EPR = async (info, data, send) => {
   console.log("Now loading score");
   const version = Math.abs(getVersion(info));
   console.log("Got version: " + version);
-  let refid = $(data).str('refid', $(data).attr().dataid);
+  let refid = $(data).str('refid', (version === 2 ? $(data).str('dataid') : $(data).attr().dataid));
   console.log("DataID:" + refid);
   if (!refid) return send.deny();
   console.log('Finding record');
   const records = await DB.Find<MusicRecord>(refid, { collection: 'music', version });
+
+  if (version === 1) {
+    return send.object({
+      music: records.map(r => (
+        K.ATTR({ music_id: r.mid.toString() }, {
+        type: K.ATTR({
+          type_id: r.type.toString(),
+          clear_type: r.clear.toString(),
+          score_grade: r.grade.toString(),
+          score: r.score.toString(),
+          cnt: r.playCount.toString()
+        })
+      })))
+    });
+  }
+
+  if (version === 2) {
+    const recordsBooth = await DB.Find<MusicRecord>(refid, { collection: 'music', version: 1 });
+    return send.object({
+      new: {
+        music: records.map(r => ({
+          music_id: K.ITEM('u32', r.mid),
+          music_type: K.ITEM('u32', r.type),
+          score: K.ITEM('u32', r.score),
+          cnt: K.ITEM('u32', r.playCount),
+          clear_type: K.ITEM('u32', r.clear),
+          score_grade: K.ITEM('u32', r.grade),
+          btn_rate: K.ITEM('u32', r.buttonRate),
+          long_rate: K.ITEM('u32', r.longRate),
+          vol_rate: K.ITEM('u32', r.volRate),
+        }))
+      },
+      old: {
+        music: recordsBooth.map(r => ({
+          music_id: K.ITEM('u32', r.mid),
+          music_type: K.ITEM('u32', r.type),
+          score: K.ITEM('u32', r.score),
+          cnt: K.ITEM('u32', r.playCount),
+          clear_type: K.ITEM('u32', r.clear),
+          score_grade: K.ITEM('u32', r.grade)
+        }))
+      }
+    })
+  }
 
   if (version === 6) {
     return send.object({
@@ -146,76 +192,204 @@ export const saveScore: EPR = async (info, data, send) => {
   const version = getVersion(info);
   const dVersion = parseInt(info.model.split(":")[4].slice(0, -2));
 
-  if (version === -6 || version === 7) { // Using alternate scoring system after 20210831
-    const tracks = $(data).elements('track');
-    for (const i of tracks) {
-      const mid = i.number('music_id');
-      const type = i.number('music_type');
+  if (version === 1) {
+    try {
+      const mid = parseInt($(data).attr().music_id);
+      const type = parseInt($(data).attr().music_type);
+
       if (_.isNil(mid) || _.isNil(type)) return send.deny();
 
       const record = (await DB.FindOne<MusicRecord>(refid, {
         collection: 'music',
+        version,
         mid,
         type,
-        version: Math.abs(version)
       })) || {
         collection: 'music',
-        version: Math.abs(version),
-        dbver: DB_VER,
+        version,
         mid,
         type,
         score: 0,
-        exscore: 0,
-        volforce: 0,
         clear: 0,
         grade: 0,
         buttonRate: 0,
         longRate: 0,
         volRate: 0,
+        playCount: 0
       };
 
-      const score = i.number('score', 0);
-      const exscore = i.number('exscore', 0);
-      const volforce = i.number('volforce', 0);
+      const score = $(data).attr().score ? parseInt($(data).attr().score) : 0;
+      const clear = $(data).attr().clear_type ? parseInt($(data).attr().clear_type) : 0;
+      const grade = $(data).attr().score_grade ? parseInt($(data).attr().score_grade) : 0;
       if (score > record.score) {
         record.score = score;
-        record.buttonRate = i.number('btn_rate', 0);
-        record.longRate = i.number('long_rate', 0);
-        record.volRate = i.number('vol_rate', 0);
-      }
-      if (exscore > record.exscore) {
-        record.exscore = exscore;
       }
 
-      if (!('volforce' in record) || volforce > record.volforce) {
-        record.volforce = volforce;
-      }
-
-      if(Math.abs(version) === 6) {
-        // in eg 20250422 mxv was added and had the id of 6 which caused problems with math.max since puc (id 5) is the highest lamp, uc (id 4) second
-        let clearLamp = [0, 1, 2, 3, 6, 4, 5]
-        let oldClear = record.clear
-        let newClear = i.number('clear_type', 0)
-        record.clear = (clearLamp.findIndex(c => c === newClear) > clearLamp.findIndex(c => c === oldClear)) ? newClear : oldClear;
-      } else {
-        // nabla switched clear lamp ids for mxv, uc and puc so it is in chronological order.
-        record.clear = Math.max(i.number('clear_type', 0), record.clear);
-      }
-      record.grade = Math.max(i.number('score_grade', 0), record.grade);
-      record.dbver = DB_VER
+      record.clear = Math.max(clear, record.clear);
+      record.grade = Math.max(grade, record.grade);
+      record.playCount = record.playCount + 1
 
       await DB.Upsert<MusicRecord>(
         refid,
-        { collection: 'music', mid, type, version: Math.abs(version) },
-        record
+        { collection: 'music', version, mid, type },
+        record,
       );
+
+      return send.success();
+    } catch {
+      return send.deny();
     }
-    return send.success();
+  }
+
+  if (version === 2) {
+    try {
+      const mid = $(data).number('music_id');
+      const type = $(data).number('music_type');
+
+      if (_.isNil(mid) || _.isNil(type)) return send.deny();
+
+      const record = (await DB.FindOne<MusicRecord>(refid, {
+        collection: 'music',
+        version,
+        mid,
+        type,
+      })) || {
+        collection: 'music',
+        version,
+        mid,
+        type,
+        score: 0,
+        clear: 0,
+        grade: 0,
+        maxChain: 0,
+        critical: 0,
+        near: 0,
+        error: 0,
+        effectiveRate: 0,
+        buttonRate: 0,
+        longRate: 0,
+        volRate: 0,
+        mode: 0,
+        gaugeType: 0,
+        playCount: 0
+      };
+
+      const score = $(data).number('score') ? $(data).number('score') : 0;
+      const clear = $(data).number('clear_type') ? $(data).number('clear_type') : 0;
+      const grade = $(data).number('score_grade') ? $(data).number('score_grade') : 0;
+      const maxChain = $(data).number('max_chain') ? $(data).number('max_chain') : 0;
+      const effectiveRate = $(data).number('effective_rate') ? $(data).number('effective_rate') : 0;
+      const mode = $(data).number('mode') ? $(data).number('mode') : 0;
+      const gaugeType = $(data).number('gaugeType') ? $(data).number('gaugeType') : 0;
+
+      if (score > record.score) {
+        record.score = score;
+        record.buttonRate = $(data).number('btn_rate', 0);
+        record.longRate = $(data).number('long_rate', 0);
+        record.volRate = $(data).number('vol_rate', 0);
+        record.critical = $(data).number('critical', 0);
+        record.near = $(data).number('near', 0);
+        record.error = $(data).number('error', 0);
+      }
+
+      if (maxChain > record.maxChain) {
+        record.maxChain = maxChain
+      }
+
+      if (effectiveRate > record.effectiveRate) {
+        record.effectiveRate = effectiveRate
+      }
+
+      record.clear = Math.max(clear, record.clear);
+      record.grade = Math.max(grade, record.grade);
+      record.playCount = record.playCount + 1
+
+      await DB.Upsert<MusicRecord>(
+        refid,
+        { collection: 'music', version, mid, type },
+        record,
+      );
+
+      return send.success();
+    } catch {
+      return send.deny();
+    }
+  }
+
+  if (version === -6 || version === 7) { // Using alternate scoring system after 20210831
+    const tracks = $(data).elements('track');
+    try {
+      for (const i of tracks) {
+        const mid = i.number('music_id');
+        const type = i.number('music_type');
+        if (_.isNil(mid) || _.isNil(type)) return send.deny();
+
+        const record = (await DB.FindOne<MusicRecord>(refid, {
+          collection: 'music',
+          mid,
+          type,
+          version: Math.abs(version)
+        })) || {
+          collection: 'music',
+          version: Math.abs(version),
+          dbver: DB_VER,
+          mid,
+          type,
+          score: 0,
+          exscore: 0,
+          volforce: 0,
+          clear: 0,
+          grade: 0,
+          buttonRate: 0,
+          longRate: 0,
+          volRate: 0,
+        };
+
+        const score = i.number('score', 0);
+        const exscore = i.number('exscore', 0);
+        const volforce = i.number('volforce', 0);
+        if (score > record.score) {
+          record.score = score;
+          record.buttonRate = i.number('btn_rate', 0);
+          record.longRate = i.number('long_rate', 0);
+          record.volRate = i.number('vol_rate', 0);
+        }
+        if (exscore > record.exscore) {
+          record.exscore = exscore;
+        }
+
+        if (!('volforce' in record) || volforce > record.volforce) {
+          record.volforce = volforce;
+        }
+
+        if(Math.abs(version) === 6) {
+          // in eg 20250422 mxv was added and had the id of 6 which caused problems with math.max since puc (id 5) is the highest lamp, uc (id 4) second
+          let clearLamp = [0, 1, 2, 3, 6, 4, 5]
+          let oldClear = record.clear
+          let newClear = i.number('clear_type', 0)
+          record.clear = (clearLamp.findIndex(c => c === newClear) > clearLamp.findIndex(c => c === oldClear)) ? newClear : oldClear;
+        } else {
+          // nabla switched clear lamp ids for mxv, uc and puc so it is in chronological order.
+          record.clear = Math.max(i.number('clear_type', 0), record.clear);
+        }
+        record.grade = Math.max(i.number('score_grade', 0), record.grade);
+        record.dbver = DB_VER
+
+        await DB.Upsert<MusicRecord>(
+          refid,
+          { collection: 'music', mid, type, version: Math.abs(version) },
+          record
+        );
+      }
+      return send.success();
+    } catch {
+      return send.deny();
+    }
   }
 };
 
 export const saveCourse: EPR = async (info, data, send) => {
-  const refid = $(data).str('refid');
+  const refid = $(data).str('refid', $(data).str('dataid'));
   if (!refid) return send.deny();
 
   const version = Math.abs(getVersion(info));
@@ -254,6 +428,106 @@ export const save: EPR = async (info, data, send) => {
 
   const version = Math.abs(getVersion(info));
   if (version === 0) return send.deny();
+
+  if (version === 1) {
+    await DB.Update<Profile>(
+      refid,
+      { collection: 'profile', version },
+      {
+        $set: {
+          headphone: $(data).number('headphone'),
+          hiSpeed: $(data).number('hispeed'),
+          appeal: $(data).number('appeal_id'),
+          boothFrame: [$(data).number('frame0'), $(data).number('frame1'), $(data).number('frame2'), $(data).number('frame3'), $(data).number('frame4')],
+          musicID: parseInt($(data).attr("last").music_id),
+          musicType: parseInt($(data).attr("last").music_type),
+          sortType: parseInt($(data).attr("last").sort_type),
+          mUserCnt: $(data).number('m_user_cnt'),
+          haveItem: $(data).numbers('have_item'),
+          haveNote: $(data).numbers('have_note')
+        },
+        $inc: {
+          expPoint: $(data).number('gain_exp'),
+          packets: $(data).number('earned_gamecoin_packet'),
+          blocks: $(data).number('earned_gamecoin_block'),
+        },
+      }
+    );
+    return send.success();
+  }
+
+  if (version === 2) {
+    await DB.Update<Profile>(
+      refid,
+      { collection: 'profile', version },
+      {
+        $set: {
+          headphone: $(data).number('headphone'),
+          hiSpeed: $(data).number('hispeed'),
+          appeal: $(data).number('appeal_id'),
+          musicID: $(data).number('music_id'),
+          musicType: $(data).number('music_type'),
+          sortType: $(data).number('sort_type'),
+          narrowDown: $(data).number('narrow_down'),
+          gaugeOption: $(data).number('gauge_option'),
+          blasterCount: $(data).number('blaster_count')
+        },
+        $inc: {
+          packets: $(data).number('earned_gamecoin_packet'),
+          blocks: $(data).number('earned_gamecoin_block'),
+          blasterEnergy: $(data).number('earned_blaster_energy'),
+          playCount: 1
+        },
+      }
+    );
+
+    await DB.Upsert<Param>(
+      refid, 
+      {collection: 'param', version, type: 1, id: 1},
+      {
+        $set: {
+          param: $(data).numbers('hidden_param')
+        }
+      }
+    )
+
+    const apcard = $(data).elements('appealcard.info');
+    for (const c of apcard) {
+      const id = c.number('id');
+      const count = c.number('count');
+
+      if (_.isNil(id) || _.isNil(count)) continue;
+
+      await DB.Upsert<Item>(
+        refid,
+        { collection: 'item', type: 1, id, version },
+        { $set: { param: count, dbver: DB_VER } }
+      );
+    }
+
+    const items = $(data).elements('item.info');
+    for (const item of items) {
+      const type = item.number('type');
+      const id = item.number('id');
+      const param = item.number('param');
+
+      if (_.isNil(type) || _.isNil(id) || _.isNil(param)) continue;
+
+      await DB.Upsert<Item>(
+        refid,
+        { collection: 'item', type, id, version },
+        { $set: { param, dbver: DB_VER } }
+      );
+    }
+
+    await DB.Upsert<Skill>(refid, {collection: 'skill', version: 2}, {
+      $set: {
+        name: $(data).number('skill_name_id')
+      }
+    })
+
+    return send.success()
+  }
 
   // Save Profile
   if (version === 6 || version === 7) {
@@ -468,66 +742,113 @@ export const load: EPR = async (info, data, send) => {
   });
 
   if (!profile) {
-    if(version === 7 && await DB.Count<Profile>(refid, {collection: 'profile', version: 6}) === 1) profile = await DB.FindOne<Profile>(refid, {collection: 'profile', version: 6});
-    else if(version === 6 && await DB.Count<Profile>(refid, {collection: 'profile', version: {$gt: 6}}) >= 1) return send.deny();
+    if(version > 1 && await DB.Count<Profile>(refid, {collection: 'profile', version: version - 1}) === 1) profile = await DB.FindOne<Profile>(refid, {collection: 'profile', version: version - 1});
+    // else if(version === 6 && await DB.Count<Profile>(refid, {collection: 'profile', version: {$gt: 6}}) >= 1) return send.deny();
+    else if(version === 1) return send.object(K.ATTR({none: "1"}));
     else return send.object({ result: K.ITEM('u8', 1) });
+  } else {
+    if(!('datecode' in profile) || dVersion > profile.datecode) {
+      await DB.Upsert<Profile>(refid, {collection: 'profile', version: version}, {$set: {datecode: dVersion}})
+    }
   }
 
-  if(!('datecode' in profile) || dVersion > profile.datecode) {
-    await DB.Upsert<Profile>(refid, {collection: 'profile', version: version}, {$set: {datecode: dVersion}})
+  if (version === 1) {
+    return send.object({
+      name: K.ITEM('str', profile.name),
+      code: K.ITEM('str', IDToCode(profile.id)),
+      gamecoin_packet: K.ITEM('u32', profile.packets),
+      gamecoin_block: K.ITEM('u32', profile.blocks),
+      exp_point: K.ITEM('u32', profile.expPoint),
+      m_user_cnt: K.ITEM('u32', profile.mUserCnt),
+      have_item: K.ARRAY('bool', profile.haveItem.map((val, ind) => U.GetConfig('unlock_all_appeal_cards') && ind >= 37 && ind <= 213 ? 1 : val)),
+      have_note: K.ARRAY('bool', profile.haveNote),
+      last: K.ATTR({
+        music_id: profile.musicID.toString(),
+        music_type: profile.musicType.toString(),
+        sort_type: profile.sortType.toString(),
+        headphone: profile.headphone.toString(),
+        hispeed: profile.hiSpeed.toString(),
+        appeal_id: profile.appeal.toString(),
+        frame1: profile.boothFrame[0].toString(),
+        frame2: profile.boothFrame[1].toString(),
+        frame3: profile.boothFrame[2].toString(),
+        frame4: profile.boothFrame[3].toString(),
+        frame5: profile.boothFrame[4].toString()
+      }, {})
+    })
   }
 
   let skill = (await DB.FindOne<Skill>(refid, {
     collection: 'skill',
     version,
-  })) || { base: 0, name: 0, level: 0 };
+  })) || ((version === 2) ? { name: -1 } : { base: 0, name: 0, level: 0 });
+  
+  if (version === 2) {
+    let pb = await DB.Find<PolicyBreak>(refid, {collection: 'pb', version})
+    pb = pb.filter(p => p.exp < 24000).sort((a, b) => a.id - b.id).slice(0,2)    
+    let pbFin = pb.map(p => ({
+      id: p.id,
+      start: POLICY_BREAK2[p.id - 1]['start'],
+      end: POLICY_BREAK2[p.id - 1]['end'],
+      before: p.exp,
+      after: p.exp + 3000
+    }))
 
-  let presents = []
-  let date = new Date()
-  let currentDate = date.toLocaleDateString()
-  let currentYMDDate = parseInt([date.getFullYear(), ((date.getMonth() + 1) > 9 ? '' : '0') + (date.getMonth() + 1), (date.getDate() > 9 ? '' : '0') + date.getDate()].join(''));
+    let apCard = await DB.Find<Item>(refid, {collection: 'item', version, type: 1})
+    let items = await DB.Find<Item>(refid, {collection: 'item', version, $not: {type: 1}})
+    let param = (await DB.FindOne<Param>(refid, {collection: 'param', version, id: 1})) || {type: 1, id: 1, param: new Array(20).fill(0)}
+    let courses = await DB.Find<CourseRecord>(refid, {collection: 'course', version})
+    let result = 0
+    if (version > profile.version) result = 2
 
-  if(IO.Exists('webui/asset/config/events.json')) {
-    let bufEventData = await IO.ReadFile('webui/asset/json/events.json')
-    let bufEventConfig = await IO.ReadFile('webui/asset/config/events.json')
-    let eventData = JSON.parse(bufEventData.toString())
-    let eventConfig = JSON.parse(bufEventConfig.toString())
-    let eventItems
-    switch (version) {
-      case 6:
-        eventItems = EVENT_ITEMS6
-        break;
-      case 7:
-        eventItems = EVENT_ITEMS7 
-        break;
+    if (result === 2) {
+      return send.object({
+        result: K.ITEM('u8', result),
+        name: K.ITEM('str', profile.name)
+      })
     }
-    for(const eData of eventData['events' + version]) {
-      let typeIds = {'gift_crew': [11, 1], 'gift_ap': [1, 1], 'gift': [0, 23], 'cross_online': [0, 23]}
-      if(['gift_crew', 'gift_ap', 'gift', 'cross_online'].includes(eData.type) && eventConfig[eData.id] !== undefined) {
-        if(typeof eventConfig[eData.id].toggle === "boolean") {
-          if(eventConfig[eData.id].toggle && checkVerStart(dVersion, eData.version, eData.start, date)) {
-            for(const itemIter in eventItems[eData.id]) {
-              let itemId = parseInt(eventItems[eData.id][itemIter])
-              if(await DB.Count(refid, {collection:'item', type: typeIds[eData.type][0], id: itemId, version: version}) === 0) {
-                await DB.Upsert(
-                  refid, 
-                  {collection: 'item', type: typeIds[eData.type][0], id: itemId, version: version}, 
-                  {$set: { param: typeIds[eData.type][1] }}
-                )
 
-                presents.push({
-                  id: itemId,
-                  type: typeIds[eData.type][0],
-                  param: typeIds[eData.type][1]
-                })
-              }
-            }
-          }
-        } else{
-          for(const toggleKeys in Object.keys(eventConfig[eData.id].toggle)) {
-            if(eventConfig[eData['id']]['toggle'][Object.keys(eventConfig[eData.id].toggle)[toggleKeys]] && checkVerStart(dVersion, eData.version[toggleKeys], eData.start[toggleKeys], date)) {
-              for(const itemIter in eventItems[Object.keys(eventConfig[eData.id].toggle)[toggleKeys]]) {
-                let itemId = parseInt(eventItems[Object.keys(eventConfig[eData.id].toggle)[toggleKeys]][itemIter])
+    return send.pugFile('templates/load.pug', {
+      version,
+      result,
+      code: IDToCode(profile.id),
+      skill,
+      apCard,
+      items,
+      courses,
+      param,
+      pbFin,
+      ...profile,
+    });
+  }
+
+  if (version >= 6) {
+    let presents = []
+    let date = new Date()
+    let currentDate = date.toLocaleDateString()
+    let currentYMDDate = parseInt([date.getFullYear(), ((date.getMonth() + 1) > 9 ? '' : '0') + (date.getMonth() + 1), (date.getDate() > 9 ? '' : '0') + date.getDate()].join(''));
+
+    if(IO.Exists('webui/asset/config/events.json')) {
+      let bufEventData = await IO.ReadFile('webui/asset/json/events.json')
+      let bufEventConfig = await IO.ReadFile('webui/asset/config/events.json')
+      let eventData = JSON.parse(bufEventData.toString())
+      let eventConfig = JSON.parse(bufEventConfig.toString())
+      let eventItems
+      switch (version) {
+        case 6:
+          eventItems = EVENT_ITEMS6
+          break;
+        case 7:
+          eventItems = EVENT_ITEMS7 
+          break;
+      }
+      for(const eData of eventData['events' + version]) {
+        let typeIds = {'gift_crew': [11, 1], 'gift_ap': [1, 1], 'gift': [0, 23], 'cross_online': [0, 23]}
+        if(['gift_crew', 'gift_ap', 'gift', 'cross_online'].includes(eData.type) && eventConfig[eData.id] !== undefined) {
+          if(typeof eventConfig[eData.id].toggle === "boolean") {
+            if(eventConfig[eData.id].toggle && checkVerStart(dVersion, eData.version, eData.start, date)) {
+              for(const itemIter in eventItems[eData.id]) {
+                let itemId = parseInt(eventItems[eData.id][itemIter])
                 if(await DB.Count(refid, {collection:'item', type: typeIds[eData.type][0], id: itemId, version: version}) === 0) {
                   await DB.Upsert(
                     refid, 
@@ -543,144 +864,167 @@ export const load: EPR = async (info, data, send) => {
                 }
               }
             }
+          } else{
+            for(const toggleKeys in Object.keys(eventConfig[eData.id].toggle)) {
+              if(parseInt(toggleKeys) >= eData.start.length) continue;
+              if(eventConfig[eData['id']]['toggle'][Object.keys(eventConfig[eData.id].toggle)[toggleKeys]] && checkVerStart(dVersion, eData.version[toggleKeys], eData.start[toggleKeys], date)) {
+                for(const itemIter in eventItems[Object.keys(eventConfig[eData.id].toggle)[toggleKeys]]) {
+                  let itemId = parseInt(eventItems[Object.keys(eventConfig[eData.id].toggle)[toggleKeys]][itemIter])
+                  if(await DB.Count(refid, {collection:'item', type: typeIds[eData.type][0], id: itemId, version: version}) === 0) {
+                    await DB.Upsert(
+                      refid, 
+                      {collection: 'item', type: typeIds[eData.type][0], id: itemId, version: version}, 
+                      {$set: { param: typeIds[eData.type][1] }}
+                    )
+
+                    presents.push({
+                      id: itemId,
+                      type: typeIds[eData.type][0],
+                      param: typeIds[eData.type][1]
+                    })
+                  }
+                }
+              }
+            }
           }
         }
       }
     }
-  }
 
-  let flagConfig = {}
-  if(IO.Exists('webui/asset/config/flags.json')) {
-    let bufFlagConfig = await IO.ReadFile('webui/asset/config/flags.json')
-    flagConfig = JSON.parse(bufFlagConfig.toString())
-  }
-
-  if(dVersion >= 20250324) {
-    let addlPresents = []
-    if('aprilyukkuri' in flagConfig && flagConfig['aprilyukkuri']['toggle'] || currentDate.substring(0,4) === '4/1/') {
-      addlPresents.push([5546, 1, 1])
-      addlPresents.push([10244, 14, 1])
+    let flagConfig = {}
+    if(IO.Exists('webui/asset/config/flags.json')) {
+      let bufFlagConfig = await IO.ReadFile('webui/asset/config/flags.json')
+      flagConfig = JSON.parse(bufFlagConfig.toString())
     }
-    
-    for(const giftIter in addlPresents) {
-      if(await DB.Count(refid, {collection:'item', type: addlPresents[giftIter][1], id: addlPresents[giftIter][0], version: version}) === 0) {
-        await DB.Upsert(
-          refid, 
-          {collection: 'item', type: addlPresents[giftIter][1], id: addlPresents[giftIter][0], version: version}, 
-          {$set: { param: addlPresents[giftIter][2] }}
-        )
 
-        presents.push({
-          id: addlPresents[giftIter][0],
-          type: addlPresents[giftIter][1],
-          param: addlPresents[giftIter][2]
-        })
+    if(dVersion >= 20250324) {
+      let addlPresents = []
+      if('aprilyukkuri' in flagConfig && flagConfig['aprilyukkuri']['toggle'] || currentDate.substring(0,4) === '4/1/') {
+        addlPresents.push([5546, 1, 1])
+        addlPresents.push([10244, 14, 1])
       }
-    }
-  }
+      
+      for(const giftIter in addlPresents) {
+        if(await DB.Count(refid, {collection:'item', type: addlPresents[giftIter][1], id: addlPresents[giftIter][0], version: version}) === 0) {
+          await DB.Upsert(
+            refid, 
+            {collection: 'item', type: addlPresents[giftIter][1], id: addlPresents[giftIter][0], version: version}, 
+            {$set: { param: addlPresents[giftIter][2] }}
+          )
 
-  let curWeekly = []
-  if(dVersion >= 20241210) {
-    if(IO.Exists('webui/asset/config/weeklymusic.json')) {
-      let bufWeeklyMusic = await IO.ReadFile('webui/asset/config/weeklymusic.json')
-      let weeklyMusic = JSON.parse(bufWeeklyMusic.toString())
-      let weekData
-      for(let weekIter in weeklyMusic) {
-        if(Number(date) > weeklyMusic[weekIter].start && Number(date) <= weeklyMusic[weekIter].end) weekData = weeklyMusic[weekIter]
-      }
-      if(weekData != undefined) {
-        curWeekly.push({
-          weekId: weekData.weekId,
-          musicId: weekData.musicId,
-          start: weekData.start,
-          end: weekData.end
-        })
-      }
-    }
-  }
-
-  let currentArena
-  if(version === 6) currentArena = CURRENT_ARENA
-  else if(version === 7) currentArena = CURRENT_ARENA7 
-  let arenaOpen = U.GetConfig('arena_no_endtime') || BigInt(date) < currentArena.time_end
-
-  const items = await DB.Find<Item>(refid, { collection: 'item', version: version });
-  const courses = await DB.Find<CourseRecord>(refid, { collection: 'course', version: version });
-  const params = await DB.Find<Param>(refid, { collection: 'param', version: version });
-  const arena = await DB.FindOne<Arena>(refid, { collection: 'arena', season: arenaOpen ? currentArena['season'] : 0, version: version });
-  const valgeneTicket = await DB.FindOne<ValgeneTicket>(refid, { collection: 'valgene_ticket' })
-  let variant = await DB.FindOne<VariantPower>(refid, { collection: 'variantpower', version: version })
-  
-  if(dVersion >= 20250422) {
-    if(!variant) {
-      variant = <VariantPower>{
-        power: 0, notes: 0, peak: 0, handtrip: 0, onehand: 0, tricky: 0, tsumami: 0, overRadar: []
-      }
-    } else if(!variant.overRadar) variant.overRadar = [] 
-  }
-
-  let weeklyMusic = []
-  if(dVersion >= 20241210) {
-    if (curWeekly.length > 0) {
-      for(let wCtr = 0; wCtr <= 4; wCtr++) {
-        let jRankResults = await getRankListDB(curWeekly[0].weekId, curWeekly[0].musicId, wCtr, version)
-        if(jRankResults.length > 0) {
-          jRankResults = jRankResults.filter(e => e.refid === refid)[0]
-          weeklyMusic.push(jRankResults)
+          presents.push({
+            id: addlPresents[giftIter][0],
+            type: addlPresents[giftIter][1],
+            param: addlPresents[giftIter][2]
+          })
         }
       }
     }
+
+    let curWeekly = []
+    if(dVersion >= 20241210) {
+      if(IO.Exists('webui/asset/config/weeklymusic.json')) {
+        let bufWeeklyMusic = await IO.ReadFile('webui/asset/config/weeklymusic.json')
+        let weeklyMusic = JSON.parse(bufWeeklyMusic.toString())
+        let weekData
+        for(let weekIter in weeklyMusic) {
+          if(Number(date) > weeklyMusic[weekIter].start && Number(date) <= weeklyMusic[weekIter].end) weekData = weeklyMusic[weekIter]
+        }
+        if(weekData != undefined) {
+          curWeekly.push({
+            weekId: weekData.weekId,
+            musicId: weekData.musicId,
+            start: weekData.start,
+            end: weekData.end
+          })
+        }
+      }
+    }
+
+    let currentArena
+    if(version === 6) currentArena = CURRENT_ARENA
+    else if(version === 7) currentArena = CURRENT_ARENA7 
+    let arenaOpen = U.GetConfig('arena_no_endtime') || BigInt(date) < currentArena.time_end
+
+    const items = await DB.Find<Item>(refid, { collection: 'item', version: version });
+    const courses = await DB.Find<CourseRecord>(refid, { collection: 'course', version: version });
+    const params = await DB.Find<Param>(refid, { collection: 'param', version: version });
+    const arena = await DB.FindOne<Arena>(refid, { collection: 'arena', season: arenaOpen ? currentArena['season'] : 0, version: version });
+    const valgeneTicket = await DB.FindOne<ValgeneTicket>(refid, { collection: 'valgene_ticket' })
+    let variant = await DB.FindOne<VariantPower>(refid, { collection: 'variantpower', version: version })
+    
+    if(dVersion >= 20250422) {
+      if(!variant) {
+        variant = <VariantPower>{
+          power: 0, notes: 0, peak: 0, handtrip: 0, onehand: 0, tricky: 0, tsumami: 0, overRadar: []
+        }
+      } else if(!variant.overRadar) variant.overRadar = [] 
+    }
+
+    let weeklyMusic = []
+    if(dVersion >= 20241210) {
+      if (curWeekly.length > 0) {
+        for(let wCtr = 0; wCtr <= 4; wCtr++) {
+          let jRankResults = await getRankListDB(curWeekly[0].weekId, curWeekly[0].musicId, wCtr, version)
+          if(jRankResults.length > 0) {
+            jRankResults = jRankResults.filter(e => e.refid === refid)[0]
+            weeklyMusic.push(jRankResults)
+          }
+        }
+      }
+    }
+
+
+    let time = new Date();
+    let tempHour = time.getHours();
+    let tempDate = time.getDate();
+    tempHour += 12;
+    tempDate += 1;
+    time.setDate(tempDate);
+    time.setHours(tempHour);
+    const currentTime = time.getTime();
+
+    const creatorItem = profile.creatorItem ? profile.creatorItem : 0;
+    const bplPro = (profile.bplSupport > 10) ? true : false
+    profile.bplSupport = profile.bplSupport ? profile.bplSupport % 10 : 0;
+
+    let blasterpass = U.GetConfig('use_blasterpass') ? 1 : 0;
+
+    var tempItem = U.GetConfig('unlock_all_navigators') ? unlockNavigators(items) : items;
+    tempItem = U.GetConfig('unlock_all_appeal_cards') ? unlockAppealCards(items) : items;
+    tempItem = removeStampItems(tempItem)
+    tempItem = (version >= 7 && U.GetConfig('unlock_all_valk_items')) ? unlockAppealParts(items) : items;
+
+    // Make generator power always 100%,
+    for (let i = 0; i < 50; i++) {
+      const tempGene: Item = { collection: 'item', type: 7, id: i, param: 10 };
+      tempItem.push(tempGene);
+    }
+
+    let result = 0
+    if (version > profile.version) result = 2
+
+    return send.pugFile('templates/load.pug', {
+      version,
+      result,
+      courses,
+      items: tempItem,
+      present: presents,
+      params,
+      skill,
+      currentTime,
+      blasterpass,
+      code: IDToCode(profile.id),
+      arena,
+      valgeneTicket,
+      creatorItem,
+      bplPro,
+      weeklyMusic,
+      variant,
+      ...profile,
+    });
   }
 
-
-  let time = new Date();
-  let tempHour = time.getHours();
-  let tempDate = time.getDate();
-  tempHour += 12;
-  tempDate += 1;
-  time.setDate(tempDate);
-  time.setHours(tempHour);
-  const currentTime = time.getTime();
-
-  const creatorItem = profile.creatorItem ? profile.creatorItem : 0;
-  const bplPro = (profile.bplSupport > 10) ? true : false
-  profile.bplSupport = profile.bplSupport ? profile.bplSupport % 10 : 0;
-
-  let blasterpass = U.GetConfig('use_blasterpass') ? 1 : 0;
-
-  var tempItem = U.GetConfig('unlock_all_navigators') ? unlockNavigators(items) : items;
-  tempItem = U.GetConfig('unlock_all_appeal_cards') ? unlockAppealCards(items) : items;
-  tempItem = removeStampItems(tempItem)
-  tempItem = (version >= 7 && U.GetConfig('unlock_all_valk_items')) ? unlockAppealParts(items) : items;
-
-  // Make generator power always 100%,
-  for (let i = 0; i < 50; i++) {
-    const tempGene: Item = { collection: 'item', type: 7, id: i, param: 10 };
-    tempItem.push(tempGene);
-  }
-
-  let result = 0
-  if (version > profile.version) result = 2
-
-  return send.pugFile('templates/load.pug', {
-    result,
-    courses,
-    items: tempItem,
-    present: presents,
-    params,
-    skill,
-    currentTime,
-    version,
-    blasterpass,
-    code: IDToCode(profile.id),
-    arena,
-    valgeneTicket,
-    creatorItem,
-    bplPro,
-    weeklyMusic,
-    variant,
-    ...profile,
-  });
 };
 
 export const create: EPR = async (info, data, send) => {
@@ -691,9 +1035,20 @@ export const create: EPR = async (info, data, send) => {
   if (!refid) return send.deny();
   console.log("DataID " + refid);
 
-  if(await DB.Count<Profile>(refid, {collection: 'profile', version: 6}) > 0) {
-    if(version === 7) {
-      await nablaMigrate(refid)
+  if(version === 2) {
+    for(let i = 1; i <= POLICY_BREAK2.length; i++) {
+      await DB.Upsert(refid, {collection: 'pb', version, id: i}, {$set: {exp: 0}})
+    }
+    if(await DB.Count<Profile>(refid, {collection: 'profile', version: 1}) > 0) {
+      await iiMigrate(refid)
+      return send.object({
+        result: K.ITEM('u8', 0)
+      })
+    }
+  }
+  else if(version === 7) {
+    if(await DB.Count<Profile>(refid, {collection: 'profile', version: 6}) > 0) {
+      await viiMigrate(refid)
       return send.object({
         result: K.ITEM('u8', 0)
       })
@@ -730,6 +1085,7 @@ export const create: EPR = async (info, data, send) => {
     narrowDown: 0,
     notesOption: 0,
     blasterEnergy: 0,
+    blasterCount: 0,
 
     headphone: 0,
     musicID: 0,
@@ -738,6 +1094,8 @@ export const create: EPR = async (info, data, send) => {
     expPoint: 0,
     mUserCnt: 0,
     boothFrame: [0, 0, 0, 0, 0],
+    haveItem: [],
+    haveNote: [],
 
     playCount: 0,
     dayCount: 0,
@@ -753,12 +1111,13 @@ export const create: EPR = async (info, data, send) => {
     creatorItem: 1
   };
 
-  await DB.Upsert(refid, { collection: 'profile' }, profile);
+  await DB.Upsert(refid, { collection: 'profile', version}, profile);
   return send.object({ result: K.ITEM('u8', 0) });
 };
 
 export const buy: EPR = async (info, data, send) => {
-  const refid = $(data).str('refid');
+  const version = Math.abs(getVersion(info))
+  const refid = (version === 1) ? $(data).attr().refid : $(data).str('refid');
   if (!refid) return send.deny();
 
   const growth = {
@@ -768,16 +1127,35 @@ export const buy: EPR = async (info, data, send) => {
 
   const currency = $(data).bool('currency_type') ? 'blocks' : 'packets';
 
-  const cost = _.sum($(data).numbers('item.price', []));
+  const cost = (version < 3) ? $(data).number('price') : _.sum($(data).numbers('item.price', []));
   const balanceChange = growth[currency] - cost;
 
-  const updated = await DB.Update<Profile>(
+  await DB.Update<Profile>(
     refid,
-    { collection: 'profile', [currency]: { $gte: -balanceChange } },
+    { collection: 'profile', version, [currency]: { $gte: -balanceChange } },
     { $inc: { [currency]: balanceChange } }
   );
 
-  if (updated.updated) {
+  let profile = await DB.FindOne<Profile>(refid, {collection: 'profile', version})
+  if (version === 1) {
+    const index = $(data).number('open_index')
+    await DB.Upsert<Profile>(refid, {collection: 'profile', version}, {
+      $set: {
+        [`haveItem.${index}`]: 1
+      }
+    })
+  } else if (version === 2) {
+    const item = {
+      type: $(data).number('item_type'),
+      id: $(data).number('item_id'),
+      param: $(data).number('param')
+    }
+    await DB.Upsert<Item>(
+      refid,
+      { collection: 'item', version, type: item.type, id: item.id },
+      { $set: { param: item.param, dbver: DB_VER } }
+    );
+  } else {
     const items = _.zipWith(
       $(data).numbers('item.item_type', []),
       $(data).numbers('item.item_id', []),
@@ -792,14 +1170,11 @@ export const buy: EPR = async (info, data, send) => {
         { $set: { param: item.param, dbver: DB_VER } }
       );
     }
-
-    return send.object({
-      gamecoin_packet: K.ITEM('u32', updated.docs[0].packets),
-      gamecoin_block: K.ITEM('u32', updated.docs[0].blocks),
-    });
-  } else {
-    return send.success();
   }
+  return send.object({
+    gamecoin_packet: K.ITEM('u32', profile.packets),
+    gamecoin_block: K.ITEM('u32', profile.blocks),
+  });
 };
 
 export const print: EPR = async (info, data, send) => {
@@ -890,6 +1265,7 @@ export const saveValgene: EPR = async (info, data, send) => {
 export const saveE: EPR = async (info, data, send) => {
   const refid = $(data).str('refid');
   const version = Math.abs(getVersion(info));
+
   // Save Weekly Score
   let weeklyScores = $(data).elements('weekly_music')
   let weeklyMusicResp = []
@@ -947,4 +1323,29 @@ export const saveE: EPR = async (info, data, send) => {
   //     get_ticket: K.ITEM('s32', 3)
   //   }
   // })
+}
+
+export const savePb: EPR = async (info, data, send) => {
+  const refid = $(data).str('refid');
+  const version = Math.abs(getVersion(info));
+  await DB.Upsert<PolicyBreak>(refid, {collection: 'pb', version, id: $(data).number('id')}, {
+    $set: {
+      exp: $(data).number('exp')
+    }
+  })
+
+  let pb = await DB.FindOne<PolicyBreak>(refid, {collection: 'pb', version, id: $(data).number('id')})
+  if(pb.exp >= 24000) {
+    let rwrd = POLICY_BREAK2[$(data).number('id') - 1].rwrd
+    await DB.Upsert<Item>(refid, {collection: 'item', version, type: rwrd.type, id: rwrd.id}, {
+      $set: {
+        param: rwrd.param
+      }
+    })
+  }
+  
+  return send.object({
+    exp: K.ITEM('s32', $(data).number('exp')),
+    result: K.ITEM('bool', true)
+  })
 }

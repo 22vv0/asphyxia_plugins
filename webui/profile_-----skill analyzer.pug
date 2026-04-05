@@ -12,52 +12,54 @@ div
       p.card-header-title
         span.icon
           i.mdi.mdi-account-edit
-        | Course
+        | Skill Analyzer Course Data
     .card-content
-      .field
-          label.label Version Select
-          .control
-            .select
-              select(name="version_select" id="version_select")
-      .field
-          label.label Skill Type
-          .control
-            .select
-              select(name="skilltype_select" id="skilltype_select")
-                option(value="0") Permissive Rate (Normal)
-                option(value="1") Divine Rate (God)
-      div.is-centered(id="course_content" style="text-align: center;")
-        .card
-          .card-header
-            p.card-header-title
-              span.icon
-                i.mdi.mdi-account-edit
-              | season 
-          .card-content
-            .course-content(id="single_course")
-              table
-                tr 
-                  td(colspan = 3) name
-                tr 
-                  td level
-                  td clearmark 
-                  td clearrate 
-              table 
-                tr 
-                  td 
-                    div(style="vertical-align: top;")
-                      div(style="width:80%;display:inline-block;vertical-align: center;") f
-                      div(style="width:20%;display:inline-block;vertical-align: center;") 12
-                tr 
-                  td
-                    div(style="vertical-align: top;")
-                      div(style="width:80%;display:inline-block;vertical-align: center;") f
-                      div(style="width:20%;display:inline-block;vertical-align: center;") 12
-                tr
-                  td 
-                    div(style="vertical-align: top;")
-                      div(style="width:80%;display:inline-block;vertical-align: center;") f
-                      div(style="width:20%;display:inline-block;vertical-align: center;") 12
+      div#no-data(hidden) No Skill Analyzer data found
+      div#course-disp
+        .field
+            label.label Version Select
+            .control
+              .select
+                select(name="version_select" id="version_select")
+        .field#skillT
+            label.label Skill Type
+            .control
+              .select
+                select(name="skilltype_select" id="skilltype_select")
+                  option(value="0") Permissive Rate (Normal)
+                  option(value="1") Divine Rate (God)
+        div.is-centered(id="course_content" style="text-align: center;")
+          .card
+            .card-header
+              p.card-header-title
+                span.icon
+                  i.mdi.mdi-account-edit
+                | season 
+            .card-content
+              .course-content(id="single_course")
+                table
+                  tr 
+                    td(colspan = 3) name
+                  tr 
+                    td level
+                    td clearmark 
+                    td clearrate 
+                table 
+                  tr 
+                    td 
+                      div(style="vertical-align: top;")
+                        div(style="width:80%;display:inline-block;vertical-align: center;") f
+                        div(style="width:20%;display:inline-block;vertical-align: center;") 12
+                  tr 
+                    td
+                      div(style="vertical-align: top;")
+                        div(style="width:80%;display:inline-block;vertical-align: center;") f
+                        div(style="width:20%;display:inline-block;vertical-align: center;") 12
+                  tr
+                    td 
+                      div(style="vertical-align: top;")
+                        div(style="width:80%;display:inline-block;vertical-align: center;") f
+                        div(style="width:20%;display:inline-block;vertical-align: center;") 12
 
 div(hidden id='data-pass') !{JSON.stringify(course_data)}
 script(src="static/asset/js/course.js") 

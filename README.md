@@ -1,11 +1,13 @@
 SOUND VOLTEX
 ===
-**Plugin Version:** fork-7.0.1f
+**Plugin Version:** fork-7.1.0
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
-**Supported game versions:** 
-- EXCEED GEAR (2025120900 final)
-- ∇ (2026030300)
+**Supported game versions:**
+- BOOTH (2013052900)
+- infinite infection (2014102200)
+- EXCEED GEAR (2025120900)
+- ∇ (202603240x)
 
 **Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d) or above
 
@@ -17,14 +19,65 @@ SOUND VOLTEX
 ---
 ## Changelog
 
-### fork-7.0.1f
+### ∇
 
-- \[∇\] Added event data: White Day 2026 Stamp Bonus Event
-- \[∇\] Updated Licensed Songs list
-- \[∇+EG\] Added `Omnimix Songs` folder - appears when Omnimix mdb exists
-- \[EG\] Updated Licensed Songs list with Omnimix music IDs
-- \[Misc\] Omnimix handler - allows Omnimix songs to be available in game with this plugin. Run `WebUI Asset Update` to retrieve mdb data from `/data_mods/omnimix/others/music_db.merged.xml`
-- \[WebUI\] Songs List page: added column for Omnimix song data indicator
+- Added event data: BEMANI PRO LEAGUE -SEASON 5- SPECIAL STAMP
+- Added event data: ▽ Weekly Stamp Bonus weeks 15 - 18
+- Added login gift: BEMANI PRO LEAGUE -SEASON 5- Triple Tribe Append (3 songs)
+- Added PREMIUM GENERATOR Vol. 8
+- Updated Licensed songs list: `G.L.I.T.C.H`
+
+### BOOTH (2013052900)
+
+- Re-added support (profile creation, data save/load)
+- Added catalog data: SDVX STATION song shop list
+- Added catalog data: GENERATOR:01 and GENERATOR:02
+- Added event data: Matching mode
+- Added event data: SDVX Spring Special Bonus (one-time 573 pc and blc bonus)
+- Added event data: Special Bonus (one-time 500 pc and blc bonus)
+- Added event data: Enable Touhou brand logo display
+- Added event data: Extra items added to GENERATOR:02
+
+### infinite infection (2014102200)
+
+- Re-added support (profile creation, data save/load, hiscore)
+- Data transfer from BOOTH (appeal card unlock status, song unlock status)
+- BOOTH scores loaded through `old` in `load_m`
+- Added SKILL ANALYZER data: `第14回`, `KAC予選コース`, `INFINITE INFECTION 壱周年記念`, `2014夏休み`
+- Added event flag: Matching mode 
+- Added event flag: SKILL ANALYZER
+- Added event flag: POLICY BREAK on SDVX STATION - select to increase gauge by 3000pw
+- Added event flag/s: Extra items added to APPEAL CARD GENERATOR 2
+- Added locked songs list for proper song unlock progression
+
+### EXCEED GEAR
+
+- Added missing licensed songs: `What's up? Pop!`, `テレパシ`, `神威`.
+
+### Misc
+
+- Added option to upload SDVX 1-7 `music_db.xml` files to pull version-specific song data from -- required for accurate display of per-version statistics. Upload your mdb files first before updating your WebUI assets.
+- Re-added ability to create play data for older games
+- Added haveItem and haveNote to `Profile` model to save/load BOOTH unlock data
+- Added attributes to `Music` (score data) model: `playCount`, `maxChain`, `effectiveRate`, `critical`, `near`, `error` -- saves from infinite infection for now
+- Created `save_pb` function to save POLICY BREAK progress
+- Created BOOTH -> infinite infection data transfer code
+- Added SDVX2 Skill title data
+- Update to `utils.getVersion()`
+- Updated customization data list
+
+### WebUI
+
+- Profile details page: Display version-specific data (Rank for BOOTH, etc)
+- Profile details page: Adjust statistics table depending on profile data version being displayed
+- Profile details page: Chart level constants for ∇ statistics table
+- Customization page: Hide incompatible options per version (BOOTH)
+- Customization page: Updated some item labels
+- Generator pages: Updated some item type labels
+- Songs list page: Added ability to select game version mdb to load
+- Skill Analyzer data page: Fix data not displaying when stype does not exist in course data
+- Skill Analyzer data page: Fix view when there are no course data
+- Update Webui Assets page: Updated notes with new music_db.xml instructions
 
 ---
 ## Extra notes

@@ -218,28 +218,50 @@ $(document).ready(async function() {
     unlock_all = (document.getElementById("data-pass-unlock-all").innerText === 'true');
     let datecode = await emit("getDateCode").then(
         function(response) {
+            if(currentVersion === 6 && response.data.datecode > 20251209) return 20251209
             return response.data.datecode
         }
     )
 
-    // akaname, apcard, nemsys, subbg, bgm, stamp, crew
+    // akaname, apcard, nemsys, subbg, bgm, stamp, crew, sysbg
     let finalLim = [0, 0, 0, 0, 0, 0, 0, 0]
     const finDateCode = (datecode !== (false || undefined || null || "") && datecode >= currentProfile.datecode) ? datecode : (currentProfile.datecode || ((currentVersion === 6) ? 20251209 : 20251226))
     
     const datecodeLimit = [
-        [20251209, 40287, 5553, 46, 762, 92, 2136, 176],
-        [20251224, 40301, 6001, 47, 781, 92, 2176, 178],
-        [20251226, 0, 6501, 0, 0, 0, 0, 0],
-        [20260113, 0, 6502, 0, 0, 0, 0, 0],
-        [20260203, 40302, 6504, 47, 795, 92, 2216, 179],
-        [20260303, 0, 6507, 48, 815, 101, 0, 181]
+        [20251209, 40287, 5553, 46, 762, 92, 2136, 176, 19],
+        [20251224, 40301, 6001, 47, 781, 92, 2176, 178, 0],
+        [20251226, 0, 6501, 0, 0, 0, 0, 0, 0],
+        [20260113, 0, 6502, 0, 0, 0, 0, 0, 0],
+        [20260203, 40302, 6504, 47, 795, 92, 2216, 179, 0],
+        [20260303, 0, 6507, 48, 815, 101, 0, 181, 0],
+        [20260324, 0, 0, 48, 842, 101, 2256, 182, 31]
     ].filter(lim => lim[0] <= finDateCode).forEach(lim => {
         lim.forEach((l, ind) => {
             if(l !== 0) finalLim[ind] = l
         })
     })
 
-    for (var p of profile_data) {
+    
+    if (currentVersion === 1) {
+        $('#apica').attr('hidden', 'true')
+        $('#apicaframe').attr('hidden', 'true')
+        $('#skillt').attr('hidden', 'true')
+        $('#aptitle').attr('hidden', 'true')
+        $('#bplsupport').attr('hidden', 'true')
+        $('#bplpro').attr('hidden', 'true')
+        $('#valgene').attr('hidden', 'true')
+        $('#customize').attr('hidden', 'true')
+    } else if (currentVersion === 2) {
+        $('#apicaframe').attr('hidden', 'true')
+        $('#skillt').attr('hidden', 'true')
+        $('#aptitle').attr('hidden', 'true')
+        $('#bplsupport').attr('hidden', 'true')
+        $('#bplpro').attr('hidden', 'true')
+        $('#valgene').attr('hidden', 'true')
+        $('#customize').attr('hidden', 'true')
+    }
+
+    for (var p of profile_data.sort((a,b) => a.version - b.version)) {
         $('#version_select').append($('<option>', {
             value: p.version,
             text: versionText[p.version],
@@ -252,6 +274,7 @@ $(document).ready(async function() {
 
     $.getJSON("static/asset/json/customize_data_ext.json", function(json) {
         databaseext = json;
+        let skt = databaseext['skilltitle' + currentVersion]
 
         for (var i in databaseext["supportTeams"]) {
             $('[name="bplSupport"]').append($('<option>', {
@@ -264,12 +287,12 @@ $(document).ready(async function() {
 
         if(currentProfile["bplSupport"] >= 10) $('[name="bplPro"]').attr('checked', true);
 
-        for (var i in databaseext["skilltitle"]) {
-            let foundCourses = courses.filter(c => c.cid === databaseext["skilltitle"][i].id && c.clear >= 2)
+        for (var i in skt) {
+            let foundCourses = courses.filter(c => c.cid === skt[i].id && c.clear >= 2)
             if(foundCourses.length > 0) {
                 $('[name="skilltitle"]').append($('<option>', {
-                    value: databaseext["skilltitle"][i].id,
-                    text: databaseext["skilltitle"][i].name + ' (' + databaseext["skilltitle"][i].info + ')',
+                    value: skt[i].id,
+                    text: skt[i].name + ' (' + skt[i].info + ')',
                 }));
             }
         }
@@ -337,6 +360,7 @@ $(document).ready(async function() {
         let subbgType = database['subbg'].filter((e => e.value === currentCustom[1]))[0]['type']
         let isSubbgSlideshow = (subbgType === 'slideshow')
 
+        if(subbgId !== currentCustom[1]) subbgType = 'normal'
         if(subbgType === 'video') {
             $('#sub_pre_vid').empty().append(
                 $("<source id='sub_pre_vid_src' src='static/asset/submonitor_bg/subbg_" + zeroPad(subbgId, 4) + ".mp4'>")
@@ -350,16 +374,17 @@ $(document).ready(async function() {
         let nemsyshtml = ''
         let nemId = (items_nemsys.find(x => x.id === currentCustom[2]) || unlock_all) ? currentCustom[2] : (currentVersion === 7 ? 47 : 0)
         for (var i in database["nemsys"].filter(nemsys => nemsys.value <= finalLim[3])) {
-            if(![8, 9, 10, 11].includes(database["nemsys"][i].value) && (unlock_all || (database["nemsys"][i].value === (0 || 47) || items_nemsys.find(x => x.id === database["nemsys"][i].value)))) {
+            let defaultNem = (currentVersion === 7) ? 47 : 0
+            if(![8, 9, 10, 11].includes(database["nemsys"][i].value) && (unlock_all || (defaultNem === database["nemsys"][i].value || items_nemsys.find(x => x.id === database["nemsys"][i].value)))) {
                 nemsyshtml  += '<option value=' + database['nemsys'][i].value + '>'+ database["nemsys"][i].name + '</option>'
             }   
         }
         $('#nemsys_select').html(nemsyshtml);
         $('#nemsys_select').val(nemId);
         $('#nemsys_pre').attr("src", "static/asset/nemsys/nemsys_" + zeroPad(nemId, 4) + ".png");
-    
 
-        let ticketNum = (valgene_ticket !== null) ? valgene_ticket.ticketNum : 0
+        let vgInd = valgene_ticket.findIndex(v => v.version === currentVersion)
+        let ticketNum = (vgInd >= 0) ? valgene_ticket[vgInd].ticketNum : 0
         $('[name="valgeneTicket"]').val(ticketNum)
 
         let stamphtml = ''
@@ -473,7 +498,7 @@ $(document).ready(async function() {
 
         let sysbghtml = ''
         let sysbgId = (items_sysbg.find(x => x.id === currentCustom[11]) || unlock_all) ? currentCustom[11] : 0
-        for (var i in database["sysbg"]) {
+        for (var i in database["sysbg"].filter(sbg => sbg.id <= finalLim[8])) {
             if(unlock_all || (items_sysbg.find(x => x.id === database["sysbg"][i].id) || database["sysbg"][i].id === 0)) {
                 sysbghtml += '<option value=' + database['sysbg'][i].id + '>'+ json['sysbg'][i].name + '</option>'
             }

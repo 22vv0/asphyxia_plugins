@@ -8,6 +8,7 @@ import { Mix } from '../models/mix'
 import { Rival } from '../models/rival'
 import { Item } from '../models/item'
 import { WeeklyMusicScore } from '../models/weeklymusic'
+import { COURSES2 } from '../data/ii'
 import { PREGENE, COURSES6 } from '../data/exg'
 import { PREGENE7, COURSES7 } from '../data/nbl'
 import { textureslist } from '../data/webui'
@@ -140,38 +141,40 @@ export const updateProfile = async (data: {
     { $set: update }
   );
 
-  if (parseInt(data.skilltitle) >= 0) {
-    await DB.Update<Skill>(
-      data.refid,
-      { collection: 'skill', version: parseInt(data.version_select) },
-      { $set: {
-          name: parseInt(data.skilltitle)
-        } 
-      }
-    );
-  }
-  
-  if (parseInt(data.valgeneTicket) >= 0) {
-    await DB.Upsert<ValgeneTicket>(
-      data.refid,
-      { collection: 'valgene_ticket' },
-      { $set: {
-          ticketNum: parseInt(data.valgeneTicket),
-          limitDate: Date.parse('31 Dec 2099 23:59:59 GMT'),
-          version: parseInt(data.version_select)
-        } 
-      }
-    );
-  }
-
-  await DB.Upsert<Param>(
-    data.refid,
-    { collection: 'param', type: 2, id: 2, version: parseInt(data.version_select) },
-    { $set: {
-        param: customParam
-      }
+  if(parseInt(data.version_select) >= 6) {
+    if (parseInt(data.skilltitle) >= 0) {
+      await DB.Update<Skill>(
+        data.refid,
+        { collection: 'skill', version: parseInt(data.version_select) },
+        { $set: {
+            name: parseInt(data.skilltitle)
+          } 
+        }
+      );
     }
-  )
+    
+    if (parseInt(data.valgeneTicket) >= 0) {
+      await DB.Upsert<ValgeneTicket>(
+        data.refid,
+        { collection: 'valgene_ticket' },
+        { $set: {
+            ticketNum: parseInt(data.valgeneTicket),
+            limitDate: Date.parse('31 Dec 2099 23:59:59 GMT'),
+            version: parseInt(data.version_select)
+          } 
+        }
+      );
+    }
+
+    await DB.Upsert<Param>(
+      data.refid,
+      { collection: 'param', type: 2, id: 2, version: parseInt(data.version_select) },
+      { $set: {
+          param: customParam
+        }
+      }
+    )
+  }
 };
 
 export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
@@ -197,89 +200,163 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
   try {
     // Get new music data from music_db.xml
     console.log('Getting new music_db info')
-    let mdbPaths = [
-      ["mdb", "/data/others/music_db.xml"],
-      ["omni", "/data_mods/omnimix/others/music_db.merged.xml"]
-    ]
-    let prevAssetMdb = []
+    let ver = 0
+    let prevAssetMdb = {}
+    let difLbl = ['', '', 'INF', 'GRV', 'HVN', 'VVD', 'XCD', 'NBL (tmp)']
     if(IO.Exists('webui/asset/json/music_db.json')) {
       prevAssetMdb = JSON.parse(U.DecodeString(await IO.ReadFile('webui/asset/json/music_db.json'), 'utf8'))
     }
-    if(!("omni" in prevAssetMdb)) prevAssetMdb["omni"] = { music: [] }
-    
-    for(const path of mdbPaths) {
-      if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + path[1])) {
-        let mdb = U.parseXML(U.DecodeString(await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + path[1]), "shift_jis"), false)
-        
-        let levelDiv = (mdb.mdb.music[0].difficulty.exhaust.difnum['@content'][0].toString().length === 3) ? 10 : 1
-        
-        mdb.mdb.music.forEach(musicValue => {
-          if(Object.keys(prevAssetMdb).length > 0) {
-            if(prevAssetMdb[path[0]]['music'].find(item => parseInt(item['id']) == parseInt(musicValue['@attr'].id)) == undefined) {
-              console.log((path[0] === 'omni' ? "[omnimix] " : "") + "New song added to json: " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
-              newJsonSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + (path[0] === 'omni' ? " | omnimix" : "") + '] ' + musicValue.info.title_name['@content']])
-            }
 
-            if(prevAssetMdb[path[0]]['music'].find(item => (parseInt(item['id']) == parseInt(musicValue['@attr'].id) && parseInt(item['info']['inf_ver']) === 0)) != undefined) {
-              let infVer = musicValue.info.inf_ver['@content']
-              if(['6', '7'].includes(infVer)) {
-                console.log((path[0] === 'omni' ? "[omnimix] " : "") + "New chart: [" + (infVer === '6') ? "XCD" : "NBL" + "] " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
-                newINFSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + (path[0] === 'omni' ? " | omnimix" : "") + '] ' + musicValue.info.title_name['@content']])
-              }
-            } 
-
-            if(prevAssetMdb[path[0]]['music'].find(item => (parseInt(item['id']) == parseInt(musicValue['@attr'].id) && 'ultimate' in item['difficulty'] )) == undefined && 'ultimate' in musicValue.difficulty) {
-              console.log((path[0] === 'omni' ? "[omnimix] " : "") + "New chart: [ULT] " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
-              newULTSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + (path[0] === 'omni' ? " | omnimix" : "") + '] ' + musicValue.info.title_name['@content']])
-            }
-          } else {
-            console.log((path[0] === 'omni' ? "[omnimix] " : "") + "New song added to json: " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
-            newJsonSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + (path[0] === 'omni' ? " | omnimix" : "") + '] ' + musicValue.info.title_name['@content']])
-            
-            let infVer = musicValue.info.inf_ver['@content']
-            if(['6', '7'].includes(infVer)) {
-              console.log((path[0] === 'omni' ? "[omnimix] " : "") + "New chart: [" + (infVer === '6') ? "XCD" : "NBL" + "] " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
-              newINFSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + (path[0] === 'omni' ? " | omnimix" : "") + '] ' + musicValue.info.title_name['@content']])
-            }
-          }
-
-          let mObj = {
-            'id': musicValue['@attr'].id,
-            'info': {
-              'title_name': musicValue.info.title_name['@content'],
-              'version': musicValue.info.version['@content'][0].toString(),
-              'inf_ver': musicValue.info.inf_ver['@content'][0].toString(),
-              'distribution_date': musicValue.info.distribution_date['@content'][0]
-            },
-            'difficulty': {
-              'novice': (musicValue.difficulty.novice.difnum['@content'][0] / levelDiv).toString(),
-              'advanced': (musicValue.difficulty.advanced.difnum['@content'][0] / levelDiv).toString(),
-              'exhaust': (musicValue.difficulty.exhaust.difnum['@content'][0] / levelDiv).toString(),
-              'maximum': 'maximum' in musicValue.difficulty ? (musicValue.difficulty.maximum.difnum['@content'][0] / levelDiv).toString() : '0',
-              'infinite': 'infinite' in musicValue.difficulty ? (musicValue.difficulty.infinite.difnum['@content'][0] / levelDiv).toString() : '0',
-              'ultimate': 'ultimate' in musicValue.difficulty ? (musicValue.difficulty.ultimate.difnum['@content'][0] / levelDiv).toString() : '0'
-            }
-          }
-
-          if(path[0] === "mdb") mdbJsonFix.push(mObj)
-          else mdbJsonOmniFix.push(mObj)
-        })
-
-        mdbJsonFixFinal = {
-          'mdb': {
-            'music': mdbJsonFix
-          },
-          'omni': {
-            'music': mdbJsonOmniFix
-          }
-        };
-        IO.WriteFile('webui/asset/json/music_db.json', JSON.stringify(mdbJsonFixFinal, null, 4));
-      } else {
-        console.log('Error reading music_db.xml.')
-        runErrors.push('Error reading music_db.xml.')
+    if (prevAssetMdb == {}) {
+      prevAssetMdb = {
+        'mdb': {
+          'music': []
+        }
       }
-
     }
+    while(ver <= 7) {
+      if(IO.Exists('./webui/asset/uploads/' + ver + '_mdb.xml')) {
+        console.log('Importing ' + ((ver === 0) ? 'omnimix' : 'SDVX' + ver) + ' mdb')
+        let mdb = U.parseXML(U.DecodeString(await IO.ReadFile('./webui/asset/uploads/' + ver + '_mdb.xml'), "shift_jis"), false)
+        mdb.mdb.music.forEach(musicValue => {
+          let levelDiv = (ver > 0 && ver < 6) ? 1 : (musicValue.difficulty.exhaust.difnum['@content'][0].toString().length === 3) ? 10 : 1
+          if(ver === 7 && ['840', '1219', '1751'].includes(musicValue['@attr'].id)) levelDiv = 10
+          let ind = prevAssetMdb['mdb']['music'].findIndex(item => parseInt(item['id']) == parseInt(musicValue['@attr'].id))
+          let dif = [{}, {}, {}, {}, {}, {}, {}, {}]
+          if (ind < 0) {
+            switch (ver) {
+              case 0:
+                dif[ver] = {
+                  'novice': (musicValue.difficulty.novice.difnum['@content'][0] / levelDiv).toString(),
+                  'advanced': (musicValue.difficulty.advanced.difnum['@content'][0] / levelDiv).toString(),
+                  'exhaust': (musicValue.difficulty.exhaust.difnum['@content'][0] / levelDiv).toString(),
+                  'maximum': 'maximum' in musicValue.difficulty ? (musicValue.difficulty.maximum.difnum['@content'][0] / levelDiv).toString() : '0',
+                  'infinite': 'infinite' in musicValue.difficulty ? (musicValue.difficulty.infinite.difnum['@content'][0] / levelDiv).toString() : '0',
+                  'ultimate': 'ultimate' in musicValue.difficulty ? (musicValue.difficulty.ultimate.difnum['@content'][0] / levelDiv).toString() : '0'
+                }
+                break
+              case 1:
+                dif[ver] = {
+                  'novice': $(musicValue).number('difficulty.0.difnum').toString(),
+                  'advanced': $(musicValue).number('difficulty.1.difnum').toString(),
+                  'exhaust': $(musicValue).number('difficulty.2.difnum').toString(),
+                }
+                break
+              case 2:
+              case 3:
+                dif[ver] = {
+                  'novice': (musicValue.difficulty.novice.difnum['@content'][0] / levelDiv).toString(),
+                  'advanced': (musicValue.difficulty.advanced.difnum['@content'][0] / levelDiv).toString(),
+                  'exhaust': (musicValue.difficulty.exhaust.difnum['@content'][0] / levelDiv).toString(),
+                  'infinite': (musicValue.difficulty.infinite.difnum['@content'][0] / levelDiv).toString(),
+                } 
+                break
+              case 6:
+              case 7:
+                dif[ver] = {
+                  'novice': (musicValue.difficulty.novice.difnum['@content'][0] / levelDiv).toString(),
+                  'advanced': (musicValue.difficulty.advanced.difnum['@content'][0] / levelDiv).toString(),
+                  'exhaust': (musicValue.difficulty.exhaust.difnum['@content'][0] / levelDiv).toString(),
+                  'maximum': 'maximum' in musicValue.difficulty ? (musicValue.difficulty.maximum.difnum['@content'][0] / levelDiv).toString() : '0',
+                  'infinite': 'infinite' in musicValue.difficulty ? (musicValue.difficulty.infinite.difnum['@content'][0] / levelDiv).toString() : '0',
+                  'ultimate': 'ultimate' in musicValue.difficulty ? (musicValue.difficulty.ultimate.difnum['@content'][0] / levelDiv).toString() : '0'
+                }
+                break
+            }
+
+            console.log("New song added to json: " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")")
+            newJsonSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
+            prevAssetMdb['mdb']['music'].push({
+              'id': musicValue['@attr'].id,
+              'info': {
+                'title_name': musicValue.info.title_name['@content'],
+                'version': musicValue.info.version['@content'][0].toString(),
+                ...ver === 0 && {'omnimix': ver === 0},
+                'inf_ver': musicValue.info.inf_ver['@content'][0].toString(),
+                'distribution_date': musicValue.info.distribution_date['@content'][0].toString()
+              },
+              'difficulty': dif
+            })
+          } else {
+            dif = prevAssetMdb['mdb']['music'][ind]['difficulty']
+            let newInfVer = ver > 1 && parseInt(prevAssetMdb['mdb']['music'][ind]['info']['inf_ver']) < (ver === 2 ? (musicValue.difficulty.infinite.difnum['@content'][0] !== 0 ? 2 : 0) : musicValue.info.inf_ver['@content'][0])
+            let newUlt = ver >= 6 && !('ult' in prevAssetMdb['mdb']['music'][ind]['info']) && 'ultimate' in musicValue.difficulty
+            switch (ver) {
+              case 0:
+                dif[ver] = {
+                  'novice': (musicValue.difficulty.novice.difnum['@content'][0] / levelDiv).toString(),
+                  'advanced': (musicValue.difficulty.advanced.difnum['@content'][0] / levelDiv).toString(),
+                  'exhaust': (musicValue.difficulty.exhaust.difnum['@content'][0] / levelDiv).toString(),
+                  'maximum': 'maximum' in musicValue.difficulty ? (musicValue.difficulty.maximum.difnum['@content'][0] / levelDiv).toString() : '0',
+                  'infinite': 'infinite' in musicValue.difficulty ? (musicValue.difficulty.infinite.difnum['@content'][0] / levelDiv).toString() : '0',
+                  'ultimate': 'ultimate' in musicValue.difficulty ? (musicValue.difficulty.ultimate.difnum['@content'][0] / levelDiv).toString() : '0'
+                }
+                prevAssetMdb['mdb']['music'][ind]['info']['distribution_date'] = musicValue.info.distribution_date['@content'][0].toString()
+                prevAssetMdb['mdb']['music'][ind]['info']['inf_ver'] = musicValue.info.inf_ver['@content'][0].toString()
+                prevAssetMdb['mdb']['music'][ind]['info']['omnimix'] = true
+                break
+              case 1:
+                dif[ver] = {
+                  'novice': $(musicValue).number('difficulty.0.difnum').toString(),
+                  'advanced': $(musicValue).number('difficulty.1.difnum').toString(),
+                  'exhaust': $(musicValue).number('difficulty.2.difnum').toString(),
+                }
+                break
+              case 2:
+              case 3:
+                dif[ver] = {
+                  'novice': (musicValue.difficulty.novice.difnum['@content'][0] / levelDiv).toString(),
+                  'advanced': (musicValue.difficulty.advanced.difnum['@content'][0] / levelDiv).toString(),
+                  'exhaust': (musicValue.difficulty.exhaust.difnum['@content'][0] / levelDiv).toString(),
+                  'infinite': (musicValue.difficulty.infinite.difnum['@content'][0] / levelDiv).toString(),
+                } 
+                if(ver === 3) {
+                  prevAssetMdb['mdb']['music'][ind]['info']['distribution_date'] = musicValue.info.distribution_date['@content'][0].toString()
+                  prevAssetMdb['mdb']['music'][ind]['info']['inf_ver'] = musicValue.info.inf_ver['@content'][0].toString()
+                }
+                break
+              // case 4:
+              // case 5:
+              //   dif[ver] = {
+              //     'novice': (musicValue.difficulty.novice.difnum['@content'][0] / levelDiv).toString(),
+              //     'advanced': (musicValue.difficulty.advanced.difnum['@content'][0] / levelDiv).toString(),
+              //     'exhaust': (musicValue.difficulty.exhaust.difnum['@content'][0] / levelDiv).toString(),
+              //     'maximum': (musicValue.difficulty.maximum.difnum['@content'][0] / levelDiv).toString(),
+              //     'infinite': (musicValue.difficulty.infinite.difnum['@content'][0] / levelDiv).toString(),
+              //   }
+              //   prevAssetMdb['mdb']['music'][ind]['info']['distribution_date'] = musicValue.info.distribution_date['@content'][0].toString()
+              //   prevAssetMdb['mdb']['music'][ind]['info']['inf_ver'] = musicValue.info.inf_ver['@content'][0].toString()
+              //   break
+              case 6:
+              case 7:
+                dif[ver] = {
+                  'novice': (musicValue.difficulty.novice.difnum['@content'][0] / levelDiv).toString(),
+                  'advanced': (musicValue.difficulty.advanced.difnum['@content'][0] / levelDiv).toString(),
+                  'exhaust': (musicValue.difficulty.exhaust.difnum['@content'][0] / levelDiv).toString(),
+                  'maximum': 'maximum' in musicValue.difficulty ? (musicValue.difficulty.maximum.difnum['@content'][0] / levelDiv).toString() : '0',
+                  'infinite': 'infinite' in musicValue.difficulty ? (musicValue.difficulty.infinite.difnum['@content'][0] / levelDiv).toString() : '0',
+                  'ultimate': 'ultimate' in musicValue.difficulty ? (musicValue.difficulty.ultimate.difnum['@content'][0] / levelDiv).toString() : '0'
+                }
+                prevAssetMdb['mdb']['music'][ind]['info']['distribution_date'] = musicValue.info.distribution_date['@content'][0].toString()
+                prevAssetMdb['mdb']['music'][ind]['info']['inf_ver'] = musicValue.info.inf_ver['@content'][0].toString()
+                break
+            }
+            if(newInfVer) {
+              console.log("New chart: [" + difLbl[ver] + "] " + prevAssetMdb['mdb']['music'][ind]['info'].title_name + " (" + musicValue.info.distribution_date['@content'] + ")") 
+              newINFSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']  + ' (' + difLbl[ver] + ')'])
+            }
+            if(newUlt) {
+              console.log("New chart: [ULT] " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
+              newULTSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
+              prevAssetMdb['mdb']['music'][ind]['info']['ult'] = true
+            }
+            prevAssetMdb['mdb']['music'][ind]['difficulty'] = dif
+          }
+        })
+      }
+      ver++
+    }
+    IO.WriteFile('webui/asset/json/music_db.json', JSON.stringify(prevAssetMdb, null, 4));
 
     // Copying new nemsys files from gamedata
     console.log("Copying new nemsys files from gamedata")
@@ -611,7 +688,10 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
 
     let courseData = JSON.parse(U.DecodeString(await IO.ReadFile('webui/asset/json/course_data.json'), 'utf8'))
     for(let cIter = 0; cIter < courseData.courseData.length; cIter++) {
-      if(courseData.courseData[cIter].version === 6) {
+      if(courseData.courseData[cIter].version === 2) {
+        courseData.courseData[cIter].info = COURSES2
+        courseDataUpdateSuccess = true
+      } else if(courseData.courseData[cIter].version === 6) {
         courseData.courseData[cIter].info = COURSES6
         courseDataUpdateSuccess = true
       } else if(courseData.courseData[cIter].version === 7) {

@@ -7,8 +7,8 @@ div
         | Update WebUI Assets (pull from game files)
     .card-info.collapsible-card
       ul
-        li(style="font-size:14px") To use this feature, configure 'Exceed Gear Data Directory' in the plugin settings.
-        li(style="font-size:14px") This will extract certain textures/images from .ifs files, however, currently it will only support IFS files used in the latest game version supported by this plugin.
+        li(style="font-size:14px") To use this feature, configure <code>Game Data Directory</code> in the plugin settings. Select the directory where the <code>data</code> folder is located.
+        li(style="font-size:14px") To update your plugin's music db, you must first upload the <code>music_db.xml</code> files through the data uploads section on the dashboard. You can send different mdb files from different iterations of SDVX (BOOTH, infinite infection etc.) so make sure the mdb version matches the one you upload it to.
         li(style="font-size:14px") This feature pulls BGM files from the data, however they are in the WMA file format, which playback is unsupported so they have to be converted to MP3 format. To convert these files to MP3, you can use ffmpeg. If you have ffmpeg already installed, there are bgm_convert scripts in the SDVX plugin directory that can automate the conversion to mp3 (.bat for Windows, .sh for Linux)
         ul
           li(style="font-size:14px") Windows: <a href="https://www.gyan.dev/ffmpeg/builds/">download</a> and extract ffmpeg.exe and put it in the same directory as the bat script (or put ffmpeg.exe in PATH environment variable)

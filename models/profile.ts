@@ -21,7 +21,6 @@ export interface Profile {
   musicType: number;
   sortType: number;
   headphone: number;
-  blasterEnergy: number;
 
   hiSpeed: number;
   laneSpeed: number;
@@ -35,6 +34,11 @@ export interface Profile {
   narrowDown: number;
 
   boothFrame: number[];
+  haveItem: number[];
+  haveNote: number[];
+
+  blasterEnergy: number;
+  blasterCount: number;
 
   playCount: number;
   dayCount: number;
