@@ -15,10 +15,16 @@ div
           li(style="font-size:14px") Linux: follow <a href="https://json2video.com/how-to/ffmpeg-course/install-ffmpeg-linux.html">this guide</a> on how to install ffmpeg on your specific Linux distro.
     .card-content
       .field
-        button.button.is-primary(type="update" id="updateResources") 
-          span.icon
-            i.mdi.mdi-check
-          span Update
+        .is-flex.is-align-items-center(style="gap: 1rem;")
+          button.button.is-primary(type="update" id="updateResources") 
+            span.icon
+              i.mdi.mdi-check
+            span Update
+          .is-flex.is-align-items-center(style="gap: 0.5rem; height: 2.25em;")
+            label.switch.is-rounded(style="margin-bottom: 0;")
+              input(type="checkbox" id="detailToggle" name="detailToggle")
+              span.check
+            span(style="display: inline-flex; align-items: center; height: 100%; line-height: 1;") More Detail
       .field
         textarea.log-field(rows="50" id="logtextarea" name="logtextarea" disabled)
 
