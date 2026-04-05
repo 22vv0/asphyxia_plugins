@@ -1099,6 +1099,16 @@
             "info": "Toggle this on to enable/disable this stamp event."
         },
         {
+            "id": "bpls5stamp",
+            "type": "stamp",
+            "enabled": true,
+            "name": "BEMANI PRO LEAGUE -SEASON 5- Special Stamp",
+            "version": 20260324,
+            "start": 20260326,
+            "desc": "Stamp event to unlock 12 songs, featuring the BPL S5 theme songs + BPL S5 sightread songs including KISKIL-LILLA. There are 3 batches of stamp sheets (8 songs / 3 songs / 1 song,) where they only appear after completing the previous batch.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
             "id": "nblstampbonus1",
             "type": "stamp",
             "enabled": true,
@@ -1239,6 +1249,46 @@
             "info": "Toggle this on to enable/disable this stamp event."
         },
         {
+            "id": "nblstampbonus15",
+            "type": "stamp",
+            "enabled": true,
+            "name": "∇ Weekly Stamp Bonus! #15",
+            "version": 20260324,
+            "start": 20260330,
+            "desc": "Stamp event to unlock the 'エクシード仮面' appeal sticker, and gain PC and BLC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "nblstampbonus16",
+            "type": "stamp",
+            "enabled": true,
+            "name": "∇ Weekly Stamp Bonus! #16",
+            "version": 20260324,
+            "start": 20260406,
+            "desc": "Stamp event to unlock the '桜モチュ' appeal sticker, and gain PC and BLC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "nblstampbonus17",
+            "type": "stamp",
+            "enabled": true,
+            "name": "∇ Weekly Stamp Bonus! #17",
+            "version": 20260324,
+            "start": 20260413,
+            "desc": "Stamp event to unlock the '学生つまぶき' appeal sticker, and gain PC and BLC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "nblstampbonus18",
+            "type": "stamp",
+            "enabled": true,
+            "name": "∇ Weekly Stamp Bonus! #18",
+            "version": 20260324,
+            "start": 20260420,
+            "desc": "Stamp event to unlock the '鮮烈な新生活' appeal sticker, and gain PC and BLC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
             "id": "achmissions",
             "type": "achmissions",
             "enabled": true,
@@ -1263,6 +1313,28 @@
             "start": 20260212,
             "desc": "Login to SDVX to get this appeal card.",
             "info": "Toggle this option to enable/disable this gift."
+        },
+        {
+            "id": "bpls5tripletribe3",
+            "type": "cross_online",
+            "enabled": true,
+            "name": "BEMANI PRO LEAGUE -SEASON 5- Triple Tribe Append",
+            "version": [
+                20260324,
+                20260324,
+                20260324
+            ],
+            "start": [
+                20260326,
+                20260326,
+                20260326
+            ],
+            "desc": "Crossover event between SOUND VOLTEX, DanceDanceRevolution, and beatmania IIDX where you would earn TTP points which can be used to unlock songs through the participating games.<br>However, since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding SOUND VOLTEX songs' option to automatically unlock them on your next login.",
+            "info": [
+                "Song 1: '[mid:2378]'",
+                "Song 2: '[mid:2380]'",
+                "Song 3: '[mid:2382]'"
+            ]
         }
     ],
     "flags": [

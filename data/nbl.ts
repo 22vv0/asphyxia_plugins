@@ -113,7 +113,8 @@ export const BLASTER_GATE7 = [
 ]
 
 export const LICENSED_SONGS7 = LICENSED_SONGS6.concat([
-  2348, 2344, 2343, 2352, 2353, 2345, 2234, 2354, 2350, 2351, 2209, 2376, 2377
+  2348, 2344, 2343, 2352, 2353, 2345, 2234, 2354, 2350, 2351, 2209, 2376, 2377,
+  2384
 ])
 
 export const UNLOCK_EVENTS7 = {
@@ -205,7 +206,82 @@ export const UNLOCK_EVENTS7 = {
     ],
     version: 20260303,
     start: 20260312
-  }, 
+  },
+  bpls5stamp: {
+    type: 'select',
+    info: {
+      id: 7,
+      textstampval: -1,
+      stmpSlHd: '[sz:22][c:FFA6AA]BEMANI PRO LEAGUE -SEASON 5- スペシャルスタンプ!!',
+      stmpSlFt: '[sz:23]{TextStamp}[br:5]{TextTerm} 2026/03/26～2026/05/10',
+      stmpHd: '[sz:22][c:DAC491]BEMANI PRO LEAGUE -SEASON 5- スペシャルスタンプ!!',
+      stmpFt: '[sz:22]ボルテを遊んでスタンプをゲット！',
+      stmpBg: 'bg_stamp_bpls5',
+      sheet: '83#sheet_track_2383#e#2383,84#sheet_track_2369#e#2369,85#sheet_track_2366#e#2366,86#sheet_track_2363#e#2363,87#sheet_track_2365#e#2365,88#sheet_track_2368#e#2368,89#sheet_track_2364#e#2364,90#sheet_track_2367#e#2367,91#sheet_track_2331#e#2331,92#sheet_track_2328#e#2328,93#sheet_track_2329#e#2329,94#sheet_track_2330#e#2330',
+      data: [
+        {
+          stmpid: 83,
+          stps: 10,
+          stprwrd: '10:e:238323'
+        },
+        {
+          stmpid: 84,
+          stps: 10,
+          stprwrd: '10:e:236923'
+        },
+        {
+          stmpid: 85,
+          stps: 10,
+          stprwrd: '10:e:236623'
+        },
+        {
+          stmpid: 86,
+          stps: 10,
+          stprwrd: '10:e:236323'
+        },
+        {
+          stmpid: 87,
+          stps: 10,
+          stprwrd: '10:e:236523'
+        },
+        {
+          stmpid: 88,
+          stps: 10,
+          stprwrd: '10:e:236823'
+        },
+        {
+          stmpid: 89,
+          stps: 10,
+          stprwrd: '10:e:236423'
+        },
+        {
+          stmpid: 90,
+          stps: 10,
+          stprwrd: '10:e:236723'
+        },
+        {
+          stmpid: 91,
+          stps: 15,
+          stprwrd: '0:r:x83 0:r:x84 0:r:x85 0:r:x86 0:r:x87 0:r:x88 0:r:x89 0:r:x90 15:e:233123'
+        },
+        {
+          stmpid: 92,
+          stps: 15,
+          stprwrd: '0:r:x83 0:r:x84 0:r:x85 0:r:x86 0:r:x87 0:r:x88 0:r:x89 0:r:x90 15:e:232823'
+        },
+        {
+          stmpid: 93,
+          stps: 15,
+          stprwrd: '0:r:x83 0:r:x84 0:r:x85 0:r:x86 0:r:x87 0:r:x88 0:r:x89 0:r:x90 15:e:232923'
+        },
+        {
+          stmpid: 94,
+          stps: 30,
+          stprwrd: '0:r:x91 0:r:x92 0:r:x93 30:e:233023'
+        }
+      ]
+    }
+  },
   nblstampbonus1: {
     type: 'main',
     info: {
@@ -443,7 +519,76 @@ export const UNLOCK_EVENTS7 = {
         }
       ]
     }
-  }
+  },
+  nblstampbonus15: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      stmpFtJ: '[sz:22]3/30~4/5の間、ポルテを遊ぶとスタンプを獲得できます',
+      stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 3/30～4/5',
+      data: [
+        {
+          stmpid: 95,
+          stps: 310030,
+          stprwrd: '1:p:1000 5:b:500 10:r:172 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        }
+      ]
+    }
+  },
+  nblstampbonus16: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      stmpFtJ: '[sz:22]4/6~4/12の間、ポルテを遊ぶとスタンプを獲得できます',
+      stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 4/6～4/12',
+      data: [
+        {
+          stmpid: 96,
+          stps: 310030,
+          stprwrd: '1:p:1000 5:b:500 10:r:173 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        }
+      ]
+    }
+  },
+  nblstampbonus17: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      stmpFtJ: '[sz:22]4/13~4/19の間、ポルテを遊ぶとスタンプを獲得できます',
+      stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 4/13～4/19',
+      data: [
+        {
+          stmpid: 97,
+          stps: 310030,
+          stprwrd: '1:p:1000 5:b:500 10:r:174 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        }
+      ]
+    }
+  },
+  nblstampbonus18: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+      stmpFtJ: '[sz:22]4/20~4/26の間、ポルテを遊ぶとスタンプを獲得できます',
+      stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 4/20～4/26',
+      data: [
+        {
+          stmpid: 98,
+          stps: 310030,
+          stprwrd: '1:p:1000 5:b:500 10:r:175 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        }
+      ]
+    }
+  },
+  
 }
 
 export const EVENT_ITEMS7 = {
@@ -489,7 +634,10 @@ export const EVENT_ITEMS7 = {
   "bpls5tripletribe2_3": ['2359'],
   "bpls5tripletribe2_4": ['2361'],
   "bpls5tripletribe2_5": ['2362'],
-  "valentines2026": ['6504']
+  "valentines2026": ['6504'],
+  "bpls5tripletribe3_1": ['2378'],
+  "bpls5tripletribe3_2": ['2380'],
+  "bpls5tripletribe3_3": ['2382'],
 }
 
 // rule: 0 score 1 point 2 vote
@@ -567,6 +715,16 @@ export const PREGENE7 = [
       'subbg': [782, 783, 784, 785, 786, 787, 788, 789, 790, 791, 792, 793, 794, 795]
     },
     probability: [0.05, 0.39, 0.6]
+  },
+  {
+    id: 25,
+    items: {
+      'crew': [182],
+      'stamp': [555, 556, 557, 558, 559, 560, 561, 562, 563, 564],
+      'subbg': [816, 817, 818, 819, 820, 821, 822, 823, 824, 825, 826, 827, 828, 829, 830, 831, 832, 833, 834, 835, 836, 837, 838, 839, 840, 841, 842],
+      'sysbg': [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+    },
+    probability: [0.05, 0.42, 0.84, 0.9]
   }
 ]
 
