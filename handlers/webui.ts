@@ -279,7 +279,7 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
             })
           } else {
             dif = prevAssetMdb['mdb']['music'][ind]['difficulty']
-            let newInfVer = ver > 1 && parseInt(prevAssetMdb['mdb']['music'][ind]['info']['inf_ver']) < (ver === 2 ? (musicValue.difficulty.infinite.difnum['@content'][0] !== 0 ? 2 : 0) : musicValue.info.inf_ver['@content'][0])
+            let newInfVer = ver > 1 && (parseInt(prevAssetMdb['mdb']['music'][ind]['info']['inf_ver']) === 0 && parseInt(prevAssetMdb['mdb']['music'][ind]['info']['inf_ver']) < (ver === 2 ? (parseInt(musicValue.difficulty.infinite.difnum['@content'][0]) !== 0 ? 2 : 0) : parseInt(musicValue.info.inf_ver['@content'][0])))
             let newUlt = ver >= 6 && !('ult' in prevAssetMdb['mdb']['music'][ind]['info']) && 'ultimate' in musicValue.difficulty
             switch (ver) {
               case 0:
@@ -292,8 +292,8 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
                   'ultimate': 'ultimate' in musicValue.difficulty ? (musicValue.difficulty.ultimate.difnum['@content'][0] / levelDiv).toString() : '0'
                 }
                 prevAssetMdb['mdb']['music'][ind]['info']['distribution_date'] = musicValue.info.distribution_date['@content'][0].toString()
-                prevAssetMdb['mdb']['music'][ind]['info']['inf_ver'] = musicValue.info.inf_ver['@content'][0].toString()
                 prevAssetMdb['mdb']['music'][ind]['info']['omnimix'] = true
+                if(newInfVer) prevAssetMdb['mdb']['music'][ind]['info']['inf_ver'] = musicValue.info.inf_ver['@content'][0].toString()
                 break
               case 1:
                 dif[ver] = {
@@ -312,7 +312,7 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
                 } 
                 if(ver === 3) {
                   prevAssetMdb['mdb']['music'][ind]['info']['distribution_date'] = musicValue.info.distribution_date['@content'][0].toString()
-                  prevAssetMdb['mdb']['music'][ind]['info']['inf_ver'] = musicValue.info.inf_ver['@content'][0].toString()
+                  if(newInfVer) prevAssetMdb['mdb']['music'][ind]['info']['inf_ver'] = musicValue.info.inf_ver['@content'][0].toString()
                 }
                 break
               // case 4:
@@ -338,12 +338,12 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
                   'ultimate': 'ultimate' in musicValue.difficulty ? (musicValue.difficulty.ultimate.difnum['@content'][0] / levelDiv).toString() : '0'
                 }
                 prevAssetMdb['mdb']['music'][ind]['info']['distribution_date'] = musicValue.info.distribution_date['@content'][0].toString()
-                prevAssetMdb['mdb']['music'][ind]['info']['inf_ver'] = musicValue.info.inf_ver['@content'][0].toString()
+                if(newInfVer) prevAssetMdb['mdb']['music'][ind]['info']['inf_ver'] = musicValue.info.inf_ver['@content'][0].toString()
                 break
             }
             if(newInfVer) {
-              console.log("New chart: [" + difLbl[ver] + "] " + prevAssetMdb['mdb']['music'][ind]['info'].title_name + " (" + musicValue.info.distribution_date['@content'] + ")") 
-              newINFSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']  + ' (' + difLbl[ver] + ')'])
+              console.log("New chart: [" + difLbl[prevAssetMdb['mdb']['music'][ind]['info']['inf_ver']] + "] " + prevAssetMdb['mdb']['music'][ind]['info'].title_name + " (" + musicValue.info.distribution_date['@content'] + ")") 
+              newINFSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']  + ' (' + difLbl[prevAssetMdb['mdb']['music'][ind]['info']['inf_ver']] + ')'])
             }
             if(newUlt) {
               console.log("New chart: [ULT] " + musicValue.info.title_name['@content'] + " (" + musicValue.info.distribution_date['@content'] + ")") 
