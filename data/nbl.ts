@@ -767,11 +767,11 @@ export const APIGENE7 = {
 export const COURSES7 = []
 
 export const INFORMATION7 = [
-  { id: 43, version: 20260127, start: 20260127, str: '[img:info/260122_info_14th_voltefactory.png:]'},
-  { id: 44, version: 20260127, start: 20260127, str: '[img:info/260122_info_popn_cc.png:]'},
   { id: 45, version: 20260127, start: 20260129, str: '[img:info/260129_info_tripletribe.png:]'},
   { id: 46, version: 20260203, start: 20260205, str: '[img:info/250205_info_hatsunemiku.png:]'},
-  { id: 47, version: 20260217, start: 20260219, str: '[img:info/260219_info_cross_resonance.png:]'}
+  { id: 47, version: 20260217, start: 20260219, str: '[img:info/260219_info_cross_resonance.png:]'},
+  { id: 48, version: 20260324, start: 20260326, str: '[img:info/260326_info_generator.png:]'},
+  { id: 49, version: 20260324, start: 20260326, str: '[img:info/260326_info_tripletribe.png:]'}
 ] 
 
 export const EXTENDS7 = [

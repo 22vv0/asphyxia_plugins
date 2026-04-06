@@ -293,7 +293,7 @@ export async function viiMigrate(refid) {
 		let exscoreOverride = 0
 		if(foundSongIndex !== -1) {
 			var songData = mdb.mdb.music[foundSongIndex];
-			diffLevel = parseInt(songData['difficulty'][diffName[rec.type]])
+			diffLevel = parseInt(songData['difficulty'][6][diffName[rec.type]])
 			lvOverride = levelDifOverride.findIndex(d => d.mid === rec.mid && d.type === rec.type)
 			if(lvOverride >= 0) diffLevel = levelDifOverride[lvOverride].lvl
 			exscoreOverride = exScoreResetList.findIndex(d => d.id === rec.mid && d.type === rec.type)

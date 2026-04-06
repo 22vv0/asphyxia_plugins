@@ -1,13 +1,13 @@
 SOUND VOLTEX
 ===
-**Plugin Version:** fork-7.1.0
+**Plugin Version:** fork-7.1.0-qfix
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
 **Supported game versions:**
 - BOOTH (2013052900)
 - infinite infection (2014102200)
 - EXCEED GEAR (2025120900)
-- ∇ (202603240x)
+- ∇ (20260324xx)
 
 **Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d) or above
 
@@ -79,11 +79,17 @@ SOUND VOLTEX
 - Skill Analyzer data page: Fix view when there are no course data
 - Update Webui Assets page: Updated notes with new music_db.xml instructions
 
+### Additional fixes (qfix)
+
+- README: Updated `Important notes for players migrating from EXCEED GEAR to ∇` to reflect the new music_db.xml upload procedure
+- migrate.ts: Adjusted diffLevel retrieval for ∇ migration after music_db.json format change
+- nbl.ts: Updated information popups list
+
 ---
 ## Extra notes
 
 #### Important notes for players migrating from EXCEED GEAR to ∇
-- Before logging in to ∇, **it is important to run the WebUI Asset Update** as the plugin needs at least the latest EG music_db to pull difficulty level info from so the plugin could calculate your ∇ VOLFORCE properly, or to as close as it can to your EG VF. In EG, the VF is calculated on the fly when you login, but in ∇ the individual chart VF is now being stored in DB.
+- Before logging in and migrating to ∇, **it is important to upload the latest EXCEED GEAR music_db.xml file and run the WebUI Asset Update** so the data migration feature could retrieve the songs' difficulty levels from the mdb, to calculate your ∇ VOLFORCE properly, or to as close as it can to your EG VF. In EG, the VF is calculated on the fly when you login, but in ∇ the individual chart VF is now being stored in DB.
 - Data import to ∇ will copy your profile, scores, items, etc. from EG. You can continue playing EG using your migrated profile but it will have separate progression/data from ∇.
 - Just a heads up that there is a bug in game version 20251224 that causes charts to not appear in the VOLFORCE POTENTIAL folder.
 - Charts announced to have EX SCORES reset will be reset here as well.
