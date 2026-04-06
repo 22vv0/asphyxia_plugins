@@ -2,6 +2,38 @@
 // data\graphics\ap_card -- appeal card
 // data\graphics\submonitor_bg -- subbg
 $(document).ready(async function() {
+    const logArea = document.getElementById("logtextarea")
+    const detailToggle = document.getElementById("detailToggle")
+    let summaryBuffer = ''
+    let detailBuffer = ''
+
+    function renderLog() {
+        logArea.textContent = detailToggle.checked ? detailBuffer : summaryBuffer
+    }
+
+    function appendSummary(line = '') {
+        summaryBuffer += line + '\n'
+        if(!detailToggle.checked) renderLog()
+    }
+
+    function appendDetail(line = '') {
+        detailBuffer += line + '\n'
+        if(detailToggle.checked) renderLog()
+    }
+
+    function appendSection(title, values, formatter) {
+        if(!Array.isArray(values) || values.length === 0) return
+        appendSummary("[" + title + "]")
+        $.each(values, function(key, val) {
+            appendSummary((formatter ? formatter(val) : val))
+        })
+        appendSummary()
+    }
+
+    $('#detailToggle').change(function() {
+        renderLog()
+    })
+
     $('.collapse').click(function(){
         console.log($('.collapsible-card').css('display'))
         if($('.collapsible-card').css('display') == 'none') {
@@ -10,120 +42,71 @@ $(document).ready(async function() {
     })
     
     $( "#updateResources" ).click(async function() {
-        document.getElementById("logtextarea").textContent = ''
+        summaryBuffer = ''
+        detailBuffer = ''
+        renderLog()
         
-        document.getElementById("logtextarea").textContent += 'NOTE:\n- For converting s3p files to mp3, check guide in the notes section above.\n'
-        document.getElementById("logtextarea").textContent += '- When running asphyxia in dev mode, you should see copy logs and/or errors on the console in realtime.\n\n'
+        appendSummary('NOTE:')
+        appendSummary('- For converting s3p files to mp3, check guide in the notes section above.')
+        appendSummary('- Enable the "More Detail" switch to show backend logs.')
+        appendSummary()
+        appendSummary('Running....')
+        appendSummary()
 
-        document.getElementById("logtextarea").textContent += 'Running....\n\n'
-        await emit("copyResourcesFromGame").then(
-            function(response){
-                document.getElementById("logtextarea").textContent += 'Done.\n\n'
-                if(response['data']['errors'].length > 0) {
-                    document.getElementById("logtextarea").textContent += "[Errors]" + '\n'
-                    $.each(response['data']['errors'], function(key, val) {
-                        document.getElementById("logtextarea").textContent += val + '\n'
-                    })
-                    document.getElementById("logtextarea").textContent += '\nIf you\'re getting "error reading" logs, check if you\'ve configured "Exceed Gear Data Directory" properly in the plugin settings.\n'
-                    document.getElementById("logtextarea").textContent += '\n\n'
-                }
+        appendDetail('Running....')
+        appendDetail()
+        try {
+            const response = await emit("copyResourcesFromGame")
+            const data = response && response['data'] ? response['data'] : {}
 
-                if(response['data']['course']) {
-                    document.getElementById("logtextarea").textContent += "[Skill Analyzer courses]" + '\n'
-                    document.getElementById("logtextarea").textContent += "Updated course_data.json from data/exg.ts!"
-                }
-                document.getElementById("logtextarea").textContent += '\n\n\n'
+            appendSummary(data.status === 'error' ? 'Finished with errors.' : 'Done.')
+            appendSummary()
 
-                if(response['data']['jsonSongs'].length > 0) {
-                    document.getElementById("logtextarea").textContent += "[Songs]" + '\n'
-                    $.each(response['data']['jsonSongs'], function(key, val) {
-                        document.getElementById("logtextarea").textContent += "- " +  val[1] + '\n'
-                    })
-                    document.getElementById("logtextarea").textContent += '\n\n'
-                }
-
-                if(response['data']['infSongs'].length > 0) {
-                    document.getElementById("logtextarea").textContent += "[INF charts]" + '\n'
-                    $.each(response['data']['infSongs'], function(key, val) {
-                        document.getElementById("logtextarea").textContent += "- " +  val[1] + '\n'
-                    })
-                    document.getElementById("logtextarea").textContent += '\n\n'
-                }
-
-                if(response['data']['ultSongs'].length > 0) {
-                    document.getElementById("logtextarea").textContent += "[ULT charts]" + '\n'
-                    $.each(response['data']['ultSongs'], function(key, val) {
-                        document.getElementById("logtextarea").textContent += "- " +  val[1] + '\n'
-                    })
-                    document.getElementById("logtextarea").textContent += '\n\n'
-                }
-
-                if(response['data']['nemsys'].length > 0) {
-                    document.getElementById("logtextarea").textContent += "[NEMSYS]" + '\n'
-                    $.each(response['data']['nemsys'], function(key, val) {
-                        document.getElementById("logtextarea").textContent += "- " + val + '\n'
-                    })
-                    document.getElementById("logtextarea").textContent += '\n\n'
-                }
-
-                if(response['data']['bgm'].length > 0) {
-                    document.getElementById("logtextarea").textContent += "[BGM]" + '\n'
-                    $.each(response['data']['bgm'], function(key, val) {
-                        document.getElementById("logtextarea").textContent += "- " +  val + '\n'
-                    })
-                    document.getElementById("logtextarea").textContent += '\n\n'
-                }
-
-                if(response['data']['apCard'].length > 0) {
-                    document.getElementById("logtextarea").textContent += "[Appeal cards]" + '\n'
-                    $.each(response['data']['apCard'], function(key, val) {
-                        document.getElementById("logtextarea").textContent += "- " +  val + '\n'
-                    })
-                    document.getElementById("logtextarea").textContent += '\n\n'
-                }
-
-                if(response['data']['subbg'].length > 0) {                        
-                    document.getElementById("logtextarea").textContent += "[Submonitor BGs]" + '\n'
-                    $.each(response['data']['subbg'], function(key, val) {
-                        document.getElementById("logtextarea").textContent += "- " +  val + '\n'
-                    })
-                    document.getElementById("logtextarea").textContent += '\n\n'
-                }
-
-
-                if(response['data']['chatStamp'].length > 0) {
-                    document.getElementById("logtextarea").textContent += "[Appeal Stamps]" + '\n'
-                    $.each(response['data']['chatStamp'], function(key, val) {
-                        document.getElementById("logtextarea").textContent += "- " +  val + '\n'
-                    })
-                    document.getElementById("logtextarea").textContent += '\n\n'
-                }
-
-
-                if(response['data']['valgeneItemFiles'].length > 0) {
-                    document.getElementById("logtextarea").textContent += "[valgene_item]" + '\n'
-                    $.each(response['data']['valgeneItemFiles'], function(key, val) {
-                        document.getElementById("logtextarea").textContent += "- " +  val + '\n'
-                    })
-                    document.getElementById("logtextarea").textContent += '\n\n'
-                }
-
-                if(response['data']['akaname'].length > 0) {
-                    document.getElementById("logtextarea").textContent += "[Appeal titles]" + '\n'
-                    $.each(response['data']['akaname'], function(key, val) {
-                        document.getElementById("logtextarea").textContent += "- " +  val + '\n'
-                    })
-                    document.getElementById("logtextarea").textContent += '\n\n'
-                }
-
-                if(response['data']['ifs'].length > 0) {
-                    document.getElementById("logtextarea").textContent += "[IFS textures]" + '\n'
-                    $.each(response['data']['ifs'], function(key, val) {
-                        document.getElementById("logtextarea").textContent += "- " +  val + '\n'
-                    })
-                    document.getElementById("logtextarea").textContent += '\n\n'
-                }
+            if(Array.isArray(data.logs) && data.logs.length > 0) {
+                $.each(data.logs, function(key, val) {
+                    appendDetail(val)
+                })
+                appendDetail()
             }
-        )
+
+            if(Array.isArray(data.errors) && data.errors.length > 0) {
+                appendSummary("[Errors]")
+                $.each(data.errors, function(key, val) {
+                    appendSummary(val)
+                    appendDetail('[ERROR] ' + val)
+                })
+                appendSummary()
+                appendSummary('If you\'re getting "error reading" logs, check if you\'ve configured "Exceed Gear Data Directory" properly in the plugin settings.')
+                appendSummary()
+                appendDetail()
+            }
+
+            if(data.course) {
+                appendSummary("[Skill Analyzer courses]")
+                appendSummary("Updated course_data.json from data/exg.ts!")
+                appendSummary()
+            }
+
+            appendSection("Songs", data.jsonSongs, function(val) { return "- " + val[1] })
+            appendSection("INF charts", data.infSongs, function(val) { return "- " + val[1] })
+            appendSection("ULT charts", data.ultSongs, function(val) { return "- " + val[1] })
+            appendSection("NEMSYS", data.nemsys, function(val) { return "- " + val })
+            appendSection("BGM", data.bgm, function(val) { return "- " + val })
+            appendSection("Appeal cards", data.apCard, function(val) { return "- " + val })
+            appendSection("Submonitor BGs", data.subbg, function(val) { return "- " + val })
+            appendSection("Appeal Stamps", data.chatStamp, function(val) { return "- " + val })
+            appendSection("valgene_item", data.valgeneItemFiles, function(val) { return "- " + val })
+            appendSection("Appeal titles", data.akaname, function(val) { return "- " + val })
+            appendSection("IFS textures", data.ifs, function(val) { return "- " + val })
+        } catch(error) {
+            const message = error && error.message ? error.message : String(error)
+            appendSummary('Finished with errors.')
+            appendSummary()
+            appendSummary('[Errors]')
+            appendSummary(message)
+
+            appendDetail('[ERROR]')
+            appendDetail(message)
+        }
     });
 })
