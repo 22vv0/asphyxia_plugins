@@ -480,23 +480,23 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
 
     // Copying new chat stamps from gamedata
     logLine("Copying new chat stamps from gamedata")
-    if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/others/chat_stamp.xml")) {
+    if (IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/others/chat_stamp.xml")) {
       let chatStampData = U.parseXML(U.DecodeString(await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/others/chat_stamp.xml"), "shift_jis"), false)
       // console.log(JSON.stringify(chatStampData.chat_stamp_data))
-        for(const chatStamp of chatStampData.chat_stamp_data.info) {
-          if(resourceJsonData.stamp.find(stamp => stamp['value'] === chatStamp.id['@content'][0]) == undefined) {
-            let stampTitle = chatStamp.title['@content'] + " " + (parseInt(chatStamp.id['@content'][0]) % 4 !== 0 ? parseInt(chatStamp.id['@content'][0]) % 4 : 4)
-            logLine("[chat_stamp] " + chatStamp.id['@content'][0] + " - " + stampTitle)
-            resourceJsonData.stamp.push({"value": chatStamp.id['@content'][0], "name": stampTitle})
-            newChatStampData.push(chatStamp.id['@content'][0] + ": " + chatStamp.filename['@content'])
-          } 
-          if(!IO.Exists('webui/asset/chat_stamp/' + chatStamp.filename['@content'] + '.png') && !IO.Exists('webui/asset/chat_stamp/' + chatStamp.filename['@content'] + '.png')) {
-            logLine("[chat_stamp] copying " + chatStamp.filename['@content'] + '.png')
-            let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/chat_stamp/" + chatStamp.filename['@content'] + ".png")
-            IO.WriteFile('webui/asset/chat_stamp/' + chatStamp.filename['@content'] + '.png', fileToWrite)
+      for (const chatStamp of chatStampData.chat_stamp_data.info) {
+        if (resourceJsonData.stamp.find(stamp => stamp['value'] === chatStamp.id['@content'][0]) == undefined) {
+          let stampTitle = chatStamp.title['@content'] + " " + (parseInt(chatStamp.id['@content'][0]) % 4 !== 0 ? parseInt(chatStamp.id['@content'][0]) % 4 : 4)
+          logLine("[chat_stamp] " + chatStamp.id['@content'][0] + " - " + stampTitle)
+          resourceJsonData.stamp.push({ "value": chatStamp.id['@content'][0], "name": stampTitle })
+          newChatStampData.push(chatStamp.id['@content'][0] + ": " + chatStamp.filename['@content'])
+        }
+        if (!IO.Exists('webui/asset/chat_stamp/' + chatStamp.filename['@content'] + '.png') && !IO.Exists('webui/asset/chat_stamp/' + chatStamp.filename['@content'] + '.png')) {
+          logLine("[chat_stamp] copying " + chatStamp.filename['@content'] + '.png')
+          let fileToWrite = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/graphics/chat_stamp/" + chatStamp.filename['@content'] + ".png")
+          IO.WriteFile('webui/asset/chat_stamp/' + chatStamp.filename['@content'] + '.png', fileToWrite)
         }
       }
-      resourceJsonData.stamp.sort(function(a, b){return a.value - b.value})
+      resourceJsonData.stamp.sort(function (a, b) { return a.value - b.value })
     } else {
       logError('Error reading chat stamp xml file.')
     }
