@@ -30,59 +30,20 @@ function getDifficulty(songData, difficultyNum) {
 }
 
 function populateTable(yourScore, rivalScore, music_db) {
-    const translate_table = {
-          '龕': '€',
-          '釁': '🍄',
-          '驩': 'Ø',
-          '曦': 'à',
-          '齷': 'é',
-          '骭': 'ü',
-          '齶': '♡',
-          '彜': 'ū',
-          '罇': 'ê',
-          '雋': 'Ǜ',
-          '鬻': '♃',
-          '鬥': 'Ã',
-          '鬆': 'Ý',
-          '曩': 'è',
-          '驫': 'ā',
-          '齲': '♥',
-          '騫': 'á',
-          '趁': 'Ǣ',
-          '鬮': '¡',
-          '盥': '⚙︎',
-          '隍': '︎Ü',
-          '頽': 'ä',
-          '餮': 'Ƶ',
-          '黻': '*',
-          '蔕': 'ũ',
-          '闃': 'Ā',
-          '饌': '²',
-          '煢': 'ø',
-          '鑷': 'ゔ',
-          '墸': '͟͟͞ ',
-          '鹹': 'Ĥ',
-          '瀑': 'À',
-          '疉': 'Ö',
-          '鑒': '₩'
-    }
     let table_data = []
     for(let ind in yourScore) {
         let songData = music_db['mdb']['music'].filter((m => parseInt(m['id']) === yourScore[ind].mid))[0]
         if(!songData) songData = music_db['omni']['music'].filter((m => parseInt(m['id']) === yourScore[ind].mid))[0]
-        let songName = songData['info']['title_name']
         let difficulty = getDifficulty(songData, yourScore[ind].type)
-        let rivalIndivScore = rivalScore.filter((s => s.mid === yourScore[ind].mid && s.type === yourScore[ind].type))
-        if(rivalIndivScore.length > 0) {
-            table_data.push({
-                mid: yourScore[ind].mid,
-                songname: songName.replace(/[龕釁驩曦齷骭齶彜罇雋鬻鬥鬆曩驫齲騫趁鬮盥隍頽餮黻蔕闃饌煢鑷墸鹹瀑疉鑒]/g, m => translate_table[m]),
-                difficulty: difficulty,
-                yourScore: yourScore[ind].score,
-                rivalScore: rivalIndivScore[0].score,
-                time: Date.parse(yourScore[ind]['updatedAt'])
-            })
-        }
+        let rivalInd = rivalScore.findIndex((s => s.mid === yourScore[ind].mid && s.type === yourScore[ind].type))
+        table_data.push({
+            mid: yourScore[ind].mid,
+            songname: songData['info']['title_name'],
+            difficulty: difficulty,
+            yourScore: yourScore[ind].score,
+            rivalScore: rivalInd >= 0 ? rivalScore[rivalInd].score : 0,
+            time: Date.parse(yourScore[ind]['updatedAt'])
+        })
     }
 
     $('#scorecompare').DataTable({
@@ -136,7 +97,7 @@ $(document).ready(async function() {
     currentProfile = your_profile_data.find(p => p.version === currentVersion)
 
     profiles_data_filtered = profiles_data.filter((p => p.__refid !== refid && p.version === currentVersion && rivals_data.filter((r => refid === p.__refid && r.version === currentVersion)).length === 0))
-    for (var p of your_profile_data) {
+    for (var p of your_profile_data.filter(p => p.version >= 3).sort((a,b) => a.version - b.version)) {
         $('#version_select').append($('<option>', {
             value: p.version,
             text: versionText[p.version],

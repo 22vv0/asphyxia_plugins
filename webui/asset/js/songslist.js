@@ -1,40 +1,4 @@
 const songLimit = [-1, 187, 554, -1, -1, -1, 2342, -1]
-const translate_table = {
-      '龕': '€',
-      '釁': '🍄',
-      '驩': 'Ø',
-      '曦': 'à',
-      '齷': 'é',
-      '骭': 'ü',
-      '齶': '♡',
-      '彜': 'ū',
-      '罇': 'ê',
-      '雋': 'Ǜ',
-      '鬻': '♃',
-      '鬥': 'Ã',
-      '鬆': 'Ý',
-      '曩': 'è',
-      '驫': 'ā',
-      '齲': '♥',
-      '騫': 'á',
-      '趁': 'Ǣ',
-      '鬮': '¡',
-      '盥': '⚙︎',
-      '隍': '︎Ü',
-      '頽': 'ä',
-      '餮': 'Ƶ',
-      '黻': '*',
-      '蔕': 'ũ',
-      '闃': 'Ā',
-      '饌': '²',
-      '煢': 'ø',
-      '鑷': 'ゔ',
-      '墸': '͟͟͞ ',
-      '鹹': 'Ĥ',
-      '瀑': 'À',
-      '疉': 'Ö',
-      '鑒': '₩'
-}
 var version = 6
 var music_data = []
 
@@ -110,7 +74,6 @@ function mdbLoad() {
                 var temp_data = {};
                 temp_data.mid = mdata['id'];
                 temp_data.songname = mdata['info']['title_name'];
-                temp_data.songname = temp_data.songname.replace(/[龕釁驩曦齷骭齶彜罇雋鬻鬥鬆曩驫齲騫趁鬮盥隍頽餮黻蔕闃饌煢鑷墸鹹瀑疉鑒]/g, m => translate_table[m]);
                 temp_data.omni = 'omnimix' in mdata['info'] ? 'Yes' : 'No'
                 if('distribution_date' in mdata['info']) {
                     temp_data.releasedate = mdata['info']['distribution_date'];

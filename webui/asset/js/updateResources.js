@@ -76,14 +76,14 @@ $(document).ready(async function() {
                     appendDetail('[ERROR] ' + val)
                 })
                 appendSummary()
-                appendSummary('If you\'re getting "error reading" logs, check if you\'ve configured "Exceed Gear Data Directory" properly in the plugin settings.')
+                appendSummary('If you\'re getting "error reading" logs, check if you\'ve configured "Game Data Directory" properly in the plugin settings.')
                 appendSummary()
                 appendDetail()
             }
 
             if(data.course) {
                 appendSummary("[Skill Analyzer courses]")
-                appendSummary("Updated course_data.json from data/exg.ts!")
+                appendSummary("Updated course_data.json!")
                 appendSummary()
             }
 

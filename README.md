@@ -1,89 +1,48 @@
 SOUND VOLTEX
 ===
-**Plugin Version:** fork-7.1.0-qfix
+**Plugin Version:** fork-7.1.0a
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
 **Supported game versions:**
 - BOOTH (2013052900)
 - infinite infection (2014102200)
 - EXCEED GEAR (2025120900)
-- ∇ (20260324xx)
+- ∇ (20260407xx)
 
 **Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d) or above
 
 **Notes**
 - This is a fork of the [official Asphyxia SDVX plugin](https://github.com/asphyxia-core/plugins). If you have any concerns and issues with this fork of the plugin, please do **not** ask for support on the official Asphyxia channels, and do **not** contact the devs of the official plugin as they would not be able to help you because do not maintain this fork. Direct your concerns to the [GitHub issues page](https://github.com/22vv0/asphyxia_plugins/issues) of this repository.
 - **Please keep a copy/backup of your savedata directory** so you have something to come back to in case of a problem with your database.
-- Before using this plugin, run the [WebUI Asset Update](/plugin/sdvx@asphyxia/update%20webui%20assets). Do this every data and plugin update.
+- Before using this plugin, make sure you have your latest `music_db.xml` files uploaded and run the [WebUI Asset Update](/plugin/sdvx@asphyxia/update%20webui%20assets). Do this every data and/or plugin update.
 
 ---
 ## Changelog
 
 ### ∇
 
-- Added event data: BEMANI PRO LEAGUE -SEASON 5- SPECIAL STAMP
-- Added event data: ▽ Weekly Stamp Bonus weeks 15 - 18
-- Added login gift: BEMANI PRO LEAGUE -SEASON 5- Triple Tribe Append (3 songs)
-- Added PREMIUM GENERATOR Vol. 8
-- Updated Licensed songs list: `G.L.I.T.C.H`
-
-### BOOTH (2013052900)
-
-- Re-added support (profile creation, data save/load)
-- Added catalog data: SDVX STATION song shop list
-- Added catalog data: GENERATOR:01 and GENERATOR:02
-- Added event flag: Matching mode
-- Added event flag: SDVX Spring Special Bonus (one-time 573 pc and blc bonus)
-- Added event flag: Special Bonus (one-time 500 pc and blc bonus)
-- Added event flag: Enable Touhou brand logo display
-- Added event flag: Extra items added to GENERATOR:02
-
-### infinite infection (2014102200)
-
-- Re-added support (profile creation, data save/load, hiscore)
-- Data transfer from BOOTH (appeal card unlock status, song unlock status)
-- BOOTH scores loaded through `old` in `load_m`
-- Added SKILL ANALYZER data: `第14回`, `KAC予選コース`, `INFINITE INFECTION 壱周年記念`, `2014夏休み`
-- Added event flag: Matching mode 
-- Added event flag: SKILL ANALYZER
-- Added event flag: POLICY BREAK on SDVX STATION - select to increase gauge by 3000pw
-- Added event flag/s: Extra items added to APPEAL CARD GENERATOR 2
-- Added locked songs list for proper song unlock progression
+- Added new songs to licensed songs list
 
 ### EXCEED GEAR
 
-- Added missing licensed songs: `What's up? Pop!`, `テレパシ`, `神威`.
+- Added missing licensed song/s: `777`
 
 ### Misc
 
-- Added option to upload SDVX 1-7 `music_db.xml` files to pull version-specific song data from -- required for accurate display of per-version statistics. Upload your mdb files first before updating your WebUI assets.
-- Re-added ability to create play data for older games
-- Added haveItem and haveNote to `Profile` model to save/load BOOTH unlock data
-- Added attributes to `Music` (score data) model: `playCount`, `maxChain`, `effectiveRate`, `critical`, `near`, `error` -- saves from infinite infection for now
-- Created `save_pb` function to save POLICY BREAK progress
-- Created BOOTH -> infinite infection data transfer code
-- Added SDVX2 Skill title data
-- Update to `utils.getVersion()`
-- Updated customization data list
+- More detailed logging for WebUI asset update. Use toggle to switch to detailed logging ([PR #85](https://github.com/22vv0/asphyxia_plugins/pull/85))
+- Moved song title fixes/cleanup to WebUI asset update so that only one translate table is needed
+- Change SKILL ANALYZER WebUI update log text
+- `README.md` - Updated Notes section
 
 ### WebUI
 
-- Profile details page: Display version-specific data (Rank for BOOTH, etc)
-- Profile details page: Adjust statistics table depending on profile data version being displayed
-- Profile details page: Chart level constants for ∇ statistics table
-- Customization page: Hide incompatible options per version (BOOTH)
-- Customization page: Updated some item labels
-- Generator pages: Updated some item type labels
-- Songs list page: Added ability to select game version mdb to load
-- Skill Analyzer data page: Fix data not displaying when stype does not exist in course data
-- Skill Analyzer data page: Fix view when there are no course data
-- Update Webui Assets page: Updated notes with new music_db.xml instructions
+- `Rivals Page` - enabled display of player scores even if rival has no score for the same chart
+- `Rivals Page` - sorted version select in chronological order, and added filter to exclude BOOTH and infinite infection
 
-### Additional fixes (qfix)
+---
+## Contributions
 
-- README: Updated `Important notes for players migrating from EXCEED GEAR to ∇` to reflect the new music_db.xml upload procedure
-- migrate.ts: Adjusted diffLevel retrieval for ∇ migration after music_db.json format change
-- nbl.ts: Updated information popups list
+- [arkitowho](https://github.com/arkitowho) - More detail for assets update ([#85](https://github.com/22vv0/asphyxia_plugins/pull/85))
 
 ---
 ## Extra notes

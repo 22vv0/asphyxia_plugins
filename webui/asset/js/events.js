@@ -3,42 +3,7 @@ var urlParams;
 var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVIDWAVE', 'EXCEED GEAR', '∇']
 let date = new Date();
 let musicDb;
-const translate_table = {
-      '龕': '€',
-      '釁': '🍄',
-      '驩': 'Ø',
-      '曦': 'à',
-      '齷': 'é',
-      '骭': 'ü',
-      '齶': '♡',
-      '彜': 'ū',
-      '罇': 'ê',
-      '雋': 'Ǜ',
-      '鬻': '♃',
-      '鬥': 'Ã',
-      '鬆': 'Ý',
-      '曩': 'è',
-      '驫': 'ā',
-      '齲': '♥',
-      '騫': 'á',
-      '趁': 'Ǣ',
-      '鬮': '¡',
-      '盥': '⚙︎',
-      '隍': '︎Ü',
-      '頽': 'ä',
-      '餮': 'Ƶ',
-      '黻': '*',
-      '蔕': 'ũ',
-      '闃': 'Ā',
-      '饌': '²',
-      '煢': 'ø',
-      '鑷': 'ゔ',
-      '墸': '͟͟͞ ',
-      '鹹': 'Ĥ',
-      '瀑': 'À',
-      '疉': 'Ö',
-      '鑒': '₩'
-}
+
 $.getJSON("static/asset/json/music_db.json", function(json) {
     musicDb = json;
 })
@@ -65,7 +30,7 @@ function substituteString(str, start) {
     let title = ''
     if(checkStart(start)) title = '????'
     else if(!musicData) title = '[TITLE NOT FOUND]'
-    else title = musicData['info']['title_name'].replace(/[龕釁驩曦齷骭齶彜罇雋鬻鬥鬆曩驫齲騫趁鬮盥隍頽餮黻蔕闃饌煢鑷墸鹹瀑疉鑒]/g, m => translate_table[m])
+    else title = musicData['info']['title_name']
 
     return str.replace(/\[mid:\d+\]/g, title)
 }

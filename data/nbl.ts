@@ -114,7 +114,7 @@ export const BLASTER_GATE7 = [
 
 export const LICENSED_SONGS7 = LICENSED_SONGS6.concat([
   2348, 2344, 2343, 2352, 2353, 2345, 2234, 2354, 2350, 2351, 2209, 2376, 2377,
-  2384
+  2384, 2385, 2386
 ])
 
 export const UNLOCK_EVENTS7 = {
