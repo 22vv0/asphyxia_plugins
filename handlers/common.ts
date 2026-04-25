@@ -393,22 +393,41 @@ export const common: EPR = async (info, data, send) => {
           if(stmpEvntInfo && checkVerStart(version, eData.version, eData.start, date)) {
             if(eData.type === 'stamp' && eventConfig[eData.id] !== undefined && eventConfig[eData.id].toggle) {
               for(const stmpData of stmpEvntInfo.info.data) {
-                extend.push({
-                  'type': 3,
-                  'id': stmpData.stmpid,
-                  'params': [
-                    5,
-                    stmpData.stps, 
-                    0, 
-                    stmpData.stps % 10000, 
-                    (stmpData.stmpid.toString() in unlockEvents.refillStamps) ? 999999 : 0,
-                    ('stmpHdJ' in stmpEvntInfo.info) ? stmpEvntInfo.info.stmpHdJ : stmpEvntInfo.info.stmpHd,
-                    stmpEvntInfo.info.stmpHd,
-                    ('stmpFtJ' in stmpEvntInfo.info) ? stmpEvntInfo.info.stmpFtJ : stmpEvntInfo.info.stmpFt,
-                    stmpEvntInfo.info.stmpFt,
-                    stmpData.stprwrd
-                  ]
-                })
+                if(!stmpData.version) {
+                  extend.push({
+                    'type': 3,
+                    'id': stmpData.stmpid,
+                    'params': [
+                      5,
+                      stmpData.stps, 
+                      0, 
+                      stmpData.stps % 10000, 
+                      (stmpData.stmpid.toString() in unlockEvents.refillStamps) ? 999999 : 0,
+                      ('stmpHdJ' in stmpEvntInfo.info) ? stmpEvntInfo.info.stmpHdJ : stmpEvntInfo.info.stmpHd,
+                      stmpEvntInfo.info.stmpHd,
+                      ('stmpFtJ' in stmpEvntInfo.info) ? stmpEvntInfo.info.stmpFtJ : stmpEvntInfo.info.stmpFt,
+                      stmpEvntInfo.info.stmpFt,
+                      stmpData.stprwrd
+                    ]
+                  })
+                } else if(checkVerStart(version, stmpData.version, stmpData.start, date)) {
+                  extend.push({
+                    'type': 3,
+                    'id': stmpData.stmpid,
+                    'params': [
+                      5,
+                      stmpData.stps, 
+                      0, 
+                      stmpData.stps % 10000, 
+                      (stmpData.stmpid.toString() in unlockEvents.refillStamps) ? 999999 : 0,
+                      ('stmpHdJ' in stmpData) ? stmpData.stmpHdJ : stmpData.stmpHd,
+                      stmpData.stmpHd,
+                      ('stmpFtJ' in stmpData) ? stmpData.stmpFtJ : stmpData.stmpFt,
+                      stmpData.stmpFt,
+                      stmpData.stprwrd
+                    ]
+                  })
+                }
               }
 
               if(stmpEvntInfo.type === 'select') {

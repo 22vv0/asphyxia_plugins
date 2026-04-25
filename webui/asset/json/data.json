@@ -4320,6 +4320,101 @@
             "value": 842,
             "type": "video",
             "name": "BEMANI PRO LEAGUE-SEASON 5-"
+        },
+        {
+            "value": 843,
+            "type": "video",
+            "name": "BEMANI楽曲3D LIVE! 01"
+        },
+        {
+            "value": 844,
+            "type": "video",
+            "name": "BEMANI楽曲3D LIVE! 02"
+        },
+        {
+            "value": 845,
+            "type": "video",
+            "name": "BEMANI楽曲3D LIVE! 03"
+        },
+        {
+            "value": 846,
+            "type": "video",
+            "name": "BEMANI楽曲3D LIVE! 04"
+        },
+        {
+            "value": 847,
+            "type": "video",
+            "name": "BEMANI楽曲3D LIVE! 05"
+        },
+        {
+            "value": 848,
+            "type": "video",
+            "name": "BEMANI楽曲3D LIVE! 06"
+        },
+        {
+            "value": 849,
+            "type": "video",
+            "name": "BEMANI楽曲3D LIVE! 07"
+        },
+        {
+            "value": 850,
+            "type": "video",
+            "name": "BEMANI楽曲3D LIVE! 08"
+        },
+        {
+            "value": 851,
+            "type": "video",
+            "name": "BEMANI楽曲3D LIVE! 09"
+        },
+        {
+            "value": 852,
+            "type": "video",
+            "name": "Silent Flame,Never Fade 01"
+        },
+        {
+            "value": 853,
+            "type": "video",
+            "name": "Silent Flame,Never Fade 02"
+        },
+        {
+            "value": 854,
+            "type": "video",
+            "name": "Silent Flame,Never Fade 03"
+        },
+        {
+            "value": 855,
+            "type": "video",
+            "name": "Silent Flame,Never Fade 04"
+        },
+        {
+            "value": 856,
+            "type": "video",
+            "name": "Silent Flame,Never Fade 05"
+        },
+        {
+            "value": 857,
+            "type": "video",
+            "name": "架空と本当 01"
+        },
+        {
+            "value": 858,
+            "type": "video",
+            "name": "架空と本当 02"
+        },
+        {
+            "value": 859,
+            "type": "video",
+            "name": "架空と本当 03"
+        },
+        {
+            "value": 860,
+            "type": "video",
+            "name": "架空と本当 04"
+        },
+        {
+            "value": 861,
+            "type": "video",
+            "name": "架空と本当 05"
         }
     ],
     "bgm": [
@@ -13760,6 +13855,166 @@
         {
             "value": 2256,
             "name": "おしゃべりつまぶき 009 4"
+        },
+        {
+            "value": 2257,
+            "name": "不知火フレア（ホロライブ）01 1"
+        },
+        {
+            "value": 2258,
+            "name": "不知火フレア（ホロライブ）01 2"
+        },
+        {
+            "value": 2259,
+            "name": "不知火フレア（ホロライブ）01 3"
+        },
+        {
+            "value": 2260,
+            "name": "不知火フレア（ホロライブ）01 4"
+        },
+        {
+            "value": 2261,
+            "name": "不知火フレア（ホロライブ）02 1"
+        },
+        {
+            "value": 2262,
+            "name": "不知火フレア（ホロライブ）02 2"
+        },
+        {
+            "value": 2263,
+            "name": "不知火フレア（ホロライブ）02 3"
+        },
+        {
+            "value": 2264,
+            "name": "不知火フレア（ホロライブ）02 4"
+        },
+        {
+            "value": 2265,
+            "name": "不知火フレア（ホロライブ）03 1"
+        },
+        {
+            "value": 2266,
+            "name": "不知火フレア（ホロライブ）03 2"
+        },
+        {
+            "value": 2267,
+            "name": "不知火フレア（ホロライブ）03 3"
+        },
+        {
+            "value": 2268,
+            "name": "不知火フレア（ホロライブ）03 4"
+        },
+        {
+            "value": 2269,
+            "name": "不知火フレア（ホロライブ）04 1"
+        },
+        {
+            "value": 2270,
+            "name": "不知火フレア（ホロライブ）04 2"
+        },
+        {
+            "value": 2271,
+            "name": "不知火フレア（ホロライブ）04 3"
+        },
+        {
+            "value": 2272,
+            "name": "不知火フレア（ホロライブ）04 4"
+        },
+        {
+            "value": 2273,
+            "name": "不知火フレア（ホロライブ）05 1"
+        },
+        {
+            "value": 2274,
+            "name": "不知火フレア（ホロライブ）05 2"
+        },
+        {
+            "value": 2275,
+            "name": "不知火フレア（ホロライブ）05 3"
+        },
+        {
+            "value": 2276,
+            "name": "不知火フレア（ホロライブ）05 4"
+        },
+        {
+            "value": 2277,
+            "name": "不知火フレア（ホロライブ）06 1"
+        },
+        {
+            "value": 2278,
+            "name": "不知火フレア（ホロライブ）06 2"
+        },
+        {
+            "value": 2279,
+            "name": "不知火フレア（ホロライブ）06 3"
+        },
+        {
+            "value": 2280,
+            "name": "不知火フレア（ホロライブ）06 4"
+        },
+        {
+            "value": 2281,
+            "name": "不知火フレア（ホロライブ）07 1"
+        },
+        {
+            "value": 2282,
+            "name": "不知火フレア（ホロライブ）07 2"
+        },
+        {
+            "value": 2283,
+            "name": "不知火フレア（ホロライブ）07 3"
+        },
+        {
+            "value": 2284,
+            "name": "不知火フレア（ホロライブ）07 4"
+        },
+        {
+            "value": 2285,
+            "name": "不知火フレア（ホロライブ）08 1"
+        },
+        {
+            "value": 2286,
+            "name": "不知火フレア（ホロライブ）08 2"
+        },
+        {
+            "value": 2287,
+            "name": "不知火フレア（ホロライブ）08 3"
+        },
+        {
+            "value": 2288,
+            "name": "不知火フレア（ホロライブ）08 4"
+        },
+        {
+            "value": 2289,
+            "name": "不知火フレア（ホロライブ）09 1"
+        },
+        {
+            "value": 2290,
+            "name": "不知火フレア（ホロライブ）09 2"
+        },
+        {
+            "value": 2291,
+            "name": "不知火フレア（ホロライブ）09 3"
+        },
+        {
+            "value": 2292,
+            "name": "不知火フレア（ホロライブ）09 4"
+        },
+        {
+            "value": 2293,
+            "name": "不知火フレア（ホロライブ）10 1"
+        },
+        {
+            "value": 2294,
+            "name": "不知火フレア（ホロライブ）10 2"
+        },
+        {
+            "value": 2295,
+            "name": "不知火フレア（ホロライブ）10 3"
+        },
+        {
+            "value": 2296,
+            "name": "不知火フレア（ホロライブ）10 4"
         }
     ],
     "akaname": [
@@ -17202,6 +17457,18 @@
         {
             "value": "40302",
             "name": "電子の歌姫"
+        },
+        {
+            "value": "40303",
+            "name": "エルフレンド"
+        },
+        {
+            "value": "40304",
+            "name": "人間とエルフのハーフエルフ"
+        },
+        {
+            "value": "40305",
+            "name": "止まり木"
         },
         {
             "value": "50000",

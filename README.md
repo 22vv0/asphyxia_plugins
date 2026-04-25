@@ -1,13 +1,13 @@
 SOUND VOLTEX
 ===
-**Plugin Version:** fork-7.1.0a
+**Plugin Version:** fork-7.1.0b
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
 **Supported game versions:**
 - BOOTH (2013052900)
 - infinite infection (2014102200)
 - EXCEED GEAR (2025120900)
-- ∇ (20260407xx)
+- ∇ (20260421xx)
 
 **Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d) or above
 
@@ -22,27 +22,18 @@ SOUND VOLTEX
 ### ∇
 
 - Added new songs to licensed songs list
-
-### EXCEED GEAR
-
-- Added missing licensed song/s: `777`
+- Added `PREMIUM GENERATOR (不知火フレア/Shiranui Flare)` data
+- Added event data: `Shiranui Flare Stamp Event`
+- Updated event data: `∇ Weekly Stamp Bonus` - added 5 stamp sheets
+- Fixed `White Day 2026 Stamp Event` event data
+- Updated `BLASTER GATE` data
 
 ### Misc
 
-- More detailed logging for WebUI asset update. Use toggle to switch to detailed logging ([PR #85](https://github.com/22vv0/asphyxia_plugins/pull/85))
-- Moved song title fixes/cleanup to WebUI asset update so that only one translate table is needed
-- Change SKILL ANALYZER WebUI update log text
-- `README.md` - Updated Notes section
-
-### WebUI
-
-- `Rivals Page` - enabled display of player scores even if rival has no score for the same chart
-- `Rivals Page` - sorted version select in chronological order, and added filter to exclude BOOTH and infinite infection
-
----
-## Contributions
-
-- [arkitowho](https://github.com/arkitowho) - More detail for assets update ([#85](https://github.com/22vv0/asphyxia_plugins/pull/85))
+- Moved `∇ Weekly Stamp Bonus` to one toggle and made to only show one stamp sheet at a time (complete the current sheet for next ones to appear; needs re-toggling in events page to enable)
+- Removed unused `skillanalyzer.js` asset
+- Small update to stamp sheet extend data loading
+- Added missing ids to `NAMEPLATE_BADGE_IGNORE_DISABLE`
 
 ---
 ## Extra notes
