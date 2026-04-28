@@ -25,7 +25,7 @@ function populateWeeklySongsList(weekly, mdb) {
         let startFormat = start.getFullYear() + '-' + String(start.getMonth() + 1).padStart(2, "0") + '-' + String(start.getDate()).padStart(2, "0") + ' ' + String(start.getHours()).padStart(2, "0") + ":" + String(start.getMinutes()).padStart(2, "0")
         let endFormat = end.getFullYear() + '-' + String(end.getMonth() + 1).padStart(2, "0") + '-' + String(end.getDate()).padStart(2, "0") + ' ' + String(end.getHours()).padStart(2, "0") + ":" + String(end.getMinutes()).padStart(2, "0")
         let songInfo = mdb.mdb.music.find(m => m['id'] === weekly[songCtr]['musicId'].toString())
-        let infdiff = ['inf', 'grv', 'hvn', 'vvd', 'xcd']
+        let infdiff = ['inf', 'grv', 'hvn', 'vvd', 'xcd', 'nbl']
         compltWeekCtr = (now >= end) ? compltWeekCtr += 1 : compltWeekCtr
         if(now < end || compltWeekCtr <= 3) {
             $('#wsongs tbody').append(
@@ -76,7 +76,7 @@ $(document).ready(async function() {
     })
 
     $(document).on("click", "#difRank", async function() {
-        let difLabels = ['NOV', 'ADV', 'EXH', ['INF', 'GRV', 'HVN', 'VVD', 'XCD'], 'MXM']
+        let difLabels = ['NOV', 'ADV', 'EXH', ['INF', 'GRV', 'HVN', 'VVD', 'XCD', 'NBL'], 'MXM']
         let week = parseInt($(this).attr('week'))
         let mid = parseInt($(this).attr('mid'))
         let mtype = parseInt($(this).attr('mtype'))

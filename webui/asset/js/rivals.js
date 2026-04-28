@@ -14,18 +14,22 @@ function getDifficulty(songData, difficultyNum) {
         case 3:
             switch(songData['info']['inf_ver']) {
                 case "2":
-                    return "INF";
+                    return "INF"
                 case "3":
-                    return "GRV";
+                    return "GRV"
                 case "4":
-                    return "HVN";
+                    return "HVN"
                 case "5":
-                    return "VVD";
+                    return "VVD"
                 case "6":
                     return "XCD"
+                case "7":
+                    return "NBL"
             }
         case 4:
             return 'MXM'
+        case 5:
+            return 'ULT'
     }
 }
 

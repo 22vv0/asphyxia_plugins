@@ -101,7 +101,7 @@ export const common: EPR = async (info, data, send) => {
         licensedSongs = LICENSED_SONGS7;
         unlockEvents = UNLOCK_EVENTS7;
         currentArena = CURRENT_ARENA7;
-        arenaItems = {...ARENA_STATION_ITEMS, ...ARENA_STATION_ITEMS7};
+        arenaItems = ARENA_STATION_ITEMS7;
         valgene = {
           info: [...VALGENE.info, ...VALGENE7.info],
           rarity: {...VALGENE.rarity, ...VALGENE7.rarity},
@@ -241,6 +241,15 @@ export const common: EPR = async (info, data, send) => {
                     });
                   }
                 }
+              }
+
+              // if song has new NBL chart
+              else if (songData.info.inf_ver === '7') { 
+                songs.push({
+                  music_id: K.ITEM('s32', i),
+                  music_type: K.ITEM('u8', 3),
+                  limited: K.ITEM('u8', limitedNo),
+                });
               }
             }
           }
@@ -512,11 +521,11 @@ export const common: EPR = async (info, data, send) => {
         }
       }
 
-      let arenaOpen = U.GetConfig('arena_no_endtime') || BigInt(date) < currentArena.time_end
+      let arenaOpen = BigInt(date) >= currentArena.time_start && (BigInt(date) < currentArena.time_end || U.GetConfig('arena_no_endtime'))
       let shopOpen = arenaOpen && U.GetConfig('arena_station') !== 'None'
       let arenaData = {}
 
-      if(arenaOpen && version >= 20220425 && currentArena.season !== 0) {
+      if(arenaOpen && version >= 20260421 && currentArena.season !== 0) {
         arenaData = {
           season: K.ITEM('s32', currentArena.season),
           rule: K.ITEM('s32', currentArena.rule),

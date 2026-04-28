@@ -216,7 +216,9 @@ function getDifficulty(musicid, type) {
                     case "5":
                         return "VVD";
                     case "6":
-                        return "XCD"
+                        return "XCD";
+                    case "7":
+                        return "NBL";
                 }
             }
         case 4:
@@ -395,7 +397,7 @@ function getVF50() {
     });
 }
 
-var diffName = ["NOV", "ADV", "EXH", "INF\nGRV\nHVN\nVVD\nXCD", "MXM", "ULT"];
+var diffName = ["NOV", "ADV", "EXH", "INF\nGRV\nHVN\nVVD\nXCD\nNBL", "MXM", "ULT"];
 
 function preSetTableMark(type) {
     $('#statistic-table').empty();

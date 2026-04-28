@@ -109,6 +109,8 @@ function getDifficulty(musicid, type) {
                         return "VVD";
                     case "6":
                         return "XCD";
+                    case "7":
+                        return "NBL";
                 }
             }
         case 4:
@@ -116,11 +118,12 @@ function getDifficulty(musicid, type) {
     }
 }
 
-function getDifficultyAsset(type, level) {
+function getDifficultyAsset(type, level, version) {
+    let diffDir = (version === 7) ? 'difficulty7' : 'difficulty'
     //var diff = getDifficulty(musicid, type); //.toLowerCase();
     //return "static/asset/difficulty/level_small_" + diff + ".png";
     var t = $('<div>').append(
-        $('<img>').attr("src", "static/asset/difficulty/level_small_" + type + ".png")
+        $('<img>').attr("src", "static/asset/" + diffDir + "/level_small_" + type + ".png")
         //.attr("style", "position: relative; width: 100%;")
     ).append(
         $('<div>').append(level)
@@ -242,7 +245,7 @@ function setCourseInfo(courseArray, skillType) {
                                         )
                                         .append(
                                             $('<div style="width:20%;display:inline-block;vertical-align: center;">')
-                                            .append(getDifficultyAsset(info.tracks[0].type.toLowerCase(), info.tracks[0].level)) //.append(info.tracks[0].level)
+                                            .append(getDifficultyAsset(info.tracks[0].type.toLowerCase(), info.tracks[0].level, version)) //.append(info.tracks[0].level)
                                             //.css('background-image', 'url(' + "static/asset/difficulty/level_small_" + info.tracks[0].type.toLowerCase() + ".png" + ')')
                                         )
                                     ).attr('style', "padding:1em 2em")
@@ -256,7 +259,7 @@ function setCourseInfo(courseArray, skillType) {
                                         )
                                         .append(
                                             $('<div style="width:20%;display:inline-block;vertical-align: center;">')
-                                            .append(getDifficultyAsset(info.tracks[1].type.toLowerCase(), info.tracks[1].level)) //.append(info.tracks[1].level)
+                                            .append(getDifficultyAsset(info.tracks[1].type.toLowerCase(), info.tracks[1].level, version)) //.append(info.tracks[1].level)
                                             //.css('background-image', 'url(' + "static/asset/difficulty/level_small_" + info.tracks[1].type.toLowerCase() + ".png" + ')')
                                         )
                                     ).attr('style', "padding:1em 2em")
@@ -270,7 +273,7 @@ function setCourseInfo(courseArray, skillType) {
                                         )
                                         .append(
                                             $('<div style="width:20%;display:inline-block;vertical-align: center;">')
-                                            .append(getDifficultyAsset(info.tracks[2].type.toLowerCase(), info.tracks[2].level)) //info.tracks[2].level)
+                                            .append(getDifficultyAsset(info.tracks[2].type.toLowerCase(), info.tracks[2].level, version)) //info.tracks[2].level)
                                             //.css('background-image', 'url(' + "static/asset/difficulty/level_small_" + info.tracks[2].type.toLowerCase() + ".png" + ')')
                                         )
                                     ).attr('style', "padding:1em 2em")

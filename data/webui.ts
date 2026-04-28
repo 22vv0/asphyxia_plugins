@@ -89,6 +89,28 @@ export const textureslist = [
 		]
 	},
 	{
+		'file': '/data/graphics/ver07/psd_level.ifs',
+		'asset_folder': 'difficulty7',
+		'data': [
+			{
+				'md5': '623cbb528d26836595f2837bae054a29',
+				'textures': [
+					['level_small_nov.png', 768128, 6747, [550, 950, 400, 500], [548, 952, 398, 502]],
+					['level_small_adv.png', 774880, 6729, [146, 546, 816, 916], [144, 548, 814, 918]],
+					['level_small_exh.png', 801728, 6610, [550, 950, 712, 812], [548, 952, 710, 814]],
+					['level_small_mxm.png', 808352, 6510, [550, 950, 504, 604], [548, 952, 502, 606]],
+					['level_small_inf.png', 754480, 6838, [146, 546, 608, 708], [144, 548, 606, 710]],
+					['level_small_grv.png', 747584, 6889, [146, 546, 712, 812], [144, 548, 710, 814]],
+					['level_small_hvn.png', 795040, 6674, [550, 950, 608, 708], [548, 952, 606, 710]],
+					['level_small_vvd.png', 781616, 6716, [550, 950, 296, 396], [548, 952, 294, 398]],
+					['level_small_xcd.png', 788336, 6693, [146, 546, 296, 396], [144, 548, 294, 398]],
+					['level_small_nbl.png', 761328, 6790, [146, 546, 504, 604], [144, 548, 502, 606]],
+					['level_small_ult.png', 740336, 7236, [146, 546, 400, 500], [144, 548, 398, 502]]
+				]
+			}
+		]
+	},
+	{
 		'file': '/data/graphics/ver06/psd_skill.ifs',
 		'asset_folder': 'skill_lv',
 		'data': [

@@ -249,7 +249,7 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
     logLine('Getting new music_db info')
     let ver = 0
     let prevAssetMdb = {}
-    let difLbl = ['', '', 'INF', 'GRV', 'HVN', 'VVD', 'XCD', 'NBL (tmp)']
+    let difLbl = ['', '', 'INF', 'GRV', 'HVN', 'VVD', 'XCD', 'NBL']
     if(IO.Exists('webui/asset/json/music_db.json')) {
       prevAssetMdb = JSON.parse(U.DecodeString(await IO.ReadFile('webui/asset/json/music_db.json'), 'utf8'))
     }

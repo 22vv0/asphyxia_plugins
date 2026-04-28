@@ -13,7 +13,9 @@ function getInfDifficulty(inf_ver) {
         case "5":
             return "VVD";
         case "6":
-            return "XCD"
+            return "XCD";
+        case "7":
+            return "NBL";
     }
 }
 

@@ -49,7 +49,8 @@ export const EVENT7 = [
   'S_PUC_EFFECT_ENABLE',
   'FAVORITE_CREW_ENABLE',
   'OVER_POWER_ENABLE',
-  'APIPAGENE_ENABLE'
+  'APIPAGENE_ENABLE',
+  'MUSIC_LEVEL_AVERAGE_SCORE_ENABLE'
 ]
 
 export const BLASTER_GATE7 = [
@@ -749,11 +750,11 @@ export const APIGENE7 = {
 export const COURSES7 = []
 
 export const INFORMATION7 = [
-  { id: 45, version: 20260127, start: 20260129, str: '[img:info/260129_info_tripletribe.png:]'},
   { id: 46, version: 20260203, start: 20260205, str: '[img:info/250205_info_hatsunemiku.png:]'},
   { id: 47, version: 20260217, start: 20260219, str: '[img:info/260219_info_cross_resonance.png:]'},
   { id: 48, version: 20260324, start: 20260326, str: '[img:info/260326_info_generator.png:]'},
-  { id: 49, version: 20260324, start: 20260326, str: '[img:info/260326_info_tripletribe.png:]'}
+  { id: 49, version: 20260324, start: 20260326, str: '[img:info/260326_info_tripletribe.png:]'},
+  { id: 50, version: 20260421, start: 20260423, str: '[img:info/260423_info_shiranui.png:]'}
 ] 
 
 export const EXTENDS7 = [
@@ -981,5 +982,35 @@ export const MUSIC_OVERRIDE7 = [
       exh: { price: 4294967294 },
       mxm: { price: 4294967294 }
     }
+  },
+  {
+    music_id: 2293,
+    start: 20260212,
+    date: 20260430,
+    charts: {}
+  },
+  {
+    music_id: 2294,
+    start: 20260212,
+    date: 20260430,
+    charts: {}
+  },
+  {
+    music_id: 2309,
+    start: 20260212,
+    date: 20260430,
+    charts: {}
+  },
+  {
+    music_id: 2313,
+    start: 20260212,
+    date: 20260430,
+    charts: {}
+  },
+  {
+    music_id: 2392,
+    start: 20260212,
+    date: 20260430,
+    charts: {}
   }
 ]

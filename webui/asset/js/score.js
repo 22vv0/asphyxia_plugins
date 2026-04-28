@@ -31,30 +31,32 @@ function getDifficulty(musicid, type) {
     var inf_ver = result["info"]["inf_ver"] ? result["info"]["inf_ver"] : 5;
     switch (type) {
         case 0:
-            return "NOV";
+            return "NOV"
         case 1:
-            return "ADV";
+            return "ADV"
         case 2:
-            return "EXH";
+            return "EXH"
         case 3:
             {
                 switch (inf_ver) {
                     case "2":
-                        return "INF";
+                        return "INF"
                     case "3":
-                        return "GRV";
+                        return "GRV"
                     case "4":
-                        return "HVN";
+                        return "HVN"
                     case "5":
-                        return "VVD";
+                        return "VVD"
                     case "6":
-                        return "XCD";
+                        return "XCD"
+                    case "7":
+                        return "NBL"
                 }
             }
         case 4:
-            return "MXM";
+            return "MXM"
         case 5:
-            return "ULT";
+            return "ULT"
     }
 }
 
@@ -123,10 +125,12 @@ function difficultySort(d) {
             return 7;
         case "XCD":
             return 8;
-        case "MXM":
+        case "NBL":
             return 9;
-        case "ULT":
+        case "MXM":
             return 10;
+        case "ULT":
+            return 11;
     }
     return 0;
 };
