@@ -28,7 +28,8 @@ export const EVENT7 = [
   'BEGINNER_MUSIC_FOLDER\t1471,1758,1753,1739,1867,1866,1860,1857,1903,1904,1859,1863,1856,1864,1865,1916,1917,1914,1915,1918,1960',
   'BEGINNER_MUSIC_FOLDER\t1961,1962,2029,2028,2030,2031,2035,2036,1905,1882,2058,2073,2070,2069,2074,2075,2067,2068,2066,2165,2166',
   'BEGINNER_MUSIC_FOLDER\t2174,2175,2193,2195,2196,2213,2216,2214,2215,2205,2206,2224,2229,2228,2230,2241,2244,2243,2242,2245,2240',
-  'BEGINNER_MUSIC_FOLDER\t2251,2252,2220,2221,2289,2288,2291,2287,2290,2343,2344,2348,2353,2352,2345,2234,2351,2350,2209,2354',
+  'BEGINNER_MUSIC_FOLDER\t2251,2252,2220,2221,2289,2288,2291,2287,2290,2343,2344,2348,2353,2352,2345,2234,2351,2350,2209,2354,2388',
+  'BEGINNER_MUSIC_FOLDER\t2389,2390,2391',
   // 'SKILL_ANALYZER_ABLE',
   'BLASTER_ABLE',
   'PREMIUM_TIME_ENABLE',
@@ -110,7 +111,7 @@ export const BLASTER_GATE7 = [
 
 export const LICENSED_SONGS7 = LICENSED_SONGS6.concat([
   2348, 2344, 2343, 2352, 2353, 2345, 2234, 2354, 2350, 2351, 2209, 2376, 2377,
-  2384, 2385, 2386, 2388, 2389, 2390, 2391
+  2384, 2385, 2386, 2388, 2389, 2390, 2391, 2392
 ])
 
 export const UNLOCK_EVENTS7 = {
@@ -617,18 +618,35 @@ export const EVENT_ITEMS7 = {
 // rule: 0 score 1 point 2 vote
 // rank_match_target: 0 arena 1 single 2 mega
 export const CURRENT_ARENA7 = {
-  season: 0,
-  rule: 0,
+  season: 1,
+  rule: 1,
   rank_match_target: 0,
-  time_start: BigInt(Date.parse('19 Dec 1900 08:00:00 GMT')),
-  time_end: BigInt(Date.parse('23 Dec 1900 15:59:59 GMT')),
-  shop_start: BigInt(Date.parse('19 Dec 1900 08:00:00 GMT')),
-  shop_end: BigInt(Date.parse('23 Dec 1900 15:59:59 GMT'))
+  time_start: BigInt(Date.parse('30 Apr 2026 08:00:00 GMT')),
+  time_end: BigInt(Date.parse('30 May 2026 15:59:59 GMT')),
+  shop_start: BigInt(Date.parse('25 Apr 2026 08:00:00 GMT')),
+  shop_end: BigInt(Date.parse('30 May 2026 15:59:59 GMT'))
 }
 
 // catalog_id, catalog_type, price, item_type, item_id, param 
 
-export const ARENA_STATION_ITEMS7 = {}
+export const ARENA_STATION_ITEMS7 = {
+  'None': {},
+  'Set 1': {
+    items: [
+      [1, 1, 5000, 11, 82, 1],
+      [1, 1, 15000, 11, 95, 1],
+      [1, 1, 15000, 11, 101, 1],
+      [1, 1, 15000, 11, 104, 1],
+      [1, 1, 15000, 11, 112, 1],
+      [1, 1, 8000, 0, 697, 8],
+      [1, 1, 8000, 0, 623, 8],
+      [1, 1, 4000, 0, 353, 8],
+      [1, 1, 4000, 0, 152, 8],
+      [1, 1, 2000, 0, 770, 8]
+    ],
+    version: 20260421
+  }
+}
 
 export const VALGENE7 = {
   info: [

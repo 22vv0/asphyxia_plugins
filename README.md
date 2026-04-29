@@ -1,6 +1,6 @@
 SOUND VOLTEX
 ===
-**Plugin Version:** fork-7.1.0b
+**Plugin Version:** fork-7.1.1
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
 **Supported game versions:**
@@ -21,19 +21,25 @@ SOUND VOLTEX
 
 ### ∇
 
-- Added new songs to licensed songs list
-- Added `PREMIUM GENERATOR (不知火フレア/Shiranui Flare)` data
-- Added event data: `Shiranui Flare Stamp Event`
-- Updated event data: `∇ Weekly Stamp Bonus` - added 5 stamp sheets
-- Fixed `White Day 2026 Stamp Event` event data
-- Updated `BLASTER GATE` data
+- Set Ranked Arena season: Arena Battle, point scoring (04/30/26-05/25/26)
+- Added Arena Station Set 1 (will update item list and prices if needed at a later date)
+- Enabled more detailed level 18-20 folder design for VF Imperial Class players
+- Added song IDs to `BEGINNER_MUSIC_FOLDER`
+- Updated licensed songs list (1 song)
+- Updated music override list (5 songs)
+- Updated information popup list
 
 ### Misc
 
-- Moved `∇ Weekly Stamp Bonus` to one toggle and made to only show one stamp sheet at a time (complete the current sheet for next ones to appear; needs re-toggling in events page to enable)
-- Removed unused `skillanalyzer.js` asset
-- Small update to stamp sheet extend data loading
-- Added missing ids to `NAMEPLATE_BADGE_IGNORE_DISABLE`
+- Updated Arena handler code in prep for ∇ (ranked Arena will only be enabled in ∇)
+- `NBL` difficulty handler for `music_limited` loading
+- Updated `.ifs` file extract list
+- Added `distribution_date` check for overridden song data
+- Update WebUI 
+
+### WebUI
+
+- Added difficulty labels for `NBL` charts in various pages.
 
 ---
 ## Extra notes

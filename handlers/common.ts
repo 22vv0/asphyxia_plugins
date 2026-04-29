@@ -13,6 +13,7 @@ export const common: EPR = async (info, data, send) => {
     let information = [];
     let licensedSongs = [];
     let musicLimited = [];
+    let musicOverride = [];
     let unlockEvents;
     let currentArena;
     let arenaItems;
@@ -75,6 +76,7 @@ export const common: EPR = async (info, data, send) => {
         unlockEvents = UNLOCK_EVENTS6;
         currentArena = CURRENT_ARENA;
         arenaItems = ARENA_STATION_ITEMS;
+        musicOverride = MUSIC_OVERRIDE6;
         valgene = VALGENE;
         songNum = 2342
         break;
@@ -102,6 +104,7 @@ export const common: EPR = async (info, data, send) => {
         unlockEvents = UNLOCK_EVENTS7;
         currentArena = CURRENT_ARENA7;
         arenaItems = ARENA_STATION_ITEMS7;
+        musicOverride = MUSIC_OVERRIDE7;
         valgene = {
           info: [...VALGENE.info, ...VALGENE7.info],
           rarity: {...VALGENE.rarity, ...VALGENE7.rarity},
@@ -182,7 +185,12 @@ export const common: EPR = async (info, data, send) => {
           }
           else if(absVersion === 6) {
             if ('omnimix' in songData.info) omniList.push(i)
-            if(parseInt(songData.info.version) <= 6 && 'distribution_date' in songData['info'] && parseInt(songData['info']['distribution_date']) > currentYMDDate) {
+            let distributionDate = songData['info']['distribution_date']
+            let ovInd = musicOverride.findIndex(o => o.music_id === i)
+            if(ovInd > 0 && 'date' in musicOverride[ovInd]) {
+              distributionDate = String(musicOverride[ovInd].date)
+            }
+            if(parseInt(songData.info.version) <= 6 && !checkVerStart(0, 0, distributionDate, date)) {
               console.log("Unreleased song: " + songData.info.title_name)
             }
             else {
@@ -208,7 +216,7 @@ export const common: EPR = async (info, data, send) => {
                 }
               }
 
-              // if song has new XCD track
+              // if song has new XCD chart
               else if (songData.info.inf_ver === '6') { 
                 // manual lock charts
                 if (i === 469) limitedNo = 2;
@@ -222,7 +230,12 @@ export const common: EPR = async (info, data, send) => {
           }
           else if(absVersion === 7) {
             if ('omnimix' in songData.info) omniList.push(i)
-            if(parseInt(songData.info.version) <= 7 && 'distribution_date' in songData['info'] && parseInt(songData['info']['distribution_date']) > currentYMDDate) {
+            let distributionDate = songData['info']['distribution_date']
+            let ovInd = musicOverride.findIndex(o => o.music_id === i)
+            if(ovInd > 0 && 'date' in musicOverride[ovInd]) {
+              distributionDate = String(musicOverride[ovInd].date)
+            }
+            if(parseInt(songData.info.version) <= 7 && !checkVerStart(0, 0, distributionDate, date)) {
               console.log("Unreleased song: " + songData.info.title_name)
             }
             else {
@@ -325,16 +338,15 @@ export const common: EPR = async (info, data, send) => {
     }
 
     else if(Math.abs(gameVersion) >= 6) {
-      let musicOverride = []
-      let mList = (Math.abs(gameVersion) === 6) ? MUSIC_OVERRIDE6 : MUSIC_OVERRIDE7
+      let musicOverrideFin = []
       const createItem = (key, val) => {return (typeof val === 'string') ? K.ITEM('str', val) : ((key === 'volume') ? K.ITEM('u16', val) : K.ITEM('u32', val))}
-      for(const music of mList.filter(m => checkVerStart(0, 0, m.start, date))) {
+      for(const music of musicOverride.filter(m => checkVerStart(0, 0, m.start, date))) {
         let mInfKeys = Object.keys(music).filter(m => !['charts', 'start'].includes(m))
         let musicInfo = {}
         mInfKeys.forEach(k => {
           musicInfo[k] = createItem(k, music[k])
         })
-        musicOverride.push(musicInfo)
+        musicOverrideFin.push(musicInfo)
 
         let mChartKeys = Object.keys(music.charts)
         let chartInfo = {}
@@ -348,7 +360,7 @@ export const common: EPR = async (info, data, send) => {
 
           chartInfo[difName[ch]] = ci
         })
-        musicOverride.push(chartInfo)
+        musicOverrideFin.push(chartInfo)
       }
 
       if(information.length > 0) {
@@ -525,7 +537,8 @@ export const common: EPR = async (info, data, send) => {
       let shopOpen = arenaOpen && U.GetConfig('arena_station') !== 'None'
       let arenaData = {}
 
-      if(arenaOpen && version >= 20260421 && currentArena.season !== 0) {
+      const arenaStart = new Date(Number(currentArena.time_start) * 1000).toISOString().split('T')[0].split('-').join('')
+      if(arenaOpen && checkVerStart(version, 20260421, arenaStart, date) && currentArena.season !== 0) {
         arenaData = {
           season: K.ITEM('s32', currentArena.season),
           rule: K.ITEM('s32', currentArena.rule),
@@ -667,7 +680,7 @@ export const common: EPR = async (info, data, send) => {
             param_str_5: K.ITEM('str', e.params[9]),
           })),
         },
-        music: { info: musicOverride },
+        music: { info: musicOverrideFin },
         music_limited: { info: songs },
         skill_course: {
           info: courses.reduce(

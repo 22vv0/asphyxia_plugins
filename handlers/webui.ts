@@ -9,8 +9,8 @@ import { Rival } from '../models/rival'
 import { Item } from '../models/item'
 import { WeeklyMusicScore } from '../models/weeklymusic'
 import { COURSES2 } from '../data/ii'
-import { PREGENE, COURSES6 } from '../data/exg'
-import { PREGENE7, COURSES7 } from '../data/nbl'
+import { PREGENE, COURSES6, MUSIC_OVERRIDE6 } from '../data/exg'
+import { PREGENE7, COURSES7, MUSIC_OVERRIDE7 } from '../data/nbl'
 import { textureslist } from '../data/webui'
 import * as fs from 'fs'
 import { PNG } from '../webui/asset/js/pngjs/png.js'
@@ -263,9 +263,11 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
     }
     while(ver <= 7) {
       if(IO.Exists('./webui/asset/uploads/' + ver + '_mdb.xml')) {
+        let musicOverride = ver === 7 ? MUSIC_OVERRIDE7 : MUSIC_OVERRIDE6
         logLine('Importing ' + ((ver === 0) ? 'omnimix' : 'SDVX' + ver) + ' mdb')
         let mdb = U.parseXML(U.DecodeString(await IO.ReadFile('./webui/asset/uploads/' + ver + '_mdb.xml'), "shift_jis"), false)
         mdb.mdb.music.forEach(musicValue => {
+          let distributionDate = ''
           let songTitleClean = (ver < 2) ? '' : musicValue.info.title_name['@content'].replace(/[龕釁驩曦齷骭齶彜罇雋鬻鬥鬆曩驫齲騫趁鬮盥隍頽餮黻蔕闃饌煢鑷墸鹹瀑疉鑒]/g, m => translate_table[m])
           let levelDiv = (ver > 0 && ver < 6) ? 1 : (musicValue.difficulty.exhaust.difnum['@content'][0].toString().length === 3) ? 10 : 1
           if(ver === 7 && ['840', '1219', '1751'].includes(musicValue['@attr'].id)) levelDiv = 10
@@ -314,6 +316,10 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
 
             logLine("New song added to json: " + songTitleClean + " (" + musicValue.info.distribution_date['@content'] + ")")
             newJsonSongs.push([ musicValue['@attr'].id, '[' + musicValue.info.distribution_date['@content'] + ' | ' + musicValue['@attr'].id + '] ' + musicValue.info.title_name['@content']])
+            let ovInd = MUSIC_OVERRIDE7.findIndex(o => o.music_id === parseInt(musicValue['@attr'].id))
+            if(ovInd > 0 && 'date' in MUSIC_OVERRIDE7[ovInd]) {
+              distributionDate = String(MUSIC_OVERRIDE7[ovInd].date)
+            }
             prevAssetMdb['mdb']['music'].push({
               'id': musicValue['@attr'].id,
               'info': {
@@ -321,7 +327,7 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
                 'version': musicValue.info.version['@content'][0].toString(),
                 ...ver === 0 && {'omnimix': ver === 0},
                 'inf_ver': musicValue.info.inf_ver['@content'][0].toString(),
-                'distribution_date': musicValue.info.distribution_date['@content'][0].toString()
+                'distribution_date': distributionDate
               },
               'difficulty': dif
             })
@@ -377,6 +383,11 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
               //   break
               case 6:
               case 7:
+                let distributionDate = musicValue.info.distribution_date['@content'][0].toString()
+                let ovInd = musicOverride.findIndex(o => o.music_id === parseInt(musicValue['@attr'].id))
+                if(ovInd > 0 && 'date' in musicOverride[ovInd]) {
+                  distributionDate = String(musicOverride[ovInd].date)
+                }
                 dif[ver] = {
                   'novice': (musicValue.difficulty.novice.difnum['@content'][0] / levelDiv).toString(),
                   'advanced': (musicValue.difficulty.advanced.difnum['@content'][0] / levelDiv).toString(),
@@ -386,7 +397,7 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
                   'ultimate': 'ultimate' in musicValue.difficulty ? (musicValue.difficulty.ultimate.difnum['@content'][0] / levelDiv).toString() : '0'
                 }
                 prevAssetMdb['mdb']['music'][ind]['info']['title_name'] = songTitleClean
-                prevAssetMdb['mdb']['music'][ind]['info']['distribution_date'] = musicValue.info.distribution_date['@content'][0].toString()
+                prevAssetMdb['mdb']['music'][ind]['info']['distribution_date'] = distributionDate
                 if(newInfVer) prevAssetMdb['mdb']['music'][ind]['info']['inf_ver'] = musicValue.info.inf_ver['@content'][0].toString()
                 break
             }
