@@ -267,7 +267,7 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
         logLine('Importing ' + ((ver === 0) ? 'omnimix' : 'SDVX' + ver) + ' mdb')
         let mdb = U.parseXML(U.DecodeString(await IO.ReadFile('./webui/asset/uploads/' + ver + '_mdb.xml'), "shift_jis"), false)
         mdb.mdb.music.forEach(musicValue => {
-          let distributionDate = ''
+          let distributionDate = (ver > 1) ? musicValue.info.distribution_date['@content'][0].toString() : ''
           let songTitleClean = (ver < 2) ? '' : musicValue.info.title_name['@content'].replace(/[龕釁驩曦齷骭齶彜罇雋鬻鬥鬆曩驫齲騫趁鬮盥隍頽餮黻蔕闃饌煢鑷墸鹹瀑疉鑒]/g, m => translate_table[m])
           let levelDiv = (ver > 0 && ver < 6) ? 1 : (musicValue.difficulty.exhaust.difnum['@content'][0].toString().length === 3) ? 10 : 1
           if(ver === 7 && ['840', '1219', '1751'].includes(musicValue['@attr'].id)) levelDiv = 10

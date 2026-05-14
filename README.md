@@ -1,13 +1,13 @@
 SOUND VOLTEX
 ===
-**Plugin Version:** fork-7.1.1
+**Plugin Version:** fork-7.1.2
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
 **Supported game versions:**
 - BOOTH (2013052900)
 - infinite infection (2014102200)
 - EXCEED GEAR (2025120900)
-- ∇ (20260421xx)
+- ∇ (20260512xx)
 
 **Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d) or above
 
@@ -21,25 +21,16 @@ SOUND VOLTEX
 
 ### ∇
 
-- Set Ranked Arena season: Arena Battle, point scoring (04/30/26-05/25/26)
-- Added Arena Station Set 1 (will update item list and prices if needed at a later date)
-- Enabled more detailed level 18-20 folder design for VF Imperial Class players
-- Added song IDs to `BEGINNER_MUSIC_FOLDER`
-- Updated licensed songs list (1 song)
-- Updated music override list (5 songs)
-- Updated information popup list
+- Enabled SKILL ANALYZER flag
+- Added SKILL ANALYZER courses (第1回 Aコース, 第1回 Bコース)
 
 ### Misc
 
-- Updated Arena handler code in prep for ∇ (ranked Arena will only be enabled in ∇)
-- `NBL` difficulty handler for `music_limited` loading
-- Updated `.ifs` file extract list
-- Added `distribution_date` check for overridden song data
-- Update WebUI 
+- `Update WebUI Assets`: Fixed distribution date not saving to mdb json in some cases
 
 ### WebUI
 
-- Added difficulty labels for `NBL` charts in various pages.
+- `Profile > Skill Analyzer`: song list population updated to handle future 4-track courses
 
 ---
 ## Extra notes

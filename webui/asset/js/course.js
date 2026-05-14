@@ -278,6 +278,22 @@ function setCourseInfo(courseArray, skillType) {
                                         )
                                     ).attr('style', "padding:1em 2em")
                                 )
+                            ).append(
+                                (info.tracks.length > 3) ? 
+                                $('<tr>').append(
+                                    $('<td>').append(
+                                        $('<div style="vertical-align: top;">').append(
+                                            $('<div style="width:80%;display:inline-block;vertical-align: center;font-family:ffff">')
+                                            .append(info.tracks[3].name)
+                                        )
+                                        .append(
+                                            $('<div style="width:20%;display:inline-block;vertical-align: center;">')
+                                            .append(getDifficultyAsset(info.tracks[3].type.toLowerCase(), info.tracks[3].level, version)) //info.tracks[2].level)
+                                            //.css('background-image', 'url(' + "static/asset/difficulty/level_small_" + info.tracks[2].type.toLowerCase() + ".png" + ')')
+                                        )
+                                    ).attr('style', "padding:1em 2em")
+                                )
+                                : null
                             )
                         ).attr('style', "table-color:#00000000")
                     )
