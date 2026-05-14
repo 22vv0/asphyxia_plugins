@@ -16,7 +16,7 @@ function zeroPad(num, places) {
 }
 
 function getSkillAsset(skill) {
-    if(currentVersion === 2) skill += 1
+    if([2,3].includes(currentVersion)) skill += 1
     return "static/asset/skill_lv/skill_" + zeroPad(skill, 2) + ".png";
 }
 

@@ -1,5 +1,6 @@
 import { EVENT, SDVX_STATION } from '../data/booth';
 import { EVENT2, MUSIC_LIMITED, COURSES2 } from '../data/ii';
+import { EVENT3, MISSION_EVENT3, MUSIC_LIMITED3, COURSES3, EXTENDS3, SP_APICAGENE3 } from '../data/gw';
 import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIE_SONGS, LICENSED_SONGS6, CURRENT_ARENA, ARENA_STATION_ITEMS, VALGENE, INFORMATION6, UNLOCK_EVENTS6, MUSIC_OVERRIDE6 } from '../data/exg';
 import { EVENT7, COURSES7, EXTENDS7, LICENSED_SONGS7, CURRENT_ARENA7, ARENA_STATION_ITEMS7, VALGENE7, APIGENE7, INFORMATION7, UNLOCK_EVENTS7, EGSONGS_LOCKED, MUSIC_OVERRIDE7 } from '../data/nbl';
 import {getVersion, checkVerStart, getRandomIntInclusive} from '../utils';
@@ -14,6 +15,7 @@ export const common: EPR = async (info, data, send) => {
     let licensedSongs = [];
     let musicLimited = [];
     let musicOverride = [];
+    let spApica = [];
     let unlockEvents;
     let currentArena;
     let arenaItems;
@@ -46,6 +48,16 @@ export const common: EPR = async (info, data, send) => {
             musicLimited = MUSIC_LIMITED
             courses = COURSES2
             events = EVENT2
+            break
+          }
+          case 'game_3': {
+            console.log('Game: GRAVITY WARS')
+            songNum = (version === 20151116) ? 717 : 953 // s1 : s2
+            musicLimited = MUSIC_LIMITED3
+            spApica = SP_APICAGENE3.filter(sp => sp.version <= version)
+            courses = COURSES3.filter(c => version >= c.version)
+            EXTENDS3.filter(ex => checkVerStart(version, ex.version, 0, date)).forEach(val => extend.push(Object.assign({}, val)));
+            events = EVENT3
             break
           }
         }
@@ -168,7 +180,7 @@ export const common: EPR = async (info, data, send) => {
         var foundSongIndex = mdb.mdb.music.map(function(x) {return x['id']; }).indexOf(i.toString());
         if(foundSongIndex != -1) {
           var songData = mdb.mdb.music[foundSongIndex];
-          if(absVersion === 2) {
+          if(absVersion === 2 || absVersion === 3) {
             limitedNo = 2
             var lim = musicLimited.findIndex(m => m.id === i)
             if (lim >= 0) {
@@ -298,7 +310,23 @@ export const common: EPR = async (info, data, send) => {
 
     let response = {}
 
-    if(Math.abs(gameVersion) === 2) {
+    if(gameVersion === 2 || gameVersion === 3) {
+      if(gameVersion === 3) {
+        if(U.GetConfig('gw_mission')) events = events.concat(MISSION_EVENT3)
+        if(!U.GetConfig('gw_gene')) events = events.concat([25])
+
+        let sp = spApica[(Math.random() * spApica.length) | 0];
+        extend.push({
+          type: 2,
+          id: 1,
+          params: [
+            1, 0, 0, 0, 0,
+            sp.title,
+            sp.str,
+            '', '', ''
+          ]
+        })
+      }
       response = {
         event: {
           info: events.map(e => ({
@@ -333,7 +361,25 @@ export const common: EPR = async (info, data, send) => {
               ),
             []
           ),
-        }
+        },
+        ...(gameVersion === 3 && {
+          extend: {
+            info: extend.map(e => ({
+              extend_id: K.ITEM('u32', e.id),
+              extend_type: K.ITEM('u32', e.type),
+              param_num_1: K.ITEM('s32', e.params[0]),
+              param_num_2: K.ITEM('s32', e.params[1]),
+              param_num_3: K.ITEM('s32', e.params[2]),
+              param_num_4: K.ITEM('s32', e.params[3]),
+              param_num_5: K.ITEM('s32', e.params[4]),
+              param_str_1: K.ITEM('str', e.params[5]),
+              param_str_2: K.ITEM('str', e.params[6]),
+              param_str_3: K.ITEM('str', e.params[7]),
+              param_str_4: K.ITEM('str', e.params[8]),
+              param_str_5: K.ITEM('str', e.params[9]),
+            })),
+          }
+        })
       }
     }
 

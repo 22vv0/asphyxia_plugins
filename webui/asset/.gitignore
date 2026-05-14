@@ -10,3 +10,5 @@ submonitor_bg/*
 !submonitor_bg/subbg_0000.png
 uploads
 valgene_item
+/js/reference.js
+reference.md

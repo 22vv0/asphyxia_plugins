@@ -97,7 +97,7 @@ function mdbLoad() {
                 if (mdata['difficulty'][version]['exhaust'] != '0') {
                     temp_data.exh = mdata['difficulty'][version]['exhaust'] || mdata['difficulty'][0]['exhaust']
                 }
-                if (mdata['info']['inf_ver'] != '0' && version >= parseInt(mdata['info']['inf_ver'])) {
+                if (mdata['info']['inf_ver'] != '0' && mdata['difficulty'][version]['infinite'] != '0' && version >= parseInt(mdata['info']['inf_ver'])) {
                     temp_data.oth = (mdata['difficulty'][version]['infinite']  || mdata['difficulty'][0]['infinite']) + ' | ' + getInfDifficulty(mdata['info']['inf_ver'])
                 }
                 if ("maximum" in mdata['difficulty'][version]) {

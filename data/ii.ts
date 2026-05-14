@@ -1,15 +1,16 @@
+// jubeat popn gitadora victroopers iidx
 export const POLICY_BREAK2 = [
-	{id: 1, rwrd: {type: 0, id: 271, param: 7}, start: BigInt(Date.parse('07 Mar 2013 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
-	{id: 2, rwrd: {type: 0, id: 272, param: 7}, start: BigInt(Date.parse('16 Jul 2013 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
-	{id: 3, rwrd: {type: 0, id: 282, param: 7}, start: BigInt(Date.parse('07 Aug 2013 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
-	{id: 4, rwrd: {type: 0, id: 315, param: 7}, start: BigInt(Date.parse('21 Aug 2013 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
-	{id: 5, rwrd: {type: 0, id: 316, param: 7}, start: BigInt(Date.parse('03 Sep 2013 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
-	{id: 6, rwrd: {type: 0, id: 321, param: 7}, start: BigInt(Date.parse('25 Sep 2013 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
-	{id: 7, rwrd: {type: 0, id: 324, param: 7}, start: BigInt(Date.parse('20 Nov 2013 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
-	{id: 8, rwrd: {type: 0, id: 479, param: 7}, start: BigInt(Date.parse('11 Jun 2014 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
-	{id: 9, rwrd: {type: 0, id: 495, param: 7}, start: BigInt(Date.parse('30 Jul 2014 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
-	{id: 10, rwrd: {type: 0, id: 552, param: 7}, start: BigInt(Date.parse('06 Aug 2014 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
-	{id: 11, rwrd: {type: 0, id: 553, param: 15}, start: BigInt(Date.parse('21 Aug 2014 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
+	{id: 1, titleJ: "REFLEC BEAT SPECIAL #001", titleE: "REFLEC BEAT SPECIAL #001", tgt: 0, rwrd: {type: 0, id: 271, param: 7, point: 24000}, start: BigInt(Date.parse('07 Mar 2013 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
+	{id: 2, titleJ: "jubeat SPECIAL #001", titleE: "jubeat SPECIAL #001", tgt: 1, rwrd: {type: 0, id: 272, param: 7, point: 24000}, start: BigInt(Date.parse('16 Jul 2013 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
+	{id: 3, titleJ: "Pop'n Music SPECIAL #001", titleE: "Pop'n Music SPECIAL #001", tgt: 2, rwrd: {type: 0, id: 282, param: 7, point: 24000}, start: BigInt(Date.parse('07 Aug 2013 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
+	{id: 4, titleJ: "Pop'n Music SPECIAL #002", titleE: "Pop'n Music SPECIAL #002", tgt: 2, rwrd: {type: 0, id: 315, param: 7, point: 24000}, start: BigInt(Date.parse('21 Aug 2013 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
+	{id: 5, titleJ: "REFLEC BEAT SPECIAL #002", titleE: "REFLEC BEAT SPECIAL #002", tgt: 0, rwrd: {type: 0, id: 316, param: 7, point: 24000}, start: BigInt(Date.parse('03 Sep 2013 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
+	{id: 6, titleJ: "GITADORA SPECIAL #001", titleE: "GITADORA SPECIAL #001", tgt: 3, rwrd: {type: 0, id: 321, param: 7, point: 24000}, start: BigInt(Date.parse('25 Sep 2013 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
+	{id: 7, titleJ: "jubeat SPECIAL #002", titleE: "jubeat SPECIAL #002", tgt: 1, rwrd: {type: 0, id: 324, param: 7, point: 24000}, start: BigInt(Date.parse('20 Nov 2013 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
+	{id: 8, titleJ: "REFLEC BEAT SPECIAL #003", titleE: "REFLEC BEAT SPECIAL #003", tgt: 0, rwrd: {type: 0, id: 479, param: 7, point: 24000}, start: BigInt(Date.parse('11 Jun 2014 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
+	{id: 9, titleJ: "Steel Chronicle VICTROOPERS SPECIAL #001", titleE: "Steel Chronicle VICTROOPERS SPECIAL #001", tgt: 4, rwrd: {type: 0, id: 495, param: 7, point: 24000}, start: BigInt(Date.parse('30 Jul 2014 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
+	{id: 10, titleJ: "Pop'n Music SPECIAL #003", titleE: "Pop'n Music SPECIAL #003", tgt: 2, rwrd: {type: 0, id: 552, param: 7, point: 24000}, start: BigInt(Date.parse('06 Aug 2014 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
+	{id: 11, titleJ: "REFLEC BEAT SPECIAL #004", titleE: "REFLEC BEAT SPECIAL #004", tgt: 0, rwrd: {type: 0, id: 553, param: 15, point: 24000}, start: BigInt(Date.parse('21 Aug 2014 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
 ]
 
 export const EVENT2 = [

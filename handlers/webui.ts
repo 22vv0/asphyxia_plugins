@@ -9,6 +9,7 @@ import { Rival } from '../models/rival'
 import { Item } from '../models/item'
 import { WeeklyMusicScore } from '../models/weeklymusic'
 import { COURSES2 } from '../data/ii'
+import { COURSES3 } from '../data/gw'
 import { PREGENE, COURSES6, MUSIC_OVERRIDE6 } from '../data/exg'
 import { PREGENE7, COURSES7, MUSIC_OVERRIDE7 } from '../data/nbl'
 import { textureslist } from '../data/webui'
@@ -739,6 +740,9 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
     for(let cIter = 0; cIter < courseData.courseData.length; cIter++) {
       if(courseData.courseData[cIter].version === 2) {
         courseData.courseData[cIter].info = COURSES2
+        courseDataUpdateSuccess = true
+      } else if(courseData.courseData[cIter].version === 3) {
+        courseData.courseData[cIter].info = COURSES3
         courseDataUpdateSuccess = true
       } else if(courseData.courseData[cIter].version === 6) {
         courseData.courseData[cIter].info = COURSES6

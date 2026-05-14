@@ -5,3 +5,9 @@ export interface Param {
   id: number;
   param: number[];
 }
+
+export interface Serial {
+  collection: 'serial';
+  version: number;
+  list: number[];
+}

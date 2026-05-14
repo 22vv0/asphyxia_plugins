@@ -1,5 +1,5 @@
 import {common, log} from './handlers/common';
-import {hiscore, rival, globalMatch, lounge, entryE} from './handlers/features';
+import {hiscore, rival, globalMatch, lounge, entryE, serial} from './handlers/features';
 import {
   updateProfile,
   copyResourcesFromGame,
@@ -44,9 +44,12 @@ export function register() {
   R.Config('unlock_all_songs', { type: 'boolean', default: false, name:'Unlock All Songs'});
   R.Config('unlock_all_navigators', { type: 'boolean', default: false, name:'Unlock All Navigators'} );
   R.Config('unlock_all_appeal_cards', { type: 'boolean', default: false, name:'Unlock All Appeal Cards'});
+  R.Config('gw_mission', { type: 'boolean', default: false, name: 'Enable MISSION mode', desc: 'For GRAVITY WARS' })
+  R.Config('gw_mission_skipmatch', { type: 'boolean', default: false, name: 'Skip matchmaking objectives', desc: 'For GRAVITY WARS MISSION mode' })
+  R.Config('gw_gene', { type: 'boolean', default: false, name: 'GENERATOR START', desc: 'For GRAVITY WARS: turn off in case of print problem loop (due to missing chara_card files)' })
   R.DataFile('./webui/asset/uploads/1_mdb.xml', {name: 'music_db.xml (BOOTH)', accept: 'text/xml, .xml'});
   R.DataFile('./webui/asset/uploads/2_mdb.xml', {name: 'music_db.xml (infinite infection)', accept: 'text/xml, .xml'});
-  // R.DataFile('./webui/asset/uploads/3_mdb.xml', {name: 'music_db.xml (GRAVITY WARS)', accept: 'text/xml, .xml'});
+  R.DataFile('./webui/asset/uploads/3_mdb.xml', {name: 'music_db.xml (GRAVITY WARS)', accept: 'text/xml, .xml'});
   // R.DataFile('./webui/asset/uploads/4_mdb.xml', {name: 'music_db.xml (HEAVENLY HAVEN)', accept: 'text/xml, .xml'});
   // R.DataFile('./webui/asset/uploads/5_mdb.xml', {name: 'music_db.xml (VIVID WAVE)', accept: 'text/xml, .xml'});
   R.DataFile('./webui/asset/uploads/6_mdb.xml', {name: 'music_db.xml (EXCEED GEAR)', accept: 'text/xml, .xml'});
@@ -69,6 +72,7 @@ export function register() {
     // Helper for register multiple versions.
     R.Route(`game.${method}`, handler);
     R.Route(`game_2.${method}`, handler);
+    R.Route(`game_3.${method}`, handler);
     R.Route(`game.sv6_${method}`, handler);
     R.Route(`game.sv7_${method}`, handler);
   };
@@ -87,7 +91,8 @@ export function register() {
   MultiRoute('save_valgene', saveValgene);
   MultiRoute('frozen', true);
   MultiRoute('buy', buy);
-  MultiRoute('print',print);
+  MultiRoute('print', print);
+  MultiRoute('serial', serial);
 
   // Features
   MultiRoute('hiscore', hiscore);
