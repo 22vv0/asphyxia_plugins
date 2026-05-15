@@ -1254,34 +1254,56 @@ export const print: EPR = async (info, data, send) => {
   const refid = $(data).str('refid')
   const version = Math.abs(getVersion(info))
   const genesisCards = $(data).elements('genesis_card')
-  var generatorArray = []
+  var genCards = []
+  var afterTkt = []
+  var afterPower = []
+  let newPrintId = 1
   for (const g of genesisCards) {
     let genId = g.number('generator_id');
     let genPwr = g.number('generator_power');
-    let exist = generatorArray.findIndex((e) => (e.id == genId));
-    if (exist == -1) {
-      generatorArray.push({
+    let ticketId = g.number('ticket_id');
+    let status = g.number('status');
+    let gPrintId = g.number('print_id') === 0 ? newPrintId++ : g.number('print_id');
+    if(status === 1) {
+      genCards.push({
+        index: g.number('index'),
+        printId: gPrintId
+      })
+      if(g.number('print_id') === 0) {
+        await DB.Upsert<Item>(refid, {collection: 'item', version, type: 7, id: genId}, {
+          $inc: {
+            param: genPwr
+          }
+        })
+        if(ticketId > 0) {
+          let ticket = await DB.FindOne<Item>(refid, {collection: 'item', version, type: 6, id: ticketId})
+          afterTkt.push({
+            id: genId,
+            tkid: ticketId,
+            param: ticket.param - 1
+          })
+        }
+      }
+    }
+    else if(status === 3) {
+      afterPower.push({
         id: genId,
         pwr: genPwr
       });
-    } else generatorArray[exist].pwr += genPwr
-  }
-
-  for (const genPower of generatorArray) {
-    await DB.Upsert<Item>(refid, {collection: 'item', version, type: 7, id: genPower.id}, {
-      $set: {
-        param: genPower.pwr
-      }
-    })
+    }
   }
 
   return send.object({
     result: K.ITEM('s8', 0),
-    genesis_card: genesisCards.map(r => ({
-      index: K.ITEM('s32', r.number('index')),
-      print_id: K.ITEM('s32', r.number('print_id'))
+    genesis_card: genCards.map(r => ({
+      index: K.ITEM('s32', r.index),
+      print_id: K.ITEM('s32', r.printId)
     })),
-    after_power: generatorArray.map(r => ({
+    after_ticket: afterTkt.map(r => ({
+        ticket_id: K.ITEM('s32', r.tkid),
+        param: K.ITEM('s32', r.param ),
+    })),
+    after_power: afterPower.map(r => ({
       generator_id: K.ITEM('s32', r.id),
       param: K.ITEM('s32', r.pwr),
     }))

@@ -1635,6 +1635,7 @@ export const SP_APICAGENE3 = [
 export const SERIAL3 = [
 	{
 		version: 20151116,
+		onetime: false,
 		code: 3001,
 		items: [
 			{ type: 6, id: 1, param: 1 }
@@ -1642,7 +1643,52 @@ export const SERIAL3 = [
 		pc: 0, 
 		blc: 0, 
 		energy: 0
-	}
+	},
+	{
+		version: 20151116,
+		onetime: false,
+		code: 3002,
+		items: [
+			{ type: 6, id: 2, param: 3 }
+		],
+		pc: 0, 
+		blc: 0, 
+		energy: 0
+	},
+	{
+		version: 20151116,
+		onetime: false,
+		code: 3003,
+		items: [
+			{ type: 6, id: 3, param: 2 }
+		],
+		pc: 0, 
+		blc: 0, 
+		energy: 0
+	},
+	{
+		version: 20151116,
+		onetime: false,
+		code: 3004,
+		items: [
+			{ type: 6, id: 4, param: 1 }
+		],
+		pc: 0, 
+		blc: 0, 
+		energy: 0
+	},
+	{
+		version: 20151116,
+		onetime: false,
+		code: 3005,
+		items: [
+			{ type: 6, id: 5, param: 1 }
+		],
+		pc: 0, 
+		blc: 0, 
+		energy: 0
+	},
+	
 ]
 
 export const EXTENDS3 = [
@@ -1660,146 +1706,21 @@ export const EXTENDS3 = [
     	]
   	},
   	{
-  		version: 20151116,
-		type: 7,
-		id: 1,
-		params: [
-			1,21,0,1,2,
-			"jubeat スペシャル ジェネレーター",
-			"flame_orange",
-			"100:149-153",
-			"30,30,25,10,4,1",
-			"i:illust_jubeat1 p:210 g:3,10"
-		]
-	},
-  	{
-  		version: 20151116,
-		type: 7,
-		id: 1,
-		params: [
-			1,22,0,1,2,
-			"ビートストリーム スペシャルジェネレーター",
-			"flame_orange",
-			"100:209-218",
-			"30,30,25,10,4,1",
-			"i:illust_beast p:220 g:3,10"
-		]
-	},
-  	{
-  		version: 20151116,
-		type: 7,
-		id: 1,
-		params: [
-			1,23,0,1,2,
-			"MÚSECA スペシャルジェネレーター",
-			"flame_orange",
-			"100:219-223",
-			"30,30,25,10,4,1",
-			"i:illust_museca_1 p:230 g:3,10"
-		]
-	},
-  	{
-  		version: 20151116,
-		type: 7,
-		id: 1,
-		params: [
-			1,24,0,1,2,
-			"ここなつジェネシスカード祭",
-			"flame_orange",
-			"100:237-241",
-			"30,30,25,10,4,1",
-			"i:illust_coconatsu_1 p:240 g:3,10"
-		]
-	},
-  	{
-  		version: 20151116,
-		type: 7,
-		id: 1,
-		params: [
-			1,25,0,1,2,
-			"beatmania IIDX スペシャルジェネレーター",
-			"flame_orange",
-			"100:394-401",
-			"30,30,25,10,4,1",
-			"i:illust_IIDXcopula p:250 g:3,10"
-		]
-	},
-  	{
   		version: 20161212,
 		type: 7,
 		id: 1,
 		params: [
-			1,26,0,1,2,
-			"モンスターストライク MULTI BURSTスペシャルジェネレーター",
-			"flame_orange",
-			"100:482-521",
-			"30,30,25,10,4,1",
-			"i:illust_monst p:260 g:3,10"
-		]
-	},
-  	{
-  		version: 20161212,
-		type: 7,
-		id: 1,
-		params: [
-			1,27,0,1,2,
-			"MÚSECA Grafica ジェネレーター",
-			"flame_orange",
-			"100:522-536",
-			"30,30,25,10,4,1",
-			"i:illust_museca_1 p:270 g:3,10"
-		]
-	},
-  	{
-  		version: 20161212,
-		type: 7,
-		id: 1,
-		params: [
-			1,28,0,1,2,
-			"SUPER STAR ONLY ONE ジェネレーター",
-			"flame_orange",
-			"100:599",
-			"30,30,25,10,4,1",
-			"i:illust_onlyone p:280 g:3,10"
-		]
-	},
-  	{
-  		version: 20161212,
-		type: 7,
-		id: 1,
-		params: [
-			1,29,0,1,2,
-			"MÚSECA Grafica ジェネレーター 第二弾",
-			"flame_orange",
-			"100:640-641",
-			"30,30,25,10,4,1",
-			"i:illust_museca_1 p:290 g:3,10"
-		]
-	},
-  	{
-  		version: 20161212,
-		type: 7,
-		id: 1,
-		params: [
-			1,30,0,1,2,
-			"ビートストリーム スペシャルジェネレーター 第二弾",
-			"flame_orange",
-			"100:642-652",
-			"30,30,25,10,4,1",
-			"i:illust_beast_2 p:300 g:3,10"
-		]
-	},
-  	{
-  		version: 20161212,
-		type: 7,
-		id: 1,
-		params: [
-			1,31,0,1,2,
+			// x
+			// genid
+			// ticketid
+			// 1 = duplicates / 2 = no duplicate until complete
+			// 2 = hide when complete / 0 = allow pull after complete
+			0,21,0,1,0,
 			"ひなビタ♪ジェネレーター 第三弾",
 			"flame_orange",
 			"100:653-684",
 			"30,30,25,10,4,1",
-			"i:illust_hinabita_3 p:310 g:3,10"
+			"i:illust_hinabita_3 p:210 g:3,10"
 		]
 	},
   	{
@@ -1807,12 +1728,12 @@ export const EXTENDS3 = [
 		type: 7,
 		id: 1,
 		params: [
-			1,32,0,1,2,
+			0,22,0,1,0,
 			"キミが監督★胸熱ショットコンテストvol.1ジェネレーター",
 			"flame_orange",
 			"100:685-713",
 			"30,30,25,10,4,1",
-			"i:illust_muneatsu_1 p:320 g:3,10"
+			"i:illust_muneatsu_1 p:220 g:3,10"
 		]
 	},
   	{
@@ -1820,12 +1741,142 @@ export const EXTENDS3 = [
 		type: 7,
 		id: 1,
 		params: [
-			1,33,0,1,2,
+			0,23,0,1,0,
 			"キミが監督★胸熱ショットコンテストvol.2ジェネレーター",
 			"flame_orange",
 			"100:714-742",
 			"30,30,25,10,4,1",
-			"i:illust_muneatsu_2 p:330 g:3,10"
+			"i:illust_muneatsu_2 p:230 g:3,10"
+		]
+	},
+  	{
+  		version: 20151116,
+		type: 7,
+		id: 1,
+		params: [
+			0,24,1,2,1,
+			"LEGEND OF KAC サントラ\nスペシャル ジェネレーター",
+			"flame_pink",
+			"100:44",
+			"30,30,25,10,4,1",
+			"i:illust_kac p:240 g:0,1000"
+		]
+	},
+  	{
+  		version: 20151116,
+		type: 7,
+		id: 1,
+		params: [
+			0,25,2,1,1,
+			"ポスターキャンペーン スペシャル ジェネレーター",
+			"flame_pink",
+			"100:41-43",
+			"30,30,25,10,4,1",
+			"i:illust_poster_cp p:250 g:0,1000"
+		]
+	},
+  	{
+  		version: 20151116,
+		type: 7,
+		id: 1,
+		params: [
+			0,26,3,2,1,
+			"EDM x BEMANI スペシャル ジェネレーター",
+			"flame_pink",
+			"100:78-79",
+			"30,30,25,10,4,1",
+			"i:illust_edm p:260 g:0,1000"
+		]
+	},
+  	{
+  		version: 20151116,
+		type: 7,
+		id: 1,
+		params: [
+			0,27,4,1,1,
+			"東方ゲームショウ会場限定ポストカード特典\nスペシャル ジェネレーター",
+			"flame_pink",
+			"100:142",
+			"30,30,25,10,4,1",
+			"i:illust_toho_1 p:270 g:0,1000"
+		]
+	},
+  	{
+  		version: 20151116,
+		type: 7,
+		id: 1,
+		params: [
+			0,28,5,1,1,
+			"BEMANI x 東方Project\nUltimate Master Pieces CD購入特典\nスペシャル ジェネレーター",
+			"flame_pink",
+			"100:116",
+			"30,30,25,10,4,1",
+			"i:illust_toho_2 p:280 g:0,1000"
+		]
+	},
+  	{
+  		version: 20151116,
+		type: 7,
+		id: 1,
+		params: [
+			0,29,0,2,0,
+			"jubeat スペシャル ジェネレーター",
+			"flame_orange",
+			"100:149-153,745-752",
+			"30,30,25,10,4,1",
+			"i:illust_jubeat1 p:290 g:0,1000"
+		]
+	},
+  	{
+  		version: 20151116,
+		type: 7,
+		id: 1,
+		params: [
+			0,30,0,1,0,
+			"ビートストリーム スペシャルジェネレーター",
+			"flame_pink",
+			"100:209-218",
+			"30,30,25,10,4,1",
+			"i:illust_beast p:300 g:3,10"
+		]
+	},
+  	{
+  		version: 20151116,
+		type: 7,
+		id: 1,
+		params: [
+			0,31,0,2,0,
+			"MÚSECA スペシャルジェネレーター",
+			"flame_orange",
+			"100:219-223",
+			"30,30,25,10,4,1",
+			"i:illust_museca_1 p:310 g:0,1000"
+		]
+	},
+  	{
+  		version: 20151116,
+		type: 7,
+		id: 1,
+		params: [
+			0,32,0,1,0,
+			"ここなつジェネシスカード祭",
+			"flame_orange",
+			"100:237-241",
+			"30,30,25,10,4,1",
+			"i:illust_coconatsu_1 p:320 g:6,10"
+		]
+	},
+  	{
+  		version: 20151116,
+		type: 7,
+		id: 1,
+		params: [
+			0,33,0,1,0,
+			"beatmania IIDX スペシャルジェネレーター",
+			"flame_orange",
+			"100:394-401",
+			"30,30,25,10,4,1",
+			"i:illust_IIDXcopula p:330 g:0,10"
 		]
 	},
   	{
@@ -1833,77 +1884,51 @@ export const EXTENDS3 = [
 		type: 7,
 		id: 1,
 		params: [
-			1,34,0,1,2,
-			"jubeat スペシャル ジェネレーター 第二弾",
+			0,34,0,2,0,
+			"モンスターストライク MULTI BURSTスペシャルジェネレーター",
 			"flame_orange",
-			"100:745-752",
+			"100:482-521",
 			"30,30,25,10,4,1",
-			"i:illust_jubeat_org p:340 g:3,10"
+			"i:illust_monst p:340 g:0,1000"
 		]
 	},
   	{
-  		version: 20151116,
+  		version: 20161212,
 		type: 7,
 		id: 1,
 		params: [
-			0,35,1,1,0,
-			"LEGEND OF KAC サントラ\nスペシャル ジェネレーター",
-			"flame_pink",
-			"100:44",
+			0,35,0,2,0,
+			"MÚSECA Grafica ジェネレーター",
+			"flame_orange",
+			"100:522-536,640-641",
 			"30,30,25,10,4,1",
-			"i:illust_kac p:350 g:3,10"
+			"i:illust_museca_1 p:350 g:0,1000"
 		]
 	},
   	{
-  		version: 20151116,
+  		version: 20161212,
 		type: 7,
 		id: 1,
 		params: [
-			0,36,1,1,0,
-			"ポスターキャンペーン スペシャル ジェネレーター",
-			"flame_pink",
-			"100:41-43",
+			0,36,0,2,0,
+			"SUPER STAR ONLY ONE ジェネレーター",
+			"flame_orange",
+			"100:599",
 			"30,30,25,10,4,1",
-			"i:illust_poster_cp p:360 g:3,10"
+			"i:illust_onlyone p:360 g:0,1000"
 		]
 	},
   	{
-  		version: 20151116,
+  		version: 20161212,
 		type: 7,
 		id: 1,
 		params: [
-			0,37,1,1,0,
-			"EDM x BEMANI スペシャル ジェネレーター",
-			"flame_pink",
-			"100:78-79",
+			0,37,0,2,0,
+			"ビートストリーム スペシャルジェネレーター 第二弾",
+			"flame_orange",
+			"100:642-652",
 			"30,30,25,10,4,1",
-			"i:illust_edm p:370 g:3,10"
-		]
-	},
-  	{
-  		version: 20151116,
-		type: 7,
-		id: 1,
-		params: [
-			0,38,1,1,0,
-			"東方ゲームショウ会場限定ポストカード特典\nスペシャル ジェネレーター",
-			"flame_pink",
-			"100:142",
-			"30,30,25,10,4,1",
-			"i:illust_toho_1 p:380 g:3,10"
-		]
-	},
-  	{
-  		version: 20151116,
-		type: 7,
-		id: 1,
-		params: [
-			0,39,1,1,0,
-			"BEMANI x 東方Project Ultimate Master Pieces CD購入特典\nスペシャル ジェネレーター",
-			"flame_pink",
-			"100:116",
-			"30,30,25,10,4,1",
-			"i:illust_toho_2 p:390 g:3,10"
+			"i:illust_beast_2 p:370 g:0,1000"
 		]
 	}
 ]

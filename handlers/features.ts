@@ -342,8 +342,8 @@ export const serial: EPR = async (info, data, send) => {
   let usedInd = used ? used.list.findIndex(l => l === code) : -1
   let found = serial.find(s => s.code === code)
   let result = 0
-  if(!found) result = 2 
-  else if(usedInd >= 0) result = 3 
+  if(!found) result = 2
+  else if(usedInd >= 0 && found.onetime) result = 3 
 
   let finItems = []
   if(result === 0) {
@@ -356,11 +356,14 @@ export const serial: EPR = async (info, data, send) => {
       finItems.push({item: await DB.FindOne<Item>(refid, {collection: 'item', version, type: item.type, id: item.id}), param: item.param})
     }
 
-    await DB.Upsert<Serial>(refid, {collection: 'serial', version}, {
-      $push: {
-        list: code
-      }
-    })
+    if(usedInd < 0) {
+      await DB.Upsert<Serial>(refid, {collection: 'serial', version}, {
+        $push: {
+          list: code
+        }
+      })
+    } 
+
   } else {
     return send.object({
       result: K.ITEM('s8', result),
