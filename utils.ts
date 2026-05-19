@@ -18,7 +18,7 @@ export function getVersion(info: EamuseInfo) {
   const dateCode = parseInt(info.model.split(":")[4]);
   if (dateCode <= 2013052900) return 1;
   if (dateCode <= 2014112000) return 2;
-  if (dateCode <= 2016121200) return 3;
+  if (dateCode <= 2016121900) return 3;
   if (info.method.startsWith('sv4')) return 4;
   if (info.method.startsWith('sv5')) return 5;
   if (dateCode <= 2021082400) return 6;

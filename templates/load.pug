@@ -1,12 +1,15 @@
+- var apCard = items.filter(i => i.type === 1)
+- var otherItems = items.filter(i => i.type !== 1)
+
 game
-  if version === 2
+  if version === 2 || version === 3
     result(__type="u8") 0
     name(__type="str") #{name}
     code(__type="str") #{code}
-    creator_id(__type="u32") #{creatorId}
     gamecoin_packet(__type="u32") #{packets}
     gamecoin_block(__type="u32") #{blocks}
-    skill_name_id(__type="s16") #{skill.name} 
+    skill_level(__type="s16") #{skill.level}
+    skill_name_id(__type="s16") #{skill.name}
     hidden_param(__type="s32" __count=param.param.length) #{param.param.join(" ")}
     play_count(__type="u32") #{playCount}
     daily_count(__type="u32") #{dayCount}
@@ -23,38 +26,86 @@ game
       appeal_id(__type="u16") #{appeal}
       comment_id(__type="u16") 0
       gauge_option(__type="u8") #{gaugeOption}
-    appealcard
-      if apCard.length > 0
-        each card in apCard
-          info
-            id(__type="u32") #{card.id}
-            count(__type="u32") #{card.param}
-    item
-      if items.length > 0
-        each item in items
-          info
-            type(__type="u8") #{item.type}
-            id(__type="u32") #{item.id}
-            param(__type="u32") #{item.param}
-    skill
-      course_all
-        if courses.length > 0
+    if creatorItem > 1
+      creator_item
+        info
+          creator_type(__type="u32") #{creatorItem}
+          item_id(__type="u32") 0
+          param(__type="u32") 0
+    if version === 2
+      appealcard
+        if apCard.length > 0
+          each card in apCard
+            info
+              id(__type="u32") #{card.id}
+              count(__type="u32") #{card.param}
+      item
+        if otherItems.length > 0
+          each item in otherItems
+            info
+              type(__type="u8") #{item.type}
+              id(__type="u32") #{item.id}
+              param(__type="u32") #{item.param}
+    else if version === 3
+      item
+        if items.length > 0
+          each item in items
+            info
+              type(__type="u8") #{item.type}
+              id(__type="u32") #{item.id}
+              param(__type="u32") #{item.param}
+    if courses.length > 0
+      skill
+        course_all
           each course in courses
             d
               ssnid(__type="s32") #{course.sid}
               crsid(__type="s16") #{course.cid}
               ct(__type="s16") #{course.clear}
               ar(__type="s16") #{course.rate}
-    pb
-      if pbFin.length > 0
-        for p in pbFin
-          info
-            id(__type="s32") #{p.id}
-            start_date(__type="u64") #{p.start}
-            end_date(__type="u64") #{p.end}
-            before(__type="s32") #{p.before}
-            after(__type="s32") #{p.after}
-
+    if version === 2
+      pb
+        if pbFin.length > 0
+          for p in pbFin
+            info
+              id(__type="s32") #{p.id}
+              title(__type="str") #{p.title}
+              title_eng(__type="str") #{p.title_eng}
+              start_date(__type="u64") #{p.start}
+              end_date(__type="u64") #{p.end}
+              before(__type="s32") #{p.before}
+              after(__type="s32") #{p.after}
+    else if version === 3
+      pb
+        if pbFin.length > 0
+          for p in pbFin
+            info
+              id(__type="s32") #{p.id}
+              title(__type="str") #{p.title}
+              title_eng(__type="str") #{p.title_eng}
+              target_id(__type="s32") #{p.target_id}
+              exp(__type="s32") #{p.exp}
+              start_date(__type="u64") #{p.start}
+              end_date(__type="u64") #{p.end}
+              for pm in p.music
+                music
+                  no(__type="s32") #{pm.no}
+                  point(__type="s32") #{pm.point}
+                  music_id(__type="s32") #{pm.music_id}
+        if pbEnergy.length > 0
+          for pbe in pbEnergy
+            energy
+              target_id(__type="s32") #{pbe.target_id}
+              energy(__type="s32") #{pbe.energy}
+      if story.length > 0
+        story
+          for s in story
+            info
+              story_id(__type="s32") #{s.storyId}
+              progress_id(__type="s32") #{s.progressId}
+              progress_param(__type="s32") #{s.progressParam}
+              clear_cnt(__type="s32") #{s.clearCnt}
+              route_flg(__type="u32") #{s.routeFlg}
 
   if version >= 6
     result(__type="u8") #{result}

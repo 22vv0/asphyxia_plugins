@@ -96,8 +96,9 @@ function getSkillFrameAsset(frame) {
 
 function getSkillTitle() {
     let sk = skill_data.filter(sk => sk.version === currentVersion)
-    let titles = (currentVersion === 2) ? skill_title_db_inf : skill_title_db
-    if(sk.length <= 0 || sk[0].name === (undefined || (currentVersion === 2 ? -1 : 0))) return ''
+    let titles = skill_title_db[String(currentVersion)]
+    console.log(sk)
+    if(sk.length <= 0 || sk[0].name === (undefined || (currentVersion === 2 || currentVersion === 3 ? -1 : 0))) return ''
     return titles.filter(e => e.id === sk[0].name)[0].name
 }
 
@@ -877,10 +878,11 @@ $('#version_select').change(function() {
 function getPlayerSkill() {
     // console.log(getPlayerMaxVersion())
     var k = skill_data.filter(e => e.version === currentVersion)
-    console.log(k)
-    if (k.length === 0) return currentVersion === 2 ? [-1, 0] : [0, 0];
-    if (k[0].version === 2) {
-        let cData = course_data.filter(c => c.version === currentVersion && ![15,16,17].includes(c.sid))
+    let cData
+    if (k.length === 0) return [2,3].includes(currentVersion) ? [-1, 0] : [0, 0];
+    if (k[0].version === 2 || k[0].version === 3) {
+        if (k[0].version === 2) cData = course_data.filter(c => c.version === currentVersion && ![15,16,17].includes(c.sid))
+        else if (k[0].version === 3) cData = course_data.filter(c => c.version === currentVersion && c.sid <= 25)
         let frameV = cData.length > 0 ? Math.max(...cData.map(c => c.cid)) : -1;
         return [frameV, k[0].name + 1]
     }
@@ -1052,7 +1054,7 @@ $(document).ready(function() {
         }),
         $.getJSON("static/asset/json/customize_data_ext.json", function(json) {
             skill_title_db = json.skilltitle;
-            skill_title_db_inf = json.skilltitle2;
+            console.log(skill_title_db)
         }),
     ).then(function() {
         var currentVF = calculateVolforce();

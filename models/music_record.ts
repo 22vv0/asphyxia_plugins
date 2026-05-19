@@ -21,4 +21,6 @@ export interface MusicRecord {
   near: number;
   error: number;
   effectiveRate: number;
+  mode: number;
+  gaugeType: number;
 }
