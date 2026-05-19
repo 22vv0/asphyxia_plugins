@@ -260,26 +260,6 @@ export async function iiiMigrate(refid, newName) {
 		})
 	})
 
-	// let migRecs = await DB.Find<MusicRecord>(refid, {collection: 'music', version: 2})
-	// migRecs.forEach(async rec => {
-	// 	await DB.Upsert<MusicRecord>(refid, {collection: 'music', mid: rec.mid, type: rec.type, version: 3}, {
-	// 		$set: {
-	// 			score: rec.score,
-	// 			clear: rec.clear,
-	// 			grade: rec.grade,
-	// 			maxChain: rec.maxChain,
-	// 			critical: rec.critical,
-	// 			near: rec.near,
-	// 			error: rec.error,
-	// 			effectiveRate: rec.effectiveRate,
-	// 			buttonRate: rec.buttonRate,
-	// 			longRate: rec.longRate,
-	// 			volRate: rec.volRate,
-	// 			dbver: DB_VER
-	// 		}
-	// 	})
-	// })
-
 	let policyBreak = await DB.Find<PolicyBreak>(refid, {collection: 'pb', version: 2})
 	policyBreak.forEach(async pb => {
 		await DB.Upsert<PolicyBreak>(refid, {collection: 'pb', version: 3, id: pb.id}, {

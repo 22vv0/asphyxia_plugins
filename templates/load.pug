@@ -6,7 +6,6 @@ game
     result(__type="u8") 0
     name(__type="str") #{name}
     code(__type="str") #{code}
-    creator_id(__type="u32") #{creatorId}
     gamecoin_packet(__type="u32") #{packets}
     gamecoin_block(__type="u32") #{blocks}
     skill_level(__type="s16") #{skill.level}
@@ -27,6 +26,12 @@ game
       appeal_id(__type="u16") #{appeal}
       comment_id(__type="u16") 0
       gauge_option(__type="u8") #{gaugeOption}
+    if creatorItem > 1
+      creator_item
+        info
+          creator_type(__type="u32") #{creatorItem}
+          item_id(__type="u32") 0
+          param(__type="u32") 0
     if version === 2
       appealcard
         if apCard.length > 0

@@ -241,7 +241,6 @@ $(document).ready(async function() {
             if(l !== 0) finalLim[ind] = l
         })
     })
-
     
     if (currentVersion === 1) {
         $('#apica').attr('hidden', 'true')
@@ -253,7 +252,15 @@ $(document).ready(async function() {
         $('#valgene').attr('hidden', 'true')
         $('#customize').attr('hidden', 'true')
     } else if (currentVersion === 2) {
-        $('#apicaframe').attr('hidden', 'true')
+        $('#apica').attr('hidden', 'true')
+        $('#skillt').attr('hidden', 'true')
+        $('#aptitle').attr('hidden', 'true')
+        $('#bplsupport').attr('hidden', 'true')
+        $('#bplpro').attr('hidden', 'true')
+        $('#valgene').attr('hidden', 'true')
+        $('#customize').attr('hidden', 'true')
+    } else if (currentVersion === 3) {
+        $('#apica').attr('hidden', 'true')
         $('#skillt').attr('hidden', 'true')
         $('#aptitle').attr('hidden', 'true')
         $('#bplsupport').attr('hidden', 'true')
@@ -300,7 +307,8 @@ $(document).ready(async function() {
         if(skill.length > 1) $('[name="skilltitle"]').val(skill[0]["name"]);
         else $('[name="skilltitle"]').attr('disabled', 'disabled')
 
-        for (var i in databaseext["appeal_frame"]) {
+        let citemCut = [7, 7, 8, 8, 12, 12, 12]
+        for (var i in databaseext["appeal_frame"].slice(0, citemCut[currentVersion - 1])) {
             $('[name="creatorItem"]').append($('<option>', {
                 value: databaseext["appeal_frame"][i].id,
                 text: databaseext["appeal_frame"][i].name,

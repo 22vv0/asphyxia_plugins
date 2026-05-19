@@ -71,101 +71,101 @@ const MUSIC_LIMITED_NEW3 = [
 	{ id: 374, limited: [0, 0, 0, 2] },
 	{ id: 258, limited: [0, 0, 0, 2] },
 	// NEW
-	{ id: 632, limited: [0, 2, 2] },
-	{ id: 633, limited: [0, 2, 2] },
-	{ id: 634, limited: [0, 2, 2] },
-	{ id: 635, limited: [0, 2, 2] },
-	{ id: 650, limited: [0, 2, 2] },
-	{ id: 653, limited: [0, 2, 2] },
-	{ id: 657, limited: [0, 2, 2] },
-	{ id: 642, limited: [0, 2, 2] },
-	{ id: 636, limited: [0, 2, 2, 2] },
-	{ id: 667, limited: [0, 0, 2] },
-	{ id: 675, limited: [0, 0, 2] },
-	{ id: 673, limited: [0, 0, 2] },
-	{ id: 670, limited: [0, 0, 2] },
-	{ id: 612, limited: [0, 2, 2] },
-	{ id: 615, limited: [0, 2, 2] },
-	{ id: 600, limited: [0, 2, 2] },
+	{ id: 632, limited: [3, 2, 2] },
+	{ id: 633, limited: [3, 2, 2] },
+	{ id: 634, limited: [3, 2, 2] },
+	{ id: 635, limited: [3, 2, 2] },
+	{ id: 650, limited: [3, 2, 2] },
+	{ id: 653, limited: [3, 2, 2] },
+	{ id: 657, limited: [3, 2, 2] },
+	{ id: 642, limited: [3, 2, 2] },
+	{ id: 636, limited: [3, 2, 2, 2] },
+	{ id: 667, limited: [3, 3, 2] },
+	{ id: 675, limited: [3, 3, 2] },
+	{ id: 673, limited: [3, 3, 2] },
+	{ id: 670, limited: [3, 3, 2] },
+	{ id: 612, limited: [3, 2, 2] },
+	{ id: 615, limited: [3, 2, 2] },
+	{ id: 603, limited: [3, 2, 2] },
 	{ id: 602, limited: [2, 2, 2] },
 	{ id: 547, limited: [2, 2, 2] },
 	{ id: 595, limited: [2, 2, 2] },
 	{ id: 551, limited: [2, 2, 2] },
-	{ id: 473, limited: [0, 0, 2] },
-	{ id: 475, limited: [0, 0, 2] },
-	{ id: 472, limited: [0, 0, 2] },
-	{ id: 470, limited: [0, 0, 2] },
-	{ id: 484, limited: [0, 0, 2] },
-	{ id: 490, limited: [0, 0, 2] },
-	{ id: 485, limited: [0, 0, 2] },
-	{ id: 501, limited: [0, 2, 2] },
-	{ id: 512, limited: [0, 2, 2] },
-	{ id: 516, limited: [0, 2, 2] },
-	{ id: 496, limited: [0, 2, 2] },
-	{ id: 529, limited: [0, 2, 2] },
-	{ id: 534, limited: [0, 2, 2] },
-	{ id: 531, limited: [0, 2, 2] },
-	{ id: 520, limited: [0, 2, 2] },
-	{ id: 599, limited: [0, 2, 2] },
-	{ id: 591, limited: [0, 2, 2] },
-	{ id: 582, limited: [0, 2, 2] },
-	{ id: 596, limited: [0, 2, 2] },
-	{ id: 583, limited: [0, 2, 2] },
-	{ id: 601, limited: [0, 2, 2] },
-	{ id: 604, limited: [0, 2, 2] },
+	{ id: 473, limited: [3, 3, 2] },
+	{ id: 475, limited: [3, 3, 2] },
+	{ id: 472, limited: [3, 3, 2] },
+	{ id: 470, limited: [3, 3, 2] },
+	{ id: 484, limited: [3, 3, 2] },
+	{ id: 490, limited: [3, 3, 2] },
+	{ id: 485, limited: [3, 3, 2] },
+	{ id: 501, limited: [3, 2, 2] },
+	{ id: 512, limited: [3, 2, 2] },
+	{ id: 516, limited: [3, 2, 2] },
+	{ id: 496, limited: [3, 2, 2] },
+	{ id: 529, limited: [3, 2, 2] },
+	{ id: 534, limited: [3, 2, 2] },
+	{ id: 531, limited: [3, 2, 2] },
+	{ id: 520, limited: [3, 2, 2] },
+	{ id: 599, limited: [3, 2, 2] },
+	{ id: 591, limited: [3, 2, 2] },
+	{ id: 582, limited: [3, 2, 2] },
+	{ id: 596, limited: [3, 2, 2] },
+	{ id: 583, limited: [3, 2, 2] },
+	{ id: 601, limited: [3, 2, 2] },
+	{ id: 604, limited: [3, 2, 2] },
 	{ id: 579, limited: [2, 2, 2] },
-	{ id: 463, limited: [0, 0, 2] },
-	{ id: 464, limited: [0, 0, 2] },
-	{ id: 562, limited: [0, 0, 2] },
-	{ id: 524, limited: [0, 2, 2] },
-	{ id: 538, limited: [0, 2, 2] },
-	{ id: 526, limited: [0, 2, 2] },
-	{ id: 535, limited: [0, 2, 2] },
-	{ id: 545, limited: [0, 2, 2] },
-	{ id: 607, limited: [0, 2, 2] },
-	{ id: 623, limited: [0, 2, 2] },
-	{ id: 622, limited: [0, 2, 2] },
-	{ id: 618, limited: [0, 2, 2] },
-	{ id: 469, limited: [0, 0, 2] },
-	{ id: 576, limited: [0, 0, 2] },
-	{ id: 557, limited: [0, 0, 2] },
-	{ id: 507, limited: [0, 2, 2] },
-	{ id: 510, limited: [0, 2, 2] },
+	{ id: 463, limited: [3, 3, 2] },
+	{ id: 464, limited: [3, 3, 2] },
+	{ id: 562, limited: [3, 3, 2] },
+	{ id: 524, limited: [3, 2, 2] },
+	{ id: 538, limited: [3, 2, 2] },
+	{ id: 526, limited: [3, 2, 2] },
+	{ id: 535, limited: [3, 2, 2] },
+	{ id: 545, limited: [3, 2, 2] },
+	{ id: 607, limited: [3, 2, 2] },
+	{ id: 623, limited: [3, 2, 2] },
+	{ id: 622, limited: [3, 2, 2] },
+	{ id: 618, limited: [3, 2, 2] },
+	{ id: 469, limited: [3, 3, 2] },
+	{ id: 576, limited: [3, 3, 2] },
+	{ id: 557, limited: [3, 3, 2] },
+	{ id: 507, limited: [3, 2, 2] },
+	{ id: 510, limited: [3, 2, 2] },
 	{ id: 624, limited: [2, 2, 2] },
 	{ id: 629, limited: [2, 2, 2] },
-	{ id: 627, limited: [0, 0, 2] },
-	{ id: 630, limited: [0, 0, 2] },
-	{ id: 585, limited: [0, 2, 2] },
-	{ id: 594, limited: [0, 2, 2] },
+	{ id: 627, limited: [3, 3, 2] },
+	{ id: 630, limited: [3, 3, 2] },
+	{ id: 585, limited: [3, 2, 2] },
+	{ id: 594, limited: [3, 2, 2] },
 	{ id: 660, limited: [2, 2, 2] },
-	{ id: 556, limited: [0, 0, 2] },
-	{ id: 560, limited: [0, 0, 2] },
-	{ id: 465, limited: [0, 0, 2] },
-	{ id: 497, limited: [0, 2, 2] },
-	{ id: 518, limited: [0, 2, 2] },
-	{ id: 581, limited: [0, 2, 2] },
-	{ id: 597, limited: [0, 2, 2] },
+	{ id: 556, limited: [3, 3, 2] },
+	{ id: 560, limited: [3, 3, 2] },
+	{ id: 465, limited: [3, 3, 2] },
+	{ id: 497, limited: [3, 2, 2] },
+	{ id: 518, limited: [3, 2, 2] },
+	{ id: 581, limited: [3, 2, 2] },
+	{ id: 597, limited: [3, 2, 2] },
 	{ id: 661, limited: [2, 2, 2, 2] },
-	{ id: 663, limited: [0, 0, 2] },
-	{ id: 666, limited: [0, 0, 2] },
-	{ id: 668, limited: [0, 0, 2] },
-	{ id: 669, limited: [0, 0, 2] },
-	{ id: 671, limited: [0, 0, 2] },
-	{ id: 672, limited: [0, 0, 2] },
-	{ id: 674, limited: [0, 0, 2] },
-	{ id: 677, limited: [0, 0, 2] },
-	{ id: 678, limited: [0, 0, 2] },
-	{ id: 670, limited: [0, 0, 2] },
-	{ id: 505, limited: [0, 2, 2] },
-	{ id: 586, limited: [0, 2, 2] },
-	{ id: 515, limited: [0, 2, 2] },
-	{ id: 504, limited: [0, 2, 2] },
-	{ id: 664, limited: [0, 0, 2] },
-	{ id: 609, limited: [0, 2, 2] },
-	{ id: 621, limited: [0, 2, 2] },
-	{ id: 593, limited: [0, 2, 2] },
-	{ id: 588, limited: [0, 2, 2] },
-	{ id: 589, limited: [0, 2, 2] },
+	{ id: 663, limited: [3, 3, 2] },
+	{ id: 666, limited: [3, 3, 2] },
+	{ id: 668, limited: [3, 3, 2] },
+	{ id: 669, limited: [3, 3, 2] },
+	{ id: 671, limited: [3, 3, 2] },
+	{ id: 672, limited: [3, 3, 2] },
+	{ id: 674, limited: [3, 3, 2] },
+	{ id: 677, limited: [3, 3, 2] },
+	{ id: 678, limited: [3, 3, 2] },
+	{ id: 670, limited: [3, 3, 2] },
+	{ id: 505, limited: [3, 2, 2] },
+	{ id: 586, limited: [3, 2, 2] },
+	{ id: 515, limited: [3, 2, 2] },
+	{ id: 504, limited: [3, 2, 2] },
+	{ id: 664, limited: [3, 3, 2] },
+	{ id: 609, limited: [3, 2, 2] },
+	{ id: 621, limited: [3, 2, 2] },
+	{ id: 593, limited: [3, 2, 2] },
+	{ id: 588, limited: [3, 2, 2] },
+	{ id: 589, limited: [3, 2, 2] },
 	{ id: 683, limited: [2, 2, 2] },
 	{ id: 493, limited: [2, 2, 2, 2] },
 	{ id: 494, limited: [2, 2, 2, 2] },
@@ -173,60 +173,60 @@ const MUSIC_LIMITED_NEW3 = [
 	{ id: 681, limited: [2, 2, 2] },
 	{ id: 682, limited: [2, 2, 2] },
 	// NEW S2
-	{ id: 761, limited: [0, 2, 2] },
-	{ id: 759, limited: [0, 2, 2] },
-	{ id: 758, limited: [0, 2, 2] },
-	{ id: 638, limited: [0, 0, 2] },
-	{ id: 640, limited: [0, 0, 2] },
-	{ id: 658, limited: [0, 0, 2] },
-	{ id: 645, limited: [0, 0, 2] },
-	{ id: 654, limited: [0, 2, 2] },
-	{ id: 788, limited: [0, 2, 2] },
-	{ id: 787, limited: [0, 2, 2] },
-	{ id: 789, limited: [0, 2, 2] },
-	{ id: 790, limited: [0, 2, 2] },
-	{ id: 791, limited: [0, 2, 2, 2] },
+	{ id: 761, limited: [3, 2, 2] },
+	{ id: 759, limited: [3, 2, 2] },
+	{ id: 758, limited: [3, 2, 2] },
+	{ id: 638, limited: [3, 3, 2] },
+	{ id: 640, limited: [3, 3, 2] },
+	{ id: 658, limited: [3, 3, 2] },
+	{ id: 645, limited: [3, 3, 2] },
+	{ id: 654, limited: [3, 2, 2] },
+	{ id: 788, limited: [3, 2, 2] },
+	{ id: 787, limited: [3, 2, 2] },
+	{ id: 789, limited: [3, 2, 2] },
+	{ id: 790, limited: [3, 2, 2] },
+	{ id: 791, limited: [3, 2, 2, 2] },
 	{ id: 821, limited: [2, 2, 2] },
 	{ id: 823, limited: [2, 2, 2] },
 	{ id: 822, limited: [2, 2, 2, 2] },
-	{ id: 804, limited: [0, 2, 2] },
-	{ id: 807, limited: [0, 2, 2] },
-	{ id: 814, limited: [0, 2, 2] },
-	{ id: 816, limited: [0, 2, 2] },
-	{ id: 792, limited: [0, 2, 2] },
-	{ id: 808, limited: [0, 2, 2] },
-	{ id: 793, limited: [0, 2, 2] },
-	{ id: 818, limited: [0, 2, 2] },
-	{ id: 803, limited: [0, 2, 2] },
+	{ id: 804, limited: [3, 2, 2] },
+	{ id: 807, limited: [3, 2, 2] },
+	{ id: 814, limited: [3, 2, 2] },
+	{ id: 816, limited: [3, 2, 2] },
+	{ id: 792, limited: [3, 2, 2] },
+	{ id: 808, limited: [3, 2, 2] },
+	{ id: 793, limited: [3, 2, 2] },
+	{ id: 818, limited: [3, 2, 2] },
+	{ id: 803, limited: [3, 2, 2] },
 
 	// MISSION
 	{ id: 625, limited: [2, 2, 2, 2] },
-	{ id: 544, limited: [0, 2, 2] },
-	{ id: 546, limited: [0, 2, 2] },
-	{ id: 619, limited: [0, 2, 2] },
-	{ id: 587, limited: [0, 2, 2] },
-	{ id: 541, limited: [0, 2, 2] },
-	{ id: 539, limited: [0, 2, 2] },
-	{ id: 533, limited: [0, 2, 2] },
-	{ id: 530, limited: [0, 2, 2] },
-	{ id: 532, limited: [0, 2, 2] },
-	{ id: 652, limited: [0, 2, 2] },
+	{ id: 544, limited: [3, 2, 2] },
+	{ id: 546, limited: [3, 2, 2] },
+	{ id: 619, limited: [3, 2, 2] },
+	{ id: 587, limited: [3, 2, 2] },
+	{ id: 541, limited: [3, 2, 2] },
+	{ id: 539, limited: [3, 2, 2] },
+	{ id: 533, limited: [3, 2, 2] },
+	{ id: 530, limited: [3, 2, 2] },
+	{ id: 532, limited: [3, 2, 2] },
+	{ id: 652, limited: [3, 2, 2] },
 	{ id: 694, limited: [2, 2, 2, 2] },
 	{ id: 693, limited: [2, 2, 2, 2] },
 	{ id: 692, limited: [2, 2, 2, 2] },
 	{ id: 695, limited: [2, 2, 2, 2] },
 	{ id: 610, limited: [2, 2, 2] },
-	{ id: 549, limited: [0, 2, 2] },
-	{ id: 580, limited: [0, 2, 2] },
-	{ id: 543, limited: [0, 2, 2] },
+	{ id: 549, limited: [3, 2, 2] },
+	{ id: 580, limited: [3, 2, 2] },
+	{ id: 543, limited: [3, 2, 2] },
 	{ id: 715, limited: [2, 2, 2, 2] },
 	// MISSION S2
-	{ id: 523, limited: [0, 2, 2] },
-	{ id: 522, limited: [0, 2, 2] },
-	{ id: 810, limited: [0, 2, 2] },
+	{ id: 523, limited: [3, 2, 2] },
+	{ id: 522, limited: [3, 2, 2] },
+	{ id: 810, limited: [3, 2, 2] },
 	{ id: 716, limited: [2, 2, 2] },
 	{ id: 900, limited: [2, 2, 2, 2] },
-	{ id: 798, limited: [0, 2, 2] },
+	{ id: 798, limited: [3, 2, 2] },
 	{ id: 902, limited: [2, 2, 2, 2] },
 	{ id: 912, limited: [2, 2, 2, 2] },
 	{ id: 908, limited: [2, 2, 2, 2] },
@@ -236,10 +236,10 @@ const MUSIC_LIMITED_NEW3 = [
 	{ id: 914, limited: [2, 2, 2, 2] },
 	{ id: 913, limited: [2, 2, 2, 2] },
 	{ id: 915, limited: [2, 2, 2, 2] },
-	{ id: 794, limited: [0, 2, 2] },
+	{ id: 794, limited: [3, 2, 2] },
 	{ id: 815, limited: [2, 2, 2] },
 	{ id: 809, limited: [2, 2, 2] },
-	{ id: 550, limited: [0, 2, 2] },
+	{ id: 550, limited: [3, 2, 2] },
 	// policy break
 	{ id: 626, limited: [2, 2, 2] },
 	{ id: 679, limited: [2, 2, 2] },
@@ -1383,16 +1383,6 @@ export const COURSES3 = [
   	// },
 ]
 
-// 32 -> 166
-// 198 369 32
-// /       /
-// 246 421 166
-// 198 373 165
-// 246 417 155 0 4 11
-// 248 423 164 2:4/3@2501-2516
-// 262 437 150 
-
-
 export const EVENT3 = [
     // s1
 	1, // matching phase
@@ -1403,44 +1393,40 @@ export const EVENT3 = [
     15, 16, 17, 18, 19, 20, 21, 22, 
     32, 40, 42, 51, 
 
-    // gen 4 cards - toggle to move to 1/2/3
-    // 58, 47, 46, 48, 45, 41, 35, 34, 32, 31, 24, 33, 23, 59, 49, 43, 44
-
-
     // real generator
     50, 29, 28, 27, 26,
     52, // real generator appeal card
 
     // serial code input + labels
-    10, 11, 12, 13, 36, 53, 56,
+    10, 11, 12, 13, 36, 53, 56, // 80, 83, 84, 87
 
-    /* misc
+    // s2
+    // add items to apcard generator
+    70, 74, 77,
+    
+    /* 
+	misc s1
     61, 63, 68, // logging stuff maybe
     2, // floor infection event icon
     6, 
     39,
     30,
-    54, // crew test
-    */
+    54, // MAXIMA.trial
 
-    // s2
-    // add items to apcard generator
-    70, 74, 77,
-    // 75, // select payment method
-    
-    /* misc
-    // 72, 73, 
-    // 88,
-    // 86,
+    misc s2
+    72, 73, 
+    75, // select payment method
+    88,
+    86,
     */
 ]
 
 export const MISSION_EVENT3 = [
-	// 37, 55, // toggle
-	// // 38, // movie skip
-	// 57, // map select
-	// 62, // battle sequence + crew stats
-	// 65 // sub-crew
+	37, 55, 57, 64, // toggle
+	// 38, // movie skip
+	57, // map select
+	62, // battle sequence + crew stats
+	65 // sub-crew
 ]
 
 export const SP_APICAGENE3 = [
@@ -1688,7 +1674,17 @@ export const SERIAL3 = [
 		blc: 0, 
 		energy: 0
 	},
-	
+	{
+		version: 20161212,
+		onetime: false,
+		code: 3008,
+		items: [
+			{ type: 6, id: 8, param: 1 }
+		],
+		pc: 0, 
+		blc: 0, 
+		energy: 0
+	},
 ]
 
 export const EXTENDS3 = [
@@ -1710,11 +1706,6 @@ export const EXTENDS3 = [
 		type: 7,
 		id: 1,
 		params: [
-			// x
-			// genid
-			// ticketid
-			// 1 = duplicates / 2 = no duplicate until complete
-			// 2 = hide when complete / 0 = allow pull after complete
 			0,21,0,1,0,
 			"ひなビタ♪ジェネレーター 第三弾",
 			"flame_orange",
@@ -1759,7 +1750,7 @@ export const EXTENDS3 = [
 			"flame_pink",
 			"100:44",
 			"30,30,25,10,4,1",
-			"i:illust_kac p:240 g:0,1000"
+			"i:illust_kac p:240 g:0,1000 m:1"
 		]
 	},
   	{
@@ -1772,7 +1763,7 @@ export const EXTENDS3 = [
 			"flame_pink",
 			"100:41-43",
 			"30,30,25,10,4,1",
-			"i:illust_poster_cp p:250 g:0,1000"
+			"i:illust_poster_cp p:250 g:0,1000 m:2"
 		]
 	},
   	{
@@ -1785,7 +1776,7 @@ export const EXTENDS3 = [
 			"flame_pink",
 			"100:78-79",
 			"30,30,25,10,4,1",
-			"i:illust_edm p:260 g:0,1000"
+			"i:illust_edm p:260 g:0,1000 m:3"
 		]
 	},
   	{
@@ -1798,7 +1789,7 @@ export const EXTENDS3 = [
 			"flame_pink",
 			"100:142",
 			"30,30,25,10,4,1",
-			"i:illust_toho_1 p:270 g:0,1000"
+			"i:illust_toho_1 p:270 g:0,1000 m:4"
 		]
 	},
   	{
@@ -1811,7 +1802,7 @@ export const EXTENDS3 = [
 			"flame_pink",
 			"100:116",
 			"30,30,25,10,4,1",
-			"i:illust_toho_2 p:280 g:0,1000"
+			"i:illust_toho_2 p:280 g:0,1000 m:5"
 		]
 	},
   	{
@@ -1884,12 +1875,12 @@ export const EXTENDS3 = [
 		type: 7,
 		id: 1,
 		params: [
-			0,34,0,2,0,
+			0,34,8,2,1,
 			"モンスターストライク MULTI BURSTスペシャルジェネレーター",
 			"flame_orange",
 			"100:482-521",
 			"30,30,25,10,4,1",
-			"i:illust_monst p:340 g:0,1000"
+			"i:illust_monst p:340 g:0,1000 m:8"
 		]
 	},
   	{

@@ -40,13 +40,14 @@ export function register() {
   R.Config('use_blasterpass',{ type: 'boolean', default: true, name:'Use BLASTER PASS', desc:''});
   R.Config('arena_no_endtime',{ type: 'boolean', default: true, name: 'Keep ARENA running', desc: 'Choose whether to keep the latest ARENA season running past the end date.'});
   R.Config('arena_station7',{ type: 'string', options: Object.keys(ARENA_STATION_ITEMS7), default: 'None', name: 'ARENA STATION set', desc: 'Choose which set of ARENA STATION items are available for purchase during ARENA (∇ only)'});
-  R.Config('unlock_all_valk_items', { type: 'boolean', default: false, name:'Unlock Customization Items', desc: 'Unlock most customization items (Navigators not included; check \'unlock all navigators\' option)'});
   R.Config('unlock_all_songs', { type: 'boolean', default: false, name:'Unlock All Songs'});
   R.Config('unlock_all_navigators', { type: 'boolean', default: false, name:'Unlock All Navigators'} );
   R.Config('unlock_all_appeal_cards', { type: 'boolean', default: false, name:'Unlock All Appeal Cards'});
+  R.Config('unlock_all_valk_items', { type: 'boolean', default: false, name:'Unlock Customization Items', desc: 'Unlock most customization items (Navigators not included; check \'unlock all navigators\' option)'});
   R.Config('gw_mission', { type: 'boolean', default: false, name: 'Enable MISSION mode', desc: 'For GRAVITY WARS' })
-  R.Config('gw_mission_skipmatch', { type: 'boolean', default: false, name: 'Skip matchmaking objectives', desc: 'For GRAVITY WARS MISSION mode' })
-  R.Config('gw_gene', { type: 'boolean', default: false, name: 'GENERATOR START', desc: 'For GRAVITY WARS: turn off in case of print problem loop (due to missing chara_card files)' })
+  R.Config('gw_mission_skipmatch', { type: 'boolean', default: false, name: 'Skip matchmaking MISSION objectives', desc: 'In case you\'re unable to do matchmaking. Prologue and episode 10 only. Dialogue will be skipped.' })
+  R.Config('gw_gene', { type: 'boolean', default: true, name: 'GENERATOR START', desc: 'For GRAVITY WARS: disable to hide in mode select in case of print problem loop (due to missing chara_card files)' })
+  
   R.DataFile('./webui/asset/uploads/1_mdb.xml', {name: 'music_db.xml (BOOTH)', accept: 'text/xml, .xml'});
   R.DataFile('./webui/asset/uploads/2_mdb.xml', {name: 'music_db.xml (infinite infection)', accept: 'text/xml, .xml'});
   R.DataFile('./webui/asset/uploads/3_mdb.xml', {name: 'music_db.xml (GRAVITY WARS)', accept: 'text/xml, .xml'});

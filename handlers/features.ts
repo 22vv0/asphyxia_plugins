@@ -98,7 +98,7 @@ export const hiscore: EPR = async (info, data, send) => {
             l_sq: K.ITEM('str', IDToCode(profiles[rScore.__refid][0].id)),
             l_nm: K.ITEM('str', profiles[rScore.__refid][0].name),
             l_sc: K.ITEM('u32', rScore.score),
-            ...(version === 6 && {
+            ...(version >= 6 && {
               ax_sq: K.ITEM('str', IDToCode(profiles[rExscore.__refid][0].id)),
               ax_nm: K.ITEM('str', profiles[rExscore.__refid][0].name),
               ax_sc: K.ITEM('u32', rExscore.exscore),
@@ -335,7 +335,7 @@ export const serial: EPR = async (info, data, send) => {
   if(version !== 3) return send.deny()
   let date = new Date()
   let refid = $(data).str('refid')
-  let serial = SERIAL3.filter(s => checkVerStart(dVersion, s.version, 0, date))
+  let serial = SERIAL3.filter(s => checkVerStart(dVersion, s.version, 1, date))
 
   const code = parseInt($(data).str('code'))
   let used = await DB.FindOne<Serial>(refid, {collection: 'serial', version})

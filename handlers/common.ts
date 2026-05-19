@@ -27,8 +27,7 @@ export const common: EPR = async (info, data, send) => {
     let songNum = 0;
     const gameVersion = getVersion(info);
 
-    console.log('====================================')
-    console.log("Calling common function");
+    console.log("Retrieving common data");
     
     const version = parseInt(info.model.split(":")[4].slice(0, -2));
 
@@ -52,7 +51,7 @@ export const common: EPR = async (info, data, send) => {
           }
           case 'game_3': {
             console.log('Game: GRAVITY WARS')
-            songNum = (version === 20151116) ? 717 : 953 // s1 : s2
+            songNum = 953
             musicLimited = MUSIC_LIMITED3
             spApica = SP_APICAGENE3.filter(sp => sp.version <= version)
             courses = COURSES3.filter(c => version >= c.version)
@@ -798,7 +797,6 @@ export const common: EPR = async (info, data, send) => {
       }
     }
 
-    console.log("Sending common objects");
     send.object(
       response,
       { encoding: 'utf8' }

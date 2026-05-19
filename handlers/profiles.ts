@@ -18,19 +18,23 @@ import { CURRENT_ARENA, EVENT_ITEMS6, UNLOCK_EVENTS6 } from '../data/exg'
 import { CURRENT_ARENA7, EVENT_ITEMS7, UNLOCK_EVENTS7 } from '../data/nbl'
 import { getRankListDB } from './webui'
 import { DB_VER, iiMigrate, iiiMigrate, viiMigrate } from './migrate'
-const logging = true
+const logging = false
 
-function unlockNavigators(items: Partial<Item>[]) {
-  for (let i = 0; i < 300; ++i) items.push({ type: 11, id: i, param: 15 });
-  console.log("Unlocking Navigators");
-  // 10 genesis card for MITSURU's voice
-  items.push({ type: 4, id: 599, param: 10 });
+function unlockNavigators(items: Partial<Item>[], version: number) {
+  console.log("Unlocking Navigators and Genesis Cards");
+  let maxGenId = [0, 0, 762, 1211, 1211, 1408, 1408];
+  items = items.filter(i => i.type !== 11 && i.type !== 4 && i.type !== 8);
+  for (let i = 0; version >= 3 && version < 7 && i < maxGenId[version]; ++i) items.push({ type: 4, id: i, param: 15 });
+  for (let i = 0; version == 3 && i < maxGenId[version]; ++i) items.push({ type: 8, id: i, param: 9999 });
+  for (let i = 0; version >= 6 && i < 300; ++i) items.push({ type: 11, id: i, param: 15 });
   return items;
 }
 
-function unlockAppealCards(items: Partial<Item>[]) {
+function unlockAppealCards(items: Partial<Item>[], version: number) {
   console.log("Unlocking Appeal Cards");
-  for (let i = 0; i < 7000; ++i) items.push({ type: 1, id: i, param: 1 });
+  let maxId = [0, 1904, 3001, 3595, 3595, 5553, 7000]
+  items = items.filter(i => i.type !== 1);
+  for (let i = 0; i < maxId[version]; ++i) items.push({ type: 1, id: i, param: 1 });
 
   return items;
 }
@@ -65,13 +69,12 @@ function removeStampItems(items: Partial<Item>[]) {
 }
 
 export const loadScore: EPR = async (info, data, send) => {
-  console.log("Now loading score");
+  console.log("Retrieving scores");
   const version = Math.abs(getVersion(info));
-  console.log("Got version: " + version);
+  if(logging) console.log("Got version: " + version);
   let refid = $(data).str('refid', ((version === 2 || version === 3) ? $(data).str('dataid') : $(data).attr().dataid));
-  console.log("DataID:" + refid);
+  if(logging) console.log("DataID: " + refid);
   if (!refid) return send.deny();
-  console.log('Finding record');
   const records = await DB.Find<MusicRecord>(refid, { collection: 'music', version });
 
   if (version === 1) {
@@ -91,7 +94,7 @@ export const loadScore: EPR = async (info, data, send) => {
 
   if (version === 2 || version === 3) {
     const recordsOld = await DB.Find<MusicRecord>(refid, { collection: 'music', version: version - 1 });
-    const gwClearLamp = [0, 1, 2, 5, 3, 4]
+    const gwClearLamp = [0, 1, 2, 4, 5, 3]
     return send.object({
       new: {
         music: records.map(r => ({
@@ -474,7 +477,6 @@ export const save: EPR = async (info, data, send) => {
   }
 
   if (version === 2 || version === 3) {
-    console.log(JSON.stringify($(data)))
     await DB.Update<Profile>(
       refid,
       { collection: 'profile', version },
@@ -658,6 +660,7 @@ export const save: EPR = async (info, data, send) => {
 
     if (_.isNil(type) || _.isNil(id) || _.isNil(param)) continue;
 
+    if (logging) console.log("Saving item: " + type + " | " + id + " | " + param)
     await DB.Upsert<Item>(
       refid,
       { collection: 'item', type, id, version },
@@ -674,6 +677,7 @@ export const save: EPR = async (info, data, send) => {
 
     if (_.isNil(type) || _.isNil(id) || _.isNil(param)) continue;
 
+    if (logging) console.log("Saving param: " + type + " | " + id + " | [" + param + "]")
     await DB.Upsert<Param>(
       refid,
       { collection: 'param', type, id, version },
@@ -867,12 +871,27 @@ export const load: EPR = async (info, data, send) => {
     let story = await DB.Find<GWStory>(refid, {collection: 'story', version})
     let result = 0
 
+    var tempItem = U.GetConfig('unlock_all_navigators') && version >= 3 ? unlockNavigators(items, version) : items;
+    tempItem = U.GetConfig('unlock_all_appeal_cards') ? unlockAppealCards(tempItem, version) : tempItem;
+
+    if(U.GetConfig('gw_mission_skipmatch')) {
+      const skipIds = [9, 10, 173, 174]
+      let storyProgress = items.findIndex(str => str.type === 5 && str.id === 6)
+      if(storyProgress >= 0 && skipIds.includes(items[storyProgress].param)) {
+        const storyIds = {'9': [1, 2], '10': [1, 1], '173': [17, 2], '174': [17, 1]}
+        const advStoryInd = story.findIndex(str => str.storyId === storyIds[String(items[storyProgress].param)][0])
+        console.log("Skipping progress id " + items[storyProgress].param + " (story id " + story[advStoryInd].storyId + ")")
+        story[advStoryInd].progressId += storyIds[String(items[storyProgress].param)][1]
+        items[storyProgress].param += storyIds[String(items[storyProgress].param)][1]
+      }
+    }
+
     return send.pugFile('templates/load.pug', {
       version,
       result,
       code: IDToCode(profile.id),
       skill,
-      items,
+      items: tempItem,
       courses,
       param,
       pbFin,
@@ -1050,16 +1069,10 @@ export const load: EPR = async (info, data, send) => {
 
     let blasterpass = U.GetConfig('use_blasterpass') ? 1 : 0;
 
-    var tempItem = U.GetConfig('unlock_all_navigators') ? unlockNavigators(items) : items;
-    tempItem = U.GetConfig('unlock_all_appeal_cards') ? unlockAppealCards(items) : items;
+    var tempItem = U.GetConfig('unlock_all_navigators') ? unlockNavigators(items, version) : items;
+    tempItem = U.GetConfig('unlock_all_appeal_cards') ? unlockAppealCards(tempItem, version) : tempItem;
     tempItem = removeStampItems(tempItem)
-    tempItem = (version >= 7 && U.GetConfig('unlock_all_valk_items')) ? unlockAppealParts(items) : items;
-
-    // Make generator power always 100%,
-    // for (let i = 0; i < 50; i++) {
-    //   const tempGene: Item = { collection: 'item', type: 7, id: i, param: 10 };
-    //   tempItem.push(tempGene);
-    // }
+    tempItem = (version >= 7 && U.GetConfig('unlock_all_valk_items')) ? unlockAppealParts(tempItem) : tempItem;
 
     let result = 0
     if (version > profile.version) result = 2
@@ -1110,7 +1123,7 @@ export const create: EPR = async (info, data, send) => {
   else if(version === 3) {
     for(let i = 1; i <= POLICY_BREAK3.length; i++) {
       if(await DB.Count(refid, {collection: 'pb', version, id: i}) === 0)
-      await DB.Upsert(refid, {collection: 'pb', version, id: i}, {$set: {exp: 0}})
+        await DB.Upsert(refid, {collection: 'pb', version, id: i}, {$set: {exp: 0}})
     }
     await DB.Upsert(refid, {collection: 'skill', version}, {$set: {base: 0, name: -1, level: -1}})
     if(await DB.Count<Profile>(refid, {collection: 'profile', version: 2}) > 0) {
@@ -1375,6 +1388,8 @@ export const saveE: EPR = async (info, data, send) => {
   const refid = $(data).str('refid');
   const version = Math.abs(getVersion(info));
 
+  if(version < 6) return send.success()
+
   // Save Weekly Score
   let weeklyScores = $(data).elements('weekly_music')
   let weeklyMusicResp = []
@@ -1435,7 +1450,6 @@ export const saveE: EPR = async (info, data, send) => {
 }
 
 export const savePb: EPR = async (info, data, send) => {
-  console.log(JSON.stringify($(data)))
   const refid = $(data).str('refid');
   const version = Math.abs(getVersion(info));
   let policyBreak
@@ -1476,7 +1490,6 @@ export const savePb: EPR = async (info, data, send) => {
       }
     })
   }
-  // if(Math.floor(energy / maxE) > Math.floor(pb.exp / maxE)) energy = pbMax[POLICY_BREAK3.find(p => p.id === $(data).number('id')).rwrd.length] * Math.floor(pb.exp / maxE)
   await DB.Upsert<PolicyBreak>(refid, {collection: 'pb', version, id: $(data).number('id')}, {
     $set: {
       exp: energy
