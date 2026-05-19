@@ -6,6 +6,7 @@ SOUND VOLTEX
 **Supported game versions:**
 - BOOTH (2013052900)
 - infinite infection (2014102200)
+- GRAVITY WARS (2016121200)
 - EXCEED GEAR (2025120900)
 - ∇ (20260512xx)
 
@@ -15,6 +16,7 @@ SOUND VOLTEX
 - This is a fork of the [official Asphyxia SDVX plugin](https://github.com/asphyxia-core/plugins). If you have any concerns and issues with this fork of the plugin, please do **not** ask for support on the official Asphyxia channels, and do **not** contact the devs of the official plugin as they would not be able to help you because do not maintain this fork. Direct your concerns to the [GitHub issues page](https://github.com/22vv0/asphyxia_plugins/issues) of this repository.
 - **Please keep a copy/backup of your savedata directory** so you have something to come back to in case of a problem with your database.
 - Before using this plugin, make sure you have your latest `music_db.xml` files uploaded and run the [WebUI Asset Update](/plugin/sdvx@asphyxia/update%20webui%20assets). Do this every data and/or plugin update.
+
 
 ---
 ## Changelog
@@ -33,14 +35,15 @@ SOUND VOLTEX
 
 ### Misc
 
-- ii -> GW migrate code
-- Fix migrate codes to use new name instead.
+- Data migrate code for ii -> GW
+- Fix migrate codes to use and save new name input instead
 - Added labels and max points required for POLICY BREAK songs
 - Fixed ii score lamps not displaying properly in GW
 - Fixed appeal card frame/creator item loading for ii and GW
 - Fixed `unlockAppealCards` for ii
 - Updated `unlockNavigators` function to unlock GW Genesis Cards and (sub-)crews.
 - Added plugin setting to skip matchmaking objectives in MISSION mode (excl. Side Episode 01)
+- music_db.xml import cleanup and fixes ([PR #87](https://github.com/22vv0/asphyxia_plugins/pull/87))
 
 ### WebUI
 
@@ -48,11 +51,18 @@ SOUND VOLTEX
 - Profile Scores: `getMedal` update
 - Profile Scores: Clear lamp update (eg `UC` -> `ULTIMATE CHAIN`)
 
+
+---
+## Contributions
+
+- [eamuse](https://github.com/eamuse) - Update music_db.xml import for KFC ([#87](https://github.com/22vv0/asphyxia_plugins/pull/87))
+
+
 ---
 ## Extra notes
 
 #### For infinite infection and GRAVITY WARS song unlock progress
-- Most available AIO game files circulating online have modified mdb files that already have all charts unlocked. For accurate song unlock progress, it's required to use a clean/untouched music_db.xml file for the game. There are some clean mdb files available online; I'll let you look for them yourself. Will add missing song unlock methods in the future if there are some I missed.
+- Most available AIO game files circulating online have modified mdb files that already have all charts unlocked. For accurate song unlock progress, it's advisable to use a clean/untouched music_db.xml file for the game. There are some clean mdb files available online; I'll let you look for them yourself. Will add missing song unlock methods in the future if there are some I missed.
 
 #### GRAVITY WARS REAL GENERATOR print issues
 - If you're playing GENERATOR START but is having print error loops that you can't get out of without closing the game/going to the test menu, it's likely because the game cannot find the texture files for the Genesis Cards, which are supposed to be in `data/graphics/chara_card`. Most AIO game files I could find do not have those files included so I'll let you look for them yourself as well.
