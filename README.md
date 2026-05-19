@@ -49,7 +49,7 @@ SOUND VOLTEX
 
 - Profile Customization: Made appeal card frame/creator item selection list to only be limited to what's available per version
 - Profile Scores: `getMedal` update
-- Profile Scores: Clear lamp update (eg `UC` -> `ULTIMATE CHAIN`)
+- Profile Scores: Clear lamp labels update (full labels, eg. `UC` -> `ULTIMATE CHAIN` etc.)
 
 
 ---
