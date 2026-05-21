@@ -29,7 +29,7 @@ SOUND VOLTEX
 
 ### EXCEED GEAR
 
-- Updated licensed songs list: Sakura Fubuki, LUCKY CAT
+- Updated licensed songs list: Sakura Fubuki, LUCKY CAT (fixes ∇ SKILL ANALYZER courses that require them)
 
 ### GRAVITY WARS (2016121200)
 
@@ -58,6 +58,7 @@ SOUND VOLTEX
 ### WebUI
 
 - Profile Customization: Made appeal card frame/creator item selection list to only be limited to what's available per version
+- Profile Customization: Fixes to how owned skill titles are loaded to the dropdown selection
 - Profile Scores: `getMedal` update
 - Profile Scores: Clear lamp labels update (full labels, eg. `UC` -> `ULTIMATE CHAIN` etc.)
 
