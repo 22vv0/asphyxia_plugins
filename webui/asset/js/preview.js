@@ -1,4 +1,4 @@
-var currentVersion, currentProfile, currentCustom
+var currentVersion, currentProfile, currentCustom, courseDb
 var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVIDWAVE', 'EXCEED GEAR', '∇']
 
 function zeroPad(num, places) {
@@ -269,6 +269,12 @@ $(document).ready(async function() {
         $('#customize').attr('hidden', 'true')
     }
 
+    await $.getJSON("static/asset/json/course_data.json", function(json) {
+        courseDb = json;
+    })
+
+    let courseDbVer = courseDb.courseData.find(c => c.version === currentVersion)
+
     for (var p of profile_data.sort((a,b) => a.version - b.version)) {
         $('#version_select').append($('<option>', {
             value: p.version,
@@ -282,7 +288,7 @@ $(document).ready(async function() {
 
     $.getJSON("static/asset/json/customize_data_ext.json", function(json) {
         databaseext = json;
-        let skt = databaseext['skilltitle' + currentVersion]
+        let skt = databaseext.skilltitle[currentVersion]
 
         for (var i in databaseext["supportTeams"]) {
             $('[name="bplSupport"]').append($('<option>', {
@@ -295,15 +301,17 @@ $(document).ready(async function() {
 
         if(currentProfile["bplSupport"] >= 10) $('[name="bplPro"]').attr('checked', true);
 
-        for (var i in skt) {
-            let foundCourses = courses.filter(c => c.cid === skt[i].id && c.clear >= 2)
-            if(foundCourses.length > 0) {
+        for (const c of courses) {
+            let course = courseDbVer.info.find(dbC => dbC.id === c.sid)
+            let found = course.courses.filter(dbC => dbC.id === c.cid)
+            if(found) {
                 $('[name="skilltitle"]').append($('<option>', {
-                    value: skt[i].id,
-                    text: skt[i].name + ' (' + skt[i].info + ')',
+                    value: skt[found[0].nameID - 1].id,
+                    text: skt[found[0].nameID - 1].name + ' (' + skt[found[0].nameID - 1].info + ')',
                 }));
             }
         }
+
         if(skill.length > 1) $('[name="skilltitle"]').val(skill[0]["name"]);
         else $('[name="skilltitle"]').attr('disabled', 'disabled')
 
@@ -599,5 +607,4 @@ $(document).ready(async function() {
         urlParams.set('version', $('#version_select').val());
         location.search = urlParams;
     });
-
 })
