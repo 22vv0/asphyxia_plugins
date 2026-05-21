@@ -21,11 +21,21 @@ SOUND VOLTEX
 ---
 ## Changelog
 
+### ∇
+
+- Added SKILL ANALYZER (音戯探偵ひなビタ♫ 黒猫探偵社入社試験)
+- Added Skill Title: 音戯探偵
+- Updated licensed songs list: new ひなビタ songs
+
+### EXCEED GEAR
+
+- Updated licensed songs list: Sakura Fubuki, LUCKY CAT
+
 ### GRAVITY WARS (2016121200)
 
 - Added support (profile creation, data save/load)
 - Data transfer from infinite infection (unlocked items, INFINITE BLASTER and POLICY BREAK progress)
-- infinite infection scores loaded through `old` in `load_m` (BOOTH scores will not be transferred)
+- infinite infection scores loaded through `old` in `load_m` (BOOTH scores will not be displayed/transferred)
 - Added new GW songs to POLICY BREAK list. As with infinite infection, you can add 3000pw per song per session.
 - Added SKILL ANALYZER courses
 - Added MISSION mode: toggle in plugin settings

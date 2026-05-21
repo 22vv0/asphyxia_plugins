@@ -111,7 +111,7 @@ export const BLASTER_GATE7 = [
 
 export const LICENSED_SONGS7 = LICENSED_SONGS6.concat([
   2348, 2344, 2343, 2352, 2353, 2345, 2234, 2354, 2350, 2351, 2209, 2376, 2377,
-  2384, 2385, 2386, 2388, 2389, 2390, 2391, 2392
+  2384, 2385, 2386, 2388, 2389, 2390, 2391, 2392, 2333, 2334, 2335, 2336, 2337
 ])
 
 export const UNLOCK_EVENTS7 = {
@@ -771,7 +771,7 @@ export const COURSES7 = [
     name: "SKILL ANALYZER 第1回 Aコース",
     version: 20260512,
     isNew: 1,
-    hasGod: 1,
+    hasGod: 0,
     courses: [
       {
         id: 1,
@@ -936,7 +936,7 @@ export const COURSES7 = [
     name: "SKILL ANALYZER 第1回 Bコース",
     version: 20260512,
     isNew: 1,
-    hasGod: 1,
+    hasGod: 0,
     courses: [
       {
         id: 1,
@@ -1095,7 +1095,68 @@ export const COURSES7 = [
         ],
       },
     ],
-  }
+  },
+  {
+    id: 3,
+    name: "音戯探偵ひなビタ♫ 黒猫探偵社入社試験",
+    version: 20260512,
+    isNew: 0,
+    hasGod: 0,
+    courses: [
+      {
+        id: 1,
+        type: 0,
+        name: "音戯探偵ひなビタ♫(NOV)",
+        level: 0,
+        nameID: 13,
+        assist: 0,
+        tracks: [
+          { no: 0, mid: 2333, mty: 0 },
+          { no: 1, mid: 2336, mty: 0 }, 
+          { no: 2, mid: 2337, mty: 0 } 
+        ],
+      },
+      {
+        id: 2,
+        type: 0,
+        name: "音戯探偵ひなビタ♫(ADV)",
+        level: 0,
+        nameID: 13,
+        assist: 0,
+        tracks: [
+          { no: 0, mid: 2334, mty: 1 },
+          { no: 1, mid: 2333, mty: 1 },  
+          { no: 2, mid: 2335, mty: 1 }  
+        ],
+      },
+      {
+        id: 3,
+        type: 0,
+        name: "音戯探偵ひなビタ♫(EXH)",
+        level: 0,
+        nameID: 13,
+        assist: 0,
+        tracks: [
+          { no: 0, mid: 2335, mty: 2 },
+          { no: 1, mid: 2337, mty: 2 },  
+          { no: 2, mid: 2336, mty: 2 } 
+        ],
+      },
+      {
+        id: 4,
+        type: 0,
+        name: "音戯探偵ひなビタ♫(MXM)",
+        level: 0,
+        nameID: 13,
+        assist: 0,
+        tracks: [
+          { no: 0, mid: 2337, mty: 4 }, 
+          { no: 1, mid: 2332, mty: 4 }, 
+          { no: 2, mid: 2336, mty: 4 } 
+        ],
+      },
+    ],
+  },
 ]
 
 export const INFORMATION7 = [
@@ -1274,6 +1335,20 @@ export const EXTENDS7 = [
       '',
       '',
     ],
+  },
+  {
+    version: 20260512,
+    start: 20260521,
+    id: 1,
+    type: 4,
+    params: [
+      0, 1, 0, 0, 0,
+      "",
+      "13,[],[sz:40]音戯探偵",
+      "",
+      "",
+      ""
+    ]
   }
 ]
 
