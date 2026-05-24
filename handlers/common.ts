@@ -13,106 +13,106 @@ const parseDiff = (musicId: number, musicType: number, limNo: number) => {
   }
 }
 
-const parseSongData = (ver: number, music: any, unlockAll: boolean, date: Date) => {
-  const id = parseInt(music.id)
-  const difficulty = music.difficulty[ver]
-  const songVer = parseInt(music.info.version)
-  let limitedNo = 3
-  let result: Object[] = []
-  if (_.isEmpty(difficulty) || songVer > ver) return result;
+export const common: EPR = async (info, data, send) => {
+  const date = new Date();
+  const gameVersion = getVersion(info);
+  const unlockAllSongs = U.GetConfig('unlock_all_songs');
+  const modelInfo = info.model.split(":");
+  const version = parseInt(modelInfo[4].slice(0, -2));
+  let station = [];
+  let events = [];
+  let courses = [];
+  let extend = [];
+  let information = [];
+  let musicOverride = [];
+  let spApica = [];
+  let unlockEvents;
+  let currentArena;
+  let arenaItems;
+  let valgene;
+  let apigene;
+  let currentDate = date.toLocaleDateString()
+  let songNum = 0;
 
-  const diffName = ['novice', 'advanced', 'exhaust', 'infinite']
-  if (ver >= 4) diffName.push('maximum');
-  if (ver >= 6) diffName.push('ultimate');
-  
-  // Force unlock enabled
-  if (unlockAll) {
-    for (let i = 0; i < diffName.length; ++i) {
-      (difficulty[diffName[i]] == '0') ? -1 : result.push(parseDiff(id, i, limitedNo))
+  const parseSongData = (music: any) => {
+    const id = parseInt(music.id)
+    const ver = Math.abs(gameVersion)
+    const difficulty = music.difficulty[ver]
+    const songVer = parseInt(music.info.version)
+    let limitedNo = 3
+    let result: Object[] = []
+    if (_.isEmpty(difficulty) || songVer > ver) return result;
+    const diffName = ['novice', 'advanced', 'exhaust', 'infinite']
+    if (ver >= 4) diffName.push('maximum');
+    if (ver >= 6) diffName.push('ultimate');
+
+    // Force unlock enabled
+    if (unlockAllSongs) {
+      for (let i = 0; i < diffName.length; ++i) {
+        (difficulty[diffName[i]] == '0') ? -1 : result.push(parseDiff(id, i, limitedNo))
+      }
+      return result
     }
+
+    // Force unlock disabled
+    limitedNo = 2
+    if (ver >= 6) {
+      let distributionDate = music.info['distribution_date']
+      if (!distributionDate) return result;
+      const licensedSongs = ver === 6 ? LICENSED_SONGS6 : LICENSED_SONGS7;
+      if (licensedSongs.includes(id)) limitedNo += 1;  // Licensed songs in SV6+ need limited=3 to appear
+      
+      if (ver === 6) {
+        const isValk = (['G', 'H'].includes(modelInfo[2]))
+        if (!isValk && VALKYRIE_SONGS.includes(id)) limitedNo = -1;
+      }
+
+      // Handle old versions
+      if (ver != songVer) {
+        const egSongsMerge = [...EGSONGS_LOCKED['crossresonance']]
+        if (licensedSongs.includes(id) || (ver === 7 && egSongsMerge.includes(id))) {
+          for (let i = 0; i < diffName.length; ++i) {
+            result.push(parseDiff(id, i, limitedNo))
+          }
+        }
+        if (parseInt(music.info.inf_ver) == ver) {  // XCD/NBL
+          if (ver === 6 && id === 469) limitedNo = 2;  // Manual lock SV6; secret XCD
+          result.push(parseDiff(id, 3, limitedNo))
+        }
+        return result
+      }
+
+      // Handle unreleased songs
+      const musicOverride = ver === 6 ? MUSIC_OVERRIDE6 : MUSIC_OVERRIDE7;
+      const ovInd = musicOverride.findIndex(o => o.music_id === id)
+      if (ovInd > 0 && 'date' in musicOverride[ovInd]) {
+        distributionDate = String(musicOverride[ovInd].date)
+      }
+      if (!checkVerStart(0, 0, distributionDate, date)) {
+        console.log("Unreleased song: " + music.info.title_name)
+        return result
+      }
+    }
+
+    if (ver === 6 && id === 2034) limitedNo = 2; // Manual lock SV6; Muishiki Requiem remix
+    let musicLimited = ver === 2 ? MUSIC_LIMITED : (ver === 3 ? MUSIC_LIMITED3 : [])
+    let limIdx = musicLimited.findIndex(m => m.id === id)
+    let limitedDiffs: number[] = []
+    if (limIdx >= 0) limitedDiffs = musicLimited[limIdx]['limited'];
+    let maxDiffs = _.isEmpty(limitedDiffs) ? diffName.length : limitedDiffs.length;
+  
+    // Handle limited for remaining songs
+    for (let i = 0; i < maxDiffs; ++i) {
+      if (difficulty[diffName[i]] == '0') continue;
+      limitedNo = (limIdx >= 0) ? limitedDiffs[i] : limitedNo;
+      (limitedNo === 0) ? -1 : result.push(parseDiff(id, i, limitedNo))
+    }
+
     return result
   }
-  
-  // Force unlock disabled
-  limitedNo = 2
-  let infVer = 0
-  
-  if (ver >= 6) {
-    let distributionDate = music.info['distribution_date']
-    if (!distributionDate) return result;
-    
-    const licensedSongs = ver === 6 ? LICENSED_SONGS6 : LICENSED_SONGS7;
-    if (licensedSongs.includes(id)) limitedNo += 1;  // Licensed songs in SV6+ need limited=3 to appear
-    
-    // Handle old versions
-    infVer = parseInt(music.info.inf_ver)
-    if (ver != songVer) {
-      const egSongsMerge = [...EGSONGS_LOCKED['crossresonance']]
-      if (licensedSongs.includes(id) || (ver === 7 && egSongsMerge.includes(id))) {
-        for (let i = 0; i < diffName.length; ++i) {
-          result.push(parseDiff(id, i, limitedNo))
-        }
-      }
-      if (infVer == ver) {  // XCD/NBL
-        if (ver === 6 && id === 469) limitedNo = 2;  // Manual lock SV6
-        result.push(parseDiff(id, 3, limitedNo))
-      }
-      return result
-    }
-    
-    // Handle unreleased songs
-    const musicOverride = ver === 6 ? MUSIC_OVERRIDE6 : MUSIC_OVERRIDE7;
-    const ovInd = musicOverride.findIndex(o => o.music_id === id)
-    if (ovInd > 0 && 'date' in musicOverride[ovInd]) {
-      distributionDate = String(musicOverride[ovInd].date)
-    }
-    if (!checkVerStart(0, 0, distributionDate, date)) {
-      console.log("Unreleased song: " + music.info.title_name)
-      return result
-    }
-  }
-  
-  if (ver === 6 && id === 2034) limitedNo = 2;  // Manual lock SV6
-  let musicLimited = ver === 2 ? MUSIC_LIMITED : (ver === 3 ? MUSIC_LIMITED3 : [])
-  let limIdx = musicLimited.findIndex(m => m.id === id)
-  let limitedDiffs: number[] = []
-  if (limIdx >= 0) limitedDiffs = musicLimited[limIdx]['limited'];
-  let maxDiffs = _.isEmpty(limitedDiffs) ? diffName.length : limitedDiffs.length;
 
-  // Handle limited for remaining songs
-  for (let i = 0; i < maxDiffs; ++i) {
-    if (difficulty[diffName[i]] == '0') continue;
-    limitedNo = (limIdx >= 0) ? limitedDiffs[i] : limitedNo;
-    (limitedNo === 0) ? -1 : result.push(parseDiff(id, i, limitedNo))
-  }
-  
-  return result
-}
-
-export const common: EPR = async (info, data, send) => {
+  console.log("Retrieving common data");
   try {
-    let station = [];
-    let events = [];
-    let courses = [];
-    let extend = [];
-    let information = [];
-    let musicOverride = [];
-    let spApica = [];
-    let unlockEvents;
-    let currentArena;
-    let arenaItems;
-    let valgene;
-    let apigene;
-    let date = new Date();
-    let currentYMDDate = parseInt([date.getFullYear(), ((date.getMonth() + 1) > 9 ? '' : '0') + (date.getMonth() + 1), (date.getDate() > 9 ? '' : '0') + date.getDate()].join(''));
-    let currentDate = date.toLocaleDateString()
-    let songNum = 0;
-    const gameVersion = getVersion(info);
-
-    console.log("Retrieving common data");
-    
-    const version = parseInt(info.model.split(":")[4].slice(0, -2));
-
     switch (info.method) {
       case 'common': {
         switch (info.module) {
@@ -208,7 +208,7 @@ export const common: EPR = async (info, data, send) => {
 
     if(gameVersion === 1)  return send.object({
       limited: {
-        music: Array.from({ length: songNum }, (_, id) => K.ATTR({id: (id + 1).toString(), flag: U.GetConfig('unlock_all_songs') ? '3' : '2'}, {}))
+        music: Array.from({ length: songNum }, (_, id) => K.ATTR({id: (id + 1).toString(), flag: unlockAllSongs ? '3' : '2'}, {}))
       },
       event: {
         info: events.map(id => K.ATTR({id: id.toString()}))
@@ -227,26 +227,27 @@ export const common: EPR = async (info, data, send) => {
     // Load songs
     const music_db = await IO.ReadFile('webui/asset/json/music_db.json')
     if (music_db === null) {
-      console.error(`music_db.json was not found. Run "Update WebUi Assets".`)
+      console.warn(`music_db.json was not found.\nTo resolve, upload your music_db.xml and run "Update WebUi Assets".`)
       return send.deny()
     }
-
-    const unlockAllSongs = U.GetConfig('unlock_all_songs')
-    if (unlockAllSongs) {
-      console.log("Unlocking songs. Make sure music_db.json is updated.")
-    }
-    let mdb = JSON.parse(music_db.toString())
+    const mdb = JSON.parse(music_db.toString())
     let songs: Object[] = []
     let omniList: number[] = []
     let absVersion = Math.abs(gameVersion)
 
-    songNum = (absVersion >= 6) ? Math.max(...mdb.mdb.music.map(m => parseInt(m['id']))) : songNum
-    console.log("Highest music id: " + songNum)
+    if (unlockAllSongs) {
+      console.log("Unlocking songs. Make sure music_db.json is updated.")
+    }
+    else {
+      songNum = (absVersion >= 6) ? Math.max(...mdb.mdb.music.map(m => parseInt(m['id']))) : songNum
+      console.log("Highest music id: " + songNum)
+    }
+
     for (let id = 1; id <= songNum; ++id) {
       const foundSongIndex = mdb.mdb.music.map(function(x) { return x['id']; }).indexOf(id.toString());
       if (foundSongIndex != -1) {
         const songData = mdb.mdb.music[foundSongIndex]
-        songs.push(...parseSongData(absVersion, songData, unlockAllSongs, date))
+        songs.push(...parseSongData(songData))
         if (absVersion >= 6 && ('omnimix') in songData.info) omniList.push(id)  // lazy
       }
     }
@@ -290,7 +291,7 @@ export const common: EPR = async (info, data, send) => {
           }))
         },
         music_limited: {
-          info: U.GetConfig('unlock_all_songs') ? [] : songs
+          info: unlockAllSongs ? [] : songs
         },
         skill_course: {
           info: courses.reduce(
