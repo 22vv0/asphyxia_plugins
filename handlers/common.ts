@@ -536,8 +536,9 @@ export const common: EPR = async (info, data, send) => {
         }
       }
 
-      let arenaOpen = BigInt(date) >= currentArena.time_start && (BigInt(date) < currentArena.time_end || U.GetConfig('arena_no_endtime'))
-      let shopOpen = arenaOpen && U.GetConfig('arena_station') !== 'None'
+      const arenaOpen = BigInt(date) >= currentArena.time_start && (BigInt(date) < currentArena.time_end || U.GetConfig('arena_no_endtime'))
+      const shopItemSet = arenaItems[U.GetConfig('arena_station7')]
+      const shopOpen = arenaOpen && !_.isEmpty(shopItemSet)
       let arenaData = {}
 
       const arenaStart = new Date(Number(currentArena.time_start) * 1000).toISOString().split('T')[0].split('-').join('')
@@ -552,7 +553,7 @@ export const common: EPR = async (info, data, send) => {
           shop_end: K.ITEM('u64', currentArena.shop_end),
           is_open: K.ITEM('bool', arenaOpen),
           is_shop: K.ITEM('bool', shopOpen),
-          catalog: (shopOpen && U.GetConfig('arena_station') !== 'None' && version >= arenaItems[U.GetConfig('arena_station')].version) ? arenaItems[U.GetConfig('arena_station')].items.map(item => ({
+          catalog: (shopOpen && version >= shopItemSet.version) ? shopItemSet.items.map(item => ({
             catalog_id: K.ITEM('s32', item[0]),
             catalog_type: K.ITEM('s32', item[1]),
             price: K.ITEM('s32', item[2]),
