@@ -82,7 +82,6 @@ export const LICENSED_SONGS6 = [
 ]
 
 export const VALKYRIE_SONGS = [
-  1672, 1744,
   2189, 2190, 2191, // triple tribe
 ]
 
