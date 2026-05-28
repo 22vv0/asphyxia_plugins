@@ -5,32 +5,114 @@ import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIE_SONGS, LICENSED_S
 import { EVENT7, COURSES7, EXTENDS7, LICENSED_SONGS7, CURRENT_ARENA7, ARENA_STATION_ITEMS7, VALGENE7, APIGENE7, INFORMATION7, UNLOCK_EVENTS7, EGSONGS_LOCKED, MUSIC_OVERRIDE7 } from '../data/nbl';
 import {getVersion, checkVerStart, getRandomIntInclusive} from '../utils';
 
+const parseDiff = (musicId: number, musicType: number, limNo: number) => {
+  return {
+    music_id: K.ITEM('s32', musicId),
+    music_type: K.ITEM('u8', musicType),
+    limited: K.ITEM('u8', limNo)
+  }
+}
+
 export const common: EPR = async (info, data, send) => {
+  const date = new Date();
+  const gameVersion = getVersion(info);
+  const unlockAllSongs = U.GetConfig('unlock_all_songs');
+  const modelInfo = info.model.split(":");
+  const version = parseInt(modelInfo[4].slice(0, -2));
+  let station = [];
+  let events = [];
+  let courses = [];
+  let extend = [];
+  let information = [];
+  let musicOverride = [];
+  let spApica = [];
+  let unlockEvents;
+  let currentArena;
+  let arenaItems;
+  let valgene;
+  let apigene;
+  let currentDate = date.toLocaleDateString()
+  let songNum = 0;
+
+  const parseSongData = (music: any) => {
+    const id = parseInt(music.id)
+    const ver = Math.abs(gameVersion)
+    const difficulty = music.difficulty[ver]
+    const songVer = parseInt(music.info.version)
+    let limitedNo = 3
+    let result: Object[] = []
+    if (_.isEmpty(difficulty) || songVer > ver) return result;
+    const diffName = ['novice', 'advanced', 'exhaust', 'infinite']
+    if (ver >= 4) diffName.push('maximum');
+    if (ver >= 6) diffName.push('ultimate');
+
+    // Force unlock enabled
+    if (unlockAllSongs) {
+      for (let i = 0; i < diffName.length; ++i) {
+        (difficulty[diffName[i]] == '0') ? -1 : result.push(parseDiff(id, i, limitedNo))
+      }
+      return result
+    }
+
+    // Force unlock disabled
+    limitedNo = 2
+    if (ver >= 6) {
+      let distributionDate = music.info['distribution_date']
+      if (!distributionDate) return result;
+      const licensedSongs = ver === 6 ? LICENSED_SONGS6 : LICENSED_SONGS7;
+      if (licensedSongs.includes(id)) limitedNo += 1;  // Licensed songs in SV6+ need limited=3 to appear
+      
+      if (ver === 6) {
+        const isValk = (['G', 'H'].includes(modelInfo[2]))
+        if (!isValk && VALKYRIE_SONGS.includes(id)) limitedNo = -1;
+      }
+
+      // Handle old versions
+      if (ver != songVer) {
+        const egSongsMerge = [...EGSONGS_LOCKED['crossresonance']]
+        if (licensedSongs.includes(id) || (ver === 7 && egSongsMerge.includes(id))) {
+          for (let i = 0; i < diffName.length; ++i) {
+            result.push(parseDiff(id, i, limitedNo))
+          }
+        }
+        if (parseInt(music.info.inf_ver) == ver) {  // XCD/NBL
+          if (ver === 6 && id === 469) limitedNo = 2;  // Manual lock SV6; secret XCD
+          result.push(parseDiff(id, 3, limitedNo))
+        }
+        return result
+      }
+
+      // Handle unreleased songs
+      const musicOverride = ver === 6 ? MUSIC_OVERRIDE6 : MUSIC_OVERRIDE7;
+      const ovInd = musicOverride.findIndex(o => o.music_id === id)
+      if (ovInd > 0 && 'date' in musicOverride[ovInd]) {
+        distributionDate = String(musicOverride[ovInd].date)
+      }
+      if (!checkVerStart(0, 0, distributionDate, date)) {
+        console.log("Unreleased song: " + music.info.title_name)
+        return result
+      }
+    }
+
+    if (ver === 6 && id === 2034) limitedNo = 2; // Manual lock SV6; Muishiki Requiem remix
+    let musicLimited = ver === 2 ? MUSIC_LIMITED : (ver === 3 ? MUSIC_LIMITED3 : [])
+    let limIdx = musicLimited.findIndex(m => m.id === id)
+    let limitedDiffs: number[] = []
+    if (limIdx >= 0) limitedDiffs = musicLimited[limIdx]['limited'];
+    let maxDiffs = _.isEmpty(limitedDiffs) ? diffName.length : limitedDiffs.length;
+  
+    // Handle limited for remaining songs
+    for (let i = 0; i < maxDiffs; ++i) {
+      if (difficulty[diffName[i]] == '0') continue;
+      limitedNo = (limIdx >= 0) ? limitedDiffs[i] : limitedNo;
+      (limitedNo === 0) ? -1 : result.push(parseDiff(id, i, limitedNo))
+    }
+
+    return result
+  }
+
+  console.log("Retrieving common data");
   try {
-    let station = [];
-    let events = [];
-    let courses = [];
-    let extend = [];
-    let information = [];
-    let licensedSongs = [];
-    let musicLimited = [];
-    let musicOverride = [];
-    let spApica = [];
-    let unlockEvents;
-    let currentArena;
-    let arenaItems;
-    let valgene;
-    let apigene;
-    let date = new Date();
-    let currentYMDDate = parseInt([date.getFullYear(), ((date.getMonth() + 1) > 9 ? '' : '0') + (date.getMonth() + 1), (date.getDate() > 9 ? '' : '0') + date.getDate()].join(''));
-    let currentDate = date.toLocaleDateString()
-    let songNum = 0;
-    const gameVersion = getVersion(info);
-
-    console.log("Retrieving common data");
-    
-    const version = parseInt(info.model.split(":")[4].slice(0, -2));
-
     switch (info.method) {
       case 'common': {
         switch (info.module) {
@@ -44,7 +126,6 @@ export const common: EPR = async (info, data, send) => {
           case 'game_2': {
             console.log('Game: infinite infection')
             songNum = 554
-            musicLimited = MUSIC_LIMITED
             courses = COURSES2
             events = EVENT2
             break
@@ -52,7 +133,6 @@ export const common: EPR = async (info, data, send) => {
           case 'game_3': {
             console.log('Game: GRAVITY WARS')
             songNum = 953
-            musicLimited = MUSIC_LIMITED3
             spApica = SP_APICAGENE3.filter(sp => sp.version <= version)
             courses = COURSES3.filter(c => version >= c.version)
             EXTENDS3.filter(ex => checkVerStart(version, ex.version, 0, date)).forEach(val => extend.push(Object.assign({}, val)));
@@ -83,7 +163,6 @@ export const common: EPR = async (info, data, send) => {
         courses = COURSES6.filter(course => version >= course.version);
         information = INFORMATION6.filter(info => checkVerStart(version, info.version, info.start, date))
         EXTENDS6.filter(ex => checkVerStart(version, ex.version, ex.start, date)).forEach(val => extend.push(Object.assign({}, val)));
-        licensedSongs = LICENSED_SONGS6;
         unlockEvents = UNLOCK_EVENTS6;
         currentArena = CURRENT_ARENA;
         arenaItems = ARENA_STATION_ITEMS;
@@ -111,7 +190,6 @@ export const common: EPR = async (info, data, send) => {
         }
         courses = COURSES7.filter(course => version >= course.version);
         information = INFORMATION7.filter(info => checkVerStart(version, info.version, info.start, date))
-        licensedSongs = LICENSED_SONGS7;
         unlockEvents = UNLOCK_EVENTS7;
         currentArena = CURRENT_ARENA7;
         arenaItems = ARENA_STATION_ITEMS7;
@@ -130,7 +208,7 @@ export const common: EPR = async (info, data, send) => {
 
     if(gameVersion === 1)  return send.object({
       limited: {
-        music: Array.from({ length: songNum }, (_, id) => K.ATTR({id: (id + 1).toString(), flag: U.GetConfig('unlock_all_songs') ? '3' : '2'}, {}))
+        music: Array.from({ length: songNum }, (_, id) => K.ATTR({id: (id + 1).toString(), flag: unlockAllSongs ? '3' : '2'}, {}))
       },
       event: {
         info: events.map(id => K.ATTR({id: id.toString()}))
@@ -146,151 +224,31 @@ export const common: EPR = async (info, data, send) => {
       }
     })
 
-    let music_db = await IO.ReadFile('webui/asset/json/music_db.json')
-    let mdb = JSON.parse(music_db.toString())
-    let songs = [];
-    let diffName = ['novice', 'advanced', 'exhaust', 'infinite', 'maximum', 'ultimate']
-    let omniList = []
+    // Load songs
+    const music_db = await IO.ReadFile('webui/asset/json/music_db.json')
+    if (music_db === null) {
+      console.warn(`music_db.json was not found.\nTo resolve, upload your music_db.xml and run "Update WebUi Assets".`)
+      return send.deny()
+    }
+    const mdb = JSON.parse(music_db.toString())
+    let songs: Object[] = []
+    let omniList: number[] = []
     let absVersion = Math.abs(gameVersion)
 
-    if(U.GetConfig('unlock_all_songs')) {
-      console.log("Unlocking songs. Make sure music_db.json is updated.");
-      for (let i = 1; i < songNum; ++i) {
-        var foundSongIndex = mdb.mdb.music.map(function(x) {return x['id']; }).indexOf(i.toString());
-        if(foundSongIndex != -1) {
-          var songData = mdb.mdb.music[foundSongIndex];
-          for (let j = 0; j < 6; ++j) {
-            if(songData.difficulty[absVersion][diffName[j]] != '0') {
-              songs.push({
-                music_id: K.ITEM('s32', i),
-                music_type: K.ITEM('u8', j),
-                limited: K.ITEM('u8', 3),
-              });
-            }
-          }
-        }
-      }
-    } 
+    if (unlockAllSongs) {
+      console.log("Unlocking songs. Make sure music_db.json is updated.")
+    }
     else {
-      let limitedNo = 2;
       songNum = (absVersion >= 6) ? Math.max(...mdb.mdb.music.map(m => parseInt(m['id']))) : songNum
       console.log("Highest music id: " + songNum)
-      for (let i = 0; i <= songNum; i++) {
-        var foundSongIndex = mdb.mdb.music.map(function(x) {return x['id']; }).indexOf(i.toString());
-        if(foundSongIndex != -1) {
-          var songData = mdb.mdb.music[foundSongIndex];
-          if(absVersion === 2 || absVersion === 3) {
-            limitedNo = 2
-            var lim = musicLimited.findIndex(m => m.id === i)
-            if (lim >= 0) {
-              for(let j = 0; j < musicLimited[lim]['limited'].length; j++) {
-                if(musicLimited[lim]['limited'][j] !== 0 && songData.difficulty[absVersion][diffName[j]] != '0') {
-                  songs.push({
-                    music_id: K.ITEM('s32', i),
-                    music_type: K.ITEM('u8', j),
-                    limited: K.ITEM('u8', musicLimited[lim]['limited'][j]),
-                  });
-                }
-              }
-            }
-          }
-          else if(absVersion === 6) {
-            if ('omnimix' in songData.info) omniList.push(i)
-            let distributionDate = songData['info']['distribution_date']
-            let ovInd = musicOverride.findIndex(o => o.music_id === i)
-            if(ovInd > 0 && 'date' in musicOverride[ovInd]) {
-              distributionDate = String(musicOverride[ovInd].date)
-            }
-            if(parseInt(songData.info.version) <= 6 && !checkVerStart(0, 0, distributionDate, date)) {
-              console.log("Unreleased song: " + songData.info.title_name)
-            }
-            else {
-              limitedNo = 2;
+    }
 
-              // if song is released during exceed gear
-              if(songData.info.version === '6') {
-                // Licensed songs released in Exceed Gear needs limited=3 to appear
-                if(licensedSongs.includes(i)) limitedNo += 1;
-                else if(VALKYRIE_SONGS.includes(i) && info.model.split(":")[2].match(/^(G|H)$/g) == null) limitedNo -= 1;
-                
-                // manual lock songs
-                if(i === 2034) limitedNo = 2;
-
-                for(let j = 0; j < 6; j++) {
-                  if(songData.difficulty[absVersion][diffName[j]] != '0') {
-                    songs.push({
-                      music_id: K.ITEM('s32', i),
-                      music_type: K.ITEM('u8', j),
-                      limited: K.ITEM('u8', limitedNo),
-                    });
-                  }
-                }
-              }
-
-              // if song has new XCD chart
-              else if (songData.info.inf_ver === '6') { 
-                // manual lock charts
-                if (i === 469) limitedNo = 2;
-                songs.push({
-                  music_id: K.ITEM('s32', i),
-                  music_type: K.ITEM('u8', 3),
-                  limited: K.ITEM('u8', limitedNo),
-                });
-              }
-            }
-          }
-          else if(absVersion === 7) {
-            if ('omnimix' in songData.info) omniList.push(i)
-            let distributionDate = songData['info']['distribution_date']
-            let ovInd = musicOverride.findIndex(o => o.music_id === i)
-            if(ovInd > 0 && 'date' in musicOverride[ovInd]) {
-              distributionDate = String(musicOverride[ovInd].date)
-            }
-            if(parseInt(songData.info.version) <= 7 && !checkVerStart(0, 0, distributionDate, date)) {
-              console.log("Unreleased song: " + songData.info.title_name)
-            }
-            else {
-              limitedNo = 2;
-
-              let egSongsMerge = [...EGSONGS_LOCKED['crossresonance']]
-              if(songData.info.version === '7' || egSongsMerge.includes(i)) {
-                if(licensedSongs.includes(i)) limitedNo += 1;
-
-                for(let j = 0; j < 6; j++) {
-                  if(songData.difficulty[absVersion][diffName[j]] != '0') {
-                    songs.push({
-                      music_id: K.ITEM('s32', i),
-                      music_type: K.ITEM('u8', j),
-                      limited: K.ITEM('u8', limitedNo),
-                    });
-                  }
-                }
-              }
-
-              // if song has new NBL chart
-              else if (songData.info.inf_ver === '7') { 
-                songs.push({
-                  music_id: K.ITEM('s32', i),
-                  music_type: K.ITEM('u8', 3),
-                  limited: K.ITEM('u8', limitedNo),
-                });
-              }
-            }
-          }
-          // Licensed songs released prior to current version
-          if (parseInt(songData.info.version) < absVersion && licensedSongs.includes(i)) {
-            limitedNo += 1;
-            for(let j = 0; j < 6; j++) {
-              if(songData.difficulty[absVersion][diffName[j]] != '0') {
-                songs.push({
-                  music_id: K.ITEM('s32', i),
-                  music_type: K.ITEM('u8', j),
-                  limited: K.ITEM('u8', limitedNo),
-                });
-              }
-            }
-          }
-        }
+    for (let id = 1; id <= songNum; ++id) {
+      const foundSongIndex = mdb.mdb.music.map(function(x) { return x['id']; }).indexOf(id.toString());
+      if (foundSongIndex != -1) {
+        const songData = mdb.mdb.music[foundSongIndex]
+        songs.push(...parseSongData(songData))
+        if (absVersion >= 6 && ('omnimix') in songData.info) omniList.push(id)  // lazy
       }
     }
 
@@ -333,7 +291,7 @@ export const common: EPR = async (info, data, send) => {
           }))
         },
         music_limited: {
-          info: U.GetConfig('unlock_all_songs') ? [] : songs
+          info: unlockAllSongs ? [] : songs
         },
         skill_course: {
           info: courses.reduce(
@@ -578,8 +536,9 @@ export const common: EPR = async (info, data, send) => {
         }
       }
 
-      let arenaOpen = BigInt(date) >= currentArena.time_start && (BigInt(date) < currentArena.time_end || U.GetConfig('arena_no_endtime'))
-      let shopOpen = arenaOpen && U.GetConfig('arena_station') !== 'None'
+      const arenaOpen = BigInt(date) >= currentArena.time_start && (BigInt(date) < currentArena.time_end || U.GetConfig('arena_no_endtime'))
+      const shopItemSet = arenaItems[U.GetConfig('arena_station7')]
+      const shopOpen = arenaOpen && !_.isEmpty(shopItemSet)
       let arenaData = {}
 
       const arenaStart = new Date(Number(currentArena.time_start) * 1000).toISOString().split('T')[0].split('-').join('')
@@ -594,7 +553,7 @@ export const common: EPR = async (info, data, send) => {
           shop_end: K.ITEM('u64', currentArena.shop_end),
           is_open: K.ITEM('bool', arenaOpen),
           is_shop: K.ITEM('bool', shopOpen),
-          catalog: (shopOpen && U.GetConfig('arena_station') !== 'None' && version >= arenaItems[U.GetConfig('arena_station')].version) ? arenaItems[U.GetConfig('arena_station')].items.map(item => ({
+          catalog: (shopOpen && version >= shopItemSet.version) ? shopItemSet.items.map(item => ({
             catalog_id: K.ITEM('s32', item[0]),
             catalog_type: K.ITEM('s32', item[1]),
             price: K.ITEM('s32', item[2]),
