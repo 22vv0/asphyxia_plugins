@@ -38,6 +38,10 @@ SOUND VOLTEX
 - Fix to music\_limited loading issues with base music\_db.json ([#89](https://github.com/22vv0/asphyxia_plugins/pull/89))
 - Fix ARENA STATION set selection ([#89](https://github.com/22vv0/asphyxia_plugins/pull/89))
 
+### WebUI
+
+- `Profile Customization`: Added missing GW skill titles
+
 ---
 ## Contributions
 
