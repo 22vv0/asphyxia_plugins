@@ -1334,53 +1334,53 @@ export const COURSES3 = [
 		    }
 	    ]
   	},
-  	// {
-	//     id: 32,
-	//     version: 20161212,
-	//     name: '天下一コース(2016)',
-	//     isNew: 0, 
-	//     courses: [
-	//     	{
-	// 	        id: 1,
-	// 	        type: 0,
-	// 	        name: '天下一 (梅)コース',
-	// 	        level: -1,
-	// 	        nameID: 19,
-	// 	        assist: 0,
-	// 	        tracks: [
-	// 	        	{ no: 0, mid: 362, mty: 0, }, 
-	// 	        	{ no: 1, mid: 360, mty: 0, }, 
-	// 	        	{ no: 2, mid: 927, mty: 0, },
-	// 	        ],
-	// 	    },
-	// 	    {
-	// 	        id: 2,
-	// 	        type: 0,
-	// 	        name: '天下一 (竹)コース',
-	// 	        level: -1,
-	// 	        nameID: 19,
-	// 	        assist: 0,
-	// 	        tracks: [
-	// 	        	{ no: 0, mid: 362, mty: 1, }, 
-	// 	        	{ no: 1, mid: 360, mty: 1, }, 
-	// 	        	{ no: 2, mid: 927, mty: 1, },
-	// 	        ],
-	// 	    },
-	// 	    {
-	// 	        id: 3,
-	// 	        type: 0,
-	// 	        name: '天下一 (松)コース',
-	// 	        level: -1,
-	// 	        nameID: 19,
-	// 	        assist: 0,
-	// 	        tracks: [
-	// 	        	{ no: 0, mid: 362, mty: 2, }, 
-	// 	        	{ no: 1, mid: 360, mty: 2, }, 
-	// 	        	{ no: 2, mid: 927, mty: 2, },
-	// 	        ],
-	// 	    }
-	//     ]
-  	// },
+  	{
+	    id: 32,
+	    version: 20161212,
+	    name: '天下一コース(2016)',
+	    isNew: 0, 
+	    courses: [
+	    	{
+		        id: 1,
+		        type: 0,
+		        name: '天下一 (梅)コース',
+		        level: -1,
+		        nameID: 19,
+		        assist: 0,
+		        tracks: [
+		        	{ no: 0, mid: 362, mty: 0, }, 
+		        	{ no: 1, mid: 360, mty: 0, }, 
+		        	{ no: 2, mid: 927, mty: 0, },
+		        ],
+		    },
+		    {
+		        id: 2,
+		        type: 0,
+		        name: '天下一 (竹)コース',
+		        level: -1,
+		        nameID: 19,
+		        assist: 0,
+		        tracks: [
+		        	{ no: 0, mid: 362, mty: 1, }, 
+		        	{ no: 1, mid: 360, mty: 1, }, 
+		        	{ no: 2, mid: 927, mty: 1, },
+		        ],
+		    },
+		    {
+		        id: 3,
+		        type: 0,
+		        name: '天下一 (松)コース',
+		        level: -1,
+		        nameID: 19,
+		        assist: 0,
+		        tracks: [
+		        	{ no: 0, mid: 362, mty: 2, }, 
+		        	{ no: 1, mid: 360, mty: 2, }, 
+		        	{ no: 2, mid: 927, mty: 2, },
+		        ],
+		    }
+	    ]
+  	},
 ]
 
 export const EVENT3 = [
@@ -1696,6 +1696,19 @@ export const EXTENDS3 = [
       		0,0,0,0,0,
       		"kac:26,4",
       		"",
+      		"",
+      		"",
+      		""
+    	]
+  	},
+  	{
+		version: 20161116,
+    	type: 4,
+    	id: 1,
+    	params: [
+      		0,1,0,0,0,
+      		"",
+      		"19,-1,[sz:26][sx:120][pos:0,2]音芸祭",
       		"",
       		"",
       		""
