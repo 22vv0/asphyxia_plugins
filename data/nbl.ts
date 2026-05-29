@@ -560,6 +560,50 @@ export const UNLOCK_EVENTS7 = {
           stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
           stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 5/25～5/31',
           stprwrd: '0:r:x103 1:p:1000 5:b:500 10:r:184 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        },
+        {
+          stmpid: 105,
+          stps: 310030,
+          version: 20260512,
+          start: 20260601,
+          stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+          stmpFtJ: '[sz:22]6/1~6/7の間、ポルテを遊ぶとスタンプを獲得できます',
+          stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+          stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 6/1～6/7',
+          stprwrd: '0:r:x104 1:p:1000 5:b:500 10:r:185 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        },
+        {
+          stmpid: 106,
+          stps: 310030,
+          version: 20260512,
+          start: 20260608,
+          stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+          stmpFtJ: '[sz:22]6/8~6/14の間、ポルテを遊ぶとスタンプを獲得できます',
+          stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+          stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 6/8～6/14',
+          stprwrd: '0:r:x105 1:p:1000 5:b:500 10:r:186 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        },
+        {
+          stmpid: 107,
+          stps: 310030,
+          version: 20260512,
+          start: 20260615,
+          stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+          stmpFtJ: '[sz:22]6/15~6/21の間、ポルテを遊ぶとスタンプを獲得できます',
+          stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+          stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 6/15～6/21',
+          stprwrd: '0:r:x106 1:p:1000 5:b:500 10:r:187 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        },
+        {
+          stmpid: 108,
+          stps: 310030,
+          version: 20260512,
+          start: 20260622,
+          stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+          stmpFtJ: '[sz:22]6/22~6/28の間、ポルテを遊ぶとスタンプを獲得できます',
+          stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+          stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 6/22～6/28',
+          stprwrd: '0:r:x107 1:p:1000 5:b:500 10:r:188 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
         }
       ]
     }
