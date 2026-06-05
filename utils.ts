@@ -66,7 +66,8 @@ export async function getDateCodeInit() {
     "69bb5ab5_75b7e8": 20260324,
     "69ccbc0e_75b838": 20260407,
     "69e097b6_770498": 20260421,
-    "69fd4402_772268": 20260512
+    "69fd4402_772268": 20260512,
+    "6a179570_77f988": 20260602
   }
   let bufOffset = 60
   let gameDir = U.GetConfig('sdvx_eg_root_dir')

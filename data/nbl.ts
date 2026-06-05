@@ -299,6 +299,12 @@ export const UNLOCK_EVENTS7 = {
       ]
     }
   },
+  vgate3: {
+    info: {
+      id: 0,
+      setid: 3
+    }
+  },
   nblweeklystamp: {
     type: 'main',
     info: {
@@ -560,6 +566,17 @@ export const UNLOCK_EVENTS7 = {
           stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
           stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 5/25～5/31',
           stprwrd: '0:r:x103 1:p:1000 5:b:500 10:r:184 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        },
+        {
+          stmpid: 105,
+          stps: 310030,
+          version: 20260421,
+          start: 20260601,
+          stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+          stmpFtJ: '[sz:22]6/1~6/7の間、ポルテを遊ぶとスタンプを獲得できます',
+          stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+          stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 6/1～6/7',
+          stprwrd: '0:r:x104 1:p:1000 5:b:500 10:r:185 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
         }
       ]
     }

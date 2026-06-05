@@ -8,7 +8,7 @@ SOUND VOLTEX
 - infinite infection (2014102200)
 - GRAVITY WARS (2016121200)
 - EXCEED GEAR (2025120900)
-- ∇ (20260512xx)
+- ∇ (20260602xx)
 
 **Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d) or above
 
@@ -23,9 +23,7 @@ SOUND VOLTEX
 
 ### ∇
 
-- Added SKILL ANALYZER (音戯探偵ひなビタ♫ 黒猫探偵社入社試験)
-- Added Skill Title: 音戯探偵
-- Updated licensed songs list: new ひなビタ songs
+- Added support for VARIANT GATE「獣の紋様」
 
 ### EXCEED GEAR
 
