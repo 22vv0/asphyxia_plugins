@@ -8,7 +8,7 @@ SOUND VOLTEX
 - infinite infection (2014102200)
 - GRAVITY WARS (2016121200)
 - EXCEED GEAR (2025120900)
-- ∇ (20260512xx)
+- ∇ (20260602xx)
 
 **Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d) or above
 
@@ -23,9 +23,11 @@ SOUND VOLTEX
 
 ### ∇
 
-- Added skill title: `風雲`
-- Added SKILL ANALYZER courses: `THE VOLTENIZER 2026`
+- Added support for VARIANT GATE「獣の紋様」
 
+### EXCEED GEAR
+
+- Updated licensed songs list: Sakura Fubuki, LUCKY CAT (fixes ∇ SKILL ANALYZER courses that require them)
 
 ### GRAVITY WARS
 

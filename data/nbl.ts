@@ -299,6 +299,12 @@ export const UNLOCK_EVENTS7 = {
       ]
     }
   },
+  vgate3: {
+    info: {
+      id: 0,
+      setid: 3
+    }
+  },
   nblweeklystamp: {
     type: 'main',
     info: {
