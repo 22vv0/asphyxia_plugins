@@ -1,6 +1,6 @@
 SOUND VOLTEX
 ===
-**Plugin Version:** fork-7.1.4
+**Plugin Version:** fork-7.1.4a
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
 **Supported game versions:**
@@ -29,42 +29,25 @@ SOUND VOLTEX
 
 - Updated licensed songs list: Sakura Fubuki, LUCKY CAT (fixes ∇ SKILL ANALYZER courses that require them)
 
-### GRAVITY WARS (2016121200)
+### GRAVITY WARS
 
-- Added support (profile creation, data save/load)
-- Data transfer from infinite infection (unlocked items, INFINITE BLASTER and POLICY BREAK progress)
-- infinite infection scores loaded through `old` in `load_m` (BOOTH scores will not be displayed/transferred)
-- Added new GW songs to POLICY BREAK list. As with infinite infection, you can add 3000pw per song per session.
-- Added SKILL ANALYZER courses
-- Added MISSION mode: toggle in plugin settings
-- Added Genesis Card GENERATOR sets -- some require special GENERATOR tickets to appear and pull from; obtainable through serial code entry
-- Added Special Appeal Card GENERATOR -- shown set will be random every login
-- Added serial code entry -- usable codes listed below
+- Added skill title: `音芸祭`
+- Added SKILL ANALYZER courses: `天下一コース(2016)`
 
 ### Misc
 
-- Data migrate code for ii -> GW
-- Fix migrate codes to use and save new name input instead
-- Added labels and max points required for POLICY BREAK songs
-- Fixed ii score lamps not displaying properly in GW
-- Fixed appeal card frame/creator item loading for ii and GW
-- Fixed `unlockAppealCards` for ii
-- Updated `unlockNavigators` function to unlock GW Genesis Cards and (sub-)crews.
-- Added plugin setting to skip matchmaking objectives in MISSION mode (excl. Side Episode 01)
-- music_db.xml import cleanup and fixes ([PR #87](https://github.com/22vv0/asphyxia_plugins/pull/87))
+- Much needed cleanup of common.ts ([#89](https://github.com/22vv0/asphyxia_plugins/pull/89))
+- Fix to music\_limited loading issues with base music\_db.json ([#89](https://github.com/22vv0/asphyxia_plugins/pull/89))
+- Fix ARENA STATION set selection ([#89](https://github.com/22vv0/asphyxia_plugins/pull/89))
 
 ### WebUI
 
-- Profile Customization: Made appeal card frame/creator item selection list to only be limited to what's available per version
-- Profile Customization: Fixes to how owned skill titles are loaded to the dropdown selection
-- Profile Scores: `getMedal` update
-- Profile Scores: Clear lamp labels update (full labels, eg. `UC` -> `ULTIMATE CHAIN` etc.)
-
+- `Profile Customization`: Added missing GW skill titles
 
 ---
 ## Contributions
 
-- [eamuse](https://github.com/eamuse) - Update music_db.xml import for KFC ([#87](https://github.com/22vv0/asphyxia_plugins/pull/87))
+- [eamuse](https://github.com/eamuse) - Fix bugs in common.ts ([#89](https://github.com/22vv0/asphyxia_plugins/pull/89))
 
 
 ---

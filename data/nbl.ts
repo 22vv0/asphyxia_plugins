@@ -570,13 +570,46 @@ export const UNLOCK_EVENTS7 = {
         {
           stmpid: 105,
           stps: 310030,
-          version: 20260421,
+          version: 20260512,
           start: 20260601,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
           stmpFtJ: '[sz:22]6/1~6/7の間、ポルテを遊ぶとスタンプを獲得できます',
           stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
           stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 6/1～6/7',
           stprwrd: '0:r:x104 1:p:1000 5:b:500 10:r:185 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        },
+        {
+          stmpid: 106,
+          stps: 310030,
+          version: 20260512,
+          start: 20260608,
+          stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+          stmpFtJ: '[sz:22]6/8~6/14の間、ポルテを遊ぶとスタンプを獲得できます',
+          stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+          stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 6/8～6/14',
+          stprwrd: '0:r:x105 1:p:1000 5:b:500 10:r:186 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        },
+        {
+          stmpid: 107,
+          stps: 310030,
+          version: 20260512,
+          start: 20260615,
+          stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+          stmpFtJ: '[sz:22]6/15~6/21の間、ポルテを遊ぶとスタンプを獲得できます',
+          stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+          stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 6/15～6/21',
+          stprwrd: '0:r:x106 1:p:1000 5:b:500 10:r:187 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        },
+        {
+          stmpid: 108,
+          stps: 310030,
+          version: 20260512,
+          start: 20260622,
+          stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+          stmpFtJ: '[sz:22]6/22~6/28の間、ポルテを遊ぶとスタンプを獲得できます',
+          stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+          stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 6/22～6/28',
+          stprwrd: '0:r:x107 1:p:1000 5:b:500 10:r:188 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
         }
       ]
     }
@@ -787,7 +820,7 @@ export const COURSES7 = [
     id: 1,
     name: "SKILL ANALYZER 第1回 Aコース",
     version: 20260512,
-    isNew: 1,
+    isNew: 0,
     hasGod: 0,
     courses: [
       {
@@ -952,7 +985,7 @@ export const COURSES7 = [
     id: 2,
     name: "SKILL ANALYZER 第1回 Bコース",
     version: 20260512,
-    isNew: 1,
+    isNew: 0,
     hasGod: 0,
     courses: [
       {
@@ -1174,6 +1207,71 @@ export const COURSES7 = [
       },
     ],
   },
+  {
+    id: 4,
+    name: "THE VOLTENIZER 2026",
+    version: 20260512,
+    isNew: 1,
+    hasGod: 0,
+    courses: [
+      {
+        id: 1,
+        type: 0,
+        name: "THE VOLTENIZER 2026 予選コース(フリー部門)",
+        level: 0,
+        nameID: 14,
+        assist: 0,
+        tracks: [
+          { no: 0, mid: 1919, mty: 4 },
+          { no: 1, mid: 2010, mty: 4 }, 
+          { no: 2, mid: 1273, mty: 4 }, 
+          { no: 3, mid: 791, mty: 3 } 
+        ],
+      },
+      {
+        id: 2,
+        type: 0,
+        name: "THE VOLTENIZER 2026 予選コース(U-20部門)",
+        level: 0,
+        nameID: 14,
+        assist: 0,
+        tracks: [
+          { no: 0, mid: 1043, mty: 4 },
+          { no: 1, mid: 1958, mty: 4 },  
+          { no: 2, mid: 2323, mty: 4 },  
+          { no: 3, mid: 367, mty: 3 }
+        ],
+      },
+      {
+        id: 3,
+        type: 0,
+        name: "THE VOLTENIZER 2026 エンジョイコース(フリー部門)",
+        level: 0,
+        nameID: 14,
+        assist: 0,
+        tracks: [
+          { no: 0, mid: 1919, mty: 1 },
+          { no: 1, mid: 2010, mty: 1 }, 
+          { no: 2, mid: 1273, mty: 1 }, 
+          { no: 3, mid: 791, mty: 1 } 
+        ],
+      },
+      {
+        id: 4,
+        type: 0,
+        name: "THE VOLTENIZER 2026 エンジョイコース(U-20部門)",
+        level: 0,
+        nameID: 14,
+        assist: 0,
+        tracks: [
+          { no: 0, mid: 1043, mty: 1 },
+          { no: 1, mid: 1958, mty: 1 },  
+          { no: 2, mid: 2323, mty: 1 },  
+          { no: 3, mid: 367, mty: 1 }
+        ],
+      },
+    ]
+  }
 ]
 
 export const INFORMATION7 = [
@@ -1355,14 +1453,14 @@ export const EXTENDS7 = [
   },
   {
     version: 20260512,
-    start: 20260521,
+    start: 20260512,
     id: 1,
     type: 4,
     params: [
-      0, 1, 0, 0, 0,
+      0, 1, 1, 0, 0,
       "",
-      "13,[],[sz:40]音戯探偵",
-      "",
+      "13,0,[sz:40]音戯探偵",
+      "14,0,[sz:40]風 雲",
       "",
       ""
     ]
