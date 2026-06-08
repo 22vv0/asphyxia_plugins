@@ -119,6 +119,12 @@ export const UNLOCK_EVENTS7 = {
   gitadorastamp: UNLOCK_EVENTS6['gitadorastamp'],
   vgate1: UNLOCK_EVENTS6['vgate1'],
   vgate2: UNLOCK_EVENTS6['vgate2'],
+  vgate3: {
+    info: {
+      id: 109,
+      setid: 3
+    }
+  },
   bluediamond: {
     type: 'main',
     info: {
@@ -297,12 +303,6 @@ export const UNLOCK_EVENTS7 = {
           stprwrd: '1:a:6508 2:r:176 4:n:40303 6:r:177 8:n:40304 10:r:178 12:n:40304 15:r:179 req:musicid:1757,2388,2389,2390,2391 imgbg:bg_stamp_flare'
         }
       ]
-    }
-  },
-  vgate3: {
-    info: {
-      id: 0,
-      setid: 3
     }
   },
   nblweeklystamp: {
@@ -1553,3 +1553,11 @@ export const MUSIC_OVERRIDE7 = [
     charts: {}
   }
 ]
+
+export const GAMEOVER_CHARA7 = {
+  l: ['chara01/go_ikuto', 'chara01/go_konoha', 'chara01/go_mitsuruco', 'chara01/go_nemurun', 'chara01/go_rasis_ver07', 
+  'chara01/go_satan', 'chara01/go_tsumabuki_ver07'],
+  r: ['chara02/go_atsushi', 'chara02/go_grace_ver07', 'chara02/go_haelequin', 
+  'chara02/go_kureha', 'chara02/go_tama'],
+  m: ['chara03/go_cawoashi', 'chara03/go_iruyoru', 'chara03/go_neno_ver06']
+}
