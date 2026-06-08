@@ -1,8 +1,14 @@
 import { EVENT, SDVX_STATION } from '../data/booth';
 import { EVENT2, MUSIC_LIMITED, COURSES2 } from '../data/ii';
 import { EVENT3, MISSION_EVENT3, MUSIC_LIMITED3, COURSES3, EXTENDS3, SP_APICAGENE3 } from '../data/gw';
-import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIE_SONGS, LICENSED_SONGS6, CURRENT_ARENA, ARENA_STATION_ITEMS, VALGENE, INFORMATION6, UNLOCK_EVENTS6, MUSIC_OVERRIDE6 } from '../data/exg';
-import { EVENT7, COURSES7, EXTENDS7, LICENSED_SONGS7, CURRENT_ARENA7, ARENA_STATION_ITEMS7, VALGENE7, APIGENE7, INFORMATION7, UNLOCK_EVENTS7, EGSONGS_LOCKED, MUSIC_OVERRIDE7 } from '../data/nbl';
+import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIE_SONGS, LICENSED_SONGS6, 
+          CURRENT_ARENA, ARENA_STATION_ITEMS, VALGENE, INFORMATION6, UNLOCK_EVENTS6, 
+          MUSIC_OVERRIDE6 
+} from '../data/exg';
+import { EVENT7, COURSES7, EXTENDS7, LICENSED_SONGS7, CURRENT_ARENA7, ARENA_STATION_ITEMS7, 
+          VALGENE7, APIGENE7, INFORMATION7, UNLOCK_EVENTS7, EGSONGS_LOCKED, MUSIC_OVERRIDE7,
+          GAMEOVER_CHARA7
+} from '../data/nbl';
 import {getVersion, checkVerStart, getRandomIntInclusive} from '../utils';
 
 const parseDiff = (musicId: number, musicType: number, limNo: number) => {
@@ -407,6 +413,36 @@ export const common: EPR = async (info, data, send) => {
         })
       }
 
+      if(version >= 20260602) {
+        const charaPattern = ['l,r,l','r,l,r','l,m,r','r,m,l','l,r,m','m,l,r']
+        const selPattern = charaPattern[Math.floor(Math.random() * charaPattern.length)]
+        let chara = []
+        for(const pos of selPattern.split(',')) {
+          let tempChara = GAMEOVER_CHARA7[pos][Math.floor(Math.random() * GAMEOVER_CHARA7[pos].length)]
+          while(chara.includes(tempChara)) {
+            tempChara = GAMEOVER_CHARA7[pos][Math.floor(Math.random() * GAMEOVER_CHARA7[pos].length)]
+          }
+          chara.push(tempChara)
+        }
+
+        extend.push({
+          id: 1,
+          type: 1,
+          params: [
+            3,
+            0,
+            0,
+            1,
+            0,
+            "[]\t[]\t[]",
+            "[]",
+            "[]",
+            "[]",
+            "characters: " + chara.join(' ')
+          ]
+        })
+      }
+
       if(IO.Exists('webui/asset/config/events.json')) {
         let bufEventData = await IO.ReadFile('webui/asset/json/events.json')
         let bufEventConfig = await IO.ReadFile('webui/asset/config/events.json')
@@ -511,7 +547,7 @@ export const common: EPR = async (info, data, send) => {
                   stmpEvntInfo.info.setid,
                   parseInt(eventConfig[eData.id].settings.minOverTrackRank),
                   parseInt(eventConfig[eData.id].settings.minSealDiff),
-                  0,
+                  parseInt(eventConfig[eData.id].settings.maxSealRetain),
                   '',
                   '',
                   '',

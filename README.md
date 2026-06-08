@@ -1,6 +1,6 @@
 SOUND VOLTEX
 ===
-**Plugin Version:** fork-7.1.4a
+**Plugin Version:** fork-7.1.5
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
 **Supported game versions:**
@@ -23,32 +23,20 @@ SOUND VOLTEX
 
 ### ∇
 
-- Added support for VARIANT GATE「獣の紋様」
-
-### EXCEED GEAR
-
-- Updated licensed songs list: Sakura Fubuki, LUCKY CAT (fixes ∇ SKILL ANALYZER courses that require them)
-
-### GRAVITY WARS
-
-- Added skill title: `音芸祭`
-- Added SKILL ANALYZER courses: `天下一コース(2016)`
-
-### Misc
-
-- Much needed cleanup of common.ts ([#89](https://github.com/22vv0/asphyxia_plugins/pull/89))
-- Fix to music\_limited loading issues with base music\_db.json ([#89](https://github.com/22vv0/asphyxia_plugins/pull/89))
-- Fix ARENA STATION set selection ([#89](https://github.com/22vv0/asphyxia_plugins/pull/89))
+- Added support for VARIANT GATE 「獣の紋様」 ([#93](https://github.com/22vv0/asphyxia_plugins/pull/93))
+- Updated VARIANT GATE handler to support `Seal Retention` (see WebUI changelog for more info) 
+- Enabled new Game Over screen. Text bubble will be blank for now
+- Added new Weekly Stamp sheets
 
 ### WebUI
 
-- `Profile Customization`: Added missing GW skill titles
+- `Unlock Events page`: Added `Seal Retention` to VARIANT GATE settings: sets the highest OVER TRACK difficulty that will retain obtained seals after failing to clear it. Works on >= `20260602xx` only.
+- `Unlock Events page`: Updated titles, descriptions, and dropdown options for VARIANT GATE settings.
 
 ---
 ## Contributions
 
-- [eamuse](https://github.com/eamuse) - Fix bugs in common.ts ([#89](https://github.com/22vv0/asphyxia_plugins/pull/89))
-
+- [eamuse](https://github.com/eamuse) - 20260602 ([#93](https://github.com/22vv0/asphyxia_plugins/pull/93))
 
 ---
 ## Extra notes
