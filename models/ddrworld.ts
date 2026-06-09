@@ -145,6 +145,7 @@ export interface ProfileWorld {
   opComboPriority: number;
   opJudgePriority: number;
   opJudgePosition: number;
+  opTimingMusic: number;
   
   lpMode: number;
   lpFolder: number;

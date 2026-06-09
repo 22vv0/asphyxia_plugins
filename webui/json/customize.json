@@ -1,12 +1,14 @@
 {
 	"optgroup": [
-		"--- Default items ---",		
+		"--- Default items ---",
 		"--- 「みんなで応援！BPLプロ選手サポーターズ -SEASON 4-」 チーム特典AAランク ---",
 		"--- 第1弾 ---",
 		"--- 「BPL -SEASON 4- DanceDanceRevolution」 ---",
 		"--- 「ひなビタ♪」 第1弾 ---",
 		"--- 第2弾 ---",
-		"--- 第3弾 ---"
+		"--- 第3弾 ---",
+		"--- 春のコナステ大感謝祭2024 ---",
+		"--- 第4弾 ---"
 	],
 	"appealBoard" : [
 		{
@@ -231,6 +233,60 @@
 			        "name": "エンドルフィン"
 			    }
 			]
+		},
+		{
+			"optgroup": 7,
+			"items": [
+				{
+					"id": 41,
+					"name": "TSUGARU (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 42,
+					"name": "GRACE (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 43,
+					"name": "RINON (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 44,
+					"name": "MIMI (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 45,
+					"name": "RIO (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 46,
+					"name": "DDR System Songs + Replicant Mix"
+				}
+			]
+		},
+		{
+			"optgroup": 8,
+			"items": [
+				{
+					"id": 47,
+					"name": "YUNI (SUMMER)"
+				},
+				{
+					"id": 48,
+					"name": "ALICE (SUMMER)" 
+				},
+				{
+					"id": 49,
+					"name": "Reach the Sky, Without You"
+				},
+				{
+					"id": 50,
+					"name": "†渚の小悪魔ラヴリィ～レイディオ†"
+				},
+				{
+					"id": 51,
+					"name": "天空の華"
+				}
+			]
 		}
 	],
 	"character" : [
@@ -329,6 +385,45 @@
 				{
 				    "id": 17,
 				    "name": "小舞桜 (Komai Sakura)"
+				}
+			]
+		},
+		{
+			"optgroup": 7,
+			"items": [
+				{
+					"id": 18,
+					"name": "TSUGARU (春のコナステ大感謝祭2024)"
+
+				},
+				{
+					"id": 19,
+					"name": "GRACE (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 20,
+					"name": "RINON (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 21,
+					"name": "MIMI (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 22,
+					"name": "RIO (春のコナステ大感謝祭2024)"
+				}
+			]
+		},
+		{
+			"optgroup": 8,
+			"items": [
+				{
+					"id": 23,
+					"name": "YUNI (SUMMER)"
+				},
+				{
+					"id": 24,
+					"name": "ALICE (SUMMER)"
 				}
 			]
 		}
@@ -458,6 +553,52 @@
 			        "id": 24,
 			        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
 			    }
+			]
+		},
+		{
+			"optgroup": 7,
+			"items": [
+				{
+					"id": 25,
+					"name": "TSUGARU (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 26,
+					"name": "GRACE (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 27,
+					"name": "RINON (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 28,
+					"name": "MIMI (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 29,
+					"name": "RIO (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 30,
+					"name": "TRIANGLE"
+				}
+			]
+		},
+		{
+			"optgroup": 8,
+			"items": [
+				{
+					"id": 31,
+					"name": "YUNI (SUMMER)"
+				},
+				{
+					"id": 32,
+					"name": "ALICE (SUMMER)"
+				},
+				{
+					"id": 33,
+					"name": "SUNFLOWER"
+				}
 			]
 		}
 	],
@@ -610,6 +751,61 @@
 			        "id": 30,
 			        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
 			    }
+			]
+		},
+		{
+			"optgroup": 7,
+			"items": [
+				{
+					"id": 31,
+					"name": "TSUGARU (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 32,
+					"name": "GRACE (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 33,
+					"name": "RINON (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 34,
+					"name": "MIMI (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 35,
+					"name": "RIO (春のコナステ大感謝祭2024)"
+
+				},
+				{
+					"id": 36,
+					"name": "All Characters Assembly (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 37,
+					"name": "TRIANGLE"
+				}
+			]
+		},
+		{
+			"optgroup": 8,
+			"items": [
+				{
+					"id": 38,
+					"name": "YUNI (SUMMER)"
+				},
+				{
+					"id": 39,
+					"name": "ALICE (SUMMER)"
+				},
+				{
+					"id": 40,
+					"name": "YUNI (SUMMER) & ALICE (SUMMER)"
+				},
+				{
+					"id": 41,
+					"name": "SUNFLOWER"
+				}
 			]
 		}
 	],
@@ -774,6 +970,64 @@
 			        "id": 33,
 			        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
 			    }
+			]
+		},
+		{
+			"optgroup": 7,
+			"items": [
+				{
+					"id": 34,
+					"name": "TSUGARU (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 35,
+					"name": "GRACE (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 36,
+					"name": "RINON (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 37,
+					"name": "MIMI (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 38,
+					"name": "RIO (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 39,
+					"name": "DDR System Songs + Replicant Mix"
+				}
+			]
+		},
+		{
+			"optgroup": 8,
+			"items": [
+				{
+					"id": 40,
+					"name": "YUNI (SUMMER)"
+				},
+				{
+					"id": 41,
+					"name": "ALICE (SUMMER)"
+				},
+				{
+					"id": 42,
+					"name": "Reach the Sky, Without You"
+				},
+				{
+					"id": 43,
+					"name": "†渚の小悪魔ラヴリィ～レイディオ†"
+				},
+				{
+					"id": 44,
+					"name": "天空の華"
+				},
+				{
+					"id": 45,
+					"name": "take me higher"
+				}
 			]
 		}
 	],
@@ -963,6 +1217,72 @@
 			        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
 			    }
 			]
+		},
+		{
+			"optgroup": 7,
+			"items": [
+				{
+					"id": 40,
+					"name": "TSUGARU (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 41,
+					"name": "GRACE (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 42,
+					"name": "RINON (春のコナステ大感謝祭2024)"	
+				},
+				{
+					"id": 43,
+					"name": "MIMI (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 44,
+					"name": "RIO (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 45,
+					"name": "All Characters Assembly (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 46,
+					"name": "DDR System Songs + Replicant Mix"
+				}
+			]
+		},
+		{
+			"optgroup": 8,
+			"items": [
+				{
+					"id": 47,
+					"name": "YUNI (SUMMER)"
+				},
+				{
+					"id": 48,
+					"name": "ALICE (SUMMER)"
+				},
+				{
+					"id": 49,
+					"name": "YUNI (SUMMER) & ALICE (SUMMER)"
+				},
+				{
+					"id": 50,
+					"name": "Reach the Sky, Without You"
+				},
+				{
+					"id": 51,
+					"name": "†渚の小悪魔ラヴリィ～レイディオ†"
+				},
+				{
+					"id": 52,
+					"name": "天空の華"
+				},
+				{
+					"id": 53,
+					"name": "take me higher"
+				}
+			]
 		}
 	],
 	"gameBG": [
@@ -1090,6 +1410,40 @@
 			        "id": 24,
 			        "name": "WORLD (パターン5)"
 			    }
+			]
+		},
+		{
+			"optgroup": 7,
+			"items": [
+				{
+					"id": 25,
+					"name": "春のコナステ大感謝祭2024"
+				},
+				{
+					"id": 26,
+					"name": "ミニマスコット大集合 (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 27,
+					"name": "Character Slideshow (春のコナステ大感謝祭2024)"
+				}
+			]
+		},
+		{
+			"optgroup": 8,
+			"items": [
+				{
+					"id": 28,
+					"name": "OCEAN (パターン1)"
+				},
+				{
+					"id": 29,
+					"name": "OCEAN (パターン2)"
+				},				
+				{
+					"id": 30,
+					"name": "OCEAN (パターン3)"
+				}
 			]
 		}
 	],

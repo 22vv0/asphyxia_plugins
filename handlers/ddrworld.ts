@@ -207,6 +207,7 @@ export const playerdatasave: EPR = async (info, data, send) => {
         opComboPriority: $(data).number('data.option.combo_priority'),
         opJudgePriority: $(data).number('data.option.judge_priority'),
         opJudgePosition: $(data).number('data.option.judge_position'),
+        opTimingMusic: $(data).number('data.option.timing_music'),
         
         lpMode: $(data).number('data.lastplay.mode'),
         lpFolder: $(data).number('data.lastplay.folder'),
@@ -318,6 +319,7 @@ export const playerdatasave: EPR = async (info, data, send) => {
         opComboPriority: $(data).number('data.option.combo_priority'),
         opJudgePriority: $(data).number('data.option.judge_priority'),
         opJudgePosition: $(data).number('data.option.judge_position'),
+        opTimingMusic: $(data).number('data.option.timing_music'),
         
         lpMode: $(data).number('data.lastplay.mode'),
         lpFolder: $(data).number('data.lastplay.folder'),
@@ -482,7 +484,8 @@ export const playerdataload: EPR = async (info, data, send) => {
         lane_preview: K.ITEM("s32", 0),
         combo_priority: K.ITEM("s32", 0),
         judge_priority: K.ITEM("s32", 0),
-        judge_position: K.ITEM("s32", 0)
+        judge_position: K.ITEM("s32", 0),
+        timing_music: K.ITEM("s32", 0)
       },
       lastplay: {
         mode: K.ITEM("s32", 0),
@@ -823,6 +826,7 @@ export const playerdataload: EPR = async (info, data, send) => {
     if(profile.opComboPriority === undefined) profile.opComboPriority = 0
     if(profile.opJudgePriority === undefined) profile.opJudgePriority = 0
     if(profile.opJudgePosition === undefined) profile.opJudgePosition = 0
+    if(profile.opTimingMusic === undefined) profile.opTimingMusic = 0
     if(profile.lpTabMainGraphType === undefined) profile.lpTabMainGraphType = 0
     if(profile.lpTabMainGraphDisp === undefined) profile.lpTabMainGraphDisp = 0
     if(profile.lpTabSubGraphType === undefined) profile.lpTabSubGraphType = 0
@@ -881,7 +885,8 @@ export const playerdataload: EPR = async (info, data, send) => {
         lane_preview: K.ITEM("s32", profile.opLanePreview),
         combo_priority: K.ITEM("s32", profile.opComboPriority),
         judge_priority: K.ITEM("s32", profile.opJudgePriority),
-        judge_position: K.ITEM("s32", profile.opJudgePosition)
+        judge_position: K.ITEM("s32", profile.opJudgePosition),
+        timing_music: K.ITEM("s32", profile.opTimingMusic)
       },
       lastplay: {
         mode: K.ITEM("s32", profile.lpMode),
