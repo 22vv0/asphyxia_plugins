@@ -895,7 +895,7 @@ export const EVENTS_WORLD = [
 	{ id: 391, no: 0, cond: 1, rwrd: 38827, type: 17 },
 ]
 
-export const LEAGUE_SEASON = 10
+export const LEAGUE_SEASON = 11
 export const LEAGUE_GOLD_BORDER_MCODE = 0
 export const LEAGUE_WORLD = [
 	{
@@ -959,6 +959,15 @@ export const LEAGUE_WORLD = [
 		start: BigInt(Date.parse('12 Feb 2026 01:00:00 GMT')),
 		end: BigInt(Date.parse('11 Mar 2026 08:00:00 GMT')),
 		summary: BigInt(Date.parse('11 Mar 2026 09:00:00 GMT')),
+		advanceBorder: [150000, 175000, 500000]
+	},
+	{
+		id: 11,
+		name: "第11回 WORLD LEAGUE",
+		nameEng: "The 11th WORLD LEAGUE",
+		start: BigInt(Date.parse('15 Jun 2026 01:00:00 GMT')),
+		end: BigInt(Date.parse('14 Jul 2026 08:00:00 GMT')),
+		summary: BigInt(Date.parse('14 Jul 2026 09:00:00 GMT')),
 		advanceBorder: [150000, 175000, 500000]
 	}
 ]

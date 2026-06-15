@@ -15,6 +15,7 @@ Changelog
 ===========
 ### WORLD
 
+- Added WORLD LEAGUE 11 (runtime: 06/15/2026-07/14/2026)
 - Added event data: GALAXY BRAVE - VOLTAGE set
 - Added event data: BEMANI PRO LEAGUE -SEASON 5- Triple Tribe 0 (automatically unlocked on login)
 - Added event data: EXTRA SAVIOR WORLD - The 1st WHITE CHALLENGE
