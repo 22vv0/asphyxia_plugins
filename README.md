@@ -1,9 +1,9 @@
 # DanceDanceRevolution
 
-**Plugin Version:** 3.1.0c
+**Plugin Version:** 3.1.1
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=mdx&expanded=true).
 
-**Supported game versions:** WORLD (2025061000)
+**Supported game versions:** WORLD (2025080500)
 
 **Required Asphyxia Core version** [1.50c](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50) and above
 
@@ -13,10 +13,12 @@
 
 Changelog
 ===========
-### 3.1.0c
+### WORLD
 
-- Added WORLD LEAGUE 10
-	- Period: 26/02/12 - 26/03/11
+- Added event data: GALAXY BRAVE - VOLTAGE set
+- Added event data: BEMANI PRO LEAGUE -SEASON 5- Triple Tribe 0 (automatically unlocked on login)
+- Added event data: EXTRA SAVIOR WORLD - The 1st WHITE CHALLENGE
+- Added event data: EXTRA SAVIOR WORLD - The 3rd MUSIC CREATOR AUDITION
 
 musicdb.xml Usage Guide
 ===========
@@ -33,10 +35,6 @@ musicdb.xml Usage Guide
 To do:
 ===========
 
-1. Look for more missing features
-2. Refactor hiscore code
-3. More WebUI stuff 
-4. Figure out unknown values in score_str
-5. Rival loading and figure out unknown values in rival record_str
-6. Refactor WORLD LEAGUE
-
+1. Figure out unknown values in score_str
+2. Rival loading and figure out unknown values in rival record_str
+3. Work on how to make in-store battle mode appear and work

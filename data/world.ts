@@ -405,10 +405,6 @@ export const EVENTS_GUEST_WORLD = [
 export const EVENTS_WORLD = [
 	{ id: 89, no: 0, cond: 0, rwrd: 0, type: 9999 },
 	{ id: 96, no: 0, cond: 0, rwrd: 0, type: 9999 },
-	{ id: 97, no: 0, cond: 0, rwrd: 0, type: 9999 },
-	{ id: 98, no: 0, cond: 0, rwrd: 0, type: 9999 },
-	{ id: 99, no: 0, cond: 0, rwrd: 0, type: 9999 },
-	{ id: 100, no: 0, cond: 0, rwrd: 0, type: 9999 },
 	{ id: 101, no: 0, cond: 0, rwrd: 0, type: 9999 },
 
 	{ id: 1, no: 1, cond: 1, rwrd: 38667, type: 70 },
