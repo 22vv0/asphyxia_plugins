@@ -22,19 +22,21 @@ const logging = false
 
 function unlockNavigators(items: Partial<Item>[], version: number) {
   console.log("Unlocking Navigators and Genesis Cards");
+  let verInd = version - 1
   let maxGenId = [0, 0, 762, 1211, 1211, 1408, 1408];
   items = items.filter(i => i.type !== 11 && i.type !== 4 && i.type !== 8);
-  for (let i = 0; version >= 3 && version < 7 && i < maxGenId[version]; ++i) items.push({ type: 4, id: i, param: 15 });
-  for (let i = 0; version == 3 && i < maxGenId[version]; ++i) items.push({ type: 8, id: i, param: 9999 });
+  for (let i = 0; version >= 3 && version < 7 && i < maxGenId[verInd]; ++i) items.push({ type: 4, id: i, param: 15 });
+  for (let i = 0; version == 3 && i < maxGenId[verInd]; ++i) items.push({ type: 8, id: i, param: 9999 });
   for (let i = 0; version >= 6 && i < 300; ++i) items.push({ type: 11, id: i, param: 15 });
   return items;
 }
 
 function unlockAppealCards(items: Partial<Item>[], version: number) {
+  let verInd = version - 1
   console.log("Unlocking Appeal Cards");
   let maxId = [0, 1904, 3001, 3595, 3595, 5553, 7000]
   items = items.filter(i => i.type !== 1);
-  for (let i = 0; i < maxId[version]; ++i) items.push({ type: 1, id: i, param: 1 });
+  for (let i = 0; i < maxId[verInd]; ++i) items.push({ type: 1, id: i, param: 1 });
 
   return items;
 }
