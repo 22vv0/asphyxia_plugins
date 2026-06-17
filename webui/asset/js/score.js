@@ -12,8 +12,6 @@ function zeroPad(num, places) {
 function getSongName(musicid) {
     var ind = music_db["mdb"]["music"].findIndex(object => object["id"] == musicid);
     if (ind === -1) {
-        ind = music_db["omni"]["music"].findIndex(object => object["id"] == musicid);
-        if (ind > -1) return music_db["omni"]["music"][ind]["info"]["title_name"]
         return "Custom Song";
     }
     return music_db["mdb"]["music"][ind]["info"]["title_name"]
@@ -23,9 +21,7 @@ function getDifficulty(musicid, type) {
     let result
     var ind = music_db["mdb"]["music"].findIndex(object => object["id"] == musicid);
     if (ind === -1) {
-        ind = music_db["omni"]["music"].findIndex(object => object["id"] == musicid);
-        if(ind === -1) return "Unknown";
-        result = music_db["omni"]["music"][ind]
+        return "Unknown";
     } else result = music_db["mdb"]["music"][ind]
 
     var inf_ver = result["info"]["inf_ver"] ? result["info"]["inf_ver"] : 5;

@@ -1,6 +1,6 @@
 SOUND VOLTEX
 ===
-**Plugin Version:** fork-7.1.5
+**Plugin Version:** fork-7.1.6
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
 **Supported game versions:**
@@ -8,7 +8,7 @@ SOUND VOLTEX
 - infinite infection (2014102200)
 - GRAVITY WARS (2016121200)
 - EXCEED GEAR (2025120900)
-- ∇ (20260602xx)
+- ∇ (20260615xx)
 
 **Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d) or above
 
@@ -23,20 +23,22 @@ SOUND VOLTEX
 
 ### ∇
 
-- Added support for VARIANT GATE 「獣の紋様」 ([#93](https://github.com/22vv0/asphyxia_plugins/pull/93))
-- Updated VARIANT GATE handler to support `Seal Retention` (see WebUI changelog for more info) 
-- Enabled new Game Over screen. Text bubble will be blank for now
-- Added new Weekly Stamp sheets
+- Added song unlock data: BEMANI Summer Festival 2026
+- Added Valkyrie Generator Vol.19
+
+### Misc
+
+- Added start date checks for Valkyrie Generator sets
+- Removed unnecessary `MD5 mismatch` ~~error~~ warning logs to avoid confusion
+- Increased songNum from `2400` to `2500`
+- Updated ∇ info popup data
 
 ### WebUI
 
-- `Unlock Events page`: Added `Seal Retention` to VARIANT GATE settings: sets the highest OVER TRACK difficulty that will retain obtained seals after failing to clear it. Works on >= `20260602xx` only.
-- `Unlock Events page`: Updated titles, descriptions, and dropdown options for VARIANT GATE settings.
-
----
-## Contributions
-
-- [eamuse](https://github.com/eamuse) - 20260602 ([#93](https://github.com/22vv0/asphyxia_plugins/pull/93))
+- `Unlock Events page`: Added song unlock toggles for songs from BEMANI Summer Festival 2026
+- `Profile Customization`: Added Valkyrie Generator Vol.19 items to customization list
+- `Profile Customization`: Removed selectable item ID limits for ∇ versions older than 20260303.
+- `Scores Page`: Removed obsolete omnimix songdata search
 
 ---
 ## Extra notes

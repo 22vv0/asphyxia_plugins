@@ -385,7 +385,7 @@ export async function viiMigrate(refid, newName) {
 				$set: {
 					score: rec.score,
 					exscore: rec.exscore,
-					volforce: computeForce(diffLevel, rec.score, nblClearLamp[rec.clear], rec.grade),
+					volforce: computeForce(6, diffLevel, rec.score, nblClearLamp[rec.clear], rec.grade),
 					clear: nblClearLamp[rec.clear],
 					grade: rec.grade,
 					buttonRate: rec.buttonRate,

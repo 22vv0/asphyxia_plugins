@@ -207,7 +207,7 @@ export const common: EPR = async (info, data, send) => {
         }
         apigene = APIGENE7;
         EXTENDS7.filter(ex => checkVerStart(version, ex.version, ex.start, date)).forEach(val => extend.push(Object.assign({}, val)));
-        songNum = 2400
+        songNum = 2500
         break;
       }
     }
@@ -602,25 +602,23 @@ export const common: EPR = async (info, data, send) => {
       let valgene_info = []
       let valgene_items = []
 
-      valgene_info = valgene.info.filter(val => version >= val.version).map(val => ({
+      valgene_info = valgene.info.filter(val => checkVerStart(version, val.version, val.start ?? 0, date)).map(val => ({
         valgene_name: K.ITEM('str', val.valgene_name),
         valgene_name_english: K.ITEM('str', val.valgene_name_english),
         valgene_id: K.ITEM('s32', val.valgene_id)
       }))
 
       valgene.catalog.forEach((val) => {
-        if(version >= valgene.info.find(v => v.valgene_id === val.volume).version) {
-          val.items.forEach((itemVal) => {
-            itemVal.item_ids.forEach((item_id) => {
-              valgene_items.push({
-                valgene_id: K.ITEM('s32', val.volume),
-                rarity: K.ITEM('s32', valgene.rarity[itemVal.type.toString()]),
-                item_type: K.ITEM('s32', itemVal.type),
-                item_id: K.ITEM('s32', item_id)
-              })
+        val.items.forEach((itemVal) => {
+          itemVal.item_ids.forEach((item_id) => {
+            valgene_items.push({
+              valgene_id: K.ITEM('s32', val.volume),
+              rarity: K.ITEM('s32', valgene.rarity[itemVal.type.toString()]),
+              item_type: K.ITEM('s32', itemVal.type),
+              item_id: K.ITEM('s32', item_id)
             })
           })
-        }
+        })
       })
 
       let apigeneInfo = []

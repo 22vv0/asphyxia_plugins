@@ -621,10 +621,8 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
           bufOffset += 4
           let md5_hash = ifsBuffer.toString('hex', bufOffset, bufOffset + 16)
           bufOffset += 16
-          let md5Matched = false
           for(const texData of textureslist[listIter].data) {
             if(md5_hash === texData['md5']) {
-              md5Matched = true
               for(let texIter = 0; texIter < texData['textures'].length; texIter++) {
                 let tdFileName = texData['textures'][texIter][0]
                 let tdOffset = parseInt(texData['textures'][texIter][1].toString())
@@ -709,9 +707,6 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
                 }
               }
             }
-          }
-          if(!md5Matched) {
-            logError('MD5 mismatch - ' + textureslist[listIter].file)
           }
         } else {
           logError('IFS file "' + textureslist[listIter].file + '" unsupported/invalid.')

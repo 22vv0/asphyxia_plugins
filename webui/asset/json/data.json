@@ -179,6 +179,46 @@
         {
             "value": 48,
             "name": "BEMANI PRO LEAGUE -SEASON 5-"
+        },
+        {
+            "value": 49,
+            "name": "VIVID MODEL TYPE TSUMABUKI Bros."
+        },
+        {
+            "value": 50,
+            "name": "VIVID MODEL TYPE KANADE"
+        },
+        {
+            "value": 51,
+            "name": "VIVID MODEL TYPE TSUBAKI"
+        },
+        {
+            "value": 52,
+            "name": "VIVID MODEL TYPE Ld.GANGARA"
+        },
+        {
+            "value": 53,
+            "name": "VIVID MODEL TYPE LOIRE"
+        },
+        {
+            "value": 54,
+            "name": "VIVID MODEL TYPE Prof.SHION"
+        },
+        {
+            "value": 55,
+            "name": "VIVID MODEL TYPE HAELEQUIN"
+        },
+        {
+            "value": 56,
+            "name": "VIVID MODEL TYPE REN"
+        },
+        {
+            "value": 57,
+            "name": "VIVID MODEL TYPE KISA"
+        },
+        {
+            "value": 58,
+            "name": "VIVID MODEL TYPE NOISY.A"
         }
     ],
     "subbg": [
@@ -4415,6 +4455,56 @@
             "value": 861,
             "type": "video",
             "name": "架空と本当 05"
+        },
+        {
+            "value": 862,
+            "type": "normal",
+            "name": "ИEXTAGE"
+        },
+        {
+            "value": 863,
+            "type": "normal",
+            "name": "まみむめ🍄まるっと🍄まっしゅるーむ🍄🍄"
+        },
+        {
+            "value": 864,
+            "type": "normal",
+            "name": "爆烈歓迎♪エクストリーム飲茶旋風脚ッ!!"
+        },
+        {
+            "value": 865,
+            "type": "normal",
+            "name": "PIZZATIME"
+        },
+        {
+            "value": 866,
+            "type": "normal",
+            "name": "Rapsodia d'amore"
+        },
+        {
+            "value": 867,
+            "type": "normal",
+            "name": "Profession"
+        },
+        {
+            "value": 868,
+            "type": "normal",
+            "name": "HAELEQUIN"
+        },
+        {
+            "value": 869,
+            "type": "normal",
+            "name": "#Evil_Signs_of_Bloodlines"
+        },
+        {
+            "value": 870,
+            "type": "normal",
+            "name": "MiRÀi"
+        },
+        {
+            "value": 871,
+            "type": "normal",
+            "name": "XELENOPHOEBEA"
         }
     ],
     "bgm": [
@@ -4825,6 +4915,46 @@
         {
             "value": 101,
             "name": "No→to"
+        },
+        {
+            "value": 102,
+            "name": "GEMINI LA2ER"
+        },
+        {
+            "value": 103,
+            "name": "ヤサイマシ☆ニンニクアブラオオメ"
+        },
+        {
+            "value": 104,
+            "name": "Shanghai Wu Long ～上海舞龍～"
+        },
+        {
+            "value": 105,
+            "name": "不思議玩具ガンガラディンドン"
+        },
+        {
+            "value": 106,
+            "name": "GEOMETRIA"
+        },
+        {
+            "value": 107,
+            "name": "Cloud 9"
+        },
+        {
+            "value": 108,
+            "name": "HAELE III ~Angel Worlds~"
+        },
+        {
+            "value": 109,
+            "name": "業焔繚乱"
+        },
+        {
+            "value": 110,
+            "name": "スピーカーガール！"
+        },
+        {
+            "value": 111,
+            "name": "Royal Judgement"
         }
     ],
     "stamp": [

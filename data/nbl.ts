@@ -663,6 +663,12 @@ export const EVENT_ITEMS7 = {
   "bpls5tripletribe3_1": ['2378'],
   "bpls5tripletribe3_2": ['2380'],
   "bpls5tripletribe3_3": ['2382'],
+  "2026noryosai_1": ['2401'],
+  "2026noryosai_2": ['2402'],
+  "2026noryosai_3": ['2403'],
+  "2026noryosai_4": ['2398'],
+  "2026noryosai_5": ['2399'],
+  "2026noryosai_6": ['2400']
 }
 
 // rule: 0 score 1 point 2 vote
@@ -704,8 +710,16 @@ export const VALGENE7 = {
       valgene_name: "ヴァルキリージェネレーター　第18弾",
       valgene_name_english: "Valkyrie Generator Vol. 18",
       valgene_id: 19,
-      version: 20210303
+      version: 20260303,
+      start: 20260305
     },
+    {
+      valgene_name: "ヴァルキリージェネレーター　第19弾",
+      valgene_name_english: "Valkyrie Generator Vol. 19",
+      valgene_id: 20,
+      version: 20260615,
+      start: 20260618
+    }
   ],
   rarity: {
     "11": 5,
@@ -736,6 +750,27 @@ export const VALGENE7 = {
         }
       ]
     },
+    {
+      volume: 20,
+      items: [
+        {
+          type: 11,
+          item_ids: [184, 185, 186, 187, 188, 189, 190, 191, 192, 193]
+        },
+        {
+          type: 18,
+          item_ids: [862, 863, 864, 865, 866, 867, 868, 869, 870, 871]
+        },
+        {
+          type: 19,
+          item_ids: [102, 103, 104, 105, 106, 107, 108, 109, 110, 111]
+        },
+        {
+          type: 20,
+          item_ids: [49, 50, 51, 52, 53, 54, 55, 56, 57, 58]
+        }
+      ]
+    }
   ]
 }
 
@@ -1275,11 +1310,11 @@ export const COURSES7 = [
 ]
 
 export const INFORMATION7 = [
-  { id: 46, version: 20260203, start: 20260205, str: '[img:info/250205_info_hatsunemiku.png:]'},
   { id: 47, version: 20260217, start: 20260219, str: '[img:info/260219_info_cross_resonance.png:]'},
   { id: 48, version: 20260324, start: 20260326, str: '[img:info/260326_info_generator.png:]'},
   { id: 49, version: 20260324, start: 20260326, str: '[img:info/260326_info_tripletribe.png:]'},
-  { id: 50, version: 20260421, start: 20260423, str: '[img:info/260423_info_shiranui.png:]'}
+  { id: 50, version: 20260421, start: 20260423, str: '[img:info/260423_info_shiranui.png:]'},
+  { id: 51, version: 20260615, start: 20260616, str: '[img:info/260616_info_noryosai.png:]'}
 ] 
 
 export const EXTENDS7 = [

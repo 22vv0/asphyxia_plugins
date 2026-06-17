@@ -1217,6 +1217,37 @@
                 "Song 2: '[mid:2380]'",
                 "Song 3: '[mid:2382]'"
             ]
+        },
+        {
+            "id": "2026noryosai",
+            "type": "cross_online",
+            "enabled": true,
+            "name": "BEMANI Summer Festival 2026",
+            "version": [
+                20260615,
+                20260615,
+                20260615,
+                20260615,
+                20260615,
+                20260615
+            ],
+            "start": [
+                20260618,
+                20260618,
+                20260618,
+                20260618,
+                20260618,
+                20260618
+            ],
+            "desc": "Crossover song unlock event between 6 BEMANI games + Polaris Chord where you would earn KFP, MFP and TFP points which can be used to unlock songs through the participating games.<br>However, since it's difficult to replicate such crossover event in Asphyxia, you can just toggle the corresponding SOUND VOLTEX songs' option to automatically unlock them on your next login.",
+            "info": [
+                "Song 1: '[mid:2401]'",
+                "Song 2: '[mid:2402]'",
+                "Song 3: '[mid:2403]'",
+                "Song 4: '[mid:2398]'",
+                "Song 5: '[mid:2399]'",
+                "Song 6: '[mid:2400]'"
+            ]
         }
     ],
     "flags": [
