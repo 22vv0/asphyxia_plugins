@@ -398,6 +398,7 @@ export const SONGS_OVERRIDE_WORLD = [
 ]
 
 export const EVENTS_GUEST_WORLD = [
+	{ id: 97, no: 0, cond: 0, rwrd: 0, type: 9999 },
 	{ id: 1, no: 0, cond: 0, rwrd: 14, type: 101 },
 	{ id: 2, no: 0, cond: 0, rwrd: 15, type: 101 }
 ]
@@ -405,6 +406,7 @@ export const EVENTS_GUEST_WORLD = [
 export const EVENTS_WORLD = [
 	{ id: 89, no: 0, cond: 0, rwrd: 0, type: 9999 },
 	{ id: 96, no: 0, cond: 0, rwrd: 0, type: 9999 },
+	{ id: 97, no: 0, cond: 0, rwrd: 0, type: 9999 },
 	{ id: 101, no: 0, cond: 0, rwrd: 0, type: 9999 },
 
 	{ id: 1, no: 1, cond: 1, rwrd: 38667, type: 70 },

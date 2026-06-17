@@ -3,7 +3,7 @@ import { usergamedata } from "./handlers/usergamedata";
 import { usergamedata_recv } from "./handlers/usergamedata_recv";
 import { usergamedata_send } from "./handlers/usergamedata_send";
 import { musicdataload, playerdatanew, playerdatasave, playerdataload, 
-          rivaldataload, ghostdataload, taboowordcheck, minidump
+          rivaldataload, ghostdataload, mergeddataload, taboowordcheck, minidump
 } from "./handlers/ddrworld";
 import { CommonOffset, OptionOffset, Profile } from "./models/profile";
 import { ProfileWorld, CustomizeWorld, LeagueWorld, LeagueResultWorld } from "./models/ddrworld";
@@ -26,18 +26,9 @@ export function register() {
     default: true,
     type: "boolean"
   });
-  R.Config("mdb_limited", {
-    name: "musicdb.xml for musicdata_load",
-    desc: "musicdb.xml file to use for importing unlock and difficulty level info. Put this xml file in the 'data' directory of the plugin. (If not using modified musicdb, I advice using the musicdb file from DDR A3 2024040200.)",
-    type: "string",
-    default: ""
-  });
-  R.Config("mdb_title", {
-    name: "musicdb.xml for WebUI",
-    desc: "musicdb.xml file to retrieve song titles from, for use in WebUI. Put this xml file in the 'data' directory of the plugin, or keep this blank if you want to use the same file as above. (I advice using the latest DDR WORLD musicdb.)",
-    type: "string",
-    default: ""
-  });
+
+  R.DataFile('./webui/uploads/mdb_limited.xml', {name: 'musicdb.xml for musicdata_load', desc: 'musicdb.xml file to use for importing unlock and difficulty level info. (If not using modified musicdb, I advice using the musicdb file from DDR A3 2024040200.)', accept: 'text/xml, .xml'});
+  R.DataFile('./webui/uploads/mdb_title.xml', {name: 'musicdb.xml for WebUI', desc: 'musicdb.xml file to retrieve song titles from, for use in WebUI. Keep this blank if you want to use the same file as above. (I advice using the latest DDR WORLD musicdb.)', accept: 'text/xml, .xml'});
 
   const RoutePlayerData = (method: string, handler: EPR | boolean) => {
     R.Route(`playerdata.${method}`, handler);
@@ -70,6 +61,7 @@ export function register() {
   RoutePlayData('playerdata_save', playerdatasave);
   RoutePlayData('rivaldata_load', rivaldataload);
   RoutePlayData('ghostdata_load', ghostdataload);
+  RoutePlayData('mergeddata_load', mergeddataload);
   RouteSystem("convcardnumber", convcardnumber);
   RouteSystem("minidump", minidump);
   RouteEventLog("write", eventLog);
@@ -236,38 +228,36 @@ export function register() {
     let mdbLimName = U.GetConfig('mdb_limited')
     let mdbTitleName = U.GetConfig('mdb_title')
 
-    if(mdbLimName !== '') {
-      if(IO.Exists('data/' + mdbLimName)) { 
-        let mdbLim = U.parseXML(U.DecodeString(await IO.ReadFile('data/' + mdbLimName), "utf8"), false)
-        
-        mdbLim['mdb']['music'].forEach(music => {
-          if(SONGS_WORLD.concat(SONGS_OVERRIDE_WORLD).findIndex(so => so.mcode === $(music).number('mcode')) < 0) {
-            mdbData.push({
-              mcode: $(music).number('mcode'),
-              title: $(music).str('title'),
-              diffLv: $(music).numbers('diffLv'),
-              series: $(music).number('series')
-            })
-          }
-        })
-        let mdbTitle = (mdbTitleName === mdbLimName || mdbTitleName === '') ? mdbLim : U.parseXML(U.DecodeString(await IO.ReadFile('data/' + mdbTitleName), "utf8"), false)
-        SONGS_WORLD.concat(SONGS_OVERRIDE_WORLD).forEach(sw => {
-          let musicInfo = mdbTitle['mdb']['music'].find(m => $(m).number('mcode') === sw.mcode)
-          let songTitle = 'ID ' + sw.mcode
-          let series = 0
-          if(musicInfo) {
-            songTitle = $(musicInfo).str('title')
-            series = $(musicInfo).number('series')
-          }
+    if(IO.Exists('webui/uploads/mdb_limited.xml')) {
+      let mdbLim = U.parseXML(U.DecodeString(await IO.ReadFile('webui/uploads/mdb_limited.xml'), "utf8"), false)
+      
+      mdbLim['mdb']['music'].forEach(music => {
+        if(SONGS_WORLD.concat(SONGS_OVERRIDE_WORLD).findIndex(so => so.mcode === $(music).number('mcode')) < 0) {
           mdbData.push({
-            mcode: sw.mcode,
-            title: songTitle,
-            diffLv: sw.diffLv,
-            series: series
+            mcode: $(music).number('mcode'),
+            title: $(music).str('title'),
+            diffLv: $(music).numbers('diffLv'),
+            series: $(music).number('series')
           })
+        }
+      })
+      let mdbTitle = (mdbTitleName === mdbLimName || mdbTitleName === '') ? mdbLim : U.parseXML(U.DecodeString(await IO.ReadFile('webui/uploads/mdb_title.xml'), "utf8"), false)
+      SONGS_WORLD.concat(SONGS_OVERRIDE_WORLD).forEach(sw => {
+        let musicInfo = mdbTitle['mdb']['music'].find(m => $(m).number('mcode') === sw.mcode)
+        let songTitle = 'ID ' + sw.mcode
+        let series = 0
+        if(musicInfo) {
+          songTitle = $(musicInfo).str('title')
+          series = $(musicInfo).number('series')
+        }
+        mdbData.push({
+          mcode: sw.mcode,
+          title: songTitle,
+          diffLv: sw.diffLv,
+          series: series
         })
-      } 
-    }
+      })
+    } 
     send.json({mdb: mdbData})
   })  
 }

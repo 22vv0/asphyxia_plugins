@@ -584,41 +584,12 @@ export const playerdataload: EPR = async (info, data, send) => {
 
     let eventFin = []
     let eventData = await DB.Find<EventWorld>(refid, { collection: "event3"});
-    for(const event of EVENTS_WORLD) {
-      let eData = eventData.find(e => e.eventId === event.id)
-      let condmet = true
-      let compTime = 0
-      let saveData = 0
-      if(event.dep) {
-        event.dep.forEach(dep => {
-          if(eventData.find(e => e.eventId === dep) === undefined) condmet = false
-        })
-      } 
-      if(event.type === 201) {
-        if(eData && eData.compTime !== 0) condmet = false
-        compTime = 0
-        saveData = 1
-      }
-      else if([70, 71, 72, 73, 74, 81, 82, 83, 84].includes(event.type)) compTime = (eData && eData.compTime !== 0) ? eData.compTime : 0
-      else if([25, 90].includes(event.type)) {
-        compTime = (!eData || eData.compTime !== 0) ? 0 : eData.compTime
-        // extra savior fix (071925)
-        if(event.type === 25 && event.no !== 0 && eData && (eData.compTime === 1 && eData.saveData === 1)) {
-          await DB.Upsert<EventWorld>(refid, {collection: "event3", eventId: eData.eventId}, {$set: {saveData: event.cond}})
-          saveData = event.cond
-        }
-      }
-      else if([17, 43].includes(event.type)) {
-        if(!eData) compTime = 1
-        saveData = 1
-      }
-      
-      // id,type,no,condition,reward,comptime,savedata
-      if(condmet) {
-        eventFin.push({
-          event_str: K.ITEM('str', event.id + ',' + event.type + ',' + event.no + ',' + event.cond + ',' + event.rwrd + ',' + compTime + ',' + ((eData) ? eData.saveData : saveData))
-        })  
-      }
+    let tempEvent = await loadEventData(eventData, refid)
+    for(const e of tempEvent) {
+      eventFin.push({
+        // id,type,no,condition,reward,comptime,savedata
+        event_str: K.ITEM('str', e.id + ',' + e.type + ',' + e.no + ',' + e.cond + ',' + e.rwrd + ',' + e.compTime + ',' + e.saveData)
+      })
     }
 
     let curLeague = LEAGUE_WORLD.find(lg => lg.id === LEAGUE_SEASON)
@@ -1060,6 +1031,57 @@ export const ghostdataload: EPR = async (info, data, send) => {
   return send.object({ result: K.ITEM("s32", 0) });
 };
 
+export const mergeddataload: EPR = async (info, data, send) => {
+  let mergedData = {
+    leagueClass: 0,
+    advanceBorder: false,
+    subscribed: false,
+    event: []
+  }
+  let players = $(data).elements('data.player_list')
+  for(const player of players) {
+    let curLeague = LEAGUE_WORLD.find(lg => lg.id === LEAGUE_SEASON)
+    let playerProf = await DB.FindOne<ProfileWorld>(null, {collection: 'profile3', ddrCode: player.number('ddrcode')})
+    let playerLeague = await DB.FindOne<LeagueWorld>(playerProf['__refid'], {collection: 'league3'})
+    let tempEvent = await DB.Find<EventWorld>(playerProf['__refid'], {collection: "event3"});
+    let playerEvent = await loadEventData(tempEvent, playerProf['__refid'])
+    if(playerLeague) {
+      let border = curLeague.advanceBorder[playerLeague.class > 0 ? playerLeague.class - 1 : 0]
+      if(playerLeague.class > mergedData.leagueClass) mergedData.leagueClass = playerLeague.class
+      if(playerLeague.score >= border) mergedData.advanceBorder = true
+    }
+    if(playerProf.subscribed) mergedData.subscribed = true
+
+    for(const e of playerEvent) {
+      let eInd = mergedData.event.findIndex(mde => mde.id === e.id)
+      if(eInd < 0) {
+        mergedData.event.push(e)
+      } else {
+        if(e.saveData > mergedData.event[eInd].saveData) {
+          mergedData.event[eInd].compTime = e.compTime
+          mergedData.event[eInd].saveData = e.saveData
+        }
+      }
+    }
+  }
+
+  return send.object({
+    result: K.ITEM('s32', 0),
+    league_class: K.ITEM('s32', mergedData.leagueClass),
+    is_advance_border_exceeded: K.ITEM('bool', mergedData.advanceBorder),
+    is_exists_subscribed_user: K.ITEM('bool', mergedData.subscribed),
+    event: mergedData.event.map(e => ({
+      eventid: K.ITEM('s32', e.id),
+      eventtype: K.ITEM('s32', e.type),
+      eventno: K.ITEM('s32', e.no),
+      condition: K.ITEM('s32', e.cond),
+      reward: K.ITEM('s32', e.rwrd),
+      comptime: K.ITEM('u64', BigInt(e.compTime)),
+      savedata: K.ITEM('u64', BigInt(e.saveData))
+    }))
+  });
+};
+
 export const taboowordcheck: EPR = async (info, data, send) => {
   // Automatically accept word
   return send.object({
@@ -1077,4 +1099,50 @@ function getDate(): number {
   let tempDate = time.getDate();
   const currentTime = parseInt((time.getTime()/100000) as unknown as string)*100;
   return currentTime
+}
+
+const loadEventData = async (eventData, refid) => {
+  let result = []
+  for(const event of EVENTS_WORLD) {
+    let eData = eventData.find(e => e.eventId === event.id)
+    let condmet = true
+    let compTime = 0
+    let saveData = 0
+    if(event.dep) {
+      event.dep.forEach(dep => {
+        if(eventData.find(e => e.eventId === dep) === undefined) condmet = false
+      })
+    } 
+    if(event.type === 201) {
+      if(eData && eData.compTime !== 0) condmet = false
+      compTime = 0
+      saveData = 1
+    }
+    else if([70, 71, 72, 73, 74, 81, 82, 83, 84].includes(event.type)) compTime = (eData && eData.compTime !== 0) ? eData.compTime : 0
+    else if([25, 90].includes(event.type)) {
+      compTime = (!eData || eData.compTime !== 0) ? 0 : eData.compTime
+      // extra savior fix (071925)
+      if(event.type === 25 && event.no !== 0 && eData && (eData.compTime === 1 && eData.saveData === 1)) {
+        await DB.Upsert<EventWorld>(refid, {collection: "event3", eventId: eData.eventId}, {$set: {saveData: event.cond}})
+        saveData = event.cond
+      }
+    }
+    else if([17, 43].includes(event.type)) {
+      if(!eData) compTime = 1
+      saveData = 1
+    }
+    
+    if(condmet) {
+      result.push({
+        id: event.id,
+        type: event.type,
+        no: event.no,
+        cond: event.cond,
+        rwrd: event.rwrd,
+        compTime: compTime,
+        saveData: (eData) ? eData.saveData : saveData
+      })  
+    }
+  }
+  return result
 }
