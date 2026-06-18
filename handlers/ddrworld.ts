@@ -914,36 +914,33 @@ export const playerdataload: EPR = async (info, data, send) => {
 export const musicdataload: EPR = async (info, data, send) => {
   // I personally use the last A3 db for this, will check for missing songs
   let musicList = []
-  let mdbLimName = U.GetConfig('mdb_limited')
-  if(mdbLimName !== '') {
-    if(IO.Exists('data/' + mdbLimName)) { 
-      let mdb = U.parseXML(U.DecodeString(await IO.ReadFile('data/' + mdbLimName), "shift_jis"), false)
-      for(const music of mdb['mdb']['music']) {
-        let difficultyArr = $(music).numbers('diffLv')
-        let limited = ($(music).number('limited')) ? $(music).number('limited') : 0
-        let limitedCha = ($(music).number('limited_cha')) ? $(music).number('limited_cha') : 0
-        let limitedAry = ($(music).numbers('limited_ary')) ? $(music).numbers('limited_ary') : []
+  if(IO.Exists('webui/uploads/mdb_limited.xml')) { 
+    let mdb = U.parseXML(U.DecodeString(await IO.ReadFile('webui/uploads/mdb_limited.xml'), "shift_jis"), false)
+    for(const music of mdb['mdb']['music']) {
+      let difficultyArr = $(music).numbers('diffLv')
+      let limited = ($(music).number('limited')) ? $(music).number('limited') : 0
+      let limitedCha = ($(music).number('limited_cha')) ? $(music).number('limited_cha') : 0
+      let limitedAry = ($(music).numbers('limited_ary')) ? $(music).numbers('limited_ary') : []
 
-        if($(music).number('series') === 20) {
-          limited = 0
-          limitedCha = 0
-        }
+      if($(music).number('series') === 20) {
+        limited = 0
+        limitedCha = 0
+      }
 
-        let overrideIndex = SONGS_OVERRIDE_WORLD.findIndex(s => s.mcode === $(music).number('mcode'))
-        if(overrideIndex > -1) {
-          limitedAry = (SONGS_OVERRIDE_WORLD[overrideIndex]['limited_ary'] !== [] ? SONGS_OVERRIDE_WORLD[overrideIndex]['limited_ary'] : limitedAry)
-          difficultyArr = SONGS_OVERRIDE_WORLD[overrideIndex]['diffLv']
-        }
+      let overrideIndex = SONGS_OVERRIDE_WORLD.findIndex(s => s.mcode === $(music).number('mcode'))
+      if(overrideIndex > -1) {
+        limitedAry = (SONGS_OVERRIDE_WORLD[overrideIndex]['limited_ary'] !== [] ? SONGS_OVERRIDE_WORLD[overrideIndex]['limited_ary'] : limitedAry)
+        difficultyArr = SONGS_OVERRIDE_WORLD[overrideIndex]['diffLv']
+      }
+      
+      let inLim = limited
+      for(const [index, diff] of difficultyArr.entries()) {
+        limited = ((index % 5 === 4) && limitedCha) ? limitedCha : inLim
+        limited = (limitedAry.length > 0) ? limitedAry[index] : limited
         
-        let inLim = limited
-        for(const [index, diff] of difficultyArr.entries()) {
-          limited = ((index % 5 === 4) && limitedCha) ? limitedCha : inLim
-          limited = (limitedAry.length > 0) ? limitedAry[index] : limited
-          
-          musicList.push({
-            music_str: K.ITEM('str', $(music).number('mcode') + ',' + ((index > 4) ? '1,' : '0,') + (index % 5) + ',' + (U.GetConfig('song_unlock') && limited != -1 ? '0' : limited) + ',' + diff)
-          })
-        }
+        musicList.push({
+          music_str: K.ITEM('str', $(music).number('mcode') + ',' + ((index > 4) ? '1,' : '0,') + (index % 5) + ',' + (U.GetConfig('song_unlock') && limited != -1 ? '0' : limited) + ',' + diff)
+        })
       }
     }
   }
