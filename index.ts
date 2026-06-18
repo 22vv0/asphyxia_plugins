@@ -225,8 +225,6 @@ export function register() {
 
   R.WebUIEvent("getMDB", async (data: {}, send: WebUISend) => {
     let mdbData = []
-    let mdbLimName = U.GetConfig('mdb_limited')
-    let mdbTitleName = U.GetConfig('mdb_title')
 
     if(IO.Exists('webui/uploads/mdb_limited.xml')) {
       let mdbLim = U.parseXML(U.DecodeString(await IO.ReadFile('webui/uploads/mdb_limited.xml'), "utf8"), false)
@@ -241,7 +239,7 @@ export function register() {
           })
         }
       })
-      let mdbTitle = (mdbTitleName === mdbLimName || mdbTitleName === '') ? mdbLim : U.parseXML(U.DecodeString(await IO.ReadFile('webui/uploads/mdb_title.xml'), "utf8"), false)
+      let mdbTitle = (!IO.Exists('webui/uploads/mdb_title.xml')) ? mdbLim : U.parseXML(U.DecodeString(await IO.ReadFile('webui/uploads/mdb_title.xml'), "utf8"), false)
       SONGS_WORLD.concat(SONGS_OVERRIDE_WORLD).forEach(sw => {
         let musicInfo = mdbTitle['mdb']['music'].find(m => $(m).number('mcode') === sw.mcode)
         let songTitle = 'ID ' + sw.mcode
