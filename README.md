@@ -16,7 +16,7 @@ Changelog
 ### WORLD
 
 - Enabled In-Store Battle Mode (bio2 only)
-- Enabled display `Privilege of early play` label on login
+- Enabled display of `Privilege of early play` label on login
 
 ### Misc
 
