@@ -21,6 +21,7 @@ Changelog
 ### Misc
 
 - musicdb handling through Data Upload in the plugin overview page
+- Added mergeddata_load function for use by In-Store battle mode
 
 musicdb.xml Usage Guide
 ===========
