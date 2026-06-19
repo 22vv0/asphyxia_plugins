@@ -16,10 +16,11 @@ Changelog
 ### WORLD
 
 - Enabled In-Store Battle Mode (bio2 only)
+- Enabled display `Privilege of early play` label on login
 
 ### Misc
 
-- Update your musicdb through Data Upload in the plugin overview page
+- musicdb handling through Data Upload in the plugin overview page
 
 musicdb.xml Usage Guide
 ===========

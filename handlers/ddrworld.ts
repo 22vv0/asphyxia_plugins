@@ -823,7 +823,7 @@ export const playerdataload: EPR = async (info, data, send) => {
         weight: K.ITEM("s32", profile.weight),
         today_cal: K.ITEM("u64", BigInt(profile.todayCal)),
         is_disp_weight: K.ITEM("bool", profile.isDispWeight),
-        pre_playable_num: K.ITEM("s32", profile.prePlayableNum),
+        pre_playable_num: K.ITEM("s32", 1),
         is_subscribed: K.ITEM("bool", profile.subscribed),
         popup_subscribe_enable: K.ITEM("bool", profile.subscribePopupEnable),
         popup_subscribe_disable: K.ITEM("bool", profile.subscribePopupDisable),
