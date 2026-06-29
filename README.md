@@ -1,6 +1,6 @@
 SOUND VOLTEX
 ===
-**Plugin Version:** fork-7.1.6
+**Plugin Version:** fork-7.1.6a
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
 **Supported game versions:**
@@ -23,22 +23,7 @@ SOUND VOLTEX
 
 ### ∇
 
-- Added song unlock data: BEMANI Summer Festival 2026
-- Added Valkyrie Generator Vol.19
-
-### Misc
-
-- Added start date checks for Valkyrie Generator sets
-- Removed unnecessary `MD5 mismatch` ~~error~~ warning logs to avoid confusion
-- Increased songNum from `2400` to `2500`
-- Updated ∇ info popup data
-
-### WebUI
-
-- `Unlock Events page`: Added song unlock toggles for songs from BEMANI Summer Festival 2026
-- `Profile Customization`: Added Valkyrie Generator Vol.19 items to customization list
-- `Profile Customization`: Removed selectable item ID limits for ∇ versions older than 20260303.
-- `Scores Page`: Removed obsolete omnimix songdata search
+- Added newest batch of Weekly Stamp Sheets
 
 ---
 ## Extra notes
