@@ -1,6 +1,6 @@
 SOUND VOLTEX
 ===
-**Plugin Version:** fork-7.1.6a
+**Plugin Version:** fork-7.1.6b
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
 **Supported game versions:**
@@ -8,7 +8,7 @@ SOUND VOLTEX
 - infinite infection (2014102200)
 - GRAVITY WARS (2016121200)
 - EXCEED GEAR (2025120900)
-- ∇ (20260615xx)
+- ∇ (20260630xx)
 
 **Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d) or above
 
@@ -23,7 +23,12 @@ SOUND VOLTEX
 
 ### ∇
 
-- Added newest batch of Weekly Stamp Sheets
+- Added PREMIUM GENERATOR (Quiz Magic Academy) data
+
+### WebUI
+
+- Updated customization items list
+- Added missing WebUI data for VALKYRIE GENERATOR Vol. 19
 
 ---
 ## Extra notes
@@ -44,7 +49,7 @@ SOUND VOLTEX
 - Charts announced to have EX SCORES reset will be reset here as well.
 
 #### RE: Standard Start issue on version 20250422+
-This is not a plugin issue but I feel it is necessary to share. I did notice this while testing VARIANT GATE but I forgot to mention it so I apologize. As mentioned in issue [#34](https://github.com/22vv0/asphyxia_plugins/issues/34), if you're having trouble carding in after a Standard Start credit, what fixed it for me was adding these lines to your ea3-config.xml file, in ea3->pos->coin. I personally put it just under _kfc\_game\_s\_standard_:
+This is not a plugin issue but I feel it is necessary to share. I did notice this while testing VARIANT GATE but I forgot to mention it so I apologize. As mentioned in issue [#34](https://github.com/22vv0/asphyxia_plugins/issues/34), if you're having trouble carding in after a Standard Start credit, what fixed it for me was adding these lines to your ea3-config.xml file, in `ea3/pos/coin`. I personally put it just under _kfc\_game\_s\_standard_:
 ```xml
       <kfc_game_s_standard_plus>
         <type __type="str">consume</type>
