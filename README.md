@@ -1,6 +1,6 @@
 SOUND VOLTEX
 ===
-**Plugin Version:** fork-7.1.6b
+**Plugin Version:** fork-7.1.7
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
 **Supported game versions:**
@@ -8,7 +8,7 @@ SOUND VOLTEX
 - infinite infection (2014102200)
 - GRAVITY WARS (2016121200)
 - EXCEED GEAR (2025120900)
-- ∇ (20260630xx)
+- ∇ (20260714xx)
 
 **Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d) or above
 
@@ -23,12 +23,24 @@ SOUND VOLTEX
 
 ### ∇
 
-- Added PREMIUM GENERATOR (Quiz Magic Academy) data
+- Updated current ARENA rank season: Season 2, ARENA BATTLE, point scoring (2026/07/16-2026/08/06)
+- Added ARENA STATION set 2 data
+- Added login gift: `Grim Aloe` appeal card
+- Added event data: `Quiz Magic Academy Stamp Sheet`
+- Added event data: `QMA Quiz Popup`
+- Added questions list for `QMA Quiz Popup`
+
+### Misc
+
+- Added missing banner complete reward for `PREMIUM GENERATOR (QMA)` set
+- Added new startup flag: crew outfit censors - `CHARACTER_KIND_DISABLE`
+- Removed unnecessary quotes from some obj keys in `common.ts`
+- Added PE identifiers for `getDateCodeInit()`
 
 ### WebUI
 
-- Updated customization items list
-- Added missing WebUI data for VALKYRIE GENERATOR Vol. 19
+- `Startup flags`: Switch default toggle for new startup flags from `true` to `false`
+- `Profile customization`: Updated max selectable item ids for profile version
 
 ---
 ## Extra notes

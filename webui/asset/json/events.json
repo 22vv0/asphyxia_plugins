@@ -1248,6 +1248,26 @@
                 "Song 5: '[mid:2399]'",
                 "Song 6: '[mid:2400]'"
             ]
+        },
+        {
+            "id": "qmastamp",
+            "type": "stamp",
+            "enabled": true,
+            "name": "Quiz Magic Academy Stamp Sheet Event",
+            "version": 20260714,
+            "start": 20260716,
+            "desc": "Stamp event to obtain Grim Aloe-themed appeal board stickers as well as BLC. Turning this on will also enable the Quiz event. Answering the quiz correctly will earn you a bonus stamp.",
+            "info": "Toggle this option to enable/disable this stamp event."
+        },
+        {
+            "id": "qmaapica",
+            "type": "gift_ap",
+            "enabled": true,
+            "name": "QMA Grim Aloe Appeal Card",
+            "version": 20260714,
+            "start": 20260716,
+            "desc": "Grim Aloe appeal card gift for playing Quiz Magic Academy once then SDVX in this exact order. However due to Core limitations and its dependency on QMA you can just use this toggle to unlock this appeal card on your login.",
+            "info": "Toggle this option to enable/disable this gift."
         }
     ],
     "flags": [
@@ -1303,7 +1323,13 @@
             "id": "aprilyukkuri",
             "key": "ゆっくりしていってね！！！ (April Fools 2025)",
             "str": ["YUKKURI_RASIS_CREW_ENABLE", "YUKKURI_RASIS_TITLE_ENABLE"],
-            "explain": "Enables April Fools 2025 Effect: title screen with Yukkuri SOUND VOLTEX characters, and Yukkuri Rasis navigator."
+            "explain": "(EXCEED GEAR ONLY) Enables April Fools 2025 Effect: title screen with Yukkuri SOUND VOLTEX characters, and Yukkuri Rasis navigator."
+        },
+        {
+            "id": "charakinddisable",
+            "key": "Crew outfit censors",
+            "str": "CHARACTER_KIND_DISABLE\t1961",
+            "explain": "(NABLA ONLY) Disables select crew outfits."
         }
     ]
 }

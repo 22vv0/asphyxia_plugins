@@ -7,7 +7,7 @@ import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIE_SONGS, LICENSED_S
 } from '../data/exg';
 import { EVENT7, COURSES7, EXTENDS7, LICENSED_SONGS7, CURRENT_ARENA7, ARENA_STATION_ITEMS7, 
           VALGENE7, APIGENE7, INFORMATION7, UNLOCK_EVENTS7, EGSONGS_LOCKED, MUSIC_OVERRIDE7,
-          GAMEOVER_CHARA7
+          GAMEOVER_CHARA7, QUIZ7
 } from '../data/nbl';
 import {getVersion, checkVerStart, getRandomIntInclusive} from '../utils';
 
@@ -264,9 +264,9 @@ export const common: EPR = async (info, data, send) => {
       let extendTest = JSON.parse(bufTest.toString())
       for(const ex in extendTest) {
         extend.push({
-          'type': extendTest[ex].type,
-          'id': extendTest[ex].id,
-          'params': extendTest[ex].params
+          type: extendTest[ex].type,
+          id: extendTest[ex].id,
+          params: extendTest[ex].params
         })
       }
     }
@@ -470,11 +470,56 @@ export const common: EPR = async (info, data, send) => {
                       stmpData.stprwrd
                     ]
                   })
+
+                  if(eData.id === 'qmastamp') {
+                    for(const quiz of QUIZ7) {
+                      extend.push({
+                        type: 23,
+                        id: quiz.id,
+                        params: [
+                          0, quiz.id, 1, 0, 0,
+                          quiz.text, '', '', '', ''
+                        ]
+                      })
+
+                      for(const [ind, list] of quiz.list.entries()) {
+                        let qParamStr = []
+                        let qListStr = JSON.stringify(list)
+                        let qListEsc = qListStr.replace(/"/g, '\\"')
+                        let sliceLen = 0
+                        let paramStrCnt = 0
+                        if(qListEsc.length > 1000) {
+                          for (let i = 0; i < qListEsc.length; i += 1000) {
+                            if(paramStrCnt === 5) {
+                              paramStrCnt++
+                              console.log("ignoring list. too long - id/ind " + quiz.id + '/' + ind)
+                              break
+                            }
+                            let strAdd = qListEsc.slice(i, i + 1000).replace(/\\"/g, '"')
+                            qParamStr.push(strAdd)
+                            paramStrCnt++
+                          }
+                        } else qParamStr.push(qListEsc.replace(/\\"/g, '"'))
+
+                        while (qParamStr.length < 5) qParamStr.push('')
+
+                        if(paramStrCnt <= 5) extend.push({
+                          type: 23,
+                          id: quiz.id,
+                          params: [
+                            1, quiz.id, 0, 0, 0
+                          ].concat(qParamStr)
+                        })
+                      }
+
+
+                    }
+                  }
                 } else if(checkVerStart(version, stmpData.version, stmpData.start, date)) {
                   extend.push({
-                    'type': 3,
-                    'id': stmpData.stmpid,
-                    'params': [
+                    type: 3,
+                    id: stmpData.stmpid,
+                    params: [
                       5,
                       stmpData.stps, 
                       0, 
@@ -492,9 +537,9 @@ export const common: EPR = async (info, data, send) => {
 
               if(stmpEvntInfo.type === 'select') {
                 extend.push({
-                  'type': 3,
-                  'id': stmpEvntInfo.info.id,
-                  'params': [
+                  type: 3,
+                  id: stmpEvntInfo.info.id,
+                  params: [
                     9,
                     ((stmpEvntInfo.info.textstampval !== undefined) ? stmpEvntInfo.info.textstampval : 0),
                     0,
@@ -511,9 +556,9 @@ export const common: EPR = async (info, data, send) => {
             }
             else if(eData.type === 'completestamp' && eventConfig[eData.id] !== undefined && eventConfig[eData.id].toggle) {
               extend.push({
-                'type': 19,
-                'id': stmpEvntInfo.info.id,
-                'params': [
+                type: 19,
+                id: stmpEvntInfo.info.id,
+                params: [
                   0, 0, 0, 0, 0,
                   JSON.stringify(stmpEvntInfo.info.data),
                   '',
@@ -526,9 +571,9 @@ export const common: EPR = async (info, data, send) => {
             else if(eData.type === 'tama' && eventConfig[eData.id] !== undefined && eventConfig[eData.id].toggle) {
               events.push('TAMAADV_ENABLE')
               extend.push({
-                'type': 20,
-                'id': stmpEvntInfo.info.id,
-                'params': [
+                type: 20,
+                id: stmpEvntInfo.info.id,
+                params: [
                   0, 0, 0, 0, 0,
                   stmpEvntInfo.info.list,
                   '',
@@ -540,9 +585,9 @@ export const common: EPR = async (info, data, send) => {
             }
             else if(eData.type === 'variant' && eventConfig[eData.id] !== undefined && eventConfig[eData.id].toggle) {
               extend.push({
-                'type': 22,
-                'id': stmpEvntInfo.info.id,
-                'params': [
+                type: 22,
+                id: stmpEvntInfo.info.id,
+                params: [
                   0,
                   stmpEvntInfo.info.setid,
                   parseInt(eventConfig[eData.id].settings.minOverTrackRank),

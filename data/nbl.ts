@@ -305,6 +305,23 @@ export const UNLOCK_EVENTS7 = {
       ]
     }
   },
+  qmastamp: {
+    type: 'main',
+    info: {
+      id: 0,
+      stmpHdJ: '[sz:22]SPECIAL STAMP BONUS',
+      stmpFtJ: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 7/16～8/16',
+      stmpHd: '[sz:22]SPECIAL STAMP BONUS',
+      stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 7/16～8/16',
+      data: [
+        {
+          stmpid: 114,
+          stps: 30,
+          stprwrd: '1:r:196 5:b:912 10:r:197 15:b:912 20:r:198 25:b:912 30:r:199 imgbg:bg_stamp_qma boost:quiz:1'
+        }
+      ]
+    }
+  },
   nblweeklystamp: {
     type: 'main',
     info: {
@@ -723,19 +740,20 @@ export const EVENT_ITEMS7 = {
   "2026noryosai_3": ['2403'],
   "2026noryosai_4": ['2398'],
   "2026noryosai_5": ['2399'],
-  "2026noryosai_6": ['2400']
+  "2026noryosai_6": ['2400'],
+  "qmaapica": ['6509']
 }
 
 // rule: 0 score 1 point 2 vote
 // rank_match_target: 0 arena 1 single 2 mega
 export const CURRENT_ARENA7 = {
-  season: 1,
+  season: 2,
   rule: 1,
   rank_match_target: 0,
-  time_start: BigInt(Date.parse('30 Apr 2026 08:00:00 GMT')),
-  time_end: BigInt(Date.parse('30 May 2026 15:59:59 GMT')),
-  shop_start: BigInt(Date.parse('25 Apr 2026 08:00:00 GMT')),
-  shop_end: BigInt(Date.parse('30 May 2026 15:59:59 GMT'))
+  time_start: BigInt(Date.parse('16 Jul 2026 08:00:00 GMT')),
+  time_end: BigInt(Date.parse('6 Aug 2026 15:59:59 GMT')),
+  shop_start: BigInt(Date.parse('16 Jul 2026 08:00:00 GMT')),
+  shop_end: BigInt(Date.parse('6 Aug 2026 15:59:59 GMT'))
 }
 
 // catalog_id, catalog_type, price, item_type, item_id, param 
@@ -756,6 +774,19 @@ export const ARENA_STATION_ITEMS7 = {
       [1, 1, 2000, 0, 770, 8]
     ],
     version: 20260421
+  },
+  'Set 2': {
+    items: [
+      [1, 1, 1250, 11, 8, 1],
+      [1, 1, 1250, 11, 80, 1],
+      [1, 1, 1250, 11, 52, 1],
+      [1, 1, 1250, 11, 93, 1],
+      [1, 1, 3750, 11, 102, 1],
+      [1, 1, 8000, 0, 220, 8],
+      [1, 1, 4000, 0, 683, 8],
+      [1, 1, 2000, 0, 317, 8]
+    ],
+    version: 20260714
   }
 }
 
@@ -1375,11 +1406,11 @@ export const COURSES7 = [
 ]
 
 export const INFORMATION7 = [
-  { id: 47, version: 20260217, start: 20260219, str: '[img:info/260219_info_cross_resonance.png:]'},
   { id: 48, version: 20260324, start: 20260326, str: '[img:info/260326_info_generator.png:]'},
   { id: 49, version: 20260324, start: 20260326, str: '[img:info/260326_info_tripletribe.png:]'},
   { id: 50, version: 20260421, start: 20260423, str: '[img:info/260423_info_shiranui.png:]'},
-  { id: 51, version: 20260615, start: 20260616, str: '[img:info/260616_info_noryosai.png:]'}
+  { id: 51, version: 20260615, start: 20260616, str: '[img:info/260616_info_noryosai.png:]'},
+  { id: 52, version: 20260630, start: 20260702, str: '[img:info/260702_info_generator.png:]'}
 ] 
 
 export const EXTENDS7 = [
@@ -1661,3 +1692,327 @@ export const GAMEOVER_CHARA7 = {
   'chara02/go_kureha', 'chara02/go_tama'],
   m: ['chara03/go_cawoashi', 'chara03/go_iruyoru', 'chara03/go_neno_ver06']
 }
+
+export const QUIZ7 = [
+  {
+    id: 1,
+    text: "[sz:25]クイズに正解するとクイズスタンプボーナスがさらに進みやすくなるぞ!",
+    list: [
+      [
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "キャラクター 「ボルテナイザー・マキシマ」の", wait: 0 }] },
+              { parts: [{ text: "ボルテ学園高等部での担当科目は", wait: 1000 }, { text: "体育である", wait: 0 }] },  
+            ]
+          },
+          body: {
+            type: 'yesno',
+            correct: 0
+          }
+        },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "キャラクター 「ボルテナイザー・マキシマ」の", wait: 0 }] },
+              { parts: [{ text: "ボルテ学園高等部での担当科目は", wait: 1000 }, { text: "英語である", wait: 0 }] },  
+            ]
+          },
+          body: {
+            type: 'yesno',
+            correct: 1
+          }
+        },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "ネメシスクルー『レイシス』のCV担当は", wait: 1000 }] },
+              { parts: [{ text: "石橋桃である。", wait: 0 }] },  
+            ]
+          },
+          body: {
+            type: 'yesno',
+            correct: 0
+          }
+        },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "ネメシスクルー『グレイス』のCV担当は", wait: 1000 }] },
+              { parts: [{ text: "茅野愛衣である。", wait: 0 }] },  
+            ]
+          },
+          body: {
+            type: 'yesno',
+            correct: 0
+          }
+        },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "楽曲プレー中", wait: 0 }] },
+              { parts: [{ text: "エフェクトラインが流れてきた際に操作するのは", wait: 1000 }] },
+              { parts: [{ text: "BTボタンである", wait: 0 }] },
+            ]
+          },
+          body: {
+            type: 'yesno',
+            correct: 0
+          }
+        },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "BEMANI PRO LEAGUE -SEASON5-", wait: 0 }] },
+              { parts: [{ text: "オリジナル楽曲コンテストの最優秀楽曲は", wait: 1000 }] },
+              { parts: [{ text: "「NEMSYS ARENA World Hexathlon」 である。", wait: 0 }] },
+            ]
+          },
+          music: 0,
+          body: {
+            type: 'yesno',
+            correct: 0
+          }
+        },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "BEMANI PRO LEAGUE -SEASON2-", wait: 0 }] },
+              { parts: [{ text: "オリジナル楽曲コンテストの最優秀楽曲は", wait: 1000 }] },
+              { parts: [{ text: "「NEMSYS ARENA World Hexathlon」 である。", wait: 0 }] },
+            ]
+          },
+          music: 0,
+          body: {
+            type: 'yesno',
+            correct: 0
+          }
+        },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "ネメシスクルー 『つまぶき』のCV担当は", wait: 1000 }] },
+              { parts: [{ text: "伊藤節生である。", wait: 0 }] },  
+            ]
+          },
+          music: 0,
+          body: {
+            type: 'yesno',
+            correct: 1
+          }
+        },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "『SOUND VOLTEX ▽』にて", wait: 0 }] },
+              { parts: [{ text: "アピールパーツジェネレーターを利用する際に", wait: 0 }] },
+              { parts: [{ text: "消費するものは", wait: 1000 }, { text: "BLOCKである", wait: 0 }] },  
+            ]
+          },
+          music: 0,
+          body: {
+            type: 'yesno',
+            correct: 0
+          }
+        },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "ゲームモード「PREMIUM TIME」では", wait: 0 }] },
+              { parts: [{ text: "30分間の間、自由に遊ぶ事ができる", wait: 0 }] },
+            ]
+          },
+          music: 0,
+          body: {
+            type: 'yesno',
+            correct: 0
+          }
+        },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "BEMANI PRO LEAGUE -SEASON5-", wait: 0 }] },
+              { parts: [{ text: "オリジナル楽曲コンテストの最優秀楽曲は", wait: 1000 }] },
+              { parts: [{ text: "「SuddeИDeath」 である。", wait: 0 }] },
+            ]
+          },
+          music: 0,
+          body: {
+            type: 'yesno',
+            correct: 0
+          }
+        }
+      ],
+      [
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "『SOUND VOLTEX ▽』において", wait: 0 }] },
+              { parts: [{ text: "オブジェクトを全てCRITICAL判定以上で", wait: 0 }] }, 
+              { parts: [{ text: "捌く事を何と呼ぶ?", wait: 0 }] },  
+            ]
+          },
+          body: {
+            type: 'selection',
+            texts: [ "ALL CRITICAL", "ALL JUSTICE", "PERFECT ULTIMATE CHAIN", "EXCELLENT CHAIN" ],
+            answer: 2
+          }
+        },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "SOUND VOLTEXシリーズ第4作目の", wait: 0 }] },
+              { parts: [{ text: "正しいサブタイトルはどれ?", wait: 0 }] },
+            ]
+          },
+          body: {
+            type: 'selection',
+            texts: [ "HEAVENLY HEAVEN", "HEAVENLY HAVEN", "HAVENLY HEAVEN", "HAVENLY HAVEN" ],
+            answer: 1
+          }
+        },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "『SOUND VOLTEX III GRAVITY WARS』 の", wait: 0 }] },
+              { parts: [{ text: "ストーリーイベントにおいて", wait: 0 }] },
+              { parts: [{ text: "「ライオット・デストルドー」 が", wait: 0 }] },
+              { parts: [{ text: "登場するミッションのタイトルはどれか?", wait: 0 }] },
+            ]
+          },
+          body: {
+            type: "selection",
+            texts: [ "東の隠密", "西の戦乙女", "南の破壊者", "北の稀人" ],
+            answer: 2
+          }
+        },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "『SOUND VOLTEX ▽』のスコアグレードで", wait: 0 }] },
+              { parts: [{ text: "最も良いものはどれ?", wait: 0 }] },
+            ]
+          },
+          body: {
+            type: "selection",
+            texts: [ "AAA", "S", "SS", "SSS" ],
+            answer: 1
+          }
+        },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "『SOUND VOLTEX ▽』において", wait: 0 }] },
+              { parts: [{ text: "オブジェクトを全てNEAR判定以上で", wait: 0 }] },
+              { parts: [{ text: "捌く事を何と呼ぶ?", wait: 0 }] },
+            ]
+          },
+          body: {
+            type: "selection",
+            texts: [ "ULTIMATE CHAIN", "CONNECT ALL", "FULL COMBO", "FULL RECALL" ],
+            answer: 0
+          }
+        },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "『SOUND VOLTEX ▽』では", wait: 0 }] },
+              { parts: [{ text: "楽曲クリアの事を何と呼ぶ?", wait: 0 }] }
+            ]
+          },
+          body: {
+            type: "selection",
+            texts: [ "MUSIC CLEARED", "TRACK COMPLETE", "EFFECT COMPLETE", "TASK COMPLETE" ],
+            answer: 1
+          }
+        },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "『SOUND VOLTEX ▽』における", wait: 0 }] },
+              { parts: [{ text: "オブジェクトの流れる速度を調整する", wait: 0 }] },
+              { parts: [{ text: "機xの名前はどれ?", wait: 0 }] } // having issues with '能' so i temporarily replaced it with an 'x'
+            ]
+          },
+          body: {
+            type: "selection",
+            texts: [ "ハイスピード", "レーンスピード", "フローティングスピード", "スクロールスピード" ],
+            answer: 1
+          }
+        },
+      ],
+      [
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "キャラクター「レイシス」が映っている", wait: 0 }] },
+              { parts: [{ text: "ジャケットはどのジャケット?", wait: 0 }] }
+            ]
+          },
+          music: 0,
+          body: {
+              type: "jacket",
+              musics: [ { id: 124, diff: 0 }, { id: 123, diff: 0 }, { id: 125, diff: 0 }, { id: 126, diff: 0 }],
+              answer: 1
+          }
+        },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "『The 8th KONAMI Arcade Championship』", wait: 0 }] },
+              { parts: [{ text: "の決勝でお披露目された最優秀楽曲はどれ?", wait: 0 }] }
+            ]
+          },
+          music: 0,
+          body: {
+              type: "jacket",
+              musics: [ { id: 366, diff: 2 }, { id: 1036, diff: 4 }, { id: 1362, diff: 4 }, { id: 1766, diff: 4 }],
+              answer: 2
+          }
+        },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "『The 10th KONAMI Arcade Championship』", wait: 0 }] },
+              { parts: [{ text: "の決勝でお披露目された最優秀楽曲はどれ?", wait: 0 }] }
+            ]
+          },
+          music: 0,
+          body: {
+              type: "jacket",
+              musics: [ { id: 366, diff: 2 }, { id: 1036, diff: 4 }, { id: 1362, diff: 4 }, { id: 1766, diff: 4 }],
+              answer: 3
+          }
+        },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "『The 9th KONAMI Arcade Championship』", wait: 0 }] },
+              { parts: [{ text: "の決勝でお披露目された最優秀楽曲はどれ?", wait: 0 }] }
+            ]
+          },
+          music: 0,
+          body: {
+              type: "jacket",
+              musics: [ { id: 1580, diff: 4 }, { id: 1766, diff: 4 }, { id: 1767, diff: 4 }, { id: 2085, diff: 4 }],
+              answer: 0
+          }
+        },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "KONAMI Arcade Championship 2012』", wait: 0 }] },
+              { parts: [{ text: "の決勝でお披露目された最優秀楽曲はどれ?", wait: 0 }] }
+            ]
+          },
+          music: 0,
+          body: {
+              type: "jacket",
+              musics: [ { id: 126, diff: 4 }, { id: 636, diff: 3 }, { id: 791, diff: 3 }, { id: 1185, diff: 4 }],
+              answer: 0
+          }
+        },
+      ]
+    ]
+  }
+]

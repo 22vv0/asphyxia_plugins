@@ -48,7 +48,7 @@ $(document).ready(async function() {
     let flagConfig = await readFlagsConfigFile(eventData)
     for(const flagIter in eventData['flags']) {
         if(flagConfig[eventData['flags'][flagIter]['id']] === undefined) flagConfig[eventData['flags'][flagIter]['id']] = {
-            'toggle': true
+            'toggle': false
         }
         $('.card').append(
             generateEventToggles(eventData['flags'][flagIter], flagConfig[eventData['flags'][flagIter]['id']])
