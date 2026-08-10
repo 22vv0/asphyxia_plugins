@@ -10,7 +10,7 @@ import { EVENT7, COURSES7, EXTENDS7, LICENSED_SONGS7, CURRENT_ARENA7, ARENA_STAT
           GAMEOVER_CHARA7, QUIZ7
 } from '../data/nbl';
 import { getVersion, checkVerStart, getRandomIntInclusive } from '../utils';
-import { ServerSettings } from '../models/server';
+import { PluginSettings } from '../models/settings';
 
 const parseDiff = (musicId: number, musicType: number, limNo: number) => {
   return {
@@ -26,7 +26,7 @@ export const common: EPR = async (info, data, send) => {
   const unlockAllSongs = U.GetConfig('unlock_all_songs');
   const modelInfo = info.model.split(":");
   const version = parseInt(modelInfo[4].slice(0, -2));
-  const serverSettings = await DB.FindOne<ServerSettings>({collection: 'server'})
+  const pluginSettings = await DB.FindOne<PluginSettings>({collection: 'settings'})
   let station = [];
   let events = [];
   let courses = [];
@@ -445,15 +445,15 @@ export const common: EPR = async (info, data, send) => {
         })
       }
 
-      if(serverSettings.akanames) {
+      if(pluginSettings.akanames) {
         let akaId = 1
         let akaCnt = 0
         let params = [0,0,0,0,0,'','','','','']
-        for(const [ind, titles] of serverSettings.akanames.entries()) {
+        for(const [ind, titles] of pluginSettings.akanames.entries()) {
           params[akaCnt] = akaId++
           params[akaCnt + 5] = titles
           akaCnt++
-          if(ind+1 === serverSettings.akanames.length || akaCnt === 5 || (serverSettings.akanames.length < 5 && akaCnt >= serverSettings.akanames.length)) {
+          if(ind+1 === pluginSettings.akanames.length || akaCnt === 5 || (pluginSettings.akanames.length < 5 && akaCnt >= pluginSettings.akanames.length)) {
             extend.push({
               id: 0,
               type: 15,

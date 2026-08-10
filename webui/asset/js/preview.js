@@ -191,20 +191,20 @@ $('[name="stampRD"]').change(function() {
     $('#rd_pre').fadeIn(200);
 });
 
-async function getServerSettings() {
-    return await emit("getServerSettings").then(
+async function getMorePluginSettings() {
+    return await emit("getMorePluginSettings").then(
         function(response) {
-            if(response.data.serverSettings === null) return {}
-            return response.data.serverSettings
+            if(response.data.pluginSettings === null) return {}
+            return response.data.pluginSettings
         }
     )
 }
 
-var profile_data, database, databaseext, serverSettings;
+var profile_data, database, databaseext, pluginSettings;
 var play_bgm = false;
 var play_sel = false;
 $(document).ready(async function() {
-    var serverSettings = await getServerSettings()
+    var pluginSettings = await getMorePluginSettings()
     profile_data = JSON.parse(document.getElementById("data-pass").innerText);
     customize_data = JSON.parse(document.getElementById("data-pass-custom").innerText);
     let urlParams = new URLSearchParams(window.location.search);
@@ -351,19 +351,22 @@ $(document).ready(async function() {
         database = json;
         
         let akahtml = ''
+        let akaExists = false
         for (var i in database["akaname"].filter(aka => aka.value <= finalLim[1])) {
             if(parseInt(database['akaname'][i].value) === 10001) {
-                if(serverSettings.akanames) {
+                if(pluginSettings.akanames) {
                     let akaId = 1
-                    for(const title of serverSettings.akanames) {
+                    for(const title of pluginSettings.akanames) {
+                        if(akaId === currentProfile['akaname']) akaExists = true
                         akahtml += '<option value=' + akaId + '>' + akaId++ + " - " + title + ' (Custom title)</option>'
                     }
                 }
             }
             akahtml += '<option value=' + database['akaname'][i].value + '>' + database["akaname"][i].value + " - " + database["akaname"][i].name + '</option>'
+            if(parseInt(database['akaname'][i].value) === currentProfile['akaname']) akaExists = true
         }
         $('[name="akaname"]').html(akahtml);
-        $('[name="akaname"]').val(currentProfile["akaname"] === 0 ? 10001 : currentProfile['akaname']);
+        $('[name="akaname"]').val(!akaExists || (currentProfile['akaname'] === 0) ? 10001 : currentProfile['akaname']);
 
         let bgmhtml = ''
         let bgmId = (items_bgm.find(x => parseInt(x.id) === currentCustom[0]) || unlock_all) ? currentCustom[0] : 0

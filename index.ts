@@ -12,7 +12,7 @@ import {
   addWeekly,
   getWeekRankList,
   getDateCode,
-  getServerSettings,
+  getMorePluginSettings,
   saveCustomAkanames
 } from './handlers/webui';
 import {
@@ -70,7 +70,7 @@ export function register() {
   R.WebUIEvent('addWeekly', addWeekly);
   R.WebUIEvent('getWeekRankList', getWeekRankList);
   R.WebUIEvent('getDateCode', getDateCode);
-  R.WebUIEvent('getServerSettings', getServerSettings);
+  R.WebUIEvent('getMorePluginSettings', getMorePluginSettings);
   R.WebUIEvent('saveCustomAkanames', saveCustomAkanames);
 
   const MultiRoute = (method: string, handler: EPR | boolean) => {

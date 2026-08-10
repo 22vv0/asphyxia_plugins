@@ -44,17 +44,17 @@ async function readEventsJsonFile() {
 }
 
 
-async function getServerSettings() {
-    return await emit("getServerSettings").then(
+async function getMorePluginSettings() {
+    return await emit("getMorePluginSettings").then(
         function(response) {
-            if(response.data.serverSettings === null) return {}
-            return response.data.serverSettings
+            if(response.data.pluginSettings === null) return {}
+            return response.data.pluginSettings
         }
     )
 }
 
 $(document).ready(async function() {
-    var serverSettings = await getServerSettings()
+    var pluginSettings = await getMorePluginSettings()
     let eventData = await readEventsJsonFile()
     let flagConfig = await readFlagsConfigFile(eventData)
     for(const flagIter in eventData['flags']) {
@@ -66,8 +66,8 @@ $(document).ready(async function() {
         )
     }
 
-    if(serverSettings.akanames) {
-        let akanames = serverSettings.akanames.join('\n')
+    if(pluginSettings.akanames) {
+        let akanames = pluginSettings.akanames.join('\n')
         $('#akanameText').val(akanames)
     }
 

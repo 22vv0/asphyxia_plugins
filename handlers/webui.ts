@@ -8,7 +8,7 @@ import { Mix } from '../models/mix'
 import { Rival } from '../models/rival'
 import { Item } from '../models/item'
 import { WeeklyMusicScore } from '../models/weeklymusic'
-import { ServerSettings } from '../models/server'
+import { PluginSettings } from '../models/settings'
 import { COURSES2 } from '../data/ii'
 import { COURSES3 } from '../data/gw'
 import { PREGENE, COURSES6, MUSIC_OVERRIDE6 } from '../data/exg'
@@ -991,7 +991,7 @@ export const saveCustomAkanames = async(data: { akanames: string[] }, send: WebU
   var success = true
   let akanames = data.akanames
   try {
-    await DB.Upsert<ServerSettings>({collection: 'server'}, {$set: {akanames: akanames}})
+    await DB.Upsert<PluginSettings>({collection: 'settings'}, {$set: {akanames: akanames}})
   }
   catch {
     success = false
@@ -1001,9 +1001,9 @@ export const saveCustomAkanames = async(data: { akanames: string[] }, send: WebU
   })
 }
 
-export const getServerSettings = async(data: string[], send: WebUISend) => {
-  var serverSettings = await DB.FindOne<ServerSettings>({collection: 'server'})
+export const getMorePluginSettings = async(data: string[], send: WebUISend) => {
+  var pluginSet = await DB.FindOne<PluginSettings>({collection: 'settings'})
   send.json({
-    serverSettings: serverSettings
+    pluginSettings: pluginSet
   })
 }
