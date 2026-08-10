@@ -9,7 +9,8 @@ import { EVENT7, COURSES7, EXTENDS7, LICENSED_SONGS7, CURRENT_ARENA7, ARENA_STAT
           VALGENE7, APIGENE7, INFORMATION7, UNLOCK_EVENTS7, EGSONGS_LOCKED, MUSIC_OVERRIDE7,
           GAMEOVER_CHARA7, QUIZ7
 } from '../data/nbl';
-import {getVersion, checkVerStart, getRandomIntInclusive} from '../utils';
+import { getVersion, checkVerStart, getRandomIntInclusive } from '../utils';
+import { ServerSettings } from '../models/server';
 
 const parseDiff = (musicId: number, musicType: number, limNo: number) => {
   return {
@@ -25,6 +26,7 @@ export const common: EPR = async (info, data, send) => {
   const unlockAllSongs = U.GetConfig('unlock_all_songs');
   const modelInfo = info.model.split(":");
   const version = parseInt(modelInfo[4].slice(0, -2));
+  const serverSettings = await DB.FindOne<ServerSettings>({collection: 'server'})
   let station = [];
   let events = [];
   let courses = [];
@@ -441,6 +443,26 @@ export const common: EPR = async (info, data, send) => {
             "characters: " + chara.join(' ')
           ]
         })
+      }
+
+      if(serverSettings.akanames) {
+        let akaId = 1
+        let akaCnt = 0
+        let params = [0,0,0,0,0,'','','','','']
+        for(const [ind, titles] of serverSettings.akanames.entries()) {
+          params[akaCnt] = akaId++
+          params[akaCnt + 5] = titles
+          akaCnt++
+          if(ind+1 === serverSettings.akanames.length || akaCnt === 5 || (serverSettings.akanames.length < 5 && akaCnt >= serverSettings.akanames.length)) {
+            extend.push({
+              id: 0,
+              type: 15,
+              params: params
+            })
+            params = [0,0,0,0,0,'','','','','']
+            akaCnt = 0
+          }
+        }
       }
 
       if(IO.Exists('webui/asset/config/events.json')) {

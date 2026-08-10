@@ -1,0 +1,39 @@
+-
+link(rel="stylesheet" href="static/asset/css/datatables.css")
+div
+    .card#akaname
+        .card-header
+            p.card-header-title
+                span.icon
+                    i.mdi.mdi-star
+                | Custom Appeal Titles (One per line, IDs starting from 1, capped at 100 entries)
+        .card-content
+            .field
+                textarea.log-field(rows="20" id="akanameText" name="akanameText")
+    div.field.is-grouped
+        div.control.is-expanded
+        div.control
+            button.button.is-link(id="akaname-submit") Save
+    br
+    .card#flags
+        .card-header
+            p.card-header-title
+                span.icon
+                    i.mdi.mdi-star
+                | Startup Flags
+    div.field.is-grouped
+        div.control.is-expanded
+        div.control
+            button.button.is-link(id="flags-submit") Apply
+
+script(src="static/asset/js/serversettings.js") 
+style(type='text/css').
+  .log-field {
+    width: 100%;
+    height: 100%;
+    background: #4a4a4a;
+    color: #ffffff;
+    border-radius: 6px;
+    padding: 5px;
+    font-size: 20px;
+  }

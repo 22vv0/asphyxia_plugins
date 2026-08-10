@@ -8,6 +8,7 @@ import { Mix } from '../models/mix'
 import { Rival } from '../models/rival'
 import { Item } from '../models/item'
 import { WeeklyMusicScore } from '../models/weeklymusic'
+import { ServerSettings } from '../models/server'
 import { COURSES2 } from '../data/ii'
 import { COURSES3 } from '../data/gw'
 import { PREGENE, COURSES6, MUSIC_OVERRIDE6 } from '../data/exg'
@@ -980,8 +981,29 @@ export async function getRankListDB(week, mid, mtype, version) {
   return jRankResults
 }
 
-export const getDateCode = async(data: {}, send: WebUISend) =>  {
+export const getDateCode = async(data: {}, send: WebUISend) => {
   send.json({
     datecode: await getDateCodeInit()
+  })
+}
+
+export const saveCustomAkanames = async(data: { akanames: string[] }, send: WebUISend) => {
+  var success = true
+  let akanames = data.akanames
+  try {
+    await DB.Upsert<ServerSettings>({collection: 'server'}, {$set: {akanames: akanames}})
+  }
+  catch {
+    success = false
+  }
+  send.json({
+    success: success 
+  })
+}
+
+export const getServerSettings = async(data: string[], send: WebUISend) => {
+  var serverSettings = await DB.FindOne<ServerSettings>({collection: 'server'})
+  send.json({
+    serverSettings: serverSettings
   })
 }

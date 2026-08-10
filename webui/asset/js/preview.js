@@ -190,10 +190,21 @@ $('[name="stampRD"]').change(function() {
     });
     $('#rd_pre').fadeIn(200);
 });
-var profile_data, database, databaseext;
+
+async function getServerSettings() {
+    return await emit("getServerSettings").then(
+        function(response) {
+            if(response.data.serverSettings === null) return {}
+            return response.data.serverSettings
+        }
+    )
+}
+
+var profile_data, database, databaseext, serverSettings;
 var play_bgm = false;
 var play_sel = false;
 $(document).ready(async function() {
+    var serverSettings = await getServerSettings()
     profile_data = JSON.parse(document.getElementById("data-pass").innerText);
     customize_data = JSON.parse(document.getElementById("data-pass-custom").innerText);
     let urlParams = new URLSearchParams(window.location.search);
@@ -341,6 +352,14 @@ $(document).ready(async function() {
         
         let akahtml = ''
         for (var i in database["akaname"].filter(aka => aka.value <= finalLim[1])) {
+            if(parseInt(database['akaname'][i].value) === 10001) {
+                if(serverSettings.akanames) {
+                    let akaId = 1
+                    for(const title of serverSettings.akanames) {
+                        akahtml += '<option value=' + akaId + '>' + akaId++ + " - " + title + ' (Custom title)</option>'
+                    }
+                }
+            }
             akahtml += '<option value=' + database['akaname'][i].value + '>' + database["akaname"][i].value + " - " + database["akaname"][i].name + '</option>'
         }
         $('[name="akaname"]').html(akahtml);

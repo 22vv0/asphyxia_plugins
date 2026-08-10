@@ -43,18 +43,33 @@ async function readEventsJsonFile() {
     })
 }
 
+
+async function getServerSettings() {
+    return await emit("getServerSettings").then(
+        function(response) {
+            if(response.data.serverSettings === null) return {}
+            return response.data.serverSettings
+        }
+    )
+}
+
 $(document).ready(async function() {
+    var serverSettings = await getServerSettings()
     let eventData = await readEventsJsonFile()
     let flagConfig = await readFlagsConfigFile(eventData)
     for(const flagIter in eventData['flags']) {
         if(flagConfig[eventData['flags'][flagIter]['id']] === undefined) flagConfig[eventData['flags'][flagIter]['id']] = {
             'toggle': false
         }
-        $('.card').append(
+        $('.card#flags').append(
             generateEventToggles(eventData['flags'][flagIter], flagConfig[eventData['flags'][flagIter]['id']])
         )
     }
-    console.log(flagConfig)
+
+    if(serverSettings.akanames) {
+        let akanames = serverSettings.akanames.join('\n')
+        $('#akanameText').val(akanames)
+    }
 
     $('#flags-submit').on('click', async function() {
         $.each($('span.check'), function(index, value) {
@@ -75,6 +90,18 @@ $(document).ready(async function() {
         await emit("manageStartupFlags", {flagConfig: flagConfig}).then(
             function(response) {
                 alert('Saved.')
+            },
+            function(error) {
+                console.log(error)
+            }
+        )
+    })
+
+    $('#akaname-submit').on('click', async function() {
+        let akanames = $('#akanameText').val() === '' ? [] : $('#akanameText').val().split('\n').slice(0,100)
+        await emit("saveCustomAkanames", {akanames}).then(
+            function(response) {
+                alert('List saved.')
             },
             function(error) {
                 console.log(error)

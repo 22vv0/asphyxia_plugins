@@ -11,7 +11,9 @@ import {
   manageStartupFlags,
   addWeekly,
   getWeekRankList,
-  getDateCode
+  getDateCode,
+  getServerSettings,
+  saveCustomAkanames
 } from './handlers/webui';
 import {
   load,
@@ -68,6 +70,8 @@ export function register() {
   R.WebUIEvent('addWeekly', addWeekly);
   R.WebUIEvent('getWeekRankList', getWeekRankList);
   R.WebUIEvent('getDateCode', getDateCode);
+  R.WebUIEvent('getServerSettings', getServerSettings);
+  R.WebUIEvent('saveCustomAkanames', saveCustomAkanames);
 
   const MultiRoute = (method: string, handler: EPR | boolean) => {
     // Helper for register multiple versions.
