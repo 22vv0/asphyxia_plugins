@@ -1744,7 +1744,7 @@ export const GAMEOVER_CHARA7 = {
   l: ['chara01/go_ikuto', 'chara01/go_konoha', 'chara01/go_mitsuruco', 'chara01/go_nemurun', 'chara01/go_rasis_ver07', 
   'chara01/go_satan', 'chara01/go_tsumabuki_ver07'],
   r: ['chara02/go_atsushi', 'chara02/go_grace_ver07', 'chara02/go_haelequin', 
-  'chara02/go_kureha', 'chara02/go_tama'],
+  'chara02/go_kureha', 'chara02/go_tama', 'chara02/go_gorilla'],
   m: ['chara03/go_cawoashi', 'chara03/go_iruyoru', 'chara03/go_neno_ver06']
 }
 
