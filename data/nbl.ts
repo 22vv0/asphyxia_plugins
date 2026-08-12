@@ -1896,6 +1896,19 @@ export const QUIZ7 = [
             type: 'yesno',
             correct: 0
           }
+        },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "楽曲「Joyeuse」の", wait: 0 }] },
+              { parts: [{ text: "VIVID譜面のレベルは21である。", wait: 0 }] }
+            ]
+          },
+          music: { id: 247 },
+          body: {
+            type: 'yesno',
+            correct: 0
+          }
         }
       ],
       [
@@ -1995,6 +2008,20 @@ export const QUIZ7 = [
             answer: 1
           }
         },
+        {
+          text: {
+            lines: [
+              { parts: [{ text: "楽曲「Joyeuse」の", wait: 0 }] },
+              { parts: [{ text: "VIVID譜面の初登場時の正しいレベルはどれ?", wait: 0 }] }
+            ]
+          },
+          music: { id: 247 },
+          body: {
+            type: "selection",
+            texts: [ "18", "19", "20", "21" ],
+            answer: 0
+          }
+        }
       ],
       [
         {
@@ -2066,7 +2093,7 @@ export const QUIZ7 = [
               musics: [ { id: 126, diff: 4 }, { id: 636, diff: 3 }, { id: 791, diff: 3 }, { id: 1185, diff: 4 }],
               answer: 0
           }
-        },
+        }
       ]
     ]
   }
