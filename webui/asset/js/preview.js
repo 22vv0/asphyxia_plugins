@@ -277,6 +277,11 @@ $(document).ready(async function() {
         $('#bplpro').attr('hidden', 'true')
         $('#valgene').attr('hidden', 'true')
         $('#customize').attr('hidden', 'true')
+    } else if (currentVersion === 4) {
+        $('#bplsupport').attr('hidden', 'true')
+        $('#bplpro').attr('hidden', 'true')
+        $('#valgene').attr('hidden', 'true')
+        $('#customize').attr('hidden', 'true')
     }
 
     await $.getJSON("static/asset/json/course_data.json", function(json) {
@@ -354,7 +359,7 @@ $(document).ready(async function() {
         let akaExists = false
         for (var i in database["akaname"].filter(aka => aka.value <= finalLim[1])) {
             if(parseInt(database['akaname'][i].value) === 10001) {
-                if(pluginSettings.akanames) {
+                if(currentVersion >= 7 && pluginSettings.akanames) {
                     let akaId = 1
                     for(const title of pluginSettings.akanames) {
                         if(akaId === currentProfile['akaname']) akaExists = true

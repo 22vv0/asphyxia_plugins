@@ -84,14 +84,27 @@ function getGrade(grade) {
 }
 
 function getMedal(clear, version) {
-    let verLabels = {
-        '1': ["No Data", "PLAYED", "CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN"],
-        '2': ["No Data", "PLAYED", "EFFECTIVE CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN", "EXCESSIVE CLEAR"],
-        '3': ["No Data", "PLAYED", "EFFECTIVE CLEAR", "EXCESSIVE CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN"],
-        '6': ["No Data", "PLAYED", "EFFECTIVE CLEAR", "EXCESSIVE CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN", "MAXXIVE CLEAR"],
-        '7': ["No Data", "PLAYED", "EFFECTIVE CLEAR", "EXCESSIVE CLEAR", "MAXXIVE CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN"]
+    let verLabels = []
+    switch(version) {
+        case 1:
+            verLabels = ["No Data", "PLAYED", "CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN"]
+            break
+        case 2:
+            verLabels = ["No Data", "PLAYED", "EFFECTIVE CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN", "EXCESSIVE CLEAR"]
+            break
+        case 3:
+        case 4:
+        case 5:
+            verLabels = ["No Data", "PLAYED", "EFFECTIVE CLEAR", "EXCESSIVE CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN"]
+            break
+        case 6: 
+            verLabels = ["No Data", "PLAYED", "EFFECTIVE CLEAR", "EXCESSIVE CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN", "MAXXIVE CLEAR"]
+            break
+        case 7:
+            verLabels = ["No Data", "PLAYED", "EFFECTIVE CLEAR", "EXCESSIVE CLEAR", "MAXXIVE CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN"]
+            break
     }
-    return verLabels[String(version)][clear]
+    return verLabels[clear]
 }
 
 

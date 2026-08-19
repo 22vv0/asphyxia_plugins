@@ -6,6 +6,7 @@ import { getVersion, IDToCode, GetCounter, checkVerStart } from '../utils';
 import { Rival } from '../models/rival';
 import { Item } from '../models/item';
 import { SERIAL3 } from '../data/gw';
+import { SERIAL4 } from '../data/hh';
 
 var matchRooms = []
 
@@ -332,10 +333,18 @@ export const lounge: EPR = async (info, data, send) => {
 export const serial: EPR = async (info, data, send) => {
   const version = Math.abs(getVersion(info));
   const dVersion = parseInt(info.model.split(":")[4].slice(0, -2));
-  if(version !== 3) return send.deny()
+  if(version < 3) return send.deny()
   let date = new Date()
   let refid = $(data).str('refid')
-  let serial = SERIAL3.filter(s => checkVerStart(dVersion, s.version, 1, date))
+
+  let serial
+  switch(version) {
+    case 3:
+      serial = SERIAL3.filter(s => checkVerStart(dVersion, s.version, 1, date))
+      break
+    case 4:
+      serial = SERIAL4.filter(s => checkVerStart(dVersion, s.version, 1, date))
+  }
 
   const code = parseInt($(data).str('code'))
   let used = await DB.FindOne<Serial>(refid, {collection: 'serial', version})
@@ -363,7 +372,6 @@ export const serial: EPR = async (info, data, send) => {
         }
       })
     } 
-
   } else {
     return send.object({
       result: K.ITEM('s8', result),
@@ -379,7 +387,7 @@ export const serial: EPR = async (info, data, send) => {
     result: K.ITEM('s8', result), 
     serial_name: K.ITEM('str', "__"),
     item: finItems.map(i => ({
-      type: K.ITEM('u32', i.item.type === 6 ? 3 : i.type),
+      type: K.ITEM('u32', i.item.type === 6 ? 3 : i.item.type),
       id: K.ITEM('u32', i.item.id),
       param: K.ITEM('u32', i.param),
       param_after: K.ITEM('u32', i.item.param),

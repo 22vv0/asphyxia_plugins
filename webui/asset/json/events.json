@@ -1,4 +1,66 @@
 {
+    "events4": [
+        {
+            "id": "hhbstream1",
+            "type": "stamp",
+            "enabled": true,
+            "name": "Beatstream Stamp Sheet part 1",
+            "version": 0,
+            "start": 20180118,
+            "desc": "Stamp event to unlock 8 songs from Beatstream.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhbstream2",
+            "type": "stamp",
+            "enabled": true,
+            "name": "Beatstream Stamp Sheet part 2",
+            "version": 0,
+            "start": 20180413,
+            "desc": "Stamp event to unlock 9 more songs from Beatstream.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhmuseca",
+            "type": "ikiiki",
+            "enabled": true,
+            "name": "MÚSECA Ikiiki Stamp",
+            "version": 0,
+            "start": 20180607,
+            "desc": "Stamp event to unlock 4 songs from MÚSECA and gain PC and BLC. Obtaining stamps require Left to have hearts/lives.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhsummer",
+            "type": "ikiiki",
+            "enabled": true,
+            "name": "BEMANI SUMMER GREETINGS Ikiiki Stamp",
+            "version": 0,
+            "start": 20180823,
+            "desc": "Stamp event to unlock 7 new songs. Obtaining stamps require Left to have hearts/lives.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhacademy",
+            "type": "stamp",
+            "enabled": true,
+            "name": "Private BEMANI Academy Special Stamp",
+            "version": 0,
+            "start": 20181004,
+            "desc": "Stamp event to unlock 10 new songs.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "pbmedley",
+            "type": "gift",
+            "enabled": true,
+            "name": "POLICY BREAK Medley from SOUND VOLTEX x jubeat",
+            "version": 0,
+            "start": 20170331,
+            "desc": "Unlocks `POLICY BREAK Medley from SOUND VOLTEX x jubeat` on login",
+            "info": "Toggle this on to enable/disable this login present."
+        }
+    ],
     "events6": [
         {
             "id": "xrecord_1",
@@ -1273,7 +1335,7 @@
     "flags": [
         {
             "id": "cuda",
-            "key": "USE_CUDA_VIDEO_PRESENTER",
+            "key": "Use NVIDIA CUDA",
             "str": "USE_CUDA_VIDEO_PRESENTER",
             "explain": ""
         },

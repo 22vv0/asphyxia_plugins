@@ -40,7 +40,7 @@ $(document).ready(async function() {
 
 async function populateAch(listType, version) {
 	let achListFinal = []
-	achdata['achievements'].forEach(ach => {
+	achdata['achievements'][version].forEach(ach => {
 		let achFound = achobt.filter(obt => parseInt(version) === obt.version).find(obt => ach['id'] === obt['id'])
 		let reward = ''
 		if(ach['rid'] !== -1) {

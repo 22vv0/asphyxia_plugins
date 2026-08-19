@@ -33,6 +33,21 @@ export function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
 }
 
+export function convertGWHHGrade(score) {
+  let grade = 0
+  if(score < 6500000) grade = 1
+  if(score >= 6500000) grade = 2
+  if(score >= 7500000) grade = 3
+  if(score >= 8700000) grade = 4
+  if(score >= 9000000) grade = 5
+  if(score >= 9300000) grade = 6
+  if(score >= 9500000) grade = 7
+  if(score >= 9700000) grade = 8
+  if(score >= 9800000) grade = 9
+  if(score >= 9900000) grade = 10
+  return grade
+}
+
 export function computeForce(version, diff, score, medal, grade) {
   var medalCoef = [0, 0.50, 1.0, 1.02, 1.04, 1.05, 1.10]
   var gradeCoef = [0, 0.8, 0.82, 0.85, 0.88, 0.91, 0.94, 0.97, 1.0, 1.02, 1.05]

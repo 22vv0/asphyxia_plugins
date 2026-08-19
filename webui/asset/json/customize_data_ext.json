@@ -237,6 +237,123 @@
 				"info": "天下一コース(2016)"
 			}
 		],
+		"4": [
+			{
+				"id": 1,
+				"name": "岳翔",
+				"info": "Lv01"
+			},
+			{
+				"id": 2,
+				"name": "流星",
+				"info": "Lv02"
+			},
+			{
+				"id": 3,
+				"name": "月衝",
+				"info": "Lv03"
+			},
+			{
+				"id": 4,
+				"name": "瞬光",
+				"info": "Lv04"
+			},
+			{
+				"id": 5,
+				"name": "天極",
+				"info": "Lv05"
+			},
+			{
+				"id": 6,
+				"name": "烈風",
+				"info": "Lv06"
+			},
+			{
+				"id": 7,
+				"name": "雷電",
+				"info": "Lv07"
+			},
+			{
+				"id": 8,
+				"name": "麗華",
+				"info": "Lv08"
+			},
+			{
+				"id": 9,
+				"name": "魔騎士",
+				"info": "Lv09"
+			},
+			{
+				"id": 10,
+				"name": "剛力羅",
+				"info": "Lv10"
+			},
+			{
+				"id": 11,
+				"name": "或帝滅斗",
+				"info": "Lv11"
+			},
+			{
+				"id": 12,
+				"name": "暴龍天",
+				"info": "Lv∞"
+			},
+			{
+				"id": 13,
+				"name": "【体】",
+				"info": "The 6th KAC 【体】"
+			},
+			{
+				"id": 14,
+				"name": "【技】",
+				"info": "The 6th KAC 【技】"
+			},
+			{
+				"id": 15,
+				"name": "【心】",
+				"info": "The 6th KAC 【心】"
+			},
+			{
+				"id": 16,
+				"name": "天下一",
+				"info": "Tenkaichi 2nd Course"
+			},
+			{
+				"id": 17,
+				"name": "音芸祭",
+				"info": "Tenkaichi 3rd Course"
+			},
+			{
+				"id": 18,
+				"name": "詠鰤琉",
+				"info": "4月1日限定ツアー"
+			},
+			{
+				"id": 19,
+				"name": "BMK2017",
+				"info": "BEMANI MASTER KOREA 2017"
+			},
+			{
+				"id": 20,
+				"name": "猛虎",
+				"info": "The 7th KAC 【猛虎】"
+			},
+			{
+				"id": 21,
+				"name": "餓狼",
+				"info": "The 7th KAC 【餓狼】"
+			},
+			{
+				"id": 22,
+				"name": "六花",
+				"info": "6th Anniversary Course"
+			},
+			{
+				"id": 23,
+				"name": "阿修羅",
+				"info": "The 8th KAC"
+			}
+		],
 		"6": [
 			{
 				"id": 1,

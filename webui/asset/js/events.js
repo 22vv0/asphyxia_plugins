@@ -155,6 +155,7 @@ $(document).ready(async function() {
     currentVersion = (urlParams.has('version') && urlParams.get('version') !== "") ? parseInt(urlParams.get('version')) : currentVersion
 
     let versions = [
+        ["4", "HEAVENLY HAVEN"],
         ["6", "EXCEED GEAR"],
         ["7", "∇"]
     ]
@@ -185,7 +186,7 @@ $(document).ready(async function() {
                     '<option value=' + eventData['events' + currentVersion][eventIter]['id'] + '>' + eventData['events' + currentVersion][eventIter]['name'] + '</option>'
                 )
             }
-            else if(/stamp|completestamp/.test(eventData['events' + currentVersion][eventIter]['type'])) {
+            else if(/stamp|completestamp|ikiiki/.test(eventData['events' + currentVersion][eventIter]['type'])) {
                 $('#stampevent_select').append(
                     '<option value=' + eventData['events' + currentVersion][eventIter]['id'] + '>' + eventData['events' + currentVersion][eventIter]['name'] + '</option>'
                 )

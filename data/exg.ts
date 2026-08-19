@@ -1,4 +1,4 @@
-export const EVENT6 = [
+export const FLAGS6 = [
   // 'APPEAL_CARD_GEN_PRICE\t100',
   // 'APPEAL_CARD_GEN_NEW_PRICE\t200',
   // 'APPEAL_CARD_UNLOCK\t0,20170914,0,20171014,0,20171116,0,20180201,0,20180607,0,20181206,0,20200326,0,20200611,4,10140732,6,10150431',
@@ -56,7 +56,8 @@ export const EVENT6 = [
   'TAMAADV_VALGENE_BONUS_ENABLE',
   'DEMOLOOP_INFORMATION\tdemo_info/250220_generator_pekora_demo.png',
   'ULTIMATE_MATCH_PLAYABLE_ALWAYS',
-  'OVER_POWER_ENABLE'
+  'OVER_POWER_ENABLE',
+  'CLOUD_LINK_ENABLE'
 ]
 
 export const LICENSED_SONGS6 = [
@@ -6633,21 +6634,6 @@ export const COURSES6 = [
 ]
 
 export const INFORMATION6 = [
-  { id: 23, version: 20240318, start: 0, str: '[img:info/240321_info_generator4.png:]'},
-  { id: 24, version: 20240604, start: 0, str: '[img:info/240606_watame.png:]'},
-  { id: 25, version: 20240805, start: 0, str: '[img:info/240807_toho2024.png:]'},
-  { id: 26, version: 20240827, start: 0, str: '[img:info/240829_info_generator5.png:]'},
-  { id: 27, version: 20240924, start: 0, str: '[img:info/240926_generator.png: 106, 0]'},
-  { id: 28, version: 20240924, start: 0, str: '[img:info/240926_re_generator.png: 106, 0]'},
-  { id: 29, version: 20241008, start: 0, str: '[img:info/241010_hexadiver.png:]'},
-  { id: 30, version: 20241105, start: 0, str: '[img:info/241108_paseli.png:]'},
-  { id: 31, version: 20241105, start: 0, str: '[img:info/241107_marine_info.png:]'},
-  { id: 32, version: 20250212, start: 0, str: '[img:info/250214_hinabita_meu.jpg:]'},
-  { id: 33, version: 20250218, start: 0, str: '[img:info/250220_generator_pekora.jpg:]'},
-  { id: 34, version: 20250225, start: 0, str: '[img:info/250303_paseli.png:]'},
-  { id: 35, version: 20250324, start: 0, str: '[img:info/250326_noah.jpg:]'},
-  { id: 36, version: 20250422, start: 0, str: '[img:info/250422_info_ichika.png:]'},
-  { id: 37, version: 20250422, start: 0, str: '[img:info/250501_info_cross_resonance.png:]'},
   { id: 38, version: 20250624, start: 0, str: '[img:info/250626_info_generator6.png:]'},
   { id: 39, version: 20250624, start: 0, str: '[img:info/250626_info_sumire.png:]'},
   { id: 40, version: 20250826, start: 0, str: '[img:info/250828_info_sena.png:]'},

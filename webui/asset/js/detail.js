@@ -97,7 +97,6 @@ function getSkillFrameAsset(frame) {
 function getSkillTitle() {
     let sk = skill_data.filter(sk => sk.version === currentVersion)
     let titles = skill_title_db[String(currentVersion)]
-    console.log(sk)
     if(sk.length <= 0 || sk[0].name === (undefined || (currentVersion === 2 || currentVersion === 3 ? -1 : 0))) return ''
     return titles.filter(e => e.id === sk[0].name)[0].name
 }
@@ -129,50 +128,82 @@ function getGrade(name, grade) {
                 return "S";
         }
     }
+    if(currentVersion >= 6) {
+        switch (grade) {
+            case 0:
+                return 0;
+            case 1:
+                return 0.80;
+            case 2:
+                return 0.82;
+            case 3:
+                return 0.85;
+            case 4:
+                return 0.88;
+            case 5:
+                return 0.91;
+            case 6:
+                return 0.94;
+            case 7:
+                return 0.97;
+            case 8:
+                return 1.00;
+            case 9:
+                return 1.02;
+            case 10:
+                return 1.05;
+        }
+    }
+    // HH Grade Coeffs
     switch (grade) {
         case 0:
             return 0;
         case 1:
-            return 0.80;
-        case 2:
-            return 0.82;
-        case 3:
-            return 0.85;
-        case 4:
-            return 0.88;
-        case 5:
             return 0.91;
-        case 6:
+        case 2:
+            return 0.92;
+        case 3:
+            return 0.93;
+        case 4:
             return 0.94;
+        case 5:
+            return 0.95;
+        case 6:
+            return 0.96;
         case 7:
             return 0.97;
         case 8:
-            return 1.00;
+            return 0.98;
         case 9:
-            return 1.02;
+            return 0.99;
         case 10:
-            return 1.05;
+            return 1.00;
     }
 }
 
 function getMedal(name, clear, version) {
     if(name) {
-        switch (clear) {
-            case 0:
-                return "No Data";
+        let verLabels = []
+        switch(version) {
             case 1:
-                return "PLAYED";
+                verLabels = ["No Data", "PLAYED", "CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN"]
+                break
             case 2:
-                return currentVersion >= 4 ? "EFFECTIVE CLEAR" : "CLEAR";
+                verLabels = ["No Data", "PLAYED", "EFFECTIVE CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN", "EXCESSIVE CLEAR"]
+                break
             case 3:
-                return currentVersion >= 4 ? "EXCESSIVE CLEAR" : "UC";
             case 4:
-                return currentVersion >= 6 ? ((version === 6) ? "UC" : "MAXXIVE CLEAR") : "PUC";
             case 5:
-                return (version === 6) ? "PUC" : "UC";
-            case 6:
-                return (version === 6) ? "MAXXIVE CLEAR" : "PUC"
+                verLabels = ["No Data", "PLAYED", "EFFECTIVE CLEAR", "EXCESSIVE CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN"]
+                break
+            case 6: 
+                verLabels = ["No Data", "PLAYED", "EFFECTIVE CLEAR", "EXCESSIVE CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN", "MAXXIVE CLEAR"]
+                break
+            case 7:
+                verLabels = ["No Data", "PLAYED", "EFFECTIVE CLEAR", "EXCESSIVE CLEAR", "MAXXIVE CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN"]
+                break
         }
+        return verLabels[clear]
     }
     switch (clear) {
         case 0:
@@ -245,11 +276,7 @@ function getAppealCard(appeal, version) {
 }
 
 function getSongLevel(musicid, type) {
-    //console.log(music_db["mdb"]["music"])
-    // console.log(musicid + " " + type);
-    // console.log(musicid)
     var result = music_db.filter(object => object["id"] == musicid);
-    // console.log(result[0]["difficulty"]["novice"]["difnum"])
     if (result.length == 0) {
         return "1"
     }
@@ -265,14 +292,34 @@ function getSongLevel(musicid, type) {
         if (egLvlInd >= 0) diffnum = egLevelDiffOverride[egLvlInd]['lvl']
     }
 
-    // console.log(diffnum)
     return diffnum;
-    // return result[0]["info"]["title_name"]
-    //console.log(result);
 }
 
 function getVFLevel(VF) {
-    // console.log(VF);
+    if(currentVersion < 6) {
+        switch (true) {
+            case VF < 1000:
+                return zeroPad(1, 2);
+            case VF < 3000:
+                return zeroPad(2, 2);
+            case VF < 5000:
+                return zeroPad(3, 2);
+            case VF < 6000:
+                return zeroPad(4, 2);
+            case VF < 7000:
+                return zeroPad(5, 2);
+            case VF < 8000:
+                return zeroPad(6, 2);
+            case VF < 9000:
+                return zeroPad(7, 2);
+            case VF < 9500:
+                return zeroPad(8, 2);
+            case VF < 10000:
+                return zeroPad(9, 2);
+            case VF >= 10000:
+                return zeroPad(10, 2);
+        }
+    }
     switch (true) {
         case VF < 10:
             return zeroPad(1, 2);
@@ -313,23 +360,30 @@ function getSongInfo(mid) {
 }
 
 function getAkaname(akaname) {
+    if(akaname == '0') akaname = '10001'
     //var result = music_db["mdb"]["music"].filter(object => object["@id"] == musicid);
     var result = data_db["akaname"].filter(obj => obj["value"] == akaname)[0];
-    // console.log(result);
     return result["name"];
 }
 
 function getVFAsset(vf) {
-    var floatVF = parseFloat(vf);
-    return "static/asset/force/em6_" + getVFLevel(floatVF) + "_i_eab.png"
+    if(currentVersion < 6) {
+        return "static/asset/force/em6_" + getVFLevel(vf) + "_i_eab.png"
+    }
+    if(currentVersion >= 6) {
+        var floatVF = parseFloat(vf);
+        return "static/asset/force/em6_" + getVFLevel(floatVF) + "_i_eab.png"
+    }
 }
 
 function singleScoreVolforce(score) {
-    // lv * (score / 10000000) * gradeattr * clearmedalattr * 2
     var level = getSongLevel(score.mid, score.type);
-    var tempVF = parseInt(level) * (parseInt(score.score) / 10000000) * getGrade(false, score.grade) * getMedal(false, score.clear, score.version) * 2;
-    // console.log(tempVF);
-    if(currentVersion === 7 && 'volforce' in score) tempVF = score.volforce;
+    var tempVF = 0
+    if(currentVersion === 4) tempVF = parseInt(25 * (parseInt(level) + 1) * (parseInt(score.score) / 10000000) * getGrade(false, score.grade))
+    else if(currentVersion === 6) tempVF = parseInt(level) * (parseInt(score.score) / 10000000) * getGrade(false, score.grade) * getMedal(false, score.clear, score.version) * 2;
+    else if(currentVersion === 7) {
+        tempVF = getMedal(false, score.clear, score.version) * (getGrade(false, score.grade) * (2 * parseInt(score.score) * (level * 10) / 1000) / 100) / 1000
+    }
     return tempVF;
 }
 
@@ -339,16 +393,17 @@ function toFixed(num, fixed) {
 }
 
 function calculateVolforce() {
+    let maxTop = 50
+    if(currentVersion < 6) maxTop = 20
     for (var sc of score_db.filter(s => s.version === currentVersion)) {
         var temp = singleScoreVolforce(sc);
         temp = parseFloat(toFixed(temp, 1));
         volforceArray.push(temp);
     }
     volforceArray.sort(function(a, b) { return b - a });
-    // console.log(volforceArray);
     var VF = 0;
-    if (volforceArray.length > 50) {
-        for (var i = 0; i < 50; i++) {
+    if (volforceArray.length > maxTop) {
+        for (var i = 0; i < maxTop; i++) {
             VF += volforceArray[i];
         }
     } else {
@@ -356,20 +411,23 @@ function calculateVolforce() {
             VF += volforceArray[i];
         }
     }
-    VF /= (currentVersion === 7) ? 1000 : 100;
-    // console.log(toFixed(VF, 3));
+    if(currentVersion >= 6) VF /= 100
     return toFixed(VF, 3);
 }
 
-function getVF50() {
+function getVFTop() {
     if(currentVersion <= 3) {
         return $('#vf50').remove()
     }
-    let top50 = []
+    let vfTop = []
+    let maxTop = 50
+    if(currentVersion < 6) maxTop = 20
     for (var sc of score_db.filter(sc => sc.version === currentVersion)) {
         let sinf = getSongInfo(sc.mid)
         if(sinf.name !== 'Unknown Song') {
-            top50.push({
+            let vf = singleScoreVolforce(sc, currentVersion)
+            if(currentVersion >= 6) vf = parseFloat(toFixed(vf, 1))
+            vfTop.push({
                 'name': sinf.name,
                 'diff': getDifficulty(sinf.id, sc.type) + " " + getDifficultyNum(sinf.id, sc.type),
                 'clear': getMedal(true, sc.clear, currentVersion),
@@ -378,11 +436,11 @@ function getVF50() {
             })
         }
     }
-    top50.sort(function(a, b) { return b.vf - a.vf });
-    if(top50.length > 50) top50 = top50.slice(0, 50)
-    for(let i in top50) top50[i]['num'] = parseInt(i)+1 
-    $('#volforce50').DataTable({
-        data: top50,
+    vfTop.sort(function(a, b) { return b.vf - a.vf });
+    if(vfTop.length > maxTop) vfTop = vfTop.slice(0, maxTop)
+    for(let i in vfTop) vfTop[i]['num'] = parseInt(i)+1 
+    $('#volforceTop').DataTable({
+        data: vfTop,
         order: [],
         pageLength: 50,
         searching: false,
@@ -398,7 +456,17 @@ function getVF50() {
     });
 }
 
-var diffName = ["NOV", "ADV", "EXH", "INF\nGRV\nHVN\nVVD\nXCD\nNBL", "MXM", "ULT"];
+function getInfDiffString() {
+    let infDiff = 'INF'
+    if(currentVersion >= 3) infDiff += '\nGRV'
+    if(currentVersion >= 4) infDiff += '\nHVN'
+    if(currentVersion >= 5) infDiff += '\nVVD'
+    if(currentVersion >= 6) infDiff += '\nXCD'
+    if(currentVersion >= 7) infDiff += '\nNBL'
+    return infDiff
+}
+
+var diffName = ["NOV", "ADV", "EXH", "INF", "MXM", "ULT"];
 
 function preSetTableMark(type) {
     $('#statistic-table').empty();
@@ -617,6 +685,8 @@ function getAvg(array, lv) {
 
 
 function setUpStatistics(profileVer) {
+    diffName[3] = getInfDiffString()
+
     baseTBodyCMpD = $('<tbody>');
     baseTBodyCMpL = $('<tbody>');
     baseTBodyGpL = $('<tbody>');
@@ -624,9 +694,9 @@ function setUpStatistics(profileVer) {
     baseTBodyASpL = $('<tbody>');
 
     let matLen = {
-        cmpd: [[3,4], [4,5], [4,5], [6,6], [6,6], [6,6], [6,6]][currentVersion-1],
-        cmpl: [[15,4], [16,5], [16,5], [20,6], [20,6], [20,6], [48,6]][currentVersion-1],
-        gpd: [[3,6], [4,6], [4,6], [6,10], [6,10], [6,10], [6,10]][currentVersion-1],
+        cmpd: [[3,4], [4,5], [4,5], [5,5], [6,6], [6,6], [6,6]][currentVersion-1],
+        cmpl: [[15,4], [16,5], [16,5], [20,5], [20,6], [20,6], [48,6]][currentVersion-1],
+        gpd: [[3,6], [4,6], [4,6], [5,10], [6,10], [6,10], [6,10]][currentVersion-1],
         gpl: [[15,6], [16,6], [16,6], [20,10], [20,10], [20,10], [48,10]][currentVersion-1],
         aspl: [[15,2], [16,2], [16,2], [20,2], [20,2], [20,2], [48,2]][currentVersion-1]
     }
@@ -642,7 +712,6 @@ function setUpStatistics(profileVer) {
     score_db.filter(sc => sc.version === profileVer).forEach(function(currentValue, index, array) {
         let egClear = [0, 1, 2, 3, 5, 6, 4]
         let clearMark = (profileVer === 6) ? egClear[currentValue.clear] : currentValue.clear
-        // console.log(currentValue);
         CMpDArray[currentValue.type][clearMark - 1] += 1;
         CMpLArray[diffLvArr.findIndex(lv => lv === parseFloat(getSongLevel(currentValue.mid, currentValue.type)))][clearMark - 1] += 1;
         GpDArray[currentValue.type][currentValue.grade - 1]++;
@@ -651,11 +720,6 @@ function setUpStatistics(profileVer) {
         ASpLArray[diffLvArr.findIndex(lv => lv === parseFloat(getSongLevel(currentValue.mid, currentValue.type)))][1] += currentValue.score;
     });
 
-    // console.log(CMpDArray);
-    // console.log(CMpLArray);
-    // console.log(GpDArray);
-    // console.log(GpLArray);
-    // console.log(ASpLArray);
     for (var diff = 0; diff < matLen['cmpd'][0]; diff++) {
         baseTBodyCMpD.append(
             $('<tr>').append(
@@ -876,18 +940,30 @@ $('#version_select').change(function() {
 });
 
 function getPlayerSkill() {
-    // console.log(getPlayerMaxVersion())
     var k = skill_data.filter(e => e.version === currentVersion)
     let cData
+    let indAdd = 0
     if (k.length === 0) return [2,3].includes(currentVersion) ? [-1, 0] : [0, 0];
-    if (k[0].version === 2 || k[0].version === 3) {
-        if (k[0].version === 2) cData = course_data.filter(c => c.version === currentVersion && ![15,16,17].includes(c.sid))
-        else if (k[0].version === 3) cData = course_data.filter(c => c.version === currentVersion && c.sid <= 25)
+    
+    if ([2,3,4].includes(k[0].version)) {
+        if (k[0].version === 2) {
+            cData = course_data.filter(c => c.version === currentVersion && ![15,16,17].includes(c.sid))
+            indAdd++
+        } else if (k[0].version === 3) {
+            cData = course_data.filter(c => c.version === currentVersion && c.sid <= 25)
+            indAdd++
+        } else if (k[0].version === 4) {
+            cData = course_data.filter(c => c.version === currentVersion && ![14,15,16,17,18,19,20].includes(c.sid))
+        }
         let frameV = cData.length > 0 ? Math.max(...cData.map(c => c.cid)) : -1;
-        return [frameV, k[0].name + 1]
+        return [frameV, 0]
     }
     if(k.length < 1) return [-1, 0]
-    let courseDataFil = course_data.filter(e => e.version == currentVersion && ![6,7,12,13,15,16].includes(e.sid) && e.cid === k[0].level && ((k[0].type !== undefined) ? k[0].type : 0) === ((e.stype !== undefined) ? e.stype : 0))
+    let exclSid = {
+        '6': [6,7,12,13,15,16],
+        '7': [3,4]
+    }
+    let courseDataFil = course_data.filter(e => e.version == currentVersion && !exclSid[currentVersion].includes(e.sid) && e.cid === k[0].level && ((k[0].type !== undefined) ? k[0].type : 0) === ((e.stype !== undefined) ? e.stype : 0))
     return [(courseDataFil.length > 0) ? k[0].level : -1, (k[0].type !== undefined) ? k[0].type : 0];
 }
 
@@ -902,11 +978,16 @@ function getPlayerCourse(playerSkill) {
     k.info.forEach(kd => {
         kd.courses.forEach(kdc => {
             kdc['sid'] = kd.id
-            kdc['isNew'] = kd.isNew
+            kdc['isNew'] = ('isNew' in kdc) ? kdc['isNew'] : kd.isNew
             sidCourses.push(kdc)
         })
     })
-    sidCourses = sidCourses.filter(e => ![6,7,12,13,15,16].includes(e.sid) && e.level === playerSkill[0])
+    if(currentVersion === 2) sidCourses = sidCourses.filter(e => ![15,16,17].includes(e.sid) && e.level === playerSkill[0])
+    else if(currentVersion === 3) sidCourses = sidCourses.filter(e => e.sid <= 25 && e.level === playerSkill[0])
+    else if(currentVersion === 4) sidCourses = sidCourses.filter(e => ![14,15,16,17,18,19,20].includes(e.sid) && e.level === playerSkill[0])
+    else if(currentVersion === 6) sidCourses = sidCourses.filter(e => ![6,7,12,13,15,16].includes(e.sid) && e.level === playerSkill[0])
+    else if(currentVersion === 7) sidCourses = sidCourses.filter(e => ![3,4].includes(e.sid) && e.level === playerSkill[0])
+
     let newCourses = sidCourses.filter(e => e.isNew === 1).map(a => a.sid)
     let foundCourses = course_data.filter(e => e.cid === playerSkill[0] && ((e.stype !== undefined) ? e.stype : 0) === playerSkill[1] && e.clear >= 2)
     let newCompleteCourses = foundCourses.filter(e => newCourses.includes(e.sid))
@@ -1040,7 +1121,6 @@ $(document).ready(function() {
     $.when(
         $.getJSON("static/asset/json/music_db.json", function(json) {
             music_db = json.mdb.music;
-            // console.log(music_db);
         }),
         $.getJSON("static/asset/json/course_data.json", function(json) {
             course_db = json;
@@ -1050,15 +1130,13 @@ $(document).ready(function() {
         }),
         $.getJSON("static/asset/json/appeal.json", function(json) {
             appeal_db = json;
-            //console.log(appeal_db);
         }),
         $.getJSON("static/asset/json/customize_data_ext.json", function(json) {
             skill_title_db = json.skilltitle;
-            console.log(skill_title_db)
         }),
     ).then(function() {
         var currentVF = calculateVolforce();
-        getVF50()
+        getVFTop()
         var maxVer = skill_data.length > 0 ? parseInt(skill_data[0]["version"]) : 0
 
         var versionInfo = getVersionSelect();
@@ -1082,7 +1160,6 @@ $(document).ready(function() {
             }
         }
 
-        // console.log(currentProfile)
         $('#test').append(
             $('<div class="card" style="padding-bottom:30px">').append(
                 $('<div class="card-header">').append(
@@ -1121,13 +1198,13 @@ $(document).ready(function() {
                             $('<article class="tile is-child is-centered">').append(
                                 $('<div>').append(
                                     (currentVersion === 1) ? "Rank:" :
-                                    (currentVersion >= 5) ? $('<img>').attr('src', getVFAsset(currentVF)).css('width', '7em')
+                                    (currentVersion >= 4) ? $('<img>').attr('src', getVFAsset(currentVF)).css('width', '7em')
                                     .css('margin', '0 auto') :
                                     null
                                 ).css('font-size', '20px').append(
                                     $('<div>').append(
                                         (currentVersion === 1) ? boothRank[boothRank.findIndex((val, ind, arr) => ind < arr.length - 1 && currentProfile.expPoint >= val.exp && currentProfile.expPoint <= arr[ind + 1].exp)].title : 
-                                        (currentVersion >= 5) ? currentVF :
+                                        (currentVersion >= 4) ? currentVF :
                                         null
                                     ).css('font-family', "testfont")
                                     .css('font-size', "35px")

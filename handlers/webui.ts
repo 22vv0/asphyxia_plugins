@@ -11,6 +11,7 @@ import { WeeklyMusicScore } from '../models/weeklymusic'
 import { PluginSettings } from '../models/settings'
 import { COURSES2 } from '../data/ii'
 import { COURSES3 } from '../data/gw'
+import { COURSES4 } from '../data/hh'
 import { PREGENE, COURSES6, MUSIC_OVERRIDE6 } from '../data/exg'
 import { PREGENE7, COURSES7, MUSIC_OVERRIDE7 } from '../data/nbl'
 import { textureslist } from '../data/webui'
@@ -285,6 +286,7 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
               break
             case 2:
             case 3:
+            case 4:
               dif[ver] = {
                 'novice': (musicValue.difficulty.novice.difnum['@content'][0] / levelDiv).toString(),
                 'advanced': (musicValue.difficulty.advanced.difnum['@content'][0] / levelDiv).toString(),
@@ -360,18 +362,18 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
                 if(newInfVer) prevAssetMdb['mdb']['music'][ind]['info']['inf_ver'] = musicValue.info.inf_ver['@content'][0].toString()
               }
               break
-            // case 4:
+            case 4:
             // case 5:
-            //   dif[ver] = {
-            //     'novice': (musicValue.difficulty.novice.difnum['@content'][0] / levelDiv).toString(),
-            //     'advanced': (musicValue.difficulty.advanced.difnum['@content'][0] / levelDiv).toString(),
-            //     'exhaust': (musicValue.difficulty.exhaust.difnum['@content'][0] / levelDiv).toString(),
-            //     'maximum': (musicValue.difficulty.maximum.difnum['@content'][0] / levelDiv).toString(),
-            //     'infinite': (musicValue.difficulty.infinite.difnum['@content'][0] / levelDiv).toString(),
-            //   }
-            //   prevAssetMdb['mdb']['music'][ind]['info']['distribution_date'] = musicValue.info.distribution_date['@content'][0].toString()
-            //   prevAssetMdb['mdb']['music'][ind]['info']['inf_ver'] = musicValue.info.inf_ver['@content'][0].toString()
-            //   break
+              dif[ver] = {
+                'novice': (musicValue.difficulty.novice.difnum['@content'][0] / levelDiv).toString(),
+                'advanced': (musicValue.difficulty.advanced.difnum['@content'][0] / levelDiv).toString(),
+                'exhaust': (musicValue.difficulty.exhaust.difnum['@content'][0] / levelDiv).toString(),
+                'maximum': !('maximum' in musicValue.difficulty) ? '0' : (musicValue.difficulty.maximum.difnum['@content'][0] / levelDiv).toString(),
+                'infinite': (musicValue.difficulty.infinite.difnum['@content'][0] / levelDiv).toString(),
+              }
+              prevAssetMdb['mdb']['music'][ind]['info']['distribution_date'] = musicValue.info.distribution_date['@content'][0].toString()
+              prevAssetMdb['mdb']['music'][ind]['info']['inf_ver'] = musicValue.info.inf_ver['@content'][0].toString()
+              break
             case 6:
             case 7:
               let distributionDate = musicValue.info.distribution_date['@content'][0].toString()
@@ -727,6 +729,9 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
       } else if(courseData.courseData[cIter].version === 3) {
         courseData.courseData[cIter].info = COURSES3
         courseDataUpdateSuccess = true
+      } else if(courseData.courseData[cIter].version === 4) {
+        courseData.courseData[cIter].info = COURSES4
+        courseDataUpdateSuccess = true
       } else if(courseData.courseData[cIter].version === 6) {
         courseData.courseData[cIter].info = COURSES6
         courseDataUpdateSuccess = true
@@ -992,6 +997,20 @@ export const saveCustomAkanames = async(data: { akanames: string[] }, send: WebU
   let akanames = data.akanames
   try {
     await DB.Upsert<PluginSettings>({collection: 'settings'}, {$set: {akanames: akanames}})
+  }
+  catch {
+    success = false
+  }
+  send.json({
+    success: success 
+  })
+}
+
+export const saveMorePluginSettings = async(data: { settings: {} }, send: WebUISend) => {
+  var success = true
+  let settings = data.settings
+  try {
+    await DB.Update<PluginSettings>({collection: 'settings'}, {$set: settings})
   }
   catch {
     success = false

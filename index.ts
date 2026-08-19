@@ -13,6 +13,7 @@ import {
   getWeekRankList,
   getDateCode,
   getMorePluginSettings,
+  saveMorePluginSettings,
   saveCustomAkanames
 } from './handlers/webui';
 import {
@@ -40,20 +41,15 @@ export function register() {
 
   R.Config('sdvx_eg_root_dir', { type: 'string', needRestart: true, default: '', name: 'Game Data Directory', desc: 'The root directory of your Exceed Gear/∇ game files (for asset copying)'});
   R.Config('use_blasterpass',{ type: 'boolean', default: true, name:'Use BLASTER PASS', desc:''});
-  R.Config('arena_no_endtime',{ type: 'boolean', default: true, name: 'Keep ARENA running', desc: 'Choose whether to keep the latest ARENA season running past the end date.'});
-  R.Config('arena_station7',{ type: 'string', options: Object.keys(ARENA_STATION_ITEMS7), default: 'None', name: 'ARENA STATION set', desc: 'Choose which set of ARENA STATION items are available for purchase during ARENA (∇ only)'});
   R.Config('unlock_all_songs', { type: 'boolean', default: false, name:'Unlock All Songs'});
   R.Config('unlock_all_navigators', { type: 'boolean', default: false, name:'Unlock All Navigators'} );
   R.Config('unlock_all_appeal_cards', { type: 'boolean', default: false, name:'Unlock All Appeal Cards'});
   R.Config('unlock_all_valk_items', { type: 'boolean', default: false, name:'Unlock Customization Items', desc: 'Unlock most customization items (Navigators not included; check \'unlock all navigators\' option)'});
-  R.Config('gw_mission', { type: 'boolean', default: false, name: 'Enable MISSION mode', desc: 'For GRAVITY WARS' })
-  R.Config('gw_mission_skipmatch', { type: 'boolean', default: false, name: 'Skip matchmaking MISSION objectives', desc: 'In case you\'re unable to do matchmaking. Prologue and episode 10 only. Dialogue will be skipped.' })
-  R.Config('gw_gene', { type: 'boolean', default: true, name: 'GENERATOR START', desc: 'For GRAVITY WARS: disable to hide in mode select in case of print problem loop (due to missing chara_card files)' })
   
   R.DataFile('./webui/asset/uploads/1_mdb.xml', {name: 'music_db.xml (BOOTH)', accept: 'text/xml, .xml'});
   R.DataFile('./webui/asset/uploads/2_mdb.xml', {name: 'music_db.xml (infinite infection)', accept: 'text/xml, .xml'});
   R.DataFile('./webui/asset/uploads/3_mdb.xml', {name: 'music_db.xml (GRAVITY WARS)', accept: 'text/xml, .xml'});
-  // R.DataFile('./webui/asset/uploads/4_mdb.xml', {name: 'music_db.xml (HEAVENLY HAVEN)', accept: 'text/xml, .xml'});
+  R.DataFile('./webui/asset/uploads/4_mdb.xml', {name: 'music_db.xml (HEAVENLY HAVEN)', accept: 'text/xml, .xml'});
   // R.DataFile('./webui/asset/uploads/5_mdb.xml', {name: 'music_db.xml (VIVID WAVE)', accept: 'text/xml, .xml'});
   R.DataFile('./webui/asset/uploads/6_mdb.xml', {name: 'music_db.xml (EXCEED GEAR)', accept: 'text/xml, .xml'});
   R.DataFile('./webui/asset/uploads/7_mdb.xml', {name: 'music_db.xml (∇)', accept: 'text/xml, .xml'});
@@ -71,6 +67,7 @@ export function register() {
   R.WebUIEvent('getWeekRankList', getWeekRankList);
   R.WebUIEvent('getDateCode', getDateCode);
   R.WebUIEvent('getMorePluginSettings', getMorePluginSettings);
+  R.WebUIEvent('saveMorePluginSettings', saveMorePluginSettings);
   R.WebUIEvent('saveCustomAkanames', saveCustomAkanames);
 
   const MultiRoute = (method: string, handler: EPR | boolean) => {
@@ -78,6 +75,7 @@ export function register() {
     R.Route(`game.${method}`, handler);
     R.Route(`game_2.${method}`, handler);
     R.Route(`game_3.${method}`, handler);
+    R.Route(`game.sv4_${method}`, handler);
     R.Route(`game.sv6_${method}`, handler);
     R.Route(`game.sv7_${method}`, handler);
   };

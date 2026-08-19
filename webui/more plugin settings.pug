@@ -1,6 +1,19 @@
 -
 link(rel="stylesheet" href="static/asset/css/datatables.css")
 div
+    .card#more-settings
+        .card-header
+            p.card-header-title
+                span.icon
+                    i.mdi.mdi-cog
+                | More Plugin Settings
+        .card-content
+            .field#pluginset
+    div.field.is-grouped
+        div.control.is-expanded
+        div.control
+            button.button.is-link(id="pluginset-submit") Save
+    br
     .card#akaname
         .card-header
             p.card-header-title

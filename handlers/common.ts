@@ -1,11 +1,12 @@
-import { EVENT, SDVX_STATION } from '../data/booth';
-import { EVENT2, MUSIC_LIMITED, COURSES2 } from '../data/ii';
-import { EVENT3, MISSION_EVENT3, MUSIC_LIMITED3, COURSES3, EXTENDS3, SP_APICAGENE3 } from '../data/gw';
-import { EVENT6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIE_SONGS, LICENSED_SONGS6, 
+import { FLAGS, SDVX_STATION } from '../data/booth';
+import { FLAGS2, MUSIC_LIMITED, COURSES2 } from '../data/ii';
+import { FLAGS3, MISSION_EVENT3, MUSIC_LIMITED3, COURSES3, EXTENDS3, SP_APICAGENE3 } from '../data/gw';
+import { FLAGS4, COURSES4, INFORMATION4, UNLOCK_EVENTS4, EXTENDS4 } from '../data/hh';
+import { FLAGS6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIE_SONGS, LICENSED_SONGS6, 
           CURRENT_ARENA, ARENA_STATION_ITEMS, VALGENE, INFORMATION6, UNLOCK_EVENTS6, 
           MUSIC_OVERRIDE6 
 } from '../data/exg';
-import { EVENT7, COURSES7, EXTENDS7, LICENSED_SONGS7, CURRENT_ARENA7, ARENA_STATION_ITEMS7, 
+import { FLAGS7, COURSES7, EXTENDS7, LICENSED_SONGS7, CURRENT_ARENA7, ARENA_STATION_ITEMS7, 
           VALGENE7, APIGENE7, INFORMATION7, UNLOCK_EVENTS7, EGSONGS_LOCKED, MUSIC_OVERRIDE7,
           GAMEOVER_CHARA7, QUIZ7
 } from '../data/nbl';
@@ -28,7 +29,7 @@ export const common: EPR = async (info, data, send) => {
   const version = parseInt(modelInfo[4].slice(0, -2));
   const pluginSettings = await DB.FindOne<PluginSettings>({collection: 'settings'})
   let station = [];
-  let events = [];
+  let flags = [];
   let courses = [];
   let extend = [];
   let information = [];
@@ -83,7 +84,7 @@ export const common: EPR = async (info, data, send) => {
             result.push(parseDiff(id, i, limitedNo))
           }
         }
-        if (parseInt(music.info.inf_ver) == ver) {  // XCD/NBL
+        if (parseInt(music.info.inf_ver) == ver) {  // Match INF version
           if (ver === 6 && id === 469) limitedNo = 2;  // Manual lock SV6; secret XCD
           result.push(parseDiff(id, 3, limitedNo))
         }
@@ -119,6 +120,225 @@ export const common: EPR = async (info, data, send) => {
     return result
   }
 
+  const populateInformation = (information) => {
+    let currentTime = parseInt((date.getTime()/100000) as unknown as string) * 100
+    for(const info of information) {
+      extend.push({
+        id: info.id,
+        type: 1,
+        params: [
+          1,
+          currentTime,
+          0,
+          0,
+          0,
+          '[f:0]SERVER INFORMATION',
+          info.str,
+          '',
+          '',
+          '',
+        ],
+      });
+    }
+  }
+
+  const populateAkanames = (akanames) => {
+    let akaId = 1
+    let akaCnt = 0
+    let params = [0,0,0,0,0,'','','','','']
+    for(const [ind, titles] of akanames.entries()) {
+      params[akaCnt] = akaId++
+      params[akaCnt + 5] = titles
+      akaCnt++
+      if(ind+1 === akanames.length || akaCnt === 5 || (akanames.length < 5 && akaCnt >= akanames.length)) {
+        extend.push({
+          id: 0,
+          type: 15,
+          params: params
+        })
+        params = [0,0,0,0,0,'','','','','']
+        akaCnt = 0
+      }
+    }
+  }
+  
+  const populateUnlockEvents = async (gameVersion) => {
+    if(IO.Exists('webui/asset/config/events.json')) {
+      let bufEventData = await IO.ReadFile('webui/asset/json/events.json')
+      let bufEventConfig = await IO.ReadFile('webui/asset/config/events.json')
+      let eventData = JSON.parse(bufEventData.toString())
+      let eventConfig = JSON.parse(bufEventConfig.toString())
+      for(const eData of eventData['events' + Math.abs(gameVersion)]) {
+        let stmpEvntInfo = unlockEvents[eData.id]
+        if(stmpEvntInfo && checkVerStart(version, eData.version, eData.start, date)) {
+          if((eData.type === 'stamp' || eData.type === 'ikiiki') && eventConfig[eData.id] !== undefined && eventConfig[eData.id].toggle) {
+            let stampType = {stamp: 5, ikiiki: 7}
+            for(const stmpData of stmpEvntInfo.info.data) {
+              if(!stmpData.version) {
+                extend.push({
+                  type: 3,
+                  id: stmpData.stmpid,
+                  params: [
+                    stampType[eData.type],
+                    stmpData.stps, 
+                    0, 
+                    stmpData.stps % 10000, 
+                    (stmpData.stmpid.toString() in unlockEvents.refillStamps) ? 999999 : 0,
+                    ('stmpHdJ' in stmpEvntInfo.info) ? stmpEvntInfo.info.stmpHdJ : stmpEvntInfo.info.stmpHd,
+                    stmpEvntInfo.info.stmpHd,
+                    ('stmpFtJ' in stmpEvntInfo.info) ? stmpEvntInfo.info.stmpFtJ : stmpEvntInfo.info.stmpFt,
+                    stmpEvntInfo.info.stmpFt,
+                    stmpData.stprwrd
+                  ]
+                })
+
+                if(eData.id === 'qmastamp') {
+                  for(const quiz of QUIZ7) {
+                    extend.push({
+                      type: 23,
+                      id: quiz.id,
+                      params: [
+                        0, quiz.id, 1, 0, 0,
+                        quiz.text, '', '', '', ''
+                      ]
+                    })
+
+                    for(const [ind, list] of quiz.list.entries()) {
+                      let qParamStr = []
+                      let qListStr = JSON.stringify(list)
+                      let qListEsc = qListStr.replace(/"/g, '\\"')
+                      let sliceLen = 0
+                      let paramStrCnt = 0
+                      if(qListEsc.length > 1000) {
+                        for (let i = 0; i < qListEsc.length; i += 1000) {
+                          if(paramStrCnt === 5) {
+                            paramStrCnt++
+                            console.log("ignoring list. too long - id/ind " + quiz.id + '/' + ind)
+                            break
+                          }
+                          let strAdd = qListEsc.slice(i, i + 1000).replace(/\\"/g, '"')
+                          qParamStr.push(strAdd)
+                          paramStrCnt++
+                        }
+                      } else qParamStr.push(qListEsc.replace(/\\"/g, '"'))
+
+                      while (qParamStr.length < 5) qParamStr.push('')
+
+                      if(paramStrCnt <= 5) extend.push({
+                        type: 23,
+                        id: quiz.id,
+                        params: [
+                          1, quiz.id, 0, 0, 0
+                        ].concat(qParamStr)
+                      })
+                    }
+
+
+                  }
+                }
+              } else if(checkVerStart(version, stmpData.version, stmpData.start, date)) {
+                extend.push({
+                  type: 3,
+                  id: stmpData.stmpid,
+                  params: [
+                    stampType[eData.type],
+                    stmpData.stps, 
+                    0, 
+                    stmpData.stps % 10000, 
+                    (stmpData.stmpid.toString() in unlockEvents.refillStamps) ? 999999 : 0,
+                    ('stmpHdJ' in stmpData) ? stmpData.stmpHdJ : stmpData.stmpHd,
+                    stmpData.stmpHd,
+                    ('stmpFtJ' in stmpData) ? stmpData.stmpFtJ : stmpData.stmpFt,
+                    stmpData.stmpFt,
+                    stmpData.stprwrd
+                  ]
+                })
+              }
+            }
+
+            if(stmpEvntInfo.type === 'select') {
+              extend.push({
+                type: 3,
+                id: stmpEvntInfo.info.id,
+                params: [
+                  9,
+                  ((stmpEvntInfo.info.textstampval !== undefined) ? stmpEvntInfo.info.textstampval : 0),
+                  0,
+                  0,
+                  0,
+                  stmpEvntInfo.info.sheet,
+                  '',
+                  stmpEvntInfo.info.stmpSlHd,
+                  stmpEvntInfo.info.stmpSlFt,
+                  stmpEvntInfo.info.stmpBg
+                ]
+              })
+            }
+          }
+          else if(eData.type === 'completestamp' && eventConfig[eData.id] !== undefined && eventConfig[eData.id].toggle) {
+            extend.push({
+              type: 19,
+              id: stmpEvntInfo.info.id,
+              params: [
+                0, 0, 0, 0, 0,
+                JSON.stringify(stmpEvntInfo.info.data),
+                '',
+                '',
+                '',
+                ''
+              ]
+            })
+          }
+          else if(eData.type === 'tama' && eventConfig[eData.id] !== undefined && eventConfig[eData.id].toggle) {
+            flags.push('TAMAADV_ENABLE')
+            extend.push({
+              type: 20,
+              id: stmpEvntInfo.info.id,
+              params: [
+                0, 0, 0, 0, 0,
+                stmpEvntInfo.info.list,
+                '',
+                '',
+                '',
+                ''
+              ]
+            })
+          }
+          else if(eData.type === 'variant' && eventConfig[eData.id] !== undefined && eventConfig[eData.id].toggle) {
+            extend.push({
+              type: 22,
+              id: stmpEvntInfo.info.id,
+              params: [
+                0,
+                stmpEvntInfo.info.setid,
+                parseInt(eventConfig[eData.id].settings.minOverTrackRank),
+                parseInt(eventConfig[eData.id].settings.minSealDiff),
+                parseInt(eventConfig[eData.id].settings.maxSealRetain),
+                '',
+                '',
+                '',
+                '',
+                ''
+              ]
+            })
+          }
+        } else if (eData.id === 'achmissions' && checkVerStart(version, eData.version, eData.start, date)) {
+          let toggles = Object.keys(eventConfig['achmissions'].toggle)
+          let eventIds = '\t'
+          let prio = '1'
+          toggles.forEach(t => {
+            if(eventConfig['achmissions'].toggle[t] === true) {
+              eventIds += (eventIds === '\t' ? '' : ',') + t.split('_')[1]
+              prio = t.split('_')[1]
+            }
+          })
+          flags.push('ACHIEVEMENT_EVENT_MISSION' + eventIds)
+          flags.push('ACHIEVEMENT_EVENT_MISSION_PRIORITY\t' + prio)
+        }
+      }
+    }
+  }
+
   console.log("Retrieving common data");
   try {
     switch (info.method) {
@@ -127,7 +347,7 @@ export const common: EPR = async (info, data, send) => {
           case 'game': {
             console.log('Game: BOOTH')
             songNum = 187
-            events = EVENT
+            flags = FLAGS
             station = SDVX_STATION
             break
           }
@@ -135,7 +355,7 @@ export const common: EPR = async (info, data, send) => {
             console.log('Game: infinite infection')
             songNum = 554
             courses = COURSES2
-            events = EVENT2
+            flags = FLAGS2
             break
           }
           case 'game_3': {
@@ -144,25 +364,36 @@ export const common: EPR = async (info, data, send) => {
             spApica = SP_APICAGENE3.filter(sp => sp.version <= version)
             courses = COURSES3.filter(c => version >= c.version)
             EXTENDS3.filter(ex => checkVerStart(version, ex.version, 0, date)).forEach(val => extend.push(Object.assign({}, val)));
-            events = EVENT3
+            flags = FLAGS3
             break
           }
         }
         break
       }
+      case 'sv4_common': {
+        console.log('Game: HEAVENLY HAVEN')
+        songNum = 1368
+        // spApica = SP_APICAGENE3.filter(sp => sp.version <= version)
+        courses = COURSES4.filter(c => version >= c.version)
+        // EXTENDS3.filter(ex => checkVerStart(version, ex.version, 0, date)).forEach(val => extend.push(Object.assign({}, val)));
+        flags = FLAGS4
+        information = INFORMATION4
+        unlockEvents = UNLOCK_EVENTS4
+        EXTENDS4.filter(ex => checkVerStart(version, ex.version, 0, date)).forEach(val => extend.push(Object.assign({}, val)));
+        break
+      }
       case 'sv6_common': {
         console.log('Game: EXCEED GEAR')
-        //events = EVENT6;
-        EVENT6.forEach(val => events.push(val));
+        FLAGS6.forEach(val => flags.push(val));
         if(IO.Exists('webui/asset/config/flags.json')) {
           let bufFlagConfig = await IO.ReadFile('webui/asset/config/flags.json')
           let flagConfig = JSON.parse(bufFlagConfig.toString())
           for(const flagIter in flagConfig) {
             if(flagConfig[flagIter]['toggle']) {
-              if(typeof flagConfig[flagIter]['str'] === 'string') events.push(flagConfig[flagIter]['str'])
+              if(typeof flagConfig[flagIter]['str'] === 'string') flags.push(flagConfig[flagIter]['str'])
               else {
                 for(const multiFlagIter in flagConfig[flagIter]['str']) {
-                  events.push(flagConfig[flagIter]['str'][multiFlagIter])
+                  flags.push(flagConfig[flagIter]['str'][multiFlagIter])
                 }
               }
             }
@@ -181,16 +412,16 @@ export const common: EPR = async (info, data, send) => {
       }
       case 'sv7_common': {
         console.log('Game: ∇')
-        EVENT7.forEach(val => events.push(val));
+        FLAGS7.forEach(val => flags.push(val));
         if(IO.Exists('webui/asset/config/flags.json')) {
           let bufFlagConfig = await IO.ReadFile('webui/asset/config/flags.json')
           let flagConfig = JSON.parse(bufFlagConfig.toString())
           for(const flagIter in flagConfig) {
             if(flagConfig[flagIter]['toggle']) {
-              if(typeof flagConfig[flagIter]['str'] === 'string') events.push(flagConfig[flagIter]['str'])
+              if(typeof flagConfig[flagIter]['str'] === 'string') flags.push(flagConfig[flagIter]['str'])
               else {
                 for(const multiFlagIter in flagConfig[flagIter]['str']) {
-                  events.push(flagConfig[flagIter]['str'][multiFlagIter])
+                  flags.push(flagConfig[flagIter]['str'][multiFlagIter])
                 }
               }
             }
@@ -219,7 +450,7 @@ export const common: EPR = async (info, data, send) => {
         music: Array.from({ length: songNum }, (_, id) => K.ATTR({id: (id + 1).toString(), flag: unlockAllSongs ? '3' : '2'}, {}))
       },
       event: {
-        info: events.map(id => K.ATTR({id: id.toString()}))
+        info: flags.map(id => K.ATTR({id: id.toString()}))
       },
       catalog: {
         info: [
@@ -275,10 +506,10 @@ export const common: EPR = async (info, data, send) => {
 
     let response = {}
 
-    if(gameVersion === 2 || gameVersion === 3) {
+    if([2, 3, 4].includes(gameVersion)) {
       if(gameVersion === 3) {
-        if(U.GetConfig('gw_mission')) events = events.concat(MISSION_EVENT3)
-        if(!U.GetConfig('gw_gene')) events = events.concat([25])
+        if(pluginSettings.gwMission) flags = flags.concat(MISSION_EVENT3)
+        if(!pluginSettings.gwGenerator) flags = flags.concat([25])
 
         let sp = spApica[(Math.random() * spApica.length) | 0];
         extend.push({
@@ -292,14 +523,35 @@ export const common: EPR = async (info, data, send) => {
           ]
         })
       }
+
+      if(pluginSettings.gwScoreAdjTime !== 0) {
+        extend.push({
+          type: 5,
+          id: 1,
+          params: [
+            0, 0, 0, 0, 0,
+            `scoreadjtime:${pluginSettings.gwScoreAdjTime}`,
+            '', '', '', ''
+          ]
+        })
+      }
+
+      if(information.length > 0) populateInformation(information)
+      
+      if(gameVersion === 4) await populateUnlockEvents(gameVersion)
+
       response = {
-        event: {
-          info: events.map(e => ({
+        event: gameVersion === 4 ? {
+          info: flags.map(e => ({
+            event_id: K.ITEM('str', e)
+          }))
+        } : {
+          info: flags.map(e => ({
             event_id: K.ITEM('u32', e)
           }))
         },
         music_limited: {
-          info: unlockAllSongs ? [] : songs
+          info: songs
         },
         skill_course: {
           info: courses.reduce(
@@ -308,11 +560,16 @@ export const common: EPR = async (info, data, send) => {
                 s.courses.map(c => ({
                   season_id: K.ITEM('s32', s.id),
                   season_name: K.ITEM('str', s.name),
-                  season_new_flg: K.ITEM('bool', s.isNew),
+                  season_new_flg: K.ITEM('bool', 'isNew' in c ? c.isNew : s.isNew),
                   course_id: K.ITEM('s16', c.id),
                   course_name: K.ITEM('str', c.name),
                   course_type: K.ITEM('s16', c.type),
                   level: K.ITEM('s16', c.level),
+                  ...(gameVersion === 4 && {
+                    skill_level: K.ITEM('s16', c.level), 
+                    clear_rate: K.ITEM('s32', 5000),
+                    avg_score: K.ITEM('u32', 15000000),
+                  }),
                   skill_name_id: K.ITEM('s16', c.nameID),
                   matching_assist: K.ITEM('bool', c.assist),
                   gauge_type: K.ITEM('s16', 0),
@@ -327,7 +584,7 @@ export const common: EPR = async (info, data, send) => {
             []
           ),
         },
-        ...(gameVersion === 3 && {
+        ...(gameVersion >= 3 && {
           extend: {
             info: extend.map(e => ({
               extend_id: K.ITEM('u32', e.id),
@@ -374,27 +631,7 @@ export const common: EPR = async (info, data, send) => {
         musicOverrideFin.push(chartInfo)
       }
 
-      if(information.length > 0) {
-        let currentTime = parseInt((date.getTime()/100000) as unknown as string) * 100
-        for(const info of information) {
-          extend.push({
-            id: info.id,
-            type: 1,
-            params: [
-              1,
-              currentTime,
-              0,
-              0,
-              0,
-              '[f:0]SERVER INFORMATION',
-              info.str,
-              '',
-              '',
-              '',
-            ],
-          });
-        }
-      }
+      if(information.length > 0) populateInformation(information)
 
       if(omniList.length > 0) {
         extend.push({
@@ -445,202 +682,12 @@ export const common: EPR = async (info, data, send) => {
         })
       }
 
-      if(pluginSettings.akanames) {
-        let akaId = 1
-        let akaCnt = 0
-        let params = [0,0,0,0,0,'','','','','']
-        for(const [ind, titles] of pluginSettings.akanames.entries()) {
-          params[akaCnt] = akaId++
-          params[akaCnt + 5] = titles
-          akaCnt++
-          if(ind+1 === pluginSettings.akanames.length || akaCnt === 5 || (pluginSettings.akanames.length < 5 && akaCnt >= pluginSettings.akanames.length)) {
-            extend.push({
-              id: 0,
-              type: 15,
-              params: params
-            })
-            params = [0,0,0,0,0,'','','','','']
-            akaCnt = 0
-          }
-        }
-      }
+      if(pluginSettings.akanames) populateAkanames(pluginSettings.akanames)
 
-      if(IO.Exists('webui/asset/config/events.json')) {
-        let bufEventData = await IO.ReadFile('webui/asset/json/events.json')
-        let bufEventConfig = await IO.ReadFile('webui/asset/config/events.json')
-        let eventData = JSON.parse(bufEventData.toString())
-        let eventConfig = JSON.parse(bufEventConfig.toString())
-        for(const eData of eventData['events' + Math.abs(gameVersion)]) {
-          let stmpEvntInfo = unlockEvents[eData.id]
-          if(stmpEvntInfo && checkVerStart(version, eData.version, eData.start, date)) {
-            if(eData.type === 'stamp' && eventConfig[eData.id] !== undefined && eventConfig[eData.id].toggle) {
-              for(const stmpData of stmpEvntInfo.info.data) {
-                if(!stmpData.version) {
-                  extend.push({
-                    'type': 3,
-                    'id': stmpData.stmpid,
-                    'params': [
-                      5,
-                      stmpData.stps, 
-                      0, 
-                      stmpData.stps % 10000, 
-                      (stmpData.stmpid.toString() in unlockEvents.refillStamps) ? 999999 : 0,
-                      ('stmpHdJ' in stmpEvntInfo.info) ? stmpEvntInfo.info.stmpHdJ : stmpEvntInfo.info.stmpHd,
-                      stmpEvntInfo.info.stmpHd,
-                      ('stmpFtJ' in stmpEvntInfo.info) ? stmpEvntInfo.info.stmpFtJ : stmpEvntInfo.info.stmpFt,
-                      stmpEvntInfo.info.stmpFt,
-                      stmpData.stprwrd
-                    ]
-                  })
+      await populateUnlockEvents(Math.abs(gameVersion))
 
-                  if(eData.id === 'qmastamp') {
-                    for(const quiz of QUIZ7) {
-                      extend.push({
-                        type: 23,
-                        id: quiz.id,
-                        params: [
-                          0, quiz.id, 1, 0, 0,
-                          quiz.text, '', '', '', ''
-                        ]
-                      })
-
-                      for(const [ind, list] of quiz.list.entries()) {
-                        let qParamStr = []
-                        let qListStr = JSON.stringify(list)
-                        let qListEsc = qListStr.replace(/"/g, '\\"')
-                        let sliceLen = 0
-                        let paramStrCnt = 0
-                        if(qListEsc.length > 1000) {
-                          for (let i = 0; i < qListEsc.length; i += 1000) {
-                            if(paramStrCnt === 5) {
-                              paramStrCnt++
-                              console.log("ignoring list. too long - id/ind " + quiz.id + '/' + ind)
-                              break
-                            }
-                            let strAdd = qListEsc.slice(i, i + 1000).replace(/\\"/g, '"')
-                            qParamStr.push(strAdd)
-                            paramStrCnt++
-                          }
-                        } else qParamStr.push(qListEsc.replace(/\\"/g, '"'))
-
-                        while (qParamStr.length < 5) qParamStr.push('')
-
-                        if(paramStrCnt <= 5) extend.push({
-                          type: 23,
-                          id: quiz.id,
-                          params: [
-                            1, quiz.id, 0, 0, 0
-                          ].concat(qParamStr)
-                        })
-                      }
-
-
-                    }
-                  }
-                } else if(checkVerStart(version, stmpData.version, stmpData.start, date)) {
-                  extend.push({
-                    type: 3,
-                    id: stmpData.stmpid,
-                    params: [
-                      5,
-                      stmpData.stps, 
-                      0, 
-                      stmpData.stps % 10000, 
-                      (stmpData.stmpid.toString() in unlockEvents.refillStamps) ? 999999 : 0,
-                      ('stmpHdJ' in stmpData) ? stmpData.stmpHdJ : stmpData.stmpHd,
-                      stmpData.stmpHd,
-                      ('stmpFtJ' in stmpData) ? stmpData.stmpFtJ : stmpData.stmpFt,
-                      stmpData.stmpFt,
-                      stmpData.stprwrd
-                    ]
-                  })
-                }
-              }
-
-              if(stmpEvntInfo.type === 'select') {
-                extend.push({
-                  type: 3,
-                  id: stmpEvntInfo.info.id,
-                  params: [
-                    9,
-                    ((stmpEvntInfo.info.textstampval !== undefined) ? stmpEvntInfo.info.textstampval : 0),
-                    0,
-                    0,
-                    0,
-                    stmpEvntInfo.info.sheet,
-                    '',
-                    stmpEvntInfo.info.stmpSlHd,
-                    stmpEvntInfo.info.stmpSlFt,
-                    stmpEvntInfo.info.stmpBg
-                  ]
-                })
-              }
-            }
-            else if(eData.type === 'completestamp' && eventConfig[eData.id] !== undefined && eventConfig[eData.id].toggle) {
-              extend.push({
-                type: 19,
-                id: stmpEvntInfo.info.id,
-                params: [
-                  0, 0, 0, 0, 0,
-                  JSON.stringify(stmpEvntInfo.info.data),
-                  '',
-                  '',
-                  '',
-                  ''
-                ]
-              })
-            }
-            else if(eData.type === 'tama' && eventConfig[eData.id] !== undefined && eventConfig[eData.id].toggle) {
-              events.push('TAMAADV_ENABLE')
-              extend.push({
-                type: 20,
-                id: stmpEvntInfo.info.id,
-                params: [
-                  0, 0, 0, 0, 0,
-                  stmpEvntInfo.info.list,
-                  '',
-                  '',
-                  '',
-                  ''
-                ]
-              })
-            }
-            else if(eData.type === 'variant' && eventConfig[eData.id] !== undefined && eventConfig[eData.id].toggle) {
-              extend.push({
-                type: 22,
-                id: stmpEvntInfo.info.id,
-                params: [
-                  0,
-                  stmpEvntInfo.info.setid,
-                  parseInt(eventConfig[eData.id].settings.minOverTrackRank),
-                  parseInt(eventConfig[eData.id].settings.minSealDiff),
-                  parseInt(eventConfig[eData.id].settings.maxSealRetain),
-                  '',
-                  '',
-                  '',
-                  '',
-                  ''
-                ]
-              })
-            }
-          } else if (eData.id === 'achmissions' && checkVerStart(version, eData.version, eData.start, date)) {
-            let toggles = Object.keys(eventConfig['achmissions'].toggle)
-            let eventIds = '\t'
-            let prio = '1'
-            toggles.forEach(t => {
-              if(eventConfig['achmissions'].toggle[t] === true) {
-                eventIds += (eventIds === '\t' ? '' : ',') + t.split('_')[1]
-                prio = t.split('_')[1]
-              }
-            })
-            events.push('ACHIEVEMENT_EVENT_MISSION' + eventIds)
-            events.push('ACHIEVEMENT_EVENT_MISSION_PRIORITY\t' + prio)
-          }
-        }
-      }
-
-      const arenaOpen = BigInt(date) >= currentArena.time_start && (BigInt(date) < currentArena.time_end || U.GetConfig('arena_no_endtime'))
-      const shopItemSet = arenaItems[U.GetConfig('arena_station7')]
+      const arenaOpen = BigInt(date) >= currentArena.time_start && (BigInt(date) < currentArena.time_end || pluginSettings.nblArenaNoEnd)
+      const shopItemSet = arenaItems[pluginSettings.nblArenaStation]
       const shopOpen = arenaOpen && !_.isEmpty(shopItemSet)
       let arenaData = {}
 
@@ -719,14 +766,14 @@ export const common: EPR = async (info, data, send) => {
         })
       }
 
-      if(currentDate.substring(0,4) === '2/5/') events.push("EVENTDATE_ONIGO")
-      if(currentDate.substring(0,5) === '2/14/') events.push('VALENTINES_DAY_2024')
-      if(currentDate.substring(0,5) === '2/15/') events.push('WHITE_DAY_2024')
+      if(currentDate.substring(0,4) === '2/5/') flags.push("EVENTDATE_ONIGO")
+      if(currentDate.substring(0,5) === '2/14/') flags.push('VALENTINES_DAY_2024')
+      if(currentDate.substring(0,5) === '2/15/') flags.push('WHITE_DAY_2024')
       if(currentDate.substring(0,4) === '4/1/') {
-        events.push('EVENTDATE_APRILFOOL');
-        events.push('YUKKURI_RASIS_CREW_ENABLE')
-        events.push('YUKKURI_RASIS_TITLE_ENABLE')
-        events.push('APRIL_RAINBOW_LINE_ENABLE')
+        flags.push('EVENTDATE_APRILFOOL');
+        flags.push('YUKKURI_RASIS_CREW_ENABLE')
+        flags.push('YUKKURI_RASIS_TITLE_ENABLE')
+        flags.push('APRIL_RAINBOW_LINE_ENABLE')
         for (const afsong in APRILFOOLSSONGS) {
           for (let j = 0; j < 5; ++j) {
             songs.push({
@@ -737,9 +784,9 @@ export const common: EPR = async (info, data, send) => {
           }
         }
       }
-      if(currentDate.substring(0,5) === '5/10/') events.push("EVENTDATE_GOTT")
-      if(['10/24/', '10/25/', '10/26/', '10/27/', '10/28/', '10/29/', '10/30/', '10/31/'].includes(currentDate.substring(0,6))) events.push('HALLOWEEN_EVENT')
-      if(['12/24/', '12/25/', '12/26/'].includes(currentDate.substring(0,6))) events.push('MERRY_CHRISTMAS_2023')
+      if(currentDate.substring(0,5) === '5/10/') flags.push("EVENTDATE_GOTT")
+      if(['10/24/', '10/25/', '10/26/', '10/27/', '10/28/', '10/29/', '10/30/', '10/31/'].includes(currentDate.substring(0,6))) flags.push('HALLOWEEN_EVENT')
+      if(['12/24/', '12/25/', '12/26/'].includes(currentDate.substring(0,6))) flags.push('MERRY_CHRISTMAS_2023')
 
       let curWeekly = []
       if(IO.Exists('webui/asset/config/weeklymusic.json')) {
@@ -765,7 +812,7 @@ export const common: EPR = async (info, data, send) => {
         },
         arena: arenaData,
         event: {
-          info: events.map(e => ({
+          info: flags.map(e => ({
             event_id: K.ITEM('str', e),
           })),
         },

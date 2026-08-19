@@ -408,7 +408,7 @@ export const COURSES3 = [
 		    },
 		    {
 		        id: 12,
-		        type: 2,
+		        type: 1,
 		        name: 'Skill LEVEL ∞（12） 暴龍天',
 		        level: 11,
 		        nameID: 11,
@@ -559,7 +559,7 @@ export const COURSES3 = [
 		    },
 		    {
 		        id: 12,
-		        type: 2,
+		        type: 1,
 		        name: 'Skill LEVEL ∞（12） 暴龍天',
 		        level: 11,
 		        nameID: 11,
@@ -580,7 +580,7 @@ export const COURSES3 = [
 	    courses: [
 	    	{
 		        id: 11,
-		        type: 2,
+		        type: 1,
 		        name: 'Skill LEVEL 11 或帝滅斗',
 		        level: 10,
 		        nameID: 10,
@@ -601,7 +601,7 @@ export const COURSES3 = [
 	    courses: [
 	    	{
 		        id: 11,
-		        type: 2,
+		        type: 1,
 		        name: 'Skill LEVEL 11 或帝滅斗',
 		        level: 10,
 		        nameID: 10,
@@ -752,7 +752,7 @@ export const COURSES3 = [
 		    },
 		    {
 		        id: 12,
-		        type: 2,
+		        type: 1,
 		        name: 'Skill LEVEL ∞（12） 暴龍天',
 		        level: 11,
 		        nameID: 11,
@@ -773,7 +773,7 @@ export const COURSES3 = [
 	    courses: [
 	    	{
 		        id: 11,
-		        type: 2,
+		        type: 1,
 		        name: 'Skill LEVEL 11 或帝滅斗',
 		        level: 10,
 		        nameID: 10,
@@ -794,7 +794,7 @@ export const COURSES3 = [
 	    courses: [
 	    	{
 		        id: 11,
-		        type: 2,
+		        type: 1,
 		        name: 'Skill LEVEL 11 或帝滅斗',
 		        level: 10,
 		        nameID: 10,
@@ -811,7 +811,7 @@ export const COURSES3 = [
 	    id: 23,
 	    version: 20161212,
 	    name: '第8回',
-	    isNew: 0, 
+	    isNew: 1, 
 	    courses: [
 	    	{
 		        id: 1,
@@ -945,7 +945,7 @@ export const COURSES3 = [
 		    },
 		    {
 		        id: 12,
-		        type: 2,
+		        type: 1,
 		        name: 'Skill LEVEL ∞（12） 暴龍天',
 		        level: 11,
 		        nameID: 11,
@@ -962,11 +962,11 @@ export const COURSES3 = [
 	    id: 24,
 	    version: 20161212,
 	    name: '第8回 EXHAUSTコース',
-	    isNew: 0, 
+	    isNew: 1, 
 	    courses: [
 	    	{
 		        id: 11,
-		        type: 2,
+		        type: 1,
 		        name: 'Skill LEVEL 11 或帝滅斗',
 		        level: 10,
 		        nameID: 10,
@@ -983,11 +983,11 @@ export const COURSES3 = [
 	    id: 25,
 	    version: 20161212,
 	    name: '第8回 GRAVITYコース',
-	    isNew: 0, 
+	    isNew: 1, 
 	    courses: [
 	    	{
 		        id: 11,
-		        type: 2,
+		        type: 1,
 		        name: 'Skill LEVEL 11 或帝滅斗',
 		        level: 10,
 		        nameID: 10,
@@ -1383,7 +1383,7 @@ export const COURSES3 = [
   	},
 ]
 
-export const EVENT3 = [
+export const FLAGS3 = [
     // s1
 	1, // matching phase
     3, // policy break event icon

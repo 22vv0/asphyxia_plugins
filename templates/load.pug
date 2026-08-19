@@ -107,7 +107,7 @@ game
               clear_cnt(__type="s32") #{s.clearCnt}
               route_flg(__type="u32") #{s.routeFlg}
 
-  if version >= 6
+  if version === 4 || version >= 6
     result(__type="u8") #{result}
     name(__type="str") #{name}
     code(__type="str") #{code}
@@ -264,3 +264,24 @@ game
           tricky(__type="s32") #{variant.tricky}
           onehand(__type="s32") #{variant.onehand}
           handtrip(__type="s32") #{variant.handtrip}
+
+    if version <= 4
+      pb
+        if pbFin.length > 0
+          for p in pbFin
+            info
+              id(__type="s32") #{p.id}
+              target_id(__type="s32") #{p.target_id}
+              exp(__type="s32") #{p.exp}
+              start_date(__type="u64") #{p.start}
+              end_date(__type="u64") #{p.end}
+              for pm in p.music
+                music
+                  no(__type="s32") #{pm.no}
+                  point(__type="s32") #{pm.point}
+                  music_id(__type="s32") #{pm.music_id}
+        if pbEnergy.length > 0
+          for pbe in pbEnergy
+            energy
+              target_id(__type="s32") #{pbe.target_id}
+              energy(__type="s32") #{pbe.energy}

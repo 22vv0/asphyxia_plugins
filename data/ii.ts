@@ -13,7 +13,7 @@ export const POLICY_BREAK2 = [
 	{id: 11, titleJ: "REFLEC BEAT SPECIAL #004", titleE: "REFLEC BEAT SPECIAL #004", tgt: 0, rwrd: {type: 0, id: 553, param: 15, point: 24000}, start: BigInt(Date.parse('21 Aug 2014 00:00:00 GMT')), end: BigInt(Date.parse('31 Dec 2099 23:59:59 GMT'))},
 ]
 
-export const EVENT2 = [
+export const FLAGS2 = [
 	1, // matching phase
 	3, // floor infection event icon
 	6, // skill analyzer

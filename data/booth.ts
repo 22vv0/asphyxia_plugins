@@ -1,4 +1,4 @@
-export const EVENT = [
+export const FLAGS = [
 	3, // matching
 	10, // touhou logo
 	// 15, // bemani gakuen logo

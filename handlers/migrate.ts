@@ -270,6 +270,77 @@ export async function iiiMigrate(refid, newName) {
 	})
 }
 
+export async function ivMigrate(refid, newName) {
+	console.log("Migrating profile from GW to HH")
+	let profileData = await DB.FindOne<Profile>(refid, {collection: 'profile', version: 3})
+	await DB.Upsert<Profile>(refid, {collection: 'profile', version: 4}, {
+		$set: {
+			pluginVer: 1,
+			dbver: DB_VER,
+
+			collection: 'profile',
+			id: profileData.id,
+			name: newName,
+			appeal: 0,
+			akaname: 0,
+			blocks: 0,
+			packets: 0,
+			arsOption: 0,
+			drawAdjust: 0,
+			earlyLateDisp: 0,
+			effCLeft: 0,
+			effCRight: 1,
+			gaugeOption: 0,
+			hiSpeed: profileData.hiSpeed,
+			laneSpeed: profileData.laneSpeed,
+			narrowDown: 0,
+			notesOption: 0,
+			blasterEnergy: 0,
+
+			headphone: 0,
+			musicID: 0,
+			musicType: 0,
+			sortType: 0,
+			expPoint: 0,
+			mUserCnt: 0,
+			boothFrame: [0, 0, 0, 0, 0],
+
+			playCount: 0,
+			dayCount: 0,
+			todayCount: 0,
+			playchain: 0,
+			maxPlayChain: 0,
+			weekCount: 0,
+			weekPlayCount: 0,
+			weekChain: 0,
+			maxWeekChain: 0,
+
+			bplSupport: 0,
+			creatorItem: 0
+		}
+	})
+
+	let itemData = await DB.Find<Item>(refid, {collection: 'item', version: 3, type: {$nin: [7]}})
+	console.log("Migrating item data")
+	itemData.forEach(async item => {
+		await DB.Upsert<Item>(refid, {collection: 'item', version: 4, type: item.type, id: item.id}, {
+			$set: {
+				param: item.param,
+				dbver: DB_VER
+			}
+		})
+	})
+
+	let policyBreak = await DB.Find<PolicyBreak>(refid, {collection: 'pb', version: 3})
+	policyBreak.forEach(async pb => {
+		await DB.Upsert<PolicyBreak>(refid, {collection: 'pb', version: 4, id: pb.id}, {
+			$set: {
+				exp: pb.exp
+			}
+		})
+	})
+}
+
 export async function viiMigrate(refid, newName) {
 	console.log("Migrating profile from EG to ∇")
 	let profileData = await DB.FindOne<Profile>(refid, {collection: 'profile', version: 6})

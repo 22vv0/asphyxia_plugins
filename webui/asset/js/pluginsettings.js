@@ -1,18 +1,23 @@
 function generateEventToggles(eventInfo, eventConfig) {
     let cardContent = $('<div class="card-content">')
-    cardContent.append('<div class="field is-horizontal"').append(
-        $("<h5>" + eventInfo['key'] + "</h5>")
-    ).append(
-        $("<p style='font-size: 15px;'>" + eventInfo['explain'] + "</p>")
-    )
-    
-    cardContent.append(
-        $('<div class="field is-horizontal">').append(
-            $('<div class="field-label is-normal"><label class="label" for="' + eventInfo['id'] + '">Enable</label></div>')
-        ).append(
-            $('<div class="field-body"><div class="field"><div class="control"><label class="switch is-rounded"><input type="checkbox" ' + (eventConfig['toggle'] ? 'checked' : '') + ' name="' + eventInfo['id'] + '"><span class="check"></span></label></div><p class="help"></p></div></div>')
-        )
-    )
+    cardContent.append(`
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label" for="${eventInfo.id}">${eventInfo.key}</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <label class="switch is-rounded">
+                            <input type="checkbox" ${eventConfig['toggle'] ? 'checked' : ''} name="${eventInfo['id']}">
+                            <span class="check"></span>
+                        </label>
+                    </div>
+                    <p class="help">${eventInfo.explain}</p>
+                </div>
+            </div>
+        </div>
+    `)
     return cardContent
 }
 
@@ -43,6 +48,11 @@ async function readEventsJsonFile() {
     })
 }
 
+async function readSettingsFile() {
+    return await $.getJSON("static/asset/json/settings.json", function(data) {
+        return data
+    })
+}
 
 async function getMorePluginSettings() {
     return await emit("getMorePluginSettings").then(
@@ -53,7 +63,40 @@ async function getMorePluginSettings() {
     )
 }
 
+function populatePluginSet(setList, pluginSettings) {
+    for(const set of setList) {
+        $('#pluginset').append(
+        `
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label" for="${set.id}">${set.name}</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        ${set.html}
+                        <p class="help">${set.desc}</p>
+                    </div>
+                </div>
+            </div>
+        `)
+
+        if(typeof pluginSettings[set.id] === 'boolean' && pluginSettings[set.id]) {
+            $(`[name="${set.id}"]`).attr('checked', 'checked')
+        } else {
+            $(`[name="${set.id}"]`).val(pluginSettings[set.id])
+        }
+        
+    }
+
+
+    if(pluginSettings.akanames) {
+        let akanames = pluginSettings.akanames.join('\n')
+        $('#akanameText').val(akanames)
+    }
+}
+
 $(document).ready(async function() {
+    var setList = await readSettingsFile()
     var pluginSettings = await getMorePluginSettings()
     let eventData = await readEventsJsonFile()
     let flagConfig = await readFlagsConfigFile(eventData)
@@ -66,13 +109,10 @@ $(document).ready(async function() {
         )
     }
 
-    if(pluginSettings.akanames) {
-        let akanames = pluginSettings.akanames.join('\n')
-        $('#akanameText').val(akanames)
-    }
+    populatePluginSet(setList.pluginSet, pluginSettings)
 
     $('#flags-submit').on('click', async function() {
-        $.each($('span.check'), function(index, value) {
+        $.each($('#flags span.check'), function(index, value) {
             for(const flagIter in eventData['flags']) {
                 let toggle = true
                 if($(value).css('background-color').includes("54, 54, 54")) {
@@ -108,4 +148,34 @@ $(document).ready(async function() {
             }
         )
     })
+
+    $('#pluginset-submit').on('click', async function() {
+        let gwScoreAdjTime = $('[name="gwScoreAdjTime"]').val()
+        if(gwScoreAdjTime === '') gwScoreAdjTime = 0
+        else if(parseInt(gwScoreAdjTime) > 20) gwScoreAdjTime = 20
+        else if(parseInt(gwScoreAdjTime) < -20) gwScoreAdjTime = -20
+        else gwScoreAdjTime = parseInt(gwScoreAdjTime)
+
+        let settings = {
+            gwScoreAdjTime,
+            nblArenaStation: $('[name="nblArenaStation"]').val(),
+        }
+
+        $.each($('#more-settings span.check'), function(index, value) {
+            settings[$(value).parent().children('input').attr('name')] = !$(value).css('background-color').includes("54, 54, 54")
+        })
+
+        await emit("saveMorePluginSettings", {settings}).then(
+            function(response) {
+                alert('Settings saved.')
+            },
+            function(error) {
+                console.log(error)
+            }
+        )
+    })
+
+    /*
+    <div class=\"control is-expanded\"><input class=\"input\" type=\"text\" name=\"test3\"></div>
+    */
 })

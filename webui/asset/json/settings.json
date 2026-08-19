@@ -1,0 +1,40 @@
+{
+    "pluginSet": [
+        {
+            "id": "gwScoreAdjTime",
+            "html": "<div class=\"control is-expanded\"><input class=\"input\" type=\"number\" min=\"-20\" max=\"20\" name=\"gwScoreAdjTime\"></div>",
+            "name": "Judge offset [GW, HH]",
+            "desc": "Adjust the music offset via the hidden game flag 'scoreadjtime'"
+        },
+        {
+            "id": "gwMission",
+            "html": "<div class=\"control\"><label class=\"switch is-rounded\"><input class=\"input\" type=\"checkbox\" name=\"gwMission\"><span class=\"check\"></span></label>",
+            "name": "MISSION mode [GW]",
+            "desc": "Toggles MISSION mode."
+        },
+        {
+            "id": "gwMissionSkipMatch",
+            "html": "<div class=\"control\"><label class=\"switch is-rounded\"><input class=\"input\" type=\"checkbox\" name=\"gwMissionSkipMatch\"><span class=\"check\"></span></label>",
+            "name": "Skip matchmaking MISSION objectives [GW]",
+            "desc": "Skips MISSION objectives involving matchmaking, in case you're unable to do so. Prologue and episode 10 only. Dialogue will be skipped."
+        },
+        {
+            "id": "gwGenerator",
+            "html": "<div class=\"control\"><label class=\"switch is-rounded\"><input class=\"input\" type=\"checkbox\" name=\"gwGenerator\"><span class=\"check\"></span></label>",
+            "name": "GENERATOR START [GW]",
+            "desc": "Toggles REAL GENERATOR mode. Disable to hide in mode select in case of print problem loop (due to missing chara_card files)"
+        },
+        {
+            "id": "nblArenaNoEnd",
+            "html": "<div class=\"control\"><label class=\"switch is-rounded\"><input class=\"input\" type=\"checkbox\" name=\"nblArenaNoEnd\"><span class=\"check\"></span></label>",
+            "name": "Keep ARENA running [∇]",
+            "desc": "Choose whether to keep the latest ARENA season running past the end date."
+        },
+        {
+            "id": "nblArenaStation",
+            "html": "<div class=\"control is-expanded\"><div class=\"select\"><select type=\"text\" name=\"nblArenaStation\"><option>None</option><option>Set 1</option><option>Set 2</option></select></div>",
+            "name": "ARENA STATION set [∇]",
+            "desc": "Choose which set of ARENA STATION items are available for purchase during ARENA rank season"
+        }
+    ]
+}
