@@ -354,6 +354,98 @@
 				"info": "The 8th KAC"
 			}
 		],
+		"5": [
+			{
+				"id": 1,
+				"name": "岳翔",
+				"info": "Lv01"
+			},
+			{
+				"id": 2,
+				"name": "流星",
+				"info": "Lv02"
+			},
+			{
+				"id": 3,
+				"name": "月衝",
+				"info": "Lv03"
+			},
+			{
+				"id": 4,
+				"name": "瞬光",
+				"info": "Lv04"
+			},
+			{
+				"id": 5,
+				"name": "天極",
+				"info": "Lv05"
+			},
+			{
+				"id": 6,
+				"name": "烈風",
+				"info": "Lv06"
+			},
+			{
+				"id": 7,
+				"name": "雷電",
+				"info": "Lv07"
+			},
+			{
+				"id": 8,
+				"name": "麗華",
+				"info": "Lv08"
+			},
+			{
+				"id": 9,
+				"name": "魔騎士",
+				"info": "Lv09"
+			},
+			{
+				"id": 10,
+				"name": "剛力羅",
+				"info": "Lv10"
+			},
+			{
+				"id": 11,
+				"name": "或帝滅斗",
+				"info": "Lv11"
+			},
+			{
+				"id": 12,
+				"name": "暴龍天",
+				"info": "Lv∞"
+			},
+			{
+				"id": 13,
+				"name": "U.S.O.",
+				"info": "お花見コース2019"
+			},
+			{
+				"id": 14,
+				"name": "BMK2019",
+				"info": "BEMANI MASTER KOREA"
+			},
+			{
+				"id": 15,
+				"name": "蘭華",
+				"info": "The 9th KAC予選コース"
+			},
+			{
+				"id": 16,
+				"name": "綺羅",
+				"info": "The 9th KAC予選コース"
+			},
+			{
+				"id": 17,
+				"name": "八仙花",
+				"info": "八周年記念コース"
+			},
+			{
+				"id": 18,
+				"name": "天啓",
+				"info": "The 10th KAC予選コース"
+			}			
+		],
 		"6": [
 			{
 				"id": 1,

@@ -1,5 +1,5 @@
 import {common, log} from './handlers/common';
-import {hiscore, rival, globalMatch, lounge, entryE, serial} from './handlers/features';
+import {hiscore, rival, globalMatch, lounge, entryE, serial, saveAp, loadAp} from './handlers/features';
 import {
   updateProfile,
   copyResourcesFromGame,
@@ -14,7 +14,10 @@ import {
   getDateCode,
   getMorePluginSettings,
   saveMorePluginSettings,
-  saveCustomAkanames
+  saveCustomAkanames,
+  importMix,
+  updateMix,
+  deleteMix
 } from './handlers/webui';
 import {
   load,
@@ -50,7 +53,7 @@ export function register() {
   R.DataFile('./webui/asset/uploads/2_mdb.xml', {name: 'music_db.xml (infinite infection)', accept: 'text/xml, .xml'});
   R.DataFile('./webui/asset/uploads/3_mdb.xml', {name: 'music_db.xml (GRAVITY WARS)', accept: 'text/xml, .xml'});
   R.DataFile('./webui/asset/uploads/4_mdb.xml', {name: 'music_db.xml (HEAVENLY HAVEN)', accept: 'text/xml, .xml'});
-  // R.DataFile('./webui/asset/uploads/5_mdb.xml', {name: 'music_db.xml (VIVID WAVE)', accept: 'text/xml, .xml'});
+  R.DataFile('./webui/asset/uploads/5_mdb.xml', {name: 'music_db.xml (VIVID WAVE)', accept: 'text/xml, .xml'});
   R.DataFile('./webui/asset/uploads/6_mdb.xml', {name: 'music_db.xml (EXCEED GEAR)', accept: 'text/xml, .xml'});
   R.DataFile('./webui/asset/uploads/7_mdb.xml', {name: 'music_db.xml (∇)', accept: 'text/xml, .xml'});
   R.DataFile('./webui/asset/uploads/0_mdb.xml', {name: 'music_db.xml (Omnimix)', desc: 'SDVX7 compatible mdb', accept: 'text/xml, .xml'});
@@ -69,6 +72,9 @@ export function register() {
   R.WebUIEvent('getMorePluginSettings', getMorePluginSettings);
   R.WebUIEvent('saveMorePluginSettings', saveMorePluginSettings);
   R.WebUIEvent('saveCustomAkanames', saveCustomAkanames);
+  R.WebUIEvent('importMix', importMix);
+  R.WebUIEvent('updateMix', updateMix);
+  R.WebUIEvent('deleteMix', deleteMix);
 
   const MultiRoute = (method: string, handler: EPR | boolean) => {
     // Helper for register multiple versions.
@@ -77,6 +83,7 @@ export function register() {
     R.Route(`game_3.${method}`, handler);
     R.Route(`game.sv4_${method}`, handler);
     R.Route(`game.sv6_${method}`, handler);
+    R.Route(`game.sv5_${method}`, handler);
     R.Route(`game.sv7_${method}`, handler);
   };
 
@@ -91,6 +98,8 @@ export function register() {
   MultiRoute('save_m', saveScore);
   MultiRoute('save_c', saveCourse);
   MultiRoute('save_pb', savePb);
+  MultiRoute('save_ap', saveAp);
+  MultiRoute('load_ap', loadAp);
   MultiRoute('save_valgene', saveValgene);
   MultiRoute('frozen', true);
   MultiRoute('buy', buy);

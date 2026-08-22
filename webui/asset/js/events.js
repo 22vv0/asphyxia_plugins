@@ -1,6 +1,6 @@
 var currentVersion = 7;
 var urlParams;
-var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVIDWAVE', 'EXCEED GEAR', '∇']
+var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVID WAVE', 'EXCEED GEAR', '∇']
 let date = new Date();
 let musicDb;
 

@@ -10,7 +10,7 @@ game
     gamecoin_block(__type="u32") #{blocks}
     skill_level(__type="s16") #{skill.level}
     skill_name_id(__type="s16") #{skill.name}
-    hidden_param(__type="s32" __count=param.param.length) #{param.param.join(" ")}
+    hidden_param(__type="s32" __count=params.param.length) #{param.param.join(" ")}
     play_count(__type="u32") #{playCount}
     daily_count(__type="u32") #{dayCount}
     play_chain(__type="u32") #{todayCount}
@@ -107,7 +107,7 @@ game
               clear_cnt(__type="s32") #{s.clearCnt}
               route_flg(__type="u32") #{s.routeFlg}
 
-  if version === 4 || version >= 6
+  if version >= 4
     result(__type="u8") #{result}
     name(__type="str") #{name}
     code(__type="str") #{code}
@@ -265,7 +265,7 @@ game
           onehand(__type="s32") #{variant.onehand}
           handtrip(__type="s32") #{variant.handtrip}
 
-    if version <= 4
+    if version <= 5
       pb
         if pbFin.length > 0
           for p in pbFin
@@ -285,3 +285,16 @@ game
             energy
               target_id(__type="s32") #{pbe.target_id}
               energy(__type="s32") #{pbe.energy}
+      if mixes
+        each mix in mixes
+          automation
+            mix_id(__type="s32") #{mix.id}
+            mix_code(__type="str") #{mix.code}
+            seq(__type="str") #{mix.code}
+            mix_name(__type="str") #{mix.name}
+            player_name(__type="str") #{mix.creator}
+            generate_param(__type="str") #{mix.param}
+            distribution_date(__type="u32") #{mix.createDate}
+            jacket_id(__type="s32") #{mix.jacket}
+            tag_bit(__type="s32") #{mix.tag}
+            like_flg(__type="bool") #{Number(mix.like)}

@@ -24,3 +24,14 @@ export interface MusicRecord {
   mode: number;
   gaugeType: number;
 }
+
+export interface AutomaRecord {
+  collection: 'automa';
+  version: number;
+
+  id: number;
+  score: number;
+  clear: number;
+  grade: number;
+  like: boolean;
+}

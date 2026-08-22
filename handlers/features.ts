@@ -1,10 +1,11 @@
 import { Profile } from '../models/profile';
-import { MusicRecord } from '../models/music_record';
+import { MusicRecord, AutomaRecord } from '../models/music_record';
 import { Serial } from '../models/param';
 import { Matchmaker } from '../models/matchmaker';
-import { getVersion, IDToCode, GetCounter, checkVerStart } from '../utils';
+import { getVersion, IDToCode, GetCounter, checkVerStart, getYMDDate } from '../utils';
 import { Rival } from '../models/rival';
 import { Item } from '../models/item';
+import { Mix } from '../models/mix';
 import { SERIAL3 } from '../data/gw';
 import { SERIAL4 } from '../data/hh';
 
@@ -14,7 +15,7 @@ export const hiscore: EPR = async (info, data, send) => {
   const version = Math.abs(getVersion(info));
   const dVersion = parseInt(info.model.split(":")[4].slice(0, -2));
 
-  const records = await DB.Find<MusicRecord>(null, { collection: 'music', version });
+  const records = await DB.Find<MusicRecord>(null, { collection: 'music', version, mid: {$nin: [1259]} });
 
   const profiles = _.groupBy(
     await DB.Find<Profile>(null, { collection: 'profile', version }),
@@ -412,4 +413,85 @@ export const serial: EPR = async (info, data, send) => {
   //   gamecoin_block: K.ITEM('u32', 100),
   //   blaster_energy: K.ITEM('u32', 69),
   // })
+}
+
+export const saveAp: EPR = async (info, data, send) => {
+  const date = new Date()
+  const currentYMDDate = getYMDDate(date)
+  const version = Math.abs(getVersion(info))
+  let refid = $(data).str('ref_id')
+
+  const profile = await DB.FindOne<Profile>(refid, {collection: 'profile', version})
+  if (!profile) return send.deny();
+
+  const mix = $(data).element('automation');
+  const id = await GetCounter('mix');
+  let code = _.padStart(_.random(0, 999999999999).toString(), 12, '0');
+  while (await DB.FindOne<Mix>({ collection: 'mix', code, version })) {
+    code = _.padStart(_.random(0, 999999999999).toString(), 12, '0');
+  }
+
+  const doc = await DB.Insert<Mix>(refid, {
+    collection: 'mix',
+    version,
+    id,
+    code,
+    name: mix.str('mix_name'),
+    creator: profile.name,
+    param: mix.str('generate_param'),
+    tag: mix.number('tag_bit'),
+    jacket: mix.number('jacket_id'),
+    likes: 0
+  });
+
+  return send.object({
+    automation: {
+      mix_id: K.ITEM('s32', id),
+      mix_code: K.ITEM('str', doc.code),
+      seq: K.ITEM('str', doc.code),
+      mix_name: K.ITEM('str', doc.name),
+      player_name: K.ITEM('str', doc.creator),
+      generate_param: K.ITEM('str', doc.param),
+      distribution_date: K.ITEM('u32', currentYMDDate),
+      jacket_id: K.ITEM('s32', doc.jacket),
+      tag_bit: K.ITEM('s32', doc.tag),
+      like_flg: K.ITEM('bool', 0),
+    },
+  });
+}
+
+export const loadAp: EPR = async (info, data, send) => {
+  const version = Math.abs(getVersion(info));
+  const code = $(data).str('mix_code');
+  let refid = $(data).str('ref_id')
+  const profile = await DB.FindOne<Profile>(refid, {collection: 'profile', version})
+  if (!profile) return send.deny();
+
+  const mix = await DB.FindOne<Mix>(null, { collection: 'mix', code, version });
+  if (!mix) {
+    return send.object({ result: K.ITEM('s32', 1) });
+  }
+
+  const record = await DB.FindOne<AutomaRecord>(refid, {collection: 'automa', id: mix.id})
+  const createDate = new Date(record['createdAt'])
+
+  return send.object({
+    automation: {
+      mix_id: K.ITEM('s32', mix.id),
+      mix_code: K.ITEM('str', mix.code),
+      seq: K.ITEM('str', mix.code),
+      mix_name: K.ITEM('str', mix.name),
+      player_name: K.ITEM('str', mix.creator),
+      generate_param: K.ITEM('str', mix.param),
+      distribution_date: K.ITEM('u32', getYMDDate(createDate)),
+      jacket_id: K.ITEM('s32', mix.jacket),
+      tag_bit: K.ITEM('s32', mix.tag),
+      like_flg: K.ITEM('bool', record.like),
+      record: {
+        param: K.ARRAY('u32', [
+          mix.id, 0, record.score, record.clear, record.grade, 0
+        ])
+      }
+    },
+  });
 }

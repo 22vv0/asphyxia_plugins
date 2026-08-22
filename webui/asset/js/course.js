@@ -1,7 +1,7 @@
 var course_db, music_db;
 var urlParams;
 var currentVersion;
-var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVIDWAVE', 'EXCEED GEAR', '∇']
+var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVID WAVE', 'EXCEED GEAR', '∇']
 
 var ii = [];
 var gw = [];

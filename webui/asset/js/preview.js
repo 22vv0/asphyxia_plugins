@@ -1,5 +1,5 @@
 var currentVersion, currentProfile, currentCustom, courseDb
-var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVIDWAVE', 'EXCEED GEAR', '∇']
+var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVID WAVE', 'EXCEED GEAR', '∇']
 
 function zeroPad(num, places) {
     var zero = places - num.toString().length + 1;
@@ -277,7 +277,7 @@ $(document).ready(async function() {
         $('#bplpro').attr('hidden', 'true')
         $('#valgene').attr('hidden', 'true')
         $('#customize').attr('hidden', 'true')
-    } else if (currentVersion === 4) {
+    } else if (currentVersion === 4 || currentVersion === 5) {
         $('#bplsupport').attr('hidden', 'true')
         $('#bplpro').attr('hidden', 'true')
         $('#valgene').attr('hidden', 'true')

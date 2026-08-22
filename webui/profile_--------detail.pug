@@ -1,6 +1,6 @@
 //DATA//
   profile: DB.Find(refid, { collection: 'profile' })
-  score_data: DB.Find(refid, { collection: 'music' })
+  score_data: DB.Find(refid, { collection: 'music', mid: {$nin: [1259]} })
   skill_data: DB.Find(refid,{collection: 'skill'})
   course_data: DB.Find(refid,{collection: 'course'})
   arena_data: DB.Find(refid,{collection: 'arena'})
@@ -46,6 +46,7 @@ div
             th Difficulty
             th Clear Mark
             th Score
+            th Version
             th FORCE
         tbody
       

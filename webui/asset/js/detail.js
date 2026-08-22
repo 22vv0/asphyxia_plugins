@@ -3,7 +3,7 @@ var volforceArray = [];
 var profile_data, skill_data, course_data;
 var baseTBodyCMpD, baseTBodyCMpL, baseTBodyGpD, baseTBodyGpL, baseTBodyASpL;
 var notFirst = false;
-var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVIDWAVE', 'EXCEED GEAR', '∇']
+var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVID WAVE', 'EXCEED GEAR', '∇']
 var currentProfile
 var currentVersion
 var egLevelDiffOverride = [
@@ -68,6 +68,18 @@ var boothRank = [
     {'exp': 6500, 'title': '虚空'}
 ]
 
+function vwReduceScoreData(scoreDB) {
+    return [...scoreDB, ...score_db.filter(sc => sc.version === currentVersion - 1)].reduce((acc, currentScore) => {
+        const key = `${currentScore.mid}_${currentScore.type}`
+        const scoreCheck = acc[key]
+        if (!scoreCheck || currentScore.score > scoreCheck.score) {
+            acc[key] = currentScore;
+        }
+
+        return acc;
+    }, {})
+}
+
 function createArray(length) {
     var arr = new Array(length || 0),
         i = length;
@@ -128,7 +140,7 @@ function getGrade(name, grade) {
                 return "S";
         }
     }
-    if(currentVersion >= 6) {
+    if(currentVersion >= 5) {
         switch (grade) {
             case 0:
                 return 0;
@@ -215,9 +227,9 @@ function getMedal(name, clear, version) {
         case 3:
             return 1.02;
         case 4:
-            return (version === 6) ? 1.05 : 1.04;
+            return (version === 6 || version === 5) ? 1.05 : 1.04;
         case 5:
-            return (version === 6) ? 1.10 : 1.06;
+            return (version === 6 || version === 5) ? 1.10 : 1.06;
         case 6:
             return (version === 6) ? 1.04 : 1.10;
     }
@@ -296,7 +308,7 @@ function getSongLevel(musicid, type) {
 }
 
 function getVFLevel(VF) {
-    if(currentVersion < 6) {
+    if(currentVersion < 5) {
         switch (true) {
             case VF < 1000:
                 return zeroPad(1, 2);
@@ -367,10 +379,10 @@ function getAkaname(akaname) {
 }
 
 function getVFAsset(vf) {
-    if(currentVersion < 6) {
+    if(currentVersion < 5) {
         return "static/asset/force/em6_" + getVFLevel(vf) + "_i_eab.png"
     }
-    if(currentVersion >= 6) {
+    if(currentVersion >= 5) {
         var floatVF = parseFloat(vf);
         return "static/asset/force/em6_" + getVFLevel(floatVF) + "_i_eab.png"
     }
@@ -380,10 +392,9 @@ function singleScoreVolforce(score) {
     var level = getSongLevel(score.mid, score.type);
     var tempVF = 0
     if(currentVersion === 4) tempVF = parseInt(25 * (parseInt(level) + 1) * (parseInt(score.score) / 10000000) * getGrade(false, score.grade))
-    else if(currentVersion === 6) tempVF = parseInt(level) * (parseInt(score.score) / 10000000) * getGrade(false, score.grade) * getMedal(false, score.clear, score.version) * 2;
-    else if(currentVersion === 7) {
-        tempVF = getMedal(false, score.clear, score.version) * (getGrade(false, score.grade) * (2 * parseInt(score.score) * (level * 10) / 1000) / 100) / 1000
-    }
+    // else if(currentVersion === 5) tempVF = (parseInt(level) * 2) * (parseInt(score.score) / 10000000) * getGrade(false, score.grade) * getMedal(false, score.clear, 5)
+    else tempVF = parseInt(level) * (parseInt(score.score) / 10000000) * getGrade(false, score.grade) * getMedal(false, score.clear, score.version) * 2;
+    // console.log(tempVF)
     return tempVF;
 }
 
@@ -394,8 +405,10 @@ function toFixed(num, fixed) {
 
 function calculateVolforce() {
     let maxTop = 50
-    if(currentVersion < 6) maxTop = 20
-    for (var sc of score_db.filter(s => s.version === currentVersion)) {
+    if(currentVersion < 5) maxTop = 20
+    let scoreDB = score_db.filter(sc => sc.version === currentVersion)
+    if(currentVersion === 5) scoreDB = Object.values(vwReduceScoreData(scoreDB))
+    for (var sc of scoreDB) {
         var temp = singleScoreVolforce(sc);
         temp = parseFloat(toFixed(temp, 1));
         volforceArray.push(temp);
@@ -411,8 +424,8 @@ function calculateVolforce() {
             VF += volforceArray[i];
         }
     }
-    if(currentVersion >= 6) VF /= 100
-    return toFixed(VF, 3);
+    if(currentVersion >= 5) VF /= 100
+    return toFixed(VF, (currentVersion === 5) ? 2 : 3);
 }
 
 function getVFTop() {
@@ -421,8 +434,10 @@ function getVFTop() {
     }
     let vfTop = []
     let maxTop = 50
-    if(currentVersion < 6) maxTop = 20
-    for (var sc of score_db.filter(sc => sc.version === currentVersion)) {
+    if(currentVersion < 5) maxTop = 20
+    let scoreDB = score_db.filter(sc => sc.version === currentVersion)
+    if(currentVersion === 5) scoreDB = Object.values(vwReduceScoreData(scoreDB))
+    for (var sc of scoreDB) {
         let sinf = getSongInfo(sc.mid)
         if(sinf.name !== 'Unknown Song') {
             let vf = singleScoreVolforce(sc, currentVersion)
@@ -432,6 +447,7 @@ function getVFTop() {
                 'diff': getDifficulty(sinf.id, sc.type) + " " + getDifficultyNum(sinf.id, sc.type),
                 'clear': getMedal(true, sc.clear, currentVersion),
                 'score': sc.score,
+                'version': versionText[sc.version],
                 'vf': parseFloat(toFixed(singleScoreVolforce(sc, currentVersion), 1))
             })
         }
@@ -445,14 +461,23 @@ function getVFTop() {
         pageLength: 50,
         searching: false,
         lengthChange: false,
+        paging: false,
+        info: false,
         columns: [
             { data: 'num' },
             { data: 'name' },
             { data: 'diff' },
             { data: 'clear', },
             { data: 'score' },
+            { data: 'version' },
             { data: 'vf' },
-        ]
+        ],
+        columnDefs: [
+            {
+              "targets": [5],
+              "visible": currentVersion === 5
+            }
+        ],
     });
 }
 
@@ -694,9 +719,9 @@ function setUpStatistics(profileVer) {
     baseTBodyASpL = $('<tbody>');
 
     let matLen = {
-        cmpd: [[3,4], [4,5], [4,5], [5,5], [6,6], [6,6], [6,6]][currentVersion-1],
-        cmpl: [[15,4], [16,5], [16,5], [20,5], [20,6], [20,6], [48,6]][currentVersion-1],
-        gpd: [[3,6], [4,6], [4,6], [5,10], [6,10], [6,10], [6,10]][currentVersion-1],
+        cmpd: [[3,4], [4,5], [4,5], [5,5], [5,5], [6,6], [6,6]][currentVersion-1],
+        cmpl: [[15,4], [16,5], [16,5], [20,5], [20,5], [20,6], [48,6]][currentVersion-1],
+        gpd: [[3,6], [4,6], [4,6], [5,10], [5,10], [6,10], [6,10]][currentVersion-1],
         gpl: [[15,6], [16,6], [16,6], [20,10], [20,10], [20,10], [48,10]][currentVersion-1],
         aspl: [[15,2], [16,2], [16,2], [20,2], [20,2], [20,2], [48,2]][currentVersion-1]
     }
@@ -709,7 +734,9 @@ function setUpStatistics(profileVer) {
 
     let diffLvArr = (currentVersion < 7) ? [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20] : [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,17.5,18.0,18.1,18.2,18.3,18.4,18.5,18.6,18.7,18.8,18.9,19.0,19.1,19.2,19.3,19.4,19.5,19.6,19.7,19.8,19.9,20.0,20.1,20.2,20.3,20.4,20.5,20.6,20.7,20.8,20.9]
 
-    score_db.filter(sc => sc.version === profileVer).forEach(function(currentValue, index, array) {
+    let scoreDB = score_db.filter(sc => sc.version === profileVer)
+    if(currentVersion === 5) scoreDB = Object.values(vwReduceScoreData(scoreDB))
+    scoreDB.forEach(function(currentValue, index, array) {
         let egClear = [0, 1, 2, 3, 5, 6, 4]
         let clearMark = (profileVer === 6) ? egClear[currentValue.clear] : currentValue.clear
         CMpDArray[currentValue.type][clearMark - 1] += 1;
@@ -1202,7 +1229,7 @@ $(document).ready(function() {
                                     .css('margin', '0 auto') :
                                     null
                                 ).css('font-size', '20px').append(
-                                    $('<div>').append(
+                                    $('<div title="' + (currentVersion >= 4 ? 'Might not be accurate to in-game value. Currently looking into it. Apologies!' : '') + '">').append(
                                         (currentVersion === 1) ? boothRank[boothRank.findIndex((val, ind, arr) => ind < arr.length - 1 && currentProfile.expPoint >= val.exp && currentProfile.expPoint <= arr[ind + 1].exp)].title : 
                                         (currentVersion >= 4) ? currentVF :
                                         null
@@ -1252,10 +1279,10 @@ $(document).ready(function() {
                         $('<div class="tile is-parent is-5">').append(
                             $('<article class="tile is-child">').append(
                                 $('<p class="title">').append(
-                                    (currentProfile.version === 6) ? "PCB" : "BLC / PC"
+                                    (currentProfile.version === 5 || currentProfile.version === 6) ? "PCB" : "BLC / PC"
                                 ).append(
                                     $('<div class="content">').append(
-                                        (currentProfile.version === 6) ? currentProfile.blocks : currentProfile.blocks + " / " + currentProfile.packets
+                                        (currentProfile.version === 5 || currentProfile.version === 6) ? currentProfile.blocks : currentProfile.blocks + " / " + currentProfile.packets
                                     )
                                 ).css('font-family', "testfont") 
                             )

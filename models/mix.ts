@@ -1,5 +1,6 @@
 export interface Mix {
   collection: 'mix';
+  version: number;
 
   id: number;
   code: string;
@@ -8,4 +9,5 @@ export interface Mix {
   param: string;
   jacket: number;
   tag: number;
+  likes: number;
 }

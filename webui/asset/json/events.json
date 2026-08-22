@@ -61,6 +61,7 @@
             "info": "Toggle this on to enable/disable this login present."
         }
     ],
+    "events5": [],
     "events6": [
         {
             "id": "xrecord_1",

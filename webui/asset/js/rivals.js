@@ -1,7 +1,7 @@
 var urlParams;
 var currentVersion;
 var currentProfile;
-var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVIDWAVE', 'EXCEED GEAR', '∇']
+var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVID WAVE', 'EXCEED GEAR', '∇']
 
 function getDifficulty(songData, difficultyNum) {
     switch(difficultyNum) {

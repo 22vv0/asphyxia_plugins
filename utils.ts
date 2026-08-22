@@ -6,12 +6,11 @@ export function IDToCode(id: number) {
 }
 
 export async function GetCounter(key: string) {
-  return (
-    await DB.Upsert<Counter>(
-      { collection: 'counter', key: 'mix' },
-      { $inc: { value: 1 } }
-    )
-  ).docs[0].value;
+  await DB.Upsert<Counter>(
+    { collection: 'counter', key },
+    { $inc: { value: 1 } }
+  )
+  return (await DB.FindOne<Counter>({collection: 'counter', key})).value
 }
 
 export function getVersion(info: EamuseInfo) {
@@ -102,4 +101,8 @@ export async function getDateCodeInit() {
     return dateCodes[epoint]
   }
   return false
+}
+
+export function getYMDDate(date) { 
+  return parseInt([date.getFullYear(), ((date.getMonth() + 1) > 9 ? '' : '0') + (date.getMonth() + 1), (date.getDate() > 9 ? '' : '0') + date.getDate()].join(''))
 }

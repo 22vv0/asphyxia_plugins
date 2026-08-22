@@ -8,6 +8,7 @@ SOUND VOLTEX
 - infinite infection (2014102200)
 - GRAVITY WARS (2016121200)
 - HEAVENLY HAVEN (2019020600)
+- VIVID WAVE (2020122200)
 - EXCEED GEAR (2025120900)
 - ∇ (20260714xx)
 
@@ -27,6 +28,27 @@ SOUND VOLTEX
 - Moved some plugin settings to the `More Plugin Settings` section in `More Plugin Settings` page. Please configure before starting any game as the plugin will yield errors otherwise.
 - Page rename: `Startup Flags` -> `More Plugin Settings`. Remove the following files if installing on top of a previous plugin version: `webui/startup flags.pug` and `webui/asset/js/flags.js` 
 
+### ∇
+
+- Added new weekly stamp sheets
+- Updated game over textures list
+- Added quiz questions
+
+### EXCEED GEAR
+
+- Login info popups decreased to 5 at a time
+
+### VIVID WAVE
+
+- Added support (profile creation, data save/load, etc)
+- Data transfer from HEAVENLY HAVEN (unlocked items, BLASTER GATE and POLICY BREAK progress)
+- HEAVENLY HAVEN scores loaded as legacy scores and count towards your VOLFORCE (GRAVITY WARS scores will not be displayed/transferred)
+- Added new VW songs to POLICY BREAK list. As with previous games, you can add 3000pw per song per franchise per credit.
+- Enabled Ω Dimension (phases 1-8)
+- Enabled HEXA DIVER (parts 1-3)
+- Enabled AUTOMATION PARADISE (save/load mixes)
+- Added SKILL ANALYZER courses
+
 ### HEAVENLY HAVEN
 
 - Added support (profile creation, data save/load, etc)
@@ -43,16 +65,6 @@ SOUND VOLTEX
 - Added Ikiiki stamp sheet event: `～MÚSECA地方～`
 - Added Ikiiki stamp sheet event: `BEMANI SUMMER GREETINGS`
 - Added login gift: `POLICY BREAK Medley from SOUND VOLTEX x jubeat`
-
-### ∇
-
-- Added new weekly stamp sheets
-- Updated game over textures list
-- Added quiz questions
-
-### EXCEED GEAR
-
-- Login info popups decreased to 5 at a time
 
 ### GRAVITY WARS
 
@@ -78,6 +90,8 @@ SOUND VOLTEX
 - `More Plugin Settings` - Rewrote DOM append code for `Startup Flags`
 - `Profile customization` - Made custom appeal titles selectable (∇ only)
 - `Unlock Events` - Added HH event toggles
+- Added `Automation Paradise Mixes` page to browse and search mixes
+- Added `Your Mixes` to Profile tabs: repurposed `Automation Mixes` page from official plugin repo
 - JS rewrites to add support for HH
 
 ### Contributors

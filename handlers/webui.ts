@@ -12,6 +12,7 @@ import { PluginSettings } from '../models/settings'
 import { COURSES2 } from '../data/ii'
 import { COURSES3 } from '../data/gw'
 import { COURSES4 } from '../data/hh'
+import { COURSES5 } from '../data/vw'
 import { PREGENE, COURSES6, MUSIC_OVERRIDE6 } from '../data/exg'
 import { PREGENE7, COURSES7, MUSIC_OVERRIDE7 } from '../data/nbl'
 import { textureslist } from '../data/webui'
@@ -363,7 +364,7 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
               }
               break
             case 4:
-            // case 5:
+            case 5:
               dif[ver] = {
                 'novice': (musicValue.difficulty.novice.difnum['@content'][0] / levelDiv).toString(),
                 'advanced': (musicValue.difficulty.advanced.difnum['@content'][0] / levelDiv).toString(),
@@ -732,6 +733,9 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
       } else if(courseData.courseData[cIter].version === 4) {
         courseData.courseData[cIter].info = COURSES4
         courseDataUpdateSuccess = true
+      } else if(courseData.courseData[cIter].version === 5) {
+        courseData.courseData[cIter].info = COURSES5
+        courseDataUpdateSuccess = true
       } else if(courseData.courseData[cIter].version === 6) {
         courseData.courseData[cIter].info = COURSES6
         courseDataUpdateSuccess = true
@@ -1026,3 +1030,87 @@ export const getMorePluginSettings = async(data: string[], send: WebUISend) => {
     pluginSettings: pluginSet
   })
 }
+
+export const updateMix = async (data: {
+  refid: string;
+  redirect: string;
+  code: string;
+  name?: string;
+  creator?: string;
+}, send: WebUISend) => {
+  const update: Update<Mix>['$set'] = {};
+
+  if (data.name && data.name.length > 0) {
+    if (data.name.length > 0) update.name = data.name;
+  }
+
+  if (data.creator && data.creator.length > 0) {
+    // const validCreator = data.creator
+    //   .toUpperCase()
+    //   .replace(/[^ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?#$&*\-\.\ ]/g, '')
+    //   .slice(0, 8);
+    if (data.creator.length > 0) update.creator = data.creator;
+  }
+
+  await DB.Update<Mix>(
+    data.refid,
+    { collection: 'mix', version: 5, code: data.code },
+    { $set: update }
+  );
+
+  let urlRedirect = new URL(data.redirect)
+  urlRedirect.searchParams.delete('edit')
+  send.redirect(`${urlRedirect.pathname}${urlRedirect.search}`)
+};
+
+export const importMix = async (data: { refid: string, json: string }) => {
+  if (data.json.startsWith('`')) {
+    data.json = data.json.slice(1);
+  }
+
+  if (data.json.endsWith('`')) {
+    data.json = data.json.slice(0, data.json.length - 1);
+  }
+
+  const mix: any[] = JSON.parse(data.json);
+
+  let code = mix[0];
+  while (await DB.FindOne<Mix>({ collection: 'mix', code })) {
+    code = _.padStart(_.random(0, 999999999999).toString(), 12, '0');
+  }
+
+  const id = await GetCounter('mix');
+  const musics = mix.slice(9);
+
+  if (musics.length % 2 !== 0) return;
+
+  const mdata = [];
+
+  for (let i = 0; i < musics.length; i += 2) {
+    mdata.push({
+      grade: musics[i + 1],
+      id: musics[i],
+    });
+  }
+
+  await DB.Insert<Mix>(data.refid, {
+    collection: 'mix',
+    version: 5,
+    id,
+    code,
+    name: mix[1],
+    creator: mix[2],
+    param: `{ "dbVer" : "${mix[3]
+      }", "gene" : { "params" : "{ \\"minorVer\\" : \\"${mix[4]
+      }\\", \\"seed\\" : ${mix[5]} }", "ver" : "${mix[6]
+      }" }, "musics" : ${JSON.stringify(mdata)}, "voxdj" : { "params" : "${mix[7]
+      }", "ver" : "${mix[8]}" } }`,
+    jacket: 0,
+    tag: 1,
+    likes: 0
+  });
+};
+
+export const deleteMix = async (data: { refid: string, code: string }) => {
+  await DB.Remove<Mix>(data.refid, { collection: 'mix', version: 5, code: data.code });
+};

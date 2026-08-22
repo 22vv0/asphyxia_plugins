@@ -1,6 +1,6 @@
 //DATA//
   profile: DB.Find(refid, { collection: 'profile' })
-  score: DB.Find(refid, { collection: 'music' })
+  score: DB.Find(refid, { collection: 'music', mid: {$nin: [1259]} })
 
 -
   //const padded = _.padStart(profile.id.toString(), 8);

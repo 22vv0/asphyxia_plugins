@@ -260,6 +260,7 @@ export async function iiiMigrate(refid, newName) {
 		})
 	})
 
+	console.log("Migrating POLICY BREAK progress")
 	let policyBreak = await DB.Find<PolicyBreak>(refid, {collection: 'pb', version: 2})
 	policyBreak.forEach(async pb => {
 		await DB.Upsert<PolicyBreak>(refid, {collection: 'pb', version: 3, id: pb.id}, {
@@ -331,9 +332,93 @@ export async function ivMigrate(refid, newName) {
 		})
 	})
 
+	console.log("Migrating POLICY BREAK progress")
 	let policyBreak = await DB.Find<PolicyBreak>(refid, {collection: 'pb', version: 3})
 	policyBreak.forEach(async pb => {
 		await DB.Upsert<PolicyBreak>(refid, {collection: 'pb', version: 4, id: pb.id}, {
+			$set: {
+				exp: pb.exp
+			}
+		})
+	})
+}
+
+export async function vMigrate(refid, newName) {
+	console.log("Migrating profile from HH to VW")
+	let profileData = await DB.FindOne<Profile>(refid, {collection: 'profile', version: 4})
+	await DB.Upsert<Profile>(refid, {collection: 'profile', version: 5}, {
+		$set: {
+			pluginVer: 1,
+			dbver: DB_VER,
+
+			collection: 'profile',
+			id: profileData.id,
+			name: newName,
+			appeal: 0,
+			akaname: 0,
+			blocks: 0,
+			packets: 0,
+			arsOption: 0,
+			drawAdjust: 0,
+			earlyLateDisp: 0,
+			effCLeft: profileData.effCLeft,
+			effCRight: profileData.effCRight,
+			gaugeOption: 0,
+			hiSpeed: profileData.hiSpeed,
+			laneSpeed: profileData.laneSpeed,
+			narrowDown: 0,
+			notesOption: 0,
+			blasterEnergy: 0,
+
+			headphone: 0,
+			musicID: 0,
+			musicType: 0,
+			sortType: 0,
+			expPoint: 0,
+			mUserCnt: 0,
+			boothFrame: [0, 0, 0, 0, 0],
+
+			playCount: 0,
+			dayCount: 0,
+			todayCount: 0,
+			playchain: 0,
+			maxPlayChain: 0,
+			weekCount: 0,
+			weekPlayCount: 0,
+			weekChain: 0,
+			maxWeekChain: 0,
+
+			bplSupport: 0,
+			creatorItem: 0
+		}
+	})
+
+	let itemData = await DB.Find<Item>(refid, {collection: 'item', version: 4})
+	console.log("Migrating item data")
+	itemData.forEach(async item => {
+		await DB.Upsert<Item>(refid, {collection: 'item', version: 5, type: item.type, id: item.id}, {
+			$set: {
+				param: item.param,
+				dbver: DB_VER
+			}
+		})
+	})
+
+	let paramData = await DB.Find<Param>(refid, {collection: 'param', version: 4})
+	console.log("Migrating param data")
+	paramData.forEach(async param => {
+		await DB.Upsert<Param>(refid, {collection: 'param', version: 5, type: param.type, id: param.id}, {
+			$set: {
+				param: param.param,
+				dbver: DB_VER
+			}
+		})
+	})
+
+	console.log("Migrating POLICY BREAK progress")
+	let policyBreak = await DB.Find<PolicyBreak>(refid, {collection: 'pb', version: 4})
+	policyBreak.forEach(async pb => {
+		await DB.Upsert<PolicyBreak>(refid, {collection: 'pb', version: 5, id: pb.id}, {
 			$set: {
 				exp: pb.exp
 			}

@@ -3,7 +3,7 @@ import { Item } from '../models/item'
 import { Param } from '../models/param'
 import { Arena } from '../models/arena'
 import { PolicyBreak } from '../models/policy_break'
-import { MusicRecord } from '../models/music_record'
+import { MusicRecord, AutomaRecord } from '../models/music_record'
 import { CourseRecord } from '../models/course_record'
 import { Profile } from '../models/profile'
 import { ValgeneTicket } from '../models/valgene_ticket'
@@ -11,15 +11,16 @@ import { WeeklyMusicScore } from '../models/weeklymusic'
 import { VariantPower } from '../models/variant'
 import { GWStory } from '../models/gw_story'
 import { PluginSettings } from '../models/settings'
-import { getVersion, IDToCode, checkVerStart, convertGWHHGrade } from '../utils'
+import { getVersion, IDToCode, checkVerStart, convertGWHHGrade, getYMDDate } from '../utils'
 import { Mix } from '../models/mix'
 import { POLICY_BREAK2 } from '../data/ii'
 import { POLICY_BREAK3, COURSES3 } from '../data/gw'
 import { POLICY_BREAK4, EVENT_ITEMS4, COURSES4 } from '../data/hh'
+import { POLICY_BREAK5, EVENT_ITEMS5, COURSES5 } from '../data/vw'
 import { CURRENT_ARENA, EVENT_ITEMS6, UNLOCK_EVENTS6 } from '../data/exg'
 import { CURRENT_ARENA7, EVENT_ITEMS7, UNLOCK_EVENTS7 } from '../data/nbl'
 import { getRankListDB } from './webui'
-import { DB_VER, iiMigrate, iiiMigrate, ivMigrate, viiMigrate } from './migrate'
+import { DB_VER, iiMigrate, iiiMigrate, ivMigrate, vMigrate, viiMigrate } from './migrate'
 const logging = false
 
 function unlockNavigators(items: Partial<Item>[], version: number) {
@@ -126,8 +127,9 @@ export const loadScore: EPR = async (info, data, send) => {
     })
   }
 
-  if (version === 4) {
+  if (version === 4 || version === 5) {
     const recordsMerged = records.concat(await DB.Find<MusicRecord>(refid, { collection: 'music', version: version - 1 }))
+    const automaRecord = await DB.Find<AutomaRecord>(refid, {collection:'automa', version})
     let scores = {
       music: {
         info: _.map(
@@ -181,7 +183,21 @@ export const loadScore: EPR = async (info, data, send) => {
             }
           }
         )
-      }
+      },
+      ...(version === 5 && {
+        automation: {
+          record: automaRecord.map(rec => ({
+            param: K.ARRAY('u32', [
+              rec.id,
+              0,
+              rec.score,
+              rec.clear,
+              rec.grade,
+              0
+            ])
+          }))
+        }
+      })
     }
 
     return send.object(scores);
@@ -317,12 +333,53 @@ export const saveScore: EPR = async (info, data, send) => {
     }
   }
 
-  if ([2,3,4].includes(version)) {
+  if ([2,3,4,5].includes(version)) {
     try {
       const mid = $(data).number('music_id');
       const type = $(data).number('music_type');
 
       if (_.isNil(mid) || _.isNil(type)) return send.deny();
+
+      // Save AUTOMATION PARADISE record instead
+      if(mid === 1259) {
+        const mixid = $(data).number('mix_id')
+        const like = $(data).bool('mix_like')
+        const score = $(data).number('score') ? $(data).number('score') : 0;
+        const clear = $(data).number('clear_type') ? $(data).number('clear_type') : 0;
+        const grade = $(data).number('score_grade') ? $(data).number('score_grade') : 0;
+      
+        const record = (await DB.FindOne<AutomaRecord>(refid, {
+          collection: 'automa',
+          version,
+          id: mixid,
+        })) || {
+          collection: 'automa',
+          version,
+          id: mixid,
+          score: 0,
+          clear: 0,
+          grade: 0,
+          like: like
+        }
+
+        record.clear = Math.max(clear, record.clear);
+        record.grade = Math.max(grade, record.grade);
+        record.score = Math.max(score, record.score);
+
+        if(like) {
+          record.like = true
+          const mix = await DB.FindOne(null, {collection: 'mix', version, id: mixid})
+          await DB.Upsert<Mix>(mix['__refid'], {collection: 'mix', version, id: mixid}, {$inc: {likes: 1}})
+        }
+
+        await DB.Upsert<AutomaRecord>(
+          refid,
+          { collection: 'automa', version, id: mixid },
+          record,
+        );
+
+        return send.success();
+      }
 
       const record = (await DB.FindOne<MusicRecord>(refid, {
         collection: 'music',
@@ -395,7 +452,7 @@ export const saveScore: EPR = async (info, data, send) => {
     }
   }
 
-  if (version === -6 || version === 7) { // Using alternate scoring system after 20210831
+  if (Math.abs(version) === 6 || version === 7) { // Using alternate scoring system after 20210831
     const tracks = $(data).elements('track');
     try {
       for (const i of tracks) {
@@ -487,6 +544,9 @@ export const saveCourse: EPR = async (info, data, send) => {
         break
       case 4:
         courses = COURSES4
+        break
+      case 5:
+        courses = COURSES5
         break
     }
 
@@ -672,7 +732,7 @@ export const save: EPR = async (info, data, send) => {
   }
 
   // Save Profile
-  if ([4,6,7].includes(version)) {
+  if ([4,5,6,7].includes(version)) {
     await DB.Update<Profile>(
       refid,
       { collection: 'profile', version: version },
@@ -899,6 +959,9 @@ export const load: EPR = async (info, data, send) => {
         case 4:
           eventItems = EVENT_ITEMS4
           break;
+        case 5:
+          eventItems = EVENT_ITEMS5
+          break;
         case 6:
           eventItems = EVENT_ITEMS6
           break;
@@ -1000,7 +1063,7 @@ export const load: EPR = async (info, data, send) => {
     version,
   })) || { base: 0, name: 0, level: 0 };
 
-  if ([2, 3, 4].includes(version)) {
+  if ([2, 3, 4, 5].includes(version)) {
     let policyBreak
     switch(version) {
       case 2:
@@ -1011,6 +1074,10 @@ export const load: EPR = async (info, data, send) => {
         break
       case 4:
         policyBreak = POLICY_BREAK4
+        break
+      case 5:
+        policyBreak = POLICY_BREAK5
+        break
     }
 
     let pbFin, pbEnergy
@@ -1049,12 +1116,13 @@ export const load: EPR = async (info, data, send) => {
 
 
     let items = await DB.Find<Item>(refid, {collection: 'item', version})
-    let param = (await DB.FindOne<Param>(refid, {collection: 'param', version, id: 1})) || {type: 1, id: 1, param: new Array(20).fill(0)}
-    // hh param data
-    let params = await DB.Find<Param>(refid, {collection: 'param', version})
+    let params
+    // ii/gw
+    if(version === 2 || version === 3) params = (await DB.FindOne<Param>(refid, {collection: 'param', version, id: 1})) || {type: 1, id: 1, param: new Array(20).fill(0)}
+    // hh/vw param data
+    else params = await DB.Find<Param>(refid, {collection: 'param', version})
     let courses = await DB.Find<CourseRecord>(refid, {collection: 'course', version})
     let story = await DB.Find<GWStory>(refid, {collection: 'story', version})
-    let result = 0
 
     var tempItem = U.GetConfig('unlock_all_navigators') && version >= 3 ? unlockNavigators(items, version) : items;
     tempItem = U.GetConfig('unlock_all_appeal_cards') ? unlockAppealCards(tempItem, version) : tempItem;
@@ -1071,8 +1139,20 @@ export const load: EPR = async (info, data, send) => {
       }
     }
 
-    if(version === 4) await populatePresents(version, refid, date)
+    if(version >= 4) await populatePresents(version, refid, date)
 
+    let mixHist = params.find(p => p.type === 8 && p.id === 3)?.param ?? []
+    let mixSlot = params.find(p => p.type === 0 && p.id === 3)?.param ?? []
+    let mixRes = await DB.Find<Mix>(refid, {collection: 'mix', version, id: {$in: [...new Set([...mixHist, ...mixSlot])]}})
+    let automaRecord = await DB.Find<AutomaRecord>(refid, {collection: 'automa', version})
+    let mixes = []
+    for(const m of mixRes) {
+      let mixDate = getYMDDate(new Date(m['createdAt']))
+      mixes.push({...m, ...{createDate: mixDate, like: automaRecord.find(r => r.id === m.id)?.like ?? 0}})
+    }
+
+    let result = 0
+    
     return send.pugFile('templates/load.pug', {
       version,
       result,
@@ -1080,12 +1160,12 @@ export const load: EPR = async (info, data, send) => {
       skill,
       items: tempItem,
       courses,
-      param,
       params,
       present: presents,
       pbFin,
       pbEnergy,
       story,
+      mixes,
       ...profile,
     });
   }
@@ -1264,6 +1344,19 @@ export const create: EPR = async (info, data, send) => {
     await DB.Upsert(refid, {collection: 'skill', version}, {$set: {base: 0, name: 0, level: 0}})
     if(await DB.Count<Profile>(refid, {collection: 'profile', version: 3}) > 0) {
       await ivMigrate(refid, name)
+      return send.object({
+        result: K.ITEM('u8', 0)
+      })
+    }
+  }
+  else if(version === 5) {
+    for(let i = 1; i <= POLICY_BREAK5.length; i++) {
+      if(await DB.Count(refid, {collection: 'pb', version, id: i}) === 0)
+        await DB.Upsert(refid, {collection: 'pb', version, id: i}, {$set: {exp: 0}})
+    }
+    await DB.Upsert(refid, {collection: 'skill', version}, {$set: {base: 0, name: 0, level: 0}})
+    if(await DB.Count<Profile>(refid, {collection: 'profile', version: 4}) > 0) {
+      await vMigrate(refid, name)
       return send.object({
         result: K.ITEM('u8', 0)
       })
@@ -1598,6 +1691,9 @@ export const savePb: EPR = async (info, data, send) => {
       break
     case 4:
       policyBreak = POLICY_BREAK4
+      break
+    case 5:
+      policyBreak = POLICY_BREAK5
       break
   }
   if(version === 2) {

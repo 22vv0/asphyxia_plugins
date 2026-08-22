@@ -1,0 +1,26 @@
+//DATA//
+  mixes: DB.Find(null, { collection: 'mix', version: 5 })
+-
+link(rel="stylesheet" href="static/asset/css/datatables.css")
+div
+  .card
+    .card-header
+      p.card-header-title
+        span.icon
+          i.mdi.mdi-disc
+        | Mix List
+    .card-content
+      table.table(id="mixlist" style="width:100%")
+        thead
+          tr    
+            th Code
+            th Name
+            th Creator
+            th Date Created
+            th Songs
+            th Likes
+        tbody
+
+div(hidden id='mixes') !{JSON.stringify(mixes)}
+script(src="static/asset/js/automation.js")
+script(src="static/asset/js/datatables.js")
