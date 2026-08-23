@@ -1139,16 +1139,18 @@ export const load: EPR = async (info, data, send) => {
       }
     }
 
-    if(version >= 4) await populatePresents(version, refid, date)
-
-    let mixHist = params.find(p => p.type === 8 && p.id === 3)?.param ?? []
-    let mixSlot = params.find(p => p.type === 0 && p.id === 3)?.param ?? []
-    let mixRes = await DB.Find<Mix>(refid, {collection: 'mix', version, id: {$in: [...new Set([...mixHist, ...mixSlot])]}})
-    let automaRecord = await DB.Find<AutomaRecord>(refid, {collection: 'automa', version})
     let mixes = []
-    for(const m of mixRes) {
-      let mixDate = getYMDDate(new Date(m['createdAt']))
-      mixes.push({...m, ...{createDate: mixDate, like: automaRecord.find(r => r.id === m.id)?.like ?? 0}})
+    if(version >= 4) {
+      await populatePresents(version, refid, date)
+
+      let mixHist = params.find(p => p.type === 8 && p.id === 3)?.param ?? []
+      let mixSlot = params.find(p => p.type === 0 && p.id === 3)?.param ?? []
+      let mixRes = await DB.Find<Mix>(refid, {collection: 'mix', version, id: {$in: [...new Set([...mixHist, ...mixSlot])]}})
+      let automaRecord = await DB.Find<AutomaRecord>(refid, {collection: 'automa', version})
+      for(const m of mixRes) {
+        let mixDate = getYMDDate(new Date(m['createdAt']))
+        mixes.push({...m, ...{createDate: mixDate, like: automaRecord.find(r => r.id === m.id)?.like ?? 0}})
+      }
     }
 
     let result = 0

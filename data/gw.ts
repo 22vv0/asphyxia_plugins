@@ -17,243 +17,457 @@ export const POLICY_BREAK3 = POLICY_BREAK2.concat([
 
 const MUSIC_LIMITED_NEW3 = [
 	// GRV
-	{ id: 195, limited: [0, 0, 0, 2] },
-	{ id: 120, limited: [0, 0, 0, 2] },
-	{ id: 122, limited: [0, 0, 0, 2] },
-	{ id: 223, limited: [0, 0, 0, 2] },
-	{ id: 108, limited: [0, 0, 0, 2] },
 	{ id: 30, limited: [0, 0, 0, 2] },
-	{ id: 119, limited: [0, 0, 0, 2] },
-	{ id: 118, limited: [0, 0, 0, 2] },
-	{ id: 121, limited: [0, 0, 0, 2] },
-	{ id: 115, limited: [0, 0, 0, 2] },
-	{ id: 117, limited: [0, 0, 0, 2] },
-	{ id: 116, limited: [0, 0, 0, 2] },
 	{ id: 69, limited: [0, 0, 0, 2] },
-	{ id: 71, limited: [0, 0, 0, 2] },
 	{ id: 60, limited: [0, 0, 0, 2] },
-	{ id: 459, limited: [0, 0, 0, 2] },
-	{ id: 255, limited: [0, 0, 0, 2] },
-	{ id: 267, limited: [0, 0, 0, 2] },
-	{ id: 251, limited: [0, 0, 0, 2] },
-	{ id: 250, limited: [0, 0, 0, 2] },
-	{ id: 278, limited: [0, 0, 0, 2] },
-	{ id: 275, limited: [0, 0, 0, 2] },
+	{ id: 71, limited: [0, 0, 0, 2] },
+	{ id: 108, limited: [0, 0, 0, 2] },
+	{ id: 120, limited: [0, 0, 0, 2] },
+	{ id: 115, limited: [0, 0, 0, 2] },
+	{ id: 116, limited: [0, 0, 0, 2] },
+	{ id: 117, limited: [0, 0, 0, 2] },
+	{ id: 118, limited: [0, 0, 0, 2] },
+	{ id: 119, limited: [0, 0, 0, 2] },
+	{ id: 121, limited: [0, 0, 0, 2] },
+	{ id: 122, limited: [0, 0, 0, 2] },
 	{ id: 128, limited: [0, 0, 0, 2] },
 	{ id: 180, limited: [0, 0, 0, 2] },
-	{ id: 341, limited: [0, 0, 0, 2] },
+	{ id: 195, limited: [0, 0, 0, 2] },
 	{ id: 214, limited: [0, 0, 0, 2] },
+	{ id: 223, limited: [0, 0, 0, 2] },
+	{ id: 251, limited: [0, 0, 0, 2] },
+	{ id: 250, limited: [0, 0, 0, 2] },
+	{ id: 255, limited: [0, 0, 0, 2] },
+	{ id: 258, limited: [0, 0, 0, 2] },
+	{ id: 267, limited: [0, 0, 0, 2] },
+	{ id: 275, limited: [0, 0, 0, 2] },
+	{ id: 278, limited: [0, 0, 0, 2] },
+	{ id: 341, limited: [0, 0, 0, 2] },
 	{ id: 357, limited: [0, 0, 0, 2] },
-	{ id: 375, limited: [0, 0, 0, 2] },
+	{ id: 358, limited: [0, 0, 0, 2] },
 	{ id: 359, limited: [0, 0, 0, 2] },
+	{ id: 360, limited: [0, 0, 0, 2] },
+	{ id: 363, limited: [0, 0, 0, 2] },
 	{ id: 364, limited: [0, 0, 0, 2] },
 	{ id: 366, limited: [0, 0, 0, 2] },
-	{ id: 709, limited: [0, 0, 0, 2] },
-	{ id: 369, limited: [0, 0, 0, 2] },
 	{ id: 368, limited: [0, 0, 0, 2] },
+	{ id: 369, limited: [0, 0, 0, 2] },
 	{ id: 372, limited: [0, 0, 0, 2] },
-	{ id: 360, limited: [0, 0, 0, 2] },
-	{ id: 920, limited: [0, 0, 0, 2] },
-	{ id: 921, limited: [0, 0, 0, 2] },
-	{ id: 919, limited: [0, 0, 0, 2] },
-	{ id: 918, limited: [0, 0, 0, 2] },
-	{ id: 917, limited: [0, 0, 0, 2] },
-	{ id: 922, limited: [0, 0, 0, 2] },
-	{ id: 912, limited: [0, 0, 0, 2] },
+	{ id: 373, limited: [0, 0, 0, 2] },
+	{ id: 374, limited: [0, 0, 0, 2] },
+	{ id: 375, limited: [0, 0, 0, 2] },
+	{ id: 459, limited: [0, 0, 0, 2] },
 	{ id: 521, limited: [0, 0, 0, 2] },
-	{ id: 548, limited: [0, 0, 0, 2] },
+	{ id: 525, limited: [0, 0, 0, 2] },
 	{ id: 540, limited: [0, 0, 0, 2] },
 	{ id: 542, limited: [0, 0, 0, 2] },
-	{ id: 525, limited: [0, 0, 0, 2] },
-	{ id: 358, limited: [0, 0, 0, 2] },
-	{ id: 373, limited: [0, 0, 0, 2] },
-	{ id: 363, limited: [0, 0, 0, 2] },
-	{ id: 374, limited: [0, 0, 0, 2] },
-	{ id: 258, limited: [0, 0, 0, 2] },
+	{ id: 548, limited: [0, 0, 0, 2] },
+	{ id: 709, limited: [0, 0, 0, 2] },
 	// NEW
+	{ id: 459, limited: [3, 3, 2, 2] },
+	{ id: 461, limited: [3, 3, 2] },
+	{ id: 462, limited: [3, 3, 3] },
+	{ id: 463, limited: [3, 3, 2] },
+	{ id: 464, limited: [3, 3, 2] },
+	{ id: 465, limited: [3, 3, 2] },
+	{ id: 469, limited: [3, 3, 2] },
+	{ id: 470, limited: [3, 3, 2] },
+	{ id: 471, limited: [3, 3, 3] },
+	{ id: 472, limited: [3, 3, 2] },
+	{ id: 473, limited: [3, 3, 2] },
+	{ id: 475, limited: [3, 3, 2] },
+	{ id: 484, limited: [3, 3, 2] },
+	{ id: 485, limited: [3, 3, 2] },
+	{ id: 486, limited: [3, 3, 3] },
+	{ id: 488, limited: [3, 3, 3] },
+	{ id: 490, limited: [3, 3, 2] },
+	{ id: 491, limited: [3, 3, 2] },
+	{ id: 496, limited: [3, 2, 2] },
+	{ id: 497, limited: [3, 2, 2] },
+	{ id: 499, limited: [3, 2, 2] },
+	{ id: 501, limited: [3, 2, 2] },
+	{ id: 502, limited: [3, 2, 2] },
+	{ id: 504, limited: [3, 2, 2] },
+	{ id: 505, limited: [3, 2, 2] },
+	{ id: 507, limited: [3, 2, 2] },
+	{ id: 510, limited: [3, 2, 2] },
+	{ id: 512, limited: [3, 2, 2] },
+	{ id: 513, limited: [3, 2, 2] },
+	{ id: 515, limited: [3, 2, 2] },
+	{ id: 516, limited: [3, 2, 2] },
+	{ id: 517, limited: [3, 2, 2] },
+	{ id: 518, limited: [3, 2, 2] },
+	{ id: 520, limited: [3, 2, 2] },
+	{ id: 522, limited: [3, 2, 2] },
+	{ id: 523, limited: [3, 2, 2] },
+	{ id: 524, limited: [3, 2, 2] },
+	{ id: 526, limited: [3, 2, 2] },
+	{ id: 527, limited: [3, 2, 2] },
+	{ id: 528, limited: [3, 2, 2] },
+	{ id: 529, limited: [3, 2, 2] },
+	{ id: 530, limited: [3, 2, 2] },
+	{ id: 531, limited: [3, 2, 2] },
+	{ id: 532, limited: [3, 2, 2] },
+	{ id: 533, limited: [3, 2, 2] },
+	{ id: 534, limited: [3, 2, 2] },
+	{ id: 535, limited: [3, 2, 2] },
+	{ id: 536, limited: [3, 2, 2] },
+	{ id: 537, limited: [3, 2, 2] },
+	{ id: 538, limited: [3, 2, 2] },
+	{ id: 539, limited: [3, 2, 2] },
+	{ id: 541, limited: [3, 2, 2] },
+	{ id: 543, limited: [3, 2, 2] },
+	{ id: 544, limited: [3, 2, 2] },
+	{ id: 545, limited: [3, 2, 2] },
+	{ id: 546, limited: [3, 2, 2] },
+	{ id: 547, limited: [2, 2, 2] },
+	{ id: 549, limited: [3, 2, 2] },
+	{ id: 550, limited: [3, 2, 2] },
+	{ id: 551, limited: [2, 2, 2] },
+	{ id: 555, limited: [3, 3, 2] },
+	{ id: 556, limited: [3, 3, 2] },
+	{ id: 557, limited: [3, 3, 2] },
+	{ id: 558, limited: [3, 3, 2] },
+	{ id: 559, limited: [3, 3, 3] },
+	{ id: 560, limited: [3, 3, 2] },
+	{ id: 561, limited: [3, 3, 3] },
+	{ id: 562, limited: [3, 3, 2] },
+	{ id: 563, limited: [3, 3, 3] },
+	{ id: 564, limited: [3, 3, 3] },
+	{ id: 565, limited: [3, 3, 3] },
+	{ id: 566, limited: [3, 3, 3] },
+	{ id: 567, limited: [3, 3, 3] },
+	{ id: 568, limited: [3, 3, 3] },
+	{ id: 569, limited: [3, 3, 3] },
+	{ id: 570, limited: [3, 3, 2] },
+	{ id: 571, limited: [3, 3, 3] },
+	{ id: 572, limited: [3, 3, 2] },
+	{ id: 573, limited: [3, 3, 3] },
+	{ id: 574, limited: [3, 3, 2] },
+	{ id: 575, limited: [3, 3, 3] },
+	{ id: 576, limited: [3, 3, 2] },
+	{ id: 579, limited: [3, 3, 3, 2] },
+	{ id: 580, limited: [3, 2, 2] },
+	{ id: 581, limited: [3, 2, 2] },
+	{ id: 582, limited: [3, 2, 2] },
+	{ id: 583, limited: [3, 2, 2] },
+	{ id: 584, limited: [3, 2, 2] },
+	{ id: 585, limited: [3, 2, 2] },
+	{ id: 586, limited: [3, 2, 2] },
+	{ id: 587, limited: [3, 2, 2] },
+	{ id: 588, limited: [3, 2, 2] },
+	{ id: 589, limited: [3, 2, 2] },
+	{ id: 590, limited: [3, 2, 2] },
+	{ id: 591, limited: [3, 2, 2] },
+	{ id: 592, limited: [3, 2, 2] },
+	{ id: 593, limited: [3, 2, 2] },
+	{ id: 594, limited: [3, 2, 2] },
+	{ id: 595, limited: [2, 2, 2] },
+	{ id: 596, limited: [3, 2, 2] },
+	{ id: 597, limited: [3, 2, 2] },
+	{ id: 598, limited: [3, 2, 2] },
+	{ id: 599, limited: [3, 2, 2] },
+	{ id: 600, limited: [3, 2, 2] },
+	{ id: 601, limited: [3, 2, 2] },
+	{ id: 602, limited: [2, 2, 2] },
+	{ id: 603, limited: [3, 2, 2] },
+	{ id: 604, limited: [3, 2, 2] },
+	{ id: 605, limited: [3, 2, 2] },
+	{ id: 606, limited: [3, 2, 2] },
+	{ id: 607, limited: [3, 2, 2] },
+	{ id: 608, limited: [3, 2, 2] },
+	{ id: 609, limited: [3, 2, 2] },
+	{ id: 610, limited: [2, 2, 2] },
+	{ id: 611, limited: [3, 2, 2] },
+	{ id: 612, limited: [3, 2, 2] },
+	{ id: 614, limited: [3, 2, 2] },
+	{ id: 615, limited: [3, 2, 2] },
+	{ id: 616, limited: [3, 2, 2] },
+	{ id: 617, limited: [3, 2, 2] },
+	{ id: 618, limited: [3, 2, 2] },
+	{ id: 619, limited: [3, 2, 2] },
+	{ id: 620, limited: [3, 2, 2] },
+	{ id: 621, limited: [3, 2, 2] },
+	{ id: 622, limited: [3, 2, 2] },
+	{ id: 623, limited: [3, 2, 2] },
+	{ id: 624, limited: [3, 3, 3, 2] },
+	{ id: 625, limited: [2, 2, 2, 2] },
+	{ id: 626, limited: [2, 2, 2] },
+	{ id: 627, limited: [3, 3, 2] },
+	{ id: 628, limited: [3, 3, 2] },
+	{ id: 629, limited: [2, 2, 2] },
+	{ id: 630, limited: [3, 3, 2] },
+	{ id: 631, limited: [3, 3, 2] },
 	{ id: 632, limited: [3, 2, 2] },
 	{ id: 633, limited: [3, 2, 2] },
 	{ id: 634, limited: [3, 2, 2] },
 	{ id: 635, limited: [3, 2, 2] },
-	{ id: 650, limited: [3, 2, 2] },
-	{ id: 653, limited: [3, 2, 2] },
-	{ id: 657, limited: [3, 2, 2] },
-	{ id: 642, limited: [3, 2, 2] },
 	{ id: 636, limited: [3, 2, 2, 2] },
-	{ id: 667, limited: [3, 3, 2] },
-	{ id: 675, limited: [3, 3, 2] },
-	{ id: 673, limited: [3, 3, 2] },
-	{ id: 670, limited: [3, 3, 2] },
-	{ id: 612, limited: [3, 2, 2] },
-	{ id: 615, limited: [3, 2, 2] },
-	{ id: 603, limited: [3, 2, 2] },
-	{ id: 602, limited: [2, 2, 2] },
-	{ id: 547, limited: [2, 2, 2] },
-	{ id: 595, limited: [2, 2, 2] },
-	{ id: 551, limited: [2, 2, 2] },
-	{ id: 473, limited: [3, 3, 2] },
-	{ id: 475, limited: [3, 3, 2] },
-	{ id: 472, limited: [3, 3, 2] },
-	{ id: 470, limited: [3, 3, 2] },
-	{ id: 484, limited: [3, 3, 2] },
-	{ id: 490, limited: [3, 3, 2] },
-	{ id: 485, limited: [3, 3, 2] },
-	{ id: 501, limited: [3, 2, 2] },
-	{ id: 512, limited: [3, 2, 2] },
-	{ id: 516, limited: [3, 2, 2] },
-	{ id: 496, limited: [3, 2, 2] },
-	{ id: 529, limited: [3, 2, 2] },
-	{ id: 534, limited: [3, 2, 2] },
-	{ id: 531, limited: [3, 2, 2] },
-	{ id: 520, limited: [3, 2, 2] },
-	{ id: 599, limited: [3, 2, 2] },
-	{ id: 591, limited: [3, 2, 2] },
-	{ id: 582, limited: [3, 2, 2] },
-	{ id: 596, limited: [3, 2, 2] },
-	{ id: 583, limited: [3, 2, 2] },
-	{ id: 601, limited: [3, 2, 2] },
-	{ id: 604, limited: [3, 2, 2] },
-	{ id: 579, limited: [2, 2, 2] },
-	{ id: 463, limited: [3, 3, 2] },
-	{ id: 464, limited: [3, 3, 2] },
-	{ id: 562, limited: [3, 3, 2] },
-	{ id: 524, limited: [3, 2, 2] },
-	{ id: 538, limited: [3, 2, 2] },
-	{ id: 526, limited: [3, 2, 2] },
-	{ id: 535, limited: [3, 2, 2] },
-	{ id: 545, limited: [3, 2, 2] },
-	{ id: 607, limited: [3, 2, 2] },
-	{ id: 623, limited: [3, 2, 2] },
-	{ id: 622, limited: [3, 2, 2] },
-	{ id: 618, limited: [3, 2, 2] },
-	{ id: 469, limited: [3, 3, 2] },
-	{ id: 576, limited: [3, 3, 2] },
-	{ id: 557, limited: [3, 3, 2] },
-	{ id: 507, limited: [3, 2, 2] },
-	{ id: 510, limited: [3, 2, 2] },
-	{ id: 624, limited: [2, 2, 2] },
-	{ id: 629, limited: [2, 2, 2] },
-	{ id: 627, limited: [3, 3, 2] },
-	{ id: 630, limited: [3, 3, 2] },
-	{ id: 585, limited: [3, 2, 2] },
-	{ id: 594, limited: [3, 2, 2] },
-	{ id: 660, limited: [2, 2, 2] },
-	{ id: 556, limited: [3, 3, 2] },
-	{ id: 560, limited: [3, 3, 2] },
-	{ id: 465, limited: [3, 3, 2] },
-	{ id: 497, limited: [3, 2, 2] },
-	{ id: 518, limited: [3, 2, 2] },
-	{ id: 581, limited: [3, 2, 2] },
-	{ id: 597, limited: [3, 2, 2] },
+	{ id: 637, limited: [3, 2, 2] },
+	{ id: 638, limited: [3, 2, 2] },
+	{ id: 639, limited: [3, 2, 2] },
+	{ id: 640, limited: [3, 2, 2] },
+	{ id: 641, limited: [3, 2, 2] },
+	{ id: 642, limited: [3, 2, 2] },
+	{ id: 643, limited: [3, 2, 2] },
+	{ id: 644, limited: [3, 2, 2] },
+	{ id: 645, limited: [3, 2, 2] },
+	{ id: 646, limited: [3, 2, 2] },
+	{ id: 647, limited: [3, 2, 2] },
+	{ id: 648, limited: [3, 2, 2] },
+	{ id: 649, limited: [3, 2, 2] },
+	{ id: 650, limited: [3, 2, 2] },
+	{ id: 651, limited: [3, 2, 2] },
+	{ id: 652, limited: [3, 2, 2] },
+	{ id: 653, limited: [3, 2, 2] },
+	{ id: 654, limited: [3, 2, 2] },
+	{ id: 655, limited: [3, 2, 2] },
+	{ id: 656, limited: [3, 2, 2] },
+	{ id: 657, limited: [3, 2, 2] },
+	{ id: 658, limited: [3, 2, 2] },
+	{ id: 659, limited: [3, 2, 2] },
+	{ id: 660, limited: [3, 3, 3, 2] },
 	{ id: 661, limited: [2, 2, 2, 2] },
+	{ id: 662, limited: [3, 3, 3] },
 	{ id: 663, limited: [3, 3, 2] },
+	{ id: 664, limited: [3, 3, 2] },
+	{ id: 665, limited: [3, 3, 3] },
 	{ id: 666, limited: [3, 3, 2] },
+	{ id: 667, limited: [3, 3, 2] },
 	{ id: 668, limited: [3, 3, 2] },
 	{ id: 669, limited: [3, 3, 2] },
+	{ id: 670, limited: [3, 3, 2] },
 	{ id: 671, limited: [3, 3, 2] },
 	{ id: 672, limited: [3, 3, 2] },
+	{ id: 673, limited: [3, 3, 2] },
 	{ id: 674, limited: [3, 3, 2] },
+	{ id: 675, limited: [3, 3, 2] },
+	{ id: 676, limited: [3, 3, 2] },
 	{ id: 677, limited: [3, 3, 2] },
 	{ id: 678, limited: [3, 3, 2] },
-	{ id: 670, limited: [3, 3, 2] },
-	{ id: 505, limited: [3, 2, 2] },
-	{ id: 586, limited: [3, 2, 2] },
-	{ id: 515, limited: [3, 2, 2] },
-	{ id: 504, limited: [3, 2, 2] },
-	{ id: 664, limited: [3, 3, 2] },
-	{ id: 609, limited: [3, 2, 2] },
-	{ id: 621, limited: [3, 2, 2] },
-	{ id: 593, limited: [3, 2, 2] },
-	{ id: 588, limited: [3, 2, 2] },
-	{ id: 589, limited: [3, 2, 2] },
-	{ id: 683, limited: [2, 2, 2] },
-	{ id: 493, limited: [2, 2, 2, 2] },
-	{ id: 494, limited: [2, 2, 2, 2] },
-	{ id: 492, limited: [2, 2, 2, 2] },
-	{ id: 681, limited: [2, 2, 2] },
-	{ id: 682, limited: [2, 2, 2] },
-	// NEW S2
-	{ id: 761, limited: [3, 2, 2] },
-	{ id: 759, limited: [3, 2, 2] },
-	{ id: 758, limited: [3, 2, 2] },
-	{ id: 638, limited: [3, 3, 2] },
-	{ id: 640, limited: [3, 3, 2] },
-	{ id: 658, limited: [3, 3, 2] },
-	{ id: 645, limited: [3, 3, 2] },
-	{ id: 654, limited: [3, 2, 2] },
-	{ id: 788, limited: [3, 2, 2] },
-	{ id: 787, limited: [3, 2, 2] },
-	{ id: 789, limited: [3, 2, 2] },
-	{ id: 790, limited: [3, 2, 2] },
-	{ id: 791, limited: [3, 2, 2, 2] },
-	{ id: 821, limited: [2, 2, 2] },
-	{ id: 823, limited: [2, 2, 2] },
-	{ id: 822, limited: [2, 2, 2, 2] },
-	{ id: 804, limited: [3, 2, 2] },
-	{ id: 807, limited: [3, 2, 2] },
-	{ id: 814, limited: [3, 2, 2] },
-	{ id: 816, limited: [3, 2, 2] },
-	{ id: 792, limited: [3, 2, 2] },
-	{ id: 808, limited: [3, 2, 2] },
-	{ id: 793, limited: [3, 2, 2] },
-	{ id: 818, limited: [3, 2, 2] },
-	{ id: 803, limited: [3, 2, 2] },
-
-	// MISSION
-	{ id: 625, limited: [2, 2, 2, 2] },
-	{ id: 544, limited: [3, 2, 2] },
-	{ id: 546, limited: [3, 2, 2] },
-	{ id: 619, limited: [3, 2, 2] },
-	{ id: 587, limited: [3, 2, 2] },
-	{ id: 541, limited: [3, 2, 2] },
-	{ id: 539, limited: [3, 2, 2] },
-	{ id: 533, limited: [3, 2, 2] },
-	{ id: 530, limited: [3, 2, 2] },
-	{ id: 532, limited: [3, 2, 2] },
-	{ id: 652, limited: [3, 2, 2] },
-	{ id: 694, limited: [2, 2, 2, 2] },
-	{ id: 693, limited: [2, 2, 2, 2] },
-	{ id: 692, limited: [2, 2, 2, 2] },
-	{ id: 695, limited: [2, 2, 2, 2] },
-	{ id: 610, limited: [2, 2, 2] },
-	{ id: 549, limited: [3, 2, 2] },
-	{ id: 580, limited: [3, 2, 2] },
-	{ id: 543, limited: [3, 2, 2] },
-	{ id: 715, limited: [2, 2, 2, 2] },
-	// MISSION S2
-	{ id: 523, limited: [3, 2, 2] },
-	{ id: 522, limited: [3, 2, 2] },
-	{ id: 810, limited: [3, 2, 2] },
-	{ id: 716, limited: [2, 2, 2] },
-	{ id: 900, limited: [2, 2, 2, 2] },
-	{ id: 798, limited: [3, 2, 2] },
-	{ id: 902, limited: [2, 2, 2, 2] },
-	{ id: 912, limited: [2, 2, 2, 2] },
-	{ id: 908, limited: [2, 2, 2, 2] },
-	{ id: 911, limited: [2, 2, 2, 2] },
-	{ id: 910, limited: [2, 2, 2, 2] },
-	{ id: 909, limited: [2, 2, 2, 2] },
-	{ id: 914, limited: [2, 2, 2, 2] },
-	{ id: 913, limited: [2, 2, 2, 2] },
-	{ id: 915, limited: [2, 2, 2, 2] },
-	{ id: 794, limited: [3, 2, 2] },
-	{ id: 815, limited: [2, 2, 2] },
-	{ id: 809, limited: [2, 2, 2] },
-	{ id: 550, limited: [3, 2, 2] },
-	// policy break
-	{ id: 626, limited: [2, 2, 2] },
 	{ id: 679, limited: [2, 2, 2] },
 	{ id: 680, limited: [2, 2, 2] },
-	{ id: 698, limited: [2, 2, 2] },
-	{ id: 699, limited: [2, 2, 2] },
-	{ id: 717, limited: [2, 2, 2] },
-	// new station - summer diary
+	{ id: 681, limited: [2, 2, 2] },
+	{ id: 682, limited: [2, 2, 2] },
+	{ id: 683, limited: [2, 2, 2] },
+	{ id: 684, limited: [3, 3, 3, 2] },
+	{ id: 685, limited: [3, 3, 2] },
 	{ id: 686, limited: [2, 2, 2] },
 	{ id: 687, limited: [2, 2, 2] },
 	{ id: 688, limited: [2, 2, 2] },
 	{ id: 689, limited: [2, 2, 2] },
 	{ id: 690, limited: [2, 2, 2] },
 	{ id: 691, limited: [2, 2, 2, 2] },
+	{ id: 692, limited: [2, 2, 2, 2] },
+	{ id: 693, limited: [2, 2, 2, 2] },
+	{ id: 694, limited: [2, 2, 2, 2] },
+	{ id: 695, limited: [2, 2, 2, 2] },
+	{ id: 698, limited: [2, 2, 2] },
+	{ id: 699, limited: [2, 2, 2] },
+	{ id: 700, limited: [3, 3, 3] },
+	{ id: 701, limited: [3, 3, 3] },
+	{ id: 702, limited: [3, 3, 2] },
+	{ id: 703, limited: [3, 3, 2] },
+	{ id: 704, limited: [3, 3, 3] },
+	{ id: 705, limited: [3, 3, 3] },
+	{ id: 706, limited: [3, 3, 3] },
+	{ id: 707, limited: [3, 3, 3] },
+	{ id: 708, limited: [3, 3, 3] },
+	{ id: 709, limited: [3, 3, 3, 2] },
+	{ id: 710, limited: [3, 3, 3] },
+	{ id: 711, limited: [3, 3, 3] },
+	{ id: 712, limited: [3, 3, 3] },
+	{ id: 713, limited: [3, 3, 3] },
+	{ id: 714, limited: [3, 3, 3] },
+	{ id: 715, limited: [2, 2, 2, 2] },
+	{ id: 716, limited: [2, 2, 2] },
+	{ id: 717, limited: [2, 2, 2] },
+	{ id: 718, limited: [3, 2, 2] },
+	{ id: 719, limited: [3, 2, 2] },
+	{ id: 720, limited: [3, 2, 2] },
+	{ id: 721, limited: [3, 2, 2] },
+	{ id: 722, limited: [3, 2, 2] },
+	{ id: 723, limited: [3, 2, 2] },
+	{ id: 724, limited: [3, 2, 2] },
+	{ id: 725, limited: [3, 2, 2] },
+	{ id: 726, limited: [3, 2, 2] },
+	{ id: 727, limited: [3, 2, 2] },
+	{ id: 728, limited: [3, 2, 2] },
+	{ id: 729, limited: [3, 2, 2] },
+	{ id: 730, limited: [3, 2, 2] },
+	{ id: 731, limited: [3, 2, 2] },
+	{ id: 732, limited: [3, 2, 2] },
+	{ id: 733, limited: [3, 2, 2] },
+	{ id: 734, limited: [3, 2, 2] },
+	{ id: 735, limited: [3, 2, 2] },
+	{ id: 736, limited: [3, 2, 2] },
+	{ id: 737, limited: [3, 2, 2] },
+	{ id: 738, limited: [3, 2, 2] },
+	{ id: 739, limited: [3, 2, 2] },
+	{ id: 740, limited: [3, 2, 2] },
+	{ id: 741, limited: [3, 2, 2] },
+	{ id: 742, limited: [3, 2, 2] },
+	{ id: 743, limited: [3, 2, 2] },
+	{ id: 744, limited: [3, 2, 2] },
+	{ id: 745, limited: [3, 2, 2] },
+	{ id: 746, limited: [3, 2, 2] },
+	{ id: 747, limited: [3, 2, 2] },
+	{ id: 748, limited: [3, 2, 2] },
+	{ id: 749, limited: [3, 2, 2] },
+	{ id: 750, limited: [3, 2, 2] },
+	{ id: 751, limited: [3, 2, 2] },
+	{ id: 752, limited: [3, 2, 2] },
+	{ id: 753, limited: [3, 2, 2] },
+	{ id: 754, limited: [3, 2, 2] },
+	{ id: 755, limited: [3, 2, 2] },
+	{ id: 756, limited: [3, 2, 2] },
+	{ id: 757, limited: [3, 2, 2] },
+	{ id: 758, limited: [3, 2, 2] },
+	{ id: 759, limited: [3, 2, 2] },
+	{ id: 760, limited: [3, 2, 2] },
+	{ id: 761, limited: [3, 2, 2] },
+	{ id: 762, limited: [3, 2, 2] },
+	{ id: 763, limited: [3, 3, 2] },
+	{ id: 764, limited: [3, 3, 2] },
+	{ id: 768, limited: [3, 3, 3] },
+	{ id: 769, limited: [3, 3, 2] },
+	{ id: 770, limited: [3, 3, 3] },
+	{ id: 771, limited: [3, 3, 2] },
+	{ id: 772, limited: [3, 3, 3] },
+	{ id: 773, limited: [3, 3, 3] },
+	{ id: 774, limited: [3, 3, 3] },
+	{ id: 775, limited: [3, 3, 3] },
+	{ id: 776, limited: [3, 3, 3] },
+	{ id: 777, limited: [3, 3, 3] },
+	{ id: 778, limited: [3, 3, 3] },
+	{ id: 779, limited: [3, 3, 3] },
+	{ id: 780, limited: [3, 3, 3] },
+	{ id: 783, limited: [3, 3, 3] },
+	{ id: 784, limited: [3, 3, 3] },
+	{ id: 785, limited: [3, 3, 3] },
+	{ id: 786, limited: [3, 2, 2] },
+	{ id: 787, limited: [3, 2, 2] },
+	{ id: 788, limited: [3, 2, 2] },
+	{ id: 789, limited: [3, 2, 2] },
+	{ id: 790, limited: [3, 2, 2] },
+	{ id: 791, limited: [3, 2, 2, 2] },
+	{ id: 792, limited: [3, 2, 2] },
+	{ id: 793, limited: [3, 2, 2] },
+	{ id: 794, limited: [3, 2, 2] },
+	{ id: 795, limited: [3, 2, 2] },
+	{ id: 796, limited: [3, 2, 2] },
+	{ id: 797, limited: [3, 2, 2] },
+	{ id: 798, limited: [3, 2, 2] },
+	{ id: 799, limited: [3, 2, 2] },
+	{ id: 800, limited: [3, 2, 2] },
+	{ id: 801, limited: [3, 2, 2] },
+	{ id: 802, limited: [3, 2, 2] },
+	{ id: 803, limited: [3, 2, 2] },
+	{ id: 804, limited: [3, 2, 2] },
+	{ id: 805, limited: [3, 2, 2] },
+	{ id: 806, limited: [3, 2, 2] },
+	{ id: 807, limited: [3, 2, 2] },
+	{ id: 808, limited: [3, 2, 2] },
+	{ id: 809, limited: [2, 2, 2] },
+	{ id: 810, limited: [3, 2, 2] },
+	{ id: 811, limited: [3, 2, 2] },
+	{ id: 812, limited: [3, 2, 2] },
+	{ id: 813, limited: [3, 2, 2] },
+	{ id: 814, limited: [3, 2, 2] },
+	{ id: 815, limited: [2, 2, 2] },
+	{ id: 816, limited: [3, 2, 2] },
+	{ id: 817, limited: [3, 2, 2] },
+	{ id: 818, limited: [3, 2, 2] },
+	{ id: 819, limited: [2, 2, 2] },
+	{ id: 821, limited: [2, 2, 2] },
+	{ id: 822, limited: [2, 2, 2] },
+	{ id: 823, limited: [2, 2, 2] },
+	{ id: 824, limited: [2, 2, 2, 2] },
+	{ id: 826, limited: [2, 2, 2] },
+	{ id: 827, limited: [3, 3, 3, 2] },
+	{ id: 828, limited: [3, 3, 3, 2] },
+	{ id: 829, limited: [3, 3, 3, 2] },
+	{ id: 830, limited: [3, 3, 3, 2] },
+	{ id: 831, limited: [3, 3, 3, 2] },
+	{ id: 832, limited: [3, 3, 2] },
+	{ id: 833, limited: [3, 3, 2] },
+	{ id: 835, limited: [3, 3, 3] },
+	{ id: 836, limited: [3, 3, 3] },
+	{ id: 837, limited: [2, 2, 2] },
+	{ id: 838, limited: [2, 2, 2] },
+	{ id: 839, limited: [2, 2, 2] },
+	{ id: 841, limited: [3, 3, 3] },
+	{ id: 842, limited: [3, 3, 3] },
+	{ id: 843, limited: [3, 3, 3] },
+	{ id: 844, limited: [3, 3, 3] },
+	{ id: 845, limited: [3, 3, 3] },
+	{ id: 846, limited: [3, 3, 3] },
+	{ id: 847, limited: [3, 3, 3] },
+	{ id: 848, limited: [3, 3, 2] },
+	{ id: 849, limited: [3, 3, 3] },
+	{ id: 850, limited: [3, 3, 3] },
+	{ id: 851, limited: [3, 3, 2] },
+	{ id: 853, limited: [3, 3, 2] },
+	{ id: 854, limited: [3, 3, 3] },
+	{ id: 855, limited: [3, 3, 2] },
+	{ id: 856, limited: [3, 3, 3] },
+	{ id: 857, limited: [3, 3, 2] },
+	{ id: 858, limited: [3, 3, 2] },
+	{ id: 859, limited: [3, 3, 2] },
+	{ id: 860, limited: [3, 3, 3] },
+	{ id: 862, limited: [3, 3, 2] },
+	{ id: 863, limited: [3, 3, 2] },
+	{ id: 864, limited: [3, 3, 3] },
+	{ id: 865, limited: [3, 3, 3] },
+	{ id: 866, limited: [3, 3, 2] },
+	{ id: 867, limited: [3, 3, 2] },
+	{ id: 868, limited: [3, 3, 3] },
+	{ id: 869, limited: [3, 3, 3] },
+	{ id: 870, limited: [3, 3, 3] },
+	{ id: 871, limited: [3, 2, 2] },
+	{ id: 872, limited: [3, 2, 2] },
+	{ id: 873, limited: [3, 3, 3] },
+	{ id: 874, limited: [3, 2, 2] },
+	{ id: 875, limited: [3, 2, 2] },
+	{ id: 876, limited: [3, 2, 2] },
+	{ id: 884, limited: [3, 2, 2] },
+	{ id: 893, limited: [3, 2, 2] },
+	{ id: 896, limited: [3, 2, 2] },
+	{ id: 899, limited: [3, 3, 3] },
+	{ id: 900, limited: [2, 2, 2, 2] },
+	{ id: 901, limited: [3, 3, 3] },
+	{ id: 902, limited: [2, 2, 2, 2] },
+	{ id: 903, limited: [2, 2, 2] },
+	{ id: 904, limited: [2, 2, 2] },
+	{ id: 905, limited: [2, 2, 2] },
+	{ id: 906, limited: [2, 2, 2] },
+	{ id: 907, limited: [2, 2, 2] },
+	{ id: 908, limited: [2, 2, 2, 2] },
+	{ id: 909, limited: [2, 2, 2, 2] },
+	{ id: 910, limited: [2, 2, 2, 2] },
+	{ id: 911, limited: [2, 2, 2, 2] },
+	{ id: 912, limited: [2, 2, 2, 2] },
+	{ id: 913, limited: [2, 2, 2, 2] },
+	{ id: 914, limited: [2, 2, 2, 2] },
+	{ id: 915, limited: [2, 2, 2, 2] },
+	{ id: 916, limited: [3, 3, 3] },
+	{ id: 917, limited: [2, 2, 2, 2] },
+	{ id: 918, limited: [2, 2, 2, 2] },
+	{ id: 919, limited: [2, 2, 2, 2] },
+	{ id: 920, limited: [3, 3, 3, 2] },
+	{ id: 921, limited: [2, 2, 2, 2] },
+	{ id: 922, limited: [2, 2, 2, 2] },
+	{ id: 923, limited: [3, 3, 3] },
+	{ id: 924, limited: [3, 3, 3] },
+	{ id: 925, limited: [2, 2, 2] },
+	{ id: 926, limited: [2, 2, 2] },
+	{ id: 927, limited: [3, 3, 3] },
+	{ id: 939, limited: [2, 2, 2] },
+	{ id: 944, limited: [3, 3, 3] },
+	{ id: 949, limited: [3, 3, 3] },
+	{ id: 951, limited: [3, 3, 3] },
+	{ id: 952, limited: [2, 2, 2] },
+	{ id: 953, limited: [2, 2, 2] }
 ]
 
 export const MUSIC_LIMITED3 = [
@@ -267,6 +481,642 @@ export const MUSIC_LIMITED3 = [
 	  };
 	}),
 	...MUSIC_LIMITED_NEW3.filter(lim3 => !MUSIC_LIMITED.some(lim => lim.id === lim3.id))
+]
+
+export const UNLOCK_EVENTS3 = {
+	refillStamps: {},
+	silvertime: {
+	    type: 'main',
+	    info: {
+	    	id: 0,
+	      	stmpHd: '[sz:20]SPECIAL STAMP BONUS!',
+	      	stmpFt: '[sz:18]YOU CAN GET A STAMP AND BONUS 3TIMES A DAY! :)[br:5]TERM: 9/17～9/30',
+	      	data: [
+	        	{
+	          		stmpid: 291,
+	          		stmpdaily: 3,
+	          		stps: 15,
+	          		stprwrd: '3:c:15 6:p:468 9:b:468 12:p:468 12:b:468 15:c:16'
+	        	}
+	      	]
+	    }
+	},
+	// summervacation: { 
+	//     type: 'main',
+	//     info: {
+	//     		id: 0,
+	//       	stmpHd: '[sz:20]SUMMER VACATION STAMP BONUS!',
+	//       	stmpFt: '[sz:18]YOU CAN GET A STAMP AND BONUSE 1TIMES A DAY! :)[br:5]TERM: 7/16～8/31',
+	//       	data: [
+	//         		{
+	//           		stmpid: 292,
+	//           		stmpdaily: 1,
+	//           		stps: 30,
+	//           		stprwrd: '3:b:500 3:a:209 6:p:500 9:b:500 9:a:xxxx 12:p:500 15:b:500 15:a:xxxx 18:p:500 21:b:500 21:a:xxxx 24:p:500 24:a:xxxx 27:a:xxxx 28:a:xxxx 29:a:xxxx 30:c:8'
+	//         		}
+	//       	]
+	//     }
+	// },
+	// midsummer: {
+	// 	type: 'main',
+	//     info: {
+	//     		id: 0,
+	//       	stmpHd: '[sz:20]SPECIAL STAMP BONUS!',
+	//       	stmpFt: '[sz:18]YOU CAN GET A STAMP AND BONUSE 1TIMES A DAY! :)[br:5]TERM: 7/14～9/14',
+	//       	data: [
+	//         		{
+	//           		stmpid: 293,
+	//           		stmpdaily: 1,
+	//           		stps: 30,
+	//           		stprwrd: '3:b:500 6:p:500 9:p:500 9:b:500 12:b:500 15:p:500 18:b:500 18:a:xxxx 21:p:500 21:a:xxxx 24:b:500 24:a:xxxx 27:p:500 30:c:52'
+	//         		}
+	//       	]
+	//     }
+	// },
+	// touhou: {
+	// 	type: 'main',
+	//     info: {
+	//     		id: 0,
+	//       	stmpHd: '[sz:20]SPECIAL STAMP BONUS!',
+	//       	stmpFt: '[sz:18]YOU CAN GET A STAMP AND BONUS PER A PLAYING TOHO ARRANGE TRACK:)[br:5]TERM: 10/22～11/23',
+	//       	data: [
+	//         		{
+	//           		stmpid: 294,
+	//           		stps: 30,
+	//           		stprwrd: '3:a:xxxx 6:a:xxxx 9:c:25 12:a:xxxx 16:c:26 18:a:xxxx 21:c:27 24:a:xxxx 27:a:xxxx 30:c:24 req:genre:4'
+	//         		}
+	//       	]
+	//     }
+	// },
+	// christmas: {
+	//     type: 'main',
+	//     info: {
+	//     		id: 0,
+	//       	stmpHd: '[sz:20]SPECIAL STAMP BONUS!',
+	//       	stmpFt: '[sz:18]YOU CAN GET A STAMP AND BONUS EVERY PLAY :)',
+	//       	data: [
+	//         		{
+	//           		stmpid: 295,
+	//           		stps: 50,
+	//           		stprwrd: '5:p:100 10:b:100 15:a:xxxx 20:p:100 25:a:xxxx 30:b:100 35:a:xxxx 40:p:100 45:b:390 46:a:xxxx 47:p:390 48:b:390 49:p:390 49:b:390 50:c:29'
+	//         		}
+	//       	]
+	//     }
+	// },
+}
+
+export const FLAGS3 = [
+    // s1
+	1, // matching phase
+    3, // policy break event icon
+    60, // summer diary event icon
+    
+    // add items to apcard generator
+    15, 16, 17, 18, 19, 20, 21, 22, 
+    32, 40, 42, 51, 
+
+    // real generator
+    50, 29, 28, 27, 26,
+    52, // real generator appeal card
+
+    // serial code input + labels
+    10, 11, 12, 13, 36, 53, 56, // 80, 83, 84, 87
+
+    // s2
+    // add items to apcard generator
+    70, 74, 77,
+    
+    /* 
+	misc s1
+    61, 63, 68, // logging stuff maybe
+    2, // floor infection event icon
+    6, 
+    39,
+    30,
+    54, // MAXIMA.trial
+
+    misc s2
+    72, 73, 
+    75, // select payment method
+    88,
+    86,
+    */
+]
+
+export const MISSION_EVENT3 = [
+	37, 55, 57, 64, // toggle
+	// 38, // movie skip
+	57, // map select
+	62, // battle sequence + crew stats
+	65 // sub-crew
+]
+
+export const SP_APICAGENE3 = [
+	// type 2 pnum1 1
+	{
+		title: "(FLOOR採用)III制作決定記念/レイシスIII",
+		str: "8@2006-2007-2008-2009-2010-2011-2012-2013",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/つまぶき(三角形のつまみの精)",
+		str: "8@2014-2015-2016-2017-2018",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/傍丹　桜子",
+		str: "8@2019-2020-2021-2022-2023",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/埴仁　虎子",
+		str: "8@2024-2025-2026-2027",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/シャトー・ロワーレ",
+		str: "8@2028-2029-2030",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/Miss.DD ＆ BOF",
+		str: "8@2031-2032-2033-2034",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/弐拾四階段の道化師（ハーレクイン）",
+		str: "8@2035-2036-2037-2038",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/恋刃",
+		str: "8@2039-2040-2041-2042-2043-2044",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/アウグスト=ヴェルテックス",
+		str: "8@2045-2046-2047",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/静かなる嵐のイノテンちゃん",
+		str: "8@2048-2049-2050-2051-2052-2053",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/嬬武器 雷刀",
+		str: "8@2054-2055-2056-2057",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/嬬武器 烈風刀",
+		str: "8@2058-2059-2060-2061",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/賽河原 炎十郎佐之助五右衛門",
+		str: "8@2062-2063-2064",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/ハルト=カプサイシン=スチプチサット",
+		str: "8@2065-2066-2067-2068",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/不律 灯色",
+		str: "8@2069-2070-2071-2072-2073",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/トライプル・ストレエッジ",
+		str: "8@2074-2075-2076",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/ミツル子ちゃん",
+		str: "8@2077-2078-2079-2080",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/りむる",
+		str: "8@2081-2082-2083-2084",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/マキナ・苺ハートビート",
+		str: "8@2085-2086-2087",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/氷雪ちゃん",
+		str: "8@2088-2089-2090-2091-2092-2093",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/プロフェッサー識苑",
+		str: "8@2094-2095-2096-2097-2098",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/西日暮里さん",
+		str: "8@2099-2100-2101-2102",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/雪翔くん",
+		str: "8@2103-2104-2105-2106-2107",
+		version: 20151116
+	},
+	{
+		title: "(FLOOR採用)III制作決定記念/F型人工生命 MION 1024号 / 通称 ミオン",
+		str: "8@2108-2109-2110-2111-2112",
+		version: 20151116
+	},
+	{
+		title: "VENUSアピカコンテスト",
+		str: "8@2113-2114-2115-2116-2117-2118-2119-2120-2121-2122-2123-2124-2125-2126-2127-2128",
+		version: 20151116
+	},
+	{
+		title: "(レアカード)ミニレイシス",
+		str: "8@2501-2502",
+		version: 20151116
+	},
+	{
+		title: "(レアカード)ここなつポメグラネイト",
+		str: "8@2503-2504-2505",
+		version: 20151116
+	},
+	{
+		title: "(レアカード)ここなつサントラ",
+		str: "8@2506-2507-2508",
+		version: 20151116
+	},
+	{
+		title: "(レアカード)クリスマスアピカ2014",
+		str: "8@2509",
+		version: 20151116
+	},
+	{
+		title: "(レアカード)2015あけおめアピカ",
+		str: "8@2510",
+		version: 20151116
+	},
+	{
+		title: "(レアカード)ここなつツーマンライブ",
+		str: "8@2511",
+		version: 20151116
+	},
+	{
+		title: "(レアカード）ボルテ参周年！",
+		str: "8@2512",
+		version: 20151116
+	},
+	{
+		title: "(レアカード)KAC The 4thエントリー特典",
+		str: "8@2514-2515",
+		version: 20151116
+	},
+	{
+		title: "(レアカード)幕張",
+		str: "8@2516",
+		version: 20151116
+	},
+	{
+		title: "（レアカード）ときめきボルテ学園★あなたのことが好きデシタ！チョコレート大戦争！2015",
+		str: "8@2517-2518-2519-2520-2521-2522-2523-2524-2525",
+		version: 20151116
+	},
+	{
+		title: "(レアカード)ここなつキモチコネクト",
+		str: "8@2526",
+		version: 20151116
+	},
+	{
+		title: "(レアカード）スティール",
+		str: "8@2532-2533-2534-2536-2539-2542-2545",
+		version: 20151116
+	}
+]
+
+export const SERIAL3 = [
+	{
+		version: 20151116,
+		onetime: false,
+		code: 3001,
+		items: [
+			{ type: 6, id: 1, param: 1 }
+		],
+		pc: 0, 
+		blc: 0, 
+		energy: 0
+	},
+	{
+		version: 20151116,
+		onetime: false,
+		code: 3002,
+		items: [
+			{ type: 6, id: 2, param: 3 }
+		],
+		pc: 0, 
+		blc: 0, 
+		energy: 0
+	},
+	{
+		version: 20151116,
+		onetime: false,
+		code: 3003,
+		items: [
+			{ type: 6, id: 3, param: 2 }
+		],
+		pc: 0, 
+		blc: 0, 
+		energy: 0
+	},
+	{
+		version: 20151116,
+		onetime: false,
+		code: 3004,
+		items: [
+			{ type: 6, id: 4, param: 1 }
+		],
+		pc: 0, 
+		blc: 0, 
+		energy: 0
+	},
+	{
+		version: 20151116,
+		onetime: false,
+		code: 3005,
+		items: [
+			{ type: 6, id: 5, param: 1 }
+		],
+		pc: 0, 
+		blc: 0, 
+		energy: 0
+	},
+	{
+		version: 20161212,
+		onetime: false,
+		code: 3008,
+		items: [
+			{ type: 6, id: 8, param: 1 }
+		],
+		pc: 0, 
+		blc: 0, 
+		energy: 0
+	},
+]
+
+export const EXTENDS3 = [
+	{
+		version: 20151116,
+    	type: 6,
+    	id: 1,
+    	params: [
+      		0,0,0,0,0,
+      		"kac:26,4",
+      		"",
+      		"",
+      		"",
+      		""
+    	]
+  	},
+  	{
+		version: 20161116,
+    	type: 4,
+    	id: 1,
+    	params: [
+      		0,1,0,0,0,
+      		"",
+      		"19,-1,[sz:26][sx:120][pos:0,2]音芸祭",
+      		"",
+      		"",
+      		""
+    	]
+  	},
+  	{
+  		version: 20161212,
+		type: 7,
+		id: 1,
+		params: [
+			0,21,0,1,0,
+			"ひなビタ♪ジェネレーター 第三弾",
+			"flame_orange",
+			"100:653-684",
+			"30,30,25,10,4,1",
+			"i:illust_hinabita_3 p:210 g:3,10"
+		]
+	},
+  	{
+  		version: 20161212,
+		type: 7,
+		id: 1,
+		params: [
+			0,22,0,1,0,
+			"キミが監督★胸熱ショットコンテストvol.1ジェネレーター",
+			"flame_orange",
+			"100:685-713",
+			"30,30,25,10,4,1",
+			"i:illust_muneatsu_1 p:220 g:3,10"
+		]
+	},
+  	{
+  		version: 20161212,
+		type: 7,
+		id: 1,
+		params: [
+			0,23,0,1,0,
+			"キミが監督★胸熱ショットコンテストvol.2ジェネレーター",
+			"flame_orange",
+			"100:714-742",
+			"30,30,25,10,4,1",
+			"i:illust_muneatsu_2 p:230 g:3,10"
+		]
+	},
+  	{
+  		version: 20151116,
+		type: 7,
+		id: 1,
+		params: [
+			0,24,1,2,1,
+			"LEGEND OF KAC サントラ\nスペシャル ジェネレーター",
+			"flame_pink",
+			"100:44",
+			"30,30,25,10,4,1",
+			"i:illust_kac p:240 g:0,1000 m:1"
+		]
+	},
+  	{
+  		version: 20151116,
+		type: 7,
+		id: 1,
+		params: [
+			0,25,2,1,1,
+			"ポスターキャンペーン スペシャル ジェネレーター",
+			"flame_pink",
+			"100:41-43",
+			"30,30,25,10,4,1",
+			"i:illust_poster_cp p:250 g:0,1000 m:2"
+		]
+	},
+  	{
+  		version: 20151116,
+		type: 7,
+		id: 1,
+		params: [
+			0,26,3,2,1,
+			"EDM x BEMANI スペシャル ジェネレーター",
+			"flame_pink",
+			"100:78-79",
+			"30,30,25,10,4,1",
+			"i:illust_edm p:260 g:0,1000 m:3"
+		]
+	},
+  	{
+  		version: 20151116,
+		type: 7,
+		id: 1,
+		params: [
+			0,27,4,1,1,
+			"東方ゲームショウ会場限定ポストカード特典\nスペシャル ジェネレーター",
+			"flame_pink",
+			"100:142",
+			"30,30,25,10,4,1",
+			"i:illust_toho_1 p:270 g:0,1000 m:4"
+		]
+	},
+  	{
+  		version: 20151116,
+		type: 7,
+		id: 1,
+		params: [
+			0,28,5,1,1,
+			"BEMANI x 東方Project\nUltimate Master Pieces CD購入特典\nスペシャル ジェネレーター",
+			"flame_pink",
+			"100:116",
+			"30,30,25,10,4,1",
+			"i:illust_toho_2 p:280 g:0,1000 m:5"
+		]
+	},
+  	{
+  		version: 20151116,
+		type: 7,
+		id: 1,
+		params: [
+			0,29,0,2,0,
+			"jubeat スペシャル ジェネレーター",
+			"flame_orange",
+			"100:149-153,745-752",
+			"30,30,25,10,4,1",
+			"i:illust_jubeat1 p:290 g:0,1000"
+		]
+	},
+  	{
+  		version: 20151116,
+		type: 7,
+		id: 1,
+		params: [
+			0,30,0,1,0,
+			"ビートストリーム スペシャルジェネレーター",
+			"flame_pink",
+			"100:209-218",
+			"30,30,25,10,4,1",
+			"i:illust_beast p:300 g:3,10"
+		]
+	},
+  	{
+  		version: 20151116,
+		type: 7,
+		id: 1,
+		params: [
+			0,31,0,2,0,
+			"MÚSECA スペシャルジェネレーター",
+			"flame_orange",
+			"100:219-223",
+			"30,30,25,10,4,1",
+			"i:illust_museca_1 p:310 g:0,1000"
+		]
+	},
+  	{
+  		version: 20151116,
+		type: 7,
+		id: 1,
+		params: [
+			0,32,0,1,0,
+			"ここなつジェネシスカード祭",
+			"flame_orange",
+			"100:237-241",
+			"30,30,25,10,4,1",
+			"i:illust_coconatsu_1 p:320 g:6,10"
+		]
+	},
+  	{
+  		version: 20151116,
+		type: 7,
+		id: 1,
+		params: [
+			0,33,0,1,0,
+			"beatmania IIDX スペシャルジェネレーター",
+			"flame_orange",
+			"100:394-401",
+			"30,30,25,10,4,1",
+			"i:illust_IIDXcopula p:330 g:0,10"
+		]
+	},
+  	{
+  		version: 20161212,
+		type: 7,
+		id: 1,
+		params: [
+			0,34,8,2,1,
+			"モンスターストライク MULTI BURSTスペシャルジェネレーター",
+			"flame_orange",
+			"100:482-521",
+			"30,30,25,10,4,1",
+			"i:illust_monst p:340 g:0,1000 m:8"
+		]
+	},
+  	{
+  		version: 20161212,
+		type: 7,
+		id: 1,
+		params: [
+			0,35,0,2,0,
+			"MÚSECA Grafica ジェネレーター",
+			"flame_orange",
+			"100:522-536,640-641",
+			"30,30,25,10,4,1",
+			"i:illust_museca_1 p:350 g:0,1000"
+		]
+	},
+  	{
+  		version: 20161212,
+		type: 7,
+		id: 1,
+		params: [
+			0,36,0,2,0,
+			"SUPER STAR ONLY ONE ジェネレーター",
+			"flame_orange",
+			"100:599",
+			"30,30,25,10,4,1",
+			"i:illust_onlyone p:360 g:0,1000"
+		]
+	},
+  	{
+  		version: 20161212,
+		type: 7,
+		id: 1,
+		params: [
+			0,37,0,2,0,
+			"ビートストリーム スペシャルジェネレーター 第二弾",
+			"flame_orange",
+			"100:642-652",
+			"30,30,25,10,4,1",
+			"i:illust_beast_2 p:370 g:0,1000"
+		]
+	}
 ]
 
 export const COURSES3 = [
@@ -1381,558 +2231,4 @@ export const COURSES3 = [
 		    }
 	    ]
   	},
-]
-
-export const FLAGS3 = [
-    // s1
-	1, // matching phase
-    3, // policy break event icon
-    60, // summer diary event icon
-    
-    // add items to apcard generator
-    15, 16, 17, 18, 19, 20, 21, 22, 
-    32, 40, 42, 51, 
-
-    // real generator
-    50, 29, 28, 27, 26,
-    52, // real generator appeal card
-
-    // serial code input + labels
-    10, 11, 12, 13, 36, 53, 56, // 80, 83, 84, 87
-
-    // s2
-    // add items to apcard generator
-    70, 74, 77,
-    
-    /* 
-	misc s1
-    61, 63, 68, // logging stuff maybe
-    2, // floor infection event icon
-    6, 
-    39,
-    30,
-    54, // MAXIMA.trial
-
-    misc s2
-    72, 73, 
-    75, // select payment method
-    88,
-    86,
-    */
-]
-
-export const MISSION_EVENT3 = [
-	37, 55, 57, 64, // toggle
-	// 38, // movie skip
-	57, // map select
-	62, // battle sequence + crew stats
-	65 // sub-crew
-]
-
-export const SP_APICAGENE3 = [
-	// type 2 pnum1 1
-	{
-		title: "(FLOOR採用)III制作決定記念/レイシスIII",
-		str: "8@2006-2007-2008-2009-2010-2011-2012-2013",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/つまぶき(三角形のつまみの精)",
-		str: "8@2014-2015-2016-2017-2018",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/傍丹　桜子",
-		str: "8@2019-2020-2021-2022-2023",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/埴仁　虎子",
-		str: "8@2024-2025-2026-2027",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/シャトー・ロワーレ",
-		str: "8@2028-2029-2030",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/Miss.DD ＆ BOF",
-		str: "8@2031-2032-2033-2034",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/弐拾四階段の道化師（ハーレクイン）",
-		str: "8@2035-2036-2037-2038",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/恋刃",
-		str: "8@2039-2040-2041-2042-2043-2044",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/アウグスト=ヴェルテックス",
-		str: "8@2045-2046-2047",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/静かなる嵐のイノテンちゃん",
-		str: "8@2048-2049-2050-2051-2052-2053",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/嬬武器 雷刀",
-		str: "8@2054-2055-2056-2057",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/嬬武器 烈風刀",
-		str: "8@2058-2059-2060-2061",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/賽河原 炎十郎佐之助五右衛門",
-		str: "8@2062-2063-2064",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/ハルト=カプサイシン=スチプチサット",
-		str: "8@2065-2066-2067-2068",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/不律 灯色",
-		str: "8@2069-2070-2071-2072-2073",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/トライプル・ストレエッジ",
-		str: "8@2074-2075-2076",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/ミツル子ちゃん",
-		str: "8@2077-2078-2079-2080",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/りむる",
-		str: "8@2081-2082-2083-2084",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/マキナ・苺ハートビート",
-		str: "8@2085-2086-2087",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/氷雪ちゃん",
-		str: "8@2088-2089-2090-2091-2092-2093",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/プロフェッサー識苑",
-		str: "8@2094-2095-2096-2097-2098",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/西日暮里さん",
-		str: "8@2099-2100-2101-2102",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/雪翔くん",
-		str: "8@2103-2104-2105-2106-2107",
-		version: 20151116
-	},
-	{
-		title: "(FLOOR採用)III制作決定記念/F型人工生命 MION 1024号 / 通称 ミオン",
-		str: "8@2108-2109-2110-2111-2112",
-		version: 20151116
-	},
-	{
-		title: "VENUSアピカコンテスト",
-		str: "8@2113-2114-2115-2116-2117-2118-2119-2120-2121-2122-2123-2124-2125-2126-2127-2128",
-		version: 20151116
-	},
-	{
-		title: "(レアカード)ミニレイシス",
-		str: "8@2501-2502",
-		version: 20151116
-	},
-	{
-		title: "(レアカード)ここなつポメグラネイト",
-		str: "8@2503-2504-2505",
-		version: 20151116
-	},
-	{
-		title: "(レアカード)ここなつサントラ",
-		str: "8@2506-2507-2508",
-		version: 20151116
-	},
-	{
-		title: "(レアカード)クリスマスアピカ2014",
-		str: "8@2509",
-		version: 20151116
-	},
-	{
-		title: "(レアカード)2015あけおめアピカ",
-		str: "8@2510",
-		version: 20151116
-	},
-	{
-		title: "(レアカード)ここなつツーマンライブ",
-		str: "8@2511",
-		version: 20151116
-	},
-	{
-		title: "(レアカード）ボルテ参周年！",
-		str: "8@2512",
-		version: 20151116
-	},
-	{
-		title: "(レアカード)KAC The 4thエントリー特典",
-		str: "8@2514-2515",
-		version: 20151116
-	},
-	{
-		title: "(レアカード)幕張",
-		str: "8@2516",
-		version: 20151116
-	},
-	{
-		title: "（レアカード）ときめきボルテ学園★あなたのことが好きデシタ！チョコレート大戦争！2015",
-		str: "8@2517-2518-2519-2520-2521-2522-2523-2524-2525",
-		version: 20151116
-	},
-	{
-		title: "(レアカード)ここなつキモチコネクト",
-		str: "8@2526",
-		version: 20151116
-	},
-	{
-		title: "(レアカード）スティール",
-		str: "8@2532-2533-2534-2536-2539-2542-2545",
-		version: 20151116
-	}
-]
-
-export const SERIAL3 = [
-	{
-		version: 20151116,
-		onetime: false,
-		code: 3001,
-		items: [
-			{ type: 6, id: 1, param: 1 }
-		],
-		pc: 0, 
-		blc: 0, 
-		energy: 0
-	},
-	{
-		version: 20151116,
-		onetime: false,
-		code: 3002,
-		items: [
-			{ type: 6, id: 2, param: 3 }
-		],
-		pc: 0, 
-		blc: 0, 
-		energy: 0
-	},
-	{
-		version: 20151116,
-		onetime: false,
-		code: 3003,
-		items: [
-			{ type: 6, id: 3, param: 2 }
-		],
-		pc: 0, 
-		blc: 0, 
-		energy: 0
-	},
-	{
-		version: 20151116,
-		onetime: false,
-		code: 3004,
-		items: [
-			{ type: 6, id: 4, param: 1 }
-		],
-		pc: 0, 
-		blc: 0, 
-		energy: 0
-	},
-	{
-		version: 20151116,
-		onetime: false,
-		code: 3005,
-		items: [
-			{ type: 6, id: 5, param: 1 }
-		],
-		pc: 0, 
-		blc: 0, 
-		energy: 0
-	},
-	{
-		version: 20161212,
-		onetime: false,
-		code: 3008,
-		items: [
-			{ type: 6, id: 8, param: 1 }
-		],
-		pc: 0, 
-		blc: 0, 
-		energy: 0
-	},
-]
-
-export const EXTENDS3 = [
-	{
-		version: 20151116,
-    	type: 6,
-    	id: 1,
-    	params: [
-      		0,0,0,0,0,
-      		"kac:26,4",
-      		"",
-      		"",
-      		"",
-      		""
-    	]
-  	},
-  	{
-		version: 20161116,
-    	type: 4,
-    	id: 1,
-    	params: [
-      		0,1,0,0,0,
-      		"",
-      		"19,-1,[sz:26][sx:120][pos:0,2]音芸祭",
-      		"",
-      		"",
-      		""
-    	]
-  	},
-  	{
-  		version: 20161212,
-		type: 7,
-		id: 1,
-		params: [
-			0,21,0,1,0,
-			"ひなビタ♪ジェネレーター 第三弾",
-			"flame_orange",
-			"100:653-684",
-			"30,30,25,10,4,1",
-			"i:illust_hinabita_3 p:210 g:3,10"
-		]
-	},
-  	{
-  		version: 20161212,
-		type: 7,
-		id: 1,
-		params: [
-			0,22,0,1,0,
-			"キミが監督★胸熱ショットコンテストvol.1ジェネレーター",
-			"flame_orange",
-			"100:685-713",
-			"30,30,25,10,4,1",
-			"i:illust_muneatsu_1 p:220 g:3,10"
-		]
-	},
-  	{
-  		version: 20161212,
-		type: 7,
-		id: 1,
-		params: [
-			0,23,0,1,0,
-			"キミが監督★胸熱ショットコンテストvol.2ジェネレーター",
-			"flame_orange",
-			"100:714-742",
-			"30,30,25,10,4,1",
-			"i:illust_muneatsu_2 p:230 g:3,10"
-		]
-	},
-  	{
-  		version: 20151116,
-		type: 7,
-		id: 1,
-		params: [
-			0,24,1,2,1,
-			"LEGEND OF KAC サントラ\nスペシャル ジェネレーター",
-			"flame_pink",
-			"100:44",
-			"30,30,25,10,4,1",
-			"i:illust_kac p:240 g:0,1000 m:1"
-		]
-	},
-  	{
-  		version: 20151116,
-		type: 7,
-		id: 1,
-		params: [
-			0,25,2,1,1,
-			"ポスターキャンペーン スペシャル ジェネレーター",
-			"flame_pink",
-			"100:41-43",
-			"30,30,25,10,4,1",
-			"i:illust_poster_cp p:250 g:0,1000 m:2"
-		]
-	},
-  	{
-  		version: 20151116,
-		type: 7,
-		id: 1,
-		params: [
-			0,26,3,2,1,
-			"EDM x BEMANI スペシャル ジェネレーター",
-			"flame_pink",
-			"100:78-79",
-			"30,30,25,10,4,1",
-			"i:illust_edm p:260 g:0,1000 m:3"
-		]
-	},
-  	{
-  		version: 20151116,
-		type: 7,
-		id: 1,
-		params: [
-			0,27,4,1,1,
-			"東方ゲームショウ会場限定ポストカード特典\nスペシャル ジェネレーター",
-			"flame_pink",
-			"100:142",
-			"30,30,25,10,4,1",
-			"i:illust_toho_1 p:270 g:0,1000 m:4"
-		]
-	},
-  	{
-  		version: 20151116,
-		type: 7,
-		id: 1,
-		params: [
-			0,28,5,1,1,
-			"BEMANI x 東方Project\nUltimate Master Pieces CD購入特典\nスペシャル ジェネレーター",
-			"flame_pink",
-			"100:116",
-			"30,30,25,10,4,1",
-			"i:illust_toho_2 p:280 g:0,1000 m:5"
-		]
-	},
-  	{
-  		version: 20151116,
-		type: 7,
-		id: 1,
-		params: [
-			0,29,0,2,0,
-			"jubeat スペシャル ジェネレーター",
-			"flame_orange",
-			"100:149-153,745-752",
-			"30,30,25,10,4,1",
-			"i:illust_jubeat1 p:290 g:0,1000"
-		]
-	},
-  	{
-  		version: 20151116,
-		type: 7,
-		id: 1,
-		params: [
-			0,30,0,1,0,
-			"ビートストリーム スペシャルジェネレーター",
-			"flame_pink",
-			"100:209-218",
-			"30,30,25,10,4,1",
-			"i:illust_beast p:300 g:3,10"
-		]
-	},
-  	{
-  		version: 20151116,
-		type: 7,
-		id: 1,
-		params: [
-			0,31,0,2,0,
-			"MÚSECA スペシャルジェネレーター",
-			"flame_orange",
-			"100:219-223",
-			"30,30,25,10,4,1",
-			"i:illust_museca_1 p:310 g:0,1000"
-		]
-	},
-  	{
-  		version: 20151116,
-		type: 7,
-		id: 1,
-		params: [
-			0,32,0,1,0,
-			"ここなつジェネシスカード祭",
-			"flame_orange",
-			"100:237-241",
-			"30,30,25,10,4,1",
-			"i:illust_coconatsu_1 p:320 g:6,10"
-		]
-	},
-  	{
-  		version: 20151116,
-		type: 7,
-		id: 1,
-		params: [
-			0,33,0,1,0,
-			"beatmania IIDX スペシャルジェネレーター",
-			"flame_orange",
-			"100:394-401",
-			"30,30,25,10,4,1",
-			"i:illust_IIDXcopula p:330 g:0,10"
-		]
-	},
-  	{
-  		version: 20161212,
-		type: 7,
-		id: 1,
-		params: [
-			0,34,8,2,1,
-			"モンスターストライク MULTI BURSTスペシャルジェネレーター",
-			"flame_orange",
-			"100:482-521",
-			"30,30,25,10,4,1",
-			"i:illust_monst p:340 g:0,1000 m:8"
-		]
-	},
-  	{
-  		version: 20161212,
-		type: 7,
-		id: 1,
-		params: [
-			0,35,0,2,0,
-			"MÚSECA Grafica ジェネレーター",
-			"flame_orange",
-			"100:522-536,640-641",
-			"30,30,25,10,4,1",
-			"i:illust_museca_1 p:350 g:0,1000"
-		]
-	},
-  	{
-  		version: 20161212,
-		type: 7,
-		id: 1,
-		params: [
-			0,36,0,2,0,
-			"SUPER STAR ONLY ONE ジェネレーター",
-			"flame_orange",
-			"100:599",
-			"30,30,25,10,4,1",
-			"i:illust_onlyone p:360 g:0,1000"
-		]
-	},
-  	{
-  		version: 20161212,
-		type: 7,
-		id: 1,
-		params: [
-			0,37,0,2,0,
-			"ビートストリーム スペシャルジェネレーター 第二弾",
-			"flame_orange",
-			"100:642-652",
-			"30,30,25,10,4,1",
-			"i:illust_beast_2 p:370 g:0,1000"
-		]
-	}
 ]

@@ -69,7 +69,7 @@ export const common: EPR = async (info, data, send) => {
     if (ver >= 5) {
       let distributionDate = music.info['distribution_date']
       if (!distributionDate) return result;
-      let licensedSongs
+      let licensedSongs = []
       switch(ver) {
         case 5:
           licensedSongs = LICENSED_SONGS5
@@ -104,11 +104,14 @@ export const common: EPR = async (info, data, send) => {
       }
 
       // Handle unreleased songs
-      const musicOverride = ver === 6 ? MUSIC_OVERRIDE6 : MUSIC_OVERRIDE7;
-      const ovInd = musicOverride.findIndex(o => o.music_id === id)
-      if (ovInd > 0 && 'date' in musicOverride[ovInd]) {
-        distributionDate = String(musicOverride[ovInd].date)
+      if (ver >= 6) {
+        const musicOverride = ver === 6 ? MUSIC_OVERRIDE6 : MUSIC_OVERRIDE7;
+        const ovInd = musicOverride.findIndex(o => o.music_id === id)
+        if (ovInd > 0 && 'date' in musicOverride[ovInd]) {
+          distributionDate = String(musicOverride[ovInd].date)
+        }
       }
+
       if (!checkVerStart(0, 0, distributionDate, date)) {
         console.log("Unreleased song: " + music.info.title_name)
         return result
@@ -193,8 +196,8 @@ export const common: EPR = async (info, data, send) => {
                   params: [
                     stampType[eData.type],
                     stmpData.stps, 
-                    0, 
-                    stmpData.stps % 10000, 
+                    0,
+                    (gameVersion === 3) ? stmpData.stmpdaily : stmpData.stps % 10000, 
                     (stmpData.stmpid.toString() in unlockEvents.refillStamps) ? 999999 : 0,
                     ('stmpHdJ' in stmpEvntInfo.info) ? stmpEvntInfo.info.stmpHdJ : stmpEvntInfo.info.stmpHd,
                     stmpEvntInfo.info.stmpHd,

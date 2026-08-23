@@ -334,7 +334,7 @@ export const UNLOCK_EVENTS7 = {
       data: [
         {
           stmpid: 61,
-          stps: 310030,
+          stps: 10030,
           version: 20251224,
           start: 20251224,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -345,7 +345,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 62,
-          stps: 310030,
+          stps: 10030,
           version: 20251224,
           start: 20260101,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -356,7 +356,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 63,
-          stps: 310030,
+          stps: 10030,
           version: 20251224,
           start: 20260108,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -367,7 +367,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 65,
-          stps: 310030,
+          stps: 10030,
           version: 20260113,
           start: 20260115,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -378,7 +378,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 66,
-          stps: 310030,
+          stps: 10030,
           version: 20260113,
           start: 20260122,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -389,7 +389,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 67,
-          stps: 310030,
+          stps: 10030,
           version: 20260113,
           start: 20260129,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -400,7 +400,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 69,
-          stps: 310030,
+          stps: 10030,
           version: 20260203,
           start: 20260205,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -411,7 +411,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 70,
-          stps: 310030,
+          stps: 10030,
           version: 20260203,
           start: 20260209,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -422,7 +422,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 71,
-          stps: 310030,
+          stps: 10030,
           version: 20260203,
           start: 20260216,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -433,7 +433,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 72,
-          stps: 310030,
+          stps: 10030,
           version: 20260203,
           start: 20260223,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -444,7 +444,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 78,
-          stps: 310030,
+          stps: 10030,
           version: 20260217,
           start: 20260302,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -455,7 +455,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 79,
-          stps: 310030,
+          stps: 10030,
           version: 20260217,
           start: 20260309,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -466,7 +466,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 80,
-          stps: 310030,
+          stps: 10030,
           version: 20260217,
           start: 20260316,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -477,7 +477,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 81,
-          stps: 310030,
+          stps: 10030,
           version: 20260217,
           start: 20260323,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -488,7 +488,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 95,
-          stps: 310030,
+          stps: 10030,
           version: 20260324,
           start: 20260330,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -499,7 +499,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 96,
-          stps: 310030,
+          stps: 10030,
           version: 20260324,
           start: 20260406,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -510,7 +510,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 97,
-          stps: 310030,
+          stps: 10030,
           version: 20260324,
           start: 20260413,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -521,7 +521,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 98,
-          stps: 310030,
+          stps: 10030,
           version: 20260324,
           start: 20260420,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -532,7 +532,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 100,
-          stps: 310030,
+          stps: 10030,
           version: 20260421,
           start: 20260427,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -543,7 +543,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 101,
-          stps: 310030,
+          stps: 10030,
           version: 20260421,
           start: 20260504,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -554,7 +554,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 102,
-          stps: 310030,
+          stps: 10030,
           version: 20260421,
           start: 20260511,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -565,7 +565,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 103,
-          stps: 310030,
+          stps: 10030,
           version: 20260421,
           start: 20260518,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -576,7 +576,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 104,
-          stps: 310030,
+          stps: 10030,
           version: 20260421,
           start: 20260525,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -587,7 +587,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 105,
-          stps: 310030,
+          stps: 10030,
           version: 20260512,
           start: 20260601,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -598,7 +598,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 106,
-          stps: 310030,
+          stps: 10030,
           version: 20260512,
           start: 20260608,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -609,7 +609,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 107,
-          stps: 310030,
+          stps: 10030,
           version: 20260512,
           start: 20260615,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -620,7 +620,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 108,
-          stps: 310030,
+          stps: 10030,
           version: 20260512,
           start: 20260622,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -631,7 +631,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 109,
-          stps: 310030,
+          stps: 10030,
           version: 20260615,
           start: 20260629,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -642,7 +642,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 110,
-          stps: 310030,
+          stps: 10030,
           version: 20260615,
           start: 20260706,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -653,7 +653,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 111,
-          stps: 310030,
+          stps: 10030,
           version: 20260615,
           start: 20260713,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -664,7 +664,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 112,
-          stps: 310030,
+          stps: 10030,
           version: 20260615,
           start: 20260720,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -675,7 +675,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 113,
-          stps: 310030,
+          stps: 10030,
           version: 20260615,
           start: 20260727,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -686,7 +686,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 115,
-          stps: 310030,
+          stps: 10030,
           version: 20260714,
           start: 20260803,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -697,7 +697,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 116,
-          stps: 310030,
+          stps: 10030,
           version: 20260714,
           start: 20260810,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -708,7 +708,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 117,
-          stps: 310030,
+          stps: 10030,
           version: 20260714,
           start: 20260817,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -719,7 +719,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 118,
-          stps: 310030,
+          stps: 10030,
           version: 20260714,
           start: 20260824,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
@@ -730,7 +730,7 @@ export const UNLOCK_EVENTS7 = {
         },
         {
           stmpid: 119,
-          stps: 310030,
+          stps: 10030,
           version: 20260714,
           start: 20260831,
           stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
