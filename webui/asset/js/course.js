@@ -347,17 +347,19 @@ function setDataSource(dataSource, skillType) {
 }
 
 $('#version_select').change(function() {
+    currentVersion = $('#version_select').val()
     $('#course_content').fadeOut(200, () => {
         console.log("change version select");
-        setDataSource($('#version_select').val(), $('#skilltype_select').val());
+        setDataSource(currentVersion, $('#skilltype_select').val());
     });
     $('#course_content').fadeIn(200);
 });
 
 $('#skilltype_select').change(function() {
+    currentVersion = $('#version_select').val()
     $('#course_content').fadeOut(200, () => {
         console.log("skill type select " + $('#skilltype_select').val());
-        setDataSource($('#version_select').val(), $('#skilltype_select').val());
+        setDataSource(currentVersion, $('#skilltype_select').val());
     });
     $('#course_content').fadeIn(200);
 });
@@ -434,7 +436,7 @@ $(document).ready(function() {
         }
         if(currentVersion < 6) $('#skillT').attr('hidden', 'true')
         $('#skilltype_select').val(0);
-        setDataSource($('#version_select').val(), $('#skilltype_select').val());
+        setDataSource(currentVersion, $('#skilltype_select').val());
     })
 
     // $.getJSON("static/asset/json/music_db.json", function(json) {
