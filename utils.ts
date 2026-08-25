@@ -1,5 +1,21 @@
 import {Counter} from './models/counter';
 
+// Songs rated down from EG => NBL. Used for on the fly VF calculation
+var levelDifOverride = [
+  { mid: 1, type: 1, lvl: 10 }, { mid: 18, type: 1, lvl: 8 }, { mid: 18, type: 2, lvl: 10 },
+  { mid: 73, type: 2, lvl: 17 }, { mid: 48, type: 1, lvl: 8 }, { mid: 75, type: 2, lvl: 12 },
+  { mid: 124, type: 2, lvl: 16 }, { mid: 65, type: 1, lvl: 7 }, { mid: 66, type: 1, lvl: 8 },
+  { mid: 27, type: 1, lvl: 7 }, { mid: 27, type: 2, lvl: 12 }, { mid: 68, type: 1, lvl: 9 },
+  { mid: 6, type: 1, lvl: 7 }, { mid: 6, type: 2, lvl: 12 }, { mid: 16, type: 1, lvl: 7 },
+  { mid: 2, type: 1, lvl: 10 }, { mid: 60, type: 3, lvl: 17 }, { mid: 5, type: 2, lvl: 13 },
+  { mid: 128, type: 2, lvl: 13 }, { mid: 9, type: 2, lvl: 1 }, { mid: 340, type: 2, lvl: 13 },
+  { mid: 247, type: 3, lvl: 18 }, { mid: 282, type: 2, lvl: 17 }, { mid: 288, type: 2, lvl: 13 },
+  { mid: 699, type: 3, lvl: 18 }, { mid: 595, type: 2, lvl: 17 }, { mid: 507, type: 2, lvl: 17 }, 
+  { mid: 1044, type: 2, lvl: 16 }, { mid: 948, type: 4, lvl: 16 }, { mid: 1115, type: 4, lvl: 16 },
+  { mid: 1215, type: 2, lvl: 15 }, { mid: 1152, type: 2, lvl: 15 }, { mid: 1282, type: 3, lvl: 17.5 },
+  { mid: 1343, type: 2, lvl: 16 }, { mid: 1300, type: 3, lvl: 17.5 }, { mid: 1938, type: 2, lvl: 18 }
+]
+
 export function IDToCode(id: number) {
   const padded = _.padStart(id.toString(), 8);
   return `${padded.slice(0, 4)}-${padded.slice(4)}`;
@@ -47,11 +63,20 @@ export function convertGWHHGrade(score) {
   return grade
 }
 
-export function computeForce(version, diff, score, medal, grade) {
-  var medalCoef = [0, 0.50, 1.0, 1.02, 1.04, 1.05, 1.10]
-  var gradeCoef = [0, 0.8, 0.82, 0.85, 0.88, 0.91, 0.94, 0.97, 1.0, 1.02, 1.05]
+export function computeForce(version, rec, songData) {
+  const medalCoef = [0, 0.50, 1.0, 1.02, 1.04, 1.05, 1.10]
+  const gradeCoef = [0, 0.8, 0.82, 0.85, 0.88, 0.91, 0.94, 0.97, 1.0, 1.02, 1.05]
   if(version === 7) medalCoef[5] = 1.06
-  return Math.floor(diff * (score / 10000000) * (gradeCoef[grade]) * (medalCoef[medal]) * 20)
+  const diffName = ['novice', 'advanced', 'exhaust', 'infinite', 'maximum', 'ultimate']
+  const egClear = [0, 1, 2, 3, 6, 4, 5]
+
+  let clear = rec.clear
+  if(version === 6) clear = egClear.indexOf(clear)
+
+  let diffLevel = parseInt(songData['difficulty'][6][diffName[rec.type]])
+  let lvOverride = levelDifOverride.findIndex(d => d.mid === rec.mid && d.type === rec.type)
+  if(lvOverride >= 0) diffLevel = levelDifOverride[lvOverride].lvl
+  return Math.floor(diffLevel * (rec.score / 10000000) * (gradeCoef[rec.grade]) * (medalCoef[clear]) * 20)
 }
 
 export function checkVerStart(gameVersion, checkVersion, checkStart, dateObj) {

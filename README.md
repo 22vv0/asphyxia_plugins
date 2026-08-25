@@ -30,69 +30,73 @@ SOUND VOLTEX
 
 ### ∇
 
-- Added new weekly stamp sheets
 - Updated game over textures list
 - Added quiz questions
+- Updated weekly stamp sheets data (+ added new ones)
 
 ### EXCEED GEAR
 
-- Login info popups decreased to 5 at a time
+- Migrate from VIVID WAVE (unlocked items, BLASTER unlocks and POLICY BREAK progress, etc.) Note that this is only for profiles that do not yet have EXCEED GEAR play data.
+- VIVID WAVE scores loaded as legacy scores and count towards your VOLFORCE (scores from HEAVENLY HAVEN and below will not be displayed/transferred)
+- Login info popups list decreased to 5 at a time
 
 ### VIVID WAVE
 
 - Added support (profile creation, data save/load, etc)
-- Data transfer from HEAVENLY HAVEN (unlocked items, BLASTER GATE and POLICY BREAK progress)
-- HEAVENLY HAVEN scores loaded as legacy scores and count towards your VOLFORCE (GRAVITY WARS scores will not be displayed/transferred)
+- Migrate from HEAVENLY HAVEN (unlocked items, BLASTER unlocks and POLICY BREAK progress, etc.)
+- HEAVENLY HAVEN scores loaded as legacy scores and count towards your VOLFORCE (scores from GRAVITY WARS and below will not be displayed/transferred)
 - Added new VW songs to POLICY BREAK list. As with previous games, you can add 3000pw per song per franchise per credit.
+- Added SKILL ANALYZER courses
 - Enabled Ω Dimension (phases 1-8)
 - Enabled HEXA DIVER (parts 1-3)
 - Enabled AUTOMATION PARADISE (save/load mixes)
-- Added SKILL ANALYZER courses
+- Added VOLFES data (toggle in `More Plugin Settings`)
 
 ### HEAVENLY HAVEN
 
 - Added support (profile creation, data save/load, etc)
-- Data transfer from GRAVITY WARS (unlocked items, BLASTER GATE and POLICY BREAK progress)
-- GRAVITY WARS scores loaded as legacy scores (infinite infection scores will not be displayed/transferred)
+- Migrate from GRAVITY WARS (unlocked items, BLASTER GATE and POLICY BREAK progress, etc.)
+- GRAVITY WARS scores loaded as legacy scores (scores from infinite infection and below will not be displayed/transferred)
 - Added new HH songs to POLICY BREAK list. As with previous games, you can add 3000pw per song per franchise per credit.
 - Enabled Ω Dimension (phases 1-6)
 - Added SKILL ANALYZER courses
 - Added serial code entry
 - Added info popups (shown once)
-- Added stamp sheet event: `BisCoスペシャルスタンプ！`
-- Added stamp sheet event: `BisCoスペシャルスタンプ 第二弾！`
-- Added stamp sheet event: `私立BEMANI学園スペシャルスタンプ！`
-- Added Ikiiki stamp sheet event: `～MÚSECA地方～`
-- Added Ikiiki stamp sheet event: `BEMANI SUMMER GREETINGS`
+- Added stamp sheet events: see full list in `Unlock Events` page under version `HEAVENLY HAVEN`
 - Added login gift: `POLICY BREAK Medley from SOUND VOLTEX x jubeat`
 
 ### GRAVITY WARS
 
-- Updated `type` value for Skill LEVEL 11 and 12
+- Updated `type` value for Skill LEVEL 11 and 12 courses
 - Tagged SKILL ANALYZER set 8 as new (for silver wing)
+- Updated song unlock metadata
 
 ### Misc
 
+- Updated `loadScore` to support loading of legacy scores (score data from one version down) without needing to migrate them
+- Added ability to use custom Appeal Titles (shared between VW/EG/∇)
 - Updated custom Skill Title formatting
-- Custom Appeal Titles (akanames) implementation (shared between EG/∇)
-- Updated bgm_convert.bat script ([PR #96](https://github.com/22vv0/asphyxia_plugins/pull/96))
-- Added `PluginSettings` db model to handle more plugin settings
-- Renamed `EVENT` const in data files to `FLAGS`
+- Added an extra handler for more Plugin Settings separate from the dashboard (Check WebUI changelogs for more info)
+- Moved some existing plugin settings to the new `More Plugin Settings` page
 - Handler code rewrites to add support for HH and the new `PluginSettings` handler + misc features
-- Added playdata migrate code from GW to HH
+- Added playdata migrate codes (GW to HH; HH to VW; VW to EG)
+- Removed score migration code in `viiMigrate` to favor legacy score loading instead (with on-the-fly VF calculation)
 - Fixed `serial` serial code reward item type error
-- Removed some plugin settings; moved to `More Plugin Settings` + added HH mdb file upload button
+- Renamed `EVENT` const in game data files to `FLAGS`
+- Removed `pluginVer` from `Profile` model.
+- Updated bgm_convert.bat script ([PR #96](https://github.com/22vv0/asphyxia_plugins/pull/96))
 
 ### WebUI
 
 - `More Plugin Settings` - Added Custom Appeal Titles section
 - `More Plugin Settings` - Added More Plugin Settings section
 - `More Plugin Settings` - Rewrote DOM append code for `Startup Flags`
-- `Profile customization` - Made custom appeal titles selectable (∇ only)
-- `Unlock Events` - Added HH event toggles
+- `Profile customization` - Made custom appeal titles selectable (VW and above only)
 - Added `Automation Paradise Mixes` page to browse and search mixes
+- `Unlock Events` - Added HH event toggles
 - Added `Your Mixes` to Profile tabs: repurposed `Automation Mixes` page from official plugin repo
-- JS rewrites to add support for HH
+- Added HH and VW mdb file upload
+- WebUI JS rewrites to add support for HH and VW
 
 ### Contributors
 
@@ -103,4 +107,6 @@ SOUND VOLTEX
 
 1. Proper handling of appeal title customization.
 2. Look into per-profile auto-unlock system
-3. Look into how to make VF calculation on ∇ profile details page more accurate  
+3. Look into how to make VF calculation on profile details page more accurate per-game version
+4. GW - VW recommended song folder
+5. Look for original stamp sheet text for GW/HH/VW if available

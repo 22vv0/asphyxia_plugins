@@ -11,7 +11,7 @@ import { WeeklyMusicScore } from '../models/weeklymusic'
 import { VariantPower } from '../models/variant'
 import { GWStory } from '../models/gw_story'
 import { PluginSettings } from '../models/settings'
-import { getVersion, IDToCode, checkVerStart, convertGWHHGrade, getYMDDate } from '../utils'
+import { getVersion, IDToCode, checkVerStart, convertGWHHGrade, getYMDDate, computeForce } from '../utils'
 import { Mix } from '../models/mix'
 import { POLICY_BREAK2 } from '../data/ii'
 import { POLICY_BREAK3, COURSES3 } from '../data/gw'
@@ -20,7 +20,7 @@ import { POLICY_BREAK5, EVENT_ITEMS5, COURSES5, VOLFES } from '../data/vw'
 import { CURRENT_ARENA, EVENT_ITEMS6, UNLOCK_EVENTS6 } from '../data/exg'
 import { CURRENT_ARENA7, EVENT_ITEMS7, UNLOCK_EVENTS7 } from '../data/nbl'
 import { getRankListDB } from './webui'
-import { DB_VER, iiMigrate, iiiMigrate, ivMigrate, vMigrate, viiMigrate } from './migrate'
+import { DB_VER, iiMigrate, iiiMigrate, ivMigrate, vMigrate, viMigrate, viiMigrate } from './migrate'
 const logging = false
 
 function unlockNavigators(items: Partial<Item>[], version: number) {
@@ -155,7 +155,7 @@ export const loadScore: EPR = async (info, data, send) => {
             ])
 
             // populate previous version scores
-            if(!oldScore) scoreData = scoreData.concat([0,0,0,0,0])
+            if(!oldScore) scoreData = scoreData.concat([0,0,0,0,0,0,0,0,0])
             else {
               const grade = (version === 4) ? convertGWHHGrade(oldScore.score) : oldScore.grade
               
@@ -204,74 +204,133 @@ export const loadScore: EPR = async (info, data, send) => {
   }
 
   if (version === 6) {
+    const recordsMerged = records.concat(await DB.Find<MusicRecord>(refid, { collection: 'music', version: version - 1 }))
     return send.object({
       music: {
-        info: records.map(r => ({
-          param: K.ARRAY('u32', [
-            r.mid,
-            r.type,
-            r.score,
-            r.exscore,
-            r.clear,
-            r.grade,
-            0,
-            0,
-            r.buttonRate,
-            r.longRate,
-            r.volRate,
-            // vw (score/clear/grade)
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            // konaste (score/clear/grade)
-            0,
-            0,
-            0,
-            0,
-          ]),
-        })),
+        info: _.map(
+          _.groupBy(recordsMerged, r => `${r.mid}:${r.type}`),
+          group => {
+            const newScore = group.find(s => s.version === version)
+            const oldScore = group.find(s => s.version === version - 1)
+            let scoreData = []
+
+            // populate current version scores
+            if(!newScore) scoreData = scoreData.concat([0,0,0,0,0,0,0,0,0,0,0])
+            else scoreData = scoreData.concat([
+              newScore.mid,
+              newScore.type,
+              newScore.score,
+              newScore.exscore,
+              newScore.clear,
+              newScore.grade,
+              0,
+              0,
+              newScore.buttonRate,
+              newScore.longRate,
+              newScore.volRate
+            ])
+
+            // populate previous version scores
+            if(!oldScore) scoreData = scoreData.concat([0,0,0,0,0,0,0,0,0,0])
+            else {              
+              if(!newScore) {
+                scoreData[0] = oldScore.mid
+                scoreData[1] = oldScore.type
+              }
+              scoreData = scoreData.concat([
+                oldScore.score,
+                oldScore.clear,
+                oldScore.grade,
+                0,
+                0,
+                0,
+                // konaste score (score/clear/grade)
+                0,
+                0,
+                0,
+                0,
+              ])
+            }
+
+            return {
+              param: K.ARRAY('u32', scoreData),
+            }
+          }
+        )
       },
     });
   }
 
   if (version === 7) {
+    let exScoreResetList = [
+      { id: 360, type: 3 }, { id: 580, type: 2 }, { id: 1121, type: 4 }, { id: 1185, type: 2 },
+      { id: 1199, type: 4 }, { id: 1738, type: 4 }, { id: 2242, type: 0 }
+    ]
+    const egClear = [0, 1, 2, 3, 6, 4, 5]
+    const music_db = await IO.ReadFile('webui/asset/json/music_db.json')
+    const mdb = JSON.parse(music_db.toString()).mdb.music;
+
+    const recordsMerged = records.concat(await DB.Find<MusicRecord>(refid, { collection: 'music', version: version - 1 }))
     return send.object({
       music: {
-        info: records.map(r => ({
-          param: K.ARRAY('u32', [
-            r.mid,
-            r.type,
-            r.score,
-            r.exscore,
-            r.clear,
-            r.grade,
-            0,
-            0,
-            r.buttonRate,
-            r.longRate,
-            r.volRate,
-            r.volforce,            
-            // eg scores (score/exscore/clear/grade) - clear needs adjustment
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            // konaste (score/exscore/clear/grade)
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ]),
-        })),
+        info: _.map(
+          _.groupBy(recordsMerged, r => `${r.mid}:${r.type}`),
+          group => {
+            const newScore = group.find(s => s.version === version)
+            const oldScore = group.find(s => s.version === version - 1)
+            let scoreData = []
+
+            // populate current version scores
+            if(!newScore) scoreData = scoreData.concat([0,0,0,0,0,0,0,0,0,0,0,0])
+            else scoreData = scoreData.concat([
+              newScore.mid,
+              newScore.type,
+              newScore.score,
+              newScore.exscore,
+              newScore.clear,
+              newScore.grade,
+              0,
+              0,
+              newScore.buttonRate,
+              newScore.longRate,
+              newScore.volRate,
+              newScore.volforce
+            ])
+
+            // populate previous version scores
+            if(!oldScore) scoreData = scoreData.concat([0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+            else {              
+              if(!newScore) {
+                let mdbInd = mdb.map(function(x) {return x['id']; }).indexOf(oldScore.mid.toString())
+                scoreData[0] = oldScore.mid
+                scoreData[1] = oldScore.type
+                scoreData[11] = (mdbInd >= 0) ? computeForce(6, oldScore, mdb[mdbInd]) : 0
+              }
+
+              scoreData = scoreData.concat([
+                oldScore.score,
+                (exScoreResetList.findIndex(r => r.id === oldScore.mid && r.type === oldScore.type) >= 0) ? 0 : oldScore.exscore,
+                egClear.indexOf(oldScore.clear),
+                oldScore.grade,
+                0,
+                0,
+                // konaste score (score/clear/grade)
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ])
+            }
+
+            return {
+              param: K.ARRAY('u32', scoreData),
+            }
+          }
+        )
       },
     });
   }
@@ -1364,10 +1423,10 @@ export const create: EPR = async (info, data, send) => {
   }
   else if(version === 3) {
     for(let i = 1; i <= POLICY_BREAK3.length; i++) {
-      if(await DB.Count(refid, {collection: 'pb', version, id: i}) === 0)
-        await DB.Upsert(refid, {collection: 'pb', version, id: i}, {$set: {exp: 0}})
+      if(await DB.Count<PolicyBreak>(refid, {collection: 'pb', version, id: i}) === 0)
+        await DB.Upsert<PolicyBreak>(refid, {collection: 'pb', version, id: i}, {$set: {exp: 0}})
     }
-    await DB.Upsert(refid, {collection: 'skill', version}, {$set: {base: 0, name: -1, level: -1}})
+    await DB.Upsert<Skill>(refid, {collection: 'skill', version}, {$set: {base: 0, name: -1, level: -1}})
     if(await DB.Count<Profile>(refid, {collection: 'profile', version: 2}) > 0) {
       await iiiMigrate(refid, name)
       return send.object({
@@ -1377,10 +1436,10 @@ export const create: EPR = async (info, data, send) => {
   }
   else if(version === 4) {
     for(let i = 1; i <= POLICY_BREAK4.length; i++) {
-      if(await DB.Count(refid, {collection: 'pb', version, id: i}) === 0)
-        await DB.Upsert(refid, {collection: 'pb', version, id: i}, {$set: {exp: 0}})
+      if(await DB.Count<PolicyBreak>(refid, {collection: 'pb', version, id: i}) === 0)
+        await DB.Upsert<PolicyBreak>(refid, {collection: 'pb', version, id: i}, {$set: {exp: 0}})
     }
-    await DB.Upsert(refid, {collection: 'skill', version}, {$set: {base: 0, name: 0, level: 0}})
+    await DB.Upsert<Skill>(refid, {collection: 'skill', version}, {$set: {base: 0, name: 0, level: 0}})
     if(await DB.Count<Profile>(refid, {collection: 'profile', version: 3}) > 0) {
       await ivMigrate(refid, name)
       return send.object({
@@ -1390,10 +1449,10 @@ export const create: EPR = async (info, data, send) => {
   }
   else if(version === 5) {
     for(let i = 1; i <= POLICY_BREAK5.length; i++) {
-      if(await DB.Count(refid, {collection: 'pb', version, id: i}) === 0)
-        await DB.Upsert(refid, {collection: 'pb', version, id: i}, {$set: {exp: 0}})
+      if(await DB.Count<PolicyBreak>(refid, {collection: 'pb', version, id: i}) === 0)
+        await DB.Upsert<PolicyBreak>(refid, {collection: 'pb', version, id: i}, {$set: {exp: 0}})
     }
-    await DB.Upsert(refid, {collection: 'skill', version}, {$set: {base: 0, name: 0, level: 0}})
+    await DB.Upsert<Skill>(refid, {collection: 'skill', version}, {$set: {base: 0, name: 0, level: 0}})
     if(await DB.Count<Profile>(refid, {collection: 'profile', version: 4}) > 0) {
       await vMigrate(refid, name)
       return send.object({
@@ -1401,7 +1460,17 @@ export const create: EPR = async (info, data, send) => {
       })
     }
   }
+  else if(version === 6) {
+    await DB.Upsert<Skill>(refid, {collection: 'skill', version}, {$set: {base: 0, name: 0, level: 0}})
+    if(await DB.Count<Profile>(refid, {collection: 'profile', version: 5}) > 0) {
+      await viMigrate(refid, name)
+      return send.object({
+        result: K.ITEM('u8', 0)
+      })
+    }
+  }
   else if(version === 7) {
+    await DB.Upsert<Skill>(refid, {collection: 'skill', version}, {$set: {base: 0, name: 0, level: 0}})
     if(await DB.Count<Profile>(refid, {collection: 'profile', version: 6}) > 0) {
       await viiMigrate(refid, name)
       return send.object({
@@ -1416,12 +1485,11 @@ export const create: EPR = async (info, data, send) => {
   }
 
   const profile: Profile = {
-    pluginVer: 1,
+    collection: 'profile',
     version: version,
     dbver: DB_VER,
     datecode: dVersion,
 
-    collection: 'profile',
     id,
     name,
     appeal: 0,

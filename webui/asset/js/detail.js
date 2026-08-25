@@ -68,12 +68,30 @@ var boothRank = [
     {'exp': 6500, 'title': '虚空'}
 ]
 
-function vwReduceScoreData(scoreDB) {
+function vwReduceScoreData(scoreDB, version) {
+    let egClear = [0, 1, 2, 3, 6, 4, 5]
     return [...scoreDB, ...score_db.filter(sc => sc.version === currentVersion - 1)].reduce((acc, currentScore) => {
         const key = `${currentScore.mid}_${currentScore.type}`
         const scoreCheck = acc[key]
-        if (!scoreCheck || currentScore.score > scoreCheck.score) {
-            acc[key] = currentScore;
+        const currentScoreCp = { ...currentScore };
+
+        if(currentScoreCp.version === 6) currentScoreCp.clear = egClear.indexOf(currentScoreCp.clear)
+        else if(currentScoreCp.version < 6 && currentScoreCp.clear >= 4) currentScoreCp.clear += 1
+
+        if (!scoreCheck) {
+            acc[key] = {
+                mid: currentScoreCp.mid,
+                version: currentScoreCp.version,
+                type: currentScoreCp.type,
+                score: currentScoreCp.score,
+                grade: currentScoreCp.grade,
+                clear: currentScoreCp.clear
+            };
+        } else {
+            if (currentScoreCp.score > scoreCheck.score) acc[key].score = currentScoreCp.score
+            if (currentScoreCp.grade > scoreCheck.grade) acc[key].grade = currentScoreCp.grade
+            if (currentScoreCp.clear > scoreCheck.clear)
+                acc[key].clear = scoreCheck.clear
         }
 
         return acc;
@@ -193,10 +211,10 @@ function getGrade(name, grade) {
     }
 }
 
-function getMedal(name, clear, version) {
+function getMedal(name, clear) {
     if(name) {
         let verLabels = []
-        switch(version) {
+        switch(currentVersion) {
             case 1:
                 verLabels = ["No Data", "PLAYED", "CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN"]
                 break
@@ -205,12 +223,10 @@ function getMedal(name, clear, version) {
                 break
             case 3:
             case 4:
-            case 5:
                 verLabels = ["No Data", "PLAYED", "EFFECTIVE CLEAR", "EXCESSIVE CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN"]
                 break
-            case 6: 
-                verLabels = ["No Data", "PLAYED", "EFFECTIVE CLEAR", "EXCESSIVE CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN", "MAXXIVE CLEAR"]
-                break
+            case 5:
+            case 6:
             case 7:
                 verLabels = ["No Data", "PLAYED", "EFFECTIVE CLEAR", "EXCESSIVE CLEAR", "MAXXIVE CLEAR", "ULTIMATE CHAIN", "PERFECT ULTIMATE CHAIN"]
                 break
@@ -226,12 +242,12 @@ function getMedal(name, clear, version) {
             return 1.0;
         case 3:
             return 1.02;
-        case 4:
-            return (version === 6 || version === 5) ? 1.05 : 1.04;
-        case 5:
-            return (version === 6 || version === 5) ? 1.10 : 1.06;
+        case 4: // maxxive
+            return 1.04;
+        case 5: // uc (added +1 to hh/vw clear if >= 4)
+            return (currentVersion === 7) ? 1.06 : 1.05;
         case 6:
-            return (version === 6) ? 1.04 : 1.10;
+            return 1.10;
     }
 }
 
@@ -392,9 +408,7 @@ function singleScoreVolforce(score) {
     var level = getSongLevel(score.mid, score.type);
     var tempVF = 0
     if(currentVersion === 4) tempVF = parseInt(25 * (parseInt(level) + 1) * (parseInt(score.score) / 10000000) * getGrade(false, score.grade))
-    // else if(currentVersion === 5) tempVF = (parseInt(level) * 2) * (parseInt(score.score) / 10000000) * getGrade(false, score.grade) * getMedal(false, score.clear, 5)
-    else tempVF = parseInt(level) * (parseInt(score.score) / 10000000) * getGrade(false, score.grade) * getMedal(false, score.clear, score.version) * 2;
-    // console.log(tempVF)
+    else tempVF = (parseInt(level) * (parseInt(score.score) / 10000000) * getGrade(false, score.grade) * getMedal(false, score.clear) * 2) / 100;
     return tempVF;
 }
 
@@ -407,10 +421,10 @@ function calculateVolforce() {
     let maxTop = 50
     if(currentVersion < 5) maxTop = 20
     let scoreDB = score_db.filter(sc => sc.version === currentVersion)
-    if(currentVersion === 5) scoreDB = Object.values(vwReduceScoreData(scoreDB))
+    if(currentVersion >= 5) scoreDB = Object.values(vwReduceScoreData(scoreDB, currentVersion))
     for (var sc of scoreDB) {
         var temp = singleScoreVolforce(sc);
-        temp = parseFloat(toFixed(temp, 1));
+        temp = parseFloat(toFixed(temp, 3));
         volforceArray.push(temp);
     }
     volforceArray.sort(function(a, b) { return b - a });
@@ -424,7 +438,6 @@ function calculateVolforce() {
             VF += volforceArray[i];
         }
     }
-    if(currentVersion >= 5) VF /= 100
     return toFixed(VF, (currentVersion === 5) ? 2 : 3);
 }
 
@@ -436,7 +449,7 @@ function getVFTop() {
     let maxTop = 50
     if(currentVersion < 5) maxTop = 20
     let scoreDB = score_db.filter(sc => sc.version === currentVersion)
-    if(currentVersion === 5) scoreDB = Object.values(vwReduceScoreData(scoreDB))
+    if(currentVersion >= 5) scoreDB = Object.values(vwReduceScoreData(scoreDB, currentVersion))
     for (var sc of scoreDB) {
         let sinf = getSongInfo(sc.mid)
         if(sinf.name !== 'Unknown Song') {
@@ -445,10 +458,9 @@ function getVFTop() {
             vfTop.push({
                 'name': sinf.name,
                 'diff': getDifficulty(sinf.id, sc.type) + " " + getDifficultyNum(sinf.id, sc.type),
-                'clear': getMedal(true, sc.clear, currentVersion),
+                'clear': getMedal(true, sc.clear),
                 'score': sc.score,
-                'version': versionText[sc.version],
-                'vf': parseFloat(toFixed(singleScoreVolforce(sc, currentVersion), 1))
+                'vf': parseFloat(toFixed(singleScoreVolforce(sc, currentVersion) * (currentVersion >= 5 ? 100 : 1), 1))
             })
         }
     }
@@ -469,14 +481,7 @@ function getVFTop() {
             { data: 'diff' },
             { data: 'clear', },
             { data: 'score' },
-            { data: 'version' },
             { data: 'vf' },
-        ],
-        columnDefs: [
-            {
-              "targets": [5],
-              "visible": currentVersion === 5
-            }
         ],
     });
 }
@@ -734,13 +739,11 @@ function setUpStatistics(profileVer) {
 
     let diffLvArr = (currentVersion < 7) ? [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20] : [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,17.5,18.0,18.1,18.2,18.3,18.4,18.5,18.6,18.7,18.8,18.9,19.0,19.1,19.2,19.3,19.4,19.5,19.6,19.7,19.8,19.9,20.0,20.1,20.2,20.3,20.4,20.5,20.6,20.7,20.8,20.9]
 
-    let scoreDB = score_db.filter(sc => sc.version === profileVer)
-    if(currentVersion === 5) scoreDB = Object.values(vwReduceScoreData(scoreDB))
+    let scoreDB = score_db.filter(sc => sc.version === currentVersion)
+    if(currentVersion >= 5) scoreDB = Object.values(vwReduceScoreData(scoreDB, currentVersion))
     scoreDB.forEach(function(currentValue, index, array) {
-        let egClear = [0, 1, 2, 3, 5, 6, 4]
-        let clearMark = (profileVer === 6) ? egClear[currentValue.clear] : currentValue.clear
-        CMpDArray[currentValue.type][clearMark - 1] += 1;
-        CMpLArray[diffLvArr.findIndex(lv => lv === parseFloat(getSongLevel(currentValue.mid, currentValue.type)))][clearMark - 1] += 1;
+        CMpDArray[currentValue.type][currentValue.clear - 1] += 1;
+        CMpLArray[diffLvArr.findIndex(lv => lv === parseFloat(getSongLevel(currentValue.mid, currentValue.type)))][currentValue.clear - 1] += 1;
         GpDArray[currentValue.type][currentValue.grade - 1]++;
         GpLArray[diffLvArr.findIndex(lv => lv === parseFloat(getSongLevel(currentValue.mid, currentValue.type)))][currentValue.grade - 1] += 1;
         ASpLArray[diffLvArr.findIndex(lv => lv === parseFloat(getSongLevel(currentValue.mid, currentValue.type)))][0] += 1;
@@ -981,12 +984,15 @@ function getPlayerSkill() {
             indAdd++
         } else if (k[0].version === 4) {
             cData = course_data.filter(c => c.version === currentVersion && ![14,15,16,17,18,19,20].includes(c.sid))
+        } else if (k[0].version === 5) {
+            cData = course_data.filter(c => c.version === currentVersion && ![10,11,12,13,14].includes(c.sid))
         }
         let frameV = cData.length > 0 ? Math.max(...cData.map(c => c.cid)) : -1;
         return [frameV, 0]
     }
     if(k.length < 1) return [-1, 0]
     let exclSid = {
+        '5': [10,11,12,13,14],
         '6': [6,7,12,13,15,16],
         '7': [3,4]
     }
@@ -1012,18 +1018,19 @@ function getPlayerCourse(playerSkill) {
     if(currentVersion === 2) sidCourses = sidCourses.filter(e => ![15,16,17].includes(e.sid) && e.level === playerSkill[0])
     else if(currentVersion === 3) sidCourses = sidCourses.filter(e => e.sid <= 25 && e.level === playerSkill[0])
     else if(currentVersion === 4) sidCourses = sidCourses.filter(e => ![14,15,16,17,18,19,20].includes(e.sid) && e.level === playerSkill[0])
+    else if(currentVersion === 5) sidCourses = sidCourses.filter(e => ![14,15,16,17,18,19,20].includes(e.sid) && e.level === playerSkill[0])
     else if(currentVersion === 6) sidCourses = sidCourses.filter(e => ![6,7,12,13,15,16].includes(e.sid) && e.level === playerSkill[0])
     else if(currentVersion === 7) sidCourses = sidCourses.filter(e => ![3,4].includes(e.sid) && e.level === playerSkill[0])
 
     let newCourses = sidCourses.filter(e => e.isNew === 1).map(a => a.sid)
-    let foundCourses = course_data.filter(e => e.cid === playerSkill[0] && ((e.stype !== undefined) ? e.stype : 0) === playerSkill[1] && e.clear >= 2)
+    let foundCourses = course_data.filter(e => e.version == currentVersion && e.cid === playerSkill[0] && ((e.stype !== undefined) ? e.stype : 0) === playerSkill[1] && e.clear >= 2)
     let newCompleteCourses = foundCourses.filter(e => newCourses.includes(e.sid))
     let thrshCourses = foundCourses.filter(e => Math.floor(e.rate/100) >= skillThrsh[playerSkill[1]][skillThrshVal])
 
     if(sidCourses.length > 0 && thrshCourses.length === sidCourses.length) return skillFrame[playerSkill[1]] + '_sp'
     if(sidCourses.length > 0 && foundCourses.length === sidCourses.length) return skillFrame[playerSkill[1]] + '_gold'
-    if(newCompleteCourses.length > 1) return skillFrame[playerSkill[1]] + '_silver'
-    if(foundCourses.length > 1 && playerSkill[1] === 1) return skillFrame[playerSkill[1]] + '_sp_none'
+    if(newCompleteCourses.length >= 1) return skillFrame[playerSkill[1]] + '_silver'
+    if(foundCourses.length >= 1 && playerSkill[1] === 1) return skillFrame[playerSkill[1]] + '_sp_none'
     return 'none'
 }
 

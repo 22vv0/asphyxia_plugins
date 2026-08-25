@@ -123,10 +123,9 @@ export async function iiMigrate(refid, newName) {
 	let profileData = await DB.FindOne<Profile>(refid, {collection: 'profile', version: 1})
 	await DB.Upsert<Profile>(refid, {collection: 'profile', version: 2}, {
 		$set: {
-			pluginVer: 1,
+			collection: 'profile',
 			dbver: DB_VER,
 
-			collection: 'profile',
 			id: profileData.id,
 			name: newName,
 			appeal: 0,
@@ -193,10 +192,9 @@ export async function iiiMigrate(refid, newName) {
 	let profileData = await DB.FindOne<Profile>(refid, {collection: 'profile', version: 2})
 	await DB.Upsert<Profile>(refid, {collection: 'profile', version: 3}, {
 		$set: {
-			pluginVer: 1,
+			collection: 'profile',
 			dbver: DB_VER,
 
-			collection: 'profile',
 			id: profileData.id,
 			name: newName,
 			appeal: 0,
@@ -276,10 +274,9 @@ export async function ivMigrate(refid, newName) {
 	let profileData = await DB.FindOne<Profile>(refid, {collection: 'profile', version: 3})
 	await DB.Upsert<Profile>(refid, {collection: 'profile', version: 4}, {
 		$set: {
-			pluginVer: 1,
+			collection: 'profile',
 			dbver: DB_VER,
 
-			collection: 'profile',
 			id: profileData.id,
 			name: newName,
 			appeal: 0,
@@ -348,10 +345,9 @@ export async function vMigrate(refid, newName) {
 	let profileData = await DB.FindOne<Profile>(refid, {collection: 'profile', version: 4})
 	await DB.Upsert<Profile>(refid, {collection: 'profile', version: 5}, {
 		$set: {
-			pluginVer: 1,
+			collection: 'profile',
 			dbver: DB_VER,
 
-			collection: 'profile',
 			id: profileData.id,
 			name: newName,
 			appeal: 0,
@@ -426,15 +422,86 @@ export async function vMigrate(refid, newName) {
 	})
 }
 
+export async function viMigrate(refid, newName) {
+	console.log("Migrating profile from VW to EG")
+	let profileData = await DB.FindOne<Profile>(refid, {collection: 'profile', version: 5})
+	await DB.Upsert<Profile>(refid, {collection: 'profile', version: 6}, {
+		$set: {
+			dbver: DB_VER,
+
+			collection: 'profile',
+			id: profileData.id,
+			name: newName,
+			appeal: 0,
+			akaname: 0,
+			blocks: 0,
+			packets: 0,
+			arsOption: 0,
+			drawAdjust: 0,
+			earlyLateDisp: 0,
+			effCLeft: profileData.effCLeft,
+			effCRight: profileData.effCRight,
+			gaugeOption: 0,
+			hiSpeed: profileData.hiSpeed,
+			laneSpeed: profileData.laneSpeed,
+			narrowDown: 0,
+			notesOption: 0,
+			blasterEnergy: 0,
+
+			headphone: 0,
+			musicID: 0,
+			musicType: 0,
+			sortType: 0,
+			expPoint: 0,
+			mUserCnt: 0,
+			boothFrame: [0, 0, 0, 0, 0],
+
+			playCount: 0,
+			dayCount: 0,
+			todayCount: 0,
+			playchain: 0,
+			maxPlayChain: 0,
+			weekCount: 0,
+			weekPlayCount: 0,
+			weekChain: 0,
+			maxWeekChain: 0,
+
+			bplSupport: 0,
+			creatorItem: 0
+		}
+	})
+
+	let itemData = await DB.Find<Item>(refid, {collection: 'item', version: 5})
+	console.log("Migrating item data")
+	itemData.forEach(async item => {
+		await DB.Upsert<Item>(refid, {collection: 'item', version: 6, type: item.type, id: item.id}, {
+			$set: {
+				param: item.param,
+				dbver: DB_VER
+			}
+		})
+	})
+
+	let paramData = await DB.Find<Param>(refid, {collection: 'param', version: 5})
+	console.log("Migrating param data")
+	paramData.forEach(async param => {
+		await DB.Upsert<Param>(refid, {collection: 'param', version: 6, type: param.type, id: param.id}, {
+			$set: {
+				param: param.param,
+				dbver: DB_VER
+			}
+		})
+	})
+}
+
 export async function viiMigrate(refid, newName) {
 	console.log("Migrating profile from EG to ∇")
 	let profileData = await DB.FindOne<Profile>(refid, {collection: 'profile', version: 6})
 	await DB.Upsert<Profile>(refid, {collection: 'profile', version: 7}, {
 		$set: {
-			pluginVer: 1,
+			collection: 'profile',
 			dbver: DB_VER,
 
-			collection: 'profile',
 			id: profileData.id,
 			name: newName,
 			appeal: 0,
@@ -498,58 +565,5 @@ export async function viiMigrate(refid, newName) {
 				dbver: DB_VER
 			}
 		})
-	})
-
-	let exScoreResetList = [
-		{ id: 360, type: 3 }, { id: 580, type: 2 }, { id: 1121, type: 4 }, { id: 1185, type: 2 },
-		{ id: 1199, type: 4 }, { id: 1738, type: 4 }, { id: 2242, type: 0 }
-	]
-	// add EG force value
-	let levelDifOverride = [
-		{ mid: 1, type: 1, lvl: 10 }, { mid: 18, type: 1, lvl: 8 }, { mid: 18, type: 2, lvl: 10 },
-		{ mid: 73, type: 2, lvl: 17 }, { mid: 48, type: 1, lvl: 8 }, { mid: 75, type: 2, lvl: 12 },
-		{ mid: 124, type: 2, lvl: 16 }, { mid: 65, type: 1, lvl: 7 }, { mid: 66, type: 1, lvl: 8 },
-		{ mid: 27, type: 1, lvl: 7 }, { mid: 27, type: 2, lvl: 12 }, { mid: 68, type: 1, lvl: 9 },
-		{ mid: 6, type: 1, lvl: 7 }, { mid: 6, type: 2, lvl: 12 }, { mid: 16, type: 1, lvl: 7 },
-		{ mid: 2, type: 1, lvl: 10 }, { mid: 60, type: 3, lvl: 17 }, { mid: 5, type: 2, lvl: 13 },
-		{ mid: 128, type: 2, lvl: 13 }, { mid: 9, type: 2, lvl: 1 }, { mid: 340, type: 2, lvl: 13 },
-		{ mid: 247, type: 3, lvl: 18 }, { mid: 282, type: 2, lvl: 17 }, { mid: 288, type: 2, lvl: 13 },
-		{ mid: 699, type: 3, lvl: 18 }, { mid: 595, type: 2, lvl: 17 }, { mid: 507, type: 2, lvl: 17 }, 
-		{ mid: 1044, type: 2, lvl: 16 }, { mid: 948, type: 4, lvl: 16 }, { mid: 1115, type: 4, lvl: 16 },
-		{ mid: 1215, type: 2, lvl: 15 }, { mid: 1152, type: 2, lvl: 15 }, { mid: 1282, type: 3, lvl: 17.5 },
-		{ mid: 1343, type: 2, lvl: 16 }, { mid: 1300, type: 3, lvl: 17.5 }, { mid: 1938, type: 2, lvl: 18 }
-	]
-
-	let music_db = await IO.ReadFile('webui/asset/json/music_db.json')
-	let mdb = JSON.parse(music_db.toString());
-	let diffName = ['novice', 'advanced', 'exhaust', 'infinite', 'maximum', 'ultimate']
-	let migRecs = await DB.Find<MusicRecord>(refid, {collection: 'music', version: 6})
-	migRecs.forEach(async rec => {
-		let nblClearLamp = [0, 1, 2, 3, 5, 6, 4]
-		var foundSongIndex = mdb.mdb.music.map(function(x) {return x['id']; }).indexOf(rec.mid.toString());
-		let diffLevel = 0
-		let lvOverride = 0
-		let exscoreOverride = 0
-		if(foundSongIndex !== -1) {
-			var songData = mdb.mdb.music[foundSongIndex];
-			diffLevel = parseInt(songData['difficulty'][6][diffName[rec.type]])
-			lvOverride = levelDifOverride.findIndex(d => d.mid === rec.mid && d.type === rec.type)
-			if(lvOverride >= 0) diffLevel = levelDifOverride[lvOverride].lvl
-			exscoreOverride = exScoreResetList.findIndex(d => d.id === rec.mid && d.type === rec.type)
-			if(exscoreOverride >= 0) rec.exscore = 0
-			await DB.Upsert(refid, {collection: 'music', mid: rec.mid, type: rec.type, version: 7}, {
-				$set: {
-					score: rec.score,
-					exscore: rec.exscore,
-					volforce: computeForce(6, diffLevel, rec.score, nblClearLamp[rec.clear], rec.grade),
-					clear: nblClearLamp[rec.clear],
-					grade: rec.grade,
-					buttonRate: rec.buttonRate,
-					longRate: rec.longRate,
-					volRate: rec.volRate,
-					dbver: DB_VER
-				}
-			})
-		}
 	})
 }
