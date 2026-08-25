@@ -5,6 +5,7 @@ export interface PluginSettings {
 	gwScoreAdjTime: number;
 	gwMission: boolean;
 	gwMissionSkipMatch: boolean;
+	vwVolfes: boolean;
 	gwGenerator: boolean;
 	nblArenaNoEnd: boolean;
 	nblArenaStation: string;

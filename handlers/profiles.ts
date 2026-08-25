@@ -1,7 +1,7 @@
 import { Skill } from '../models/skill'
 import { Item } from '../models/item'
 import { Param } from '../models/param'
-import { Arena } from '../models/arena'
+import { Arena, Volfes } from '../models/arena'
 import { PolicyBreak } from '../models/policy_break'
 import { MusicRecord, AutomaRecord } from '../models/music_record'
 import { CourseRecord } from '../models/course_record'
@@ -16,7 +16,7 @@ import { Mix } from '../models/mix'
 import { POLICY_BREAK2 } from '../data/ii'
 import { POLICY_BREAK3, COURSES3 } from '../data/gw'
 import { POLICY_BREAK4, EVENT_ITEMS4, COURSES4 } from '../data/hh'
-import { POLICY_BREAK5, EVENT_ITEMS5, COURSES5 } from '../data/vw'
+import { POLICY_BREAK5, EVENT_ITEMS5, COURSES5, VOLFES } from '../data/vw'
 import { CURRENT_ARENA, EVENT_ITEMS6, UNLOCK_EVENTS6 } from '../data/exg'
 import { CURRENT_ARENA7, EVENT_ITEMS7, UNLOCK_EVENTS7 } from '../data/nbl'
 import { getRankListDB } from './webui'
@@ -861,6 +861,27 @@ export const save: EPR = async (info, data, send) => {
     }
   );
 
+  const volfes = $(data).element('festival')
+  if(volfes) {
+    const earnedLE = volfes.number('earned_live_energy');
+    let history = []
+    for(const hist of $(data).elements('history')) {
+      history.push({
+        energyType: hist.number('energy_type'),
+        liveEnergy: hist.number('live_energy')
+      })
+    }
+
+    await DB.Upsert<Volfes>(refid, {collection: 'volfes', version, id: VOLFES.id}, {
+      $inc: {
+        liveEnergy: earnedLE
+      },
+      $set: {
+        bonus: history
+      }
+    })
+  }
+
   // Save Arena Data
   const arena_data = $(data).elements('arena');
   for (const are of arena_data) {
@@ -869,7 +890,6 @@ export const save: EPR = async (info, data, send) => {
     const earnedSP = are.number('earned_shop_point');
     const earnedUR = are.number('earned_ultimate_rate');
     const earnedMR = are.number('earned_megamix_rate');
-    const earnedLE = are.number('earned_live_energy');
     const rankPlay = are.str('rank_play') == 'true' ? 1 : 0;
     const ultimatePlay = are.str('ultimate_play') == 'true' ? 1 : 0;
     await DB.Upsert<Arena>(
@@ -885,7 +905,6 @@ export const save: EPR = async (info, data, send) => {
           megamixRate: _.isNil(earnedMR) ? 0 : earnedMR,
           shopPoint: _.isNil(earnedSP) ? 0 : earnedSP,
           rankPoint: _.isNil(earnedRP) ? 0 : earnedRP,
-          liveEnergy: _.isNil(earnedLE) ? 0 : earnedLE,
           rankCount: rankPlay,
           ultimateCount: ultimatePlay
         },
@@ -1126,6 +1145,18 @@ export const load: EPR = async (info, data, send) => {
 
     var tempItem = U.GetConfig('unlock_all_navigators') && version >= 3 ? unlockNavigators(items, version) : items;
     tempItem = U.GetConfig('unlock_all_appeal_cards') ? unlockAppealCards(tempItem, version) : tempItem;
+    
+    // Unlock AUTOMATION PARADISE songs. 
+    // Might switch to song item auto-unlock for songs in the future.
+    if(U.GetConfig('unlock_all_songs')) {
+      tempItem = tempItem.concat([94,97,98,109,115,253,255,257,313,369,499,500,517,518,597,708,717,823,842,907,6,39,44,75,245,290,307,437,581,607].map(id => ({
+        type: 15, id, param: 1
+      })))
+
+      tempItem = tempItem.concat([1490, 1491].map(id => ({
+        type: 15, id, param: 2
+      })))
+    }
 
     if(version === 3 && pluginSettings.gwMissionSkipMatch) {
       const skipIds = [9, 10, 173, 174]
@@ -1140,6 +1171,7 @@ export const load: EPR = async (info, data, send) => {
     }
 
     let mixes = []
+    let volfes
     if(version >= 4) {
       await populatePresents(version, refid, date)
 
@@ -1153,8 +1185,12 @@ export const load: EPR = async (info, data, send) => {
       }
     }
 
+    if(version === 5) {
+      volfes = await DB.FindOne<Volfes>(refid, {collection: 'volfes', id: VOLFES.id})
+    }
+
     let result = 0
-    
+
     return send.pugFile('templates/load.pug', {
       version,
       result,
@@ -1168,6 +1204,7 @@ export const load: EPR = async (info, data, send) => {
       pbEnergy,
       story,
       mixes,
+      volfes,
       ...profile,
     });
   }

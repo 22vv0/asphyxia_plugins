@@ -359,7 +359,7 @@ $(document).ready(async function() {
         let akaExists = false
         for (var i in database["akaname"].filter(aka => aka.value <= finalLim[1])) {
             if(parseInt(database['akaname'][i].value) === 10001) {
-                if(currentVersion >= 7 && pluginSettings.akanames) {
+                if(currentVersion >= 5 && pluginSettings.akanames) {
                     let akaId = 1
                     for(const title of pluginSettings.akanames) {
                         if(akaId === currentProfile['akaname']) akaExists = true

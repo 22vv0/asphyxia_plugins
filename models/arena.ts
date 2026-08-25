@@ -11,3 +11,12 @@ export interface Arena {
   rank_play_cnt: number;
   ultimate_play_cnt: number;
 }
+
+export interface Volfes {
+  collection: 'volfes';
+  version: number;
+
+  id: number;
+  liveEnergy: number;
+  bonus: any[];
+}

@@ -485,7 +485,7 @@ export const MUSIC_LIMITED3 = [
 
 export const UNLOCK_EVENTS3 = {
 	refillStamps: {},
-	silvertime: {
+	gwsilvertime: {
 	    type: 'main',
 	    info: {
 	    	id: 0,
@@ -493,7 +493,7 @@ export const UNLOCK_EVENTS3 = {
 	      	stmpFt: '[sz:18]YOU CAN GET A STAMP AND BONUS 3TIMES A DAY! :)[br:5]TERM: 9/17～9/30',
 	      	data: [
 	        	{
-	          		stmpid: 291,
+	          		stmpid: 241,
 	          		stmpdaily: 3,
 	          		stps: 15,
 	          		stprwrd: '3:c:15 6:p:468 9:b:468 12:p:468 12:b:468 15:c:16'
@@ -501,7 +501,7 @@ export const UNLOCK_EVENTS3 = {
 	      	]
 	    }
 	},
-	// summervacation: { 
+	// gwsummervacation: { 
 	//     type: 'main',
 	//     info: {
 	//     		id: 0,
@@ -509,7 +509,7 @@ export const UNLOCK_EVENTS3 = {
 	//       	stmpFt: '[sz:18]YOU CAN GET A STAMP AND BONUSE 1TIMES A DAY! :)[br:5]TERM: 7/16～8/31',
 	//       	data: [
 	//         		{
-	//           		stmpid: 292,
+	//           		stmpid: 242,
 	//           		stmpdaily: 1,
 	//           		stps: 30,
 	//           		stprwrd: '3:b:500 3:a:209 6:p:500 9:b:500 9:a:xxxx 12:p:500 15:b:500 15:a:xxxx 18:p:500 21:b:500 21:a:xxxx 24:p:500 24:a:xxxx 27:a:xxxx 28:a:xxxx 29:a:xxxx 30:c:8'
@@ -517,7 +517,7 @@ export const UNLOCK_EVENTS3 = {
 	//       	]
 	//     }
 	// },
-	// midsummer: {
+	// gwmidsummer: {
 	// 	type: 'main',
 	//     info: {
 	//     		id: 0,
@@ -525,7 +525,7 @@ export const UNLOCK_EVENTS3 = {
 	//       	stmpFt: '[sz:18]YOU CAN GET A STAMP AND BONUSE 1TIMES A DAY! :)[br:5]TERM: 7/14～9/14',
 	//       	data: [
 	//         		{
-	//           		stmpid: 293,
+	//           		stmpid: 243,
 	//           		stmpdaily: 1,
 	//           		stps: 30,
 	//           		stprwrd: '3:b:500 6:p:500 9:p:500 9:b:500 12:b:500 15:p:500 18:b:500 18:a:xxxx 21:p:500 21:a:xxxx 24:b:500 24:a:xxxx 27:p:500 30:c:52'
@@ -533,7 +533,7 @@ export const UNLOCK_EVENTS3 = {
 	//       	]
 	//     }
 	// },
-	// touhou: {
+	// gwtouhou: {
 	// 	type: 'main',
 	//     info: {
 	//     		id: 0,
@@ -541,14 +541,14 @@ export const UNLOCK_EVENTS3 = {
 	//       	stmpFt: '[sz:18]YOU CAN GET A STAMP AND BONUS PER A PLAYING TOHO ARRANGE TRACK:)[br:5]TERM: 10/22～11/23',
 	//       	data: [
 	//         		{
-	//           		stmpid: 294,
+	//           		stmpid: 244,
 	//           		stps: 30,
-	//           		stprwrd: '3:a:xxxx 6:a:xxxx 9:c:25 12:a:xxxx 16:c:26 18:a:xxxx 21:c:27 24:a:xxxx 27:a:xxxx 30:c:24 req:genre:4'
+	//           		stprwrd: '3:a:1556 6:a:15 9:c:25 12:a:1557 16:c:26 18:a:1558 21:c:27 24:a:1559 27:a:1560 30:c:24 req:genre:4'
 	//         		}
 	//       	]
 	//     }
 	// },
-	// christmas: {
+	// gwchristmas: {
 	//     type: 'main',
 	//     info: {
 	//     		id: 0,
@@ -556,7 +556,7 @@ export const UNLOCK_EVENTS3 = {
 	//       	stmpFt: '[sz:18]YOU CAN GET A STAMP AND BONUS EVERY PLAY :)',
 	//       	data: [
 	//         		{
-	//           		stmpid: 295,
+	//           		stmpid: 245,
 	//           		stps: 50,
 	//           		stprwrd: '5:p:100 10:b:100 15:a:xxxx 20:p:100 25:a:xxxx 30:b:100 35:a:xxxx 40:p:100 45:b:390 46:a:xxxx 47:p:390 48:b:390 49:p:390 49:b:390 50:c:29'
 	//         		}

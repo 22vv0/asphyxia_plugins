@@ -298,3 +298,11 @@ game
             jacket_id(__type="s32") #{mix.jacket}
             tag_bit(__type="s32") #{mix.tag}
             like_flg(__type="bool") #{Number(mix.like)}
+      if volfes
+        festival
+          fes_id(__type="s32") #{volfes.id}
+          live_energy(__type="s32") #{volfes.liveEnergy}
+          //- each bonus in volfes.bonus
+          //-   bonus
+          //-     energy_type(__type="s32") #{bonus.energyType}
+          //-     live_energy(__type="s32") #{bonus.liveEnergy}

@@ -2,7 +2,7 @@ import { FLAGS, SDVX_STATION } from '../data/booth';
 import { FLAGS2, MUSIC_LIMITED, COURSES2 } from '../data/ii';
 import { FLAGS3, MISSION_EVENT3, MUSIC_LIMITED3, COURSES3, EXTENDS3, SP_APICAGENE3 } from '../data/gw';
 import { FLAGS4, COURSES4, INFORMATION4, UNLOCK_EVENTS4, EXTENDS4 } from '../data/hh';
-import { FLAGS5, COURSES5, INFORMATION5, UNLOCK_EVENTS5, EXTENDS5, LICENSED_SONGS5 } from '../data/vw';
+import { FLAGS5, COURSES5, INFORMATION5, UNLOCK_EVENTS5, EXTENDS5, LICENSED_SONGS5, VOLFES } from '../data/vw';
 import { FLAGS6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIE_SONGS, LICENSED_SONGS6, 
           CURRENT_ARENA, ARENA_STATION_ITEMS, VALGENE, INFORMATION6, UNLOCK_EVENTS6, 
           MUSIC_OVERRIDE6 
@@ -37,7 +37,7 @@ export const common: EPR = async (info, data, send) => {
   let musicOverride = [];
   let spApica = [];
   let unlockEvents;
-  let currentArena;
+  let currentArenaVolfes;
   let arenaItems;
   let valgene;
   let apigene;
@@ -197,7 +197,7 @@ export const common: EPR = async (info, data, send) => {
                     stampType[eData.type],
                     stmpData.stps, 
                     0,
-                    (gameVersion === 3) ? stmpData.stmpdaily : stmpData.stps % 10000, 
+                    (gameVersion === 3 && 'stmpdaily' in stmpData) ? stmpData.stmpdaily : stmpData.stps % 10000, 
                     (stmpData.stmpid.toString() in unlockEvents.refillStamps) ? 999999 : 0,
                     ('stmpHdJ' in stmpEvntInfo.info) ? stmpEvntInfo.info.stmpHdJ : stmpEvntInfo.info.stmpHd,
                     stmpEvntInfo.info.stmpHd,
@@ -400,6 +400,7 @@ export const common: EPR = async (info, data, send) => {
         songNum = 1671
         courses = COURSES5.filter(c => version >= c.version)
         flags = FLAGS5
+        currentArenaVolfes = VOLFES
         information = INFORMATION5
         unlockEvents = UNLOCK_EVENTS5
         EXTENDS5.filter(ex => checkVerStart(version, ex.version, 0, date)).forEach(val => extend.push(Object.assign({}, val)));
@@ -426,7 +427,7 @@ export const common: EPR = async (info, data, send) => {
         information = INFORMATION6.filter(info => checkVerStart(version, info.version, info.start, date))
         EXTENDS6.filter(ex => checkVerStart(version, ex.version, ex.start, date)).forEach(val => extend.push(Object.assign({}, val)));
         unlockEvents = UNLOCK_EVENTS6;
-        currentArena = CURRENT_ARENA;
+        currentArenaVolfes = CURRENT_ARENA;
         arenaItems = ARENA_STATION_ITEMS;
         musicOverride = MUSIC_OVERRIDE6;
         valgene = VALGENE;
@@ -453,7 +454,7 @@ export const common: EPR = async (info, data, send) => {
         courses = COURSES7.filter(course => version >= course.version);
         information = INFORMATION7.filter(info => checkVerStart(version, info.version, info.start, date))
         unlockEvents = UNLOCK_EVENTS7;
-        currentArena = CURRENT_ARENA7;
+        currentArenaVolfes = CURRENT_ARENA7;
         arenaItems = ARENA_STATION_ITEMS7;
         musicOverride = MUSIC_OVERRIDE7;
         valgene = {
@@ -675,7 +676,7 @@ export const common: EPR = async (info, data, send) => {
         })
       }
 
-      if(version >= 20260602) {
+      if(version >= 20260602 && Math.random() >= 0.5) {
         const charaPattern = ['l,r,l','r,l,r','l,m,r','r,m,l','l,r,m','m,l,r']
         const selPattern = charaPattern[Math.floor(Math.random() * charaPattern.length)]
         let chara = []
@@ -739,19 +740,19 @@ export const common: EPR = async (info, data, send) => {
       let curWeekly = []
 
       if(absVersion >= 6) {
-        const arenaOpen = BigInt(date) >= currentArena.time_start && (BigInt(date) < currentArena.time_end || pluginSettings.nblArenaNoEnd)
+        const arenaOpen = BigInt(date) >= currentArenaVolfes.time_start && (BigInt(date) < currentArenaVolfes.time_end || pluginSettings.nblArenaNoEnd)
         const shopItemSet = arenaItems[pluginSettings.nblArenaStation]
         const shopOpen = arenaOpen && !_.isEmpty(shopItemSet)
-        const arenaStart = new Date(Number(currentArena.time_start) * 1000).toISOString().split('T')[0].split('-').join('')
-        if(arenaOpen && checkVerStart(version, 20260421, arenaStart, date) && currentArena.season !== 0) {
+        const arenaStart = new Date(Number(currentArenaVolfes.time_start) * 1000).toISOString().split('T')[0].split('-').join('')
+        if(arenaOpen && checkVerStart(version, 20260421, arenaStart, date) && currentArenaVolfes.season !== 0) {
           arenaData = {
-            season: K.ITEM('s32', currentArena.season),
-            rule: K.ITEM('s32', currentArena.rule),
-            rank_match_target: K.ITEM('s32', currentArena.rank_match_target),
-            time_start: K.ITEM('u64', currentArena.time_start),
-            time_end: K.ITEM('u64', currentArena.time_end),
-            shop_start: K.ITEM('u64', currentArena.shop_start),
-            shop_end: K.ITEM('u64', currentArena.shop_end),
+            season: K.ITEM('s32', currentArenaVolfes.season),
+            rule: K.ITEM('s32', currentArenaVolfes.rule),
+            rank_match_target: K.ITEM('s32', currentArenaVolfes.rank_match_target),
+            time_start: K.ITEM('u64', currentArenaVolfes.time_start),
+            time_end: K.ITEM('u64', currentArenaVolfes.time_end),
+            shop_start: K.ITEM('u64', currentArenaVolfes.shop_start),
+            shop_end: K.ITEM('u64', currentArenaVolfes.shop_end),
             is_open: K.ITEM('bool', arenaOpen),
             is_shop: K.ITEM('bool', shopOpen),
             catalog: (shopOpen && version >= shopItemSet.version) ? shopItemSet.items.map(item => ({
@@ -907,6 +908,27 @@ export const common: EPR = async (info, data, send) => {
             []
           ),
         },
+        ...((absVersion === 5 && pluginSettings.vwVolfes) && {
+          festival: {
+            fes_id: K.ITEM('s32', currentArenaVolfes.id),
+            fes_name: K.ITEM('str', currentArenaVolfes.name),
+            time_start: K.ITEM('u64', currentArenaVolfes.time_start),
+            time_end: K.ITEM('u64', currentArenaVolfes.time_end),
+            shop_start: K.ITEM('u64', currentArenaVolfes.shop_start),
+            shop_end: K.ITEM('u64', currentArenaVolfes.shop_end),
+            is_open: K.ITEM('bool', true),
+            is_shop: K.ITEM('bool', true),
+            catalog: currentArenaVolfes.catalog.map(item => ({
+              catalog_id: K.ITEM('s32', item[0]),
+              catalog_type: K.ITEM('s32', item[1]),
+              price: K.ITEM('s32', item[2]),
+              item_type: K.ITEM('s32', item[3]),
+              item_id: K.ITEM('s32', item[4]),
+              param: K.ITEM('s32', item[5]),
+              num: K.ITEM('s32', item[6]),
+            }))
+          }
+        }),
         ...(absVersion >= 6 && {
           valgene: {
             info: valgene_info,

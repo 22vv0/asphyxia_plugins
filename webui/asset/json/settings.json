@@ -3,8 +3,8 @@
         {
             "id": "gwScoreAdjTime",
             "html": "<div class=\"control is-expanded\"><input class=\"input\" type=\"number\" min=\"-20\" max=\"20\" name=\"gwScoreAdjTime\"></div>",
-            "name": "Judge offset [GW, HH]",
-            "desc": "Adjust the music offset via the hidden game flag 'scoreadjtime'"
+            "name": "Judge/music offset [GW, HH]",
+            "desc": "Adjust the music offset via the hidden game flag 'scoreadjtime.' (Range: ±20)"
         },
         {
             "id": "gwMission",
@@ -23,6 +23,12 @@
             "html": "<div class=\"control\"><label class=\"switch is-rounded\"><input class=\"input\" type=\"checkbox\" name=\"gwGenerator\"><span class=\"check\"></span></label>",
             "name": "GENERATOR START [GW]",
             "desc": "Toggles REAL GENERATOR mode. Disable to hide in mode select in case of print problem loop (due to missing chara_card files)"
+        },
+        {
+            "id": "vwVolfes",
+            "html": "<div class=\"control\"><label class=\"switch is-rounded\"><input class=\"input\" type=\"checkbox\" name=\"vwVolfes\"><span class=\"check\"></span></label>",
+            "name": "VOLFES [VW]",
+            "desc": "Enables VOLFES. Earn LE by playing the game to use it to buy in-game items such as CREWS, MIX DISCs, and extra MIX SLOTs."
         },
         {
             "id": "nblArenaNoEnd",

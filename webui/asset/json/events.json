@@ -1,40 +1,220 @@
 {
     "events4": [
         {
+            "id": "hhchristmas2016",
+            "type": "stamp",
+            "enabled": true,
+            "name": "MerryX'mas♪スタンプボーナス",
+            "version": 0,
+            "start": 20161221,
+            "desc": "Stamp event to obtain appeal card 'グレイスのクリスマス☆2016' plus PC and BLC ",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhwinterbreak2016",
+            "type": "stamp",
+            "enabled": true,
+            "name": "冬休み★おかわりスタンプボーナス",
+            "version": 0,
+            "start": 20161228,
+            "desc": "Refillable stamp sheets to refill PC and BLC.<br>Earn max 10 stamps per day.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhnewyear2017",
+            "type": "stamp",
+            "enabled": true,
+            "name": "年賀スタンプボーナス",
+            "version": 0,
+            "start": 20170101,
+            "desc": "Stamp event to obtain appeal card 'ﾓﾁｭﾝ☆二〇一七　謹賀新年'",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhanniv5th",
+            "type": "stamp",
+            "enabled": true,
+            "name": "祝 伍周年記念スタンプ",
+            "version": 0,
+            "start": 20170118,
+            "desc": "Stamp event to earn PC+BLC and obtain SDVX anniversary appeal cards.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhcoconatsu",
+            "type": "stamp",
+            "enabled": true,
+            "name": "ここなつスタンプ",
+            "version": 0,
+            "start": 20170126,
+            "desc": "Stamp event to earn a total of 6977 PC and 6977 BLC.<br>Earn 1 stamp per day.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhtouhou1",
+            "type": "stamp",
+            "enabled": true,
+            "name": "御朱印東方スタンプ復刻",
+            "version": 0,
+            "start": 20170427,
+            "desc": "Stamp event to obtain Touhou-related appeal cards, sub-crews and main crew (REIMU.)<br>Earn 1 stamp per day.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhtouhou2",
+            "type": "stamp",
+            "enabled": true,
+            "name": "御朱印東方スタンプ",
+            "version": 0,
+            "start": 20170509,
+            "desc": "Stamp event to obtain Touhou-related sub-crews and main crew (MARISA)",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhmidsummer",
+            "type": "stamp",
+            "enabled": true,
+            "name": "復刻 真夏の夜を彩るスタンプボーナス",
+            "version": 0,
+            "start": 20170803,
+            "desc": "Stamp event to obtain appeal cards and main crews RASIS-03 (Yukata) and KUREHA (Yukata)",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhlovefest",
+            "type": "stamp",
+            "enabled": true,
+            "name": "恋祭りスタンプボーナス",
+            "version": 0,
+            "start": 20170816,
+            "desc": "Stamp event to earn PC+BLC and obtain main crew KONOHA (Yukata.)<br>Earn 1 stamp per day.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhhalloween2017",
+            "type": "stamp",
+            "enabled": true,
+            "name": "Trick or Treat! ハロウィンスタンプボーナス!!",
+            "version": 0,
+            "start": 20171005,
+            "desc": "Stamp event to earn PC+BLC and obtain main crew KANADE (Halloween.)<br>Earn 1 stamp per day.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhchristmas2017",
+            "type": "stamp",
+            "enabled": true,
+            "name": "はじめての聖グレイスちゃんサンタ スタンプボーナス!!",
+            "version": 0,
+            "start": 20171130,
+            "desc": "Stamp event to earn PC+BLC and obtain main crew GRACE (Christmas.)<br>Earn one stamp per day.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhchristmas20172",
+            "type": "stamp",
+            "enabled": true,
+            "name": "ボルテから Merry Christmas スタンプ!!復刻",
+            "version": 0,
+            "start": 20171208,
+            "desc": "Stamp event to earn PC+BLC and obtain main crew X'mas NEAR & NOAH.<br>Earn one stamp per day.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhnewyear2018",
+            "type": "stamp",
+            "enabled": true,
+            "name": "年賀スタンプボーナス",
+            "version": 0,
+            "start": 20180101,
+            "desc": "Stamp event to obtain appeal card 'BowWow☆二〇十八　謹賀新年.'",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
             "id": "hhbstream1",
             "type": "stamp",
             "enabled": true,
-            "name": "Beatstream Stamp Sheet part 1",
+            "name": "BisCoスペシャルスタンプ！",
             "version": 0,
             "start": 20180118,
             "desc": "Stamp event to unlock 8 songs from Beatstream.",
             "info": "Toggle this on to enable/disable this stamp event."
         },
         {
+            "id": "hhanniv6th",
+            "type": "stamp",
+            "enabled": true,
+            "name": "SOUND VOLTEX 6周年記念 限定e-amusement passスタンプキャンペーン",
+            "version": 0,
+            "start": 20180118,
+            "desc": "Stamp event to earn PC+BLC and unlock anniversary appeal cards, including the new one for the 6th Anniversary.<br>Obviously no ea card raffle entry.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhvalentines2018",
+            "type": "stamp",
+            "enabled": true,
+            "name": "バレンタインおかわりスタンプ",
+            "version": 0,
+            "start": 20180207,
+            "desc": "Refillable stamp sheets to earn PC.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
             "id": "hhbstream2",
             "type": "stamp",
             "enabled": true,
-            "name": "Beatstream Stamp Sheet part 2",
+            "name": "BisCoスペシャルスタンプ 第二弾！",
             "version": 0,
             "start": 20180413,
             "desc": "Stamp event to unlock 9 more songs from Beatstream.",
             "info": "Toggle this on to enable/disable this stamp event."
         },
         {
+            "id": "hhtouhou4",
+            "type": "stamp",
+            "enabled": true,
+            "name": "東方御朱印スタンプ",
+            "version": 0,
+            "start": 20180508,
+            "desc": "Stamp event to obtain Touhou-related sub-crews and main crew RASIS & REISEN.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
             "id": "hhmuseca",
             "type": "ikiiki",
             "enabled": true,
-            "name": "MÚSECA Ikiiki Stamp",
+            "name": "烈風刀のイキイキ野菜農園～MÚSECA地方～",
             "version": 0,
             "start": 20180607,
             "desc": "Stamp event to unlock 4 songs from MÚSECA and gain PC and BLC. Obtaining stamps require Left to have hearts/lives.",
             "info": "Toggle this on to enable/disable this stamp event."
         },
         {
-            "id": "hhsummer",
+            "id": "hhmidsummer2018",
+            "type": "stamp",
+            "enabled": true,
+            "name": "復刻 真夏の夜に煌めくスタンプボーナス",
+            "version": 0,
+            "start": 20180621,
+            "desc": "Stamp event to obtain PC+BLC, appeal cards and main crews KUREHA (Yukata) and KONOHA (Yukata.)<br>You can get up to 5 stamps daily.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhmidsummer20182",
+            "type": "stamp",
+            "enabled": true,
+            "name": "夏の夜空に凛として咲くスタンプボーナス",
+            "version": 0,
+            "start": 20180712,
+            "desc": "Stamp event to obtain PC+BLC, appeal cards and main crew ORTLINDE (Yukata.)<br>You can earn 1 stamp per day.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhsummergreetings",
             "type": "ikiiki",
             "enabled": true,
-            "name": "BEMANI SUMMER GREETINGS Ikiiki Stamp",
+            "name": "烈風刀のイキイキ野菜農園～BEMANI SUMMER GREETINGS～",
             "version": 0,
             "start": 20180823,
             "desc": "Stamp event to unlock 7 new songs. Obtaining stamps require Left to have hearts/lives.",
@@ -44,10 +224,40 @@
             "id": "hhacademy",
             "type": "stamp",
             "enabled": true,
-            "name": "Private BEMANI Academy Special Stamp",
+            "name": "私立BEMANI学園スペシャルスタンプ！",
             "version": 0,
             "start": 20181004,
             "desc": "Stamp event to unlock 10 new songs.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhchristmas2018",
+            "type": "stamp",
+            "enabled": true,
+            "name": "ねこねこサンタのメリークリスマスアピカ!",
+            "version": 0,
+            "start": 20181220,
+            "desc": "Stamp event to earn PC+BLC and appeal card '雛＆蒼＆桃♪メリー クリスマス～★.'<br>Earn 1 stamp per day.",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhnewyear2019",
+            "type": "stamp",
+            "enabled": true,
+            "name": "ねこねこサンタのメリークリスマスアピカ!",
+            "version": 0,
+            "start": 20190101,
+            "desc": "Stamp event to earn PC+BLC and appeal card 'あったかイノテン☆二〇一九'",
+            "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "hhanniv7th",
+            "type": "stamp",
+            "enabled": true,
+            "name": "ねこねこサンタのメリークリスマスアピカ!",
+            "version": 0,
+            "start": 20190101,
+            "desc": "Stamp event to obtain appeal card 'ボルテ七周年★記念限定カード'",
             "info": "Toggle this on to enable/disable this stamp event."
         },
         {

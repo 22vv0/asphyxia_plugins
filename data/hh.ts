@@ -59,86 +59,444 @@ export const INFORMATION4 = [
 
 // reserving stamp sheet ids 251 - 2xx for HH
 export const UNLOCK_EVENTS4 = {
-	refillStamps: {},
+	refillStamps: {
+		'252': 5,
+		'266': 5
+	},
+	hhchristmas2016: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 251,
+						stps: 5,
+						stprwrd: '1:b:100 2:p:200 3:b:300 4:p:400 5:a:3504'
+				}
+			]
+		}
+	},
+	hhwinterbreak2016: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 252,
+						stmpdaily: 10,
+						stps: 5,
+						stprwrd: '1:b:300 2:p:100 3:b:100 4:p:100 5:b:1000 5:p:1000'
+				}
+			]
+		}
+	},
+	hhnewyear2017: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 253,
+						stps: 1,
+						stprwrd: '1:a:3505'
+				}
+			]
+		}
+	},
+	hhanniv5th: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 254,
+						stps: 5,
+						stprwrd: '1:p:50 1:a:212 2:b:50 2:a:1544 3:p:500 3:a:2512 4:b:500 4:a:2576 5:a:3506'
+				}
+			]
+		}
+	},
+	hhcoconatsu: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 255,
+						stmpdaily: 1,
+						stps: 5,
+						stprwrd: '1:p:55 1:b:72 2:p:72 2:b:55 3:p:557 3:b:557 4:p:721 4:b:721 5:p:5572 5:b:5572'
+				}
+			]
+		}
+	},
+	hhtouhou1: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 256,
+						stmpdaily: 1,
+						stps: 10,
+						stprwrd: '1:a:1511 2:a:1556 3:c:25 4:a:1557 5:c:26 6:a:1558 7:c:27 8:a:1559 9:a:1560 10:c:24'
+				}
+			]
+		}
+	},
+	hhtouhou2: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 257,
+						stps: 30,
+						stprwrd: '5:c:73 10:c:74 15:c:77 20:c:75 25:c:76 30:c:72 req:genre:4'
+				}
+			]
+		}
+	},
+	hhmidsummer: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 258,
+						stps: 30,
+						stprwrd: '1:a:209 1:p:100 2:b:100 3:p:200 4:b:200 5:p:1000 6:a:210 6:b:100 7:p:100 8:b:200 9:p:200 10:b:1000 11:a:208 11:p:100 12:b:100 13:p:200 14:b:200 15:c:8 16:a:2613 17:b:100 18:p:200 19:b:200 20:p:2000 21:a:2614 21:b:100 22:p:100 23:b:200 24:p:200 25:b:2000 26:a:2615 26:p:100 27:b:100 28:p:200 29:b:200 30:c:52'
+				}
+			]
+		}
+	},
+	hhlovefest: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 259,
+						stmpdaily: 1,
+						stps: 30,
+						stprwrd: '1:p:100 2:b:100 3:p:200 4:b:200 5:p:1000 5:b:1000 6:p:100 7:b:100 8:p:200 9:b:200 10:p:1000 10:b:1000 11:p:200 12:b:200 13:p:300 14:b:300 15:p:1000 15:b:1000 16:p:200 17:b:200 18:p:300 19:b:300 20:p:1000 20:b:1000 21:p:300 22:b:300 23:p:400 24:b:400 25:p:1000 25:b:1000 26:p:500 27:b:500 28:p:500 29:b:500 30:c:80'
+				}
+			]
+		}
+	},
+	hhhalloween2017: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 260,
+						stmpdaily: 1,
+						stps: 25,
+						stprwrd: '1:p:100 2:b:100 3:p:200 4:b:200 5:p:1000 5:b:1000 6:p:100 7:b:100 8:p:200 9:b:200 10:p:1000 10:b:1000 11:p:200 12:b:200 13:p:300 14:b:300 15:p:1000 15:b:1000 16:p:200 17:b:200 18:p:300 19:b:300 20:p:1000 20:b:1000 21:p:500 22:b:500 23:p:500 24:b:500 25:c:82'
+				}
+			]
+		}
+	},
+	hhchristmas2017: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 261,
+						stmpdaily: 1,
+						stps: 25,
+						stprwrd: '1:p:100 2:b:100 3:p:200 4:b:200 5:p:1000 5:b:1000 6:p:100 7:b:100 8:p:200 9:b:200 10:p:1000 10:b:1000 11:p:200 12:b:200 13:p:300 14:b:300 15:p:1000 15:b:1000 16:p:200 17:b:200 18:p:300 19:b:300 20:p:1000 20:b:1000 21:p:500 22:b:500 23:p:500 24:b:500 25:c:83'
+				}
+			]
+		}
+	},
+	hhchristmas20172: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 262,
+						stmpdaily: 1,
+						stps: 25,
+						stprwrd: '1:p:100 2:b:100 3:p:200 4:b:200 5:p:1000 5:b:1000 6:p:100 7:b:100 8:p:200 9:b:200 10:p:1000 10:b:1000 11:p:100 12:b:100 13:p:200 14:b:200 15:p:1000 15:b:1000 16:p:100 17:b:100 18:p:200 19:b:200 20:p:1000 20:b:1000 21:p:100 22:b:100 23:p:200 24:b:200 25:p:1000 25:b:1000 26:p:100 27:b:100 28:p:200 29:b:200 30:c:29'
+				}
+			]
+		}
+	},
+	hhnewyear2018: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 263,
+						stps: 1,
+						stprwrd: '1:a:3568'
+				}
+			]
+		}
+	},
 	hhbstream1: {
-	    type: 'main',
-	    info: {
-	    	id: 0,
-	      	stmpHd: '[sz:20]BisCoスペシャルスタンプ！',
-	      	stmpFt: '',
-	      	data: [
-	        	{
-	          		stmpid: 251,
-	          		stps: 20,
-	          		stprwrd: '1:e:115923 3:e:116023 5:e:116123 7:e:116223 10:e:116323 13:e:116423 16:e:116523 20:e:116623'
-	        	}
-	      	]
-	    }
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 264,
+						stps: 20,
+						stprwrd: '1:e:115923 3:e:116023 5:e:116123 7:e:116223 10:e:116323 13:e:116423 16:e:116523 20:e:116623'
+				}
+			]
+		}
+	},
+	hhanniv6th: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 265,
+						stps: 60,
+						stprwrd: '2:p:390 5:b:390 5:a:212 7:p:390 10:b:390 10:a:1544 12:p:390 15:b:390 15:a:2512 17:p:390 20:b:390 20:a:2576 22:p:390 25:b:390 25:a:3506 27:p:390 30:b:390 30:a:3569 32:p:1009 35:b:1009 37:p:1009 40:b:1009 42:p:1009 45:b:1009 47:p:1009 50:b:1009 52:p:1009 55:b:1009 57:p:1009 57:b:1009 60:p:6666 60:b:6666'
+				}
+			]
+		}
+	},
+	hhvalentines2018: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 266,
+						stps: 5,
+						stprwrd: '1:p:500 2:p:500 3:p:500 4:p:500 5:p:1000'
+				}
+			]
+		}
 	},
 	hhbstream2: {
-	    type: 'main',
-	    info: {
-	    	id: 0,
-	      	stmpHd: '[sz:20]BisCoスペシャルスタンプ 第二弾！',
-	      	stmpFt: '',
-	      	data: [
-	        	{
-	          		stmpid: 252,
-	          		stps: 25,
-	          		stprwrd: '2:e:116823 4:e:116923 6:e:117023 9:e:117123 12:e:117223 15:e:117323 18:e:117423 21:e:117523 25:e:122123'
-	        	}
-	      	]
-	    }
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]BisCoスペシャルスタンプ 第二弾！',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 267,
+						stps: 25,
+						stprwrd: '2:e:116823 4:e:116923 6:e:117023 9:e:117123 12:e:117223 15:e:117323 18:e:117423 21:e:117523 25:e:122123'
+				}
+			]
+		}
+	},
+	hhtouhou3: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]東方Project スタンプボーナス(復刻)',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 268,
+						stps: 30,
+						stprwrd: '1:a:1511 2:a:1556 3:c:25 4:a:1557 5:c:26 6:a:1558 7:c:27 8:a:1559 9:a:1560 10:c:24 13:c:73 16:c:74 19:c:77 22:c:75 25:c:76 30:c:72 req:genre:4'
+				}
+			]
+		}
+	},
+	hhtouhou4: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]東方御朱印スタンプ',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 269,
+						stps: 10,
+						stprwrd: '1:c:89 3:c:90 5:c:91 7:c:92 10:c:88'
+				}
+			]
+		}
 	},
 	hhmuseca: {
-	    type: 'main',
-	    info: {
-	    	id: 0,
-	      	stmpHd: '[sz:15][c:BF243E][ol:3][olc:FFFFFF]～MÚSECA地方～',
-	      	stmpFt: '[sz:13][c:395839][ol:3][olc:FFFFFF]YOU CAN HARVEST A CROP BY PLAYING SDVX!![br:5]THE LIFE TO HARVEST A CROP INCREASES[br:5]BY ONE PER DAY.[posx:215][posy:35][sz:13][c:B0404F][ol:3][olc:FFFFFF]TERM: 6/7～7/8',
-	      	data: [
-	        	{
-	          		stmpid: 253,
-	          		stps: 20,
-	          		stprwrd: '2:e:125623 4:p:831 6:e:125523 9:b:831 12:e:125723 15:p:831 18:b:831 20:e:125823'
-	        	}
-	      	]
-	    }
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:15][c:BF243E][ol:3][olc:FFFFFF]～MÚSECA地方～',
+			stmpFt: '[sz:13][c:395839][ol:3][olc:FFFFFF]YOU CAN HARVEST A CROP BY PLAYING SDVX!![br:5]THE LIFE TO HARVEST A CROP INCREASES[br:5]BY ONE PER DAY.[posx:215][posy:35][sz:13][c:B0404F][ol:3][olc:FFFFFF]TERM: 6/7～7/8',
+			data: [
+				{
+						stmpid: 270,
+						stps: 20,
+						stprwrd: '2:e:125623 4:p:831 6:e:125523 9:b:831 12:e:125723 15:p:831 18:b:831 20:e:125823'
+				}
+			]
+		}
 	},
-	hhsummer: {
-	    type: 'main',
-	    info: {
-	    	id: 0,
-	      	stmpHd: '[sz:13][c:52C7DC][ol:3][olc:FFFFFF]BEMANI SUMMER GREETINGS',
-	      	stmpFt: '[sz:13][c:395839][ol:3][olc:FFFFFF]YOU CAN HARVEST A CROP BY PLAYING SDVX!![br:5]THE LIFE TO HARVEST A CROP INCREASES[br:5]BY ONE PER DAY.[posx:190][posy:35][sz:13][c:B0404F][ol:3][olc:FFFFFF]TERM: 8/23～9/30',
-	      	data: [
-	        	{
-	          		stmpid: 254,
-	          		stps: 20,
-	          		stprwrd: '1:e:126623 4:e:126223 7:e:126423 10:e:126823 13:e:126523 16:e:126323 20:e:126723'
-	        	}
-	      	]
-	    }
+	hhmidsummer2018: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 271,
+						stmpdaily: 5,
+						stps: 30,
+						stprwrd: '1:a:2551 2:p:100 2:b:100 3:p:200 3:b:200 4:a:2552 5:p:1000 5:b:1000 6:p:300 6:b:300 7:a:2553 8:p:400 8:b:400 9:p:500 9:b:500 10:c:8 11:a:2613 12:p:100 12:b:100 13:p:200 13:b:200 14:a:2614 15:p:1000 15:b:1000 16:p:300 16:b:300 17:a:2615 18:p:400 18:b:400 19:p:500 19:b:500 20:c:52 21:p:500 22:b:500 23:p:500 24:b:500 25:p:1000 25:b:1000 26:p:500 27:b:500 28:p:500 29:b:500 30:c:80'
+				}
+			]
+		}
+	},
+	hhmidsummer20182: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 272,
+						stmpdaily: 1,
+						stps: 30,
+						stprwrd: '1:a:3589 2:p:100 2:b:100 3:p:100 3:b:100 4:p:100 4:b:100 5:p:1000 5:b:1000 6:p:200 6:b:200 7:p:200 7:b:200 8:p:200 8:b:200 9:p:200 9:b:200 10:a:3590 11:p:100 11:b:100 12:p:100 12:b:100 13:p:100 13:b:100 14:b:200 14:b:200 15:p:2000 15:b:2000 16:p:200 16:b:200 17:p:200 17:b:200 18:p:200 18:b:200 19:p:300 19:b:300 20:p:3591 21:p:100 21:b:100 22:p:100 22:b:100 23:p:100 23:b:100 24:p:200 24:b:200 25:p:3000 25:b:3000 26:p:200 26:b:200 27:p:200 27:b:200 28:p:300 28:b:300 29:p:300 29:b:300 30:c:93'
+				}
+			]
+		}
+	},
+	hhsummergreetings: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:13][c:52C7DC][ol:3][olc:FFFFFF]BEMANI SUMMER GREETINGS',
+			stmpFt: '[sz:13][c:395839][ol:3][olc:FFFFFF]YOU CAN HARVEST A CROP BY PLAYING SDVX!![br:5]THE LIFE TO HARVEST A CROP INCREASES[br:5]BY ONE PER DAY.[posx:190][posy:35][sz:13][c:B0404F][ol:3][olc:FFFFFF]TERM: 8/23～9/30',
+			data: [
+				{
+						stmpid: 273,
+						stps: 20,
+						stprwrd: '1:e:126623 4:e:126223 7:e:126423 10:e:126823 13:e:126523 16:e:126323 20:e:126723'
+				}
+			]
+		}
 	},
 	hhacademy: {
 		type: 'main',
-	    info: {
-	    	id: 0,
-	      	stmpHd: '[sz:20]SPECIAL STAMP BONUS',
-	      	stmpFt: '',
-	      	data: [
-	        	{
-	          		stmpid: 255,
-	          		stps: 30,
-	          		stprwrd: '1:e:131723 3:e:131823 5:e:132423 8:e:132023 11:e:132323 14:e:132223 17:e:132123 21:e:132523 25:e:131923 30:e:131623'
-	        	}
-	      	]
-	    }
-	}
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 274,
+						stps: 30,
+						stprwrd: '1:e:131723 3:e:131823 5:e:132423 8:e:132023 11:e:132323 14:e:132223 17:e:132123 21:e:132523 25:e:131923 30:e:131623'
+				}
+			]
+		}
+	},
+	hhchristmas2018: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 275,
+						stmpdaily: 1,
+						stps: 5,
+						stprwrd: '1:b:100 2:p:200 3:b:300 4:p:400 5:a:3592'
+				}
+			]
+		}
+	},
+	hhnewyear2019: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 276,
+						stps: 5,
+						stprwrd: '1:b:100 2:p:200 3:b:300 4:p:400 5:a:3593'
+				}
+			]
+		}
+	},
+	hhanniv7th: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 277,
+						stps: 1,
+						stprwrd: '1:a:3594'
+				}
+			]
+		}
+	},
+	hhrasisvw: {
+		type: 'main',
+		info: {
+			id: 0,
+			stmpHd: '[sz:20]SPECIAL STAMP BONUS',
+			stmpFt: '',
+			data: [
+				{
+						stmpid: 278,
+						stps: 15,
+						stprwrd: ''
+				}
+			]
+		}
+	},
 }
 
 export const EVENT_ITEMS4 = {
-  pbmedley: ['1058'],
+	pbmedley: ['1058'],
 }
 
 export const SERIAL4 = SERIAL3.concat([
@@ -160,7 +518,7 @@ export const SERIAL4 = SERIAL3.concat([
 
 export const EXTENDS4 = [
 	{
-  		version: 20190206,
+		version: 20190206,
 		type: 7,
 		id: 1,
 		params: [
@@ -173,7 +531,7 @@ export const EXTENDS4 = [
 		]
 	},
 	{
-  		version: 20190206,
+		version: 20190206,
 		type: 7,
 		id: 1,
 		params: [
@@ -186,7 +544,7 @@ export const EXTENDS4 = [
 		]
 	},
 	{
-  		version: 20190206,
+		version: 20190206,
 		type: 7,
 		id: 1,
 		params: [
@@ -199,7 +557,7 @@ export const EXTENDS4 = [
 		]
 	},
 	{
-  		version: 20190206,
+		version: 20190206,
 		type: 7,
 		id: 1,
 		params: [
@@ -212,7 +570,7 @@ export const EXTENDS4 = [
 		]
 	},
 	{
-  		version: 20190206,
+		version: 20190206,
 		type: 7,
 		id: 1,
 		params: [
@@ -225,7 +583,7 @@ export const EXTENDS4 = [
 		]
 	},
 	{
-  		version: 20190206,
+		version: 20190206,
 		type: 7,
 		id: 1,
 		params: [
@@ -238,7 +596,7 @@ export const EXTENDS4 = [
 		]
 	},
 	{
-  		version: 20190206,
+		version: 20190206,
 		type: 7,
 		id: 1,
 		params: [
@@ -251,7 +609,7 @@ export const EXTENDS4 = [
 		]
 	},
 	{
-  		version: 20190206,
+		version: 20190206,
 		type: 7,
 		id: 1,
 		params: [
@@ -264,7 +622,7 @@ export const EXTENDS4 = [
 		]
 	},
 	{
-  		version: 20190206,
+		version: 20190206,
 		type: 7,
 		id: 1,
 		params: [
@@ -277,7 +635,7 @@ export const EXTENDS4 = [
 		]
 	},
 	{
-  		version: 20190206,
+		version: 20190206,
 		type: 7,
 		id: 1,
 		params: [
@@ -290,7 +648,7 @@ export const EXTENDS4 = [
 		]
 	},
 	{
-  		version: 20190206,
+		version: 20190206,
 		type: 7,
 		id: 1,
 		params: [
