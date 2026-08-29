@@ -1,9 +1,9 @@
 # DanceDanceRevolution
 
-**Plugin Version:** 3.1.1a
+**Plugin Version:** 3.2.0
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=mdx&expanded=true).
 
-**Supported game versions:** WORLD (2025080500)
+**Supported game versions:** WORLD (2026022400)
 
 **Required Asphyxia Core version** [1.50c](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50) and above
 
@@ -15,13 +15,32 @@ Changelog
 ===========
 ### WORLD
 
-- Enabled In-Store Battle Mode (bio2 only)
-- Enabled display of `Privilege of early play` label on login
+- Updated new song metadata and advance play list, etc
+- Added EXTRA SAVIOR WORLD: MYSTICAL Re:UNION
+- Added EXTRA SAVIOR WORLD: BEMANI PRO LEAGUE -SEASON 4- Triple Tribe
+- Added EXTRA SAVIOR WORLD: BEMANI SELECTION vol.3
+- Added EXTRA SAVIOR WORLD: The 1st ひなビタ♪ CHALLENGE
+- Added EXTRA SAVIOR WORLD: The 1st GITADORA
+- Added EXTRA SAVIOR WORLD: 音戯探偵ひなビタ♫
+- Added GALAXY BRAVE: UNSTABLE
+- Added GALAXY BRAVE: BREAKTHROUGH
+- Added GALAXY BRAVE: BLAZING
+- Added GALAXY BRAVE: SHOWDOWN
+- Added GALAXY BRAVE: FORCE
+- Added PREMIUM CUSTOMIZER 第5弾
+- Added PREMIUM CUSTOMIZER 「東方Project」 第1弾
+- Added PREMIUM CUSTOMIZER 「にじさんじダンス部」 第1弾
+- Added PREMIUM CUSTOMIZER 「にじさんじダンス部」 第2弾
+- Added PREMIUM CUSTOMIZER 音戯探偵ひなビタ♫ 調査依頼:BEMANI
+- Added PREMIUM CUSTOMIZER 「GITADORA」 第1弾
+- Added PREMIUM CUSTOMIZER 「pop'n music」 第1弾
+- Added BEMANI PRO LEAGUE -SEASON 5- Triple Tribe song unlocks
+- Added pop'n & DDR Cheers × Cheers!! song unlocks
+- Updated WORLD LEAGUE benefits
 
 ### Misc
 
-- musicdb handling through Data Upload in the plugin overview page
-- Added mergeddata_load function for use by In-Store battle mode
+- Added toggle for WORLD LEAGUE
 
 musicdb.xml Usage Guide
 ===========

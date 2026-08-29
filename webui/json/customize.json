@@ -8,7 +8,2202 @@
 		"--- 第2弾 ---",
 		"--- 第3弾 ---",
 		"--- 春のコナステ大感謝祭2024 ---",
-		"--- 第4弾 ---"
+		"--- 第4弾 ---",
+		"--- 第5弾 ---",
+		"--- 「東方Project」 第1弾 ---",
+		"--- 「にじさんじダンス部」 第1弾 ---",
+		"--- 「にじさんじダンス部」 第2弾 ---",
+		"--- 音戯探偵ひなビタ♫ 調査依頼:BEMANI ---",
+		"--- 「GITADORA」 第1弾 ---",
+		"--- 「pop'n music」 第1弾 ---"
+	],
+	"character" : [
+		{
+			"optgroup": 0,
+			"items": [
+				{
+					"id": 1,
+					"name": "EMI" 
+				},
+				{
+					"id": 2,
+					"name": "RAGE"
+				}
+			]
+		},
+		{
+			"optgroup": 2,
+			"items": [
+				{
+					"id": 3,
+					"name": "ALICE"
+				},
+				{
+					"id": 4,
+					"name": "BABY-LON"
+				}
+			]
+		},
+		{
+			"optgroup": 3,
+			"items": [
+				{
+					"id": 5,
+					"name": "EMI (BPL S4)"
+				},
+				{
+					"id": 6,
+					"name": "RAGE (BPL S4)"
+				}
+			]
+		},
+		{
+			"optgroup": 4,
+			"items": [
+				{
+					"id": 7,
+					"name": "山形まり花 (Marika Yamagata)"
+				},
+				{
+					"id": 8,
+					"name": "和泉一舞 (Izumi Ibuki)"
+				},
+				{
+					"id": 9,
+					"name": "春日咲子 (Sakiko Kasuga)"
+				},
+				{
+					"id": 10,
+					"name": "芽兎めう (Meto Meu)"
+				},
+				{
+					"id": 11,
+					"name": "霜月凛 (Rin Shimotsuki)"
+				},
+				{
+					"id": 12,
+					"name": "東雲夏陽 (Shinonome Natsuhi)"
+				},
+				{
+					"id": 13,
+					"name": "東雲心菜 (Shinonome Cocona)"
+				}
+			]
+		},
+		{
+			"optgroup": 5,
+			"items": [
+				{
+					"id": 14,
+					"name": "YUNI"
+				},
+				{
+					"id": 15,
+					"name": "AKIRA"
+				}
+			]
+		},
+		{
+			"optgroup": 6,
+			"items": [
+				{
+				    "id": 16,
+				    "name": "天戸紺 (Amado Kon)"
+				},
+				{
+				    "id": 17,
+				    "name": "小舞桜 (Komai Sakura)"
+				}
+			]
+		},
+		{
+			"optgroup": 7,
+			"items": [
+				{
+					"id": 18,
+					"name": "TSUGARU (春のコナステ大感謝祭2024)"
+
+				},
+				{
+					"id": 19,
+					"name": "GRACE (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 20,
+					"name": "RINON (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 21,
+					"name": "MIMI (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 22,
+					"name": "RIO (春のコナステ大感謝祭2024)"
+				}
+			]
+		},
+		{
+			"optgroup": 8,
+			"items": [
+				{
+					"id": 23,
+					"name": "YUNI (SUMMER)"
+				},
+				{
+					"id": 24,
+					"name": "ALICE (SUMMER)"
+				}
+			]
+		},
+		{
+			"optgroup": 9,
+			"items": [
+				{
+					"id": 25,
+					"name": "灰庭まよい"
+				},
+				{
+					"id": 26,
+					"name": "ヒネリ"
+				}
+			]
+		},
+		{
+			"optgroup": 10,
+			"items": [
+				{
+					"id": 27,
+					"name": "博麗 霊夢"
+				},
+				{
+					"id": 28,
+					"name": "東風谷 早苗"
+				},
+				{
+					"id": 29,
+					"name": "古明地 こいし"
+				},
+				{
+					"id": 30,
+					"name": "フランドール・スカーレット"
+				}
+			]
+		},
+		{
+			"optgroup": 11,
+			"items": [
+				{
+					"id": 31,
+					"name": "東堂コハク"
+				},
+				{
+					"id": 32,
+					"name": "山神カルタ"
+				},
+				{
+					"id": 33,
+					"name": "レイン・パターソン"
+				},
+				{
+					"id": 34,
+					"name": "東堂コハク (DDR)"
+				},
+				{
+					"id": 35,
+					"name": "山神カルタ (DDR)"
+				},
+				{
+					"id": 36,
+					"name": "レイン・パターソン (DDR)"
+				}
+			]
+		},
+		{
+			"optgroup": 12,
+			"items": [
+				{
+					"id": 37,
+					"name": "倉持めると"
+				},
+				{
+					"id": 38,
+					"name": "セラフ・ダズルガーデン"
+				},
+				{
+					"id": 39,
+					"name": "長尾景"
+				},
+				{
+					"id": 40,
+					"name": "倉持めると (DDR)"
+				},
+				{
+					"id": 41,
+					"name": "セラフ・ダズルガーデン (DDR)"
+				},
+				{
+					"id": 42,
+					"name": "長尾景 (DDR)"
+				}
+			]
+		},
+		{
+			"optgroup": 13,
+			"items": [
+				{
+					"id": 43,
+					"name": "山形まり花 (音戯探偵)"
+				},
+				{
+					"id": 44,
+					"name": "和泉一舞 (音戯探偵)"
+				},
+				{
+					"id": 45,
+					"name": "春日咲子 (音戯探偵)"
+				},
+				{
+					"id": 46,
+					"name": "霜月凛 (音戯探偵)"
+				},
+				{
+					"id": 47,
+					"name": "芽兎めう (音戯探偵)"
+				},
+				{
+					"id": 48,
+					"name": "菫平すみれ (音戯探偵)"
+				}
+			]
+		},
+		{
+			"optgroup": 14,
+			"items": [
+				{
+					"id": 49,
+					"name": "璃音"
+				},
+				{
+					"id": 50,
+					"name": "響香"
+				}
+			]
+		},
+		{
+			"optgroup": 15,
+			"items": [
+				{
+					"id": 51,
+					"name": "ミミ"
+				},
+				{
+					"id": 52,
+					"name": "ニャミ"
+				}
+			]
+		}
+	],
+	"laneBgSingle" : [
+		{
+			"optgroup": 0,
+			"items": [
+				{
+					"id": 1,
+					"name": "EMI" 
+				},
+				{
+					"id": 2,
+					"name": "RAGE"
+				},
+				{
+					"id": 3,
+					"name": "ROCKET"
+				}
+			]
+		},
+		{
+			"optgroup": 2,
+			"items": [
+				{
+					"id": 4,
+					"name": "ALICE"
+				},
+				{
+					"id": 5,
+					"name": "BABY-LON"
+				},
+				{
+					"id": 6,
+					"name": "GRID"
+				}
+			]
+		},
+		{
+			"optgroup": 3,
+			"items": [
+				{
+					"id": 7,
+					"name": "BPL S2"
+				},
+				{
+					"id": 8,
+					"name": "BPL S4"
+				},
+				{
+					"id": 9,
+					"name": "EMI (BPL S4)"
+				},
+				{
+					"id": 10,
+					"name": "RAGE (BPL S4)"
+				}
+			]
+		},
+		{
+			"optgroup": 4,
+			"items": [
+				{
+					"id": 11,
+					"name": "山形まり花 (Marika Yamagata)"
+				},
+				{
+					"id": 12,
+					"name": "和泉一舞 (Izumi Ibuki)"
+				},
+				{
+					"id": 13,
+					"name": "春日咲子 (Sakiko Kasuga)"
+				},
+				{
+					"id": 14,
+					"name": "芽兎めう (Meto Meu)"
+				},
+				{
+					"id": 15,
+					"name": "霜月凛 (Rin Shimotsuki)"
+				},
+				{
+					"id": 16,
+					"name": "東雲夏陽 (Shinonome Natsuhi)"
+				},
+				{
+					"id": 17,
+					"name": "東雲心菜 (Shinonome Cocona)"
+				}
+			]
+		},
+		{
+			"optgroup": 5,
+			"items": [
+				{
+					"id": 18,
+					"name": "YUNI"
+				},
+				{
+					"id": 19,
+					"name": "AKIRA"
+				},
+				{
+					"id": 20,
+					"name": "HONEYCOMB"
+				},
+				{
+					"id": 21,
+					"name": "bag (EXPERT譜面 x0.25 WAVE)"
+				}
+			]
+		},
+		{
+			"optgroup": 6,
+			"items": [
+				{
+			        "id": 22,
+			        "name": "天戸紺 (Amado Kon)"
+			    },
+			    {
+			        "id": 23,
+			        "name": "小舞桜 (Komai Sakura)"
+			    },
+			    {
+			        "id": 24,
+			        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
+			    }
+			]
+		},
+		{
+			"optgroup": 7,
+			"items": [
+				{
+					"id": 25,
+					"name": "TSUGARU (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 26,
+					"name": "GRACE (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 27,
+					"name": "RINON (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 28,
+					"name": "MIMI (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 29,
+					"name": "RIO (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 30,
+					"name": "TRIANGLE"
+				}
+			]
+		},
+		{
+			"optgroup": 8,
+			"items": [
+				{
+					"id": 31,
+					"name": "YUNI (SUMMER)"
+				},
+				{
+					"id": 32,
+					"name": "ALICE (SUMMER)"
+				},
+				{
+					"id": 33,
+					"name": "SUNFLOWER"
+				}
+			]
+		},
+		{
+			"optgroup": 9,
+			"items": [
+				{
+					"id": 34,
+					"name": "灰庭まよい"
+				},
+				{
+					"id": 35,
+					"name": "ヒネリ"
+				},
+				{
+					"id": 36,
+					"name": "HYPER DRILL"
+				}
+			]
+		},
+		{
+			"optgroup": 10,
+			"items": [
+				{
+					"id": 37,
+					"name": "博麗 霊夢"
+				},
+				{
+					"id": 38,
+					"name": "東風谷 早苗"
+				},
+				{
+					"id": 39,
+					"name": "古明地 こいし"
+				},
+				{
+					"id": 40,
+					"name": "フランドール・スカーレット"
+				},
+				{
+					"id": 41,
+					"name": "残像ニ繋ガレタ追憶ノHIDEAWAY"
+				},
+				{
+					"id": 42,
+					"name": "弾幕信仰"
+				}
+			]
+		},
+		{
+			"optgroup": 11,
+			"items": [
+				{
+					"id": 43,
+					"name": "東堂コハク"
+				},
+				{
+					"id": 44,
+					"name": "山神カルタ"
+				},
+				{
+					"id": 45,
+					"name": "レイン・パターソン"
+				},
+				{
+					"id": 46,
+					"name": "東堂コハク (DDR)"
+				},
+				{
+					"id": 47,
+					"name": "山神カルタ (DDR)"
+				},
+				{
+					"id": 48,
+					"name": "レイン・パターソン (DDR)"
+				}
+			]
+		},
+		{
+			"optgroup": 12,
+			"items": [
+				{
+					"id": 49,
+					"name": "倉持めると"
+				},
+				{
+					"id": 50,
+					"name": "セラフ・ダズルガーデン"
+				},
+				{
+					"id": 51,
+					"name": "長尾景"
+				},
+				{
+					"id": 52,
+					"name": "倉持めると (DDR)"
+				},
+				{
+					"id": 53,
+					"name": "セラフ・ダズルガーデン (DDR)"
+				},
+				{
+					"id": 54,
+					"name": "長尾景 (DDR)"
+				}
+			]
+		},
+		{
+			"optgroup": 13,
+			"items": [
+				{
+					"id": 55,
+					"name": "山形まり花 (音戯探偵)"
+				},
+				{
+					"id": 56,
+					"name": "和泉一舞 (音戯探偵)"
+				},
+				{
+					"id": 57,
+					"name": "春日咲子 (音戯探偵)"
+				},
+				{
+					"id": 58,
+					"name": "霜月凛 (音戯探偵)"
+				},
+				{
+					"id": 59,
+					"name": "芽兎めう (音戯探偵)"
+				},
+				{
+					"id": 60,
+					"name": "菫平すみれ (音戯探偵)"
+				}
+			]
+		},
+		{
+			"optgroup": 14,
+			"items": [
+				{
+					"id": 61,
+					"name": "璃音"
+				},
+				{
+					"id": 62,
+					"name": "響香"
+				},
+				{
+					"id": 63,
+					"name": "GITADORA (TITLE)"
+				},
+				{
+					"id": 64,
+					"name": "GITADORA (PREMIUM ENCORE)"
+				}
+			]
+		},
+		{
+			"optgroup": 15,
+			"items": [
+				{
+					"id": 65,
+					"name": "ミミ"
+				},
+				{
+					"id": 66,
+					"name": "ニャミ"
+				},
+				{
+					"id": 67,
+					"name": "ミミ (FEVER)"
+				},
+				{
+					"id": 68,
+					"name": "ニャミ (FEVER)"
+				}
+			]
+		}
+	],
+	"laneBgDouble": [
+		{
+			"optgroup": 0,
+			"items": [
+				{
+					"id": 1,
+					"name": "EMI&RAGE" 
+				},
+				{
+					"id": 2,
+					"name": "EMI"
+				},
+				{
+					"id": 3,
+					"name": "RAGE"
+				},
+				{
+					"id": 4,
+					"name": "ROCKET"
+				}
+			]
+		},
+		{
+			"optgroup": 2,
+			"items": [
+				{
+					"id": 5,
+					"name": "ALICE"
+				},
+				{
+					"id": 6,
+					"name": "BABY-LON"
+				},
+				{
+					"id": 7,
+					"name": "ALICE&EMI"
+				},
+				{
+					"id": 8,
+					"name": "GRID"
+				}
+			]
+		},
+		{
+			"optgroup": 3,
+			"items": [
+				{
+					"id": 9,
+					"name": "BPL S2"
+				},
+				{
+					"id": 10,
+					"name": "BPL S4"
+				},
+				{
+					"id": 11,
+					"name": "EMI (BPL S4)"
+				},
+				{
+					"id": 12,
+					"name": "RAGE (BPL S4)"
+				},
+				{
+					"id": 13,
+					"name": "EMI & RAGE (BPL S4)"
+				}
+			]
+		},
+		{
+			"optgroup": 4,
+			"items": [
+				{
+					"id": 14,
+					"name": "ナナイロライト"
+				},
+				{
+					"id": 15,
+					"name": "じもとっこスイーツ♪"
+				},
+				{
+					"id": 16,
+					"name": "ハレ トキドキ メランコリック"
+				},
+				{
+					"id": 17,
+					"name": "ひなビタ♪ お花見ライブ"
+				},
+				{
+					"id": 18,
+					"name": "ひなビタ♪ 肝試し"
+				},
+				{
+					"id": 19,
+					"name": "滅びに至るエランプシス"
+				},
+				{
+					"id": 20,
+					"name": "カタルシスの月"
+				}
+			]
+		},
+		{
+			"optgroup": 5,
+			"items": [
+				{
+					"id": 21,
+					"name": "YUNI"
+				},
+				{
+					"id": 22,
+					"name": "AKIRA"
+				},
+				{
+					"id": 23,
+					"name": "HONEYCOMB"
+				},
+				{
+					"id": 24,
+					"name": "bag (EXPERT譜面 x0.25 WAVE)"
+				},
+				{
+					"id": 25,
+					"name": "YUNI & AKIRA"
+				},
+				{
+					"id": 26,
+					"name": "ALICE & YUNI"
+				}
+			]
+		},
+		{
+			"optgroup": 6,
+			"items": [
+				{
+			        "id": 27,
+			        "name": "天戸紺 (Amado Kon)"
+			    },
+			    {
+			        "id": 28,
+			        "name": "小舞桜 (Komai Sakura)"
+			    },
+			    {
+			        "id": 29,
+			        "name": "天戸紺 & 小舞桜 (Amado Kon & Komai Sakura)"
+			    },
+			    {
+			        "id": 30,
+			        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
+			    }
+			]
+		},
+		{
+			"optgroup": 7,
+			"items": [
+				{
+					"id": 31,
+					"name": "TSUGARU (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 32,
+					"name": "GRACE (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 33,
+					"name": "RINON (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 34,
+					"name": "MIMI (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 35,
+					"name": "RIO (春のコナステ大感謝祭2024)"
+
+				},
+				{
+					"id": 36,
+					"name": "All Characters Assembly (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 37,
+					"name": "TRIANGLE"
+				}
+			]
+		},
+		{
+			"optgroup": 8,
+			"items": [
+				{
+					"id": 38,
+					"name": "YUNI (SUMMER)"
+				},
+				{
+					"id": 39,
+					"name": "ALICE (SUMMER)"
+				},
+				{
+					"id": 40,
+					"name": "YUNI (SUMMER) & ALICE (SUMMER)"
+				},
+				{
+					"id": 41,
+					"name": "SUNFLOWER"
+				}
+			]
+		},
+		{
+			"optgroup": 9,
+			"items": [
+				{
+					"id": 42,
+					"name": "灰庭まよい"
+				},
+				{
+					"id": 43,
+					"name": "ヒネリ"
+				},
+				{
+					"id": 44,
+					"name": "灰庭まよい & ヒネリ"
+				},
+				{
+					"id": 45,
+					"name": "HYPER DRILL"
+				}
+			]
+		},
+		{
+			"optgroup": 10,
+			"items": [
+				{
+					"id": 46,
+					"name": "博麗 霊夢"
+				},
+				{
+					"id": 47,
+					"name": "東風谷 早苗"
+				},
+				{
+					"id": 48,
+					"name": "古明地 こいし"
+				},
+				{
+					"id": 49,
+					"name": "フランドール・スカーレット"
+				},
+				{
+					"id": 50,
+					"name": "残像ニ繋ガレタ追憶ノHIDEAWAY"
+				},
+				{
+					"id": 51,
+					"name": "弾幕信仰"
+				},
+				{
+					"id": 52,
+					"name": "博麗 霊夢&東風谷 早苗"
+				},
+				{
+					"id": 53,
+					"name": "古明地 こいし&フランドール・スカーレット"
+				}
+			]
+		},
+		{
+			"optgroup": 11,
+			"items": [
+				{
+					"id": 54,
+					"name": "東堂コハク"
+				},
+				{
+					"id": 55,
+					"name": "山神カルタ"
+				},
+				{
+					"id": 56,
+					"name": "レイン・パターソン"
+				},
+				{
+					"id": 57,
+					"name": "東堂コハク (DDR)"
+				},
+				{
+					"id": 58,
+					"name": "山神カルタ (DDR)"
+				},
+				{
+					"id": 59,
+					"name": "レイン・パターソン (DDR)"
+				},
+				{
+					"id": 60,
+					"name": "レイン・パターソン&山神カルタ&東堂コハク (DDR)"
+				}
+			]
+		},
+		{
+			"optgroup": 12,
+			"items": [
+				{
+					"id": 61,
+					"name": "倉持めると"
+				},
+				{
+					"id": 62,
+					"name": "セラフ・ダズルガーデン"
+				},
+				{
+					"id": 63,
+					"name": "長尾景"
+				},
+				{
+					"id": 64,
+					"name": "倉持めると (DDR)"
+				},
+				{
+					"id": 65,
+					"name": "セラフ・ダズルガーデン (DDR)"
+				},
+				{
+					"id": 66,
+					"name": "長尾景 (DDR)"
+				},
+				{
+					"id": 67,
+					"name": "長尾景&倉持めると&セラフ・ダズルガーデン (DDR)"
+				}
+			]
+		},
+		{
+			"optgroup": 13,
+			"items": [
+				{
+					"id": 68,
+					"name": "山形まり花 (音戯探偵)"
+				},
+				{
+					"id": 69,
+					"name": "和泉一舞 (音戯探偵)"
+				},
+				{
+					"id": 70,
+					"name": "春日咲子 (音戯探偵)"
+				},
+				{
+					"id": 71,
+					"name": "芽兎めう (音戯探偵)"
+				},
+				{
+					"id": 72,
+					"name": "音戯探偵ひなビタ♫ (パターン1)"
+				},
+				{
+					"id": 73,
+					"name": "音戯探偵ひなビタ♫ (パターン2)"
+				}
+			]
+		},
+		{
+			"optgroup": 14,
+			"items": [
+				{
+					"id": 74,
+					"name": "璃音"
+				},
+				{
+					"id": 75,
+					"name": "響香"
+				},
+				{
+					"id": 76,
+					"name": "響香&璃音"
+				},
+				{
+					"id": 77,
+					"name": "GITADORA (TITLE)"
+				},
+				{
+					"id": 78,
+					"name": "GITADORA (PREMIUM ENCORE)"
+				}
+			]
+		},
+		{
+			"optgroup": 15,
+			"items": [
+				{
+					"id": 79,
+					"name": "ミミ"
+				},
+				{
+					"id": 80,
+					"name": "ニャミ"
+				},
+				{
+					"id": 81,
+					"name": "ミミ&ニャミ"
+				},
+				{
+					"id": 82,
+					"name": "ミミ&ニャミ (Title)"
+				},
+				{
+					"id": 83,
+					"name": "ミミ&ニャミ (Yeeeeee Hooooo)"
+				}
+			]
+		}
+	],
+	"laneCoverSingle": [
+		{
+			"optgroup": 0,
+			"items": [
+				{
+					"id": 1,
+					"name": "WORLD" 
+				},
+				{
+					"id": 2,
+					"name": "EMI" 
+				},
+				{
+					"id": 3,
+					"name": "RAGE"
+				},
+				{
+					"id": 4,
+					"name": "ROCKET"
+				}
+			]
+		},
+		{
+			"optgroup": 2,
+			"items": [
+				{
+					"id": 5,
+					"name": "ALICE"
+				},
+				{
+					"id": 6,
+					"name": "BABY-LON"
+				},
+				{
+					"id": 7,
+					"name": "みゅ、みゅ、Müllる"
+				},
+				{
+					"id": 8,
+					"name": "Astrogazer"
+				},
+				{
+					"id": 9,
+					"name": "Don't Stop The HYPERCORE"
+				}
+			]
+		},
+		{
+			"optgroup": 3,
+			"items": [
+				{
+					"id": 10,
+					"name": "BPL S2"
+				},
+				{
+					"id": 11,
+					"name": "BPL S4"
+				},
+				{
+					"id": 12,
+					"name": "EMI (BPL S4)"
+				},
+				{
+					"id": 13,
+					"name": "RAGE (BPL S4)"
+				}
+			]
+		},
+		{
+			"optgroup": 4,
+			"items": [
+				{
+					"id": 14,
+					"name": "ひなビタ♪ Chocolate Smile Girls!!"
+				},
+				{
+					"id": 15,
+					"name": "ヒカリユリイカ"
+				},
+				{
+					"id": 16,
+					"name": "ここなつ シンクロノーツ"
+				},
+				{
+					"id": 17,
+					"name": "革命パッショネイト"
+				},
+				{
+					"id": 18,
+					"name": "ひなビタ♪ SWEET SMILE PARADE"
+				},
+				{
+					"id": 19,
+					"name": "ホーンテッド★メイドランチ (一舞＆咲子ver.)"
+				},
+				{
+					"id": 20,
+					"name": "滅亡天使 † にこきゅっぴん"
+				}
+			]
+		},
+		{
+			"optgroup": 5,
+			"items": [
+				{
+					"id": 21,
+					"name": "YUNI"
+				},
+				{
+					"id": 22,
+					"name": "AKIRA"
+				},
+				{
+					"id": 23,
+					"name": "Destination"
+				},
+				{
+					"id": 24,
+					"name": "HyperTwist"
+				},
+				{
+					"id": 25,
+					"name": "Cosy Catastrophe"
+				},
+				{
+					"id": 26,
+					"name": "New York EVOLVED"
+				},
+				{
+					"id": 27,
+					"name": "bag (EXPERT譜面 x0.25 WAVE)"
+				}
+			]
+		},
+		{
+			"optgroup": 6,
+			"items": [
+				{
+			        "id": 28,
+			        "name": "天戸紺 (Amado Kon)"
+			    },
+			    {
+			        "id": 29,
+			        "name": "小舞桜 (Komai Sakura)"
+			    },
+			    {
+			        "id": 30,
+			        "name": "Deep tenDon Reflex"
+			    },
+			    {
+			        "id": 31,
+			        "name": "ROCK THE PARTY"
+			    },
+			    {
+			        "id": 32,
+			        "name": "エンドルフィン"
+			    },
+			    {
+			        "id": 33,
+			        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
+			    }
+			]
+		},
+		{
+			"optgroup": 7,
+			"items": [
+				{
+					"id": 34,
+					"name": "TSUGARU (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 35,
+					"name": "GRACE (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 36,
+					"name": "RINON (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 37,
+					"name": "MIMI (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 38,
+					"name": "RIO (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 39,
+					"name": "DDR System Songs + Replicant Mix"
+				}
+			]
+		},
+		{
+			"optgroup": 8,
+			"items": [
+				{
+					"id": 40,
+					"name": "YUNI (SUMMER)"
+				},
+				{
+					"id": 41,
+					"name": "ALICE (SUMMER)"
+				},
+				{
+					"id": 42,
+					"name": "Reach the Sky, Without You"
+				},
+				{
+					"id": 43,
+					"name": "†渚の小悪魔ラヴリィ～レイディオ†"
+				},
+				{
+					"id": 44,
+					"name": "天空の華"
+				},
+				{
+					"id": 45,
+					"name": "take me higher"
+				}
+			]
+		},
+		{
+			"optgroup": 9,
+			"items": [
+				{
+					"id": 46,
+					"name": "灰庭まよい"
+				},
+				{
+					"id": 47,
+					"name": "ヒネリ"
+				},
+				{
+					"id": 48,
+					"name": "Beluga"
+				},
+				{
+					"id": 49,
+					"name": "Unreality"
+				},
+				{
+					"id": 50,
+					"name": "Come Back to Me (Feel It)"
+				},
+				{
+					"id": 51,
+					"name": "HYPER DRILL"
+				}
+			]
+		},
+		{
+			"optgroup": 10,
+			"items": [
+				{
+					"id": 52,
+					"name": "博麗 霊夢"
+				},
+				{
+					"id": 53,
+					"name": "東風谷 早苗"
+				},
+				{
+					"id": 54,
+					"name": "古明地 こいし"
+				},
+				{
+					"id": 55,
+					"name": "フランドール・スカーレット"
+				},
+				{
+					"id": 56,
+					"name": "残像ニ繋ガレタ追憶ノHIDEAWAY"
+				},
+				{
+					"id": 57,
+					"name": "弾幕信仰"
+				}
+			]
+		},
+		{
+			"optgroup": 11,
+			"items": [
+				{
+					"id": 58,
+					"name": "東堂コハク (DDR)"
+				},
+				{
+					"id": 59,
+					"name": "山神カルタ (DDR)"
+				},
+				{
+					"id": 60,
+					"name": "レイン・パターソン (DDR)"
+				},
+				{
+					"id": 61,
+					"name": "レイン・パターソン&山神カルタ&東堂コハク (DDR デフォルメ)"
+				}
+			]
+		},
+		{
+			"optgroup": 12,
+			"items": [
+				{
+					"id": 62,
+					"name": "倉持めると (DDR)"
+				},
+				{
+					"id": 63,
+					"name": "セラフ・ダズルガーデン (DDR)"
+				},
+				{
+					"id": 64,
+					"name": "長尾景 (DDR)"
+				},
+				{
+					"id": 65,
+					"name": "長尾景&倉持めると&セラフ・ダズルガーデン (DDR デフォルメ)"
+				}
+			]
+		},
+		{
+			"optgroup": 13,
+			"items": [
+				{
+					"id": 66,
+					"name": "山形まり花 (音戯探偵)"
+				},
+				{
+					"id": 67,
+					"name": "和泉一舞 (音戯探偵)"
+				},
+				{
+					"id": 68,
+					"name": "春日咲子 (音戯探偵)"
+				},
+				{
+					"id": 69,
+					"name": "霜月凛 (音戯探偵)"
+				},
+				{
+					"id": 70,
+					"name": "芽兎めう (音戯探偵)"
+				},
+				{
+					"id": 71,
+					"name": "菫平すみれ (音戯探偵)"
+				}
+			]
+		},
+		{
+			"optgroup": 14,
+			"items": [
+				{
+					"id": 72,
+					"name": "璃音"
+				},
+				{
+					"id": 73,
+					"name": "響香"
+				},
+				{
+					"id": 74,
+					"name": "キヤロラ衛星の軌跡"
+				},
+				{
+					"id": 75,
+					"name": "MODEL FT2 Miracle Version"
+				},
+				{
+					"id": 76,
+					"name": "Timepiece phase Ⅱ"
+				}
+			]
+		},
+		{
+			"optgroup": 15,
+			"items": [
+				{
+					"id": 77,
+					"name": "ミミ"
+				},
+				{
+					"id": 78,
+					"name": "ニャミ"
+				},
+				{
+					"id": 79,
+					"name": "ミミ (FEVER)"
+				},
+				{
+					"id": 80,
+					"name": "ニャミ (FEVER)"
+				},
+				{
+					"id": 81,
+					"name": "pop'n music (Shutter)"
+				}
+			]
+		}
+	],
+	"laneCoverDouble": [
+		{
+			"optgroup": 0,
+			"items": [
+				{
+					"id": 1,
+					"name": "WORLD" 
+				},
+				{
+					"id": 2,
+					"name": "EMI" 
+				},
+				{
+					"id": 3,
+					"name": "RAGE"
+				},
+				{
+					"id": 4,
+					"name": "EMI&RAGE" 
+				},
+				{
+					"id": 5,
+					"name": "ROCKET"
+				}
+			]
+		},
+		{
+			"optgroup": 2,
+			"items": [
+				{
+					"id": 6,
+					"name": "ALICE"
+				},
+				{
+					"id": 7,
+					"name": "BABY-LON"
+				},
+				{
+					"id": 8,
+					"name": "ALICE&EMI"
+				},
+				{
+					"id": 9,
+					"name": "みゅ、みゅ、Müllる"
+				},
+				{
+					"id": 10,
+					"name": "Astrogazer"
+				},
+				{
+					"id": 11,
+					"name": "Don't Stop The HYPERCORE"
+				}
+			]
+		},
+		{
+			"optgroup": 3,
+			"items": [
+				{
+					"id": 12,
+					"name": "BPL S2"
+				},
+				{
+					"id": 13,
+					"name": "BPL S4"
+				},
+				{
+					"id": 14,
+					"name": "EMI & RAGE (BPL S4 パターン1)"
+				},
+				{
+					"id": 15,
+					"name": "EMI & RAGE (BPL S4 パターン2)"
+				},
+				{
+					"id": 16,
+					"name": "EMIまみれ (BPL S4)"
+				}
+			]
+		},
+		{
+			"optgroup": 4,
+			"items": [
+				{
+					"id": 17,
+					"name": "ナナイロライト"
+				},
+				{
+					"id": 18,
+					"name": "じもとっこスイーツ♪"
+				},
+				{
+					"id": 19,
+					"name": "ハレ トキドキ メランコリック"
+				},
+				{
+					"id": 20,
+					"name": "ひなビタ♪ お花見ライブ"
+				},
+				{
+					"id": 21,
+					"name": "ひなビタ♪ 肝試し"
+				},
+				{
+					"id": 22,
+					"name": "滅びに至るエランプシス"
+				},
+				{
+					"id": 23,
+					"name": "カタルシスの月"
+				}
+			]
+		},
+		{
+			"optgroup": 5,
+			"items": [
+				{
+					"id": 24,
+					"name": "YUNI"
+				},
+				{
+					"id": 25,
+					"name": "AKIRA"
+				},
+				{
+					"id": 26,
+					"name": "Destination"
+				},
+				{
+					"id": 27,
+					"name": "HyperTwist"
+				},
+				{
+					"id": 28,
+					"name": "Cosy Catastrophe"
+				},
+				{
+					"id": 29,
+					"name": "New York EVOLVED"
+				},
+				{
+					"id": 30,
+					"name": "bag (EXPERT譜面 x0.25 WAVE)"
+				},
+				{
+					"id": 31,
+					"name": "YUNI & AKIRA"
+				},
+				{
+					"id": 32,
+					"name": "ALICE & YUNI"
+				}
+			]
+		},
+		{
+			"optgroup": 6,
+			"items": [
+				{
+			        "id": 33,
+			        "name": "天戸紺 (Amado Kon)"
+			    },
+			    {
+			        "id": 34,
+			        "name": "小舞桜 (Komai Sakura)"
+			    },
+			    {
+			        "id": 35,
+			        "name": "天戸紺 & 小舞桜 (Amado Kon & Komai Sakura)"
+			    },
+			    {
+			        "id": 36,
+			        "name": "Deep tenDon Reflex"
+			    },
+			    {
+			        "id": 37,
+			        "name": "ROCK THE PARTY"
+			    },
+			    {
+			        "id": 38,
+			        "name": "エンドルフィン"
+			    },
+			    {
+			        "id": 39,
+			        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
+			    }
+			]
+		},
+		{
+			"optgroup": 7,
+			"items": [
+				{
+					"id": 40,
+					"name": "TSUGARU (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 41,
+					"name": "GRACE (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 42,
+					"name": "RINON (春のコナステ大感謝祭2024)"	
+				},
+				{
+					"id": 43,
+					"name": "MIMI (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 44,
+					"name": "RIO (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 45,
+					"name": "All Characters Assembly (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 46,
+					"name": "DDR System Songs + Replicant Mix"
+				}
+			]
+		},
+		{
+			"optgroup": 8,
+			"items": [
+				{
+					"id": 47,
+					"name": "YUNI (SUMMER)"
+				},
+				{
+					"id": 48,
+					"name": "ALICE (SUMMER)"
+				},
+				{
+					"id": 49,
+					"name": "YUNI (SUMMER) & ALICE (SUMMER)"
+				},
+				{
+					"id": 50,
+					"name": "Reach the Sky, Without You"
+				},
+				{
+					"id": 51,
+					"name": "†渚の小悪魔ラヴリィ～レイディオ†"
+				},
+				{
+					"id": 52,
+					"name": "天空の華"
+				},
+				{
+					"id": 53,
+					"name": "take me higher"
+				}
+			]
+		},
+		{
+			"optgroup": 9,
+			"items": [
+				{
+					"id": 54,
+					"name": "灰庭まよい"
+				},
+				{
+					"id": 55,
+					"name": "ヒネリ"
+				},
+				{
+					"id": 56,
+					"name": "灰庭まよい & ヒネリ"
+				},
+				{
+					"id": 57,
+					"name": "Beluga"
+				},
+				{
+					"id": 58,
+					"name": "Unreality"
+				},
+				{
+					"id": 59,
+					"name": "Come Back to Me (Feel It)"
+				},
+				{
+					"id": 60,
+					"name": "HYPER DRILL"
+				}
+			]
+		},
+		{
+			"optgroup": 10,
+			"items": [
+				{
+					"id": 61,
+					"name": "博麗 霊夢"
+				},
+				{
+					"id": 62,
+					"name": "東風谷 早苗"
+				},
+				{
+					"id": 63,
+					"name": "古明地 こいし"
+				},
+				{
+					"id": 64,
+					"name": "フランドール・スカーレット"
+				},
+				{
+					"id": 65,
+					"name": "残像ニ繋ガレタ追憶ノHIDEAWAY"
+				},
+				{
+					"id": 66,
+					"name": "弾幕信仰"
+				},
+				{
+					"id": 67,
+					"name": "博麗 霊夢&東風谷 早苗"
+				},
+				{
+					"id": 68,
+					"name": "古明地 こいし&フランドール・スカーレット"
+				}
+			]
+		},
+		{
+			"optgroup": 11,
+			"items": [
+				{
+					"id": 69,
+					"name": "東堂コハク (DDR)"
+				},
+				{
+					"id": 70,
+					"name": "山神カルタ (DDR)"
+				},
+				{
+					"id": 71,
+					"name": "レイン・パターソン (DDR)"
+				},
+				{
+					"id": 72,
+					"name": "レイン・パターソン&山神カルタ&東堂コハク (DDR)"
+				},
+				{
+					"id": 73,
+					"name": "レイン・パターソン&山神カルタ&東堂コハク (DDR デフォルメ)"
+				}
+			]
+		},
+		{
+			"optgroup": 12,
+			"items": [
+				{
+					"id": 74,
+					"name": "倉持めると (DDR)"
+				},
+				{
+					"id": 75,
+					"name": "セラフ・ダズルガーデン (DDR)"
+				},
+				{
+					"id": 76,
+					"name": "長尾景 (DDR)"
+				},
+				{
+					"id": 77,
+					"name": "長尾景&倉持めると&セラフ・ダズルガーデン (DDR)"
+				},
+				{
+					"id": 78,
+					"name": "長尾景&倉持めると&セラフ・ダズルガーデン (DDR デフォルメ)"
+				}
+			]
+		},
+		{
+			"optgroup": 13,
+			"items": [
+				{
+					"id": 79,
+					"name": "山形まり花 (音戯探偵)"
+				},
+				{
+					"id": 80,
+					"name": "和泉一舞 (音戯探偵)"
+				},
+				{
+					"id": 81,
+					"name": "春日咲子 (音戯探偵)"
+				},
+				{
+					"id": 82,
+					"name": "霜月凛 (音戯探偵)"
+				},
+				{
+					"id": 83,
+					"name": "芽兎めう (音戯探偵)"
+				},
+				{
+					"id": 84,
+					"name": "菫平すみれ (音戯探偵)"
+				},
+				{
+					"id": 85,
+					"name": "音戯探偵ひなビタ♫ (パターン1)"
+				},
+				{
+					"id": 86,
+					"name": "音戯探偵ひなビタ♫ (パターン2)"
+				}
+			]
+		},
+		{
+			"optgroup": 14,
+			"items": [
+				{
+					"id": 87,
+					"name": "璃音"
+				},
+				{
+					"id": 88,
+					"name": "響香"
+				},
+				{
+					"id": 89,
+					"name": "響香&璃音"
+				},
+				{
+					"id": 90,
+					"name": "キヤロラ衛星の軌跡"
+				},
+				{
+					"id": 91,
+					"name": "MODEL FT2 Miracle Version"
+				},
+				{
+					"id": 92,
+					"name": "Timepiece phase Ⅱ"
+				}
+			]
+		},
+		{
+			"optgroup": 15,
+			"items": [
+				{
+					"id": 93,
+					"name": "ミミ"
+				},
+				{
+					"id": 94,
+					"name": "ニャミ"
+				},
+				{
+					"id": 95,
+					"name": "ミミ&ニャミ"
+				},
+				{
+					"id": 96,
+					"name": "ミミ&ニャミ (Buddy)"
+				},
+				{
+					"id": 97,
+					"name": "ミミ&ニャミ (Title)"
+				},
+				{
+					"id": 98,
+					"name": "ミミ&ニャミ (Yeeeeee Hooooo)"
+				}
+			]
+		}
+	],
+	"gameBG": [
+		{
+			"optgroup": 0,
+			"items": [
+				{
+					"id": 1,
+					"name": "WORLD (パターン1)" 
+				},
+				{
+					"id": 2,
+					"name": "WORLD (パターン2)" 
+				},
+				{
+					"id": 3,
+					"name": "WORLD (パターン3)"
+				}
+			]
+		},
+		{
+			"optgroup": 2,
+			"items": [
+				{
+					"id": 4,
+					"name": "ヘキサグラム (パターン1)" 
+				},
+				{
+					"id": 5,
+					"name": "ヘキサグラム (パターン2)"
+				},
+				{
+					"id": 6,
+					"name": "ヘキサグラム (パターン3)"
+				},
+				{
+					"id": 7,
+					"name": "ヘキサグラム (パターン4)"
+				},
+				{
+					"id": 8,
+					"name": "ヘキサグラム (パターン5)"
+				}
+			]
+		},
+		{
+			"optgroup": 3,
+			"items": [
+				{
+					"id": 9,
+					"name": "BPL S2"
+				},
+				{
+					"id": 10,
+					"name": "BPL S4"
+				},
+				{
+					"id": 11,
+					"name": "EMIまみれ (BPL S4)"
+				}
+			]
+		},
+		{
+			"optgroup": 4,
+			"items": [
+				{
+					"id": 12,
+					"name": "ちくわまつり2023"
+				},
+				{
+					"id": 13,
+					"name": "ちくわまつり2025"
+				},
+				{
+					"id": 14,
+					"name": "ひなビタ♪＆ここなつ ミニキャラ大集合"
+				},
+				{
+					"id": 15,
+					"name": "ひなビタ♪＆ここなつ スライドショー"
+				}
+			]
+		},
+		{
+			"optgroup": 5,
+			"items": [
+				{
+					"id": 16,
+					"name": "ARROW (パターン1)"
+				},
+				{
+					"id": 17,
+					"name": "ARROW (パターン2)"
+				},
+				{
+					"id": 18,
+					"name": "ARROW (パターン3)"
+				},
+				{
+					"id": 19,
+					"name": "ARROW (パターン4)"
+				},
+				{
+					"id": 20,
+					"name": "ARROW (パターン5)"
+				},
+				{
+					"id": 21,
+					"name": "WORLD (パターン4)"
+				}
+			]
+		},
+		{
+			"optgroup": 6,
+			"items": [
+				{
+			        "id": 22,
+			        "name": "ARROW (パターン6)"
+			    },
+			    {
+			        "id": 23,
+			        "name": "ヘキサグラム (パターン6)"
+			    },
+			    {
+			        "id": 24,
+			        "name": "WORLD (パターン5)"
+			    }
+			]
+		},
+		{
+			"optgroup": 7,
+			"items": [
+				{
+					"id": 25,
+					"name": "春のコナステ大感謝祭2024"
+				},
+				{
+					"id": 26,
+					"name": "ミニマスコット大集合 (春のコナステ大感謝祭2024)"
+				},
+				{
+					"id": 27,
+					"name": "Character Slideshow (春のコナステ大感謝祭2024)"
+				}
+			]
+		},
+		{
+			"optgroup": 8,
+			"items": [
+				{
+					"id": 28,
+					"name": "OCEAN (パターン1)"
+				},
+				{
+					"id": 29,
+					"name": "OCEAN (パターン2)"
+				},				
+				{
+					"id": 30,
+					"name": "OCEAN (パターン3)"
+				}
+			]
+		},
+		{
+			"optgroup": 9,
+			"items": [
+				{
+					"id": 31,
+					"name": "HYPER DISTORTION (パターン1)"
+				},
+				{
+					"id": 32,
+					"name": "HYPER DISTORTION (パターン2)"
+				},				
+				{
+					"id": 33,
+					"name": "HYPER DISTORTION (パターン3)"
+				}
+			]
+		},
+		{
+			"optgroup": 10,
+			"items": [
+				{
+					"id": 34,
+					"name": "幻想郷音樂祭2024"
+				},
+				{
+					"id": 35,
+					"name": "古明地 こいし&フランドール・スカーレット"
+				}
+			]
+		},
+		{
+			"optgroup": 11,
+			"items": [
+				{
+					"id": 36,
+					"name": "レイン・パターソン&山神カルタ&東堂コハク"
+				},
+				{
+					"id": 37,
+					"name": "レイン・パターソン&山神カルタ&東堂コハク (DDR デフォルメ)"
+				},
+				{
+					"id": 38,
+					"name": "レイン・パターソン&山神カルタ&東堂コハク (DDR)"
+				}
+			]
+		},
+		{
+			"optgroup": 12,
+			"items": [
+				{
+					"id": 39,
+					"name": "長尾景&倉持めると&セラフ・ダズルガーデン"
+				},
+				{
+					"id": 40,
+					"name": "長尾景&倉持めると&セラフ・ダズルガーデン (DDR デフォルメ)"
+				},
+				{
+					"id": 41,
+					"name": "長尾景&倉持めると&セラフ・ダズルガーデン (DDR)"
+				}
+			]
+		},
+		{
+			"optgroup": 13,
+			"items": [
+				{
+					"id": 42,
+					"name": "音戯探偵ひなビタ♫ 調査依頼:BEMANI"
+				},
+				{
+					"id": 43,
+					"name": "キャラクタースライドショー (音戯探偵ひなビタ♫)"
+				}
+			]
+		},
+		{
+			"optgroup": 14,
+			"items": [
+				{
+					"id": 44,
+					"name": "GITADORA (TITLE)"
+				},
+				{
+					"id": 45,
+					"name": "GITADORA (NORMAL)"
+				},
+				{
+					"id": 46,
+					"name": "GITADORA (PREMIUM ENCORE)"
+				}
+			]
+		},
+		{
+			"optgroup": 15,
+			"items": [
+				{
+					"id": 47,
+					"name": "pop'n music (Title)"
+				},
+				{
+					"id": 48,
+					"name": "pop'n music (Shutter Type.A)"
+				},
+				{
+					"id": 49,
+					"name": "pop'n music (Shutter Type.B)"
+				}
+			]
+		}
 	],
 	"appealBoard" : [
 		{
@@ -287,1162 +2482,219 @@
 					"name": "天空の華"
 				}
 			]
-		}
-	],
-	"character" : [
-		{
-			"optgroup": 0,
-			"items": [
-				{
-					"id": 1,
-					"name": "EMI" 
-				},
-				{
-					"id": 2,
-					"name": "RAGE"
-				}
-			]
 		},
 		{
-			"optgroup": 2,
+			"optgroup": 9,
 			"items": [
-				{
-					"id": 3,
-					"name": "ALICE"
-				},
-				{
-					"id": 4,
-					"name": "BABY-LON"
-				}
-			]
-		},
-		{
-			"optgroup": 3,
-			"items": [
-				{
-					"id": 5,
-					"name": "EMI (BPL S4)"
-				},
-				{
-					"id": 6,
-					"name": "RAGE (BPL S4)"
-				}
-			]
-		},
-		{
-			"optgroup": 4,
-			"items": [
-				{
-					"id": 7,
-					"name": "山形まり花 (Marika Yamagata)"
-				},
-				{
-					"id": 8,
-					"name": "和泉一舞 (Izumi Ibuki)"
-				},
-				{
-					"id": 9,
-					"name": "春日咲子 (Sakiko Kasuga)"
-				},
-				{
-					"id": 10,
-					"name": "芽兎めう (Meto Meu)"
-				},
-				{
-					"id": 11,
-					"name": "霜月凛 (Rin Shimotsuki)"
-				},
-				{
-					"id": 12,
-					"name": "東雲夏陽 (Shinonome Natsuhi)"
-				},
-				{
-					"id": 13,
-					"name": "東雲心菜 (Shinonome Cocona)"
-				}
-			]
-		},
-		{
-			"optgroup": 5,
-			"items": [
-				{
-					"id": 14,
-					"name": "YUNI"
-				},
-				{
-					"id": 15,
-					"name": "AKIRA"
-				}
-			]
-		},
-		{
-			"optgroup": 6,
-			"items": [
-				{
-				    "id": 16,
-				    "name": "天戸紺 (Amado Kon)"
-				},
-				{
-				    "id": 17,
-				    "name": "小舞桜 (Komai Sakura)"
-				}
-			]
-		},
-		{
-			"optgroup": 7,
-			"items": [
-				{
-					"id": 18,
-					"name": "TSUGARU (春のコナステ大感謝祭2024)"
-
-				},
-				{
-					"id": 19,
-					"name": "GRACE (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 20,
-					"name": "RINON (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 21,
-					"name": "MIMI (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 22,
-					"name": "RIO (春のコナステ大感謝祭2024)"
-				}
-			]
-		},
-		{
-			"optgroup": 8,
-			"items": [
-				{
-					"id": 23,
-					"name": "YUNI (SUMMER)"
-				},
-				{
-					"id": 24,
-					"name": "ALICE (SUMMER)"
-				}
-			]
-		}
-	],
-	"laneBgSingle" : [
-		{
-			"optgroup": 0,
-			"items": [
-				{
-					"id": 1,
-					"name": "EMI" 
-				},
-				{
-					"id": 2,
-					"name": "RAGE"
-				},
-				{
-					"id": 3,
-					"name": "ROCKET"
-				}
-			]
-		},
-		{
-			"optgroup": 2,
-			"items": [
-				{
-					"id": 4,
-					"name": "ALICE"
-				},
-				{
-					"id": 5,
-					"name": "BABY-LON"
-				},
-				{
-					"id": 6,
-					"name": "GRID"
-				}
-			]
-		},
-		{
-			"optgroup": 3,
-			"items": [
-				{
-					"id": 7,
-					"name": "BPL S2"
-				},
-				{
-					"id": 8,
-					"name": "BPL S4"
-				},
-				{
-					"id": 9,
-					"name": "EMI (BPL S4)"
-				},
-				{
-					"id": 10,
-					"name": "RAGE (BPL S4)"
-				}
-			]
-		},
-		{
-			"optgroup": 4,
-			"items": [
-				{
-					"id": 11,
-					"name": "山形まり花 (Marika Yamagata)"
-				},
-				{
-					"id": 12,
-					"name": "和泉一舞 (Izumi Ibuki)"
-				},
-				{
-					"id": 13,
-					"name": "春日咲子 (Sakiko Kasuga)"
-				},
-				{
-					"id": 14,
-					"name": "芽兎めう (Meto Meu)"
-				},
-				{
-					"id": 15,
-					"name": "霜月凛 (Rin Shimotsuki)"
-				},
-				{
-					"id": 16,
-					"name": "東雲夏陽 (Shinonome Natsuhi)"
-				},
-				{
-					"id": 17,
-					"name": "東雲心菜 (Shinonome Cocona)"
-				}
-			]
-		},
-		{
-			"optgroup": 5,
-			"items": [
-				{
-					"id": 18,
-					"name": "YUNI"
-				},
-				{
-					"id": 19,
-					"name": "AKIRA"
-				},
-				{
-					"id": 20,
-					"name": "HONEYCOMB"
-				},
-				{
-					"id": 21,
-					"name": "bag (EXPERT譜面 x0.25 WAVE)"
-				}
-			]
-		},
-		{
-			"optgroup": 6,
-			"items": [
-				{
-			        "id": 22,
-			        "name": "天戸紺 (Amado Kon)"
-			    },
-			    {
-			        "id": 23,
-			        "name": "小舞桜 (Komai Sakura)"
-			    },
-			    {
-			        "id": 24,
-			        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
-			    }
-			]
-		},
-		{
-			"optgroup": 7,
-			"items": [
-				{
-					"id": 25,
-					"name": "TSUGARU (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 26,
-					"name": "GRACE (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 27,
-					"name": "RINON (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 28,
-					"name": "MIMI (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 29,
-					"name": "RIO (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 30,
-					"name": "TRIANGLE"
-				}
-			]
-		},
-		{
-			"optgroup": 8,
-			"items": [
-				{
-					"id": 31,
-					"name": "YUNI (SUMMER)"
-				},
-				{
-					"id": 32,
-					"name": "ALICE (SUMMER)"
-				},
-				{
-					"id": 33,
-					"name": "SUNFLOWER"
-				}
-			]
-		}
-	],
-	"laneBgDouble": [
-		{
-			"optgroup": 0,
-			"items": [
-				{
-					"id": 1,
-					"name": "EMI&RAGE" 
-				},
-				{
-					"id": 2,
-					"name": "EMI"
-				},
-				{
-					"id": 3,
-					"name": "RAGE"
-				},
-				{
-					"id": 4,
-					"name": "ROCKET"
-				}
-			]
-		},
-		{
-			"optgroup": 2,
-			"items": [
-				{
-					"id": 5,
-					"name": "ALICE"
-				},
-				{
-					"id": 6,
-					"name": "BABY-LON"
-				},
-				{
-					"id": 7,
-					"name": "ALICE&EMI"
-				},
-				{
-					"id": 8,
-					"name": "GRID"
-				}
-			]
-		},
-		{
-			"optgroup": 3,
-			"items": [
-				{
-					"id": 9,
-					"name": "BPL S2"
-				},
-				{
-					"id": 10,
-					"name": "BPL S4"
-				},
-				{
-					"id": 11,
-					"name": "EMI (BPL S4)"
-				},
-				{
-					"id": 12,
-					"name": "RAGE (BPL S4)"
-				},
-				{
-					"id": 13,
-					"name": "EMI & RAGE (BPL S4)"
-				}
-			]
-		},
-		{
-			"optgroup": 4,
-			"items": [
-				{
-					"id": 14,
-					"name": "ナナイロライト"
-				},
-				{
-					"id": 15,
-					"name": "じもとっこスイーツ♪"
-				},
-				{
-					"id": 16,
-					"name": "ハレ トキドキ メランコリック"
-				},
-				{
-					"id": 17,
-					"name": "ひなビタ♪ お花見ライブ"
-				},
-				{
-					"id": 18,
-					"name": "ひなビタ♪ 肝試し"
-				},
-				{
-					"id": 19,
-					"name": "滅びに至るエランプシス"
-				},
-				{
-					"id": 20,
-					"name": "カタルシスの月"
-				}
-			]
-		},
-		{
-			"optgroup": 5,
-			"items": [
-				{
-					"id": 21,
-					"name": "YUNI"
-				},
-				{
-					"id": 22,
-					"name": "AKIRA"
-				},
-				{
-					"id": 23,
-					"name": "HONEYCOMB"
-				},
-				{
-					"id": 24,
-					"name": "bag (EXPERT譜面 x0.25 WAVE)"
-				},
-				{
-					"id": 25,
-					"name": "YUNI & AKIRA"
-				},
-				{
-					"id": 26,
-					"name": "ALICE & YUNI"
-				}
-			]
-		},
-		{
-			"optgroup": 6,
-			"items": [
-				{
-			        "id": 27,
-			        "name": "天戸紺 (Amado Kon)"
-			    },
-			    {
-			        "id": 28,
-			        "name": "小舞桜 (Komai Sakura)"
-			    },
-			    {
-			        "id": 29,
-			        "name": "天戸紺 & 小舞桜 (Amado Kon & Komai Sakura)"
-			    },
-			    {
-			        "id": 30,
-			        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
-			    }
-			]
-		},
-		{
-			"optgroup": 7,
-			"items": [
-				{
-					"id": 31,
-					"name": "TSUGARU (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 32,
-					"name": "GRACE (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 33,
-					"name": "RINON (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 34,
-					"name": "MIMI (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 35,
-					"name": "RIO (春のコナステ大感謝祭2024)"
-
-				},
-				{
-					"id": 36,
-					"name": "All Characters Assembly (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 37,
-					"name": "TRIANGLE"
-				}
-			]
-		},
-		{
-			"optgroup": 8,
-			"items": [
-				{
-					"id": 38,
-					"name": "YUNI (SUMMER)"
-				},
-				{
-					"id": 39,
-					"name": "ALICE (SUMMER)"
-				},
-				{
-					"id": 40,
-					"name": "YUNI (SUMMER) & ALICE (SUMMER)"
-				},
-				{
-					"id": 41,
-					"name": "SUNFLOWER"
-				}
-			]
-		}
-	],
-	"laneCoverSingle": [
-		{
-			"optgroup": 0,
-			"items": [
-				{
-					"id": 1,
-					"name": "WORLD" 
-				},
-				{
-					"id": 2,
-					"name": "EMI" 
-				},
-				{
-					"id": 3,
-					"name": "RAGE"
-				},
-				{
-					"id": 4,
-					"name": "ROCKET"
-				}
-			]
-		},
-		{
-			"optgroup": 2,
-			"items": [
-				{
-					"id": 5,
-					"name": "ALICE"
-				},
-				{
-					"id": 6,
-					"name": "BABY-LON"
-				},
-				{
-					"id": 7,
-					"name": "みゅ、みゅ、Müllる"
-				},
-				{
-					"id": 8,
-					"name": "Astrogazer"
-				},
-				{
-					"id": 9,
-					"name": "Don't Stop The HYPERCORE"
-				}
-			]
-		},
-		{
-			"optgroup": 3,
-			"items": [
-				{
-					"id": 10,
-					"name": "BPL S2"
-				},
-				{
-					"id": 11,
-					"name": "BPL S4"
-				},
-				{
-					"id": 12,
-					"name": "EMI (BPL S4)"
-				},
-				{
-					"id": 13,
-					"name": "RAGE (BPL S4)"
-				}
-			]
-		},
-		{
-			"optgroup": 4,
-			"items": [
-				{
-					"id": 14,
-					"name": "ひなビタ♪ Chocolate Smile Girls!!"
-				},
-				{
-					"id": 15,
-					"name": "ヒカリユリイカ"
-				},
-				{
-					"id": 16,
-					"name": "ここなつ シンクロノーツ"
-				},
-				{
-					"id": 17,
-					"name": "革命パッショネイト"
-				},
-				{
-					"id": 18,
-					"name": "ひなビタ♪ SWEET SMILE PARADE"
-				},
-				{
-					"id": 19,
-					"name": "ホーンテッド★メイドランチ (一舞＆咲子ver.)"
-				},
-				{
-					"id": 20,
-					"name": "滅亡天使 † にこきゅっぴん"
-				}
-			]
-		},
-		{
-			"optgroup": 5,
-			"items": [
-				{
-					"id": 21,
-					"name": "YUNI"
-				},
-				{
-					"id": 22,
-					"name": "AKIRA"
-				},
-				{
-					"id": 23,
-					"name": "Destination"
-				},
-				{
-					"id": 24,
-					"name": "HyperTwist"
-				},
-				{
-					"id": 25,
-					"name": "Cosy Catastrophe"
-				},
-				{
-					"id": 26,
-					"name": "New York EVOLVED"
-				},
-				{
-					"id": 27,
-					"name": "bag (EXPERT譜面 x0.25 WAVE)"
-				}
-			]
-		},
-		{
-			"optgroup": 6,
-			"items": [
-				{
-			        "id": 28,
-			        "name": "天戸紺 (Amado Kon)"
-			    },
-			    {
-			        "id": 29,
-			        "name": "小舞桜 (Komai Sakura)"
-			    },
-			    {
-			        "id": 30,
-			        "name": "Deep tenDon Reflex"
-			    },
-			    {
-			        "id": 31,
-			        "name": "ROCK THE PARTY"
-			    },
-			    {
-			        "id": 32,
-			        "name": "エンドルフィン"
-			    },
-			    {
-			        "id": 33,
-			        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
-			    }
-			]
-		},
-		{
-			"optgroup": 7,
-			"items": [
-				{
-					"id": 34,
-					"name": "TSUGARU (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 35,
-					"name": "GRACE (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 36,
-					"name": "RINON (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 37,
-					"name": "MIMI (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 38,
-					"name": "RIO (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 39,
-					"name": "DDR System Songs + Replicant Mix"
-				}
-			]
-		},
-		{
-			"optgroup": 8,
-			"items": [
-				{
-					"id": 40,
-					"name": "YUNI (SUMMER)"
-				},
-				{
-					"id": 41,
-					"name": "ALICE (SUMMER)"
-				},
-				{
-					"id": 42,
-					"name": "Reach the Sky, Without You"
-				},
-				{
-					"id": 43,
-					"name": "†渚の小悪魔ラヴリィ～レイディオ†"
-				},
-				{
-					"id": 44,
-					"name": "天空の華"
-				},
-				{
-					"id": 45,
-					"name": "take me higher"
-				}
-			]
-		}
-	],
-	"laneCoverDouble": [
-		{
-			"optgroup": 0,
-			"items": [
-				{
-					"id": 1,
-					"name": "WORLD" 
-				},
-				{
-					"id": 2,
-					"name": "EMI" 
-				},
-				{
-					"id": 3,
-					"name": "RAGE"
-				},
-				{
-					"id": 4,
-					"name": "EMI&RAGE" 
-				},
-				{
-					"id": 5,
-					"name": "ROCKET"
-				}
-			]
-		},
-		{
-			"optgroup": 2,
-			"items": [
-				{
-					"id": 6,
-					"name": "ALICE"
-				},
-				{
-					"id": 7,
-					"name": "BABY-LON"
-				},
-				{
-					"id": 8,
-					"name": "ALICE&EMI"
-				},
-				{
-					"id": 9,
-					"name": "みゅ、みゅ、Müllる"
-				},
-				{
-					"id": 10,
-					"name": "Astrogazer"
-				},
-				{
-					"id": 11,
-					"name": "Don't Stop The HYPERCORE"
-				}
-			]
-		},
-		{
-			"optgroup": 3,
-			"items": [
-				{
-					"id": 12,
-					"name": "BPL S2"
-				},
-				{
-					"id": 13,
-					"name": "BPL S4"
-				},
-				{
-					"id": 14,
-					"name": "EMI & RAGE (BPL S4 パターン1)"
-				},
-				{
-					"id": 15,
-					"name": "EMI & RAGE (BPL S4 パターン2)"
-				},
-				{
-					"id": 16,
-					"name": "EMIまみれ (BPL S4)"
-				}
-			]
-		},
-		{
-			"optgroup": 4,
-			"items": [
-				{
-					"id": 17,
-					"name": "ナナイロライト"
-				},
-				{
-					"id": 18,
-					"name": "じもとっこスイーツ♪"
-				},
-				{
-					"id": 19,
-					"name": "ハレ トキドキ メランコリック"
-				},
-				{
-					"id": 20,
-					"name": "ひなビタ♪ お花見ライブ"
-				},
-				{
-					"id": 21,
-					"name": "ひなビタ♪ 肝試し"
-				},
-				{
-					"id": 22,
-					"name": "滅びに至るエランプシス"
-				},
-				{
-					"id": 23,
-					"name": "カタルシスの月"
-				}
-			]
-		},
-		{
-			"optgroup": 5,
-			"items": [
-				{
-					"id": 24,
-					"name": "YUNI"
-				},
-				{
-					"id": 25,
-					"name": "AKIRA"
-				},
-				{
-					"id": 26,
-					"name": "Destination"
-				},
-				{
-					"id": 27,
-					"name": "HyperTwist"
-				},
-				{
-					"id": 28,
-					"name": "Cosy Catastrophe"
-				},
-				{
-					"id": 29,
-					"name": "New York EVOLVED"
-				},
-				{
-					"id": 30,
-					"name": "bag (EXPERT譜面 x0.25 WAVE)"
-				},
-				{
-					"id": 31,
-					"name": "YUNI & AKIRA"
-				},
-				{
-					"id": 32,
-					"name": "ALICE & YUNI"
-				}
-			]
-		},
-		{
-			"optgroup": 6,
-			"items": [
-				{
-			        "id": 33,
-			        "name": "天戸紺 (Amado Kon)"
-			    },
-			    {
-			        "id": 34,
-			        "name": "小舞桜 (Komai Sakura)"
-			    },
-			    {
-			        "id": 35,
-			        "name": "天戸紺 & 小舞桜 (Amado Kon & Komai Sakura)"
-			    },
-			    {
-			        "id": 36,
-			        "name": "Deep tenDon Reflex"
-			    },
-			    {
-			        "id": 37,
-			        "name": "ROCK THE PARTY"
-			    },
-			    {
-			        "id": 38,
-			        "name": "エンドルフィン"
-			    },
-			    {
-			        "id": 39,
-			        "name": "†渚の小悪魔ラヴリィ～レイディオ† (CHALLENGE譜面)"
-			    }
-			]
-		},
-		{
-			"optgroup": 7,
-			"items": [
-				{
-					"id": 40,
-					"name": "TSUGARU (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 41,
-					"name": "GRACE (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 42,
-					"name": "RINON (春のコナステ大感謝祭2024)"	
-				},
-				{
-					"id": 43,
-					"name": "MIMI (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 44,
-					"name": "RIO (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 45,
-					"name": "All Characters Assembly (春のコナステ大感謝祭2024)"
-				},
-				{
-					"id": 46,
-					"name": "DDR System Songs + Replicant Mix"
-				}
-			]
-		},
-		{
-			"optgroup": 8,
-			"items": [
-				{
-					"id": 47,
-					"name": "YUNI (SUMMER)"
-				},
-				{
-					"id": 48,
-					"name": "ALICE (SUMMER)"
-				},
-				{
-					"id": 49,
-					"name": "YUNI (SUMMER) & ALICE (SUMMER)"
-				},
-				{
-					"id": 50,
-					"name": "Reach the Sky, Without You"
-				},
-				{
-					"id": 51,
-					"name": "†渚の小悪魔ラヴリィ～レイディオ†"
-				},
 				{
 					"id": 52,
-					"name": "天空の華"
+					"name": "灰庭まよい"
 				},
 				{
 					"id": 53,
-					"name": "take me higher"
-				}
-			]
-		}
-	],
-	"gameBG": [
-		{
-			"optgroup": 0,
-			"items": [
-				{
-					"id": 1,
-					"name": "WORLD (パターン1)" 
+					"name": "ヒネリ"
 				},
 				{
-					"id": 2,
-					"name": "WORLD (パターン2)" 
+					"id": 54,
+					"name": "Beluga"
 				},
 				{
-					"id": 3,
-					"name": "WORLD (パターン3)"
+					"id": 55,
+					"name": "Unreality"
+				},
+				{
+					"id": 56,
+					"name": "Come Back to Me (Feel It)"
 				}
 			]
 		},
 		{
-			"optgroup": 2,
+			"optgroup": 10,
 			"items": [
 				{
-					"id": 4,
-					"name": "ヘキサグラム (パターン1)" 
+					"id": 57,
+					"name": "博麗 霊夢"
 				},
 				{
-					"id": 5,
-					"name": "ヘキサグラム (パターン2)"
+					"id": 58,
+					"name": "東風谷 早苗"
 				},
 				{
-					"id": 6,
-					"name": "ヘキサグラム (パターン3)"
+					"id": 59,
+					"name": "古明地 こいし"
 				},
 				{
-					"id": 7,
-					"name": "ヘキサグラム (パターン4)"
+					"id": 60,
+					"name": "フランドール・スカーレット"
 				},
 				{
-					"id": 8,
-					"name": "ヘキサグラム (パターン5)"
+					"id": 61,
+					"name": "残像ニ繋ガレタ追憶ノHIDEAWAY"
+				},
+				{
+					"id": 62,
+					"name": "弾幕信仰"
 				}
 			]
 		},
 		{
-			"optgroup": 3,
+			"optgroup": 11,
 			"items": [
 				{
-					"id": 9,
-					"name": "BPL S2"
+					"id": 63,
+					"name": "東堂コハク"
 				},
 				{
-					"id": 10,
-					"name": "BPL S4"
+					"id": 64,
+					"name": "山神カルタ"
 				},
 				{
-					"id": 11,
-					"name": "EMIまみれ (BPL S4)"
+					"id": 65,
+					"name": "レイン・パターソン"
+				},
+				{
+					"id": 66,
+					"name": "東堂コハク (DDR)"
+				},
+				{
+					"id": 67,
+					"name": "山神カルタ (DDR)"
+				},
+				{
+					"id": 68,
+					"name": "レイン・パターソン (DDR)"
+				},
+				{
+					"id": 69,
+					"name": "東堂コハク (DDR デフォルメ)"
+				},
+				{
+					"id": 70,
+					"name": "山神カルタ (DDR デフォルメ)"
+				},
+				{
+					"id": 71,
+					"name": "レイン・パターソン (DDR デフォルメ)"
 				}
 			]
 		},
 		{
-			"optgroup": 4,
+			"optgroup": 12,
 			"items": [
 				{
-					"id": 12,
-					"name": "ちくわまつり2023"
+					"id": 72,
+					"name": "倉持めると"
 				},
 				{
-					"id": 13,
-					"name": "ちくわまつり2025"
+					"id": 73,
+					"name": "セラフ・ダズルガーデン"
 				},
 				{
-					"id": 14,
-					"name": "ひなビタ♪＆ここなつ ミニキャラ大集合"
+					"id": 74,
+					"name": "長尾景"
 				},
 				{
-					"id": 15,
-					"name": "ひなビタ♪＆ここなつ スライドショー"
+					"id": 75,
+					"name": "倉持めると (DDR)"
+				},
+				{
+					"id": 76,
+					"name": "セラフ・ダズルガーデン (DDR)"
+				},
+				{
+					"id": 77,
+					"name": "長尾景 (DDR)"
+				},
+				{
+					"id": 78,
+					"name": "倉持めると (DDR デフォルメ)"
+				},
+				{
+					"id": 79,
+					"name": "セラフ・ダズルガーデン (DDR デフォルメ)"
+				},
+				{
+					"id": 80,
+					"name": "長尾景 (DDR デフォルメ)"
 				}
 			]
 		},
 		{
-			"optgroup": 5,
+			"optgroup": 13,
 			"items": [
 				{
-					"id": 16,
-					"name": "ARROW (パターン1)"
+					"id": 81,
+					"name": "山形まり花 (音戯探偵)"
 				},
 				{
-					"id": 17,
-					"name": "ARROW (パターン2)"
+					"id": 82,
+					"name": "和泉一舞 (音戯探偵)"
 				},
 				{
-					"id": 18,
-					"name": "ARROW (パターン3)"
+					"id": 83,
+					"name": "春日咲子 (音戯探偵)"
 				},
 				{
-					"id": 19,
-					"name": "ARROW (パターン4)"
+					"id": 84,
+					"name": "霜月凛 (音戯探偵)"
 				},
 				{
-					"id": 20,
-					"name": "ARROW (パターン5)"
+					"id": 85,
+					"name": "芽兎めう (音戯探偵)"
 				},
 				{
-					"id": 21,
-					"name": "WORLD (パターン4)"
+					"id": 86,
+					"name": "菫平すみれ (音戯探偵)"
 				}
 			]
 		},
 		{
-			"optgroup": 6,
+			"optgroup": 14,
 			"items": [
 				{
-			        "id": 22,
-			        "name": "ARROW (パターン6)"
-			    },
-			    {
-			        "id": 23,
-			        "name": "ヘキサグラム (パターン6)"
-			    },
-			    {
-			        "id": 24,
-			        "name": "WORLD (パターン5)"
-			    }
-			]
-		},
-		{
-			"optgroup": 7,
-			"items": [
-				{
-					"id": 25,
-					"name": "春のコナステ大感謝祭2024"
+					"id": 87,
+					"name": "璃音"
 				},
 				{
-					"id": 26,
-					"name": "ミニマスコット大集合 (春のコナステ大感謝祭2024)"
+					"id": 88,
+					"name": "響香"
 				},
 				{
-					"id": 27,
-					"name": "Character Slideshow (春のコナステ大感謝祭2024)"
+					"id": 89,
+					"name": "キヤロラ衛星の軌跡"
+				},
+				{
+					"id": 90,
+					"name": "MODEL FT2 Miracle Version"
+				},
+				{
+					"id": 91,
+					"name": "Timepiece phase Ⅱ"
 				}
 			]
 		},
 		{
-			"optgroup": 8,
+			"optgroup": 15,
 			"items": [
 				{
-					"id": 28,
-					"name": "OCEAN (パターン1)"
+					"id": 92,
+					"name": "ミミ"
 				},
 				{
-					"id": 29,
-					"name": "OCEAN (パターン2)"
-				},				
+					"id": 93,
+					"name": "ニャミ"
+				},
 				{
-					"id": 30,
-					"name": "OCEAN (パターン3)"
+					"id": 94,
+					"name": "僕の気持ちを描く"
+				},
+				{
+					"id": 95,
+					"name": "BILLION MONEY BAZOOKA"
+				},
+				{
+					"id": 96,
+					"name": "Fragarach"
 				}
 			]
 		}

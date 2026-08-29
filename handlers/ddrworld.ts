@@ -904,9 +904,11 @@ export const playerdataload: EPR = async (info, data, send) => {
       rival: [],
       score: scoreFin,
       event: eventFin,
-      league: leagueData,
       customize: userCustomize,
-      brave: galaxyBrave
+      brave: galaxyBrave,
+      ...(U.GetConfig("world_league") && {
+        league: leagueData
+      })
     });
   }
 };
@@ -1130,6 +1132,7 @@ const loadEventData = async (eventData, refid) => {
     }
     
     if(condmet) {
+      if(event.type === 9999 && event.id === 101 && !U.GetConfig('world_league')) continue
       result.push({
         id: event.id,
         type: event.type,

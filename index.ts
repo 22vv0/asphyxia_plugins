@@ -26,6 +26,11 @@ export function register() {
     default: true,
     type: "boolean"
   });
+  R.Config("world_league", {
+    name: "WORLD LEAGUE",
+    default: false,
+    type: "boolean"
+  })
 
   R.DataFile('./webui/uploads/mdb_limited.xml', {name: 'musicdb.xml for musicdata_load', desc: 'musicdb.xml file to use for importing unlock and difficulty level info. (If not using modified musicdb, I advice using the musicdb file from DDR A3 2024040200.)', accept: 'text/xml, .xml'});
   R.DataFile('./webui/uploads/mdb_title.xml', {name: 'musicdb.xml for WebUI', desc: 'musicdb.xml file to retrieve song titles from, for use in WebUI. Keep this blank if you want to use the same file as above. (I advice using the latest DDR WORLD musicdb.)', accept: 'text/xml, .xml'});

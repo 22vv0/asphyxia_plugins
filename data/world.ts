@@ -41,7 +41,22 @@ export const SONGS_WORLD = [
 	{ mcode: 38685, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 8, 12, 15, 0, 0, 8, 12, 15, 0] },
 	{ mcode: 38684, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 6, 12, 16, 0, 0, 6, 12, 16, 0] },
 	{ mcode: 38690, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 7, 12, 16, 0, 0, 7, 12, 16, 0] },
-	
+	{ mcode: 38786, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [2, 4, 11, 15, 17, 0, 4, 11, 15, 17] },
+	{ mcode: 38789, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [2, 4, 9, 13, 16, 0, 4, 9, 13, 17] },
+	{ mcode: 38791, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 6, 11, 14, 0, 0, 6, 11, 14, 0] },
+	{ mcode: 38784, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [2, 6, 10, 13, 0, 0, 6, 10, 13, 0] },
+	{ mcode: 38788, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [3, 7, 11, 15, 18, 0, 7, 11, 15, 18] },
+	{ mcode: 38785, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [3, 6, 11, 16, 17, 0, 6, 11, 16, 17] },
+	{ mcode: 38783, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [3, 8, 12, 15, 18, 0, 8, 12, 15, 18] },
+	{ mcode: 38790, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 6, 10, 15, 0, 0, 5, 10, 15, 0] },
+	{ mcode: 38871, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [3, 5, 11, 15, 18, 0, 6, 12, 15, 18] },
+	{ mcode: 38870, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 6, 11, 14, 0, 0, 6, 11, 14, 0] },
+	{ mcode: 38891, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [2, 6, 12, 16, 0, 0, 6, 12, 16, 0] },
+	{ mcode: 38887, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 7, 10, 14, 0, 0, 7, 10, 15, 0] },
+	{ mcode: 38890, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [1, 5, 10, 14, 0, 0, 5, 10, 14, 0] },
+	{ mcode: 38889, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 8, 11, 13, 0, 0, 8, 11, 13, 0] },
+	{ mcode: 38888, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 8, 10, 14, 0, 0, 8, 10, 14, 0] },
+
 	// galaxy brave
 	{ mcode: 38642, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 8, 12, 15, 17, 0, 8, 12, 15, 17] },
 	{ mcode: 38726, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [5, 10, 13, 16, 18, 0, 10, 13, 16, 18] },
@@ -49,15 +64,25 @@ export const SONGS_WORLD = [
 	{ mcode: 38709, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [3, 7, 11, 13, 17, 0, 7, 11, 13, 17] },
 	{ mcode: 38697, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 6, 11, 14, 16, 0, 6, 11, 14, 16] },
 	{ mcode: 38831, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [5, 9, 12, 16, 18, 0, 9, 12, 16, 18] },
+	{ mcode: 38841, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [3, 6, 12, 15, 18, 0, 6, 12, 15, 18] },
+	{ mcode: 38835, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [3, 7, 10, 14, 17, 0, 7, 10, 14, 17] },
+	{ mcode: 38834, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [6, 10, 14, 16, 18, 0, 10, 14, 16, 18] },
+	{ mcode: 38854, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 8, 12, 15, 17, 0, 8, 12, 15, 17] },
+	{ mcode: 38858, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [5, 11, 14, 16, 18, 0, 11, 14, 17, 18] },
 
 	// world league
-	{ mcode: 38622, limited_ary: [11, 11, 11, 11, -1, -1, 11, 11, 11, -1], diffLv: [2, 7, 12, 15, 0, 0, 7, 12, 15, 0] },
-	{ mcode: 38629, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [3, 7, 12, 16, 0, 0, 7, 12, 16, 0] },
-	{ mcode: 38600, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [4, 9, 12, 15, 0, 0, 9, 12, 15, 0] },
-	{ mcode: 38630, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [3, 6, 12, 15, 0, 0, 6, 11, 15, 0] },
-	{ mcode: 38732, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [3, 7, 10, 14, 0, 0, 6, 10, 14, 0] },
-	{ mcode: 38631, limited_ary: [13, 13, 13, 13, -1, -1, 13, 13, 13, -1], diffLv: [3, 6, 12, 14, 0, 0, 6, 12, 14, 0] },
-	{ mcode: 38725, limited_ary: [13, 13, 13, 13, -1, -1, 13, 13, 13, -1], diffLv: [2, 5, 11, 16, 0, 0, 5, 11, 17, 0] },
+	{ mcode: 38600, limited_ary: [11, 11, 11, 11, -1, -1, 11, 11, 11, -1], diffLv: [4, 9, 12, 15, 0, 0, 9, 12, 15, 0] },
+	{ mcode: 38630, limited_ary: [11, 11, 11, 11, -1, -1, 11, 11, 11, -1], diffLv: [3, 6, 12, 15, 0, 0, 6, 11, 15, 0] },
+	{ mcode: 38732, limited_ary: [11, 11, 11, 11, -1, -1, 11, 11, 11, -1], diffLv: [3, 7, 10, 14, 0, 0, 6, 10, 14, 0] },
+	{ mcode: 38631, limited_ary: [11, 11, 11, 11, -1, -1, 11, 11, 11, -1], diffLv: [3, 6, 12, 14, 0, 0, 6, 12, 14, 0] },
+	{ mcode: 38725, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [2, 5, 11, 16, 0, 0, 5, 11, 17, 0] },
+	{ mcode: 38699, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [3, 6, 11, 14, 0, 0, 6, 11, 14, 0] },
+	{ mcode: 38698, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [2, 5, 9, 15, 0, 0, 5, 9, 15, 0] },
+	{ mcode: 38792, limited_ary: [12, 12, 12, 12, -1, -1, 12, 12, 12, -1], diffLv: [4, 9, 13, 16, 0, 0, 9, 13, 16, 0] },
+	
+	// ex-world league
+	{ mcode: 38622, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 7, 12, 15, 0, 0, 7, 12, 15, 0] },
+	{ mcode: 38629, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 7, 12, 16, 0, 0, 7, 12, 16, 0] },
 	
 	// mystical reunion
 	{ mcode: 38746, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 8, 14, 16, 0, 0, 8, 14, 16, 0] },
@@ -78,21 +103,19 @@ export const SONGS_WORLD = [
 	{ mcode: 38823, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [5, 10, 13, 17, 0, 0, 9, 13, 17, 0] },
 	{ mcode: 38827, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 9, 17, 18, 0, 0, 9, 14, 18, 0] },
 
+	// bpl s5 triple tribe
+	{ mcode: 38867, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 7, 11, 15, 0, 0, 7, 11, 16, 0] },
+	{ mcode: 38864, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 8, 12, 15, 0, 0, 7, 12, 15, 0] },
+	{ mcode: 38865, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 8, 12, 15, 0, 0, 8, 12, 16, 0] },
+	{ mcode: 38868, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 7, 13, 16, 0, 0, 7, 13, 16, 0] },
+	{ mcode: 38873, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [5, 10, 15, 18, 0, 0, 10, 15, 18, 0] },
+
+	// cheers x cheers
+	{ mcode: 38878, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [2, 6, 10, 13, 0, 0, 7, 10, 13, 0] },
+	{ mcode: 38877, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 7, 12, 16, 0, 0, 7, 12, 16, 0] },
+	{ mcode: 38892, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [7, 10, 14, 17, 0, 0, 10, 14, 18, 0] },
+	
 	// Advance play
-	{ mcode: 38760, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 8, 13, 16, 18, 0, 8, 13, 16, 18] },
-	{ mcode: 38761, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 8, 12, 15, 0, 0, 8, 12, 15, 0] },
-	{ mcode: 38771, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 6, 11, 15, 0, 0, 6, 12, 15, 0] },
-	{ mcode: 38773, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 7, 13, 16, 0, 0, 7, 13, 16, 0] },
-	{ mcode: 38772, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [2, 7, 12, 16, 0, 0, 7, 12, 16, 0] },
-	{ mcode: 38774, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 8, 12, 15, 0, 0, 8, 12, 15, 0] },
-	{ mcode: 38762, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 8, 15, 17, 19, 0, 7, 16, 17, 19] },
-	{ mcode: 38770, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 6, 12, 16, 0, 0, 5, 12, 16, 0] },
-	{ mcode: 38769, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 7, 10, 15, 0, 0, 7, 11, 15, 0] },
-	{ mcode: 38768, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [2, 7, 12, 16, 0, 0, 7, 12, 16, 0] },
-	{ mcode: 38779, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 8, 13, 16, 0, 0, 8, 13, 17, 0] },
-	{ mcode: 38780, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 9, 12, 16, 0, 0, 8, 12, 16, 0] },
-	{ mcode: 38781, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 7, 10, 13, 0, 0, 6, 10, 13, 0] },
-	{ mcode: 38778, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 7, 11, 15, 0, 0, 7, 11, 15, 0] },
 	{ mcode: 38808, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 7, 12, 16, 0, 0, 7, 13, 16, 0] },
 	{ mcode: 38819, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [3, 8, 12, 16, 0, 0, 8, 12, 16, 0] },
 	{ mcode: 38820, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [4, 8, 12, 16, 0, 0, 8, 12, 16, 0] },
@@ -111,6 +134,20 @@ export const SONGS_WORLD = [
 	{ mcode: 37604, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [2, 6, 9, 12, 14, 0, 5, 9, 12, 14] }, // 0930
 	{ mcode: 37234, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [1, 3, 7, 11, 0, 0, 3, 7, 11, 0] }, // 0930
 	{ mcode: 37363, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 5, 9, 13, 0, 0, 5, 9, 13, 0] }, // 0930
+	{ mcode: 38760, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 8, 13, 16, 18, 0, 8, 13, 16, 18] },
+	{ mcode: 38761, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [4, 8, 12, 15, 0, 0, 8, 12, 15, 0] },
+	{ mcode: 38762, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 8, 15, 17, 19, 0, 7, 16, 17, 19] },
+	{ mcode: 38773, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 7, 13, 16, 0, 0, 7, 13, 16, 0] },
+	{ mcode: 38774, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 8, 12, 15, 0, 0, 8, 12, 15, 0] },
+	{ mcode: 38769, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 7, 10, 15, 0, 0, 7, 11, 15, 0] },
+	{ mcode: 38771, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 6, 11, 15, 0, 0, 6, 12, 15, 0] },
+	{ mcode: 38772, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 7, 12, 16, 0, 0, 7, 12, 16, 0] },
+	{ mcode: 38770, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 6, 12, 16, 0, 0, 5, 12, 16, 0] },
+	{ mcode: 38768, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 7, 12, 16, 0, 0, 7, 12, 16, 0] },
+	{ mcode: 38779, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [4, 8, 13, 16, 0, 0, 8, 13, 17, 0] },
+	{ mcode: 38780, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 9, 12, 16, 0, 0, 8, 12, 16, 0] },
+	{ mcode: 38781, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 7, 10, 13, 0, 0, 6, 10, 13, 0] },
+	{ mcode: 38778, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 7, 11, 15, 0, 0, 7, 11, 15, 0] },
 	
 	// platinum pass
 	{ mcode: 38696, limited_ary: [16, 16, 16, 16, 16, -1, 16, 16, 16, 16], diffLv: [3, 5, 10, 15, 17, 0, 5, 10, 15, 17] },
@@ -175,19 +212,28 @@ export const SONGS_WORLD = [
 	{ mcode: 38802, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 6, 9, 12, 0, 0, 5, 9, 12, 0] },
 	{ mcode: 38798, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 6, 9, 12, 0, 0, 5, 9, 12, 0] },
 	{ mcode: 38821, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 5, 10, 13, 0, 0, 5, 10, 13, 0] },
+	{ mcode: 38849, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 7, 12, 15, 17, 0, 7, 12, 15, 17] },
+	{ mcode: 38847, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 7, 10, 13, 0, 0, 7, 10, 13, 0] },
+	{ mcode: 38830, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [1, 3, 9, 12, 16, 0, 3, 9, 12, 16] },
+	{ mcode: 38829, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [2, 5, 10, 14, 16, 0, 6, 11, 14, 16] },
+	{ mcode: 38886, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [2, 5, 10, 14, 16, 0, 5, 10, 14, 16] },
 	
 ]
 
 export const SONGS_OVERRIDE_WORLD = [
 	// advance play
-	{ mcode: 38523, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 8, 13, 16, 18, 0, 8, 13, 16, 18] },
-	{ mcode: 38153, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 6, 10, 12, 15, 0, 6, 10, 12, 15] },
 	{ mcode: 37600, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [2, 7, 9, 12, 15, 0, 7, 10, 12, 15] },
 	{ mcode: 38360, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 8, 12, 16, 17, 0, 8, 12, 16, 17] },
 	{ mcode: 38429, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 8, 11, 14, 18, 0, 8, 11, 14, 18] },
 	{ mcode: 38653, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 8, 14, 17, 18, 0, 8, 14, 17, 18] },
 	{ mcode: 38528, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [6, 9, 13, 17, 18, 0, 9, 13, 17, 18] },
-
+	{ mcode: 38534, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [5, 9, 14, 16, 17, 0, 9, 14, 17, 18] },
+	{ mcode: 38463, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [2, 6, 11, 14, 16, 0, 6, 11, 14, 17] },
+	{ mcode: 38658, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 8, 12, 14, 17, 0, 8, 12, 15, 18] },
+	{ mcode: 38633, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 7, 12, 16, 17, 0, 7, 12, 16, 17] },
+	{ mcode: 38641, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [7, 10, 13, 15, 17, 0, 10, 13, 14, 17] },
+	{ mcode: 38512, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 7, 12, 15, 18, 0, 7, 12, 15, 18] },
+	
 	// ex-advance play
 	{ mcode: 38212, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 7, 10, 15, 16, 0, 8, 11, 15, 16] },
 	{ mcode: 38295, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 7, 11, 14, 17, 0, 7, 11, 14, 17] },
@@ -198,6 +244,8 @@ export const SONGS_OVERRIDE_WORLD = [
 	{ mcode: 38405, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 6, 9, 13, 17, 0, 5, 9, 14, 17] }, // 0930
 	{ mcode: 38442, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 8, 13, 16, 18, 0, 8, 13, 16, 18] }, // 0930
 	{ mcode: 38436, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 7, 11, 14, 17, 0, 7, 11, 14, 17] }, // 0930
+	{ mcode: 38523, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 8, 13, 16, 18, 0, 8, 13, 16, 18] },
+	{ mcode: 38153, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 6, 10, 12, 15, 0, 6, 10, 12, 15] },
 	
 	// Extra Savior
 	{ mcode: 38624, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [2, 5, 10, 15, 17, 0, 5, 10, 15, 17] },
@@ -211,6 +259,12 @@ export const SONGS_OVERRIDE_WORLD = [
 	{ mcode: 38702, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [3, 4, 10, 15, 17, 0, 5, 10, 15, 17] },
 	{ mcode: 38701, limited_ary: [2, 2, 2, 2, 2, -1, 2, 2, 2, 2], diffLv: [4, 9, 14, 17, 18, 0, 9, 14, 17, 18] },
 	{ mcode: 38703, limited_ary: [2, 2, 2, 2, -1, -1, 2, 2, 2, -1], diffLv: [5, 10, 15, 18, 0, 0, 10, 15, 18, 0] },
+	{ mcode: 38110, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 6, 10, 14, 16, 0, 6, 10, 14, 16] },
+	{ mcode: 38062, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 6, 9, 13, 15, 0, 5, 10, 12, 15] },
+	{ mcode: 38782, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [2, 6, 9, 12, 15, 0, 5, 9, 12, 14] },
+	{ mcode: 38065, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [2, 6, 10, 13, 16, 0, 7, 10, 13, 17] },
+	{ mcode: 38063, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [4, 8, 11, 13, 17, 0, 7, 11, 13, 17] },
+	{ mcode: 38508, limited_ary: [0, 0, 0, 0, 2, -1, 0, 0, 0, 2], diffLv: [3, 5, 12, 16, 17, 0, 5, 12, 16, 18] },
 	
 	// galaxy brave 
 	{ mcode: 37914, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [4, 7, 9, 12, 0, 0, 7, 9, 11, 0] },
@@ -230,7 +284,22 @@ export const SONGS_OVERRIDE_WORLD = [
 	{ mcode: 37934, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 7, 10, 14, 0, 0, 6, 10, 14, 0] },
 	{ mcode: 38513, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 6, 10, 14, 0, 0, 6, 10, 14, 0] },
 	{ mcode: 38607, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [2, 7, 10, 14, 0, 0, 7, 10, 14, 0] },
-	
+	{ mcode: 36925, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [6, 8, 12, 14, 16, 0, 9, 12, 14, 15] },
+	{ mcode: 430, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [4, 9, 11, 15, 0, 0, 9, 11, 15, 0] },
+	{ mcode: 38365, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 7, 12, 15, 0, 0, 7, 12, 15, 0] },
+	{ mcode: 37783, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 5, 9, 11, 12, 0, 6, 8, 11, 12] },
+	{ mcode: 37895, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 6, 9, 12, 14, 0, 6, 9, 12, 14] },
+	{ mcode: 37530, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 7, 10, 14, 17, 0, 7, 10, 14, 17] },
+	{ mcode: 38088, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 6, 11, 15, 17, 0, 6, 11, 15, 17] },
+	{ mcode: 38634, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 7, 11, 15, 0, 0, 7, 11, 15, 0] },
+	{ mcode: 38010, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [4, 8, 11, 15, 18, 0, 7, 12, 15, 18] },
+	{ mcode: 38233, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [4, 6, 10, 14, 0, 0, 6, 10, 14, 0] },
+	{ mcode: 38027, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 7, 12, 15, 0, 0, 7, 12, 15, 0] },
+	{ mcode: 38340, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [4, 8, 12, 15, 0, 0, 8, 12, 15, 0] },
+	{ mcode: 37316, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [4, 7, 10, 13, 0, 0, 6, 11, 13, 0] },
+	{ mcode: 37949, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [3, 6, 10, 14, 0, 0, 6, 10, 14, 0] },
+	{ mcode: 38401, limited_ary: [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], diffLv: [5, 9, 12, 15, 0, 0, 9, 12, 15, 0] },
+
 	// Removed songs
 	{ mcode: 38273, limited_ary: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1], diffLv: [3, 5, 9, 12, 0, 0, 5, 9, 11, 0] },
 	{ mcode: 38550, limited_ary: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1], diffLv: [1, 5, 8, 15, 0, 0, 5, 8, 14, 0] },
@@ -513,13 +582,13 @@ export const EVENTS_WORLD = [
 	{ id: 81, no: 0, cond: 1, rwrd: 1185, type: 201, dep: [70, 75, 80] },
 	{ id: 82, no: 0, cond: 1, rwrd: 1186, type: 201, dep: [71] },
 
-	{ id: 83, no: 0, cond: 1, rwrd: 38746, type: 17 },
-	{ id: 84, no: 0, cond: 1, rwrd: 38745, type: 17 },
-	{ id: 85, no: 0, cond: 1, rwrd: 38744, type: 17 },
-	{ id: 86, no: 0, cond: 1, rwrd: 38747, type: 17 },
-	{ id: 87, no: 0, cond: 1, rwrd: 38748, type: 17 },
+	// { id: 83, no: 0, cond: 1, rwrd: 38746, type: 17 },
+	// { id: 84, no: 0, cond: 1, rwrd: 38745, type: 17 },
+	// { id: 85, no: 0, cond: 1, rwrd: 38744, type: 17 },
+	// { id: 86, no: 0, cond: 1, rwrd: 38747, type: 17 },
+	// { id: 87, no: 0, cond: 1, rwrd: 38748, type: 17 },
 
-	{ id: 88, no: 0, cond: 1, rwrd: 1189, type: 201 },
+	// { id: 88, no: 0, cond: 1, rwrd: 1189, type: 201 },
 	{ id: 89, no: 0, cond: 1, rwrd: 1188, type: 201 },
 
 	// ex-advance play songs
@@ -545,17 +614,18 @@ export const EVENTS_WORLD = [
 
 	{ id: 109, no: 0, cond: 1, rwrd: 1197, type: 201 },
 
-	{ id: 110, no: 0, cond: 1, rwrd: 38759, type: 43 },
-	{ id: 111, no: 0, cond: 1, rwrd: 38758, type: 43 },
-	{ id: 112, no: 0, cond: 1, rwrd: 38756, type: 43 },
+	// bpl s4 (moved to savior)
+	// { id: 110, no: 0, cond: 1, rwrd: 38759, type: 43 },
+	// { id: 111, no: 0, cond: 1, rwrd: 38758, type: 43 },
+	// { id: 112, no: 0, cond: 1, rwrd: 38756, type: 43 },
 
-	{ id: 113, no: 0, cond: 1, rwrd: 1201, type: 201 },
+	// { id: 113, no: 0, cond: 1, rwrd: 1201, type: 201 },
 
-	{ id: 114, no: 0, cond: 1, rwrd: 38760, type: 50 },
-	{ id: 115, no: 0, cond: 1, rwrd: 38760, type: 52 },
-	{ id: 116, no: 0, cond: 1, rwrd: 38761, type: 50 },
-	{ id: 117, no: 0, cond: 1, rwrd: 38428, type: 52 },
-	{ id: 118, no: 0, cond: 1, rwrd: 38424, type: 52 },
+	// { id: 114, no: 0, cond: 1, rwrd: 38760, type: 50 },
+	// { id: 115, no: 0, cond: 1, rwrd: 38760, type: 52 },
+	// { id: 116, no: 0, cond: 1, rwrd: 38761, type: 50 },
+	// { id: 117, no: 0, cond: 1, rwrd: 38428, type: 52 },
+	// { id: 118, no: 0, cond: 1, rwrd: 38424, type: 52 },
 
 	{ id: 119, no: 0, cond: 3, rwrd: 38712, type: 27 },
 	{ id: 120, no: 0, cond: 3, rwrd: 38718, type: 27 },
@@ -668,15 +738,15 @@ export const EVENTS_WORLD = [
 	{ id: 206, no: 2, cond: 1000000, rwrd: 38687, type: 25 },
 	{ id: 207, no: 3, cond: 2000000, rwrd: 38687, type: 25 },
 
-	{ id: 208, no: 0, cond: 1, rwrd: 38771, type: 50 },
-	{ id: 209, no: 0, cond: 1, rwrd: 38773, type: 50 },
-	{ id: 210, no: 0, cond: 1, rwrd: 38772, type: 50 },
-	{ id: 211, no: 0, cond: 1, rwrd: 38774, type: 50 },
-	{ id: 212, no: 0, cond: 1, rwrd: 38762, type: 50 },
-	{ id: 213, no: 0, cond: 1, rwrd: 38762, type: 52 },
-	{ id: 214, no: 0, cond: 1, rwrd: 38770, type: 50 },
-	{ id: 215, no: 0, cond: 1, rwrd: 38769, type: 50 },
-	{ id: 216, no: 0, cond: 1, rwrd: 38768, type: 50 },
+	// { id: 208, no: 0, cond: 1, rwrd: 38771, type: 50 },
+	// { id: 209, no: 0, cond: 1, rwrd: 38773, type: 50 },
+	// { id: 210, no: 0, cond: 1, rwrd: 38772, type: 50 },
+	// { id: 211, no: 0, cond: 1, rwrd: 38774, type: 50 },
+	// { id: 212, no: 0, cond: 1, rwrd: 38762, type: 50 },
+	// { id: 213, no: 0, cond: 1, rwrd: 38762, type: 52 },
+	// { id: 214, no: 0, cond: 1, rwrd: 38770, type: 50 },
+	// { id: 215, no: 0, cond: 1, rwrd: 38769, type: 50 },
+	// { id: 216, no: 0, cond: 1, rwrd: 38768, type: 50 },
 
 	{ id: 217, no: 0, cond: 1, rwrd: 38642, type: 90 },
 	{ id: 218, no: 1, cond: 1, rwrd: 38642, type: 90 },
@@ -690,13 +760,13 @@ export const EVENTS_WORLD = [
 	{ id: 225, no: 3, cond: 1, rwrd: 38726, type: 90 },
 	{ id: 226, no: 4, cond: 1, rwrd: 38726, type: 90 },
 
-	{ id: 227, no: 0, cond: 1, rwrd: 38779, type: 50 },
-	{ id: 228, no: 0, cond: 1, rwrd: 38780, type: 50 },
-	{ id: 229, no: 0, cond: 1, rwrd: 38523, type: 52 },
+	// { id: 227, no: 0, cond: 1, rwrd: 38779, type: 50 },
+	// { id: 228, no: 0, cond: 1, rwrd: 38780, type: 50 },
+	// { id: 229, no: 0, cond: 1, rwrd: 38523, type: 52 },
 
-	{ id: 230, no: 0, cond: 1, rwrd: 38781, type: 50 },
-	{ id: 231, no: 0, cond: 1, rwrd: 38778, type: 50 },
-	{ id: 232, no: 0, cond: 1, rwrd: 38153, type: 52 },
+	// { id: 230, no: 0, cond: 1, rwrd: 38781, type: 50 },
+	// { id: 231, no: 0, cond: 1, rwrd: 38778, type: 50 },
+	// { id: 232, no: 0, cond: 1, rwrd: 38153, type: 52 },
 
 	{ id: 233, no: 0, cond: 7, rwrd: 38702, type: 27 },
 	{ id: 234, no: 0, cond: 7, rwrd: 38701, type: 27 },
@@ -896,6 +966,248 @@ export const EVENTS_WORLD = [
 	{ id: 389, no: 0, cond: 1, rwrd: 38822, type: 17 },
 	{ id: 390, no: 0, cond: 1, rwrd: 38823, type: 17 },
 	{ id: 391, no: 0, cond: 1, rwrd: 38827, type: 17 },
+
+	{ id: 392, no: 0, cond: 13, rwrd: 38746, type: 27 },
+	{ id: 393, no: 0, cond: 13, rwrd: 38744, type: 27 },
+	{ id: 394, no: 0, cond: 13, rwrd: 38745, type: 27 },
+	{ id: 395, no: 0, cond: 13, rwrd: 38747, type: 27 },
+	{ id: 396, no: 0, cond: 13, rwrd: 38748, type: 27 },
+
+	{ id: 397, no: 0, cond: 1, rwrd: 38744, type: 25 },
+	{ id: 398, no: 1, cond: 500000, rwrd: 38744, type: 25 },
+	{ id: 399, no: 2, cond: 1000000, rwrd: 38744, type: 25 },
+	{ id: 400, no: 3, cond: 2000000, rwrd: 38744, type: 25 },
+
+	{ id: 401, no: 0, cond: 1, rwrd: 38745, type: 25 },
+	{ id: 402, no: 1, cond: 500000, rwrd: 38745, type: 25 },
+	{ id: 403, no: 2, cond: 1000000, rwrd: 38745, type: 25 },
+	{ id: 404, no: 3, cond: 2000000, rwrd: 38745, type: 25 },
+
+	{ id: 405, no: 0, cond: 1, rwrd: 38747, type: 25 },
+	{ id: 406, no: 1, cond: 500000, rwrd: 38747, type: 25 },
+	{ id: 407, no: 2, cond: 1000000, rwrd: 38747, type: 25 },
+	{ id: 408, no: 3, cond: 2000000, rwrd: 38747, type: 25 },
+
+	{ id: 409, no: 0, cond: 1, rwrd: 38746, type: 25 },
+	{ id: 410, no: 1, cond: 500000, rwrd: 38746, type: 25 },
+	{ id: 411, no: 2, cond: 1000000, rwrd: 38746, type: 25 },
+	{ id: 412, no: 3, cond: 2000000, rwrd: 38746, type: 25 },
+	{ id: 413, no: 4, cond: 3000000, rwrd: 38746, type: 25, dep: [400, 404, 408, 412, 417] },
+
+	{ id: 414, no: 0, cond: 1, rwrd: 38748, type: 25 },
+	{ id: 415, no: 1, cond: 500000, rwrd: 38748, type: 25 },
+	{ id: 416, no: 2, cond: 1000000, rwrd: 38748, type: 25 },
+	{ id: 417, no: 3, cond: 2000000, rwrd: 38748, type: 25 },
+	{ id: 418, no: 4, cond: 3000000, rwrd: 38748, type: 25, dep: [413] },
+
+	{ id: 419, no: 0, cond: 1, rwrd: 1229, type: 201, dep: [400, 404, 408, 412, 417] },
+	{ id: 420, no: 0, cond: 1, rwrd: 1230, type: 201, dep: [413] },
+	
+	{ id: 421, no: 0, cond: 1, rwrd: 38841, type: 90 },
+	{ id: 422, no: 1, cond: 1, rwrd: 38841, type: 90 },
+	{ id: 423, no: 2, cond: 1, rwrd: 38841, type: 90 },
+	{ id: 424, no: 3, cond: 1, rwrd: 38841, type: 90 },
+	{ id: 425, no: 4, cond: 1, rwrd: 38841, type: 90 },
+
+	{ id: 426, no: 0, cond: 14, rwrd: 38756, type: 27 },
+	{ id: 427, no: 0, cond: 14, rwrd: 38759, type: 27 },
+	{ id: 428, no: 0, cond: 14, rwrd: 38758, type: 27 },
+
+	{ id: 429, no: 0, cond: 1, rwrd: 38756, type: 25 },
+	{ id: 430, no: 1, cond: 500000, rwrd: 38756, type: 25 },
+	{ id: 431, no: 2, cond: 1000000, rwrd: 38756, type: 25 },
+	{ id: 432, no: 3, cond: 2000000, rwrd: 38756, type: 25 },
+
+	{ id: 433, no: 0, cond: 1, rwrd: 38759, type: 25 },
+	{ id: 434, no: 1, cond: 500000, rwrd: 38759, type: 25 },
+	{ id: 435, no: 2, cond: 1000000, rwrd: 38759, type: 25 },
+	{ id: 436, no: 3, cond: 2000000, rwrd: 38759, type: 25 },
+	{ id: 437, no: 4, cond: 3000000, rwrd: 38759, type: 25, dep: [432, 436, 441] },
+
+	{ id: 438, no: 0, cond: 1, rwrd: 38758, type: 25 },
+	{ id: 439, no: 1, cond: 500000, rwrd: 38758, type: 25 },
+	{ id: 440, no: 2, cond: 1000000, rwrd: 38758, type: 25 },
+	{ id: 441, no: 3, cond: 2000000, rwrd: 38758, type: 25 },
+	{ id: 442, no: 4, cond: 3000000, rwrd: 38758, type: 25, dep: [437] },
+
+	{ id: 443, no: 0, cond: 1, rwrd: 1231, type: 201, dep: [432, 436, 441] },
+	{ id: 444, no: 0, cond: 1, rwrd: 1232, type: 201, dep: [437] },
+	
+	{ id: 445, no: 0, cond: 1, rwrd: 38835, type: 90 },
+	{ id: 446, no: 1, cond: 1, rwrd: 38835, type: 90 },
+	{ id: 447, no: 2, cond: 1, rwrd: 38835, type: 90 },
+	{ id: 448, no: 3, cond: 1, rwrd: 38835, type: 90 },
+	{ id: 449, no: 4, cond: 1, rwrd: 38835, type: 90 },
+
+	{ id: 450, no: 0, cond: 1, rwrd: 38834, type: 90 },
+	{ id: 451, no: 1, cond: 1, rwrd: 38834, type: 90 },
+	{ id: 452, no: 2, cond: 1, rwrd: 38834, type: 90 },
+	{ id: 453, no: 3, cond: 1, rwrd: 38834, type: 90 },
+	{ id: 454, no: 4, cond: 1, rwrd: 38834, type: 90 },
+
+	{ id: 455, no: 0, cond: 15, rwrd: 38786, type: 27 },
+	{ id: 456, no: 0, cond: 15, rwrd: 38789, type: 27 },
+	{ id: 457, no: 0, cond: 15, rwrd: 38791, type: 27 },
+	{ id: 458, no: 0, cond: 15, rwrd: 38784, type: 27 },
+	{ id: 459, no: 0, cond: 15, rwrd: 38788, type: 27 },
+	{ id: 460, no: 0, cond: 15, rwrd: 38785, type: 27 },
+	{ id: 461, no: 0, cond: 15, rwrd: 38783, type: 27 },
+	{ id: 462, no: 0, cond: 15, rwrd: 38790, type: 27 },
+
+	{ id: 463, no: 0, cond: 1, rwrd: 38786, type: 25 },
+	{ id: 464, no: 1, cond: 500000, rwrd: 38786, type: 25 },
+	{ id: 465, no: 2, cond: 1000000, rwrd: 38786, type: 25 },
+	{ id: 466, no: 3, cond: 2000000, rwrd: 38786, type: 25 },
+	{ id: 467, no: 4, cond: 3000000, rwrd: 38786, type: 25, dep: [490, 495, 499] },
+
+	{ id: 468, no: 0, cond: 1, rwrd: 38789, type: 25 },
+	{ id: 469, no: 1, cond: 500000, rwrd: 38789, type: 25 },
+	{ id: 470, no: 2, cond: 1000000, rwrd: 38789, type: 25 },
+	{ id: 471, no: 3, cond: 2000000, rwrd: 38789, type: 25 },
+	{ id: 472, no: 4, cond: 3000000, rwrd: 38789, type: 25, dep: [490, 495, 499] },
+	
+	{ id: 473, no: 0, cond: 1, rwrd: 38791, type: 25 },
+	{ id: 474, no: 1, cond: 500000, rwrd: 38791, type: 25 },
+	{ id: 475, no: 2, cond: 1000000, rwrd: 38791, type: 25 },
+	{ id: 476, no: 3, cond: 2000000, rwrd: 38791, type: 25 },
+
+	{ id: 477, no: 0, cond: 1, rwrd: 38784, type: 25 },
+	{ id: 478, no: 1, cond: 500000, rwrd: 38784, type: 25 },
+	{ id: 479, no: 2, cond: 1000000, rwrd: 38784, type: 25 },
+	{ id: 480, no: 3, cond: 2000000, rwrd: 38784, type: 25 },
+
+	{ id: 481, no: 0, cond: 1, rwrd: 38788, type: 25 },
+	{ id: 482, no: 1, cond: 500000, rwrd: 38788, type: 25 },
+	{ id: 483, no: 2, cond: 1000000, rwrd: 38788, type: 25 },
+	{ id: 484, no: 3, cond: 2000000, rwrd: 38788, type: 25 },
+	{ id: 485, no: 4, cond: 3000000, rwrd: 38788, type: 25, dep: [490, 495, 499] },
+	
+	{ id: 486, no: 0, cond: 1, rwrd: 38785, type: 25, dep: [466, 471, 476, 480, 484] },
+	{ id: 487, no: 1, cond: 500000, rwrd: 38785, type: 25, dep: [466, 471, 476, 480, 484] },
+	{ id: 488, no: 2, cond: 1000000, rwrd: 38785, type: 25, dep: [466, 471, 476, 480, 484] },
+	{ id: 489, no: 3, cond: 2000000, rwrd: 38785, type: 25, dep: [466, 471, 476, 480, 484] },
+	{ id: 490, no: 4, cond: 3000000, rwrd: 38785, type: 25, dep: [466, 471, 476, 480, 484] },
+	
+	{ id: 491, no: 0, cond: 1, rwrd: 38783, type: 25, dep: [466, 471, 476, 480, 484] },
+	{ id: 492, no: 1, cond: 500000, rwrd: 38783, type: 25, dep: [466, 471, 476, 480, 484] },
+	{ id: 493, no: 2, cond: 1000000, rwrd: 38783, type: 25, dep: [466, 471, 476, 480, 484] },
+	{ id: 494, no: 3, cond: 2000000, rwrd: 38783, type: 25, dep: [466, 471, 476, 480, 484] },
+	{ id: 495, no: 4, cond: 3000000, rwrd: 38783, type: 25, dep: [466, 471, 476, 480, 484] },
+	
+	{ id: 496, no: 0, cond: 1, rwrd: 38790, type: 25, dep: [466, 471, 476, 480, 484] },
+	{ id: 497, no: 1, cond: 500000, rwrd: 38790, type: 25, dep: [466, 471, 476, 480, 484] },
+	{ id: 498, no: 2, cond: 1000000, rwrd: 38790, type: 25, dep: [466, 471, 476, 480, 484] },
+	{ id: 499, no: 3, cond: 2000000, rwrd: 38790, type: 25, dep: [466, 471, 476, 480, 484] },
+
+	{ id: 500, no: 0, cond: 1, rwrd: 1233, type: 201, dep: [466, 471, 476, 480, 484] },
+	{ id: 501, no: 0, cond: 1, rwrd: 1234, type: 201, dep: [490, 495, 499] },
+
+	{ id: 502, no: 0, cond: 1, rwrd: 1235, type: 201 },
+	{ id: 503, no: 0, cond: 1, rwrd: 1236, type: 201 },
+
+	{ id: 504, no: 0, cond: 1, rwrd: 38534, type: 52 },
+	{ id: 505, no: 0, cond: 1, rwrd: 38463, type: 52 },
+	{ id: 506, no: 0, cond: 1, rwrd: 38658, type: 52 },
+
+	{ id: 507, no: 0, cond: 16, rwrd: 38110, type: 27 },
+	{ id: 508, no: 0, cond: 16, rwrd: 38062, type: 27 },
+	{ id: 509, no: 0, cond: 16, rwrd: 38782, type: 27 },
+	{ id: 510, no: 0, cond: 16, rwrd: 38065, type: 27 },
+	{ id: 511, no: 0, cond: 16, rwrd: 38063, type: 27 },
+
+	{ id: 512, no: 4, cond: 3000000, rwrd: 38110, type: 25 },
+	{ id: 513, no: 4, cond: 3000000, rwrd: 38062, type: 25 },
+	{ id: 514, no: 4, cond: 3000000, rwrd: 38782, type: 25 },
+	{ id: 515, no: 4, cond: 3000000, rwrd: 38065, type: 25, dep: [512, 513, 514] },
+	{ id: 516, no: 4, cond: 3000000, rwrd: 38063, type: 25, dep: [515] },
+
+	{ id: 517, no: 0, cond: 1, rwrd: 1237, type: 201, dep: [512, 513, 514] },
+	{ id: 518, no: 0, cond: 1, rwrd: 1238, type: 201, dep: [515] },
+	
+	{ id: 519, no: 0, cond: 1, rwrd: 38854, type: 90 },
+	{ id: 520, no: 1, cond: 1, rwrd: 38854, type: 90 },
+	{ id: 521, no: 2, cond: 1, rwrd: 38854, type: 90 },
+	{ id: 522, no: 3, cond: 1, rwrd: 38854, type: 90 },
+	{ id: 523, no: 4, cond: 1, rwrd: 38854, type: 90 },
+
+	{ id: 524, no: 0, cond: 17, rwrd: 38871, type: 27 },
+	{ id: 525, no: 0, cond: 17, rwrd: 38870, type: 27 },
+	{ id: 526, no: 0, cond: 17, rwrd: 38508, type: 27 },
+
+	{ id: 527, no: 0, cond: 1, rwrd: 38871, type: 25 },
+	{ id: 528, no: 1, cond: 500000, rwrd: 38871, type: 25 },
+	{ id: 529, no: 2, cond: 1000000, rwrd: 38871, type: 25 },
+	{ id: 530, no: 3, cond: 2000000, rwrd: 38871, type: 25 },
+	{ id: 531, no: 4, cond: 3000000, rwrd: 38871, type: 25, dep: [537] },
+
+	{ id: 532, no: 0, cond: 1, rwrd: 38870, type: 25 },
+	{ id: 533, no: 1, cond: 500000, rwrd: 38870, type: 25 },
+	{ id: 534, no: 2, cond: 1000000, rwrd: 38870, type: 25 },
+	{ id: 535, no: 3, cond: 2000000, rwrd: 38870, type: 25 },
+
+	{ id: 536, no: 4, cond: 3000000, rwrd: 38508, type: 25, dep: [530, 535] },
+	
+	{ id: 537, no: 0, cond: 1, rwrd: 1239, type: 201, dep: [530, 535] },
+	{ id: 538, no: 0, cond: 1, rwrd: 1240, type: 201, dep: [537] },
+
+	{ id: 539, no: 0, cond: 1, rwrd: 1241, type: 201 },
+	{ id: 540, no: 0, cond: 1, rwrd: 38867, type: 17 },
+	{ id: 541, no: 0, cond: 1, rwrd: 38864, type: 17 },
+	{ id: 542, no: 0, cond: 1, rwrd: 38865, type: 17 },
+	{ id: 543, no: 0, cond: 1, rwrd: 38868, type: 17 },
+	{ id: 544, no: 0, cond: 1, rwrd: 38873, type: 17 },
+
+	{ id: 545, no: 0, cond: 1, rwrd: 1247, type: 201 },
+	{ id: 546, no: 0, cond: 1, rwrd: 38878, type: 17 },
+	{ id: 547, no: 0, cond: 1, rwrd: 38877, type: 17 },
+	{ id: 548, no: 0, cond: 1, rwrd: 38892, type: 17 },
+
+	{ id: 549, no: 0, cond: 18, rwrd: 38891, type: 27 },
+	{ id: 550, no: 0, cond: 18, rwrd: 38887, type: 27 },
+	{ id: 551, no: 0, cond: 18, rwrd: 38890, type: 27 },
+	{ id: 552, no: 0, cond: 18, rwrd: 38889, type: 27 },
+	{ id: 553, no: 0, cond: 18, rwrd: 38888, type: 27 },
+	{ id: 554, no: 0, cond: 18, rwrd: 38886, type: 27 },
+
+	{ id: 555, no: 0, cond: 1, rwrd: 38891, type: 25 },
+	{ id: 556, no: 1, cond: 500000, rwrd: 38891, type: 25 },
+	{ id: 557, no: 2, cond: 1000000, rwrd: 38891, type: 25 },
+	{ id: 558, no: 3, cond: 2000000, rwrd: 38891, type: 25 },
+
+	{ id: 559, no: 0, cond: 1, rwrd: 38887, type: 25 },
+	{ id: 560, no: 1, cond: 500000, rwrd: 38887, type: 25 },
+	{ id: 561, no: 2, cond: 1000000, rwrd: 38887, type: 25 },
+	{ id: 562, no: 3, cond: 2000000, rwrd: 38887, type: 25 },
+	
+	{ id: 563, no: 0, cond: 1, rwrd: 38890, type: 25 },
+	{ id: 564, no: 1, cond: 500000, rwrd: 38890, type: 25 },
+	{ id: 565, no: 2, cond: 1000000, rwrd: 38890, type: 25 },
+	{ id: 566, no: 3, cond: 2000000, rwrd: 38890, type: 25 },
+	
+	{ id: 567, no: 0, cond: 1, rwrd: 38889, type: 25 },
+	{ id: 568, no: 1, cond: 500000, rwrd: 38889, type: 25 },
+	{ id: 569, no: 2, cond: 1000000, rwrd: 38889, type: 25 },
+	{ id: 570, no: 3, cond: 2000000, rwrd: 38889, type: 25 },
+	
+	{ id: 571, no: 0, cond: 1, rwrd: 38888, type: 25, dep: [558, 562, 566, 570] },
+	{ id: 572, no: 1, cond: 500000, rwrd: 38888, type: 25, dep: [558, 562, 566, 570] },
+	{ id: 573, no: 2, cond: 1000000, rwrd: 38888, type: 25, dep: [558, 562, 566, 570] },
+	{ id: 574, no: 3, cond: 2000000, rwrd: 38888, type: 25, dep: [558, 562, 566, 570] },
+
+	{ id: 575, no: 4, cond: 3000000, rwrd: 38886, type: 25, dep: [574] },
+
+	{ id: 576, no: 0, cond: 1, rwrd: 1251, type: 201, dep: [558, 562, 566, 570] },
+	{ id: 577, no: 0, cond: 1, rwrd: 1252, type: 201, dep: [574] },
+
+	{ id: 578, no: 0, cond: 1, rwrd: 38633, type: 52 },
+	{ id: 579, no: 0, cond: 1, rwrd: 38641, type: 52 },
+	{ id: 580, no: 0, cond: 1, rwrd: 38512, type: 52 },
+
+	{ id: 581, no: 0, cond: 1, rwrd: 38858, type: 90 },
+	{ id: 582, no: 1, cond: 1, rwrd: 38858, type: 90 },
+	{ id: 583, no: 2, cond: 1, rwrd: 38858, type: 90 },
+	{ id: 584, no: 3, cond: 1, rwrd: 38858, type: 90 },
+	{ id: 585, no: 4, cond: 1, rwrd: 38858, type: 90 },
 ]
 
 export const LEAGUE_SEASON = 11
@@ -1214,6 +1526,211 @@ export const GALAXY_BRAVE = [
 				pointer: 4,
 				pointerType: 3,
 				mcode: 38831,
+				defaultFlare: 5,
+				difficultyTarget: [0, 0, 0, 0, 1]
+			}
+		]
+	},
+	{
+		id: 7,
+		trials: [
+			{
+				pointer: 0,
+				pointerType: 1,
+				mcode: 36925,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 1,
+				pointerType: 1,
+				mcode: 430,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 2,
+				pointerType: 1,
+				mcode: 38365,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+
+			},
+			{
+				pointer: 3,
+				pointerType: 2,
+				mcode: 38841,
+				defaultFlare: 5,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 4,
+				pointerType: 3,
+				mcode: 38841,
+				defaultFlare: 5,
+				difficultyTarget: [0, 0, 0, 0, 1]
+			}
+		]
+	},
+	{
+		id: 8,
+		trials: [
+			{
+				pointer: 0,
+				pointerType: 1,
+				mcode: 37783,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 1,
+				pointerType: 1,
+				mcode: 37895,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 2,
+				pointerType: 1,
+				mcode: 37530,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+
+			},
+			{
+				pointer: 3,
+				pointerType: 2,
+				mcode: 38835,
+				defaultFlare: 5,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 4,
+				pointerType: 3,
+				mcode: 38835,
+				defaultFlare: 5,
+				difficultyTarget: [0, 0, 0, 0, 1]
+			}
+		]
+	},
+	{
+		id: 9,
+		trials: [
+			{
+				pointer: 0,
+				pointerType: 1,
+				mcode: 38088,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 1,
+				pointerType: 1,
+				mcode: 38634,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 2,
+				pointerType: 1,
+				mcode: 38010,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+
+			},
+			{
+				pointer: 3,
+				pointerType: 2,
+				mcode: 38834,
+				defaultFlare: 5,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 4,
+				pointerType: 3,
+				mcode: 38834,
+				defaultFlare: 5,
+				difficultyTarget: [0, 0, 0, 0, 1]
+			}
+		]
+	},
+	{
+		id: 10,
+		trials: [
+			{
+				pointer: 0,
+				pointerType: 1,
+				mcode: 38233,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 1,
+				pointerType: 1,
+				mcode: 38027,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 2,
+				pointerType: 1,
+				mcode: 38340,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+
+			},
+			{
+				pointer: 3,
+				pointerType: 2,
+				mcode: 38854,
+				defaultFlare: 5,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 4,
+				pointerType: 3,
+				mcode: 38854,
+				defaultFlare: 5,
+				difficultyTarget: [0, 0, 0, 0, 1]
+			}
+		]
+	},
+	{
+		id: 11,
+		trials: [
+			{
+				pointer: 0,
+				pointerType: 1,
+				mcode: 37316,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 1,
+				pointerType: 1,
+				mcode: 37949,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 2,
+				pointerType: 1,
+				mcode: 38401,
+				defaultFlare: 3,
+				difficultyTarget: [1, 1, 1, 1, 0]
+
+			},
+			{
+				pointer: 3,
+				pointerType: 2,
+				mcode: 38858,
+				defaultFlare: 5,
+				difficultyTarget: [1, 1, 1, 1, 0]
+			},
+			{
+				pointer: 4,
+				pointerType: 3,
+				mcode: 38858,
 				defaultFlare: 5,
 				difficultyTarget: [0, 0, 0, 0, 1]
 			}
