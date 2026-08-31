@@ -330,5 +330,34 @@ async function updateWorldLeague() {
   }
 }
 
-updateWorldLeague()
-setInterval(updateWorldLeague, 60000)
+if(U.GetConfig('world_league')) {
+  updateWorldLeague()
+  setInterval(updateWorldLeague, 60000)
+}
+
+// List missing songs in SONGS_WORLD/SONGS_OVERRIDE_WORLD
+async function checkMissingSongs() {
+  const excl = [38269, 38440]
+  const worldIds = SONGS_WORLD.map(m => m.mcode)
+  const mdb = U.parseXML(U.DecodeString(await IO.ReadFile('webui/uploads/mdb_title.xml'), "utf8"), false)
+  const mFilt = mdb['mdb']['music'].filter(m => $(m).number('series') === 21)
+
+  const worldOverrides = SONGS_OVERRIDE_WORLD.map(m => m.mcode)
+  const mdba3 = U.parseXML(U.DecodeString(await IO.ReadFile('webui/uploads/mdb_limited.xml'), "utf8"), false)
+  const ma3Filt = mdb['mdb']['music'].filter(m => $(m).number('series') < 21)
+
+  console.log('missing songs: ')
+  for(const m of mFilt) {
+    const mcode = $(m).number('mcode')
+    if(!worldIds.includes(mcode) && !excl.includes(mcode)) console.log(mcode + " - " + $(m).str('title'))
+  }
+  console.log()
+  console.log('new challenge charts')
+  for(const a3info of mdba3['mdb']['music']) {
+    const mcode = $(a3info).number('mcode')
+    const m = ma3Filt.find(ma3 => $(ma3).number('mcode') === mcode)
+    if(!m) continue
+    if($(a3info).numbers('diffLv')[4] === 0 && $(m).numbers('limited_ary')[4] != -1 && !worldOverrides.includes(mcode)) console.log(mcode + " - " + $(m).str('title'))
+  }
+}
+// checkMissingSongs()
