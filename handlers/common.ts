@@ -532,8 +532,8 @@ export const common: EPR = async (info, data, send) => {
 
     if([2, 3, 4].includes(gameVersion)) {
       if(gameVersion === 3) {
-        if(pluginSettings.gwMission) flags = flags.concat(MISSION_EVENT3)
-        if(!pluginSettings.gwGenerator) flags = flags.concat([25])
+        if(pluginSettings?.gwMission === true) flags = flags.concat(MISSION_EVENT3)
+        if(!pluginSettings?.gwGenerator === true) flags = flags.concat([25])
 
         let sp = spApica[(Math.random() * spApica.length) | 0];
         extend.push({
@@ -548,7 +548,7 @@ export const common: EPR = async (info, data, send) => {
         })
       }
 
-      if(pluginSettings.gwScoreAdjTime !== 0) {
+      if(pluginSettings?.gwScoreAdjTime !== undefined || pluginSettings?.gwScoreAdjTime !== 0) {
         extend.push({
           type: 5,
           id: 1,
@@ -706,7 +706,7 @@ export const common: EPR = async (info, data, send) => {
         })
       }
 
-      if(pluginSettings.akanames) populateAkanames(pluginSettings.akanames)
+      if(pluginSettings?.akanames && pluginSettings.akanames.length > 0) populateAkanames(pluginSettings.akanames)
 
       await populateUnlockEvents(Math.abs(gameVersion))
 
@@ -740,8 +740,10 @@ export const common: EPR = async (info, data, send) => {
       let curWeekly = []
 
       if(absVersion >= 6) {
-        const arenaOpen = BigInt(date) >= currentArenaVolfes.time_start && (BigInt(date) < currentArenaVolfes.time_end || pluginSettings.nblArenaNoEnd)
-        const shopItemSet = arenaItems[pluginSettings.nblArenaStation]
+        const nblArenaNoEnd = (pluginSettings?.nblArenaNoEnd !== undefined) ? pluginSettings.nblArenaNoEnd : false
+        const nblArenaStation = (pluginSettings?.nblArenaStation !== undefined) ? pluginSettings.nblArenaStation : "None"
+        const arenaOpen = BigInt(date) >= currentArenaVolfes.time_start && (BigInt(date) < currentArenaVolfes.time_end || nblArenaNoEnd)
+        const shopItemSet = arenaItems[nblArenaStation]
         const shopOpen = arenaOpen && !_.isEmpty(shopItemSet)
         const arenaStart = new Date(Number(currentArenaVolfes.time_start) * 1000).toISOString().split('T')[0].split('-').join('')
         if(arenaOpen && checkVerStart(version, 20260421, arenaStart, date) && currentArenaVolfes.season !== 0) {
@@ -908,7 +910,7 @@ export const common: EPR = async (info, data, send) => {
             []
           ),
         },
-        ...((absVersion === 5 && pluginSettings.vwVolfes) && {
+        ...((absVersion === 5 && (pluginSettings?.vwVolfes !== undefined && pluginSettings.vwVolfes === true)) && {
           festival: {
             fes_id: K.ITEM('s32', currentArenaVolfes.id),
             fes_name: K.ITEM('str', currentArenaVolfes.name),

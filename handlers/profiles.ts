@@ -1217,7 +1217,8 @@ export const load: EPR = async (info, data, send) => {
       })))
     }
 
-    if(version === 3 && pluginSettings.gwMissionSkipMatch) {
+    const gwMissionSkipMatch = (pluginSettings?.gwMissionSkipMatch !== undefined) ? pluginSettings.gwMissionSkipMatch : false
+    if(version === 3 && gwMissionSkipMatch) {
       const skipIds = [9, 10, 173, 174]
       let storyProgress = items.findIndex(str => str.type === 5 && str.id === 6)
       if(storyProgress >= 0 && skipIds.includes(items[storyProgress].param)) {
@@ -1325,8 +1326,8 @@ export const load: EPR = async (info, data, send) => {
 
     let currentArena
     if(version === 6) currentArena = CURRENT_ARENA
-    else if(version === 7) currentArena = CURRENT_ARENA7 
-    let arenaOpen = pluginSettings.nblArenaNoEnd || BigInt(date) < currentArena.time_end
+    else if(version === 7) currentArena = CURRENT_ARENA7
+    let arenaOpen = ((pluginSettings?.nblArenaNoEnd !== undefined) ? pluginSettings.nblArenaNoEnd : false) || BigInt(date) < currentArena.time_end
 
     const items = await DB.Find<Item>(refid, { collection: 'item', version: version });
     const courses = await DB.Find<CourseRecord>(refid, { collection: 'course', version: version });

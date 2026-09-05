@@ -1,6 +1,6 @@
 SOUND VOLTEX
 ===
-**Plugin Version:** fork-7.2.0
+**Plugin Version:** fork-7.2.0-qfix
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
 **Supported game versions:**
@@ -22,6 +22,10 @@ SOUND VOLTEX
 
 ---
 ## Changelog
+
+### qfix
+
+- Fix server errors caused by unconfigured plugin settings
 
 ### IMPORTANT!
 
