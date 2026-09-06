@@ -330,11 +330,6 @@ async function updateWorldLeague() {
   }
 }
 
-if(U.GetConfig('world_league')) {
-  updateWorldLeague()
-  setInterval(updateWorldLeague, 60000)
-}
-
 // List missing songs in SONGS_WORLD/SONGS_OVERRIDE_WORLD
 async function checkMissingSongs() {
   const excl = [38269, 38440]
@@ -360,4 +355,8 @@ async function checkMissingSongs() {
     if($(a3info).numbers('diffLv')[4] === 0 && $(m).numbers('limited_ary')[4] != -1 && !worldOverrides.includes(mcode)) console.log(mcode + " - " + $(m).str('title'))
   }
 }
+
+updateWorldLeague()
+setInterval(updateWorldLeague, 60000)
+
 // checkMissingSongs()
