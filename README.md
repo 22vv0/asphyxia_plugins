@@ -1,6 +1,6 @@
 # DanceDanceRevolution
 
-**Plugin Version:** 3.2.0
+**Plugin Version:** 3.2.0-qfix
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=mdx&expanded=true).
 
 **Supported game versions:** WORLD (2026022400)
@@ -13,6 +13,10 @@
 
 Changelog
 ===========
+### qfix
+
+- Fixed playerdataload issue when LeagueResult data is empty ([#103](https://github.com/22vv0/asphyxia_plugins/issues/103))
+
 ### WORLD
 
 - Updated new song metadata and advance play list, etc
