@@ -223,7 +223,7 @@ export const UNLOCK_EVENTS7 = {
       stmpSlFt: '[sz:23]{TextStamp}[br:5]{TextTerm} 2026/03/26～2026/05/10',
       stmpHd: '[sz:22][c:DAC491]BEMANI PRO LEAGUE -SEASON 5- スペシャルスタンプ!!',
       stmpFt: '[sz:22]ボルテを遊んでスタンプをゲット！',
-      stmpBg: 'bg_stamp_bpls5',
+      stmpUi: 'bg_stamp_bpls5',
       sheet: '83#sheet_track_2383#e#2383,84#sheet_track_2369#e#2369,85#sheet_track_2366#e#2366,86#sheet_track_2363#e#2363,87#sheet_track_2365#e#2365,88#sheet_track_2368#e#2368,89#sheet_track_2364#e#2364,90#sheet_track_2367#e#2367,91#sheet_track_2331#e#2331,92#sheet_track_2328#e#2328,93#sheet_track_2329#e#2329,94#sheet_track_2330#e#2330',
       data: [
         {
@@ -319,6 +319,56 @@ export const UNLOCK_EVENTS7 = {
           stmpid: 114,
           stps: 30,
           stprwrd: '1:r:196 5:b:912 10:r:197 15:b:912 20:r:198 25:b:912 30:r:199 imgbg:bg_stamp_qma boost:quiz:1'
+        }
+      ]
+    }
+  },
+  voltenizer26stamp: {
+    type: 'select',
+    info: {
+      id: 8,
+      textstampval: -1,
+      stmpSlHd: '[sz:22][c:383022]THE VOLTENIZER2026 SPECIAL STAMP',
+      stmpSlFt: '',
+      stmpHd: '[sz:22][c:383022]THE VOLTENIZER 2026 SPECIAL STAMP',
+      stmpFt: '[sz:22]YOU CAN GET STAMPS BY PLAYING SDVX!',
+      stmpUi: 'bg_stamp_vn2026,stamp_sel_vn2026,fuda_stamp_vn2026',
+      sheet: '120#sheet_track_2410#e#2410,121#sheet_track_2411#e#2411,122#sheet_track_2412#e#2412,123#sheet_track_2407#e#2407,124#sheet_track_2408#e#2408,125#sheet_track_2409#e#2409,126#sheet_track_2406#e#2406',
+      data: [
+        {
+          stmpid: 120,
+          stps: 10,
+          stprwrd: '10:e:241023 layer:stamp_every_5_vn2026'
+        },
+        {
+          stmpid: 121,
+          stps: 10,
+          stprwrd: '10:e:241123 layer:stamp_every_5_vn2026'
+        },
+        {
+          stmpid: 122,
+          stps: 10,
+          stprwrd: '10:e:241223 layer:stamp_every_5_vn2026'
+        },
+        {
+          stmpid: 123,
+          stps: 15,
+          stprwrd: '0:r:x120 0:r:x121 0:r:x122 15:e:240723 layer:stamp_every_4_vn2026'
+        },
+        {
+          stmpid: 124,
+          stps: 15,
+          stprwrd: '0:r:x120 0:r:x121 0:r:x122 15:e:240823 layer:stamp_every_4_vn2026'
+        },
+        {
+          stmpid: 125,
+          stps: 15,
+          stprwrd: '0:r:x120 0:r:x121 0:r:x122 15:e:240923 layer:stamp_every_4_vn2026'
+        },
+        {
+          stmpid: 126,
+          stps: 30,
+          stprwrd: '0:r:x123 0:r:x124 0:r:x125 30:e:240623 layer:stamp_every_1_vn2026'
         }
       ]
     }
@@ -1462,11 +1512,11 @@ export const COURSES7 = [
 ]
 
 export const INFORMATION7 = [
-  { id: 48, version: 20260324, start: 20260326, str: '[img:info/260326_info_generator.png:]'},
   { id: 49, version: 20260324, start: 20260326, str: '[img:info/260326_info_tripletribe.png:]'},
   { id: 50, version: 20260421, start: 20260423, str: '[img:info/260423_info_shiranui.png:]'},
   { id: 51, version: 20260615, start: 20260616, str: '[img:info/260616_info_noryosai.png:]'},
-  { id: 52, version: 20260630, start: 20260702, str: '[img:info/260702_info_generator.png:]'}
+  { id: 52, version: 20260630, start: 20260702, str: '[img:info/260702_info_generator.png:]'},
+  { id: 53, version: 20260804, start: 20260806, str: '[img:info/260806_voltenizer_stamp.png:]'}
 ] 
 
 export const EXTENDS7 = [

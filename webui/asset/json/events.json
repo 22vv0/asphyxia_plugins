@@ -1272,7 +1272,7 @@
             "name": "Blue Diamond Stamp Event",
             "version": 20251224,
             "start": 20260108,
-            "desc": "Stamp event to unlock the song 'Blue Diamond.' Difficulties unlock at separate stamp steps.",
+            "desc": "Stamp event to unlock the song '[mid:2170].' Difficulties unlock at separate stamp steps.",
             "info": "Toggle this on to enable/disable this stamp event."
         },
         {
@@ -1430,7 +1430,7 @@
             "name": "BEMANI PRO LEAGUE -SEASON 5- Special Stamp",
             "version": 20260324,
             "start": 20260326,
-            "desc": "Stamp event to unlock 12 songs, featuring the BPL S5 theme songs + BPL S5 sightread songs including KISKIL-LILLA. There are 3 batches of stamp sheets (8 songs / 3 songs / 1 song,) where they only appear after completing the previous batch.",
+            "desc": "Stamp event to unlock 12 songs, featuring the BPL S5 theme songs + BPL S5 sightread songs including [mid:2330]. There are 3 batches of stamp sheets (8 songs / 3 songs / 1 song,) where they only appear after completing the previous batch.",
             "info": "Toggle this on to enable/disable this stamp event."
         },
         {
@@ -1541,6 +1541,16 @@
             "start": 20260716,
             "desc": "Grim Aloe appeal card gift for playing Quiz Magic Academy once then SDVX in this exact order. However due to Core limitations and its dependency on QMA you can just use this toggle to unlock this appeal card on your login.",
             "info": "Toggle this option to enable/disable this gift."
+        },
+        {
+            "id": "voltenizer26stamp",
+            "type": "stamp",
+            "enabled": true,
+            "name": "THE VOLTENIZER 2026 SPECIAL STAMP",
+            "version": 20260804,
+            "start": 20260806,
+            "desc": "Stamp event to unlock 7 VOLTENIZER 2026 original song contest winning songs, including [mid:2406]. There are 3 batches of stamp sheets (3 songs / 3 songs / 1 song,) where they only appear after completing the previous batch.",
+            "info": "Toggle this on to enable/disable this stamp event."
         }
     ],
     "flags": [

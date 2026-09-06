@@ -285,7 +285,7 @@ export const common: EPR = async (info, data, send) => {
                   '',
                   stmpEvntInfo.info.stmpSlHd,
                   stmpEvntInfo.info.stmpSlFt,
-                  stmpEvntInfo.info.stmpBg
+                  stmpEvntInfo.info.stmpUi
                 ]
               })
             }

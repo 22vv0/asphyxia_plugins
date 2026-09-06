@@ -104,7 +104,7 @@ export const UNLOCK_EVENTS6 = {
       'stmpSlFt': '[sz:23]期間 2022/01/18～2022/03/21',
       'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
       'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 1/18～3/21',
-      'stmpBg': 'bg_stamp_anniversary_10th',
+      'stmpUi': 'bg_stamp_anniversary_10th',
       'sheet': '1#sheet_track_1#e#1838,2#sheet_track_2#e#1839,3#sheet_track_3#e#1840,4#sheet_track_4#e#1841,5#sheet_track_5#e#1842,6#sheet_track_6#e#1843,7#sheet_track_7#e#1844',
       'data': [
         {
@@ -198,7 +198,7 @@ export const UNLOCK_EVENTS6 = {
       'stmpSlFt': '[sz:23]期間 2022/04/07～2022/05/08',
       'stmpHd': '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
       'stmpFt': '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 4/7～5/8',
-      'stmpBg': 'bg_stamp_himehina',
+      'stmpUi': 'bg_stamp_himehina',
       'sheet': '11#sheet_crew_1#c#ネメシスクルー田中ヒメ,12#sheet_crew_2#c#ネメシスクルー鈴木ヒナ',
       'data': [
         {
@@ -238,7 +238,7 @@ export const UNLOCK_EVENTS6 = {
       'stmpSlFt': '[sz:23]{TextStamp}[br:5]{TextTerm} 2023/03/30～2023/05/07',
       'stmpHd': '[sz:22][c:DAC491]BEMANI PRO LEAGUE -SEASON 2- SPECIAL STAMP',
       'stmpFt': '[sz:22]YOU CAN GET STAMPS BY PLAYING SDVX!',
-      'stmpBg': 'bg_stamp_bpl',
+      'stmpUi': 'bg_stamp_bpl',
       'sheet': '14#sheet_track_1919#e#1919,15#sheet_track_1920#e#1920,16#sheet_track_1921#e#1921,17#sheet_track_1922#e#1922,18#sheet_track_1923#e#1923,19#sheet_track_1924#e#1924,20#sheet_track_1925#e#1925,21#sheet_track_1926#e#1926,22#sheet_track_1938#e#1938',
       'data': [
         {

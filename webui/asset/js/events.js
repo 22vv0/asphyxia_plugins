@@ -40,7 +40,7 @@ function generateEventToggles(eventInfo, eventConfig, eventEnabled) {
     cardContent.append('<div class="field is-horizontal"').append(
         $("<h5>" + eventInfo['name'] + "</h5>")
         ).append(
-        $("<p style='font-size: 15px;'>" + eventInfo['desc'] + "</p>")
+        $("<p style='font-size: 15px;'>" + substituteString(eventInfo['desc'], eventInfo['start']) + "</p>")
         )
     if(typeof eventInfo['info'] === 'string') {
         cardContent.append(
