@@ -1792,12 +1792,36 @@ export const MUSIC_OVERRIDE7 = [
 ]
 
 export const GAMEOVER_CHARA7 = {
-  l: ['chara01/go_ikuto', 'chara01/go_konoha', 'chara01/go_mitsuruco', 'chara01/go_nemurun', 'chara01/go_rasis_ver07', 
-  'chara01/go_satan', 'chara01/go_tsumabuki_ver07'],
-  r: ['chara02/go_atsushi', 'chara02/go_grace_ver07', 'chara02/go_haelequin', 
-  'chara02/go_kureha', 'chara02/go_tama', 'chara02/go_gorilla'],
-  m: ['chara03/go_cawoashi', 'chara03/go_iruyoru', 'chara03/go_neno_ver06']
+  l: [
+    {version: 20260602, str: 'chara01/go_ikuto'}, 
+    {version: 20260602, str: 'chara01/go_konoha'}, 
+    {version: 20260602, str: 'chara01/go_mitsuruco'}, 
+    {version: 20260602, str: 'chara01/go_nemurun'}, 
+    {version: 20260602, str: 'chara01/go_rasis_ver07'}, 
+    {version: 20260602, str: 'chara01/go_satan'}, 
+    {version: 20260602, str: 'chara01/go_tsumabuki_ver07'}
+  ],
+  r: [
+    {version: 20260602, str: 'chara02/go_atsushi'}, 
+    {version: 20260602, str: 'chara02/go_grace_ver07'}, 
+    {version: 20260602, str: 'chara02/go_haelequin'}, 
+    {version: 20260602, str: 'chara02/go_kureha'}, 
+    {version: 20260602, str: 'chara02/go_tama'}, 
+    {version: 20260630, str: 'chara02/go_gorilla'}
+  ],
+  m: [
+    {version: 20260602, str: 'chara03/go_cawoashi'}, 
+    {version: 20260602, str: 'chara03/go_iruyoru'}, 
+    {version: 20260630, str: 'chara03/go_neno_ver06'}
+  ]
 }
+
+export const GAMEOVER_IFS = [
+  { version: 20251224, str: "base:ver07/game_over_2025nabla.ifs@2025nabla thank:- info_win:info_win" },
+  { version: 20260804, str: "base:ver07/game_over_2026vn.ifs@2026_vn_01 thank:- info_win:info_win" },
+  { version: 20260804, str: "base:ver07/game_over_2026vn.ifs@2026_vn_02 thank:- info_win:info_win" },
+  { version: 20260804, str: "base:ver07/game_over_2026vn.ifs@2026_vn_03 thank:- info_win:info_win" }
+];
 
 export const QUIZ7 = [
   {

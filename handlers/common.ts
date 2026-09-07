@@ -9,7 +9,7 @@ import { FLAGS6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIE_SONGS, LICENSED_S
 } from '../data/exg';
 import { FLAGS7, COURSES7, EXTENDS7, LICENSED_SONGS7, CURRENT_ARENA7, ARENA_STATION_ITEMS7, 
           VALGENE7, APIGENE7, INFORMATION7, UNLOCK_EVENTS7, EGSONGS_LOCKED, MUSIC_OVERRIDE7,
-          GAMEOVER_CHARA7, QUIZ7
+          GAMEOVER_CHARA7, GAMEOVER_IFS, QUIZ7
 } from '../data/nbl';
 import { getVersion, checkVerStart, getRandomIntInclusive } from '../utils';
 import { PluginSettings } from '../models/settings';
@@ -676,34 +676,55 @@ export const common: EPR = async (info, data, send) => {
         })
       }
 
-      if(version >= 20260602 && Math.random() >= 0.5) {
+      if(version >= 20260602) {
         const charaPattern = ['l,r,l','r,l,r','l,m,r','r,m,l','l,r,m','m,l,r']
         const selPattern = charaPattern[Math.floor(Math.random() * charaPattern.length)]
         let chara = []
         for(const pos of selPattern.split(',')) {
-          let tempChara = GAMEOVER_CHARA7[pos][Math.floor(Math.random() * GAMEOVER_CHARA7[pos].length)]
+          const charaFilt = GAMEOVER_CHARA7[pos].filter(ch => version >= ch.version)
+          let tempChara = charaFilt[Math.floor(Math.random() * charaFilt.length)].str
           while(chara.includes(tempChara)) {
-            tempChara = GAMEOVER_CHARA7[pos][Math.floor(Math.random() * GAMEOVER_CHARA7[pos].length)]
+            tempChara = charaFilt[Math.floor(Math.random() * charaFilt.length)].str
           }
           chara.push(tempChara)
         }
 
-        extend.push({
-          id: 1,
-          type: 1,
-          params: [
-            3,
-            0,
-            0,
-            1,
-            0,
-            "[]\t[]\t[]",
-            "[]",
-            "[]",
-            "[]",
-            "characters: " + chara.join(' ')
-          ]
-        })
+        const gameoverIfs = GAMEOVER_IFS.filter(g => g.version >= version);
+        if(gameoverIfs.length === 0 || Math.random() < 0.5) { 
+          extend.push({
+            id: 1,
+            type: 1,
+            params: [
+              3,
+              0,
+              0,
+              1,
+              0,
+              "[]\t[]\t[]",
+              "[]",
+              "[]",
+              "[]",
+              "characters: " + chara.join(' ')
+            ]
+          })
+        } else {
+          extend.push({
+            id: 1,
+            type: 1,
+            params: [
+              3,
+              0,
+              0,
+              1,
+              0,
+              '',
+              '',
+              '',
+              '',
+              gameoverIfs[Math.floor(Math.random() * gameoverIfs.length)].str
+            ]
+          })
+        }
       }
 
       if(pluginSettings?.akanames && pluginSettings.akanames.length > 0) populateAkanames(pluginSettings.akanames)

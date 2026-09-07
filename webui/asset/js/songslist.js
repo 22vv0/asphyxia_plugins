@@ -125,6 +125,11 @@ $(document).ready(async function() {
         music_db = json;
     });
 
+    if(Object.keys(music_db['mdb']['music'][0]['difficulty'][7]).length > 1) {
+        $('#version_select').val(7)
+        version = 7
+    }
+
     mdbLoad()
     populateSongsList(music_data)
 

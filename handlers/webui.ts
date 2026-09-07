@@ -271,7 +271,7 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
       let mdb = U.parseXML(U.DecodeString(await IO.ReadFile('./webui/asset/uploads/' + ver + '_mdb.xml'), "shift_jis"), false)
       mdb.mdb.music.forEach(musicValue => {
         let distributionDate = (ver > 1) ? musicValue.info.distribution_date['@content'][0].toString() : ''
-        let songTitleClean = (ver < 2) ? '' : musicValue.info.title_name['@content'].replace(/[龕釁驩曦齷骭齶彜罇雋鬻鬥鬆曩驫齲騫趁鬮盥隍頽餮黻蔕闃饌煢鑷墸鹹瀑疉鑒]/g, m => translate_table[m])
+        let songTitleClean = (ver > 0 && ver < 2) ? '' : musicValue.info.title_name['@content'].replace(/[龕釁驩曦齷骭齶彜罇雋鬻鬥鬆曩驫齲騫趁鬮盥隍頽餮黻蔕闃饌煢鑷墸鹹瀑疉鑒]/g, m => translate_table[m])
         let levelDiv = (ver > 0 && ver < 6) ? 1 : (musicValue.difficulty.exhaust.difnum['@content'][0].toString().length === 3) ? 10 : 1
         if(ver === 7) levelDiv = 10
         let ind = prevAssetMdb['mdb']['music'].findIndex(item => parseInt(item['id']) == parseInt(musicValue['@attr'].id))
@@ -329,6 +329,8 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
           dif = prevAssetMdb['mdb']['music'][ind]['difficulty']
           let newInfVer = ver > 1 && (parseInt(prevAssetMdb['mdb']['music'][ind]['info']['inf_ver']) === 0 && parseInt(prevAssetMdb['mdb']['music'][ind]['info']['inf_ver']) < (ver === 2 ? (parseInt(musicValue.difficulty.infinite.difnum['@content'][0]) !== 0 ? 2 : 0) : parseInt(musicValue.info.inf_ver['@content'][0])))
           let newUlt = ver >= 6 && !('ult' in prevAssetMdb['mdb']['music'][ind]['info']) && 'ultimate' in musicValue.difficulty
+          if(songTitleClean !== '') prevAssetMdb['mdb']['music'][ind]['info']['title_name'] = songTitleClean
+          prevAssetMdb['mdb']['music'][ind]['info']['distribution_date'] = distributionDate
           switch (ver) {
             case 0:
               dif[ver] = {
@@ -373,7 +375,7 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
                 'infinite': (musicValue.difficulty.infinite.difnum['@content'][0] / levelDiv).toString(),
               }
               prevAssetMdb['mdb']['music'][ind]['info']['distribution_date'] = musicValue.info.distribution_date['@content'][0].toString()
-              prevAssetMdb['mdb']['music'][ind]['info']['inf_ver'] = musicValue.info.inf_ver['@content'][0].toString()
+              if(newInfVer) prevAssetMdb['mdb']['music'][ind]['info']['inf_ver'] = musicValue.info.inf_ver['@content'][0].toString()
               break
             case 6:
             case 7:
@@ -390,8 +392,6 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
                 'infinite': 'infinite' in musicValue.difficulty ? (musicValue.difficulty.infinite.difnum['@content'][0] / levelDiv).toString() : '0',
                 'ultimate': 'ultimate' in musicValue.difficulty ? (musicValue.difficulty.ultimate.difnum['@content'][0] / levelDiv).toString() : '0'
               }
-              prevAssetMdb['mdb']['music'][ind]['info']['title_name'] = songTitleClean
-              prevAssetMdb['mdb']['music'][ind]['info']['distribution_date'] = distributionDate
               if(newInfVer) prevAssetMdb['mdb']['music'][ind]['info']['inf_ver'] = musicValue.info.inf_ver['@content'][0].toString()
               break
           }
