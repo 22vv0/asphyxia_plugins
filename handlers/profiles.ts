@@ -47,7 +47,7 @@ function unlockAppealCards(items: Partial<Item>[], version: number) {
 function unlockAppealParts(items: Partial<Item>[]) {
   console.log("Unlocking Appeal Parts");
   for (let i = 0; i <= 50; ++i) items.push({ type: 23, id: i, param: 99 })
-  for (let i = 0; i <= 200; ++i) items.push({ type: 24, id: i, param: 99 })
+  for (let i = 0; i <= 250; ++i) items.push({ type: 24, id: i, param: 99 })
 
   return items;
 }
