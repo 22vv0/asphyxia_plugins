@@ -664,6 +664,18 @@
 		{
 			"id": 12,
 			"name": "Panel"
+		},
+		{
+			"id": 13,
+			"name": "VOLTENIZER Champion (Free)"
+		},
+		{
+			"id": 14,
+			"name": "VOLTENIZER Champion (U-20)"
+		},
+		{
+			"id": 15,
+			"name": "VOLTENIZER Finalist"
 		}
 	]
 }

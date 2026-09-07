@@ -219,6 +219,10 @@
         {
             "value": 58,
             "name": "VIVID MODEL TYPE NOISY.A"
+        },
+        {
+            "value": 59,
+            "name": "THE VOLTENIZER 2026"
         }
     ],
     "subbg": [
@@ -4730,6 +4734,156 @@
             "value": 916,
             "type": "normal",
             "name": "hololive Dreams -forever-"
+        },
+        {
+            "value": 917,
+            "type": "normal",
+            "name": "XHRONICLE of Twin Crowns"
+        },
+        {
+            "value": 918,
+            "type": "normal",
+            "name": "終わりなき狂騒サーカス！"
+        },
+        {
+            "value": 919,
+            "type": "normal",
+            "name": "Primary Triad"
+        },
+        {
+            "value": 920,
+            "type": "normal",
+            "name": "きみに染まる"
+        },
+        {
+            "value": 921,
+            "type": "normal",
+            "name": "あったらいいな コラボカフェ"
+        },
+        {
+            "value": 922,
+            "type": "normal",
+            "name": "Blue Angels Descending"
+        },
+        {
+            "value": 923,
+            "type": "normal",
+            "name": "ボルテアニマルズ・大・大・大集合！！！"
+        },
+        {
+            "value": 924,
+            "type": "normal",
+            "name": "米を愛でろ！れふと米"
+        },
+        {
+            "value": 925,
+            "type": "normal",
+            "name": "誰にも負けない！！"
+        },
+        {
+            "value": 926,
+            "type": "normal",
+            "name": "幽世の天蓋花"
+        },
+        {
+            "value": 927,
+            "type": "normal",
+            "name": "Polaris U Cherry blossom"
+        },
+        {
+            "value": 928,
+            "type": "normal",
+            "name": "いつかあの星座に届くまで"
+        },
+        {
+            "value": 929,
+            "type": "normal",
+            "name": "Beyond the Skyscraper"
+        },
+        {
+            "value": 930,
+            "type": "normal",
+            "name": "Irresistible No.Xptation!"
+        },
+        {
+            "value": 931,
+            "type": "normal",
+            "name": "この手でひらけ！∇への扉！！"
+        },
+        {
+            "value": 932,
+            "type": "normal",
+            "name": "THE BluE WE ChasE"
+        },
+        {
+            "value": 933,
+            "type": "normal",
+            "name": "ABSOLUTE JUDGE"
+        },
+        {
+            "value": 934,
+            "type": "normal",
+            "name": "Glacial Jellyfae"
+        },
+        {
+            "value": 935,
+            "type": "normal",
+            "name": "ﾓﾁｭｰﾝ！みんなファイトでスよ～ッ！"
+        },
+        {
+            "value": 936,
+            "type": "normal",
+            "name": "終焉のマジックアワー"
+        },
+        {
+            "value": 937,
+            "type": "normal",
+            "name": "Calamity"
+        },
+        {
+            "value": 938,
+            "type": "normal",
+            "name": "未踏の世界へ出発進行～！"
+        },
+        {
+            "value": 939,
+            "type": "normal",
+            "name": "NEXT TRACK?"
+        },
+        {
+            "value": 940,
+            "type": "normal",
+            "name": "きらきら☆探索ノート"
+        },
+        {
+            "value": 941,
+            "type": "normal",
+            "name": "桜鬼覇断 -頂点決戦ノ刻-"
+        },
+        {
+            "value": 942,
+            "type": "normal",
+            "name": "玉座に至るは"
+        },
+        {
+            "value": 943,
+            "type": "normal",
+            "name": "にひひ"
+        },
+        {
+            "value": 944,
+            "type": "normal",
+            "name": "《Re:novate》"
+        },
+        {
+            "value": 945,
+            "type": "normal",
+            "name": "新章開幕"
+        },
+        {
+            "value": 946,
+            "type": "normal",
+            "name": "運命を断ち斬るもの"
         }
     ],
     "bgm": [
@@ -5180,6 +5334,18 @@
         {
             "value": 111,
             "name": "Royal Judgement"
+        },
+        {
+            "value": 112,
+            "name": "ZILLION RAY"
+        },
+        {
+            "value": 113,
+            "name": "サイハテ"
+        },
+        {
+            "value": 114,
+            "name": "覚帝神刻"
         }
     ],
     "stamp": [

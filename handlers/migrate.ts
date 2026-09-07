@@ -1,5 +1,6 @@
 import { HAVE_NOTE } from "../data/ii"
 import { COURSES6, MEGAMIX_SONGS, MEGAMIX_SONGS_2, MEGAMIX_SONGS_3, MEGAMIX_SONGS_4 } from "../data/exg"
+import { MEGAMIX_SONGS_5 } from "../data/nbl"
 import { VariantPower } from "../models/variant"
 import { Profile } from "../models/profile"
 import { Arena } from "../models/arena"
@@ -18,8 +19,8 @@ const dev = false
 
 export async function dataUpdate() {
 	if(dev) {
-		console.log(MEGAMIX_SONGS.join(',').length + " " + MEGAMIX_SONGS_2.join(',').length + " " + MEGAMIX_SONGS_3.join(',').length + " " + MEGAMIX_SONGS_4.join(',').length)
-		let mergeMega = MEGAMIX_SONGS.concat(MEGAMIX_SONGS_2, MEGAMIX_SONGS_3, MEGAMIX_SONGS_4)
+		console.log(MEGAMIX_SONGS.join(',').length + " " + MEGAMIX_SONGS_2.join(',').length + " " + MEGAMIX_SONGS_3.join(',').length + " " + MEGAMIX_SONGS_4.join(',').length + " " + MEGAMIX_SONGS_5.join(',').length)
+		let mergeMega = MEGAMIX_SONGS.concat(MEGAMIX_SONGS_2, MEGAMIX_SONGS_3, MEGAMIX_SONGS_4, MEGAMIX_SONGS_5)
 		let newSongs = []
 		let megamixFiles = (await IO.ReadDir(U.GetConfig('sdvx_eg_root_dir') + "/data/sound/automa/waves/")).filter(file => file.name.includes("wave_info_megamix")).filter(file => file.name.includes('.xml'))
 		for (const file of megamixFiles) {

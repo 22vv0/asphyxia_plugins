@@ -247,7 +247,8 @@ $(document).ready(async function() {
         [20260630, 0, 0, 0, 885, 0, 2336, 196, 42],
         [20260714, 0, 6509, 0, 0, 0, 0, 0, 0],
         [20260804, 0, 6902, 0, 0, 0, 0, 0, 0],
-        [20260825, 0, 0, 0, 916, 0, 2388, 199, 0]
+        [20260825, 0, 0, 0, 916, 0, 2388, 199, 0],
+        [20260901, 0, 0, 59, 946, 114, 0, 200, 0]
     ].filter(lim => lim[0] <= finDateCode).forEach(lim => {
         lim.forEach((l, ind) => {
             if(l !== 0) finalLim[ind] = l
@@ -332,7 +333,7 @@ $(document).ready(async function() {
         if(skill.length > 1) $('[name="skilltitle"]').val(skill[0]["name"]);
         else $('[name="skilltitle"]').attr('disabled', 'disabled')
 
-        let citemCut = [7, 7, 8, 8, 12, 12, 12]
+        let citemCut = [7, 7, 8, 8, 12, 12, 15]
         for (var i in databaseext["appeal_frame"].slice(0, citemCut[currentVersion - 1])) {
             $('[name="creatorItem"]').append($('<option>', {
                 value: databaseext["appeal_frame"][i].id,

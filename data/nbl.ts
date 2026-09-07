@@ -960,6 +960,13 @@ export const VALGENE7 = {
       valgene_id: 20,
       version: 20260615,
       start: 20260618
+    },
+    {
+      valgene_name: "ヴァルキリージェネレーター　第20弾",
+      valgene_name_english: "Valkyrie Generator Vol. 20",
+      valgene_id: 21,
+      version: 20260901,
+      start: 20260903
     }
   ],
   rarity: {
@@ -1009,6 +1016,27 @@ export const VALGENE7 = {
         {
           type: 20,
           item_ids: [49, 50, 51, 52, 53, 54, 55, 56, 57, 58]
+        }
+      ]
+    },
+    {
+      volume: 21,
+      items: [
+        {
+          type: 11,
+          item_ids: [200]
+        },
+        {
+          type: 18,
+          item_ids: [917, 918, 919, 920, 921, 922, 923, 924, 925, 926, 927, 928, 929, 930, 931, 932, 933, 934, 935, 936, 937, 938, 939, 940, 941, 942, 943, 944, 945, 946]
+        },
+        {
+          type: 19,
+          item_ids: [112, 113, 114]
+        },
+        {
+          type: 20,
+          item_ids: [59]
         }
       ]
     }
@@ -1570,12 +1598,20 @@ export const COURSES7 = [
 ]
 
 export const INFORMATION7 = [
-  { id: 49, version: 20260324, start: 20260326, str: '[img:info/260326_info_tripletribe.png:]'},
   { id: 50, version: 20260421, start: 20260423, str: '[img:info/260423_info_shiranui.png:]'},
   { id: 51, version: 20260615, start: 20260616, str: '[img:info/260616_info_noryosai.png:]'},
   { id: 52, version: 20260630, start: 20260702, str: '[img:info/260702_info_generator.png:]'},
-  { id: 53, version: 20260804, start: 20260806, str: '[img:info/260806_voltenizer_stamp.png:]'}
+  { id: 53, version: 20260804, start: 20260806, str: '[img:info/260806_voltenizer_stamp.png:]'},
+  { id: 54, version: 20260825, start: 20260827, str: '[img:info/260827_info_generator.png:]'}
 ] 
+
+export const MEGAMIX_SONGS_5 = [
+  1762, 1763, 1764, 1765, 1811, 2199, 2225, 2226, 2227, 2253,
+  2254, 2255, 2256, 2257, 2258, 2259, 2314, 2315, 2316, 2317,
+  2318, 2319, 2320, 2321, 2322, 2323, 2324, 2325, 2326, 2327,
+  2328, 2329, 2330, 2331, 2363, 2364, 2365, 2366, 2367, 2368,
+  2369, 2383, 2393, 2394, 2395, 2396, 2397
+]
 
 export const EXTENDS7 = [
   {
@@ -1642,6 +1678,20 @@ export const EXTENDS7 = [
     params: [
       0, 0, 0, 0, 0,
       MEGAMIX_SONGS_4.join(','),
+      '',
+      '',
+      '',
+      '',
+    ],
+  },
+  {
+    version: 20260901,
+    start: 20260903,
+    id: 95,
+    type: 17,
+    params: [
+      0, 0, 0, 0, 0,
+      MEGAMIX_SONGS_5.join(','),
       '',
       '',
       '',
