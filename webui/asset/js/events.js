@@ -3,9 +3,15 @@ var urlParams;
 var versionText = ['', 'BOOTH', 'INFINTE INFECTION', 'GRAVITY WARS', 'HEAVENLY HAVEN', 'VIVID WAVE', 'EXCEED GEAR', '∇']
 let date = new Date();
 let musicDb;
+let customData
+const strType = {'gift': 0, 'gift_subbg': 18} 
 
 $.getJSON("static/asset/json/music_db.json", function(json) {
     musicDb = json;
+})
+
+$.getJSON("static/asset/json/data.json", function(json) {
+    customData = json;
 })
 
 
@@ -22,17 +28,33 @@ function checkStart(startDate) {
     return true
 }
 
-function substituteString(str, start) {
-    let mid = str.match(/\[mid:\d+\]/g);
-    if(!mid) return str
-    mid = mid[0].slice(5,9)
-    let musicData = musicDb.mdb.music.find(m => m.id === mid)
-    let title = ''
-    if(checkStart(start)) title = '????'
-    else if(!musicData) title = '[TITLE NOT FOUND]'
-    else title = musicData['info']['title_name']
+function substituteString(str, start, type) {
+    if(type === 0) {
+        let mid = str.match(/\[mid:\d+\]/g);
+        if(!mid) return str
+        // only gets 4-digit ids, wip
+        mid = mid[0].slice(5,9)
+        let musicData = musicDb.mdb.music.find(m => m.id === mid)
+        let title = ''
+        if(checkStart(start)) title = '????'
+        else if(!musicData) title = '[TITLE NOT FOUND]'
+        else title = musicData['info']['title_name']
 
-    return str.replace(/\[mid:\d+\]/g, title)
+        return str.replace(/\[mid:\d+\]/g, title)
+    } else if(type === 18) {
+        let subbgid = str.match(/\[subbgid:\d+\]/g);
+        if(!subbgid) return str
+        // only gets 3-digit ids, wip
+        subbgid = subbgid[0].slice(9,12)
+        let subbgData = customData.subbg.find(s => parseInt(s.value) === parseInt(subbgid))
+        let name = ''
+        if(checkStart(start)) name = '????'
+        else if(!subbgData) name = '[NOT FOUND]'
+        else name = subbgData['name']
+
+        return str.replace(/\[subbgid:\d+\]/g, name)
+    }
+    return str
 }
 
 function generateEventToggles(eventInfo, eventConfig, eventEnabled) {
@@ -40,14 +62,14 @@ function generateEventToggles(eventInfo, eventConfig, eventEnabled) {
     cardContent.append('<div class="field is-horizontal"').append(
         $("<h5>" + eventInfo['name'] + "</h5>")
         ).append(
-        $("<p style='font-size: 15px;'>" + substituteString(eventInfo['desc'], eventInfo['start']) + "</p>")
+        $("<p style='font-size: 15px;'>" + substituteString(eventInfo['desc'], eventInfo['start'], strType[eventInfo['type']]) + "</p>")
         )
     if(typeof eventInfo['info'] === 'string') {
         cardContent.append(
             $('<div class="field is-horizontal">').append(
                 $('<div class="field-label is-normal"><label class="label" for="' + eventInfo['id'] + '">Enable</label></div>')
             ).append(
-                $('<div class="field-body"><div class="field"><div class="control"><label class="switch is-rounded"><input type="checkbox" ' + (eventConfig['toggle'] ? 'checked' : '') + ' name="' + eventInfo['id'] + '"><span class="check"></span></label></div><p class="help">' + (checkStart(eventInfo['start'], date) ? substituteString(eventInfo['info'], eventInfo['start']) + ' (disabled until ' + formatStartDate(eventInfo['start']) +'  00:00 UTC)' : substituteString(eventInfo['info'], eventInfo['start'])) + '</p></div></div>')
+                $('<div class="field-body"><div class="field"><div class="control"><label class="switch is-rounded"><input type="checkbox" ' + (eventConfig['toggle'] ? 'checked' : '') + ' name="' + eventInfo['id'] + '"><span class="check"></span></label></div><p class="help">' + (checkStart(eventInfo['start'], date) ? substituteString(eventInfo['info'], eventInfo['start'], strType[eventInfo['type']]) + ' (disabled until ' + formatStartDate(eventInfo['start']) +'  00:00 UTC)' : substituteString(eventInfo['info'], eventInfo['start'], strType[eventInfo['type']])) + '</p></div></div>')
             )
         )
         if(eventInfo['settings'] !== undefined) {
@@ -88,7 +110,7 @@ function generateEventToggles(eventInfo, eventConfig, eventEnabled) {
                     $('<div class="field is-horizontal">').append(
                         $('<div class="field-label is-normal"><label class="label" for="' + eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString() + '">Enable Set ' + (parseInt(infoIter) + 1).toString() + '</label></div>')
                     ).append(
-                        $('<div class="field-body"><div class="field"><div class="control"><label class="switch is-rounded"><input type="checkbox" ' + (eventConfig['toggle'][eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString()] ? 'checked' : '') + ' name="' + (eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString()) + '"><span class="check"></span></label></div><p class="help">' + substituteString(eventInfo['info'][infoIter], eventInfo['start'][infoIter]) + (checkStart(eventInfo['start'][infoIter], date) ? " (disabled until " + formatStartDate(eventInfo['start'][infoIter]) + " 00:00 UTC)" : '') + '</p></div></div>')
+                        $('<div class="field-body"><div class="field"><div class="control"><label class="switch is-rounded"><input type="checkbox" ' + (eventConfig['toggle'][eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString()] ? 'checked' : '') + ' name="' + (eventInfo['id'] + '_' + (parseInt(infoIter) + 1).toString()) + '"><span class="check"></span></label></div><p class="help">' + substituteString(eventInfo['info'][infoIter], eventInfo['start'][infoIter], strType[eventInfo['type']]) + (checkStart(eventInfo['start'][infoIter], date) ? " (disabled until " + formatStartDate(eventInfo['start'][infoIter]) + " 00:00 UTC)" : '') + '</p></div></div>')
                     )
                 )
             }

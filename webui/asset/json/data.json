@@ -4575,6 +4575,161 @@
             "value": 885,
             "type": "video",
             "name": "クイズマジックアカデミー 緋のアルカディア オープニングムービー02"
+        },
+        {
+            "value": 886,
+            "type": "video",
+            "name": "ゲーム背景(惑星)"
+        },
+        {
+            "value": 887,
+            "type": "video",
+            "name": "ゲーム背景(絵本)"
+        },
+        {
+            "value": 888,
+            "type": "video",
+            "name": "ゲーム背景(THE VOLTENIZER 2026)"
+        },
+        {
+            "value": 889,
+            "type": "video",
+            "name": "ゲーム背景(Lachryma《Re:Queen’M》)"
+        },
+        {
+            "value": 890,
+            "type": "video",
+            "name": "ゲーム背景(I)"
+        },
+        {
+            "value": 891,
+            "type": "video",
+            "name": "ゲーム背景(Xronièr)"
+        },
+        {
+            "value": 892,
+            "type": "video",
+            "name": "ゲーム背景(ΣgØ)"
+        },
+        {
+            "value": 893,
+            "type": "video",
+            "name": "ゲーム育景(* Erm, could it be a Spatiotemporal ShockWAVE Syndrome...?)"
+        },
+        {
+            "value": 894,
+            "type": "video",
+            "name": "ゲーム背景(VVelcome!!)"
+        },
+        {
+            "value": 895,
+            "type": "video",
+            "name": "ゲーム背景(MAYHEM)"
+        },
+        {
+            "value": 896,
+            "type": "video",
+            "name": "ゲーム背景(Bl∞min')"
+        },
+        {
+            "value": 897,
+            "type": "video",
+            "name": "ゲーム背景(いまきみに)"
+        },
+        {
+            "value": 898,
+            "type": "video",
+            "name": "ゲーム背景(Everlasting Message(ULT))"
+        },
+        {
+            "value": 899,
+            "type": "video",
+            "name": "ネメシスクルー(666)"
+        },
+        {
+            "value": 900,
+            "type": "video",
+            "name": "ネメシスクルー(MixxioN)"
+        },
+        {
+            "value": 901,
+            "type": "video",
+            "name": "ネメシスクルー(XHRONOXAPSULΞ(ミオン))"
+        },
+        {
+            "value": 902,
+            "type": "video",
+            "name": "ネメシスクルー(XHRONOXAPSULΞ(レイシス))"
+        },
+        {
+            "value": 903,
+            "type": "video",
+            "name": "ネメシスクルー(Λkasha(白))"
+        },
+        {
+            "value": 904,
+            "type": "video",
+            "name": "ネメシスクルー(Λkasha(黒))"
+        },
+        {
+            "value": 905,
+            "type": "video",
+            "name": "ネメシスクルー(グレイス(浴衣))"
+        },
+        {
+            "value": 906,
+            "type": "video",
+            "name": "ネメシスクルー(ニアノア(ビーチサイド))"
+        },
+        {
+            "value": 907,
+            "type": "video",
+            "name": "THE VOLTENIZER 2026(筐体)"
+        },
+        {
+            "value": 908,
+            "type": "video",
+            "name": "THE VOLTENIZER 2026(ロゴ)"
+        },
+        {
+            "value": 909,
+            "type": "video",
+            "name": "TAMA猫アドベンチャー(草原)"
+        },
+        {
+            "value": 910,
+            "type": "video",
+            "name": "TAMA猫アドベンチャー(ネメシスシティ昼)"
+        },
+        {
+            "value": 911,
+            "type": "video",
+            "name": "TAMA猫アドベンチャー(ネメシスコア)"
+        },
+        {
+            "value": 912,
+            "type": "video",
+            "name": "TAMA猫アドベンチャー(宇宙)"
+        },
+        {
+            "value": 913,
+            "type": "normal",
+            "name": "hololive Dreams -opening-"
+        },
+        {
+            "value": 914,
+            "type": "normal",
+            "name": "hololive Dreams -parade-"
+        },
+        {
+            "value": 915,
+            "type": "normal",
+            "name": "hololive Dreams -welcome-"
+        },
+        {
+            "value": 916,
+            "type": "normal",
+            "name": "hololive Dreams -forever-"
         }
     ],
     "bgm": [
@@ -14375,6 +14530,214 @@
         {
             "value": 2336,
             "name": "グリム・アロエ（QMA） 10 4"
+        },
+        {
+            "value": 2337,
+            "name": "おしゃべりピリカ 001 1"
+        },
+        {
+            "value": 2338,
+            "name": "おしゃべりピリカ 001 2"
+        },
+        {
+            "value": 2339,
+            "name": "おしゃべりピリカ 001 3"
+        },
+        {
+            "value": 2340,
+            "name": "おしゃべりピリカ 001 4"
+        },
+        {
+            "value": 2341,
+            "name": "おしゃべりピリカ 002 1"
+        },
+        {
+            "value": 2342,
+            "name": "おしゃべりピリカ 002 2"
+        },
+        {
+            "value": 2343,
+            "name": "おしゃべりピリカ 002 3"
+        },
+        {
+            "value": 2344,
+            "name": "おしゃべりピリカ 002 4"
+        },
+        {
+            "value": 2345,
+            "name": "おしゃべりピリカ 003 1"
+        },
+        {
+            "value": 2346,
+            "name": "おしゃべりピリカ 003 2"
+        },
+        {
+            "value": 2347,
+            "name": "おしゃべりピリカ 003 3"
+        },
+        {
+            "value": 2348,
+            "name": "おしゃべりピリカ 003 4"
+        },
+        {
+            "value": 2349,
+            "name": "おしゃべりピリカ 004 1"
+        },
+        {
+            "value": 2350,
+            "name": "おしゃべりピリカ 004 2"
+        },
+        {
+            "value": 2351,
+            "name": "おしゃべりピリカ 004 3"
+        },
+        {
+            "value": 2352,
+            "name": "おしゃべりピリカ 004 4"
+        },
+        {
+            "value": 2353,
+            "name": "おしゃべりレイシス 012 1"
+        },
+        {
+            "value": 2354,
+            "name": "おしゃべりレイシス 012 2"
+        },
+        {
+            "value": 2355,
+            "name": "おしゃべりレイシス 012 3"
+        },
+        {
+            "value": 2356,
+            "name": "おしゃべりレイシス 012 4"
+        },
+        {
+            "value": 2357,
+            "name": "おしゃべりレイシス 013 1"
+        },
+        {
+            "value": 2358,
+            "name": "おしゃべりレイシス 013 2"
+        },
+        {
+            "value": 2359,
+            "name": "おしゃべりレイシス 013 3"
+        },
+        {
+            "value": 2360,
+            "name": "おしゃべりレイシス 013 4"
+        },
+        {
+            "value": 2361,
+            "name": "おしゃべりグレイス 014 1"
+        },
+        {
+            "value": 2362,
+            "name": "おしゃべりグレイス 014 2"
+        },
+        {
+            "value": 2363,
+            "name": "おしゃべりグレイス 014 3"
+        },
+        {
+            "value": 2364,
+            "name": "おしゃべりグレイス 014 4"
+        },
+        {
+            "value": 2365,
+            "name": "おしゃべりグレイス 015 1"
+        },
+        {
+            "value": 2366,
+            "name": "おしゃべりグレイス 015 2"
+        },
+        {
+            "value": 2367,
+            "name": "おしゃべりグレイス 015 3"
+        },
+        {
+            "value": 2368,
+            "name": "おしゃべりグレイス 015 4"
+        },
+        {
+            "value": 2369,
+            "name": "おしゃべり雷刀 009 1"
+        },
+        {
+            "value": 2370,
+            "name": "おしゃべり雷刀 009 2"
+        },
+        {
+            "value": 2371,
+            "name": "おしゃべり雷刀 009 3"
+        },
+        {
+            "value": 2372,
+            "name": "おしゃべり雷刀 009 4"
+        },
+        {
+            "value": 2373,
+            "name": "おしゃべり烈風刀 009 1"
+        },
+        {
+            "value": 2374,
+            "name": "おしゃべり烈風刀 009 2"
+        },
+        {
+            "value": 2375,
+            "name": "おしゃべり烈風刀 009 3"
+        },
+        {
+            "value": 2376,
+            "name": "おしゃべり烈風刀 009 4"
+        },
+        {
+            "value": 2377,
+            "name": "おしゃべりニアノア 008 1"
+        },
+        {
+            "value": 2378,
+            "name": "おしゃべりニアノア 008 2"
+        },
+        {
+            "value": 2379,
+            "name": "おしゃべりニアノア 008 3"
+        },
+        {
+            "value": 2380,
+            "name": "おしゃべりニアノア 008 4"
+        },
+        {
+            "value": 2381,
+            "name": "おしゃべりかなで 009 1"
+        },
+        {
+            "value": 2382,
+            "name": "おしゃべりかなで 009 2"
+        },
+        {
+            "value": 2383,
+            "name": "おしゃべりかなで 009 3"
+        },
+        {
+            "value": 2384,
+            "name": "おしゃべりかなで 009 4"
+        },
+        {
+            "value": 2385,
+            "name": "おしゃべりかなで 010 1"
+        },
+        {
+            "value": 2386,
+            "name": "おしゃべりかなで 010 2"
+        },
+        {
+            "value": 2387,
+            "name": "おしゃべりかなで 010 3"
+        },
+        {
+            "value": 2388,
+            "name": "おしゃべりかなで 010 4"
         }
     ],
     "akaname": [

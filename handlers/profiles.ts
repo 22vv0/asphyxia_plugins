@@ -1048,8 +1048,8 @@ export const load: EPR = async (info, data, send) => {
           break;
       }
       for(const eData of eventData['events' + version]) {
-        let typeIds = {'gift_crew': [11, 1], 'gift_ap': [1, 1], 'gift': [0, 23], 'cross_online': [0, 23]}
-        if(['gift_crew', 'gift_ap', 'gift', 'cross_online'].includes(eData.type) && eventConfig[eData.id] !== undefined) {
+        let typeIds = {'gift_crew': [11, 1], 'gift_ap': [1, 1], 'gift': [0, 23], 'cross_online': [0, 23], 'gift_subbg': [18, 1]}
+        if(['gift_crew', 'gift_ap', 'gift_subbg', 'gift', 'cross_online'].includes(eData.type) && eventConfig[eData.id] !== undefined) {
           if(typeof eventConfig[eData.id].toggle === "boolean") {
             if(eventConfig[eData.id].toggle && checkVerStart(dVersion, eData.version, eData.start, date)) {
               for(const itemIter in eventItems[eData.id]) {

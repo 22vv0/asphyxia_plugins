@@ -1551,6 +1551,31 @@
             "start": 20260806,
             "desc": "Stamp event to unlock 7 VOLTENIZER 2026 original song contest winning songs, including [mid:2406]. There are 3 batches of stamp sheets (3 songs / 3 songs / 1 song,) where they only appear after completing the previous batch.",
             "info": "Toggle this on to enable/disable this stamp event."
+        },
+        {
+            "id": "holodorisub",
+            "type": "gift_subbg",
+            "enabled": true,
+            "name": "hololive Dreams x BEMANI Touch Panel Background Present",
+            "version": [
+                20260825,
+                20260825,
+                20260825,
+                20260825
+            ],
+            "start": [
+                20260827,
+                20260827,
+                20260827,
+                20260827
+            ],
+            "desc": "Crossover event between hololive Dreams and BEMANI. Unlock hololive Dreams themed Touch Panel Backgrounds.<br>After toggling, login once for the item/s to be added (no popups will appear to indicate item is obtained)",
+            "info": [
+                "[subbgid:913]",
+                "[subbgid:914]",
+                "[subbgid:915]",
+                "[subbgid:916]"
+            ]
         }
     ],
     "flags": [

@@ -112,7 +112,8 @@ export const BLASTER_GATE7 = [
 
 export const LICENSED_SONGS7 = LICENSED_SONGS6.concat([
   2348, 2344, 2343, 2352, 2353, 2345, 2234, 2354, 2350, 2351, 2209, 2376, 2377,
-  2384, 2385, 2386, 2388, 2389, 2390, 2391, 2392, 2333, 2334, 2335, 2336, 2337
+  2384, 2385, 2386, 2388, 2389, 2390, 2391, 2392, 2333, 2334, 2335, 2336, 2337,
+  2405
 ])
 
 export const UNLOCK_EVENTS7 = {
@@ -788,6 +789,50 @@ export const UNLOCK_EVENTS7 = {
           stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
           stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 8/31～9/6',
           stprwrd: '0:r:x118 1:p:1000 5:b:500 10:r:195 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        },
+        {
+          stmpid: 127,
+          stps: 10030,
+          version: 20260825,
+          start: 20260907,
+          stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+          stmpFtJ: '[sz:22]9/7~9/13の間、ポルテを遊ぶとスタンプを獲得できます',
+          stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+          stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 9/7～9/13',
+          stprwrd: '0:r:x119 1:p:1000 5:b:500 10:r:200 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        },
+        {
+          stmpid: 128,
+          stps: 10030,
+          version: 20260825,
+          start: 20260914,
+          stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+          stmpFtJ: '[sz:22]9/14~9/20の間、ポルテを遊ぶとスタンプを獲得できます',
+          stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+          stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 9/14～9/20',
+          stprwrd: '0:r:x127 1:p:1000 5:b:500 10:r:201 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        },
+        {
+          stmpid: 129,
+          stps: 10030,
+          version: 20260825,
+          start: 20260921,
+          stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+          stmpFtJ: '[sz:22]9/21~9/27の間、ポルテを遊ぶとスタンプを獲得できます',
+          stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+          stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 9/21～9/27',
+          stprwrd: '0:r:x128 1:p:1000 5:b:500 10:r:202 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
+        },
+        {
+          stmpid: 130,
+          stps: 10030,
+          version: 20260825,
+          start: 20260928,
+          stmpHdJ: '[sz:22][c:DAC491]▽ウィークリースタンプボーナス!',
+          stmpFtJ: '[sz:22]9/28~10/4の間、ポルテを遊ぶとスタンプを獲得できます',
+          stmpHd: '[sz:22][c:DAC491]SPECIAL STAMP BONUS',
+          stmpFt: '[sz:22]YOU CAN GET A STAMP AND BONUS! :)[br:5]TERM: 9/28～10/4',
+          stprwrd: '0:r:x129 1:p:1000 5:b:500 10:r:203 11:p:1000 15:b:500 20:p:5000 21:p:1000 25:b:500 30:p:5000'
         }
       ]
     }
@@ -847,7 +892,11 @@ export const EVENT_ITEMS7 = {
   "2026noryosai_4": ['2398'],
   "2026noryosai_5": ['2399'],
   "2026noryosai_6": ['2400'],
-  "qmaapica": ['6509']
+  "qmaapica": ['6509'],
+  "holodorisub_1": ['913'],
+  "holodorisub_2": ['914'],
+  "holodorisub_3": ['915'],
+  "holodorisub_4": ['916']
 }
 
 // rule: 0 score 1 point 2 vote
@@ -1013,7 +1062,16 @@ export const PREGENE7 = [
       sysbg: [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42]
     },
     probability: [0.05, 0.42, 0.84, 0.9]
-  }
+  },
+  {
+    id: 28,
+    items: {
+      crew: [199],
+      stamp: [585, 586, 587, 588, 589, 590, 591, 592, 593, 594, 595, 596, 597],
+      subbg: [886, 887, 888, 889, 890, 891, 892, 893, 894, 895, 896, 897, 898, 899, 900, 901, 902, 903, 904, 905, 906, 907, 908, 909, 910, 911, 912]
+    },
+    probability: [0.05, 0.39, 0.6]
+  },
 ]
 
 export const APIGENE7 = {
@@ -1788,6 +1846,76 @@ export const MUSIC_OVERRIDE7 = [
     start: 20260212,
     date: 20260430,
     charts: {}
+  },
+  {
+    music_id: 2246,
+    start: 20260827,
+    charts: {
+      nov: { price: 4294967294 },
+      adv: { price: 4294967294 },
+      exh: { price: 4294967294 },
+      mxm: { price: 4294967294 }
+    }
+  },
+  {
+    music_id: 2247,
+    start: 20260827,
+    charts: {
+      nov: { price: 4294967294 },
+      adv: { price: 4294967294 },
+      exh: { price: 4294967294 },
+      mxm: { price: 4294967294 }
+    }
+  },
+  {
+    music_id: 2249,
+    start: 20260827,
+    charts: {
+      nov: { price: 4294967294 },
+      adv: { price: 4294967294 },
+      exh: { price: 4294967294 },
+      mxm: { price: 4294967294 }
+    }
+  },
+  {
+    music_id: 2250,
+    start: 20260827,
+    charts: {
+      nov: { price: 4294967294 },
+      adv: { price: 4294967294 },
+      exh: { price: 4294967294 },
+      mxm: { price: 4294967294 }
+    }
+  },
+  {
+    music_id: 2263,
+    start: 20260827,
+    charts: {
+      nov: { price: 4294967294 },
+      adv: { price: 4294967294 },
+      exh: { price: 4294967294 },
+      mxm: { price: 4294967294 }
+    }
+  },
+  {
+    music_id: 2338,
+    start: 20260827,
+    charts: {
+      nov: { price: 4294967294 },
+      adv: { price: 4294967294 },
+      exh: { price: 4294967294 },
+      mxm: { price: 4294967294 }
+    }
+  },
+  {
+    music_id: 2342,
+    start: 20260827,
+    charts: {
+      nov: { price: 4294967294 },
+      adv: { price: 4294967294 },
+      exh: { price: 4294967294 },
+      mxm: { price: 4294967294 }
+    }
   }
 ]
 
