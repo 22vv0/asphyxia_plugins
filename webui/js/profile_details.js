@@ -42,7 +42,6 @@ $(document).ready(async function() {
 			}
 		}
 	})
-	console.log(sgSkill + " (" + totalSgFlare + ")")
 
 	skillGet = false
 	flareSkill.forEach(fs => {
@@ -56,33 +55,15 @@ $(document).ready(async function() {
 			}
 		}
 	})
-	console.log(dbSkill + " (" + totalDbFlare + ")")
 
-	$("#skillrank").append(
-		$("<td>").append(sgSkill)
-	).append(
-		$("<td>").append(dbSkill)
-	)
-
-	$("#skilltotal").append(
-		$("<td>").append(totalSgFlare)
-	).append(
-		$("<td>").append(totalDbFlare)
-	)
-
-	$("#skillclassic").append(
-		$("<td>").append(classicSgFlare + ' (' + classicSgTop30.length + ' / 30)')
-	).append(
-		$("<td>").append(classicDbFlare + ' (' + classicDbTop30.length + ' / 30)')
-	)
-	$("#skillwhite").append(
-		$("<td>").append(whiteSgFlare + ' (' + whiteSgTop30.length + ' / 30)')
-	).append(
-		$("<td>").append(whiteDbFlare + ' (' + whiteDbTop30.length + ' / 30)')
-	)
-	$("#skillgold").append(
-		$("<td>").append(goldSgFlare + ' (' + goldSgTop30.length + ' / 30)')
-	).append(
-		$("<td>").append(goldDbFlare + ' (' + goldDbTop30.length + ' / 30)')
-	)
+	$('#srs').append(sgSkill)
+	$('#srd').append(dbSkill)
+	$('#sts').append(totalSgFlare)
+	$('#std').append(totalDbFlare)
+	$('#scs').append(`${classicSgFlare} (${classicSgTop30.length} / 30)`)
+	$('#scd').append(`${classicDbFlare} (${classicDbTop30.length} / 30)`)
+	$('#sws').append(`${whiteSgFlare} (${whiteSgTop30.length} / 30)`)
+	$('#swd').append(`${whiteDbFlare} (${whiteDbTop30.length} / 30)`)
+	$('#sgs').append(`${goldSgFlare} (${goldSgTop30.length} / 30)`)
+	$('#sgd').append(`${goldDbFlare} (${goldDbTop30.length} / 30)`)
 })

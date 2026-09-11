@@ -7,10 +7,26 @@ export interface RivalWorld {
   rivalCode: number;
 }
 
+// PB Score
 export interface ScoreWorld {
   collection: "score3";
 
-  scoreId: number;
+  songId: number;
+  style: number;
+  difficulty: Difficulty;
+  ghostId: number;
+  rank: Rank;
+  clearKind: ClearKind;
+  score: number;
+  exScore: number;
+  maxCombo: number;
+  flareForce: number;
+}
+
+// Score
+export interface ScoreLog {
+  collection: "scorelog";
+
   songId: number;
   style: number;
   difficulty: Difficulty;
@@ -38,6 +54,8 @@ export interface HiScoreWorld {
   difficulty: number;
   dancerName: string;
   score: number;
+  rank: Rank;
+  clearKind: ClearKind;
   ghostId: number;
 }
 

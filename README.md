@@ -1,6 +1,6 @@
 # DanceDanceRevolution
 
-**Plugin Version:** 3.2.0-qfix
+**Plugin Version:** 3.2.0a
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=mdx&expanded=true).
 
 **Supported game versions:** WORLD (2026022400)
@@ -13,38 +13,17 @@
 
 Changelog
 ===========
-### qfix
-
-- Fixed playerdataload issue when LeagueResult data is empty ([#103](https://github.com/22vv0/asphyxia_plugins/issues/103))
-
-### WORLD
-
-- Updated new song metadata and advance play list, etc
-- Added EXTRA SAVIOR WORLD: MYSTICAL Re:UNION
-- Added EXTRA SAVIOR WORLD: BEMANI PRO LEAGUE -SEASON 4- Triple Tribe
-- Added EXTRA SAVIOR WORLD: BEMANI SELECTION vol.3
-- Added EXTRA SAVIOR WORLD: The 1st ひなビタ♪ CHALLENGE
-- Added EXTRA SAVIOR WORLD: The 1st GITADORA
-- Added EXTRA SAVIOR WORLD: 音戯探偵ひなビタ♫
-- Added GALAXY BRAVE: UNSTABLE
-- Added GALAXY BRAVE: BREAKTHROUGH
-- Added GALAXY BRAVE: BLAZING
-- Added GALAXY BRAVE: SHOWDOWN
-- Added GALAXY BRAVE: FORCE
-- Added PREMIUM CUSTOMIZER 第5弾
-- Added PREMIUM CUSTOMIZER 「東方Project」 第1弾
-- Added PREMIUM CUSTOMIZER 「にじさんじダンス部」 第1弾
-- Added PREMIUM CUSTOMIZER 「にじさんじダンス部」 第2弾
-- Added PREMIUM CUSTOMIZER 音戯探偵ひなビタ♫ 調査依頼:BEMANI
-- Added PREMIUM CUSTOMIZER 「GITADORA」 第1弾
-- Added PREMIUM CUSTOMIZER 「pop'n music」 第1弾
-- Added BEMANI PRO LEAGUE -SEASON 5- Triple Tribe song unlocks
-- Added pop'n & DDR Cheers × Cheers!! song unlocks
-- Updated WORLD LEAGUE benefits
 
 ### Misc
 
-- Added toggle for WORLD LEAGUE
+- Plugin now saves all scores and ghost data (as opposed to only PB)
+- Implement rival registration and rival PB display in-game
+- Updated missing `score_str` and `record_str` param values
+- PB scores now store lamp and grade for rivaldata_load
+
+### WebUI
+
+- Added `Profile > Rivals` page: add and remove up to 10 rivals and register up to 3 to compare scores with in-game
 
 musicdb.xml Usage Guide
 ===========

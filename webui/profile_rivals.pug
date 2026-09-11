@@ -1,0 +1,56 @@
+//DATA//
+  rivals: DB.Find(refid, { collection: 'rival3' })
+  profiles: DB.Find(null, { collection: 'profile3' })
+-
+link(rel="stylesheet" href="static/css/datatables.css")
+div(style="display:flex;justify-content:center")
+  div(style="width:50%;padding:10px")
+    .card
+      .card-header
+        p.card-header-title
+          span.icon
+            i.mdi.mdi-account-edit
+          | Add rival
+      .card-content
+        .field
+          .control
+            input.input(type="text" name="ddrcode" placeholder="Enter DDR Code")
+        .field
+          button.button.is-primary(type="submit" id="addrival") 
+            span(id="rival-button") Add Rival
+
+    .card
+      .card-header
+        p.card-header-title
+          span.icon
+            i.mdi.mdi-boxing-glove
+          | Active Rivals
+      .card-content
+        table.table(id="activerivals" style="width:100%")
+          thead
+            tr    
+              th Slot
+              th Rival
+          tbody
+
+  div(style="width:50%;padding:10px")
+    .card
+      .card-header
+        p.card-header-title
+          span.icon
+            i.mdi.mdi-boxing-glove
+          | Rivals list
+      .card-content
+        table.table(id="rivalslist" style="width:100%")
+          thead
+            tr
+              th Dancer Name
+              th DDR Code
+              th Actions
+          tbody
+
+div(hidden id='refid-pass') !{refid}
+div(hidden id='rivals-pass') !{JSON.stringify(rivals)}
+div(hidden id='profiles-pass') !{JSON.stringify(profiles)}
+script(src="static/js/profile_rivals.js") 
+script(src="static/js/datatables.js")
