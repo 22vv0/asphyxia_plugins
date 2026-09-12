@@ -689,7 +689,7 @@ export const common: EPR = async (info, data, send) => {
           chara.push(tempChara)
         }
 
-        const gameoverIfs = GAMEOVER_IFS.filter(g => g.version >= version);
+        const gameoverIfs = GAMEOVER_IFS.filter(g => version >= g.version);
         if(gameoverIfs.length === 0 || Math.random() < 0.5) { 
           extend.push({
             id: 1,
