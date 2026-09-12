@@ -449,7 +449,7 @@ export const SONGS_OVERRIDE_WORLD = [
 	{ mcode: 37889, limited_ary: [], diffLv: [2, 7, 9, 12, 15, 0, 7, 10, 12, 15] },
 	{ mcode: 37965, limited_ary: [], diffLv: [2, 4, 8, 10, 0, 0, 5, 9, 13, 0] },
 	{ mcode: 37887, limited_ary: [], diffLv: [2, 5, 8, 11, 13, 0, 5, 8, 11, 13] },
-	{ mcode: 38032, limited_ary: [], diffLv: [8, 12, 15, 16, 19, 0, 12, 16, 18, 19] },
+	{ mcode: 38032, limited_ary: [], diffLv: [8, 12, 16, 18, 19, 0, 12, 16, 18, 19] },
 	{ mcode: 38027, limited_ary: [], diffLv: [3, 7, 12, 15, 0, 0, 7, 12, 15, 0] },
 	{ mcode: 38051, limited_ary: [], diffLv: [7, 10, 13, 17, 0, 0, 10, 13, 18, 0] },
 	{ mcode: 37988, limited_ary: [0, 0, 0, 0, 0, -1, 0, 0, 0, 0], diffLv: [3, 4, 10, 14, 17, 0, 4, 10, 14, 17] },
