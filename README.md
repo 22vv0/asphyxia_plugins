@@ -1,6 +1,6 @@
 SOUND VOLTEX
 ===
-**Plugin Version:** fork-7.2.1
+**Plugin Version:** fork-7.2.2
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
 **Supported game versions:**
@@ -10,7 +10,7 @@ SOUND VOLTEX
 - HEAVENLY HAVEN (2019020600)
 - VIVID WAVE (2020122200)
 - EXCEED GEAR (2025120900)
-- ∇ (2026090100)
+- ∇ (2026091500)
 
 **Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d) or above
 
@@ -25,28 +25,19 @@ SOUND VOLTEX
 
 ### ∇
 
-#### 2026080400
-
-- Added stamp event: `THE VOLTENIZER 2026 SPECIAL STAMP`
-- Added new game over screens; appears at random
-- Updated login info popups list
-- Added version check/filter for game over chara textures
-
-#### 2026082500
-
-- Added new login gift toggles: `hololive Dreams X BEMANI Touch Panel Background Present`
-- Added `PREMIUM GENERATOR Vol.9`
+- Added `VALKYRIE GENERATOR hololive dreams x BEMANI`
+- Added 6 new songs to MEGAMIX BATTLE
 - Updated licensed songs list
-- Added new Weekly Stamp Sheets
-- Added music override: `BEMANI PRO LEAGUE -SEASON 5- Triple Tribe 0` songs - now blc unlockable
-- Added music override: `GITADORA Special Stamp!` songs - now blc unlockable
+- Updated beginner songs list
 
-#### 2026090100
+### EXCEED GEAR
 
-- Added `VALKYRIE GENERATOR Vol.20`
-- Added 47 new songs to MEGAMIX BATTLE
-- Added 3 new options for appeal card frames
-- Updated login info popups list
+- Added more missing licensed songs to list (applies to ∇)
+
+### Misc
+
+- Updated getDateCodeInit() PE list
+- Updated song title translate_table
 
 ---
 ## Todo:

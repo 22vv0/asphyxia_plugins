@@ -4884,6 +4884,96 @@
             "value": 946,
             "type": "normal",
             "name": "運命を断ち斬るもの"
+        },
+        {
+            "value": 947,
+            "type": "normal",
+            "name": "【We are hololive!】白上フブキ"
+        },
+        {
+            "value": 948,
+            "type": "normal",
+            "name": "【ギアあげるFOXパフォーマンス】白上フブキ"
+        },
+        {
+            "value": 949,
+            "type": "normal",
+            "name": "【We are hololive!】白銀ノエル"
+        },
+        {
+            "value": 950,
+            "type": "normal",
+            "name": "【歌う脳筋ゴリ押しナイト】白銀ノエル"
+        },
+        {
+            "value": 951,
+            "type": "normal",
+            "name": "【We are hololive!】角巻わため"
+        },
+        {
+            "value": 952,
+            "type": "normal",
+            "name": "【広がるhealing sound】角巻わため"
+        },
+        {
+            "value": 953,
+            "type": "normal",
+            "name": "【We are hololive!】桃鈴ねね"
+        },
+        {
+            "value": 954,
+            "type": "normal",
+            "name": "【get excitedジャンプ!】桃鈴ねね"
+        },
+        {
+            "value": 955,
+            "type": "normal",
+            "name": "【We are hololive!】クレイジー・オリー"
+        },
+        {
+            "value": 956,
+            "type": "normal",
+            "name": "【Deadly Encore】クレイジー・オリー"
+        },
+        {
+            "value": 957,
+            "type": "normal",
+            "name": "【We are hololive!】こぼ・かなえる"
+        },
+        {
+            "value": 958,
+            "type": "normal",
+            "name": "【ドタバタフルスロットルステージ】こぼ・かなえる"
+        },
+        {
+            "value": 959,
+            "type": "normal",
+            "name": "【We are hololive!】一伊那尔栖"
+        },
+        {
+            "value": 960,
+            "type": "normal",
+            "name": "【舞台を飾る和やか笑顔】一伊那尔栖"
+        },
+        {
+            "value": 961,
+            "type": "normal",
+            "name": "【We are hololive!】オーロ・クロニー"
+        },
+        {
+            "value": 962,
+            "type": "normal",
+            "name": "【刻を忘れるパフォーマンス】オーロ・クロニー"
+        },
+        {
+            "value": 963,
+            "type": "normal",
+            "name": "【We are hololive!】儒鳥風亭らでん"
+        },
+        {
+            "value": 964,
+            "type": "normal",
+            "name": "【cultural performer】儒鳥風亭らでん"
         }
     ],
     "bgm": [

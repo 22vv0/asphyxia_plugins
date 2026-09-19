@@ -1,6 +1,6 @@
 import { HAVE_NOTE } from "../data/ii"
 import { COURSES6, MEGAMIX_SONGS, MEGAMIX_SONGS_2, MEGAMIX_SONGS_3, MEGAMIX_SONGS_4 } from "../data/exg"
-import { MEGAMIX_SONGS_5 } from "../data/nbl"
+import { LICENSED_SONGS7, MEGAMIX_SONGS_5 } from "../data/nbl"
 import { VariantPower } from "../models/variant"
 import { Profile } from "../models/profile"
 import { Arena } from "../models/arena"
@@ -33,6 +33,18 @@ export async function dataUpdate() {
 				}
 			}
 		}
+		console.log(`new megamix ids ${JSON.stringify(newSongs)}`)
+
+		let mdb = U.parseXML(U.DecodeString(await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/others/music_db.xml"), "shift_jis"), false)
+		newSongs = []
+		for (const m of mdb.mdb.music) {
+			let mid = parseInt(m['@attr'].id)
+			if(parseInt(m.info.version['@content'][0]) >= 6 && m.info.license_text && !LICENSED_SONGS7.includes(mid) && !newSongs.includes(mid)) {
+				console.log(`new song - ${m.info.title_name['@content']}`)
+				newSongs.push(mid)
+			}
+		}
+		console.log(`licensed song ids ${JSON.stringify(newSongs)}`)
 	}
 
 	await updateSkillCourseIds()

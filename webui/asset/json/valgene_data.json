@@ -527,6 +527,14 @@
                 "bgm": [112, 113, 114],
                 "nemsys": [59]
             }
+        },
+        {
+            "id": 22,
+            "name": "Valkyrie Generator hololive Dreams x BEMANI",
+            "version": 20260915,
+            "items": {
+                "subbg": [947, 948, 949, 950, 951, 952, 953, 954, 955, 956, 957, 958, 959, 960, 961, 962, 963, 964]
+            }
         }
     ]
 }
