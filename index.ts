@@ -223,6 +223,9 @@ export function register() {
       await DB.Upsert<CustomizeWorld>(refid, { collection: "customize3", category: sel[0], pattern: sel[2] }, { 
         $set: { 
           key: sel[1],
+          ...(sel[1] === 9999 && {
+            random: sel[3]
+          })
         }
       });
     }

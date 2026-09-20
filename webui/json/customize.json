@@ -22,6 +22,10 @@
 			"optgroup": 0,
 			"items": [
 				{
+					"id": 9999,
+					"name": "RANDOM" 
+				},
+				{
 					"id": 1,
 					"name": "EMI" 
 				},
@@ -122,7 +126,6 @@
 				{
 					"id": 18,
 					"name": "TSUGARU (春のコナステ大感謝祭2024)"
-
 				},
 				{
 					"id": 19,
@@ -307,6 +310,10 @@
 		{
 			"optgroup": 0,
 			"items": [
+				{
+					"id": 9999,
+					"name": "RANDOM" 
+				},
 				{
 					"id": 1,
 					"name": "EMI" 
@@ -656,6 +663,10 @@
 		{
 			"optgroup": 0,
 			"items": [
+				{
+					"id": 9999,
+					"name": "RANDOM" 
+				},
 				{
 					"id": 1,
 					"name": "EMI&RAGE" 
@@ -1067,6 +1078,10 @@
 			"optgroup": 0,
 			"items": [
 				{
+					"id": 9999,
+					"name": "RANDOM" 
+				},
+				{
 					"id": 1,
 					"name": "WORLD" 
 				},
@@ -1467,6 +1482,10 @@
 		{
 			"optgroup": 0,
 			"items": [
+				{
+					"id": 9999,
+					"name": "RANDOM" 
+				},
 				{
 					"id": 1,
 					"name": "WORLD" 
@@ -1937,6 +1956,10 @@
 			"optgroup": 0,
 			"items": [
 				{
+					"id": 9999,
+					"name": "RANDOM" 
+				},
+				{
 					"id": 1,
 					"name": "WORLD (パターン1)" 
 				},
@@ -2209,6 +2232,10 @@
 		{
 			"optgroup": 0,
 			"items": [
+				{
+					"id": 9999,
+					"name": "RANDOM" 
+				},
 				{
 					"id": 1,
 					"name": "プレーン (パターン1)"

@@ -77,24 +77,35 @@ $('#change-platinum').on('click', () => {
 });
 
 $('#customsave').on('click', () => {
-  let selected = [
-    [1, parseInt($('#appeal option:selected').val()), 1],
-    [2, parseInt($('#character-left option:selected').val()), 1],
-    [2, parseInt($('#character-right option:selected').val()), 2],
-    [3, parseInt($('#bg-system option:selected').val()), 1],
-    [3, parseInt($('#bg-play option:selected').val()), 2],
-    [4, parseInt($('#lanebg-s option:selected').val()), 1],
-    [5, parseInt($('#lanebg-d option:selected').val()), 1],
-    [6, parseInt($('#lanecv-s option:selected').val()), 1],
-    [7, parseInt($('#lanecv-d option:selected').val()), 1],
-    [8, parseInt($('#bg-vid option:selected').val()), 1],
-  ]
+  let selected = []
+  let ranSel = []
+  
+  for(const elem of customList) {
+    if(parseInt($(`#${elem[0]} option:selected`).val()) === 9999) {
+      ranSel = $(`.${elem[0]}-ran input[type=checkbox]:checked`).map(function() { return parseInt(this.value); }).get()
+    }
+    selected.push([elem[1], parseInt($(`#${elem[0]} option:selected`).val()), elem[2], ranSel])
+    ranSel = []
+  }
+  console.log(selected)
 
   emit('playerCustomize', { refid, selected }).then(() => location.reload());
 });
 
 var customJson
 var customizeData = document.getElementById("customize-data") !== null ? JSON.parse(document.getElementById("customize-data").innerText) : [];
+const customList = [
+  ['appeal', 1, 1, 'appealBoard'],
+  ['character-left', 2, 1, 'character'],
+  ['character-right', 2, 2, 'character'],
+  ['bg-system', 3, 1, 'gameBG'],
+  ['bg-play', 3, 2, 'gameBG'],
+  ['lanebg-s', 4, 1, 'laneBgSingle'],
+  ['lanebg-d', 5, 1, 'laneBgDouble'],
+  ['lanecv-s', 6, 1, 'laneCoverSingle'],
+  ['lanecv-d', 7, 1, 'laneCoverDouble'],
+  ['bg-vid', 8, 1, 'songVid']
+]
 
 $(document).ready(function(){
   $.when(
@@ -102,69 +113,50 @@ $(document).ready(function(){
       customJson = json;
     }),
   ).then(function() {
-    let custInd, custInd2
-    custInd = customizeData.findIndex(c => c.category === 1)
-    for(const ap of customJson['appealBoard']) {
-      $('#appeal').append('<optgroup label="' + customJson['optgroup'][ap['optgroup']] + '">')
-      for(const item of ap['items'])
-        $('#appeal').append('<option value=' + item.id + ((custInd >= 0 && item.id === customizeData[custInd].key) ? " selected" : " ") + ">" + item.name + "</option>")
-    }
+    let custInd
 
-    custInd = customizeData.findIndex(c => c.category === 2 && c.pattern === 1)
-    custInd2 = customizeData.findIndex(c => c.category === 2 && c.pattern === 2)
-    for(const ch of customJson['character']) {
-      $('#character-left').append('<optgroup label="' + customJson['optgroup'][ch['optgroup']] + '">')
-      for(const item of ch['items'])
-        $('#character-left').append('<option value=' + item.id + ((custInd >= 0 && item.id === customizeData[custInd].key) ? " selected" : " ") + ">" + item.name + "</option>")
-      
-      $('#character-right').append('<optgroup label="' + customJson['optgroup'][ch['optgroup']] + '">')
-      for(const item of ch['items'])
-        $('#character-right').append('<option value=' + item.id + ((custInd2 >= 0 && item.id === customizeData[custInd2].key) ? " selected" : " ") + ">" + item.name + "</option>")
+    for(const cust of customList) {
+      custInd = customizeData.findIndex(c => c.category === cust[1] && c.pattern === cust[2])
+      if(cust[1] === 8) {
+        for(const item of customJson[cust[3]])
+          $(`#${cust[0]}`).append('<option value=' + item.id + ((custInd >= 0 && item.id === customizeData[custInd].key) ? " selected" : " ") + ">" + item.name + "</option>")
+      } else {
+        for(const ap of customJson[cust[3]]) {
+          $(`#${cust[0]}`).append('<optgroup label="' + customJson['optgroup'][ap['optgroup']] + '">')
+          for(const item of ap['items'])
+            $(`#${cust[0]}`).append('<option value=' + item.id + ((custInd >= 0 && item.id === customizeData[custInd].key) ? " selected" : " ") + ">" + item.name + "</option>")
+        }
+        if(customizeData[custInd].key === 9999) {
+          populateRandomSelect(cust)
+        }
+      }
     }
+  })
 
-    custInd = customizeData.findIndex(c => c.category === 3 && c.pattern === 1)
-    custInd2 = customizeData.findIndex(c => c.category === 3 && c.pattern === 2)
-    for(const bg of customJson['gameBG']) {
-      $('#bg-system').append('<optgroup label="' + customJson['optgroup'][bg['optgroup']] + '">')
-      for(const item of bg['items'])
-        $('#bg-system').append('<option value=' + item.id + ((custInd >= 0 && item.id === customizeData[custInd].key) ? " selected" : " ") + ">" + item.name + "</option>")
-      
-      $('#bg-play').append('<optgroup label="' + customJson['optgroup'][bg['optgroup']] + '">')
-      for(const item of bg['items'])
-        $('#bg-play').append('<option value=' + item.id + ((custInd2 >= 0 && item.id === customizeData[custInd2].key) ? " selected" : " ") + ">" + item.name + "</option>")
-    }
-
-    custInd = customizeData.findIndex(c => c.category === 4)
-    for(const lbg of customJson['laneBgSingle']) {
-      $('#lanebg-s').append('<optgroup label="' + customJson['optgroup'][lbg['optgroup']] + '">')
-      for(const item of lbg['items'])
-        $('#lanebg-s').append('<option value=' + item.id + ((custInd >= 0 && item.id === customizeData[custInd].key) ? " selected" : " ") + ">" + item.name + "</option>")
-    }
-
-    custInd = customizeData.findIndex(c => c.category === 5)
-    for(const lbg of customJson['laneBgDouble']) {
-      $('#lanebg-d').append('<optgroup label="' + customJson['optgroup'][lbg['optgroup']] + '">')
-      for(const item of lbg['items'])
-        $('#lanebg-d').append('<option value=' + item.id + ((custInd >= 0 && item.id === customizeData[custInd].key) ? " selected" : " ") + ">" + item.name + "</option>")
-    }
-
-    custInd = customizeData.findIndex(c => c.category === 6)
-    for(const lcv of customJson['laneCoverSingle']) {
-      $('#lanecv-s').append('<optgroup label="' + customJson['optgroup'][lcv['optgroup']] + '">')
-      for(const item of lcv['items'])
-        $('#lanecv-s').append('<option value=' + item.id + ((custInd >= 0 && item.id === customizeData[custInd].key) ? " selected" : " ") + ">" + item.name + "</option>")
-    }
-    
-    custInd = customizeData.findIndex(c => c.category === 7)
-    for(const lcv of customJson['laneCoverDouble']) {
-      $('#lanecv-d').append('<optgroup label="' + customJson['optgroup'][lcv['optgroup']] + '">')
-      for(const item of lcv['items'])
-        $('#lanecv-d').append('<option value=' + item.id + ((custInd >= 0 && item.id === customizeData[custInd].key) ? " selected" : " ") + ">" + item.name + "</option>")
-    }
-
-    custInd = customizeData.findIndex(c => c.category === 8)
-    for(const bg of customJson['songVid']) {
-      $('#bg-vid').append('<option value=' + bg.id + ((custInd >= 0 && bg.id === customizeData[custInd].key) ? " selected" : " ") + ">" + bg.name + "</option>")
+  $('#appeal, #character-left, #character-right, #bg-system, #bg-play, #lanebg-s, #lanebg-d, #lanecv-s, #lanecv-d').on('change', function() {
+    if(parseInt($(`#${this.id} option:selected`).val()) === 9999) {
+      const elem = customList.find(c => c[0] === this.id)
+      populateRandomSelect(elem)
+    } else {
+      $(`.${this.id}-div`).attr('style', 'display: none')
+      $(`.${this.id}-ran`).empty()
     }
   })
 })
+
+function populateRandomSelect(elem) {
+  let list = customJson[elem[3]].flatMap(item => item.items.filter(i => i.id !== 9999) || [])
+  $(`.${elem[0]}-div`).removeAttr('style')
+  for(const item of list) {
+    const plyCust = customizeData.find(c => c.category === elem[1] && c.pattern === elem[2])
+    $(`.${elem[0]}-ran`).append(
+      `
+        <div class="column is-4 form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" ${(plyCust.random?.includes(item.id)) ? 'checked' : ''} id="ran${elem[0]}${item.id}" value="${item.id}">
+          <label class="form-check-label" for="ran${elem[0]}${item.id}">${item.name}</label>
+        </div>
+      `
+    )
+  }
+  $(`.${elem[0]}-ran`).append('<br><br><br>')
+}

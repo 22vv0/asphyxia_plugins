@@ -690,10 +690,21 @@ export const playerdataload: EPR = async (info, data, send) => {
 
     let userCustomize = []
     let customize = await DB.Find<CustomizeWorld>(refid, {collection: 'customize3'})
+    const defCustIds = [
+      Array.from({ length: 96 }, (_, index) => index + 1).concat([100001, 100002, 100003, 100004, 100005, 100006, 100007]),
+      Array.from({ length: 52 }, (_, index) => index + 1),
+      Array.from({ length: 49 }, (_, index) => index + 1),
+      Array.from({ length: 68 }, (_, index) => index + 1),
+      Array.from({ length: 83 }, (_, index) => index + 1),
+      Array.from({ length: 81 }, (_, index) => index + 1),
+      Array.from({ length: 98 }, (_, index) => index + 1)
+    ]
+
     customize.forEach(cus => {
+      const randomCust = cus.random?.length === 0 ? defCustIds[cus.category - 1] : cus.random
       userCustomize.push({
         category: K.ITEM('s32', cus.category),
-        key: K.ITEM('s32', cus.key),
+        key: K.ITEM('s32', (cus.key === 9999) ? randomCust[Math.floor(Math.random() * randomCust.length)] : cus.key),
         pattern: K.ITEM('s32', cus.pattern)
       })
     })

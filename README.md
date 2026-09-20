@@ -20,10 +20,12 @@ Changelog
 - Implement rival registration and rival PB display in-game
 - Updated missing `score_str` and `record_str` param values
 - PB scores now store lamp and grade for rivaldata_load
+- Updated profile customization loading to support random selection per-credit
 
 ### WebUI
 
 - Added `Profile > Rivals` page: add and remove up to 10 rivals and register up to 3 to compare scores with in-game
+- Updated the customization options in `Profile > Settings` to allow for random customization items to be used.
 
 musicdb.xml Usage Guide
 ===========

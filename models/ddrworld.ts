@@ -107,6 +107,7 @@ export interface CustomizeWorld {
   category: number;
   key: number;
   pattern: number;
+  random: [];
 }
 
 export interface GalaxyBrave {
