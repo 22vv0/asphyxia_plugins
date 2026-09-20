@@ -30,13 +30,19 @@ Changelog
 musicdb.xml Usage Guide
 ===========
 
-1. Put your musicdb.xml file(s) in the _ddr@asphyxia/data_ directory.
-2. Configure plugin settings:
-	- There are 2 related fields in the plugin settings:
-		- **_musicdb.xml for musicdata\_load_**: mdb file where song difficulty and unlock info will be retrieved. This file is required for songs released before WORLD to appear. WORLD songs' unlock info are defined in `data/world.ts:SONGS_WORLD`
-		- **_musicdb.xml for WebUI_**: mdb file where song titles will be retrieved from, for WebUI usage. If you have a different xml file you want to use, upload your mdb file, or keep it empty to use the same musicdb.xml as above.
-	- **Sample setup 1**: I use a modified WORLD musicdb with all difficulties and limited info defined for all songs. I do not need to use a separate musicdb.xml for WebUI (but I would also update this file to include upcoming songs.)
-	- **Sample setup 2**: I use the last A3 musicdb for musicdata\_load. This will set difficulty and limited data for songs released up until A3. WORLD songs info will be set using SONGS\_WORLD defined in _data/world.ts_. Then I use WORLD musicdb for WebUI, so I could get all titles of songs released up until WORLD (I would need to replace this file every time the game updates its song list, and whenever songs released prior to WORLD get new charts or have their difficulties adjusted, SONGS\_OVERRIDE\_WORLD defined in _data/world.ts_ will handle them.)
+### Upload your DDR music_db xml file(s)
+
+#### File uploads
+* `musicdb.xml for musicdata_load`: musicdb.xml file to use for importing unlock and difficulty level info. Note that the plugin has its own unlock info/diff level overrides (`SONGS_OVERRIDE_WORLD` in `data/world.ts`) that will take priority over this.
+* `musicdb.xml for WebUI`: musicdb.xml file to retrieve song titles from, for use in WebUI. It's recommended to use the mdb found in the same game version you're playing on. Keep this blank if you want to use the same file as above.
+
+#### Sample setups
+1. I use a modified WORLD musicdb with all difficulties and limited info defined for all songs. I do not need to use a separate musicdb.xml for WebUI (but I would also update this file to include upcoming songs.)
+2. I use the last A3 musicdb for `musicdata_load`. This will set difficulty and limited data for songs released up until A3. WORLD songs info will be set using `SONGS_WORLD` defined in `data/world.ts`. Then I use WORLD musicdb for WebUI, so I could get all titles of songs released up until WORLD (I would need to replace this file every time the game updates its song list, and whenever songs released prior to WORLD get new charts or have their difficulties adjusted, `SONGS_OVERRIDE_WORLD` defined in `data/world.ts` will handle them.)
+
+### Configure plugin settings:
+* `Unlock all songs`: makes all songs playable. Requires mdb xml to pull song ids from.
+* `WORLD LEAGUE`: activates WORLD LEAGUE if toggled on while there is an ongoing season.
 
 
 To do:
