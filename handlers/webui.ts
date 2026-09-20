@@ -614,8 +614,8 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
       logLine(textureslist[listIter]['file'] + ":")
       if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + textureslist[listIter].file)) {
         let ifsBuffer = await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + textureslist[listIter].file, {flag: 'r'})
-        if(!fs.existsSync('plugins/sdvx@asphyxia/webui/asset/' + textureslist[listIter].asset_folder)) {
-          fs.mkdirSync('plugins/sdvx@asphyxia/webui/asset/' + textureslist[listIter].asset_folder)
+        if(!fs.existsSync(IO.Resolve('webui/asset') + '/' + textureslist[listIter].asset_folder)) {
+          fs.mkdirSync(IO.Resolve('webui/asset') + '/' + textureslist[listIter].asset_folder)
         }
         let header = Buffer.from(ifsBuffer.buffer.slice(0, 36))
         let sig = header.readUInt32BE().toString(16).toUpperCase()
@@ -702,7 +702,7 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
                     })
 
                     pngf.data = Buffer.from(decompressed)
-                    const outputStream = await fs.createWriteStream('plugins/sdvx@asphyxia/webui/asset/' + textureslist[listIter].asset_folder + '/' + tdFileName);
+                    const outputStream = await fs.createWriteStream(IO.Resolve('webui/asset') + '/' + textureslist[listIter].asset_folder + '/' + tdFileName);
                     await pngf.pack().pipe(outputStream);
                     logLine(' - ' + tdFileName + ' created successfully.');
                     ifsSuccess.push(textureslist[listIter].file + ' - ' + tdFileName)

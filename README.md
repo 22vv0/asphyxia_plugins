@@ -1,6 +1,6 @@
 SOUND VOLTEX
 ===
-**Plugin Version:** fork-7.2.2
+**Plugin Version:** fork-7.2.2-qfix
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
 **Supported game versions:**
@@ -17,11 +17,15 @@ SOUND VOLTEX
 **Notes**
 - This is a fork of the [official Asphyxia SDVX plugin](https://github.com/asphyxia-core/plugins). If you have any concerns and issues with this fork of the plugin, please do **not** ask for support on the official Asphyxia channels, and do **not** contact the devs of the official plugin as they would not be able to help you because do not maintain this fork. Direct your concerns to the [GitHub issues page](https://github.com/22vv0/asphyxia_plugins/issues) of this repository.
 - **Please keep a copy/backup of your savedata directory** so you have something to come back to in case of a problem with your database.
-- Before using this plugin, make sure you have your latest `music_db.xml` files uploaded and run the [WebUI Asset Update](/plugin/sdvx@asphyxia/update%20webui%20assets). Do this every data and/or plugin update.
+- Before using this plugin, make sure you have your latest `music_db.xml` files uploaded and run the WebUI Asset Update. Do this every data and/or plugin update.
 
 
 ---
 ## Changelog
+
+### qfix
+
+- Fixed IFS import error when either A: plugin folder name is not set exactly as `sdvx@asphyxia`, or B: core was executed from a different directory ([#108](https://github.com/22vv0/asphyxia_plugins/issues/108))
 
 ### ∇
 
