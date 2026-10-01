@@ -902,13 +902,13 @@ export const EVENT_ITEMS7 = {
 // rule: 0 score 1 point 2 vote
 // rank_match_target: 0 arena 1 single 2 mega
 export const CURRENT_ARENA7 = {
-  season: 2,
-  rule: 1,
-  rank_match_target: 0,
-  time_start: BigInt(Date.parse('16 Jul 2026 08:00:00 GMT')),
-  time_end: BigInt(Date.parse('6 Aug 2026 15:59:59 GMT')),
-  shop_start: BigInt(Date.parse('16 Jul 2026 08:00:00 GMT')),
-  shop_end: BigInt(Date.parse('6 Aug 2026 15:59:59 GMT'))
+  season: 3,
+  rule: 0,
+  rank_match_target: 2,
+  time_start: BigInt(Date.parse('1 Oct 2026 08:00:00 GMT')),
+  time_end: BigInt(Date.parse('26 Oct 2026 15:59:59 GMT')),
+  shop_start: BigInt(Date.parse('1 Oct 2026 08:00:00 GMT')),
+  shop_end: BigInt(Date.parse('26 Oct 2026 15:59:59 GMT'))
 }
 
 // catalog_id, catalog_type, price, item_type, item_id, param 
@@ -942,6 +942,26 @@ export const ARENA_STATION_ITEMS7 = {
       [1, 1, 2000, 0, 317, 8]
     ],
     version: 20260714
+  },
+  'Set 3': {
+    items: [
+      [1, 1, 1250, 11, 82, 1],
+      [1, 1, 4000, 0, 302, 8],
+      [1, 1, 4000, 0, 801, 8],
+      [1, 1, 4000, 0, 67, 8],
+      [1, 1, 2000, 0, 146, 8],
+      [1, 1, 2000, 0, 175, 8],
+      [1, 1, 1500, 1, 1526, 1],
+      [1, 1, 1500, 1, 1534, 1],
+      [1, 1, 1500, 1, 1533, 1],
+      [1, 1, 1500, 1, 1532, 1],
+      [1, 1, 1500, 1, 1531, 1],
+      [1, 1, 1500, 1, 1530, 1],
+      [1, 1, 1500, 1, 1529, 1],
+      [1, 1, 1500, 1, 1538, 1],
+      [1, 1, 1500, 1, 1527, 1]
+    ],
+    version: 20260929
   }
 }
 
