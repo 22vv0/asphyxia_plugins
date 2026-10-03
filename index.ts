@@ -34,7 +34,8 @@ export function register() {
 
   R.DataFile('./webui/uploads/mdb_limited.xml', {name: 'musicdb.xml for musicdata_load', desc: 'musicdb.xml file to use for importing unlock and difficulty level info. (If not using modified musicdb, I advice using the musicdb file from DDR A3 2024040200.)', accept: 'text/xml, .xml'});
   R.DataFile('./webui/uploads/mdb_title.xml', {name: 'musicdb.xml for WebUI', desc: 'musicdb.xml file to retrieve song titles from, for use in WebUI. Keep this blank if you want to use the same file as above. (I advice using the latest DDR WORLD musicdb.)', accept: 'text/xml, .xml'});
-
+  R.DataFile('./webui/uploads/coursedb.xml', {name: 'coursedb.xml', desc: 'Required to enable DAN RANK courses', accept: 'text/xml, .xml'});
+  
   const RoutePlayerData = (method: string, handler: EPR | boolean) => {
     R.Route(`playerdata.${method}`, handler);
   };
@@ -303,7 +304,30 @@ export function register() {
       })
     } 
     send.json({mdb: mdbData})
-  })  
+  })
+
+  R.WebUIEvent("getCDB", async (data: {}, send: WebUISend) => {
+    let cdbData = []
+
+    if(IO.Exists('webui/uploads/coursedb.xml') && IO.Exists('webui/uploads/mdb_title.xml')) {
+      let cdb = U.parseXML(U.DecodeString(await IO.ReadFile('webui/uploads/coursedb.xml'), "utf8"), false)
+      let mdbT = U.parseXML(U.DecodeString(await IO.ReadFile('webui/uploads/mdb_title.xml'), "utf8"), false)
+      
+      cdb['mdb']['course'].forEach(course => {
+        cdbData.push({
+          mcode: $(course).number('mcode'),
+          basename: $(course).str('basename'),
+          grade: $(course).number('grade'),
+          diffLv: $(course).number('diffLv'),
+          music: $(course).elements('music').map(m => ({
+            title: $(mdbT['mdb']['music'].find(mu => $(mu).number('mcode') === m.number('mcode'))).str('title'),
+            difficulty: m.numbers('difficulty')[4]
+          }))
+        })
+      })
+    } 
+    send.json({cdbData})
+  })
 }
 
 async function updateWorldLeague() {

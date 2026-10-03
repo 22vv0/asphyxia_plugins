@@ -73,7 +73,7 @@ async function populateTables() {
 
 $(document).ready(async function() {
 	let scores = JSON.parse(document.getElementById("score-pass").innerText)
-	flareData = await getFlareInfo(scores);
+	flareData = await getFlareInfo(scores.filter(sc => !isMcodeCourse(sc.songId)));
 	await populateTables()
 	
 	$('#style_select').change(async function() {

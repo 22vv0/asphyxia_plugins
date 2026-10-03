@@ -12,7 +12,8 @@ async function populateScoreTable(scores, style, info) {
 			mdbData = response.data.mdb
 		}
 	)
-	scores.forEach(score => {
+	for(const score of scores) {
+		if(isMcodeCourse(score.songId)) continue;
 		let scoreIndex = scoreTableData.findIndex(scoreData => scoreData.songId === score.songId)
 		if(scoreIndex < 0 && style === score.style && score.songId !== 38707) {
 			let m = mdbData.find(m => m.mcode === score.songId)
@@ -50,7 +51,7 @@ async function populateScoreTable(scores, style, info) {
 				scoreTableData[scoreIndex][score.difficulty + 'h'] = score.flareForce
 			} 
 		}
-	})
+	}
 
 	$('#musicdata').DataTable().clear().destroy()
     $('#musicdata').DataTable({

@@ -1,6 +1,6 @@
 import { Profile } from "../models/profile";
 import { ProfileWorld, ScoreWorld, ScoreLog, EventWorld, GhostWorld, RivalWorld, HiScoreWorld, LeagueWorld, LeagueResultWorld, CustomizeWorld, GalaxyBrave } from "../models/ddrworld";
-import { SONGS_WORLD, SONGS_OVERRIDE_WORLD, EVENTS_WORLD, EVENTS_GUEST_WORLD, LEAGUE_WORLD, LEAGUE_SEASON, LEAGUE_GOLD_BORDER_MCODE, GALAXY_BRAVE } from "../data/world";
+import { SONGS_WORLD, SONGS_OVERRIDE_WORLD, EVENTS_WORLD, EVENTS_GUEST_WORLD, LEAGUE_WORLD, LEAGUE_SEASON, LEAGUE_GOLD_BORDER_MCODE, GALAXY_BRAVE, DAN_COURSES_WORLD } from "../data/world";
 
 function getLastGhostId(ghost: any) {
   let ghostFiltered = ghost.filter(a => (a.ghostId !== undefined))
@@ -66,6 +66,8 @@ async function saveScores(refid: string, hiScoreInfo: any, songId: number, style
         flareForce
       }
   });
+
+  if(DAN_COURSES_WORLD.includes(songId)) return 0;
 
   let slot = 0
   let country = hiScoreInfo.country
@@ -220,7 +222,7 @@ export const playerdatasave: EPR = async (info, data, send) => {
       let flareForce = $(data).number("data.result.flare_force");
       let ghostSize = $(data).number("data.result.ghostsize");
       let ghost = $(data).str("data.result.ghost");
-      await saveScores(refid, hiScoreInfo, songId, style, difficulty, rank, clearKind, score, exScore, maxCombo, flareForce, ghostSize, ghost)
+      if(songId != -1) await saveScores(refid, hiScoreInfo, songId, style, difficulty, rank, clearKind, score, exScore, maxCombo, flareForce, ghostSize, ghost)
     }
     else if($(data).number("data.savekind") === 3) {
       let profile = await DB.FindOne<ProfileWorld>(refid, {collection: "profile3"})
@@ -310,6 +312,25 @@ export const playerdatasave: EPR = async (info, data, send) => {
         cgGuideScene: $(data).number('data.checkguide.guide_scene')
       })
 
+      const scoreData = $(data).elements('data.result')
+      if(scoreData) {
+        for(const s of scoreData) {
+          let songId = s.number("mcode");
+          let style = s.number("style");
+          let difficulty = s.number("difficulty");
+          let rank = s.number("rank");
+          let clearKind = s.number("clearkind");
+          let score = s.number("score");
+          let exScore = s.number("exscore");
+          let maxCombo = s.number("maxcombo");
+          let flareForce = s.number("flare_force");
+          let ghostSize = s.number("ghostsize");
+          let ghost = s.str("ghost");
+
+          if(DAN_COURSES_WORLD.includes(songId)) await saveScores(refid, {}, songId, style, difficulty, rank, clearKind, score, exScore, maxCombo, flareForce, ghostSize, ghost)
+        }
+      }
+
       let eventData = $(data).elements('data.event')
       if(eventData) {
         for(const e of eventData) {
@@ -348,7 +369,7 @@ export const playerdatasave: EPR = async (info, data, send) => {
         })
       }
 
-      let braveData = $(data).element('data.brave')
+      const braveData = $(data).element('data.brave')
       if(braveData) {
         await DB.Upsert<ProfileWorld>(refid, { collection: "profile3" }, {$set: {
           brLastBraveId: braveData.number('last_braveid'),
@@ -364,6 +385,15 @@ export const playerdatasave: EPR = async (info, data, send) => {
             lastPlay: det.bool('is_play'),
           }})
         }
+      }
+
+      const danGrade = $(data).element('data.grade')
+      if(danGrade) {
+        await DB.Upsert<ProfileWorld>(refid, { collection: "profile3" }, {$set: {
+          dcLastWindowBtn: danGrade.number('last_window_btn'),
+          dcLastMcodeS: danGrade.number('grade_single.last_mcode'),
+          dcLastMcodeD: danGrade.number('grade_double.last_mcode')
+        }})
       }
     }
 
@@ -514,19 +544,19 @@ export const playerdataload: EPR = async (info, data, send) => {
           scr['score_single'] = []
           scr['score_double'] = []
           /*
-            difficulty,playcount,grade,clearkind,score,ghostid,flaredisp,flarepoints,idk
+            difficulty,playcount,grade,clearkind,score,ghostid,flaredisp,flarepoints,exscore
             needs more work, 9 vals
           */
           scr[(scoreData.style === 0) ? 'score_single' : 'score_double'] = [
             {
-              score_str: K.ITEM('str', `${scoreData.difficulty},${playCount+1},${scoreData.rank},${scoreData.clearKind},${scoreData.score},${scoreData.ghostId},${scoreData.flareForce},${scoreData.flareForce}`)
+              score_str: K.ITEM('str', `${scoreData.difficulty},${playCount+1},${scoreData.rank},${scoreData.clearKind},${scoreData.score},${scoreData.ghostId},${scoreData.flareForce},${scoreData.flareForce},${scoreData.exScore}`)
             }
           ]
           scoreFin.push(scr)
           
         } else {
           scoreFin[mcodeIndex][(scoreData.style === 0) ? 'score_single' : 'score_double'].push({
-            score_str: K.ITEM('str', `${scoreData.difficulty},${playCount+1},${scoreData.rank},${scoreData.clearKind},${scoreData.score},${scoreData.ghostId},${scoreData.flareForce},${scoreData.flareForce}`)
+            score_str: K.ITEM('str', `${scoreData.difficulty},${playCount+1},${scoreData.rank},${scoreData.clearKind},${scoreData.score},${scoreData.ghostId},${scoreData.flareForce},${scoreData.flareForce},${scoreData.exScore}`)
           })
         }
       }
@@ -710,8 +740,8 @@ export const playerdataload: EPR = async (info, data, send) => {
     })
 
     let galaxyBrave = {
-      last_braveid: K.ITEM("s32", (profile.brLastBraveId) ? profile.brLastBraveId : 1),
-      last_window_btn: K.ITEM("s32", (profile.brLastWindowBtn) ? profile.brLastWindowBtn : 1),
+      last_braveid: K.ITEM("s32", profile?.brLastBraveId ?? 1),
+      last_window_btn: K.ITEM("s32", profile?.brLastWindowBtn ?? 1),
       detail: []
     }
     let playerBraveData = await DB.Find<GalaxyBrave>(refid, {collection: 'galaxybrave'})
@@ -736,6 +766,29 @@ export const playerdataload: EPR = async (info, data, send) => {
         })
       }
       galaxyBrave.detail.push(setDetail)
+    }
+
+    let grde = {}
+    if(IO.Exists('webui/uploads/coursedb.xml')) {
+      let cdb = U.parseXML(U.DecodeString(await IO.ReadFile('webui/uploads/coursedb.xml'), "shift_jis"), false)
+
+      grde = {
+        last_window_btn: K.ITEM('s32', profile?.dcLastWindowBtn ?? 0),
+        grade_single: {
+          last_mcode: K.ITEM('s32', profile?.dcLastMcodeS ?? 0), 
+          grade_list: cdb.mdb.course.filter(c => ($(c).number('mcode')) < 2000).map(c => ({
+            mcode: K.ITEM('s32', $(c).number('mcode')),
+            limited: K.ITEM('u8', $(c).number('grade') > 10 ? 2 : 0)
+          }))
+        },
+        grade_double: {
+          last_mcode: K.ITEM('s32', profile?.dcLastMcodeD ?? 0),
+          grade_list: cdb.mdb.course.filter(c => ($(c).number('mcode')) > 2000).map(c => ({
+            mcode: K.ITEM('s32', $(c).number('mcode')),
+            limited: K.ITEM('u8', $(c).number('grade') > 10 ? 2 : 0)
+          }))
+        }
+      }
     }
 
     // test
@@ -872,6 +925,9 @@ export const playerdataload: EPR = async (info, data, send) => {
       event: eventFin,
       customize: userCustomize,
       brave: galaxyBrave,
+      ...(Object.keys(grde).length > 0 && {
+        grade: grde
+      }),
       ...(U.GetConfig("world_league") && {
         league: leagueData
       })
@@ -927,6 +983,7 @@ export const musicdataload: EPR = async (info, data, send) => {
       }
     }
   }
+
   // test
   if(IO.Exists('data/test.json')) {
     let bufTest = await IO.ReadFile('data/test.json')
@@ -1083,6 +1140,7 @@ function getDate(): number {
 const loadEventData = async (eventData, refid) => {
   let result = []
   for(const event of EVENTS_WORLD) {
+    if(event.id === 118 && event.type === 9999 && !IO.Exists('webui/uploads/coursedb.xml')) continue
     let eData = eventData.find(e => e.eventId === event.id)
     let condmet = true
     let compTime = 0
@@ -1106,9 +1164,15 @@ const loadEventData = async (eventData, refid) => {
         saveData = event.cond
       }
     }
-    else if([17, 43].includes(event.type)) {
-      if(!eData) compTime = 1
-      saveData = 1
+    else if([15, 16, 17, 18, 43].includes(event.type)) {
+      // check if not dan rank unlock eventids, otherwise load from db as normal
+      if(![657, 658, 659, 660].includes(event.id)) {
+        if(!eData) compTime = 1
+        saveData = 1
+      }
+      else {
+        compTime = eData?.compTime ?? 0
+      }
     }
     
     if(condmet) {

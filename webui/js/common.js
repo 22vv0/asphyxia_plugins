@@ -1,4 +1,4 @@
-let flareMatrix = {
+const flareMatrix = {
 	"1": [145, 153, 162, 171, 179, 188, 197, 205, 214, 223, 232],
 	"2": [155, 164, 182, 192, 201, 210, 220, 220, 229, 238, 248],
 	"3": [170, 180, 190, 200, 210, 221, 231, 241, 251, 261, 272],
@@ -19,7 +19,7 @@ let flareMatrix = {
 	"18": [650, 689, 728, 767, 806, 845, 884, 923, 962, 1001, 1040],
 	"19": [665, 704, 744, 784, 824, 864, 904, 944, 984, 1024, 1064]
 }
-let flareSkill = [
+const flareSkill = [
 	["NONE", 0, 500, 1000, 1500],
 	["MERCURY", 2000, 3000, 4000, 5000],
 	["VENUS", 6000, 7000, 8000, 9000],
@@ -32,7 +32,7 @@ let flareSkill = [
 	["SUN", 75000, 78750, 82500, 86250],
 	["WORLD", 90000]
 ]
-let area = ["Unknown", "Hokkaido", "Aomori", "Iwate", "Miyagi", "Akita", "Yamagata", "Fukushima", "Ibaraki", "Tochigi", "Gunma", "Saitama", "Chiba", "Tokyo", "Kanagawa", "Niigata", "Toyama", "Ishikawa", "Fukui", "Yamanashi", 
+const area = ["Unknown", "Hokkaido", "Aomori", "Iwate", "Miyagi", "Akita", "Yamagata", "Fukushima", "Ibaraki", "Tochigi", "Gunma", "Saitama", "Chiba", "Tokyo", "Kanagawa", "Niigata", "Toyama", "Ishikawa", "Fukui", "Yamanashi", 
 	"Nagano", "Gifu", "Shizuoka", "Aichi", "Mie", "Shiga", "Kyoto", "Osaka", "Hyogo", "Nara", "Wakayama", "Tottori", "Shimane", "Okayama", "Hiroshima", "Yamaguchi", "Tokushima", "Kagawa", "Ehime", "Kochi", "Fukuoka", "Saga", 
 	"Nagasaki", "Kumamoto", "Oita", "Miyazaki", "Kagoshima", "Okinawa", "Hong Kong", "Korea", "Taiwan", "USA", "Europe", "Overseas", "Alaska", "Alabama", "Arkansas", "Arizona", "California", "Colorado", "Connecticut", "Delaware", 
 	"Florida", "Georgia", "Hawaii", "Iowa", "Idaho", "Illinois", "Indiana", "Kansas", "Kentucky", "Louisiana", "Massachusetts", "Maryland", "Maine", "Michigan", "Minnesota", "Missouri", "Mississippi", "Montana", "Nebraska", 
@@ -40,6 +40,53 @@ let area = ["Unknown", "Hokkaido", "Aomori", "Iwate", "Miyagi", "Akita", "Yamaga
 	"Virginia", "Vermont", "Washington", "Wisconsin", "West Virginia", "Wyoming", "Washington D.C.", "Japan", "Canada", "Singapore", "Thailand", "Australia", "New Zealand", "UK", "Italy", "Spain", "Germany", "France", "Portugal", "Indonesia", 
 	"Philippines"
 ]
+
+const danCourses = [
+	1101, 1102, 1103, 1104, 1105, 1106, 1107, 1108, 1109, 1110, 1111, 1112, 1113, 1114, 1115, 1116,
+	2101, 2102, 2103, 2104, 2105, 2106, 2107, 2108, 2109, 2110, 2111, 2112, 2113, 2114, 2115, 2116
+]
+
+const courseLabel = [
+	'None',
+	'初段 (1st DAN)',
+	'二段 (2nd DAN)',
+	'三段 (3rd DAN)',
+	'四段 (4th DAN)',
+	'五段 (5th DAN)',
+	'六段 (6th DAN)',
+	'七段 (7th DAN)',
+	'八段 (8th DAN)',
+	'九段 (9th DAN)',
+	'十段 (10th DAN)',
+	'中伝 (MASTER)',
+	'奥伝 (SECRET MASTER)',
+	'皆伝 (GRAND MASTER)',
+	'足龍 (STEP DRAGON)',
+	'足神 (STEP LEGEND)',
+	'真・足神 (TRUE STEP LEGEND)'
+]
+
+async function getDanRank(scores) {
+	let mdbData = []
+	await emit('getMDB', {}).then(
+		function(response) {
+			mdbData = response.data.mdb
+		}
+	)
+	let danRankS = 0
+	let danRankD = 0
+
+	if(mdbData !== undefined) {
+		for(const score of scores) {
+			const style = score.songId > 2000
+			const grade = score.songId % 100
+			danRankS = !style && score.clearKind >= 2 && grade >= danRankS ? grade : danRankS
+			danRankD = style && score.clearKind >= 2 && grade >= danRankD ? grade : danRankD
+		}
+	}
+
+	return [danRankS, danRankD]
+}
 
 async function getFlareInfo(scores) {
 	let flareData = {}
@@ -70,7 +117,7 @@ async function getFlareInfo(scores) {
 		}
 	)
 	if(mdbData !== undefined) {
-		scores.forEach(score => {
+		for(const score of scores) {
 			let songIndex = mdbData.findIndex(m => m.mcode === score.songId)
 			if(songIndex > -1 && score.songId != 38707 && score.flareForce >= 0) {
 				if(score.style === 0) {
@@ -89,7 +136,7 @@ async function getFlareInfo(scores) {
 					})
 				}
 			}
-		})
+		}
 
 		flareData.classicSgTop30 = flareTopScores.sg.filter(ft => ft.series <= 13).sort((a, b) => b.flare - a.flare)
 		if(flareData.classicSgTop30.length > 30) flareData.classicSgTop30 = flareData.classicSgTop30.slice(0, 30)
@@ -122,4 +169,8 @@ async function getFlareInfo(scores) {
 
 		return flareData
 	}
+}
+
+function isMcodeCourse(mcode) {
+	return danCourses.includes(mcode)
 }

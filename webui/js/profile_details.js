@@ -7,7 +7,7 @@ $(document).ready(async function() {
 		$("<td>").append(area[profile.area])
 	)
 
-	let flareData = await getFlareInfo(scores)
+	let flareData = await getFlareInfo(scores.filter(sc => !isMcodeCourse(sc.songId)))
 
 	let totalSgFlare = flareData.totalSgFlare
 	let totalDbFlare = flareData.totalDbFlare
@@ -56,14 +56,19 @@ $(document).ready(async function() {
 		}
 	})
 
-	$('#srs').append(sgSkill)
-	$('#srd').append(dbSkill)
-	$('#sts').append(totalSgFlare)
-	$('#std').append(totalDbFlare)
-	$('#scs').append(`${classicSgFlare} (${classicSgTop30.length} / 30)`)
-	$('#scd').append(`${classicDbFlare} (${classicDbTop30.length} / 30)`)
-	$('#sws').append(`${whiteSgFlare} (${whiteSgTop30.length} / 30)`)
-	$('#swd').append(`${whiteDbFlare} (${whiteDbTop30.length} / 30)`)
-	$('#sgs').append(`${goldSgFlare} (${goldSgTop30.length} / 30)`)
-	$('#sgd').append(`${goldDbFlare} (${goldDbTop30.length} / 30)`)
+	$('#srs').text(sgSkill)
+	$('#srd').text(dbSkill)
+	$('#sts').text(totalSgFlare)
+	$('#std').text(totalDbFlare)
+	$('#scs').text(`${classicSgFlare} (${classicSgTop30.length} / 30)`)
+	$('#scd').text(`${classicDbFlare} (${classicDbTop30.length} / 30)`)
+	$('#sws').text(`${whiteSgFlare} (${whiteSgTop30.length} / 30)`)
+	$('#swd').text(`${whiteDbFlare} (${whiteDbTop30.length} / 30)`)
+	$('#sgs').text(`${goldSgFlare} (${goldSgTop30.length} / 30)`)
+	$('#sgd').text(`${goldDbFlare} (${goldDbTop30.length} / 30)`)
+
+	let danRank = await getDanRank(scores.filter(sc => isMcodeCourse(sc.songId)))
+
+	$('.singlerank').text(courseLabel[danRank[0]])
+	$('.doublerank').text(courseLabel[danRank[1]])
 })

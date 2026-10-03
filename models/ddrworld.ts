@@ -207,4 +207,8 @@ export interface ProfileWorld {
 
   brLastBraveId: number;
   brLastWindowBtn: number;
+
+  dcLastWindowBtn: number;
+  dcLastMcodeS: number;
+  dcLastMcodeD: number;
 }

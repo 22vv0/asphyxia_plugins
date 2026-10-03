@@ -1,0 +1,70 @@
+//DATA//
+  profile3: DB.FindOne(refid, { collection: "profile3" })
+  score3: DB.Find(refid, { collection: "score3" })
+
+-
+link(rel="stylesheet" href="static/css/datatables.css")
+style.
+  .crs-div {
+    display: block;
+    background-color: #dbdbdb;
+  }
+
+  @media screen and (max-width: 768px) {
+    .crs-div {
+      height: 1px;
+      width: 100%;
+      margin: 1.5rem 0;
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    .crs-div {
+      width: 1px;
+      height: 150px;
+      align-items: center;
+      margin: 0 1.5rem;
+    }
+  }
+
+  .dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+
+  .dot.none  { background-color: white; opacity: 25%; }
+  .dot.g   { background-color: #28d42b; }
+  .dot.y { background-color: #f5b433; }
+
+if profile3
+  div
+    div(style="display:flex;justify-content:center")
+      div(style="width:50%;padding:10px")
+        .card
+          .card-header
+            p.card-header-title
+              span.icon
+                i.mdi.mdi-music
+              span.sctitle
+                | Single Style
+
+          .card-content
+            .sc
+      div(style="width:50%;padding:10px")
+        .card
+          .card-header
+            p.card-header-title
+              span.icon
+                i.mdi.mdi-music
+              span.dctitle
+                | Double Style
+
+          .card-content
+            .dc
+            
+div(hidden id='score-pass') !{JSON.stringify(score3)}
+script(src="static/js/profile_coursedata.js")
+script(src="static/js/common.js")

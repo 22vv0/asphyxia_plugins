@@ -1,9 +1,9 @@
 # DanceDanceRevolution
 
-**Plugin Version:** 3.2.0a
+**Plugin Version:** 3.2.1
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=mdx&expanded=true).
 
-**Supported game versions:** WORLD (2026022400)
+**Supported game versions:** WORLD (2026032400)
 
 **Required Asphyxia Core version** [1.50c](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50) and above
 
@@ -14,18 +14,27 @@
 Changelog
 ===========
 
+### WORLD
+
+- Added event data: DAN RANK — requires uploaded `coursedb.xml`
+- Added event data: BEMANI PRO LEAGUE -SEASON 5- Triple Tribe Append
+- Added event data: DAN RANK song unlock — 足神様ノ復活祭
+- Added event data: EXTRA SAVIOR WORLD - The 4th MUSIC CREATOR AUDITION
+- Updated songs list
+- Added PREMIUM CUSTOMIZER 「秋のコナステ大感謝祭2024」
+
 ### Misc
 
-- Plugin now saves all scores and ghost data (as opposed to only PB)
-- Implement rival registration and rival PB display in-game
-- Updated missing `score_str` and `record_str` param values
-- PB scores now store lamp and grade for rivaldata_load
-- Updated profile customization loading to support random selection per-credit
+- Data upload for `coursedb.xml` to populate course data and for use in WebUI
+- Added block to score saving if mcode is `-1` during saveKind 2 (a case for Dan courses)
+- Added Dan Course saving during saveKind 3
+- Added ex-score to `score_str`
+- `loadEventData` update to check for Dan 
 
 ### WebUI
 
-- Added `Profile > Rivals` page: add and remove up to 10 rivals and register up to 3 to compare scores with in-game
-- Updated the customization options in `Profile > Settings` to allow for random customization items to be used.
+- Added Dan Rankings section to `Profile > Details` page
+- Added `Profile > Course Data` page — check your Dan course data
 
 musicdb.xml Usage Guide
 ===========
@@ -48,5 +57,4 @@ musicdb.xml Usage Guide
 To do:
 ===========
 
-1. Figure out unknown values in score_str
-2. Rival loading and figure out unknown values in rival record_str
+1. Rival loading and figure out unknown values in rival record_str

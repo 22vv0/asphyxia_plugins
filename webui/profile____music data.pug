@@ -4,6 +4,28 @@
 
 -
 link(rel="stylesheet" href="static/css/datatables.css")
+style.
+  .crs-div {
+    display: block;
+    background-color: #dbdbdb;
+  }
+
+  @media screen and (max-width: 768px) {
+    .crs-div {
+      height: 1px;
+      width: 100%;
+      margin: 1.5rem 0;
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    .crs-div {
+      width: 1px;
+      height: 150px;
+      align-items: center;
+      margin: 0 1.5rem;
+    }
+  }
 
 if profile3
   div
@@ -65,5 +87,6 @@ if profile3
             tbody
             
 div(hidden id='score-pass') !{JSON.stringify(score3)}
-script(src="static/js/musicdata.js")
+script(src="static/js/common.js")
+script(src="static/js/profile_musicdata.js")
 script(src="static/js/datatables.js")
