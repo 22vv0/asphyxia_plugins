@@ -27,9 +27,11 @@ SOUND VOLTEX
 
 - Started ARENA season 3: MEGAMIX BATTLE
 - Added ARENA STATION Set 3
+- Added new weekly stamp sheets
 
 ### Misc
 
+- Fixed issue where plugin settings are not saved
 - Fixed IFS import error when either A: plugin folder name is not set exactly as `sdvx@asphyxia`, or B: core was executed from a different directory ([#108](https://github.com/22vv0/asphyxia_plugins/issues/108))
 
 ---

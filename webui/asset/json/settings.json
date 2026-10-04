@@ -38,9 +38,10 @@
         },
         {
             "id": "nblArenaStation",
-            "html": "<div class=\"control is-expanded\"><div class=\"select\"><select type=\"text\" name=\"nblArenaStation\"><option>None</option><option>Set 1</option><option>Set 2</option></select></div>",
+            "html": "<div class=\"control is-expanded\"><div class=\"select\"><select type=\"text\" name=\"nblArenaStation\"></select></div>",
             "name": "ARENA STATION set [∇]",
-            "desc": "Choose which set of ARENA STATION items are available for purchase during ARENA rank season"
+            "desc": "Choose which set of ARENA STATION items are available for purchase during ARENA rank season",
+            "options": ["None", "Set 1", "Set 2", "Set 3"]
         }
     ]
 }

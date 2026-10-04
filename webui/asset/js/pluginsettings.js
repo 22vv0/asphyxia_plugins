@@ -83,6 +83,15 @@ function populatePluginSet(setList, pluginSettings) {
         if(typeof pluginSettings[set.id] === 'boolean' && pluginSettings[set.id]) {
             $(`[name="${set.id}"]`).attr('checked', 'checked')
         } else {
+            if(set.options) {
+                for(const opt of set.options) {
+                    $(`[name="${set.id}"]`).append(
+                        `
+                            <option>${opt}</option>
+                        `
+                    )
+                }
+            }
             $(`[name="${set.id}"]`).val(pluginSettings[set.id])
         }
         

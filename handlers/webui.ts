@@ -1015,7 +1015,7 @@ export const saveMorePluginSettings = async(data: { settings: {} }, send: WebUIS
   var success = true
   let settings = data.settings
   try {
-    await DB.Update<PluginSettings>({collection: 'settings'}, {$set: settings})
+    await DB.Upsert<PluginSettings>({collection: 'settings'}, {$set: settings})
   }
   catch {
     success = false
