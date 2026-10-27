@@ -5,6 +5,25 @@
 -
 link(rel="stylesheet" href="static/css/datatables.css")
 style.
+  .crs-main {
+    display:flex;
+    justify-content:center;
+  }
+
+  .crs-sc .crs.dc {
+    width: 50%;
+  }
+
+  @media (max-width: 768px) {
+    .crs-main {
+      display: block;
+    }
+
+    .crs-sc .crs.dc {
+      width: 100%;
+    }
+  }
+  
   .crs-div {
     display: block;
     background-color: #dbdbdb;
@@ -41,8 +60,8 @@ style.
 
 if profile3
   div
-    div(style="display:flex;justify-content:center")
-      div(style="width:50%;padding:10px")
+    .crs-main
+      div.crs-sc(style="padding:10px")
         .card
           .card-header
             p.card-header-title
@@ -53,7 +72,7 @@ if profile3
 
           .card-content
             .sc
-      div(style="width:50%;padding:10px")
+      div.crs-dc(style="padding:10px")
         .card
           .card-header
             p.card-header-title
