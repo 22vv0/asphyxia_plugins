@@ -1176,14 +1176,23 @@ const loadEventData = async (eventData, refid) => {
     }
     
     if(condmet) {
+      let finCompTime = 0
       if(event.type === 9999 && event.id === 101 && !U.GetConfig('world_league')) continue
+
+      // dan unlock requires compTime > 1 for completed data to prevent unlock window from popping up again
+      if([657, 658, 659, 660].includes(event.id)) {
+        const danComplete = eventData.filter(e => [657, 658, 659, 660].includes(e.eventId) && e.saveData === 1).length + 1
+        finCompTime = (eData?.compTime ?? 0) === 1 ? danComplete : 0
+      } 
+      else finCompTime = compTime
+      
       result.push({
         id: event.id,
         type: event.type,
         no: event.no,
         cond: event.cond,
         rwrd: event.rwrd,
-        compTime: compTime,
+        compTime: finCompTime,
         saveData: (eData) ? eData.saveData : saveData
       })  
     }
