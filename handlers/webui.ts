@@ -566,14 +566,18 @@ export const copyResourcesFromGame = async (data: {}, send: WebUISend) => {
     // Copying new akanames from gamedata
     logLine("Copying new appeal titles from gamedata")
     // resourceJsonData.akaname = []
+
+    const akaSanitize = function (akaname) {
+      return akaname.replace(/\[.*?\]/g,'').replace(/&quot;/g, '"').replace(/&apos;/g, '\'').replace(/&lt;/g, '<')
+    }
     if(IO.Exists(U.GetConfig('sdvx_eg_root_dir') + "/data/others/akaname_parts.xml")) {
       let akanameData = U.parseXML(U.DecodeString(await IO.ReadFile(U.GetConfig('sdvx_eg_root_dir') + "/data/others/akaname_parts.xml"), "shift_jis"), false)
       for(const akaname of akanameData.akaname_parts.part) {
         if(resourceJsonData.akaname.find(aka => aka.value === akaname['@attr'].id) === undefined) {
-          let akanameFmtd = ('@content' in akaname.word) ? akaname.word['@content'].replace(/(\[[A-z0-9:,\/\]]*)/g,'') : ''
+          let akanameFmtd = ('@content' in akaname.word) ? akaSanitize(akaname.word['@content']) : ''
           logLine("[appeal title] adding " + akaname['@attr'].id + " - " + akanameFmtd)
           resourceJsonData.akaname.push({"value": akaname['@attr'].id, "name": akanameFmtd})
-          newAkanames.push(akaname['@attr'].id + ": " + akanameFmtd )
+          newAkanames.push(akaname['@attr'].id + ": " + akanameFmtd)
         } 
       }
       resourceJsonData.akaname.sort(function(a, b){return parseInt(a.value) - parseInt(b.value)})

@@ -1,6 +1,6 @@
 SOUND VOLTEX
 ===
-**Plugin Version:** fork-7.2.2a
+**Plugin Version:** fork-7.2.2b
 - Check for newer plugin versions [here](https://github.com/22vv0/asphyxia_plugins/releases?q=kfc&expanded=true).
 
 **Supported game versions:**
@@ -10,7 +10,7 @@ SOUND VOLTEX
 - HEAVENLY HAVEN (2019020600)
 - VIVID WAVE (2020122200)
 - EXCEED GEAR (2025120900)
-- ∇ (2026092900)
+- ∇ (2026102700)
 
 **Required Asphyxia Core version** [1.50d](https://github.com/asphyxia-core/asphyxia-core.github.io/releases/tag/v1.50d) or above
 
@@ -25,14 +25,13 @@ SOUND VOLTEX
 
 ### ∇
 
-- Started ARENA season 3: MEGAMIX BATTLE
-- Added ARENA STATION Set 3
+- Updated licensed songs list
 - Added new weekly stamp sheets
 
 ### Misc
 
-- Fixed issue where plugin settings are not saved
-- Fixed IFS import error when either A: plugin folder name is not set exactly as `sdvx@asphyxia`, or B: core was executed from a different directory ([#108](https://github.com/22vv0/asphyxia_plugins/issues/108))
+- Better appeal title/akaname string sanitation on WebUI asset update
+- Removed akanames list on `data.json`. Import your own list via asset update
 
 ---
 ## Todo:
