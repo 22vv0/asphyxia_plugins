@@ -1749,6 +1749,116 @@ export const MEGAMIX_SONGS_5 = [
   2391, 2404, 2405
 ]
 
+
+export const VOICES7 = [
+  // rasis
+  [
+    { id: 4, voices: [0, 14, 32], skins: [0, 1] },
+    { id: 8, voices: [0, 14, 32], skins: [0] },
+    { id: 17, voices: [0, 14, 32], skins: [0] },
+    { id: 51, voices: [0, 14, 32], skins: [0] },
+    { id: 88, voices: [0, 14, 32], skins: [0] },
+    { id: 95, voices: [0, 14, 32], skins: [0] },
+    { id: 113, voices: [0, 14, 32], skins: [0] },
+    { id: 114, voices: [0, 14, 32], skins: [0, 2] },
+    { id: 115, voices: [0, 14, 32], skins: [0, 2] },
+    { id: 128, voices: [0, 14, 32], skins: [0] },
+    { id: 133, voices: [0, 14, 32], skins: [0] },
+    { id: 150, voices: [0, 14, 32], skins: [0] },
+    { id: 171, voices: [0, 14, 32], skins: [0] },
+    { id: 178, voices: [0, 14, 32], skins: [0] },
+    { id: 180, voices: [0, 14, 32], skins: [0] }
+  ],
+  // grace
+  [
+    { id: 59, voices: [3, 28, 31], skins: [0] },
+    { id: 83, voices: [3, 28, 31], skins: [0] },
+    { id: 102, voices: [3, 28, 31], skins: [0] },
+    { id: 116, voices: [3, 28, 31], skins: [0] },
+    { id: 117, voices: [3, 28, 31], skins: [0] },
+    { id: 118, voices: [3, 28, 31], skins: [0] },
+    { id: 129, voices: [3, 28, 31], skins: [0] },
+    { id: 136, voices: [3, 28, 31], skins: [0] },
+    { id: 159, voices: [3, 28, 31], skins: [0] },
+    { id: 173, voices: [3, 28, 31], skins: [0, 1, 2, 3] },
+    { id: 177, voices: [3, 28, 31], skins: [0] },
+    { id: 181, voices: [3, 28, 31], skins: [0] },
+  ],
+  // kureha
+  [
+    { id: 6, voices: [2], skins: [0] },
+    { id: 52, voices: [2], skins: [0] },
+    { id: 66, voices: [2], skins: [0] },
+    { id: 96, voices: [2], skins: [0] },
+    { id: 109, voices: [2], skins: [0] },
+    { id: 134, voices: [2], skins: [0] },
+  ],
+  // nearnoah
+  [
+    { id: 7, voices: [18], skins: [0] },
+    { id: 29, voices: [18], skins: [0] },
+    { id: 67, voices: [18], skins: [0] },
+    { id: 103, voices: [18], skins: [0] },
+    { id: 120, voices: [18], skins: [0] },
+    { id: 161, voices: [18], skins: [0, 2] },
+  ],
+  // kanade
+  [
+    { id: 10, voices: [8, 9], skins: [0] },
+    { id: 82, voices: [8, 9], skins: [0] },
+    { id: 142, voices: [8, 9], skins: [0, 2] },
+  ],
+  // right
+  [
+    { id: 2, voices: [15], skins: [0] },
+    { id: 101, voices: [15], skins: [0] },
+    { id: 151, voices: [15], skins: [0] },
+    { id: 168, voices: [15], skins: [0] },
+  ],
+  // left
+  [
+    { id: 3, voices: [16], skins: [0, 2] },
+    { id: 105, voices: [16], skins: [0] },
+    { id: 152, voices: [16], skins: [0] },
+    { id: 169, voices: [16], skins: [0] },
+  ],
+  // maxima
+  [
+    { id: 5, voices: [4], skins: [0] },
+    { id: 34, voices: [4], skins: [0, 2] },
+    { id: 137, voices: [4], skins: [0] },
+  ],
+  // natsuhi
+  [
+    { id: 35, voices: [11], skins: [0] },
+    { id: 106, voices: [11], skins: [0] },
+    { id: 146, voices: [11], skins: [0] },
+  ],
+  // cocona
+  [
+    { id: 36, voices: [12], skins: [0] },
+    { id: 107, voices: [12], skins: [0] },
+    { id: 147, voices: [12], skins: [0] },
+  ],
+  // konoha
+  [
+    { id: 30, voices: [34, 35], skins: [0] },
+    { id: 80, voices: [34, 35], skins: [0] },
+    { id: 112, voices: [34, 35], skins: [0] },
+    { id: 182, voices: [34, 35], skins: [0, 1] },
+  ],
+  // tsumabuki
+  [
+    { id: 119, voices: [5], skins: [0] },
+    { id: 138, voices: [5], skins: [0] },
+  ],
+  // meu
+  [
+    { id: 19, voices: [22], skins: [0] },
+    { id: 166, voices: [22], skins: [0] }
+  ]
+]
+
 export const EXTENDS7 = [
   {
     version: 20260203,

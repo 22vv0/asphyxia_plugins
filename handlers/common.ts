@@ -9,7 +9,7 @@ import { FLAGS6, COURSES6, EXTENDS6, APRILFOOLSSONGS, VALKYRIE_SONGS, LICENSED_S
 } from '../data/exg';
 import { FLAGS7, COURSES7, EXTENDS7, LICENSED_SONGS7, CURRENT_ARENA7, ARENA_STATION_ITEMS7, 
           VALGENE7, APIGENE7, INFORMATION7, UNLOCK_EVENTS7, EGSONGS_LOCKED, MUSIC_OVERRIDE7,
-          GAMEOVER_CHARA7, GAMEOVER_IFS, QUIZ7
+          GAMEOVER_CHARA7, GAMEOVER_IFS, QUIZ7, VOICES7
 } from '../data/nbl';
 import { getVersion, checkVerStart, getRandomIntInclusive } from '../utils';
 import { PluginSettings } from '../models/settings';
@@ -724,6 +724,30 @@ export const common: EPR = async (info, data, send) => {
               gameoverIfs[Math.floor(Math.random() * gameoverIfs.length)].str
             ]
           })
+        }
+      }
+
+      if(version >= 20261027) {
+        for(const [i, voices] of VOICES7.entries()) {
+          let finEntry = []
+          for(const entry of voices) {
+            for(const skin of entry.skins) {
+              finEntry.push({
+                id: entry.id * 10 + skin,
+                voices: entry.voices
+              })
+            }
+          }
+          extend.push({
+            type: 24,
+            id: 0,
+            params: [
+              0, 0, 0, 0, 0,
+              JSON.stringify(finEntry),
+              '', '', '', ''
+            ]
+          })
+          finEntry = []
         }
       }
 
