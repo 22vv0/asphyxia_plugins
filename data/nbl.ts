@@ -1795,7 +1795,8 @@ export const VOICES7 = [
     { id: 150, voices: [0, 14, 32], skins: [0] },
     { id: 171, voices: [0, 14, 32], skins: [0] },
     { id: 178, voices: [0, 14, 32], skins: [0] },
-    { id: 180, voices: [0, 14, 32], skins: [0] }
+    { id: 180, voices: [0, 14, 32], skins: [0] },
+    { id: 201, voices: [0, 14, 32], skins: [0] }
   ],
   // grace
   [
@@ -1811,6 +1812,7 @@ export const VOICES7 = [
     { id: 173, voices: [3, 28, 31], skins: [0, 1, 2, 3] },
     { id: 177, voices: [3, 28, 31], skins: [0] },
     { id: 181, voices: [3, 28, 31], skins: [0] },
+    { id: 202, voices: [3, 28, 31], skins: [0] },
   ],
   // kureha
   [
@@ -1835,6 +1837,7 @@ export const VOICES7 = [
     { id: 10, voices: [8, 9], skins: [0] },
     { id: 82, voices: [8, 9], skins: [0] },
     { id: 142, voices: [8, 9], skins: [0, 2] },
+    { id: 185, voices: [8, 9], skins: [0] },
   ],
   // right
   [
