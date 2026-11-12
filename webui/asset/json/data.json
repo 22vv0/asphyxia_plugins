@@ -223,6 +223,46 @@
         {
             "value": 59,
             "name": "THE VOLTENIZER 2026"
+        },
+        {
+            "value": 60,
+            "name": "GRAVITY MODEL TYPE Everlasting Message"
+        },
+        {
+            "value": 61,
+            "name": "GRAVITY MODEL TYPE Lachryma(Re:Queen' M)"
+        },
+        {
+            "value": 62,
+            "name": "VIVID MODEL TYPE MAI"
+        },
+        {
+            "value": 63,
+            "name": "VIVID MODEL TYPE GORILLA"
+        },
+        {
+            "value": 64,
+            "name": "VIVID MODEL TYPE RUKI"
+        },
+        {
+            "value": 65,
+            "name": "VIVID MODEL TYPE VELA"
+        },
+        {
+            "value": 66,
+            "name": "VIVID MODEL TYPE NISHINIPPORI"
+        },
+        {
+            "value": 67,
+            "name": "VIVID MODEL TYPE CHIKAGE"
+        },
+        {
+            "value": 68,
+            "name": "VIVID MODEL TYPE CANNON"
+        },
+        {
+            "value": 69,
+            "name": "VIVID MODEL TYPE ONDINE"
         }
     ],
     "subbg": [
@@ -4974,6 +5014,56 @@
             "value": 964,
             "type": "normal",
             "name": "【cultural performer】儒鳥風亭らでん"
+        },
+        {
+            "value": 965,
+            "type": "normal",
+            "name": "Everlasting Message"
+        },
+        {
+            "value": 966,
+            "type": "normal",
+            "name": "Lachryma《Re:Queen'M》"
+        },
+        {
+            "value": 967,
+            "type": "normal",
+            "name": "Thank you for your playing music"
+        },
+        {
+            "value": 968,
+            "type": "normal",
+            "name": "ごりらがいるんだ"
+        },
+        {
+            "value": 969,
+            "type": "normal",
+            "name": "Twinkle Rookie"
+        },
+        {
+            "value": 970,
+            "type": "normal",
+            "name": "False Cross"
+        },
+        {
+            "value": 971,
+            "type": "normal",
+            "name": "西日暮里の踊り"
+        },
+        {
+            "value": 972,
+            "type": "normal",
+            "name": "No way"
+        },
+        {
+            "value": 973,
+            "type": "normal",
+            "name": "Xymatic Scope"
+        },
+        {
+            "value": 974,
+            "type": "normal",
+            "name": "オンディーヌの泪"
         }
     ],
     "bgm": [
@@ -5436,6 +5526,46 @@
         {
             "value": 114,
             "name": "覚帝神刻"
+        },
+        {
+            "value": 115,
+            "name": "Fly Like You"
+        },
+        {
+            "value": 116,
+            "name": "veRtrageS"
+        },
+        {
+            "value": 117,
+            "name": "Going My Future!"
+        },
+        {
+            "value": 118,
+            "name": "ごりらがいるんだ"
+        },
+        {
+            "value": 119,
+            "name": "Twinkle Rookie"
+        },
+        {
+            "value": 120,
+            "name": "False Cross"
+        },
+        {
+            "value": 121,
+            "name": "西日暮里の踊り"
+        },
+        {
+            "value": 122,
+            "name": "No way"
+        },
+        {
+            "value": 123,
+            "name": "Xibercannon"
+        },
+        {
+            "value": 124,
+            "name": "オンディーヌの泪"
         }
     ],
     "stamp": [

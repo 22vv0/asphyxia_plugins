@@ -1093,7 +1093,14 @@ export const VALGENE7 = {
       valgene_id: 22,
       version: 20260915,
       start: 20260920
-    }
+    },
+    {
+      valgene_name: "ヴァルキリージェネレーター　第21弾",
+      valgene_name_english: "Valkyrie Generator Vol. 21",
+      valgene_id: 23,
+      version: 20261110,
+      start: 20261112
+    },
   ],
   rarity: {
     "11": 5,
@@ -1174,7 +1181,28 @@ export const VALGENE7 = {
           item_ids: [947, 948, 949, 950, 951, 952, 953, 954, 955, 956, 957, 958, 959, 960, 961, 962, 963, 964]
         }
       ]
-    }
+    },
+    {
+      volume: 23,
+      items: [
+        {
+          type: 11,
+          item_ids: [201, 202, 203, 204, 205, 206, 207, 208, 209, 210]
+        },
+        {
+          type: 18,
+          item_ids: [965, 966, 967, 968, 969, 970, 971, 972, 973, 974]
+        },
+        {
+          type: 19,
+          item_ids: [115, 116, 117, 118, 119, 120, 121, 122, 123, 124]
+        },
+        {
+          type: 20,
+          item_ids: [60, 61, 62, 63, 64, 65, 66, 67, 68, 69]
+        }
+      ]
+    },
   ]
 }
 

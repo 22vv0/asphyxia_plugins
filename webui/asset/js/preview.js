@@ -234,11 +234,11 @@ $(document).ready(async function() {
         }
     )
 
-    // akaname, apcard, nemsys, subbg, bgm, stamp, crew, sysbg
     let finalLim = [0, 0, 0, 0, 0, 0, 0, 0]
     const finDateCode = (datecode !== (false || undefined || null || "") && datecode >= currentProfile.datecode) ? datecode : (currentProfile.datecode || ((currentVersion === 6) ? 20251209 : 20251226))
     
     const datecodeLimit = [
+        // datecode, akaname, apcard, nemsys, subbg, bgm, stamp, crew, sysbg
         [20251209, 40287, 5553, 46, 762, 92, 2136, 176, 19],
         [20260303, 40302, 6507, 48, 815, 101, 2216, 181, 0],
         [20260324, 0, 0, 0, 842, 0, 2256, 182, 31],
@@ -249,7 +249,8 @@ $(document).ready(async function() {
         [20260804, 0, 6902, 0, 0, 0, 0, 0, 0],
         [20260825, 0, 0, 0, 916, 0, 2388, 199, 0],
         [20260901, 0, 0, 59, 946, 114, 0, 200, 0],
-        [20260915, 0, 0, 0, 964, 0, 0, 0, 0]
+        [20260915, 0, 0, 0, 964, 0, 0, 0, 0],
+        [20261110, 0, 0, 69, 974, 124, 0, 210, 0]
     ].filter(lim => lim[0] <= finDateCode).forEach(lim => {
         lim.forEach((l, ind) => {
             if(l !== 0) finalLim[ind] = l
