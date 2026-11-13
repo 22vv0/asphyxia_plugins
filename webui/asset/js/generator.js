@@ -64,6 +64,7 @@ async function loadItems(itemSet, gene_edition, items_crew, items_stamp, items_s
         else $('#pregene-roll').removeAttr('disabled')
     } else if(gene_edition === 'valkyrie') {
         $('#valgene-roll').attr('disabled', 'disabled')
+        $('#valgene-roll').text('Roll in-game')
     }
     
 
